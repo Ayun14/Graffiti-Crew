@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
-        _player.MovementCompo.StopImmediately();
+        _player.MovementCompo.StopImmediately(true);
     }
 
     public override void UpdateState()
@@ -27,9 +27,7 @@ public class PlayerIdleState : PlayerState
 
     private void HandleMovementEvent(Vector3 movement)
     {
-        if (!_player.MovementCompo.CheckDistance())
-        {
-            _player.StateMachine.ChangeState(PlayerStateEnum.Run);
-        }
+        _player.NavMeshAgent.destination = movement;
+        _player.StateMachine.ChangeState(PlayerStateEnum.Run);
     }
 }

@@ -10,21 +10,26 @@ public class AgentMovement : MonoBehaviour, INavigationable
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    public void StopImmediately()
+    public void StopImmediately(bool isActive)
     {
-        _navMeshAgent.isStopped = true;
+        _navMeshAgent.isStopped = isActive;
     }
 
-    public void SetDestination(Vector3 destination)
+    public void SetDestination()
     {
-        _navMeshAgent.SetDestination(destination);
+        _navMeshAgent.SetDestination(_navMeshAgent.destination);
     }
 
-    public bool CheckDistance()
+    public bool CanMoveCheck()
     {
-        if (Vector3.Distance(transform.position, _navMeshAgent.destination) >= _navMeshAgent.stoppingDistance)
-            return false;
-        else
-            return true;
+        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        {
+            if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }

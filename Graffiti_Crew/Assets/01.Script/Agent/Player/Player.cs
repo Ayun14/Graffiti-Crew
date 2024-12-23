@@ -11,7 +11,7 @@ public enum PlayerStateEnum
 public class Player : Agent
 {
     [Header("Setting Values")]
-    public float moveSpeed = 12f;
+    public float moveSpeed = 4f;
 
     public PlayerStateMachine StateMachine { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
@@ -43,6 +43,7 @@ public class Player : Agent
 
     protected void Start()
     {
+        NavMeshAgent.speed = moveSpeed;
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
 
