@@ -28,6 +28,10 @@ public class PlayerIdleState : PlayerState
     private void HandleMovementEvent(Vector3 movement)
     {
         _player.NavMeshAgent.destination = movement;
-        _player.StateMachine.ChangeState(PlayerStateEnum.Run);
+
+        if (_player.MovementCompo.CanMoveCheck())
+        {
+            _player.StateMachine.ChangeState(PlayerStateEnum.Run);
+        }
     }
 }

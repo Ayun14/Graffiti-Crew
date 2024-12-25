@@ -11,7 +11,6 @@ public abstract class Agent : MonoBehaviour
     #endregion
 
     public bool CanStateChangeable { get; protected set; } = true;
-    public bool isDead;
 
     protected virtual void Awake()
     {
