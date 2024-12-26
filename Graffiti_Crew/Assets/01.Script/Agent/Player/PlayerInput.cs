@@ -9,9 +9,9 @@ public class PlayerInput : MonoBehaviour
 
     private bool _playerInputEnabled = true;
 
-    public void SetPlayerInput(bool enabled)
+    private void Start()
     {
-        _playerInputEnabled = enabled;
+        MovementEvent?.Invoke(transform.position);
     }
 
     private void Update()
@@ -21,9 +21,14 @@ public class PlayerInput : MonoBehaviour
         CheckMoveInput();
     }
 
+    public void SetPlayerInput(bool enabled)
+    {
+        _playerInputEnabled = enabled;
+    }
+
     private void CheckMoveInput()
     {
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
