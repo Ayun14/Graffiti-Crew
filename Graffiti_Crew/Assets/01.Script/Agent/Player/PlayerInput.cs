@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public event Action<Vector3> MovementEvent;
+    [SerializeField] private LayerMask _whatIsInteration;
 
+    public event Action<Vector3> MovementEvent;
+    public event Action<IInterationObject> InteractionEvent;
     public Vector3 MousePosition { get; private set; }
 
     private bool _playerInputEnabled = true;
@@ -34,6 +36,15 @@ public class PlayerInput : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
             {
                 MovementEvent?.Invoke(hit.point);
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), 
+                out hit, Mathf.Infinity, _whatIsInteration))
+            {
             }
         }
     }
