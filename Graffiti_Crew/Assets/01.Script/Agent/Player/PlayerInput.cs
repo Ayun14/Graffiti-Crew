@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsInteration;
+    [SerializeField] private LayerMask _whatIsGround;
 
     public event Action<Vector3> MovementEvent;
     public event Action<IInterationObject> InteractionEvent;
@@ -30,10 +31,17 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckMoveInput()
     {
+
         if (Input.GetMouseButtonDown(1))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsInteration))
+            {
+                Interaction();
+            }
+            else if(Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsGround))
             {
                 MovementEvent?.Invoke(hit.point);
             }
@@ -41,11 +49,18 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), 
-                out hit, Mathf.Infinity, _whatIsInteration))
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsInteration))
             {
+                Interaction();
             }
         }
+    }
+
+    private void Interaction()
+    {
+
     }
 }

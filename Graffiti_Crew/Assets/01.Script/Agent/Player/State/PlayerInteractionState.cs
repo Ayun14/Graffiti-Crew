@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerInterationState : PlayerState
+public class PlayerInteractionState : PlayerState
 {
-    public PlayerInterationState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
+    public PlayerInteractionState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
         : base(player, stateMachine, animBoolName)
     {
     }

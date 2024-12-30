@@ -12,10 +12,10 @@ public class Player : Agent
 {
     [Header("Setting Values")]
     public float moveSpeed = 4f;
+    [SerializeField] private PlayerInput _playerInput;
 
     public PlayerStateMachine StateMachine { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
-    [SerializeField] private PlayerInput _playerInput;
     public PlayerInput PlayerInput => _playerInput;
     public PlayerVFX PlayerVFXCompo => VFXCompo as PlayerVFX;
 
