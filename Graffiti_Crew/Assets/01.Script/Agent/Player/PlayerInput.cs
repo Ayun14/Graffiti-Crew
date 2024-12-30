@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private LayerMask _whatIsGround;
 
     public event Action<Vector3> MovementEvent;
-    public event Action<IInterationObject> InteractionEvent;
+    public event Action<InteractionObject> InteractionEvent;
     public Vector3 MousePosition { get; private set; }
 
     private bool _playerInputEnabled = true;
@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsInteration))
             {
-                Interaction();
+                InteractionEvent?.Invoke(hit.transform.GetComponent<InteractionObject>());
             }
             else if(Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsGround))
             {
@@ -54,13 +54,8 @@ public class PlayerInput : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsInteration))
             {
-                Interaction();
+                InteractionEvent?.Invoke(hit.transform.GetComponent<InteractionObject>());
             }
         }
-    }
-
-    private void Interaction()
-    {
-
     }
 }
