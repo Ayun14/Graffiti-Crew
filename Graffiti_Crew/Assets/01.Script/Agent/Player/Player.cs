@@ -5,7 +5,10 @@ using UnityEngine.AI;
 public enum PlayerStateEnum
 {
     Idle,
-    Run
+    Run,
+    Interaction,
+    Computer,
+    NPC
 }
 
 public class Player : Agent
@@ -18,6 +21,8 @@ public class Player : Agent
     public NavMeshAgent NavMeshAgent { get; private set; }
     public PlayerInput PlayerInput => _playerInput;
     public PlayerVFX PlayerVFXCompo => VFXCompo as PlayerVFX;
+
+    [HideInInspector] public InteractionObject CurrentInteractionObject;
 
     protected override void Awake()
     {

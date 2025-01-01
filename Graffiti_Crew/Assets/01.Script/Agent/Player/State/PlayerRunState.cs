@@ -12,17 +12,16 @@ public class PlayerRunState : PlayerState
     {
         base.Enter();
         _player.MovementCompo.StopImmediately(false);
-
         _player.MovementCompo.SetDestination(_player.NavMeshAgent.destination);
+
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
+        _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
 
         //_player.PlayerVFXCompo.UpdateFootStep(true);
-
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
         if(_player.MovementCompo.CanMoveCheck())
         {
             _player.StateMachine.ChangeState(PlayerStateEnum.Idle);
@@ -32,7 +31,16 @@ public class PlayerRunState : PlayerState
     public override void Exit()
     {
         _player.PlayerInput.MovementEvent -= HandleMovementEvent;
+        _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
+
         base.Exit();
+    }
+
+    private void HandleInteractionEvent(InteractionObject interactionObject)
+    {
+        _player.CurrentInteractionObject = interactionObject;
+        _player.NavMeshAgent.destination = interactionObject.TargetPos;
+        _player.StateMachine.ChangeState(PlayerStateEnum.Interaction);
     }
 
     private void HandleMovementEvent(Vector3 movement)

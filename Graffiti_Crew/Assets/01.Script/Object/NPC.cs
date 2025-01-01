@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Computer : InteractionObject
+public class NPC : InteractionObject
 {
     protected override void Awake()
     {
