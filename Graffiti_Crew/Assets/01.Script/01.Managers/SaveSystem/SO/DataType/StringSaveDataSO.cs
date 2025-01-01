@@ -9,7 +9,7 @@ namespace AH.SaveSystem {
             return dataType.ToString();
         }
 
-        public override string GetValueAsString() {
+        public override string GetData() {
             return data;
         }
 

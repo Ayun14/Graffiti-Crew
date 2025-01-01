@@ -6,7 +6,8 @@ namespace AH.SaveSystem {
     public enum DataType {
         Int,
         String,
-        Float
+        Float,
+        Texture
     }
     public abstract class SaveDataSO : ScriptableObject
     {
@@ -14,7 +15,7 @@ namespace AH.SaveSystem {
         public int ID;
         public DataType dataType;
 
-        public abstract string GetValueAsString();
+        public abstract string GetData();
         public abstract void SetValueFromString(string value);
         public abstract string GetDataType();
 #if UNITY_EDITOR

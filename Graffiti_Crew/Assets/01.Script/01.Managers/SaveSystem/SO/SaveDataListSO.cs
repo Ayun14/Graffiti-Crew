@@ -30,7 +30,7 @@ namespace AH.SaveSystem {
                     dataName = saveData.dataName,
                     ID = saveData.ID,
                     dataType = saveData.GetDataType(),
-                    data = saveData.GetValueAsString()
+                    data = saveData.GetData()
                 });
             }
 
