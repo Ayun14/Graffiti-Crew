@@ -3,36 +3,41 @@ using System.IO;
 using UnityEngine;
 
 namespace AH.SaveSystem {
-    [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/TextureSaveDataSO")]
+    [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/TextureSaveDataSO")]
     public class TextureSaveDataSO : SaveDataSO {
         public string textureFilePath; // 파일 경로
-        public Texture2D texture;
+        public Texture2D data;
+        private Texture2D _defaultData;
 
+        private void Awake() {
+            _defaultData = data;
+        }
         public override string GetDataType() {
-            SaveTexture(texture, textureFilePath);
+            SaveTexture(data, textureFilePath);
             return dataType.ToString();
         }
-
         public override string GetData() {
             return textureFilePath;
         }
-
         public override void SetValueFromString(string value) {
             textureFilePath = value;
-            texture = TextureSaveLoadUtility.LoadTextureFromFile(textureFilePath);
+            data = TextureSaveLoadUtility.LoadTextureFromFile(textureFilePath);
+        }
+        public override void ResetData() {
+            data = _defaultData;
         }
 
         public Texture2D GetTexture() {
-            if (texture == null && !string.IsNullOrEmpty(textureFilePath)) {
-                texture = TextureSaveLoadUtility.LoadTextureFromFile(textureFilePath);
+            if (data == null && !string.IsNullOrEmpty(textureFilePath)) {
+                data = TextureSaveLoadUtility.LoadTextureFromFile(textureFilePath);
             }
-            return texture;
+            return data;
         }
-
         public void SaveTexture(Texture2D textureToSave, string savePath) {
             textureFilePath = TextureSaveLoadUtility.SaveTextureToFile(textureToSave, savePath);
-            texture = textureToSave;
+            data = textureToSave;
         }
+
     }
     public static class TextureSaveLoadUtility {
         // 압축된 Texture2D를 읽을 수 있도록

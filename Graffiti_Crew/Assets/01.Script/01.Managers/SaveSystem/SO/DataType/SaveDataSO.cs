@@ -18,6 +18,7 @@ namespace AH.SaveSystem {
         public abstract string GetData();
         public abstract void SetValueFromString(string value);
         public abstract string GetDataType();
+        public abstract void ResetData();
 #if UNITY_EDITOR
         protected virtual void OnValidate() {
             //string path = AssetDatabase.GetAssetPath(this);
