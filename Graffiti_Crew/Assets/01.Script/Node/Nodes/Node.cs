@@ -15,9 +15,12 @@ public abstract class Node : MonoBehaviour
         _isClearNode = false;
     }
 
-    public void NodeClear()
+    public virtual void NodeClear()
     {
         _isClearNode = true;
+
+        // 자신이 클리어된 사실을 Judgement에게 알려줘야 한다.
+        Destroy(gameObject);
     }
 
     public abstract NodeType GetNodeType();

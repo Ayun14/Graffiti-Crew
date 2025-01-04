@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2460935273646655563}
   - component: {fileID: 3653859275911553507}
-  m_Layer: 0
+  - component: {fileID: 8812012628758138428}
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +88,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!135 &8812012628758138428
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730060406278163217}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.20514178
+  m_Center: {x: 0.0024934113, y: -0.003067106, z: 0.017013341}
 --- !u!1 &8104177348887261759
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 802212263154827103}
   - component: {fileID: 7979384895893063751}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SingleNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,3 +154,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b26d2cb0eb709479c4e23b49e18627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _singleNodeData: {fileID: 0}

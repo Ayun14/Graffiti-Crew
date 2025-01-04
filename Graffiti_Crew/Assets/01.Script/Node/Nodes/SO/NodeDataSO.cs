@@ -3,8 +3,8 @@ using UnityEngine;
 
 public enum NodeType
 {
-    // ¥‹¿œ, ∑’, ø¨≈∏
-    SingleNode, LongNode, HitNode
+    // ¥‹¿œ, ø¨≈∏, ∑’
+    SingleNode, HitNode, LongNode
 }
 
 public class NodeDataSO : ScriptableObject
