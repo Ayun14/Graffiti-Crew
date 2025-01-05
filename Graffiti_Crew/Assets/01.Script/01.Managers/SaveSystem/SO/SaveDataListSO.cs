@@ -30,7 +30,7 @@ namespace AH.SaveSystem {
                     dataName = saveData.dataName,
                     ID = saveData.ID,
                     dataType = saveData.GetDataType(),
-                    data = saveData.GetValueAsString()
+                    data = saveData.GetData()
                 });
             }
 
@@ -39,17 +39,22 @@ namespace AH.SaveSystem {
         public void LoadJson(string json) {
             SaveDataWrapper wrapper = JsonUtility.FromJson<SaveDataWrapper>(json);
 
-            foreach (var serializedData in wrapper.saveDataList) {
+            foreach (var data in wrapper.saveDataList) {
                 // 동일한 SO를 찾기
-                SaveDataSO existingData = _saveDataSOList.Find(data => data.ID == serializedData.ID && data.dataName == serializedData.dataName);
+                SaveDataSO existingData = _saveDataSOList.Find(data => data.ID == data.ID && data.dataName == data.dataName);
 
-                if (serializedData != null) {
+                if (data != null) {
                     //Debug.Log($"{serializedData.dataName} : {serializedData.data}");
-                    existingData.SetValueFromString(serializedData.data);
+                    existingData.SetValueFromString(data.data);
                 }
                 else {
                     Debug.LogError("알 수 없는 데이터");
                 }
+            }
+        }
+        public void ResetDatas() {
+            foreach (var data in _saveDataSOList) {
+                data.ResetData();
             }
         }
     }
