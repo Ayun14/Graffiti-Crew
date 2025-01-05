@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class SingleNode : Node
 {
@@ -14,6 +13,14 @@ public class SingleNode : Node
 
         _renderer.sprite = _singleNodeData.sprite;
         transform.position = _singleNodeData.pos;
+    }
+
+    public override void NodeClear()
+    {
+        base.NodeClear();
+
+        // 클리어 파티클?
+        // 풀매니저에 집어넣기
     }
 
     public override NodeType GetNodeType()
