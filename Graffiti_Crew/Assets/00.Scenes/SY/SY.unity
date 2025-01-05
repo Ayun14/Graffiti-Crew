@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 26114948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 1.13}
+  m_LocalPosition: {x: 0, y: -1, z: 1.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 127665811}
   - component: {fileID: 127665815}
   - component: {fileID: 127665816}
+  - component: {fileID: 127665817}
   m_Layer: 7
   m_Name: Computer
   m_TagString: Untagged
@@ -404,6 +405,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateEnum: 3
+--- !u!114 &127665817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127665810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3e1f670f23a354f96f4d8be049729e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outlineMaterial: {fileID: 2100000, guid: 10d1c046aff50da40a0cccc331c91be5, type: 2}
+  _outlineScaleFactor: -1.1
+  _outlineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +807,7 @@ Transform:
   m_GameObject: {fileID: 709048307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -0.5, z: 0}
+  m_LocalPosition: {x: 1.23, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1250,6 +1266,7 @@ GameObject:
   - component: {fileID: 1608467574}
   - component: {fileID: 1608467577}
   - component: {fileID: 1608467578}
+  - component: {fileID: 1608467579}
   m_Layer: 7
   m_Name: NPC
   m_TagString: Untagged
@@ -1378,6 +1395,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateEnum: 4
+--- !u!114 &1608467579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608467572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3e1f670f23a354f96f4d8be049729e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outlineMaterial: {fileID: 2100000, guid: 10d1c046aff50da40a0cccc331c91be5, type: 2}
+  _outlineScaleFactor: -1.1
+  _outlineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1688892674
 GameObject:
   m_ObjectHideFlags: 0
