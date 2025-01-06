@@ -17,6 +17,9 @@ public class LongNodeDataSO : NodeDataSO
     public Material lineRendererMat;
     public List<Vector3> pointList;
 
+    [Header("Start And End")]
+    public Sprite nodeSprite;
+
     [Header("Curve")]
     [Range(2, 100)] public int points; // 점의 개수
     [Range(-30, 30)] public float amplitude; // 진폭 (y축 높이)

@@ -6,6 +6,7 @@ public class LongNode : Node
     [SerializeField] private LongNodeDataSO _longNodeData;
 
     private LineRenderer _lineRenderer;
+    private Transform _startPoint, _endPoint;
 
     public override void Init()
     {
@@ -13,6 +14,12 @@ public class LongNode : Node
         _lineRenderer = GetComponent<LineRenderer>();
 
         _lineRenderer.material = _longNodeData.lineRendererMat;
+
+        // Child
+        _startPoint = transform.Find("Start").GetComponent<Transform>();
+        _startPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.nodeSprite;
+        _endPoint = transform.Find("End").GetComponent<Transform>();
+        _endPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.nodeSprite;
 
         ConnectLine();
     }
@@ -73,9 +80,20 @@ public class LongNode : Node
             }
         }
 
+        _startPoint.position = curvePoints[0];
+        _endPoint.position = curvePoints[curvePoints.Count - 1];
+
         _lineRenderer.positionCount = curvePoints.Count;
         for (int i = 0; i < curvePoints.Count; i++)
             _lineRenderer.SetPosition(i, curvePoints[i]);
+    }
+
+    public override void NodeClear()
+    {
+        base.NodeClear();
+
+        // 클리어 파티클?
+        // 풀매니저에 집어넣기
     }
 
     public override NodeType GetNodeType()
