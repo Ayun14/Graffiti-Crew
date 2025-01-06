@@ -6,7 +6,6 @@ public abstract class Agent : MonoBehaviour
 {
     #region ÄÞÆ÷³ÍÆ® ¿µ¿ª
     public Animator AnimatorCompo { get; protected set; }
-    public INavigationable MovementCompo { get; protected set; }
     public AgentVFX VFXCompo { get; protected set; }
     #endregion
 
@@ -16,7 +15,6 @@ public abstract class Agent : MonoBehaviour
     {
         Transform visualTrm = transform.Find("Visual");
         AnimatorCompo = visualTrm.GetComponent<Animator>();
-        MovementCompo = GetComponent<INavigationable>();
 
         //VFXCompo = transform.Find("AgentVFX").GetComponent<AgentVFX>();
     }

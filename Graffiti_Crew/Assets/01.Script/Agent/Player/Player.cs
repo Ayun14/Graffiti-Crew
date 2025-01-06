@@ -19,6 +19,7 @@ public class Player : Agent
 
     public PlayerStateMachine StateMachine { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
+    public INavigationable MovementCompo { get; protected set; }
     public PlayerInput PlayerInput => _playerInput;
     public PlayerVFX PlayerVFXCompo => VFXCompo as PlayerVFX;
 
@@ -27,6 +28,7 @@ public class Player : Agent
     protected override void Awake()
     {
         base.Awake();
+        MovementCompo = GetComponent<INavigationable>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         StateMachine = new PlayerStateMachine();
 
