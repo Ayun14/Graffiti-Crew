@@ -40,8 +40,9 @@ public class NodeJudgement : MonoBehaviour
                 hitNode.SetHitCount();
                 break;
             case NodeType.LongNode:
-                // 길게 눌렀을 때 어떻게 할 것 인지
-                node.NodeClear();
+                LongNode longNode = node as LongNode;
+                longNode.LongNodeStart();
+                //node.NodeClear();
                 break;
         }
     }

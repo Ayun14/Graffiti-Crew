@@ -1,12 +1,19 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LongNode : Node
 {
     [SerializeField] private LongNodeDataSO _longNodeData;
+    [SerializeField] private float _cameraDistance;
 
     private LineRenderer _lineRenderer;
     private Transform _startPoint, _endPoint;
+
+    private bool _isFollowingPath = false;
+    private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
+    private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
     public override void Init()
     {
@@ -17,12 +24,14 @@ public class LongNode : Node
 
         // Child
         _startPoint = transform.Find("Start").GetComponent<Transform>();
-        _startPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.nodeSprite;
+        _startPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.startNodeSprite;
         _endPoint = transform.Find("End").GetComponent<Transform>();
-        _endPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.nodeSprite;
+        _endPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.endNodeSprite;
 
         ConnectLine();
     }
+
+    #region ConnectLine
 
     private void ConnectLine()
     {
@@ -32,13 +41,15 @@ public class LongNode : Node
             return;
         }
 
+        _pathPoints.Clear();
         switch (_longNodeData.longNodeType)
         {
             case LongNodeType.Stright:
+                _pathPoints.AddRange(_longNodeData.pointList);
                 StrightLine();
                 break;
             case LongNodeType.Curve:
-                CurveLine();
+                _pathPoints = CurveLine();    
                 break;
         }
     }
@@ -51,7 +62,7 @@ public class LongNode : Node
             _lineRenderer.SetPosition(i, _longNodeData.pointList[i]);
     }
 
-    private void CurveLine()
+    private List<Vector3> CurveLine()
     {
         List<Vector3> curvePoints = new List<Vector3>();
         for (int i = 0; i < _longNodeData.pointList.Count - 1; i++)
@@ -86,12 +97,73 @@ public class LongNode : Node
         _lineRenderer.positionCount = curvePoints.Count;
         for (int i = 0; i < curvePoints.Count; i++)
             _lineRenderer.SetPosition(i, curvePoints[i]);
+
+        return curvePoints;
     }
+
+    #endregion
+
+    #region Clear Check
+
+    public void LongNodeStart()
+    {
+        _isFollowingPath = true;
+        _currentTargetIndex = 0;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("꾹 클릭하지 않아 실패");
+            ResetNode();
+        }
+
+        CheckFollowingPath();
+    }
+
+    private void CheckFollowingPath()
+    {
+        if (_isFollowingPath)
+        {
+            Vector3 mouosePos = Input.mousePosition;
+            mouosePos.z = _cameraDistance;
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouosePos);
+            mouseWorldPosition.z = transform.position.z;
+
+            // 현재 목표 포인트와의 거리 확인
+            if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
+            {
+                Mathf.Clamp(0, _pathPoints.Count - 1, ++_currentTargetIndex);
+
+                // 모든 포인트를 통과하면 클리어 처리
+                if (_currentTargetIndex >= _pathPoints.Count)
+                {
+                    NodeClear();
+                    return;
+                }
+            }
+            else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
+            {
+                Debug.Log("경로 이탈 실패");
+                ResetNode();
+            }
+        }
+    }
+
+    private void ResetNode()
+    {
+        _isFollowingPath = false;
+        _currentTargetIndex = 0;
+    }
+
+    #endregion
 
     public override void NodeClear()
     {
         base.NodeClear();
 
+        Debug.Log("Long Node Clear");
         // 클리어 파티클?
         // 풀매니저에 집어넣기
     }
@@ -99,5 +171,22 @@ public class LongNode : Node
     public override NodeType GetNodeType()
     {
         return _longNodeData.nodeType;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (_pathPoints.Count > 0 && _currentTargetIndex < _pathPoints.Count)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(_pathPoints[_currentTargetIndex], 0.1f); // 현재 목표 포인트 표시
+        }
+
+        Vector3 mouosePos = Input.mousePosition;
+        mouosePos.z = _cameraDistance;
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouosePos);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(mouseWorldPosition, 0.1f); // 마우스 위치 표시
     }
 }

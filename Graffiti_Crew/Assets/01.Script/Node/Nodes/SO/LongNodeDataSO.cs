@@ -18,9 +18,17 @@ public class LongNodeDataSO : NodeDataSO
     public List<Vector3> pointList;
 
     [Header("Start And End")]
-    public Sprite nodeSprite;
+    public Sprite startNodeSprite;
+    public Sprite endNodeSprite;
 
     [Header("Curve")]
     [Range(2, 100)] public int points; // 점의 개수
     [Range(-30, 30)] public float amplitude; // 진폭 (y축 높이)
+
+
+
+
+    public float followThreshold = 0.5f; // 경로 근접 허용 오차
+    public float failThreshold = 1.5f;   // 경로 이탈 허용 오차
+    public float startThreshold = 0.5f; // 시작점 근접 허용 오차
 }
