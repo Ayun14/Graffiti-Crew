@@ -10,7 +10,7 @@ public class LongNode : Node
     [SerializeField] private float _fadeTime;
 
     private LineRenderer _lineRenderer;
-    private LineRenderer _moveLineRenderer;
+    private LineRenderer _followLineRenderer;
     private SpriteRenderer _startPointRenderer, _endPointRenderer;
 
     private bool _isFollowingPath = false;
@@ -22,7 +22,7 @@ public class LongNode : Node
         _lineRenderer = GetComponent<LineRenderer>();
         _startPointRenderer = transform.Find("Start").GetComponent<SpriteRenderer>();
         _endPointRenderer = transform.Find("End").GetComponent<SpriteRenderer>();
-        _moveLineRenderer = transform.Find("MovePoint").GetComponent<LineRenderer>();
+        _followLineRenderer = transform.Find("FollowLine").GetComponent<LineRenderer>();
     }
 
     public override void Init()
@@ -146,7 +146,7 @@ public class LongNode : Node
     public void LongNodeStart()
     {
         _isFollowingPath = true;
-        _moveLineRenderer.enabled = true;
+        _followLineRenderer.enabled = true;
         _currentTargetIndex = 0;
     }
 
@@ -166,6 +166,9 @@ public class LongNode : Node
             mouosePos.z = _cameraDistance;
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouosePos);
             mouseWorldPosition.z = transform.position.z;
+
+            // Move Line
+            ConnectFollowLine(_pathPoints.GetRange(0, _currentTargetIndex + 1));
 
             // 현재 목표 포인트와의 거리 확인
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
@@ -190,20 +193,17 @@ public class LongNode : Node
     private void ResetNode()
     {
         _isFollowingPath = false;
-        _moveLineRenderer.enabled = false;
+        _followLineRenderer.enabled = false;
         _currentTargetIndex = 0;
     }
 
     #endregion
 
-    #region ConnectMoveLine
-
-    private void ConnectMoveLine()
+    private void ConnectFollowLine(List<Vector3> points)
     {
-        
+        _followLineRenderer.positionCount = points.Count;
+        _followLineRenderer.SetPositions(points.ToArray());
     }
-
-    #endregion
 
     public override void NodeClear()
     {
