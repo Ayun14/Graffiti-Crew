@@ -1,37 +1,45 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LongNode : Node
 {
     [SerializeField] private LongNodeDataSO _longNodeData;
     [SerializeField] private float _cameraDistance;
+    [SerializeField] private float _fadeTime;
 
     private LineRenderer _lineRenderer;
-    private Transform _startPoint, _endPoint;
+    private LineRenderer _moveLineRenderer;
+    private SpriteRenderer _startPointRenderer, _endPointRenderer;
 
     private bool _isFollowingPath = false;
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
+    private void Awake()
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
+        _startPointRenderer = transform.Find("Start").GetComponent<SpriteRenderer>();
+        _endPointRenderer = transform.Find("End").GetComponent<SpriteRenderer>();
+        _moveLineRenderer = transform.Find("MovePoint").GetComponent<LineRenderer>();
+    }
+
     public override void Init()
     {
         base.Init();
-        _lineRenderer = GetComponent<LineRenderer>();
 
         _lineRenderer.material = _longNodeData.lineRendererMat;
 
-        // Child
-        _startPoint = transform.Find("Start").GetComponent<Transform>();
-        _startPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.startNodeSprite;
-        _endPoint = transform.Find("End").GetComponent<Transform>();
-        _endPoint.GetComponent<SpriteRenderer>().sprite = _longNodeData.endNodeSprite;
+        _startPointRenderer.sprite = _longNodeData.startNodeSprite;
+        _endPointRenderer.sprite = _longNodeData.endNodeSprite;
 
+        ResetNode();
+        SetAlpha(1f);
         ConnectLine();
     }
 
-    #region ConnectLine
+    #region Connect Line
 
     private void ConnectLine()
     {
@@ -45,21 +53,40 @@ public class LongNode : Node
         switch (_longNodeData.longNodeType)
         {
             case LongNodeType.Stright:
-                _pathPoints.AddRange(_longNodeData.pointList);
-                StrightLine();
+                _pathPoints = StrightLine();
                 break;
             case LongNodeType.Curve:
-                _pathPoints = CurveLine();    
+                _pathPoints = CurveLine();
                 break;
         }
+
+        StartCoroutine(ConnectLineRoutine(_pathPoints));
     }
 
-    private void StrightLine()
+    private List<Vector3> StrightLine()
     {
-        _lineRenderer.positionCount = _longNodeData.pointList.Count;
+        List<Vector3> strightPoints = new List<Vector3>();
 
-        for (int i = 0; i < _longNodeData.points; ++i)
-            _lineRenderer.SetPosition(i, _longNodeData.pointList[i]);
+        for (int i = 0; i < _longNodeData.pointList.Count - 1; i++)
+        {
+            Vector3 start = _longNodeData.pointList[i];
+            Vector3 end = _longNodeData.pointList[i + 1];
+
+            for (int j = 0; j < _longNodeData.points; j++)
+            {
+                float t = (float)j / (_longNodeData.points - 1);
+                Vector3 point = Vector3.Lerp(start, end, t);
+                strightPoints.Add(point);
+            }
+        }
+
+        if (strightPoints.Count > 0)
+        {
+            _startPointRenderer.transform.position = strightPoints[0];
+            _endPointRenderer.transform.position = strightPoints[strightPoints.Count - 1];
+        }
+
+        return strightPoints;
     }
 
     private List<Vector3> CurveLine()
@@ -91,14 +118,25 @@ public class LongNode : Node
             }
         }
 
-        _startPoint.position = curvePoints[0];
-        _endPoint.position = curvePoints[curvePoints.Count - 1];
-
-        _lineRenderer.positionCount = curvePoints.Count;
-        for (int i = 0; i < curvePoints.Count; i++)
-            _lineRenderer.SetPosition(i, curvePoints[i]);
+        _startPointRenderer.transform.position = curvePoints[0];
+        _endPointRenderer.transform.position = curvePoints[curvePoints.Count - 1];
 
         return curvePoints;
+    }
+
+    private IEnumerator ConnectLineRoutine(List<Vector3> points)
+    {
+        _lineRenderer.positionCount = points.Count;
+
+        float waitTime = _fadeTime / points.Count;
+        for (int i = 0; i < points.Count; ++i)
+        {
+            // 자연스럽게 이어지게 보이게 하기 위해 포인트들을현재의 마지막 포인트 위치로
+            for (int j = i; j < points.Count; ++j)
+                _lineRenderer.SetPosition(j, points[i]);
+
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 
     #endregion
@@ -108,16 +146,14 @@ public class LongNode : Node
     public void LongNodeStart()
     {
         _isFollowingPath = true;
+        _moveLineRenderer.enabled = true;
         _currentTargetIndex = 0;
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("꾹 클릭하지 않아 실패");
-            ResetNode();
-        }
+            ResetNode(); // 노드 실패
 
         CheckFollowingPath();
     }
@@ -154,7 +190,17 @@ public class LongNode : Node
     private void ResetNode()
     {
         _isFollowingPath = false;
+        _moveLineRenderer.enabled = false;
         _currentTargetIndex = 0;
+    }
+
+    #endregion
+
+    #region ConnectMoveLine
+
+    private void ConnectMoveLine()
+    {
+        
     }
 
     #endregion
@@ -163,16 +209,64 @@ public class LongNode : Node
     {
         base.NodeClear();
 
-        Debug.Log("Long Node Clear");
+        ResetNode();
+        SetAlpha(0f);
+
         // 클리어 파티클?
-        // 풀매니저에 집어넣기
     }
+
+    #region Do Fade
+
+    private void SetAlpha(float endValue)
+    {
+        float startValue = endValue == 1f ? 0f : 1f;
+
+        // 알파 값 초기화
+        InitializeAlpha(_startPointRenderer, startValue);
+        InitializeAlpha(_endPointRenderer, startValue);
+        InitializeAlpha(_lineRenderer.material, startValue);
+
+        Sequence fadeSequence = DOTween.Sequence();
+
+        fadeSequence
+            .Join(_startPointRenderer.DOFade(endValue, _fadeTime))
+            .Join(_endPointRenderer.DOFade(endValue, _fadeTime))
+            .Join(DOTween.To(() => _lineRenderer.material.color.a,
+                x =>
+                {
+                    Color color = _lineRenderer.material.color;
+                    color.a = x;
+                    _lineRenderer.material.color = color;
+                },
+                endValue, _fadeTime))
+            .OnComplete(() =>
+            {
+                if (endValue == 0f)
+                    gameObject.SetActive(false); // Push
+            });
+    }
+
+    private void InitializeAlpha(SpriteRenderer renderer, float alpha)
+    {
+        Color color = renderer.color;
+        color.a = alpha;
+        renderer.color = color;
+    }
+    private void InitializeAlpha(Material material, float alpha)
+    {
+        Color color = material.color;
+        color.a = alpha;
+        material.color = color;
+    }
+
+    #endregion
 
     public override NodeType GetNodeType()
     {
         return _longNodeData.nodeType;
     }
 
+    #region Debug
 
     private void OnDrawGizmos()
     {
@@ -189,4 +283,6 @@ public class LongNode : Node
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(mouseWorldPosition, 0.1f); // 마우스 위치 표시
     }
+
+    #endregion
 }
