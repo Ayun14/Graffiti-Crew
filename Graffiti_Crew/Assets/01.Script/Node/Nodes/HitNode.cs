@@ -1,31 +1,59 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class HitNode : Node
+public class HitNode : Node, INodeAction
 {
     [SerializeField] private HitNodeDataSO _hitNodeData;
     [SerializeField] private TextMeshProUGUI _hitCountText;
+    [SerializeField] private float _fadeTime = 0.5f;
 
     private int _currentHitCount;
 
     private SpriteRenderer _renderer;
 
-    public override void Init()
+    private void Awake()
     {
-        base.Init();
         _renderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    public override void Init(NodeJudgement judgement)
+    {
+        base.Init(judgement);
 
         _renderer.sprite = _hitNodeData.sprite;
         transform.position = _hitNodeData.pos;
 
         _currentHitCount = _hitNodeData.hitNum;
         _hitCountText.text = _currentHitCount.ToString();
+
+        SetAlpha(1f);
+    }
+
+    private void SetAlpha(float endValue)
+    {
+        float startValue = endValue == 1f ? 0f : 1f;
+        Color color = _renderer.color;
+        color.a = startValue;
+        _renderer.color = color;
+        _renderer.DOFade(endValue, _fadeTime)
+            .OnComplete(() =>
+            {
+                if (endValue == 0f)
+                    gameObject.SetActive(false); // Push
+            });
+    }
+
+    public void NodeStartAction()
+    {
+        SetHitCount();
     }
 
     public void SetHitCount()
     {
         if (--_currentHitCount <= 0)
         {
+            _hitCountText.text = string.Empty;
             NodeClear();
             return;
         }
@@ -39,8 +67,9 @@ public class HitNode : Node
     {
         base.NodeClear();
 
+        SetAlpha(0f);
+
         // 클리어 파티클?
-        // 풀매니저에 집어넣기
     }
 
     public override NodeType GetNodeType()

@@ -8,9 +8,4 @@ public class PlayerAnimationTrigger : MonoBehaviour
     {
         _player.StateMachine.CurrentState.AnimationFinishTrigger();
     }
-
-    private void PlayBladeVFX()
-    {
-        _player.PlayBladeVFX();
-    }
 }
