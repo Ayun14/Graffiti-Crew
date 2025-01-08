@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongNode : Node
+public class LongNode : Node, INodeAction
 {
     [SerializeField] private LongNodeDataSO _longNodeData;
     [SerializeField] private float _cameraDistance;
@@ -25,9 +25,9 @@ public class LongNode : Node
         _followLineRenderer = transform.Find("FollowLine").GetComponent<LineRenderer>();
     }
 
-    public override void Init()
+    public override void Init(NodeJudgement judgement)
     {
-        base.Init();
+        base.Init(judgement);
 
         _lineRenderer.material = _longNodeData.lineRendererMat;
 
@@ -134,6 +134,7 @@ public class LongNode : Node
             // 자연스럽게 이어지게 보이게 하기 위해 포인트들을현재의 마지막 포인트 위치로
             for (int j = i; j < points.Count; ++j)
                 _lineRenderer.SetPosition(j, points[i]);
+            _endPointRenderer.transform.position = points[i];
 
             yield return new WaitForSeconds(waitTime);
         }
@@ -143,7 +144,8 @@ public class LongNode : Node
 
     #region Clear Check
 
-    public void LongNodeStart()
+
+    public void NodeStartAction()
     {
         _isFollowingPath = true;
         _followLineRenderer.enabled = true;
@@ -173,10 +175,8 @@ public class LongNode : Node
             // 현재 목표 포인트와의 거리 확인
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
-                Mathf.Clamp(0, _pathPoints.Count - 1, ++_currentTargetIndex);
-
                 // 모든 포인트를 통과하면 클리어 처리
-                if (_currentTargetIndex >= _pathPoints.Count)
+                if (++_currentTargetIndex >= _pathPoints.Count)
                 {
                     NodeClear();
                     return;
@@ -209,7 +209,7 @@ public class LongNode : Node
     {
         base.NodeClear();
 
-        ResetNode();
+        _isFollowingPath = false;
         SetAlpha(0f);
 
         // 클리어 파티클?
@@ -225,18 +225,29 @@ public class LongNode : Node
         InitializeAlpha(_startPointRenderer, startValue);
         InitializeAlpha(_endPointRenderer, startValue);
         InitializeAlpha(_lineRenderer.material, startValue);
+        InitializeAlpha(_followLineRenderer.material, startValue);
 
         Sequence fadeSequence = DOTween.Sequence();
 
         fadeSequence
+            // SpriteRenderer
             .Join(_startPointRenderer.DOFade(endValue, _fadeTime))
             .Join(_endPointRenderer.DOFade(endValue, _fadeTime))
+            // LineRenderer
             .Join(DOTween.To(() => _lineRenderer.material.color.a,
                 x =>
                 {
                     Color color = _lineRenderer.material.color;
                     color.a = x;
                     _lineRenderer.material.color = color;
+                },
+                endValue, _fadeTime))
+            .Join(DOTween.To(() => _followLineRenderer.material.color.a,
+                x =>
+                {
+                    Color color = _followLineRenderer.material.color;
+                    color.a = x;
+                    _followLineRenderer.material.color = color;
                 },
                 endValue, _fadeTime))
             .OnComplete(() =>
@@ -265,24 +276,4 @@ public class LongNode : Node
     {
         return _longNodeData.nodeType;
     }
-
-    #region Debug
-
-    private void OnDrawGizmos()
-    {
-        if (_pathPoints.Count > 0 && _currentTargetIndex < _pathPoints.Count)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_pathPoints[_currentTargetIndex], 0.1f); // 현재 목표 포인트 표시
-        }
-
-        Vector3 mouosePos = Input.mousePosition;
-        mouosePos.z = _cameraDistance;
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouosePos);
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(mouseWorldPosition, 0.1f); // 마우스 위치 표시
-    }
-
-    #endregion
 }

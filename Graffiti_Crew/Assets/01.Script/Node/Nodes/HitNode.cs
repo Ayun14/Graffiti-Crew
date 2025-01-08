@@ -2,7 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class HitNode : Node
+public class HitNode : Node, INodeAction
 {
     [SerializeField] private HitNodeDataSO _hitNodeData;
     [SerializeField] private TextMeshProUGUI _hitCountText;
@@ -17,9 +17,9 @@ public class HitNode : Node
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init()
+    public override void Init(NodeJudgement judgement)
     {
-        base.Init();
+        base.Init(judgement);
 
         _renderer.sprite = _hitNodeData.sprite;
         transform.position = _hitNodeData.pos;
@@ -42,6 +42,11 @@ public class HitNode : Node
                 if (endValue == 0f)
                     gameObject.SetActive(false); // Push
             });
+    }
+
+    public void NodeStartAction()
+    {
+        SetHitCount();
     }
 
     public void SetHitCount()

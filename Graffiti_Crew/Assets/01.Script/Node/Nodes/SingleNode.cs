@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class SingleNode : Node
+public class SingleNode : Node, INodeAction
 {
     [SerializeField] private SingleNodeDataSO _singleNodeData;
     [SerializeField] private float _fadeTime = 1f;
@@ -13,9 +13,9 @@ public class SingleNode : Node
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init()
+    public override void Init(NodeJudgement judgement)
     {
-        base.Init();
+        base.Init(judgement);
 
         _renderer.sprite = _singleNodeData.sprite;
         transform.position = _singleNodeData.pos;
@@ -49,5 +49,10 @@ public class SingleNode : Node
     public override NodeType GetNodeType()
     {
         return _singleNodeData.nodeType;
+    }
+
+    public void NodeStartAction()
+    {
+        NodeClear();
     }
 }

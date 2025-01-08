@@ -1,12 +1,58 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NodeSpawner : MonoBehaviour
 {
-    // 저장되어 있는 노드를 받은 리스트? 등등이 있다.
-    // Judgement에서 스폰 명령을 내리면 그저 스폰하면 된다.
+    private Queue<GameObject> _nodes = new Queue<GameObject>();
+
+    private NodeJudgement _judgement;
+
+    private void Awake()
+    {
+        _judgement = GetComponentInParent<NodeJudgement>();
+    }
+
+    private void OnEnable()
+    {
+        _judgement.OnNodeSpawnStart += HandleNodeSpawn;
+    }
+
+    private void OnDisable()
+    {
+        _judgement.OnNodeSpawnStart -= HandleNodeSpawn;
+    }
+
+    private void HandleNodeSpawn()
+    {
+        NodeSpawn();
+    }
 
     private void NodeSpawn()
     {
+        if (_nodes == null) return;
+        if (_nodes.Count == 0)
+        {
+            Debug.Log("모든 노드 클리어");
+        }
+        else
+        {
+            // PoolManager에서 가져오기
+            GameObject go = Instantiate(_nodes.Dequeue()); // Pop
+            if (go.TryGetComponent(out Node node))
+                node.Init(_judgement);
+        }
+    }
 
+    public void SetSpawnNode(List<GameObject> nodes)
+    {
+        ResetSpawner();
+        foreach (GameObject go in nodes)
+            _nodes.Enqueue(go);
+    }
+
+    public void ResetSpawner()
+    {
+        _nodes.Clear();
     }
 }
