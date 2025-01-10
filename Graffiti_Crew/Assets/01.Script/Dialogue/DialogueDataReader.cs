@@ -3,8 +3,6 @@ using GoogleSheetsToUnity;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI.Table;
-
 
 #if UNITY_EDITOR
 using UnityEditor;
