@@ -15,6 +15,8 @@ public class Player : Agent
 {
     [Header("Setting Values")]
     public float moveSpeed = 4f;
+    public DialogueUIController dialogueUIController;
+
     [SerializeField] private PlayerInput _playerInput;
 
     public PlayerStateMachine StateMachine { get; private set; }
@@ -57,6 +59,14 @@ public class Player : Agent
     protected void Update()
     {
         StateMachine.CurrentState.UpdateState();
+    }
+
+    public NPC GetNPC()
+    {
+        if (CurrentInteractionObject.TryGetComponent<NPC>(out NPC npc))
+            return npc;
+        else
+            return null;
     }
 
     public void PlayBladeVFX()
