@@ -1,0 +1,39 @@
+.dialog-box-m-container {
+    flex-grow: 1;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+}
+
+.dialog-box-top-content {
+    flex-grow: 1;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.dialog-box-bottom-content {
+    height: 40%;
+    align-items: flex-start;
+}
+
+.name-box {
+    width: 20%;
+    height: 17%;
+    background-color: rgb(255, 255, 255);
+}
+
+.text-box {
+    flex-grow: 1;
+    background-color: rgb(220, 220, 220);
+    width: 100%;
+}
+
+.conversation-txt {
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    white-space: pre-wrap;
+}
