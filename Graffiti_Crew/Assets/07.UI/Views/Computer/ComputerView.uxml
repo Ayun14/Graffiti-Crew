@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="SelectStageView" src="project://database/Assets/07.UI/Views/Computer/SelectStageView.uxml?fileID=9197481963319205126&amp;guid=8507e2f3d3af60d4da3301e7aff538dc&amp;type=3#SelectStageView" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView" />
+    <engine:VisualElement name="m-container" class="conputer-m-container">
+        <engine:VisualElement name="computer-screen" class="computer-screen">
+            <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
