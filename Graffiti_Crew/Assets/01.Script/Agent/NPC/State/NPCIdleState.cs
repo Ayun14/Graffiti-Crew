@@ -14,9 +14,12 @@ public class NPCIdleState : NPCState
 
     public override void UpdateState()
     {
-        if (_npc.player.StateMachine.stateDictionary[PlayerStateEnum.NPC] == _npc.player.StateMachine.CurrentState)
+        if(_npc.player.CurrentInteractionObject == _npc)
         {
-            _stateMachine.ChangeState(NPCStateEnum.Talk);
+            if (_npc.player.StateMachine.stateDictionary[PlayerStateEnum.NPC] == _npc.player.StateMachine.CurrentState)
+            {
+                _stateMachine.ChangeState(NPCStateEnum.Talk);
+            }
         }
     }
 }

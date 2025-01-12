@@ -40,7 +40,7 @@ public class DialogueDataReader : DataReaderBase
 
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        int id = 0;
+        int id = -1;
         string characterName = null, context = null, spriteName = null, soundName = null;
 
         for (int i = 0; i < list.Count; i++)
@@ -48,10 +48,36 @@ public class DialogueDataReader : DataReaderBase
             switch (list[i].columnId)
             {
                 case "ID":
-                    id = int.Parse(list[i].value);
+                    if (!int.TryParse(list[i].value, out id))
+                    {
+                        if (DialogueList.Count > 0)
+                        {
+                            id = DialogueList[DialogueList.Count - 1].id;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("ID 값이 없으며, 이전 데이터가 없어 기본값을 사용할 수 없습니다.");
+                            return;
+                        }
+                    }
                     break;
                 case "Character Name":
-                    characterName = list[i].value;
+                    if (string.IsNullOrWhiteSpace(list[i].value))
+                    {
+                        if (DialogueList.Count > 0)
+                        {
+                            characterName = DialogueList[DialogueList.Count - 1].characterName;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Character Name 값이 없으며, 이전 데이터가 없어 기본값을 사용할 수 없습니다.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        characterName = list[i].value;
+                    }
                     break;
                 case "Context":
                     context = list[i].value;

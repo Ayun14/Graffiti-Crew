@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerNPCState : PlayerState
 {
+    private bool _isDialogueFinished = false;
+
     public PlayerNPCState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
         : base(player, stateMachine, animBoolName)
     {
@@ -11,35 +13,25 @@ public class PlayerNPCState : PlayerState
     {
         base.Enter();
 
-        _player.PlayerInput.MovementEvent += HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
-
         _player.MovementCompo.StopImmediately(true);
+
+        if (_player.dialogueUIController != null)
+        {
+            _player.dialogueUIController.StartDialogue
+                (_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
+        }
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
+        if (_isDialogueFinished)
+        {
+            _stateMachine.ChangeState(PlayerStateEnum.Idle);
+        }
     }
 
-    public override void Exit()
+    private void OnDialogueComplete()
     {
-        _player.PlayerInput.MovementEvent -= HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
-
-        base.Exit();
-    }
-
-    private void HandleInteractionEvent(InteractionObject interactionObject)
-    {
-        _player.CurrentInteractionObject = interactionObject;
-        _player.NavMeshAgent.destination = interactionObject.TargetPos;
-        _player.StateMachine.ChangeState(PlayerStateEnum.Interaction);
-    }
-
-    private void HandleMovementEvent(Vector3 movement)
-    {
-        _player.NavMeshAgent.destination = movement;
-        _player.StateMachine.ChangeState(PlayerStateEnum.Run);
+        _isDialogueFinished = true;
     }
 }
