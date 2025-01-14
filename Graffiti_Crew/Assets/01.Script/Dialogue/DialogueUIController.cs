@@ -35,6 +35,7 @@ public class DialogueUIController : MonoBehaviour
         dialogueUI.SetActive(false);
         nameText.text = "";
         contextText.text = "";
+        characterImage.sprite = null;
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete)
@@ -88,7 +89,7 @@ public class DialogueUIController : MonoBehaviour
         DialogueData dialogue = filteredDialogueList[index];
         nameText.text = dialogue.characterName;
 
-        Sprite sprite = Resources.Load<Sprite>(dialogue.spriteName);
+        Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
         if (sprite != null)
             characterImage.sprite = sprite;
 

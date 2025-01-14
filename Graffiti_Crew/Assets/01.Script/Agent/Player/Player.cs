@@ -63,6 +63,8 @@ public class Player : Agent
 
     public NPC GetNPC()
     {
+        if(CurrentInteractionObject == null) return null;
+
         if (CurrentInteractionObject.TryGetComponent<NPC>(out NPC npc))
             return npc;
         else
