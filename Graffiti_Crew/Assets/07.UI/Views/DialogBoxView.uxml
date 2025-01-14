@@ -1,0 +1,17 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <engine:VisualElement name="m-container" class="dialog-box-m-container" style="padding-right: 50px;">
+        <engine:VisualElement name="top-content" class="dialog-box-top-content">
+            <engine:VisualElement name="name-box" class="name-box">
+                <engine:Label text="name" name="name-txt" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="target-img" style="width: 25%; height: 100%; background-color: rgb(255, 204, 248); right: 120px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="bottom-content" class="dialog-box-bottom-content">
+            <engine:VisualElement name="text-box" class="text-box">
+                <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur" name="conversation-txt" class="conversation-txt grow-middle-size-60 grow-size-60" style="-unity-text-align: upper-left;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

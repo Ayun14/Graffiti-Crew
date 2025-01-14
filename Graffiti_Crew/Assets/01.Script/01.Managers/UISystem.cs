@@ -36,7 +36,7 @@ namespace AH.UI {
         private void SetupViews() {
             VisualElement root = _uiDocument.rootVisualElement;
 
-            _mainView = new TestView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
+            //_mainView = new TestView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
 
             _allViews.Add(_mainView);
 

@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="Test" src="project://database/Assets/07.UI/Views/Test.uxml?fileID=9197481963319205126&amp;guid=2f7e7871e0e2e4f4999f293e1e706b72&amp;type=3#Test" />
-    <engine:Instance template="Test" name="TestView" style="flex-grow: 1;" />
+    <engine:Template name="ComputerView" src="project://database/Assets/07.UI/Views/Computer/ComputerView.uxml?fileID=9197481963319205126&amp;guid=f35aae524a066ac40a5c65eb67406737&amp;type=3#ComputerView" />
+    <Style src="project://database/Assets/07.UI/USS/MainView_USS.uss?fileID=7433441132597879392&amp;guid=a14d806bf43a9f5499bcbef93b38c1df&amp;type=3#MainView_USS" />
+    <engine:Instance template="ComputerView" name="Computer" style="flex-grow: 1;" />
 </engine:UXML>

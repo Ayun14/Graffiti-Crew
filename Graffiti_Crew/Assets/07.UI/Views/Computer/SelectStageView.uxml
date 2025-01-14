@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="StagePoint" src="project://database/Assets/07.UI/Views/Computer/points/StagePoint.uxml?fileID=9197481963319205126&amp;guid=8e0658432c2fa5d459700d72a0bc4ec4&amp;type=3#StagePoint" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
+    <engine:VisualElement name="m-container" class="selectStage-m-container">
+        <engine:VisualElement name="background-img" class="selectStage-background">
+            <engine:Instance template="StagePoint" name="stage-point" style="position: absolute; top: 439px; left: 618px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
