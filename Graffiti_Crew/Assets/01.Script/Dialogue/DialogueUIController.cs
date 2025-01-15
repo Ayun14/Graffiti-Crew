@@ -4,74 +4,81 @@ using TMPro;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class DialogueUIController : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private GameObject dialogueUI;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI contextText;
-    [SerializeField] private Image characterImage;
+    [SerializeField] private GameObject _dialogueUI;
+    [SerializeField] private CanvasGroup _dialogueCanvas;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _contextText;
+    [SerializeField] private Image _characterImage;
+    private float _fadeDuration = 0.3f;
 
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueDataReader dialogueDataReader;
+    [SerializeField] private DialogueDataReader _dialogueDataReader;
 
     [Header("Typing Effect")]
-    [SerializeField] private float typingSpeed = 0.05f;
+    [SerializeField] private float _typingSpeed = 0.05f;
 
-    private Coroutine typingCoroutine;
-    private bool isTyping = false;
+    private Coroutine _typingCoroutine;
+    private bool _isTyping = false;
 
-    private int currentDialogueIndex = 0;
-    private int dialogueStartID = 0;
-    private int dialogueEndID = 0;
+    private int _currentDialogueIndex = 0;
+    private int _dialogueStartID = 0;
+    private int _dialogueEndID = 0;
 
-    private Action onDialogueComplete;
+    private Action _onDialogueComplete;
 
-    private List<DialogueData> filteredDialogueList;
+    private List<DialogueData> _filteredDialogueList;
 
     private void Start()
     {
-        dialogueUI.SetActive(false);
-        nameText.text = "";
-        contextText.text = "";
-        characterImage.sprite = null;
+        _dialogueUI.SetActive(false);
+        _nameText.text = "";
+        _contextText.text = "";
+        _characterImage.sprite = null;
+
+        _dialogueCanvas.alpha = 0;
+        _dialogueCanvas.interactable = false;
+        _dialogueCanvas.blocksRaycasts = false;
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete)
     {
-        if (dialogueDataReader == null || dialogueDataReader.DialogueList.Count == 0)
+        if (_dialogueDataReader == null || _dialogueDataReader.DialogueList.Count == 0)
         {
             Debug.LogError("DialogueDataReader가 설정되지 않았거나 데이터가 비어 있습니다.");
             onComplete?.Invoke();
             return;
         }
 
-        dialogueStartID = startID;
-        dialogueEndID = endID;
+        _dialogueStartID = startID;
+        _dialogueEndID = endID;
 
-        filteredDialogueList = dialogueDataReader.DialogueList.FindAll(dialogue =>
-            dialogue.id >= dialogueStartID && dialogue.id <= dialogueEndID);
+        _filteredDialogueList = _dialogueDataReader.DialogueList.FindAll(dialogue =>
+            dialogue.id >= _dialogueStartID && dialogue.id <= _dialogueEndID);
 
-        if (filteredDialogueList.Count == 0)
+        if (_filteredDialogueList.Count == 0)
         {
             Debug.LogWarning("지정된 ID 범위에 대화 데이터가 없습니다.");
             onComplete?.Invoke();
             return;
         }
 
-        dialogueUI.SetActive(true);
-        currentDialogueIndex = 0;
-        onDialogueComplete = onComplete;
+        _dialogueUI.SetActive(true);
+        _currentDialogueIndex = 0;
+        _onDialogueComplete = onComplete;
 
-        ShowDialogue(currentDialogueIndex);
+        ShowDialogue(_currentDialogueIndex);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isTyping)
+            if (_isTyping)
                 CompleteTyping();
             else
                 ShowNextDialogue();
@@ -80,59 +87,81 @@ public class DialogueUIController : MonoBehaviour
 
     private void ShowDialogue(int index)
     {
-        if (index < 0 || index >= filteredDialogueList.Count)
+        FadeIn();
+
+        if (index < 0 || index >= _filteredDialogueList.Count)
         {
             Debug.LogWarning("대화 인덱스가 범위를 벗어났습니다.");
             return;
         }
 
-        DialogueData dialogue = filteredDialogueList[index];
-        nameText.text = dialogue.characterName;
+        DialogueData dialogue = _filteredDialogueList[index];
+        _nameText.text = dialogue.characterName;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
         if (sprite != null)
-            characterImage.sprite = sprite;
+            _characterImage.sprite = sprite;
 
-        if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
+        if (_typingCoroutine != null)
+            StopCoroutine(_typingCoroutine);
 
-        typingCoroutine = StartCoroutine(TypingEffect(dialogue.context));
+        _typingCoroutine = StartCoroutine(TypingEffect(dialogue.context));
     }
 
     private void ShowNextDialogue()
     {
-        currentDialogueIndex++;
+        _currentDialogueIndex++;
 
-        if (currentDialogueIndex >= filteredDialogueList.Count)
+        if (_currentDialogueIndex >= _filteredDialogueList.Count)
         {
-            dialogueUI.SetActive(false);
-            onDialogueComplete?.Invoke();
+            FadeOut();
             return;
         }
 
-        ShowDialogue(currentDialogueIndex);
+        ShowDialogue(_currentDialogueIndex);
     }
 
     private IEnumerator TypingEffect(string fullText)
     {
-        isTyping = true;
-        contextText.text = "";
+        _isTyping = true;
+        _contextText.text = "";
 
         foreach (char letter in fullText)
         {
-            contextText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            _contextText.text += letter;
+            yield return new WaitForSeconds(_typingSpeed);
         }
 
-        isTyping = false;
+        _isTyping = false;
     }
 
     private void CompleteTyping()
     {
-        if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
+        if (_typingCoroutine != null)
+            StopCoroutine(_typingCoroutine);
 
-        contextText.text = filteredDialogueList[currentDialogueIndex].context;
-        isTyping = false;
+        _contextText.text = _filteredDialogueList[_currentDialogueIndex].context;
+        _isTyping = false;
+    }
+
+    public void FadeIn()
+    {
+        _dialogueCanvas.DOFade(1f, _fadeDuration).OnStart(() =>
+        {
+            _dialogueCanvas.interactable = true;
+            _dialogueCanvas.blocksRaycasts = true;
+
+        });
+    }
+
+    public void FadeOut()
+    {
+        _dialogueCanvas.DOFade(0f, _fadeDuration).OnComplete(() =>
+        {
+            _dialogueCanvas.interactable = false;
+            _dialogueCanvas.blocksRaycasts = false;
+            _dialogueUI.SetActive(false);
+            _onDialogueComplete?.Invoke();
+        });
     }
 }
