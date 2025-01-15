@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SingleNode : Node, INodeAction
 {
-    [SerializeField] private SingleNodeDataSO _singleNodeData;
     [SerializeField] private float _fadeTime = 1f;
 
+    private SingleNodeDataSO _singleNodeData;
     private SpriteRenderer _renderer;
 
     private void Awake()
@@ -13,10 +13,11 @@ public class SingleNode : Node, INodeAction
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement)
+    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement);
+        base.Init(judgement, nodeData);
 
+        _singleNodeData = nodeData as SingleNodeDataSO;
         _renderer.sprite = _singleNodeData.sprite;
         transform.position = _singleNodeData.pos;
 
@@ -33,7 +34,7 @@ public class SingleNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    gameObject.SetActive(false); // Push
+                    _pool.Push(this); // Push
             });
     }
 
