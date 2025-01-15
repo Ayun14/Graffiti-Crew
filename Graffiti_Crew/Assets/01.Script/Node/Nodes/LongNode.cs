@@ -25,10 +25,11 @@ public class LongNode : Node, INodeAction
         _followLineRenderer = transform.Find("FollowLine").GetComponent<LineRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement)
+    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement);
+        base.Init(judgement, nodeData);
 
+        _longNodeData = nodeData as LongNodeDataSO;
         _lineRenderer.material = _longNodeData.lineRendererMat;
 
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
@@ -253,7 +254,7 @@ public class LongNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    gameObject.SetActive(false); // Push
+                    _pool.Push(this); // Push
             });
     }
 
