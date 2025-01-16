@@ -17,10 +17,11 @@ public class HitNode : Node, INodeAction
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement)
+    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement);
+        base.Init(judgement, nodeData);
 
+        _hitNodeData = nodeData as HitNodeDataSO;
         _renderer.sprite = _hitNodeData.sprite;
         transform.position = _hitNodeData.pos;
 
@@ -40,7 +41,7 @@ public class HitNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    gameObject.SetActive(false); // Push
+                    _pool.Push(this); // Push
             });
     }
 
