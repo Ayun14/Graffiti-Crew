@@ -52,6 +52,11 @@ public class SingleNode : Node, INodeAction
         return _singleNodeData.nodeType;
     }
 
+    public override NodeDataSO GetNodeDataSO()
+    {
+        return _singleNodeData;
+    }
+
     public void NodeStartAction()
     {
         NodeClear();

@@ -9,7 +9,8 @@ public class NodeJudgement : MonoBehaviour
     [SerializeField] private LayerMask _whatIsNode;
     [SerializeField] private List<NodeDataSO> _nodeDatas;
 
-    private NodeSpawner _spawner;
+    private NodeSpawner _nodeSpawner;
+    private GraffitiRenderer _graffitiRenderer;
     private Node _currentNode;
 
     private void Awake()
@@ -19,17 +20,17 @@ public class NodeJudgement : MonoBehaviour
 
     private void Init()
     {
-        _spawner = GetComponentInChildren<NodeSpawner>();
+        _nodeSpawner = GetComponentInChildren<NodeSpawner>();
+        _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
 
-        _spawner.SetSpawnNode(_nodeDatas);
+        _nodeSpawner.SetSpawnNode(_nodeDatas);
         _currentNode = null;
-
     }
 
     private void Start()
     {
         // Test
-        OnNodeSpawnStart?.Invoke();
+        NodeSpawnJudgement();
     }
 
     private void Update()
@@ -68,8 +69,16 @@ public class NodeJudgement : MonoBehaviour
 
         if (node == _currentNode)
         {
+            NodeSpawnJudgement();
             _currentNode = null;
-            OnNodeSpawnStart?.Invoke();
         }
+    }
+
+    private void NodeSpawnJudgement()
+    {
+        OnNodeSpawnStart?.Invoke();
+
+        if (_graffitiRenderer != null && _currentNode != null)
+            _graffitiRenderer.SetSprite(_currentNode.GetNodeDataSO().graffitiSprite);
     }
 }

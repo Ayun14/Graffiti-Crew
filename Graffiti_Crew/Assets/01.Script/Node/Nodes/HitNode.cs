@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HitNode : Node, INodeAction
 {
-    [SerializeField] private HitNodeDataSO _hitNodeData;
     [SerializeField] private TextMeshProUGUI _hitCountText;
     [SerializeField] private float _fadeTime = 0.5f;
 
     private int _currentHitCount;
 
+    private HitNodeDataSO _hitNodeData;
     private SpriteRenderer _renderer;
 
     private void Awake()
@@ -76,5 +76,10 @@ public class HitNode : Node, INodeAction
     public override NodeType GetNodeType()
     {
         return _hitNodeData.nodeType;
+    }
+
+    public override NodeDataSO GetNodeDataSO()
+    {
+        return _hitNodeData;
     }
 }
