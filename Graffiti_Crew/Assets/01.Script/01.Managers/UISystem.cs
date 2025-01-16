@@ -1,20 +1,26 @@
+using AH.UI.Models;
+using AH.UI.ViewModels;
+using AH.UI.Views;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
-    public class UISystem : MonoBehaviour
-    {
+    public class UISystem : MonoBehaviour {
         private UIDocument _uiDocument;
 
-        private UIView _currentView; // 현재뷰
-        private UIView _previousView; // 이전뷰
+        private UIView _currentView;
+        private UIView _previousView;
 
         private List<UIView> _allViews = new List<UIView>();
 
-        private UIView _mainView;
+        private ComputerView _computerView;
 
-        public const string mainViewName = "TestView";
+        [Header("Models")]
+        [SerializeField] private ComputerModel computerModel;
+        private ComputerViewModel _computerViewModel;
+
+        public const string mainViewName = "ComputerView";
 
         void OnEnable() {
             _uiDocument = GetComponent<UIDocument>();
@@ -23,8 +29,9 @@ namespace AH.UI {
             RegisterToEvents();
 
             // Start with the home screen
-            ChangeShowView(_mainView);
+            ChangeShowView(_computerView);
         }
+
         void OnDisable() {
             UnRegisterToEvents();
 
@@ -36,31 +43,30 @@ namespace AH.UI {
         private void SetupViews() {
             VisualElement root = _uiDocument.rootVisualElement;
 
-            //_mainView = new TestView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
+            _computerViewModel = new ComputerViewModel(computerModel);
 
-            _allViews.Add(_mainView);
+            _computerView = new ComputerView(root.Q<VisualElement>(mainViewName), _computerViewModel);
 
-            _mainView.Show();
+            _allViews.Add(_computerView);
+
+            _computerView.Show();
         }
+
         private void ChangeShowView(UIView newView) {
-            if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
+            if (_currentView != null) {
                 _currentView.Hide();
             }
 
             _previousView = _currentView;
             _currentView = newView;
 
-            if (_currentView != null) { // 지금 볼거 있으면 그거 켜주고 지금 보고 있는 view가 변경됬음을 알려줘
+            if (_currentView != null) {
                 _currentView.Show();
             }
         }
 
-        // 이벤트 등록 및 해제
-        private void RegisterToEvents() {
+        private void RegisterToEvents() { }
 
-        }
-        private void UnRegisterToEvents() {
-
-        }
+        private void UnRegisterToEvents() { }
     }
 }

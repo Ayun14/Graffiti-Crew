@@ -1,20 +1,21 @@
 using System;
-using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
-namespace AH.UI {
+namespace AH.UI.Views {
     public abstract class UIView : IDisposable {
         protected bool isOverlay; // 부분 투명 여부
         protected bool hideOnAwake = true;
         protected VisualElement topElement; // templeateContainer 말하는거임
 
+        public ViewModel viewModel;
         public VisualElement Root => topElement;
         public bool IsTransparent => isOverlay;
         public bool IsHidden => topElement.style.display == DisplayStyle.None;
 
-        public UIView(VisualElement topContainer) {
+        public UIView(VisualElement topContainer, ViewModel viewModel) {
             // null이 아니라면 m_TopElement에 topElement넣어주고 
             this.topElement = topContainer ?? throw new ArgumentNullException(nameof(topContainer));
+            this.viewModel = viewModel;
 
             Initialize();
         }
