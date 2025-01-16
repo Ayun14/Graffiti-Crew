@@ -4,8 +4,8 @@
     <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView" />
     <engine:VisualElement name="m-container" class="conputer-m-container">
         <engine:VisualElement name="computer-screen" class="computer-screen">
-            <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%; display: none;" />
-            <engine:Instance template="StoreView" name="StoreView" style="height: 100%;" />
+            <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%; display: flex;" />
+            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: none;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

@@ -1,10 +1,13 @@
-using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NodeSpawner : MonoBehaviour
 {
-    private Queue<GameObject> _nodes = new Queue<GameObject>();
+    [SerializeField] private PoolManagerSO _poolManager;
+    [SerializeField] private List<PoolTypeSO> _poolTypes = new();
+
+    private Queue<NodeDataSO> _nodeDatas = new();
 
     private NodeJudgement _judgement;
 
@@ -30,29 +33,34 @@ public class NodeSpawner : MonoBehaviour
 
     private void NodeSpawn()
     {
-        if (_nodes == null) return;
-        if (_nodes.Count == 0)
+        if (_nodeDatas == null) return;
+        if (_nodeDatas.Count == 0)
         {
             Debug.Log("모든 노드 클리어");
         }
         else
         {
             // PoolManager에서 가져오기
-            GameObject go = Instantiate(_nodes.Dequeue()); // Pop
-            if (go.TryGetComponent(out Node node))
-                node.Init(_judgement);
+            NodeDataSO nodeData = _nodeDatas.Peek();
+            PoolTypeSO poolType = _poolTypes.Find(type => type.name == nodeData.nodeType.ToString());
+            IPoolable poolGo = _poolManager.Pop(poolType);
+
+            if (poolGo.GameObject != null && poolGo.GameObject.TryGetComponent(out Node node))
+                node.Init(_judgement, nodeData);
+
+            _nodeDatas.Dequeue();
         }
     }
 
-    public void SetSpawnNode(List<GameObject> nodes)
+    public void SetSpawnNode(List<NodeDataSO> nodeDatas)
     {
         ResetSpawner();
-        foreach (GameObject go in nodes)
-            _nodes.Enqueue(go);
+        foreach (NodeDataSO data in nodeDatas)
+            _nodeDatas.Enqueue(data);
     }
 
     public void ResetSpawner()
     {
-        _nodes.Clear();
+        _nodeDatas.Clear();
     }
 }

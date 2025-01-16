@@ -7,7 +7,7 @@ public class NodeJudgement : MonoBehaviour
     public event Action OnNodeSpawnStart;
 
     [SerializeField] private LayerMask _whatIsNode;
-    [SerializeField] private List<GameObject> _nodes;
+    [SerializeField] private List<NodeDataSO> _nodeDatas;
 
     private NodeSpawner _spawner;
     private Node _currentNode;
@@ -21,7 +21,7 @@ public class NodeJudgement : MonoBehaviour
     {
         _spawner = GetComponentInChildren<NodeSpawner>();
 
-        _spawner.SetSpawnNode(_nodes);
+        _spawner.SetSpawnNode(_nodeDatas);
         _currentNode = null;
 
     }
