@@ -6,6 +6,4 @@ public class Computer : InteractionObject
     {
         base.Awake();
     }
-
-
 }
