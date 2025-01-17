@@ -12,8 +12,11 @@ public class GraffitiRenderer : MonoBehaviour
     private void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
+    }
 
-        _renderer.sprite = null;
+    public void SetStartSprite(Sprite startSprite)
+    {
+        _renderer.sprite = startSprite;
     }
 
     public void SetSprite(Sprite sprite)

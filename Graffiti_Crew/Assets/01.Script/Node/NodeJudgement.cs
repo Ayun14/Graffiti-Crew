@@ -7,30 +7,29 @@ public class NodeJudgement : MonoBehaviour
     public event Action OnNodeSpawnStart;
 
     [SerializeField] private LayerMask _whatIsNode;
+    [SerializeField] private Sprite _startSprite;
     [SerializeField] private List<NodeDataSO> _nodeDatas;
 
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
     private Node _currentNode;
 
-    private void Awake()
+    private void Start()
     {
         Init();
+
+        // Test
+        NodeSpawnJudgement();
     }
 
     private void Init()
     {
         _nodeSpawner = GetComponentInChildren<NodeSpawner>();
-        _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
-
         _nodeSpawner.SetSpawnNode(_nodeDatas);
-        _currentNode = null;
-    }
+        _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
+        _graffitiRenderer.SetStartSprite(_startSprite);
 
-    private void Start()
-    {
-        // Test
-        NodeSpawnJudgement();
+        _currentNode = null;
     }
 
     private void Update()
