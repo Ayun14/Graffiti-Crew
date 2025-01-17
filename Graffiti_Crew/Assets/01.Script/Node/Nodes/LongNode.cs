@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class LongNode : Node, INodeAction
 {
-    [SerializeField] private LongNodeDataSO _longNodeData;
     [SerializeField] private float _cameraDistance;
     [SerializeField] private float _fadeTime;
 
+    private LongNodeDataSO _longNodeData;
     private LineRenderer _lineRenderer;
     private LineRenderer _followLineRenderer;
     private SpriteRenderer _startPointRenderer, _endPointRenderer;
@@ -276,5 +276,10 @@ public class LongNode : Node, INodeAction
     public override NodeType GetNodeType()
     {
         return _longNodeData.nodeType;
+    }
+
+    public override NodeDataSO GetNodeDataSO()
+    {
+        return _longNodeData;
     }
 }

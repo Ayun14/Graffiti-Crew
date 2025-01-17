@@ -35,13 +35,14 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     public abstract NodeType GetNodeType();
 
+    public abstract NodeDataSO GetNodeDataSO();
+
+    #region Pool
     public void SetUpPool(Pool pool)
     {
         _pool = pool;
     }
 
-    public void ResetItem()
-    {
-
-    }
+    public void ResetItem() { }
+    #endregion
 }

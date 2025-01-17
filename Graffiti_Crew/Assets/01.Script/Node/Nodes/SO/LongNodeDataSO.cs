@@ -10,7 +10,7 @@ public enum LongNodeType
 [CreateAssetMenu(fileName = "LongNodeDataSO", menuName = "SO/Lode/LongNodeDataSO")]
 public class LongNodeDataSO : NodeDataSO
 {
-    [Header("Data")]
+    [Header("Long Node Data")]
     public LongNodeType longNodeType;
     public Material lineRendererMat;
     [Range(2, 100)] public int points; // 점의 개수
