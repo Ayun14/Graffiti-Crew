@@ -57,6 +57,11 @@ public class SingleNode : Node, INodeAction
         return _singleNodeData;
     }
 
+    public override float GetSprayUseAmount()
+    {
+        return _singleNodeData.sprayUseAmount;
+    }
+
     public void NodeStartAction()
     {
         NodeClear();

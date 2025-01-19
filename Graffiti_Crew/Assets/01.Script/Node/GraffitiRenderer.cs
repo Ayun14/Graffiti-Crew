@@ -4,18 +4,18 @@ public class GraffitiRenderer : MonoBehaviour
 {
     private SpriteRenderer _renderer;
 
-    private void Awake()
-    {
-        Init();
-    }
+    private NodeJudgement _judgement;
 
-    private void Init()
+    private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void SetStartSprite(Sprite startSprite)
+    public void Init(NodeJudgement judgement, Sprite startSprite)
     {
+        _judgement = judgement;
+
+        if (_renderer == null) return;
         _renderer.sprite = startSprite;
     }
 
