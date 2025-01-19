@@ -282,4 +282,9 @@ public class LongNode : Node, INodeAction
     {
         return _longNodeData;
     }
+
+    public override float GetSprayUseAmount()
+    {
+        return _longNodeData.sprayUseAmount;
+    }
 }

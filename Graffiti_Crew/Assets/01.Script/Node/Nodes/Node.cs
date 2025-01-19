@@ -9,7 +9,6 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     [Header("Pool")]
     protected Pool _pool;
-
     [SerializeField] protected PoolTypeSO _poolType;
     public PoolTypeSO PoolType => _poolType;
     public GameObject GameObject => gameObject;
@@ -36,6 +35,7 @@ public abstract class Node : MonoBehaviour, IPoolable
     public abstract NodeType GetNodeType();
 
     public abstract NodeDataSO GetNodeDataSO();
+    public abstract float GetSprayUseAmount();
 
     #region Pool
     public void SetUpPool(Pool pool)

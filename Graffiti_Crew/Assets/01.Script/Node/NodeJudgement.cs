@@ -6,12 +6,23 @@ public class NodeJudgement : MonoBehaviour
 {
     public event Action OnNodeSpawnStart;
 
-    [SerializeField] private LayerMask _whatIsNode;
+    [Header("Spray")]
+    [SerializeField] private int _sprayAmount;
+    [SerializeField] private int _shakeAmount;
+
+    [Header("Graffiti")]
     [SerializeField] private Sprite _startSprite;
+
+    [Header("Node")]
+    [SerializeField] private LayerMask _whatIsNode;
     [SerializeField] private List<NodeDataSO> _nodeDatas;
+
+    public bool isNodeClick => _currentNode != null;
 
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
+    private SprayController _sprayController;
+
     private Node _currentNode;
 
     private void Start()
@@ -25,9 +36,13 @@ public class NodeJudgement : MonoBehaviour
     private void Init()
     {
         _nodeSpawner = GetComponentInChildren<NodeSpawner>();
-        _nodeSpawner.SetSpawnNode(_nodeDatas);
         _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
-        _graffitiRenderer.SetStartSprite(_startSprite);
+        _sprayController = GetComponentInChildren<SprayController>();
+
+        // Init
+        _nodeSpawner.Init(this, _nodeDatas);
+        _graffitiRenderer.Init(this, _startSprite);
+        _sprayController.Init(this, _sprayAmount, _shakeAmount);
 
         _currentNode = null;
     }
@@ -39,6 +54,8 @@ public class NodeJudgement : MonoBehaviour
 
     private void NodeClickInput()
     {
+        if (_sprayController.isSprayNone || _sprayController.isMustShakeSpray) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -51,6 +68,11 @@ public class NodeJudgement : MonoBehaviour
                     NodeClick(_currentNode);
                 }
             }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (_currentNode != null)
+                _currentNode = null;
         }
     }
 
@@ -68,7 +90,13 @@ public class NodeJudgement : MonoBehaviour
 
         if (node == _currentNode)
         {
+            // Spawn
             NodeSpawnJudgement();
+
+            // Spray
+            _sprayController.AddShakeAmount(-_currentNode.GetSprayUseAmount());
+            _sprayController.AddSprayAmount(-_currentNode.GetSprayUseAmount());
+
             _currentNode = null;
         }
     }

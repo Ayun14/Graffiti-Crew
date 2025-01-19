@@ -82,4 +82,9 @@ public class HitNode : Node, INodeAction
     {
         return _hitNodeData;
     }
+
+    public override float GetSprayUseAmount()
+    {
+        return _hitNodeData.sprayUseAmount;
+    }
 }
