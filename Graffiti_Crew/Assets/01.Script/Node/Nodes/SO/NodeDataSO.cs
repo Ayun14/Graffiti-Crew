@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum NodeType
@@ -9,5 +8,8 @@ public enum NodeType
 
 public class NodeDataSO : ScriptableObject
 {
+    [Header("Node Data")]
     public NodeType nodeType;
+    public Sprite graffitiSprite;
+    public float sprayUseAmount;
 }

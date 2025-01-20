@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public enum PlayerStateEnum
 {
@@ -16,8 +18,9 @@ public class Player : Agent
     [Header("Setting Values")]
     public float moveSpeed = 4f;
     public DialogueUIController dialogueUIController;
-
     [SerializeField] private PlayerInput _playerInput;
+
+    public PlayableDirector computerTimeline;
 
     public PlayerStateMachine StateMachine { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }

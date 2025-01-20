@@ -12,7 +12,7 @@ public class PlayerNPCState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        _isDialogueFinished = false;
         _player.MovementCompo.StopImmediately(true);
 
         if (_player.dialogueUIController != null)

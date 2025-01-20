@@ -11,10 +11,8 @@ public class PlayerComputerState : PlayerState
     {
         base.Enter();
 
-        _player.PlayerInput.MovementEvent += HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
-
         _player.MovementCompo.StopImmediately(true);
+        _player.computerTimeline.Play();
     }
 
     public override void UpdateState()
@@ -24,22 +22,6 @@ public class PlayerComputerState : PlayerState
 
     public override void Exit()
     {
-        _player.PlayerInput.MovementEvent -= HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
-
         base.Exit();
-    }
-
-    private void HandleInteractionEvent(InteractionObject interactionObject)
-    {
-        _player.CurrentInteractionObject = interactionObject;
-        _player.NavMeshAgent.destination = interactionObject.TargetPos;
-        _player.StateMachine.ChangeState(PlayerStateEnum.Interaction);
-    }
-
-    private void HandleMovementEvent(Vector3 movement)
-    {
-        _player.NavMeshAgent.destination = movement;
-        _player.StateMachine.ChangeState(PlayerStateEnum.Run);
     }
 }

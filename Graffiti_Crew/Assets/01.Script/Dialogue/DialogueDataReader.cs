@@ -112,7 +112,7 @@ public class DialogueDataReaderEditor : Editor
 
         GUILayout.Label("\n\n스프레드 시트 읽어오기");
 
-        if (GUILayout.Button("데이터 읽기(API 호출)"))
+        if (GUILayout.Button("데이터 가져오기"))
         {
             UpdateStats(UpdateMethodOne);
             data.DialogueList.Clear();
