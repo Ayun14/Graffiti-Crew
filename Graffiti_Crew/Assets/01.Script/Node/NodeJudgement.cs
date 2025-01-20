@@ -94,8 +94,8 @@ public class NodeJudgement : MonoBehaviour
             NodeSpawnJudgement();
 
             // Spray
-            _sprayController.AddShakeAmount(-_currentNode.GetSprayUseAmount());
-            _sprayController.AddSprayAmount(-_currentNode.GetSprayUseAmount());
+            _sprayController.AddShakeAmount(-_currentNode.GetNodeDataSO().sprayUseAmount);
+            _sprayController.AddSprayAmount(-_currentNode.GetNodeDataSO().sprayUseAmount);
 
             _currentNode = null;
         }

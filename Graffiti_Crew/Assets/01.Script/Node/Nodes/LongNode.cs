@@ -254,7 +254,7 @@ public class LongNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
@@ -281,10 +281,5 @@ public class LongNode : Node, INodeAction
     public override NodeDataSO GetNodeDataSO()
     {
         return _longNodeData;
-    }
-
-    public override float GetSprayUseAmount()
-    {
-        return _longNodeData.sprayUseAmount;
     }
 }

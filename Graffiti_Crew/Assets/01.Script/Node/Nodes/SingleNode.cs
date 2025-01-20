@@ -34,7 +34,7 @@ public class SingleNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
@@ -55,11 +55,6 @@ public class SingleNode : Node, INodeAction
     public override NodeDataSO GetNodeDataSO()
     {
         return _singleNodeData;
-    }
-
-    public override float GetSprayUseAmount()
-    {
-        return _singleNodeData.sprayUseAmount;
     }
 
     public void NodeStartAction()

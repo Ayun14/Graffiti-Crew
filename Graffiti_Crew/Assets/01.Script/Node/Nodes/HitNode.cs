@@ -41,7 +41,7 @@ public class HitNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
@@ -81,10 +81,5 @@ public class HitNode : Node, INodeAction
     public override NodeDataSO GetNodeDataSO()
     {
         return _hitNodeData;
-    }
-
-    public override float GetSprayUseAmount()
-    {
-        return _hitNodeData.sprayUseAmount;
     }
 }

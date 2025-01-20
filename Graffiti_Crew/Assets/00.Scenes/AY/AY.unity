@@ -624,6 +624,51 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &466866084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466866086}
+  - component: {fileID: 466866085}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &466866085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466866084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72260267c25c68c45922403c40d5ea29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 1
+--- !u!4 &466866086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466866084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &468468674
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,9 +997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719da138677fb224ca5732a2a7f1598d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprayAmount: 50
-  _shakeAmount: 25
-  _startSprite: {fileID: -1692387267, guid: 3cf49f464ce612b4497e413a050d6a53, type: 3}
+  _sprayAmount: 70
+  _shakeAmount: 35
+  _startSprite: {fileID: -1692387267, guid: 07d17cc1d62407b4ab806ee1182d004d, type: 3}
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 512
@@ -1968,6 +2013,7 @@ SceneRoots:
   - {fileID: 2127623332}
   - {fileID: 1688037727}
   - {fileID: 1665472160}
+  - {fileID: 466866086}
   - {fileID: 1231523916}
   - {fileID: 1102590749}
   - {fileID: 1678951448}
