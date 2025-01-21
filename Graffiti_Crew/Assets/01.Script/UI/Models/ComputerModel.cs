@@ -8,13 +8,21 @@ namespace AH.UI.Models {
     public class ComputerModel : Model {
         [SerializeField] private VisualTreeAsset _stagePointAsset;
         [SerializeField] private List<Transform> _chapter1Ratio;
-        public string userName;
+        public SaveDataSO userName;
 
         public List<Transform> GetChapter1Ratio() {
             return _chapter1Ratio;
         }
         public VisualTreeAsset GetStagePointAsset() {
             return _stagePointAsset;
+        }
+
+        public void SetUserName(string name) {
+            userName.SetValueFromString(name);
+        }
+
+        public string FetchGreetingMessage() {
+            return $"Hello{userName.GetData()}";
         }
     }
 }

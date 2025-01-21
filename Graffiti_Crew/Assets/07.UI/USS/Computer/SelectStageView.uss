@@ -6,3 +6,67 @@
     flex-grow: 1;
     background-color: rgb(206, 255, 173);
 }
+
+.stage-point {
+    width: 100px;
+    height: 100px;
+    background-image: url("project://database/Assets/02.Sprite/Node/WhiteElipse.png?fileID=1931213951&guid=4c0d70f04c2e6f344b99b7b64d2d0aed&type=3#WhiteElipse_0");
+    position: absolute;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.--- {
+}
+
+.selectStage-description-top-container {
+    flex-direction: row;
+    flex-basis: 50%;
+}
+
+.selectStage-description-bottom-container {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.selectStage-description-TLeft-content {
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+.selectStage-description-TRight-content {
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectStage-description-BLeft-content {
+    flex-basis: 65%;
+}
+
+.selectStage-description-BRight-content {
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.graffti-img {
+    background-image: url("project://database/Assets/02.Sprite/Graffiti/Rival/Rival1/hamburger3.png?fileID=1515322954&guid=995da855eb8965d419a0bf3b7f8b2a77&type=3#hamburger3_0");
+    width: 500px;
+    height: 500px;
+}
+
+.friend-btn {
+    width: 200px;
+    height: 200px;
+    flex-grow: 0;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}

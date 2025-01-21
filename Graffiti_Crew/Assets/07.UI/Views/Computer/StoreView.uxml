@@ -8,14 +8,13 @@
                 <engine:ScrollView name="menu-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" style="flex-grow: 1;">
                     <engine:VisualElement style="width: 250px; height: 250px; background-color: rgb(255, 180, 180); margin-top: 10px; margin-left: 10px; margin-bottom: 10px; margin-right: 10px;" />
                     <engine:VisualElement style="width: 250px; height: 250px; background-color: rgb(255, 180, 180); margin-top: 10px; margin-left: 10px; margin-bottom: 10px; margin-right: 10px;" />
-                    <engine:VisualElement style="width: 250px; height: 250px; background-color: rgb(255, 180, 180); margin-top: 10px; margin-left: 10px; margin-bottom: 10px; margin-right: 10px;" />
-                    <engine:VisualElement style="width: 250px; height: 250px; background-color: rgb(255, 180, 180); margin-top: 10px; margin-left: 10px; margin-bottom: 10px; margin-right: 10px;" />
                 </engine:ScrollView>
             </engine:VisualElement>
             <engine:VisualElement name="right-contant" style="flex-grow: 1; background-color: rgb(229, 248, 255); padding-top: 30px; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
                 <engine:VisualElement name="data-details-content" style="flex-grow: 1; background-color: rgb(178, 234, 255); padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
                     <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 78%; height: 57%;" />
-                    <engine:Label text="아이템 설명 아이템 설명 아이템 설명 아이템 설명 아이템 설명 " name="data-explanation-txt" class="grow-size-50 grow-middle-size-50" style="width: 100%; white-space: pre-wrap; -unity-text-align: upper-left; margin-top: 25px;" />
+                    <engine:Label text="아이템 이름" name="data-name" class="grow-size-40" style="width: 100%; -unity-text-align: middle-center; margin-top: 20px;" />
+                    <engine:Label text="아이템 설명 아이템 설명 아이템 설명 아이템 설명 아이템 설명 " name="data-explanation-txt" class="grow-size-50 grow-middle-size-50" style="width: 100%; white-space: pre-wrap; -unity-text-align: upper-left;" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>

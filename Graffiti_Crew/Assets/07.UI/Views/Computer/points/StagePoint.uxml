@@ -1,3 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement name="stage-point" style="width: 100px; height: 100px; background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteElipse.png?fileID=1931213951&amp;guid=4c0d70f04c2e6f344b99b7b64d2d0aed&amp;type=3#WhiteElipse_0&quot;); position: absolute;" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <engine:Button text="1-1" name="stage-point" class="stage-point grow-size-30" />
 </engine:UXML>
