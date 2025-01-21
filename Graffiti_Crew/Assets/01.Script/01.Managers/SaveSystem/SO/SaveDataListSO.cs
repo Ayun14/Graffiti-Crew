@@ -41,14 +41,9 @@ namespace AH.SaveSystem {
 
             foreach (var data in wrapper.saveDataList) {
                 // 동일한 SO를 찾기
-                SaveDataSO existingData = _saveDataSOList.Find(data => data.ID == data.ID && data.dataName == data.dataName);
-
-                if (data != null) {
-                    //Debug.Log($"{serializedData.dataName} : {serializedData.data}");
-                    existingData.SetValueFromString(data.data);
-                }
-                else {
-                    Debug.LogError("알 수 없는 데이터");
+                SaveDataSO findData = _saveDataSOList.Find(currentData => currentData.ID == data.ID && currentData.dataName == data.dataName);
+                if (findData != null) {
+                    findData.SetValueFromString(data.data);
                 }
             }
         }
