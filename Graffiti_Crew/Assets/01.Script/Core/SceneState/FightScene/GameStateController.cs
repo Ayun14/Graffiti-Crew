@@ -25,6 +25,7 @@ public class GameStateController : Subject
     {
         if (newState == gameState) return;
 
+        Debug.Log("게임 상태 변경 : " + newState.ToString());
         gameState = newState;
         NotifyObservers(); // 관찰자들에게 알리기
     }

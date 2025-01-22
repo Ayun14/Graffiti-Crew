@@ -35,7 +35,7 @@ public class NodeSpawner : MonoBehaviour
         if (_nodeDatas == null) return;
         if (_nodeDatas.Count == 0)
         {
-            Debug.Log("모든 노드 클리어");
+            _judgement.AllNodeClear();
         }
         else
         {

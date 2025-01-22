@@ -47,11 +47,16 @@ public class HitNode : Node, INodeAction
 
     public void NodeStartAction()
     {
+        if (isClearNode) return;
+
         SetHitCount();
     }
 
     public void SetHitCount()
     {
+        judgement.AddShakeSliderAmount(-_hitNodeData.sprayUseAmount);
+        judgement.AddSpraySliderAmount(-_hitNodeData.sprayUseAmount);
+
         if (--_currentHitCount <= 0)
         {
             _hitCountText.text = string.Empty;

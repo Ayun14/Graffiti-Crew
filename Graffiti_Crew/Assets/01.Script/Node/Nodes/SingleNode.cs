@@ -44,7 +44,8 @@ public class SingleNode : Node, INodeAction
 
         SetAlpha(0f);
 
-        // 클리어 파티클?
+        judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
+        judgement.AddSpraySliderAmount(-_singleNodeData.sprayUseAmount);
     }
 
     public override NodeType GetNodeType()
