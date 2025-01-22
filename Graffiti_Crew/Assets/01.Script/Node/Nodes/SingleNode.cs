@@ -34,7 +34,7 @@ public class SingleNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
@@ -44,7 +44,8 @@ public class SingleNode : Node, INodeAction
 
         SetAlpha(0f);
 
-        // 클리어 파티클?
+        judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
+        judgement.AddSpraySliderAmount(-_singleNodeData.sprayUseAmount);
     }
 
     public override NodeType GetNodeType()
@@ -55,11 +56,6 @@ public class SingleNode : Node, INodeAction
     public override NodeDataSO GetNodeDataSO()
     {
         return _singleNodeData;
-    }
-
-    public override float GetSprayUseAmount()
-    {
-        return _singleNodeData.sprayUseAmount;
     }
 
     public void NodeStartAction()
