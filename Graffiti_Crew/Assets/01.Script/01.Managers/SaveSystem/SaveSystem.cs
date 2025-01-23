@@ -1,5 +1,3 @@
-using AH.UI;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,24 +9,21 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             LoadGame();
-            Events.SelectSlotEvent += ChangeSlot;
         }
-
-        private void ChangeSlot(string obj) {
-            Debug.Log(obj);
-        }
-
         void OnApplicationQuit() {
             SaveGameData();
         }
 
         public void LoadGame() {
-            foreach (var saveData in _dataList) {
-                if (FileSystem.CheckToSlotFolder(currentSlot.slotName)) {
+            if (FileSystem.CheckToSlotFolder(currentSlot.slotName)) { // 폴더가 없어서 생성했다면 
+                // save파일에 기본값 넣기
+                foreach (var saveData in _dataList) {
                     string jsonFile = saveData.ToJson();
                     FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 }
-                if(!FileSystem.LoadFromFile(currentSlot.slotName, saveData.saveFileName, out var jsonString)) {
+            }
+            foreach (var saveData in _dataList) { // 데이터 load하기
+                if (FileSystem.LoadFromFile(currentSlot.slotName, saveData.saveFileName, out var jsonString)) {
                     saveData.LoadJson(jsonString);
                 }
             }

@@ -41,17 +41,22 @@ public class HitNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
     public void NodeStartAction()
     {
+        if (isClearNode) return;
+
         SetHitCount();
     }
 
     public void SetHitCount()
     {
+        judgement.AddShakeSliderAmount(-_hitNodeData.sprayUseAmount);
+        judgement.AddSpraySliderAmount(-_hitNodeData.sprayUseAmount);
+
         if (--_currentHitCount <= 0)
         {
             _hitCountText.text = string.Empty;

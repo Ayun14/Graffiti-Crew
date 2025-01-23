@@ -10,17 +10,17 @@ public class NodeSpawner : MonoBehaviour
 
     private NodeJudgement _judgement;
 
-    private void Awake()
+    public void Init(NodeJudgement judgement, List<NodeDataSO> nodeDatas)
     {
-        _judgement = GetComponentInParent<NodeJudgement>();
-    }
-
-    private void OnEnable()
-    {
+        _judgement = judgement;
         _judgement.OnNodeSpawnStart += HandleNodeSpawn;
+
+        ResetSpawner();
+        foreach (NodeDataSO data in nodeDatas)
+            _nodeDatas.Enqueue(data);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _judgement.OnNodeSpawnStart -= HandleNodeSpawn;
     }
@@ -35,7 +35,7 @@ public class NodeSpawner : MonoBehaviour
         if (_nodeDatas == null) return;
         if (_nodeDatas.Count == 0)
         {
-            Debug.Log("모든 노드 클리어");
+            _judgement.AllNodeClear();
         }
         else
         {
@@ -49,13 +49,6 @@ public class NodeSpawner : MonoBehaviour
 
             _nodeDatas.Dequeue();
         }
-    }
-
-    public void SetSpawnNode(List<NodeDataSO> nodeDatas)
-    {
-        ResetSpawner();
-        foreach (NodeDataSO data in nodeDatas)
-            _nodeDatas.Enqueue(data);
     }
 
     public void ResetSpawner()
