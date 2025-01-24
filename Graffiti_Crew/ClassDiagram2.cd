@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SceneLoader" Collapsed="true">
+    <Position X="0.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACAgKAAQggAAAACABAACAAAAAAAAAAAAAACAAAAAUI=</HashCode>
+      <FileName>Assets\01.Script\00.Utils\SceneLoader\SceneLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonoSingleton&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAAAAAAAAAAAAAAACAAAAAAAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\00.Utils\Singleton\MonoSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinSystem" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACAEAAAQ=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\CoinSystem\CoinSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnGUIManager" Collapsed="true">
+    <Position X="17.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAgAAEAACAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\OnGUIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SlotSO" Collapsed="true">
+    <Position X="26.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\SlotSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agent" Collapsed="true">
+    <Position X="1.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAIACAQAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Agent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgentAnimator" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\AgentAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgentVFX" Collapsed="true">
+    <Position X="14.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\AgentVFX.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCController" Collapsed="true">
+    <Position X="2.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAACAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\NPCController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCIdleState" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\State\NPCIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCState" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAQAEAAAgIgAABAEAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\State\NPCState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCStateMachine" Collapsed="true">
+    <Position X="30" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAAAgAACAAAQAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\State\NPCStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCTalkState" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\State\NPCTalkState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgentMovement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQEA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\AgentMovement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="0.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQSAQIAAECAAAAAAAAACASAAAASAAAAAEAAAAAEAAEA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAnimationTrigger" Collapsed="true">
+    <Position X="21.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\PlayerAnimationTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInput" Collapsed="true">
+    <Position X="23" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAGgAAAAAAAAACAAAAAEAAAAAAAAAAgASAkA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\PlayerInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerVFX" Collapsed="true">
+    <Position X="14.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACBAAAAAgAAAAQAAAAAAAAAAAAAAAAACAAI=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\PlayerVFX.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerComputerState" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerComputerState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerIdleState" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAABAAAAAAAAAAEAAAAIAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInteractionState" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAABAAAAAAAAAAEAAAAIAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerInteractionState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerNPCState" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAgAAAEAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerNPCState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerRunState" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAABAAAAAAAAAAEAAAAIAAABAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerRunState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerState" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAACAAAAAAEAAAgIgAABAEAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStateMachine" Collapsed="true">
+    <Position X="24.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAAAgACCAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\State\PlayerStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FightSceneTimelineController" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAYAAAAAIAAAAAAAAQAAAAAEAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\FightScene\FightSceneTimelineController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FightSceneUIController" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAoAAAASAAgAAAQgAAAAAEAAAACAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\FightScene\FightSceneUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameStateController" Collapsed="true">
+    <Position X="11.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\FightScene\GameStateController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RivalController" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAIAAAAAAQAAAAAAAEAAAAAAAAAAAAIEA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\FightScene\RivalController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Observer&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\ObserverPatten\Observer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObserverBase" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\ObserverPatten\ObserverBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Subject" Collapsed="true">
+    <Position X="11.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAQgAAgAAA=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\ObserverPatten\Subject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataReaderBase" Collapsed="true">
+    <Position X="13.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Dialogue\DataReaderBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DialogueDataReader" Collapsed="true">
+    <Position X="13.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Dialogue\DialogueDataReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DialogueDataReaderEditor" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEAAAAAAACAAAAAAAAAAAAAAQAAAACAA=</HashCode>
+      <FileName>Assets\01.Script\Dialogue\DialogueDataReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DialogueUIController" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkSCRAEAACCAgAIAAAAoBAAAAAACRgBAAABgAAAAAII=</HashCode>
+      <FileName>Assets\01.Script\Dialogue\DialogueUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GraffitiRenderer" Collapsed="true">
+    <Position X="30" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAEAAAAAAAAAACAAABAEA=</HashCode>
+      <FileName>Assets\01.Script\Node\GraffitiRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NodeJudgement" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBSBAACAACABICAAAAAAAIAAAAAgAASQADAGQAIAIAA=</HashCode>
+      <FileName>Assets\01.Script\Node\NodeJudgement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HitNode" Collapsed="true">
+    <Position X="15.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACAAEAAAAAAAQAAAAAAAAQEBCgAAgAAAFCAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\HitNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LongNode" Collapsed="true">
+    <Position X="10.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RQQCAAEAAYAgAAUAAAAAAAAAABAABSkIIBBqAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\LongNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Node" Collapsed="true">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAIBAAAAAAAAAAAAAACAAABAAAAgAAAgDAAIAARA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SingleNode" Collapsed="true">
+    <Position X="13" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAEAAAAAAAQAAAAAAAAAEBAAAAgAAABCAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SingleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HitNodeDataSO" Collapsed="true">
+    <Position X="0.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAIAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\HitNodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LongNodeDataSO" Collapsed="true">
+    <Position X="3" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQCAAAAAAAAAQAhAAAAkAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\LongNodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NodeDataSO" Collapsed="true">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\NodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SingleNodeDataSO" Collapsed="true">
+    <Position X="5.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\SingleNodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NodeSpawner" Collapsed="true">
+    <Position X="28.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAACAAAAAAAAAAAEAAABAAAABQAAAACAAABAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\NodeSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SprayController" Collapsed="true">
+    <Position X="28.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABVAAQAAEAAAECwAgAAIEAAACIACAAAAAAICRAAFYEA=</HashCode>
+      <FileName>Assets\01.Script\Node\SprayController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer" Collapsed="true">
+    <Position X="8.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Assets\01.Script\Object\Computer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractionObject" Collapsed="true">
+    <Position X="9.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Object\InteractionObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPC" Collapsed="true">
+    <Position X="10.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAACAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\Object\NPC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OutLine" Collapsed="true">
+    <Position X="19.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAQAAAAAgABAQAACAAAAAAAAAAAAoAEA=</HashCode>
+      <FileName>Assets\01.Script\Object\OutLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FadeController" Collapsed="true">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAASAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Object\Test\FadeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model" Collapsed="true">
+    <Position X="8.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewModel" Collapsed="true">
+    <Position X="5.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\ViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimalManager" Collapsed="true">
+    <Position X="26.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAEACAAQAAAAAAAAAAgAIAAAAAAAAAQAAAAEA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Animal Example\Scripts\AnimalManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimalObject" Collapsed="true">
+    <Position X="28.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAAAAAAAAACAAAAAAAoAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Animal Example\Scripts\AnimalObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animal" Collapsed="true">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAQAAAAgAAAAAAAAAAACAAAAAQAAAAAo=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Animal Example\Scripts\Scriptable Objects\Animal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimalEditor" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEABgAAAASAEAAAAgEAAAAAAQAAAQCAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Animal Example\Scripts\Scriptable Objects\Animal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimalContainer" Collapsed="true">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Animal Example\Scripts\Scriptable Objects\AnimalContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Readme" Collapsed="true">
+    <Position X="28.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAQAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\TutorialInfo\Scripts\Readme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.FileSystem" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIBAAAAAAAAAAAAEAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\FileSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.SaveSystem" Collapsed="true">
+    <Position X="17.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAIAAAAAAAAAAAAAAAAAGAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SaveSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.FloatSaveDataSO" Collapsed="true">
+    <Position X="0.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAgEAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\FloatSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.IntSaveDataSO" Collapsed="true">
+    <Position X="3" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAgEAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\IntSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.StringSaveDataSO" Collapsed="true">
+    <Position X="5.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAgEAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\StringSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.TextureSaveDataSO" Collapsed="true">
+    <Position X="7.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAiEAAEAgAAAAAAAAAAAAAAAAAAAAASAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\TextureSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.TextureSaveLoadUtility" Collapsed="true">
+    <Position X="21.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAgAAAAEAAACAA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\TextureSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.GammaUtility" Collapsed="true">
+    <Position X="21.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\DataType\TextureSaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.SaveDataListSO" Collapsed="true">
+    <Position X="30" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAIQAAAAAAAEA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\SaveDataListSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.SaveSystem.SaveDataSO" Collapsed="true">
+    <Position X="4" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAgEAAAgAAAAAEAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\SaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.UISystem" Collapsed="true">
+    <Position X="23" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAACAEAAAAABAAAGAEAAAAAAAAIAQAIAAAAAAAAGAA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\UISystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.Events" Collapsed="true">
+    <Position X="30" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Events\Events.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.Models.ComputerModel" Collapsed="true">
+    <Position X="8.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAgIAAAEAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Models\ComputerModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.Views.UIView" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASQAASBAEAgQABgAAAAEAAAAAAAAAAACEAA=</HashCode>
+      <FileName>Assets\01.Script\UI\UIView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AH.UI.Views.ComputerView" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAAEAAQAAQBAAAkAAQgCAAAAAQAAAIAAAAAAEAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Views\Computer\ComputerView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.Views.SelectStageView" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAQBAAAAAAAgCAAAAEAAAAgIAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Views\Computer\SelectStageView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.Views.StoreView" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\Views\Computer\StoreView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AH.UI.ViewModels.ComputerViewModel" Collapsed="true">
+    <Position X="5.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAgAAIAAAQAAAAEAAABABAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\ViewModels\ComputerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.EditorCoroutineRunner" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAABAgiQAAAAAAAAAAAAAAAAAAgAAAAQABgAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\EditorCoroutineRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.EditorCoroutineState" Collapsed="true">
+    <Position X="26.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAUgAACAAAAAgAAIAAgAAAAEAUIAABAAAAUAI=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\EditorCoroutineRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.EditorStatusUpdate" Collapsed="true">
+    <Position X="28.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAQAIACAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\EditorCoroutineRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.EditorCoroutine" Collapsed="true">
+    <Position X="23" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\EditorCoroutineRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.Task" Collapsed="true">
+    <Position X="17.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAQAACAAAAAAAAQAAAAAAAAAAAAIIAAAAABEAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ThirdPary.TaskManager" Collapsed="true">
+    <Position X="19.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GoogleSheetsToUnityConfig" Collapsed="true">
+    <Position X="26.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAgAAAAIAAAYBAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\GoogleSheetsToUnityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GoogleDataResponse" Collapsed="true">
+    <Position X="24.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgCAAAAAQAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\GoogleSheetsToUnityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GoogleAuthrisationHelper" Collapsed="true">
+    <Position X="23" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAQAAAAAAAAAAAAAABABAGUIJAAAAEQAAAAAAACA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\GoogleAuthrisationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.SpreadsheetManager" Collapsed="true">
+    <Position X="30" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAgAAIAAAAAAAAAAgCAAAAQAAAAAAACEAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Private\SpreadsheetManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GSTU_Search" Collapsed="true">
+    <Position X="19.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAABAEAACAAAAAAAQAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GSTU_Cell" Collapsed="true">
+    <Position X="17.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAQABAAAACQBAACiAAAAAAAAECAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GSTU_SpreadsheetResponce" Collapsed="true">
+    <Position X="21.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAABIAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.ValueRange" Collapsed="true">
+    <Position X="24.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIAAAAAAAAACAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.BatchRequestBody" Collapsed="true">
+    <Position X="30" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.SheetsRootObject" Collapsed="true">
+    <Position X="24.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.Sheet" Collapsed="true">
+    <Position X="23" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.Properties" Collapsed="true">
+    <Position X="26.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.Merge" Collapsed="true">
+    <Position X="26.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwAAAAAAEAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.GstuSpreadSheet" Collapsed="true">
+    <Position X="23" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAJAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.Utils.GoogleSheetsToUnityUtilities" Collapsed="true">
+    <Position X="28.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAgQAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\GoogleSheetsToUnityUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoogleSheetsToUnity.Utils.GSTUString" Collapsed="true">
+    <Position X="24.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\GoogleSheetsToUnityUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreenerGames.SecondaryKeyDictionary&lt;T1, T2, V&gt;" Collapsed="true">
+    <Position X="19.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoIACAAAAAAEAAAACAAAAAAAAAAAAAAAAAAAQwAAEBA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\SecondaryKeyDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreenerGames.SecondaryKeyDictionary&lt;T, V&gt;" Collapsed="true">
+    <Position X="21.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoIACAAAAAAEAAAACAAAAAAAAAAAAAAAAAAAQwAAEBA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\Utils\SecondaryKeyDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DialogueData" Collapsed="true">
+    <Position X="17.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAESAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\01.Script\Dialogue\DialogueDataReader.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="INavigationable" Collapsed="true">
+    <Position X="19.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQEA=</HashCode>
+      <FileName>Assets\01.Script\Agent\INavigationable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="INodeAction" Collapsed="true">
+    <Position X="21.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\INodeAction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AH.UI.Command.ICommand" Collapsed="true">
+    <Position X="17.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\UI\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="NPCStateEnum" Collapsed="true">
+    <Position X="26.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Agent\NPC\NPCController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PlayerStateEnum" Collapsed="true">
+    <Position X="28.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAAAI=</HashCode>
+      <FileName>Assets\01.Script\Agent\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameState" Collapsed="true">
+    <Position X="21.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAIAAAAAAAQAAQAAAAAAQAAAEAAAAEAAAg=</HashCode>
+      <FileName>Assets\01.Script\Core\SceneState\FightScene\GameStateController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LongNodeType" Collapsed="true">
+    <Position X="23" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\LongNodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="NodeType" Collapsed="true">
+    <Position X="24.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\01.Script\Node\Nodes\SO\NodeDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AH.SaveSystem.DataType" Collapsed="true">
+    <Position X="17.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAAAAgACA=</HashCode>
+      <FileName>Assets\01.Script\01.Managers\SaveSystem\SO\SaveDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GoogleSheetsToUnity.Dimension" Collapsed="true">
+    <Position X="19.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GoogleSheetsToUnity.ValueRenderOption" Collapsed="true">
+    <Position X="17.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GoogleSheetsToUnity.ValueInputOption" Collapsed="true">
+    <Position X="30" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Spreadsheet.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="OnSpreedSheetLoaded" Collapsed="true">
+    <Position X="17.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Google Sheets to Unity\Scripts\v4\Public\SpreadsheetManager.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
