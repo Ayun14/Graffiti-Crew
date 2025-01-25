@@ -1,16 +1,21 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
+    [Header("Spray")]
     [SerializeField] private Image _spraySliderPanel;
 
-    // Shader
+    [Header("Blind")]
     private Image _blindPanel;
+    private FoodImage _foodImage;
     private Material _blindMat;
+    private bool _isBlind = false;
+
+    // Shader
     private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
     private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
     private int _noiseValue = Shader.PropertyToID("_NoiseValue"); // 보이는 noise 크기 15
@@ -32,41 +37,33 @@ public class FightSceneUIController : Observer<GameStateController>
     {
         Attach();
 
+        mySubject.OnBlindEvent += BlindEventHandle;
+
         Transform canvas = transform.Find("Canvas");
 
         // Shader
-        _blindPanel = canvas.transform.Find("Panel_Blind").GetComponent<Image>();
-        _blindMat = _blindPanel.transform.Find("Image_Blind").GetComponent<Image>().material;
+        _blindPanel = canvas.Find("Panel_Blind").GetComponent<Image>();
+        _foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
+        _blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
         _blindMat.SetFloat(_stepValue, 0f);
 
         // CountDown
-        _countDownPanel = canvas.transform.Find("Panel_CountDown").GetComponent<Image>();
+        _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
         _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
 
         // Finish
-        _finishPanel = canvas.transform.Find("Panel_Finish").GetComponent<Image>();
+        _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishText = _finishPanel.transform.Find("Text_Finish").GetComponent<TextMeshProUGUI>();
 
         // Result
-        _resultPanel = canvas.transform.Find("Panel_Result").GetComponent<Image>();
+        _resultPanel = canvas.Find("Panel_Result").GetComponent<Image>();
         _resultText = _resultPanel.transform.Find("Text_Result").GetComponent<TextMeshProUGUI>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(OnBlindRoutine());
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StartCoroutine(OffBlindRoutine());
-        }
     }
 
     private void OnDestroy()
     {
+        mySubject.OnBlindEvent -= BlindEventHandle;
+
         Detach();
     }
 
@@ -91,6 +88,13 @@ public class FightSceneUIController : Observer<GameStateController>
         }
     }
 
+    private void BlindEventHandle()
+    {
+        if (_isBlind) return;
+
+        StartBlindRoutine(true);
+    }
+
     private IEnumerator CountDownRoutine()
     {
         for (int i = 3; i > 0; --i)
@@ -102,15 +106,25 @@ public class FightSceneUIController : Observer<GameStateController>
         mySubject.ChangeGameState(GameState.Fight);
     }
 
+    public void StartBlindRoutine(bool isOn)
+    {
+        if (isOn) StartCoroutine(OnBlindRoutine());
+        else StartCoroutine(OffBlindRoutine());
+    }
+
     private IEnumerator OnBlindRoutine()
     {
-        //float randomNoise = Random.Range(14f, 20f);
-        //_blindMat.SetFloat(_noiseValue, randomNoise);
+        _isBlind = true;
 
+        // Sprite
+        _foodImage.OnFoodSprite();
+
+        // Offset
         Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
         _blindMat.SetVector(_offsetVec, randomOffset);
 
-        float time = 1f;
+        // Step Value
+        float time = 0.5f;
         float currentTime = 0f;
         float targetStepValue = Random.Range(0.35f, 0.45f);
         _blindMat.SetFloat(_stepValue, 0);
@@ -128,7 +142,11 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator OffBlindRoutine()
     {
-        float time = 1f;
+        // Sprite
+        _foodImage.OffFoodSprite();
+
+        // Step Value
+        float time = 0.5f;
         float currentTime = 0f;
         float currentStepValue = _blindMat.GetFloat(_stepValue);
 
@@ -141,5 +159,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
             yield return null;
         }
+
+        _isBlind = false;
     }
 }

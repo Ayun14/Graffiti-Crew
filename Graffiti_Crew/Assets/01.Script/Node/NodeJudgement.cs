@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NodeJudgement : Observer<GameStateController>
 {
@@ -130,5 +131,13 @@ public class NodeJudgement : Observer<GameStateController>
     public void AddSpraySliderAmount(float value)
     {
         _sprayController.AddSprayAmount(value);
+    }
+
+    public void LongNodeFalse(Node node)
+    {
+        if (node == null) return;
+
+        if (Random.Range(0, 100f) < 30)
+            mySubject?.OnBlindEvent?.Invoke();
     }
 }
