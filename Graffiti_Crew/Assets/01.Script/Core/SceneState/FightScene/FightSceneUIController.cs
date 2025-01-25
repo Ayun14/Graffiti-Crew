@@ -1,11 +1,20 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
-    [SerializeField] private Image _spraySliderImage;
+    [SerializeField] private Image _spraySliderPanel;
+
+    // Shader
+    private Image _blindPanel;
+    private Material _blindMat;
+    private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
+    private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
+    private int _noiseValue = Shader.PropertyToID("_NoiseValue"); // 보이는 noise 크기 15
+    private int _offsetVec = Shader.PropertyToID("_OffsetVec"); // 보이는 uv 위치
 
     // CountDown
     private Image _countDownPanel;
@@ -25,6 +34,11 @@ public class FightSceneUIController : Observer<GameStateController>
 
         Transform canvas = transform.Find("Canvas");
 
+        // Shader
+        _blindPanel = canvas.transform.Find("Panel_Blind").GetComponent<Image>();
+        _blindMat = _blindPanel.transform.Find("Image_Blind").GetComponent<Image>().material;
+        _blindMat.SetFloat(_stepValue, 0f);
+
         // CountDown
         _countDownPanel = canvas.transform.Find("Panel_CountDown").GetComponent<Image>();
         _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
@@ -36,6 +50,19 @@ public class FightSceneUIController : Observer<GameStateController>
         // Result
         _resultPanel = canvas.transform.Find("Panel_Result").GetComponent<Image>();
         _resultText = _resultPanel.transform.Find("Text_Result").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            StartCoroutine(OnBlindRoutine());
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartCoroutine(OffBlindRoutine());
+        }
     }
 
     private void OnDestroy()
@@ -53,7 +80,8 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
             
             // Fight
-            _spraySliderImage.gameObject.SetActive(mySubject.GameState == GameState.Fight);
+            _spraySliderPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
+            _blindPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
 
             // Finish
             _finishPanel.gameObject.SetActive(mySubject.GameState == GameState.Finish);
@@ -72,5 +100,46 @@ public class FightSceneUIController : Observer<GameStateController>
         }
 
         mySubject.ChangeGameState(GameState.Fight);
+    }
+
+    private IEnumerator OnBlindRoutine()
+    {
+        //float randomNoise = Random.Range(14f, 20f);
+        //_blindMat.SetFloat(_noiseValue, randomNoise);
+
+        Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
+        _blindMat.SetVector(_offsetVec, randomOffset);
+
+        float time = 1f;
+        float currentTime = 0f;
+        float targetStepValue = Random.Range(0.35f, 0.45f);
+        _blindMat.SetFloat(_stepValue, 0);
+
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+
+            float stepValue = Mathf.Lerp(0f, targetStepValue, currentTime / time);
+            _blindMat.SetFloat(_stepValue, stepValue);
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator OffBlindRoutine()
+    {
+        float time = 1f;
+        float currentTime = 0f;
+        float currentStepValue = _blindMat.GetFloat(_stepValue);
+
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+
+            float stepValue = Mathf.Lerp(currentStepValue, 0f, currentTime / time);
+            _blindMat.SetFloat(_stepValue, stepValue);
+
+            yield return null;
+        }
     }
 }

@@ -55,8 +55,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0.5
     - _ColorMask: 15
-    - _LengthPower: 3.94
+    - _Float: 15
+    - _LengthPower: 0.77
+    - _NoiseValue: 16
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Stencil: 0
@@ -64,12 +67,17 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _StepValue: 0
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _VoronoiIntensity: 2
     - _VoronoiPower: 1
     m_Colors:
-    - _BlindColor: {r: 1, g: 0, b: 0.03235817, a: 1}
+    - _BlindColor: {r: 0.9811321, g: 0.4291559, b: 0.2082592, a: 1}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseX: {r: 15, g: 0, b: 0, a: 0}
+    - _OffsetVec: {r: 9.252013, g: 6.342765, b: 0, a: 0}
+    - _Vector2: {r: 15, g: 0, b: 0, a: 0}
+    - _Vector2_1: {r: 0.4, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
