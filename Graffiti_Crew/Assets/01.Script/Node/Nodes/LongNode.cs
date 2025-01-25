@@ -8,6 +8,8 @@ public class LongNode : Node, INodeAction
     [SerializeField] private float _cameraDistance;
     [SerializeField] private float _fadeTime;
 
+    private float _sprayUseAmount;
+
     private LongNodeDataSO _longNodeData;
     private LineRenderer _lineRenderer;
     private LineRenderer _followLineRenderer;
@@ -34,6 +36,8 @@ public class LongNode : Node, INodeAction
 
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
+
+        _sprayUseAmount = (float)_longNodeData.sprayUseAmount / _longNodeData.points;
 
         ResetNode();
         SetAlpha(1f);
@@ -143,20 +147,29 @@ public class LongNode : Node, INodeAction
 
     #endregion
 
-    #region Clear Check
-
-
     public void NodeStartAction()
     {
+        if (isClearNode) return;
+
         _isFollowingPath = true;
         _followLineRenderer.enabled = true;
         _currentTargetIndex = 0;
     }
 
+    #region Clear Check
+
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
-            ResetNode(); // 노드 실패
+        {
+            if (_isFollowingPath)
+            {
+                // 노드 실패 (중도 포기 실패)
+                judgement.LongNodeFalse(this);
+            }
+
+            ResetNode();
+        }
 
         CheckFollowingPath();
     }
@@ -176,6 +189,9 @@ public class LongNode : Node, INodeAction
             // 현재 목표 포인트와의 거리 확인
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
+                judgement.AddShakeSliderAmount(-_sprayUseAmount);
+                judgement.AddSpraySliderAmount(-_sprayUseAmount);
+
                 // 모든 포인트를 통과하면 클리어 처리
                 if (++_currentTargetIndex >= _pathPoints.Count)
                 {
@@ -185,7 +201,8 @@ public class LongNode : Node, INodeAction
             }
             else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
             {
-                Debug.Log("경로 이탈 실패");
+                // 노드 실패 (경로 이탈 실패)
+                judgement.LongNodeFalse(this);
                 ResetNode();
             }
         }
@@ -212,8 +229,6 @@ public class LongNode : Node, INodeAction
 
         _isFollowingPath = false;
         SetAlpha(0f);
-
-        // 클리어 파티클?
     }
 
     #region Do Fade
@@ -254,7 +269,7 @@ public class LongNode : Node, INodeAction
             .OnComplete(() =>
             {
                 if (endValue == 0f)
-                    _pool.Push(this); // Push
+                    pool.Push(this); // Push
             });
     }
 
@@ -281,10 +296,5 @@ public class LongNode : Node, INodeAction
     public override NodeDataSO GetNodeDataSO()
     {
         return _longNodeData;
-    }
-
-    public override float GetSprayUseAmount()
-    {
-        return _longNodeData.sprayUseAmount;
     }
 }

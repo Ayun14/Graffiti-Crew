@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class NodeJudgement : MonoBehaviour
+public class NodeJudgement : Observer<GameStateController>
 {
     public event Action OnNodeSpawnStart;
 
@@ -27,10 +28,9 @@ public class NodeJudgement : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        Attach();
 
-        // Test
-        NodeSpawnJudgement();
+        Init();
     }
 
     private void Init()
@@ -39,17 +39,30 @@ public class NodeJudgement : MonoBehaviour
         _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
         _sprayController = GetComponentInChildren<SprayController>();
 
-        // Init
-        _nodeSpawner.Init(this, _nodeDatas);
-        _graffitiRenderer.Init(this, _startSprite);
-        _sprayController.Init(this, _sprayAmount, _shakeAmount);
-
         _currentNode = null;
     }
 
     private void Update()
     {
         NodeClickInput();
+    }
+
+    private void OnDestroy()
+    {
+        Detach();
+    }
+
+    public override void NotifyHandle()
+    {
+        if (mySubject.GameState == GameState.Fight)
+        {
+            // Init
+            _nodeSpawner.Init(this, _nodeDatas);
+            _graffitiRenderer.Init(this, _startSprite);
+            _sprayController.Init(this, _sprayAmount, _shakeAmount);
+
+            NodeSpawnJudgement();
+        }
     }
 
     private void NodeClickInput()
@@ -93,10 +106,6 @@ public class NodeJudgement : MonoBehaviour
             // Spawn
             NodeSpawnJudgement();
 
-            // Spray
-            _sprayController.AddShakeAmount(-_currentNode.GetSprayUseAmount());
-            _sprayController.AddSprayAmount(-_currentNode.GetSprayUseAmount());
-
             _currentNode = null;
         }
     }
@@ -107,5 +116,28 @@ public class NodeJudgement : MonoBehaviour
 
         if (_graffitiRenderer != null && _currentNode != null)
             _graffitiRenderer.SetSprite(_currentNode.GetNodeDataSO().graffitiSprite);
+    }
+
+    public void AllNodeClear()
+    {
+        mySubject.ChangeGameState(GameState.Finish);
+    }
+
+    public void AddShakeSliderAmount(float value)
+    {
+        _sprayController.AddShakeAmount(value);
+    }
+
+    public void AddSpraySliderAmount(float value)
+    {
+        _sprayController.AddSprayAmount(value);
+    }
+
+    public void LongNodeFalse(Node node)
+    {
+        if (node == null) return;
+
+        if (Random.Range(0, 100f) < 30)
+            mySubject?.OnBlindEvent?.Invoke();
     }
 }

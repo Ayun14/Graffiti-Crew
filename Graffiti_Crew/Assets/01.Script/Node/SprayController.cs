@@ -34,8 +34,9 @@ public class SprayController : MonoBehaviour
 
     private void Awake()
     {
-        _sprayAmountSlider = transform.Find("Slider_SprayAmount").GetComponent<Slider>();
-        _shakeAmountSlider = transform.Find("Slider_ShakeAmount").GetComponent<Slider>();
+        Transform parent = transform.Find("Panel_Sliders");
+        _sprayAmountSlider = parent.Find("Slider_SprayAmount").GetComponent<Slider>();
+        _shakeAmountSlider = parent.Find("Slider_ShakeAmount").GetComponent<Slider>();
     }
 
     public void Init(NodeJudgement judgement, int sprayAmount, int shakeAmount)
