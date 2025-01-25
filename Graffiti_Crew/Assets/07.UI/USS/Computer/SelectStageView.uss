@@ -4,19 +4,24 @@
 
 .selectStage-background {
     flex-grow: 1;
-    background-color: rgb(206, 255, 173);
 }
 
 .stage-point {
-    width: 100px;
-    height: 100px;
-    background-image: url("project://database/Assets/02.Sprite/Node/WhiteElipse.png?fileID=1931213951&guid=4c0d70f04c2e6f344b99b7b64d2d0aed&type=3#WhiteElipse_0");
+    width: 350px;
+    height: 350px;
     position: absolute;
+    transition-duration: 0.15s;
+    background-image: url("project://database/Assets/02.Sprite/UI/Map/stage-point.png?fileID=21300000&guid=ff596920bd3052e4aba2cd0627ce69da&type=3#stage-point");
+    background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
+}
+
+.stage-point:hover {
+    position: absolute;
+    scale: 1.15 1.15;
 }
 
 .--- {
@@ -61,7 +66,7 @@
     height: 500px;
 }
 
-.friend-btn {
+.select-friend-btn {
     width: 200px;
     height: 200px;
     flex-grow: 0;
@@ -69,4 +74,25 @@
     margin-right: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-image: resource('Sprite/Jia');
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#unity-content-container {
+    flex-direction: column;
+}
+
+.friend-btn {
+    flex-direction: row;
+    background-color: rgb(238, 238, 238);
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    align-items: center;
 }

@@ -1,15 +1,29 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute;">
+        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px;">
             <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80" style="flex-grow: 0; -unity-text-align: upper-center; margin-bottom: 30px;" />
             <engine:VisualElement name="top-container" class="selectStage-description-top-container">
                 <engine:VisualElement name="left-content" class="selectStage-description-TLeft-content">
                     <engine:VisualElement name="graffti-img" class="graffti-img" />
                 </engine:VisualElement>
                 <engine:VisualElement name="right-content" class="selectStage-description-TRight-content">
-                    <engine:Button text="친구 선택1" name="friend1" class="grow-size-30 friend-btn" />
-                    <engine:Button text="친구 선택1" name="friend1" class="grow-size-30" style="width: 200px; height: 200px; flex-grow: 0; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;" />
-                    <engine:Button text="친구 선택1" name="friend1" class="grow-size-30" style="width: 200px; height: 200px; flex-grow: 0; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;" />
+                    <engine:Button name="select-friend-btn" class="select-friend-btn">
+                        <Bindings>
+                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder1Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Button>
+                    <engine:Button name="select-friend-btn" class="select-friend-btn">
+                        <Bindings>
+                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder2Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Button>
+                    <engine:Button name="select-friend-btn" class="select-friend-btn">
+                        <Bindings>
+                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder3Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Button>
                 </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement name="bottom-container" class="selectStage-description-bottom-container" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
@@ -20,6 +34,10 @@
                     <engine:Button text="시작" name="start-btn" class="grow-size-60" style="height: 45%; flex-grow: 0;" />
                 </engine:VisualElement>
             </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="select-friend" style="background-color: rgb(190, 190, 190); width: 40%; height: 40%; position: absolute; display: none;">
+            <engine:ListView name="crew-listView" item-template="project://database/Assets/07.UI/Views/Computer/Profile/Profile.uxml?fileID=9197481963319205126&amp;guid=8dd048f0b46fa194c9ee95f8c4677e63&amp;type=3#Profile" binding-source-selection-mode="AutoAssign" fixed-item-height="170" />
+            <engine:Button text="Button" name="close-btn" style="position: absolute; top: -72px; left: 690px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

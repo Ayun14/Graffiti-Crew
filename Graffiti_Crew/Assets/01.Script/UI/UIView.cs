@@ -22,7 +22,7 @@ namespace AH.UI.Views {
 
         public virtual void Initialize() {
             if (hideOnAwake) {
-                //Hide();
+                Hide();
             }
             SetVisualElements();
             RegisterButtonCallbacks();

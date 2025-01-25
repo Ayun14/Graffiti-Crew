@@ -20,9 +20,13 @@ namespace AH.UI.Views {
 
         private ComputerViewModel ComputerViewModel;
 
+        // 지울거
         private TextField _nameField;
         private Button _btn;
         private Label _displayLabel;
+
+        private Button _storeBtn;
+        private Button _stageBtn;
 
         // IDisposable로 구독 관리
         private IDisposable _displayMessageSubscription;
@@ -39,7 +43,10 @@ namespace AH.UI.Views {
 
         protected override void SetVisualElements() {
             base.SetVisualElements();
+            _storeBtn = topElement.Q<Button>("store-btn");
+            _stageBtn = topElement.Q<Button>("stage-btn");
 
+            // 지울거
             //_nameField = topElement.Q<TextField>("name-TextField");
             //_btn = topElement.Q<Button>("btn");
             //_displayLabel = topElement.Q<Label>("display-label");
@@ -47,9 +54,12 @@ namespace AH.UI.Views {
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
+            _storeBtn.RegisterCallback<ClickEvent>(CllickStoreBtn);
+            _stageBtn.RegisterCallback<ClickEvent>(CllickStageBtn);
 
+            // 지울거
             // ReactiveProperty 구독
-            //_displayMessageSubscription = ComputerViewModel.DisplayMessage
+            //_displayMessageSubscription = ComputerViewModel.FriendImg
             //    .AsObservable() // AsObservable()를 사용하여 명시적으로 Observable로 변환
             //    .Subscribe(message => {
             //        _displayLabel.text = message;
@@ -57,6 +67,13 @@ namespace AH.UI.Views {
 
             // 버튼 클릭 이벤트 등록
             //_btn.RegisterCallback<ClickEvent>(ClickBtn);
+        }
+
+        private void CllickStoreBtn(ClickEvent evt) {
+            _storeView.Show();
+        }
+        private void CllickStageBtn(ClickEvent evt) {
+            _selectStageView.Show();
         }
 
         protected override void UnRegisterButtonCallbacks() {
@@ -70,7 +87,7 @@ namespace AH.UI.Views {
             string inputName = _nameField.text;
 
             // Command 패턴으로 ViewModel에 요청 전달
-            ComputerViewModel.SetUserNameCommand.Execute(inputName);
+            //ComputerViewModel.SetUserNameCommand.Execute(inputName);
         }
 
         private void SetupViews() {
@@ -79,8 +96,6 @@ namespace AH.UI.Views {
 
             _computerViews.Add(_selectStageView);
             _computerViews.Add(_storeView);
-
-            _selectStageView.Show();
         }
         private void ChangeShowView(UIView newView) {
             if (_currentView != null) {
