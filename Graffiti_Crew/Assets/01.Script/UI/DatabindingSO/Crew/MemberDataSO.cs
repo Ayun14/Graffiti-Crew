@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace AH.UI.Data {
-    [CreateAssetMenu(fileName = "FriendDataSO", menuName = "SO/UI/Chapter")]
+    [CreateAssetMenu(fileName = "FriendDataSO", menuName = "SO/UI/Crew/Chapter")]
     [Serializable]
     public class MemberDataSO : ScriptableObject // Å©·ç¿ø
     {

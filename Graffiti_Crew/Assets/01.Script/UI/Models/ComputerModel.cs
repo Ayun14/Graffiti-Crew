@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace AH.UI.Models {
     public class ComputerModel : Model {
-        [Header("Members")]
+        [Header("Stage")]
         [SerializeField] private CrewSO crew;
         [SerializeField] private ExpeditionMemberSO _memberSO;
+
+        [Header("Store")]
+        [SerializeField] private ProductDescriptionSO _descriptionSO;
+        [SerializeField] private ProductCategorySO _categorySO;
 
         public CrewSO GetCrew() {
             return crew;
@@ -13,6 +17,13 @@ namespace AH.UI.Models {
         public ExpeditionMemberSO GetExpeditionMember() {
             return _memberSO;
         }
+        public ProductDescriptionSO GetProductDescription() {
+            return _descriptionSO;
+        }
+        public ProductCategorySO GetCategory() {
+            return _categorySO;
+        }
+
         public void SetMemderImg(int index, Sprite sprite) {
             if (index > 2) {
                 Debug.LogError("°³»ç°í");

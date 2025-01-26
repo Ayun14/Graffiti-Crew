@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace AH.UI.Data {
-    [CreateAssetMenu(fileName = "CrewSO", menuName = "SO/UI/CrewSO")]
+    [CreateAssetMenu(fileName = "CrewSO", menuName = "SO/UI/Crew/CrewSO")]
     public class CrewSO : ScriptableObject
     {
         public MemberDataSO[] crew;
