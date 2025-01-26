@@ -10,12 +10,15 @@ public class FightSceneUIController : Observer<GameStateController>
     [SerializeField] private Image _spraySliderPanel;
 
     [Header("Blind")]
+    [SerializeField] private Sprite _eggSprite;
+    [SerializeField] private Sprite _tomatoSprite;
     private Image _blindPanel;
     private FoodImage _foodImage;
     private Material _blindMat;
     private bool _isBlind = false;
 
     // Shader
+    private int _blindColor = Shader.PropertyToID("_BlindColor"); // 색상
     private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
     private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
     private int _noiseValue = Shader.PropertyToID("_NoiseValue"); // 보이는 noise 크기 15
@@ -116,8 +119,14 @@ public class FightSceneUIController : Observer<GameStateController>
     {
         _isBlind = true;
 
+        bool isEgg = Random.Range(0, 2) == 0 ? true : false;
         // Sprite
-        _foodImage.OnFoodSprite();
+        Sprite sprite = isEgg ? _eggSprite : _tomatoSprite;
+        _foodImage.OnFoodSprite(sprite);
+
+        // Color
+        Color blindColor = isEgg ? Color.yellow : Color.red;
+        _blindMat.SetColor(_blindColor, blindColor);
 
         // Offset
         Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
