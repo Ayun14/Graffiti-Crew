@@ -1,3 +1,4 @@
+using AH.UI.CustomElement;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ namespace AH.UI.Views {
     public class SelectStageView : UIView {
         private ComputerViewModel ComputerViewModel;
 
-        private List<Button> _stagePointList;
-        private List<Button> _requestPointList;
+        private List<StagePointElement> _stagePointList;
+        private List<StagePointElement> _requestPointList;
 
         private const string _selectStageViewName = "StageDescriptionView";
         private StageDescriptionView _stageDescriptionView;
@@ -27,24 +28,25 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             
-            _stagePointList = topElement.Query<Button>("stage-point").ToList();
-            _requestPointList = topElement.Query<Button>("request-point").ToList();
+            _stagePointList = topElement.Query<StagePointElement>("stage-point").ToList();
+            _requestPointList = topElement.Query<StagePointElement>("request-point").ToList();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             foreach (var button in _stagePointList) {
-                button.RegisterCallback<ClickEvent>(ClickStageBtn);
+                button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
             }
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (var button in _stagePointList) {
-                button.UnregisterCallback<ClickEvent>(ClickStageBtn);
+                button.UnregisterCallback<ClickEvent, (string chapter, string stage) > (ClickStageBtn);
             }
         }
 
-        private void ClickStageBtn(ClickEvent evt) {
+        private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             // 본인 텍스트에 적힌 이름을 바탕으로 맵 스폰해주면 될 듯
+            ComputerViewModel.SetStageData($"Chapter{data.chapter}", $"Stage{data.stage}");
             _stageDescriptionView.Show();
         }
     }

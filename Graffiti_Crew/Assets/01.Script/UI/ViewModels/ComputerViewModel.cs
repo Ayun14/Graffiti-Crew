@@ -11,6 +11,7 @@ namespace AH.UI.ViewModels {
             UpdateDisplay(0); // 초기 데이터를 View에 반영
         }
 
+        #region GetData
         public CrewSO GetCrew() {
             return _model.GetCrew();
         }
@@ -22,9 +23,9 @@ namespace AH.UI.ViewModels {
         }
         public ProductCategorySO GetCategory() {
             return _model.GetCategory();
-        }
+        } 
+        #endregion
 
-        // 사용자 이름 설정 메서드
         public void SetFriendImg(int btnIndex, int friendIndex) {
             if(btnIndex < 0) {
                 Debug.LogWarning("문제 생김");
@@ -36,6 +37,9 @@ namespace AH.UI.ViewModels {
         }
         private void UpdateDisplay(int friendIndex) {
             //Friend1Img.Value = _model.GetFriendData(friendIndex);
+        }
+        public void SetStageData(string chapter, string stage) {
+            _model.SetStage(chapter, stage);
         }
     }
 }
