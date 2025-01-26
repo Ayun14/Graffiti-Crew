@@ -5,5 +5,8 @@ namespace AH.Map {
     public class LoadStageSO : ScriptableObject {
         public string chapter;
         public string stage;
+        public string GetLoadStageName() {
+            return $"{chapter}/{stage}";
+        }
     }
 }

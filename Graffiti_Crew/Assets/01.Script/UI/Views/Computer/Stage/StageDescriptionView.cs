@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -45,6 +46,7 @@ namespace AH.UI.Views {
             foreach (var btn in _selectFriendBtnList) {
                 btn.RegisterCallback<ClickEvent, int>(ClickSelectFirend, index++);
             }
+            _startBtn.RegisterCallback<ClickEvent>(ClickStartGameBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -52,7 +54,13 @@ namespace AH.UI.Views {
                 btn.UnregisterCallback<ClickEvent, int>(ClickSelectFirend);
             }
             _friend1Btn.Dispose();
+            _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
         }
+
+        private void ClickStartGameBtn(ClickEvent evt) {
+            SceneManager.LoadScene("AY");
+        }
+
         private void ClickSelectFirend(ClickEvent evt, int index) {
             _selectFriendView.CurrentBtnIndex = index;
             _selectFriendView.Show();
