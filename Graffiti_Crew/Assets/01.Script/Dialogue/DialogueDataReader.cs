@@ -54,25 +54,15 @@ public class DialogueDataReader : DataReaderBase
                         {
                             id = DialogueList[DialogueList.Count - 1].id;
                         }
-                        else
-                        {
-                            Debug.LogWarning("ID 값이 없으며, 이전 데이터가 없어 기본값을 사용할 수 없습니다.");
-                            return;
-                        }
+                        else return;
                     }
                     break;
                 case "Character Name":
                     if (string.IsNullOrWhiteSpace(list[i].value))
                     {
                         if (DialogueList.Count > 0)
-                        {
                             characterName = DialogueList[DialogueList.Count - 1].characterName;
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Character Name 값이 없으며, 이전 데이터가 없어 기본값을 사용할 수 없습니다.");
-                            return;
-                        }
+                        else return;
                     }
                     else
                     {
