@@ -1,20 +1,43 @@
-using AH.SaveSystem;
-using System;
-using System.Collections.Generic;
+using AH.UI.Data;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AH.UI.Models {
     public class ComputerModel : Model {
-        [SerializeField] private VisualTreeAsset _stagePointAsset;
-        [SerializeField] private List<Transform> _chapter1Ratio;
-        public string userName;
+        [Header("Stage")]
+        [SerializeField] private CrewSO crew;
+        [SerializeField] private ExpeditionMemberSO _memberSO;
 
-        public List<Transform> GetChapter1Ratio() {
-            return _chapter1Ratio;
+        [Header("Store")]
+        [SerializeField] private ProductDescriptionSO _descriptionSO;
+        [SerializeField] private ProductCategorySO _categorySO;
+
+        public CrewSO GetCrew() {
+            return crew;
         }
-        public VisualTreeAsset GetStagePointAsset() {
-            return _stagePointAsset;
+        public ExpeditionMemberSO GetExpeditionMember() {
+            return _memberSO;
+        }
+        public ProductDescriptionSO GetProductDescription() {
+            return _descriptionSO;
+        }
+        public ProductCategorySO GetCategory() {
+            return _categorySO;
+        }
+
+        public void SetMemderImg(int index, Sprite sprite) {
+            if (index > 2) {
+                Debug.LogError("°³»ç°í");
+                return; 
+            }
+            if (index == 0) {
+                _memberSO.memder1Profile = sprite;
+            }
+            else if (index == 1) {
+                _memberSO.memder2Profile = sprite;
+            }
+            else if (index == 2) {
+                _memberSO.memder3Profile = sprite;
+            }
         }
     }
 }

@@ -1,0 +1,18 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="StagePoint" src="project://database/Assets/07.UI/Views/Computer/points/StagePoint.uxml?fileID=9197481963319205126&amp;guid=8e0658432c2fa5d459700d72a0bc4ec4&amp;type=3#StagePoint" />
+    <engine:Template name="RequestPoint" src="project://database/Assets/07.UI/Views/Computer/points/RequestPoint.uxml?fileID=9197481963319205126&amp;guid=40a0aef8bb9988a4187246a3ea4b5c1b&amp;type=3#RequestPoint" />
+    <engine:Template name="StageDescription" src="project://database/Assets/07.UI/Views/Computer/StageDescription.uxml?fileID=9197481963319205126&amp;guid=0a1507fa7f634e644b28706e143c227f&amp;type=3#StageDescription" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
+    <engine:VisualElement name="m-container" class="selectStage-m-container">
+        <engine:VisualElement name="background-img" class="selectStage-background" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/chapter1.jpg?fileID=21300000&amp;guid=343ea0514f998fe479f9b239ddc05c54&amp;type=3#chapter1&quot;);">
+            <engine:Instance template="StagePoint" name="StagePoint" style="top: 50%; left: 8%;" />
+            <engine:Instance template="StagePoint" name="StagePoint" style="top: 18%; left: 46%;" />
+            <engine:Instance template="StagePoint" name="StagePoint" style="top: 63%; left: 82%;" />
+            <engine:Instance template="RequestPoint" name="RequestPoint" style="top: 24%; left: 20%;" />
+            <engine:Instance template="RequestPoint" name="RequestPoint" style="left: 63%; top: 51%;" />
+        </engine:VisualElement>
+        <engine:Instance template="StageDescription" name="StageDescriptionView" style="position: absolute; width: 100%; height: 100%; display: flex;" />
+    </engine:VisualElement>
+</engine:UXML>

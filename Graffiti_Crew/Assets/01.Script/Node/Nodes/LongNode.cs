@@ -161,7 +161,15 @@ public class LongNode : Node, INodeAction
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
-            ResetNode(); // 노드 실패
+        {
+            if (_isFollowingPath)
+            {
+                // 노드 실패 (중도 포기 실패)
+                judgement.LongNodeFalse(this);
+            }
+
+            ResetNode();
+        }
 
         CheckFollowingPath();
     }
@@ -193,7 +201,8 @@ public class LongNode : Node, INodeAction
             }
             else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
             {
-                Debug.Log("경로 이탈 실패");
+                // 노드 실패 (경로 이탈 실패)
+                judgement.LongNodeFalse(this);
                 ResetNode();
             }
         }

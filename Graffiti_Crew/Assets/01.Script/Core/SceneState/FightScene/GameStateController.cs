@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum GameState
@@ -13,6 +14,8 @@ public enum GameState
 
 public class GameStateController : Subject
 {
+    public Action OnBlindEvent;
+
     [SerializeField] private GameState gameState = GameState.None;
     public GameState GameState => gameState;
 
