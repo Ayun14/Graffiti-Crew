@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HitNodeDataSO", menuName = "SO/Lode/HitNodeDataSO")]
+[CreateAssetMenu(fileName = "HitNodeDataSO", menuName = "SO/Node/HitNodeDataSO")]
 public class HitNodeDataSO : NodeDataSO
 {
     public Vector3 pos;
