@@ -1,4 +1,6 @@
 using AH.UI.ViewModels;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,8 +10,8 @@ namespace AH.UI.Views {
     public class SelectFriendView : UIView {
         private ComputerViewModel ComputerViewModel;
 
-        private ListView _crewListView;
-        private Button _closeBtn;
+        private VisualTreeAsset _profileAsset;
+        private ScrollView _crewScrollView;
 
         private int _currentBtnIndex = -1;
         public int CurrentBtnIndex { get { return _currentBtnIndex; } set { _currentBtnIndex = value; } }
@@ -19,41 +21,37 @@ namespace AH.UI.Views {
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
+            _profileAsset = Resources.Load<VisualTreeAsset>("UI/Profile/CrewMemberProfile");
             base.Initialize();
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _crewListView = topElement.Q<ListView>("crew-listView");
-            _crewListView.itemsSource = ComputerViewModel.GetCrew().crew;
-            _closeBtn = topElement.Q<Button>("close-btn");
+            _crewScrollView = topElement.Q<ScrollView>("crew-scrollView");
+            foreach(var data in ComputerViewModel.GetCrew().crew) {
+                var asset = _profileAsset.Instantiate();
+                asset.Q<Label>("name-txt").text = data.name;
+                asset.Q<Label>("ability-txt").text = data.ability;
+                asset.Q<VisualElement>("profile-img").style.backgroundImage = new StyleBackground(data.profile);
+                _crewScrollView.Add(asset);
+            }
         }
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
-
-            // 항목을 선택했을 때
-            _crewListView.selectionChanged += OnItemSelected;
-            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+            int index = 0;
+            foreach (var child in _crewScrollView.Children()) {
+                child.RegisterCallback<ClickEvent, int>(SelectMember, index++);
+            }
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            _crewListView.selectionChanged -= OnItemSelected;
-            _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
-        private void ClickCloseBtn(ClickEvent evt) {
+        private void SelectMember(ClickEvent evt, int index) {
+            ComputerViewModel.SetFriendImg(CurrentBtnIndex, index);
+            CurrentBtnIndex = -1;
             this.Hide();
         }
 
-        private void OnItemSelected(IEnumerable<object> selectedItems) {
-            var selectedItem = selectedItems.FirstOrDefault();
-
-            if (selectedItem != null) {
-                int selectedIndex = _crewListView.selectedIndex;
-                ComputerViewModel.SetFriendImg(_currentBtnIndex, selectedIndex);
-                CurrentBtnIndex = -1;
-            }
-            //this.Hide();
-        }
     }
 }

@@ -35,9 +35,8 @@
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement name="select-friend" style="background-color: rgb(190, 190, 190); width: 40%; height: 40%; position: absolute; display: none;">
-            <engine:ListView name="crew-listView" item-template="project://database/Assets/07.UI/Views/Computer/Profile/Profile.uxml?fileID=9197481963319205126&amp;guid=8dd048f0b46fa194c9ee95f8c4677e63&amp;type=3#Profile" binding-source-selection-mode="AutoAssign" fixed-item-height="170" />
-            <engine:Button text="Button" name="close-btn" style="position: absolute; top: -72px; left: 690px;" />
+        <engine:VisualElement name="select-friend" style="background-color: rgb(190, 190, 190); width: 40%; height: 40%; position: absolute; display: flex;">
+            <engine:ScrollView name="crew-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
