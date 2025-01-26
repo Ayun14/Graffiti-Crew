@@ -1,3 +1,4 @@
+using AH.Map;
 using AH.UI.Data;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace AH.UI.Models {
         [Header("Store")]
         [SerializeField] private ProductDescriptionSO _descriptionSO;
         [SerializeField] private ProductCategorySO _categorySO;
+
+        [Header("Map")]
+        [SerializeField] private LoadStageSO _loadStageSO;
 
         public CrewSO GetCrew() {
             return crew;
@@ -38,6 +42,10 @@ namespace AH.UI.Models {
             else if (index == 2) {
                 _memberSO.memder3Profile = sprite;
             }
+        }
+        public void SetStage(string chapter, string stage) {
+            _loadStageSO.chapter = chapter;
+            _loadStageSO.stage = stage;
         }
     }
 }
