@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -78,7 +77,7 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isCountDown = mySubject.GameState == GameState.CountDown;
             if (isCountDown) StartCoroutine(CountDownRoutine());
             _countDownPanel.gameObject.SetActive(isCountDown);
-            
+
             // Fight
             _spraySliderPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
             _blindPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
