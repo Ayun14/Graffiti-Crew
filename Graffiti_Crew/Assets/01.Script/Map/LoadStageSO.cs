@@ -6,7 +6,7 @@ namespace AH.Map {
         public string chapter;
         public string stage;
         public string GetLoadStageName() {
-            return $"{chapter}{stage}";
+            return $"{chapter}/{stage}";
         }
     }
 }
