@@ -15,8 +15,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     // Graffiti
     private Sprite _startSprite;
 
-    // Node
-    private LayerMask _whatIsNode = LayerMask.NameToLayer("Node");
+    [Header("Node")]
+    [SerializeField] private LayerMask _whatIsNode;
     private List<NodeDataSO> _nodeDatas;
 
     [HideInInspector] public bool isNodeClick => _currentNode != null;

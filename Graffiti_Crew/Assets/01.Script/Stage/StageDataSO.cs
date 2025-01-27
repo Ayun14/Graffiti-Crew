@@ -19,4 +19,7 @@ public class StageDataSO : ScriptableObject
     [Header("Dialogue")]
     public GameObject 이건지워;
     // 공서연 여기에 할거 추가해
+
+    [Header("Bool")]
+    public bool isClearStage = true;
 }
