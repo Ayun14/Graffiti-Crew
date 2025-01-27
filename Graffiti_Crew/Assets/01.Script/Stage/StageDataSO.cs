@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageDataSO", menuName = "SO/Stage/StageDataSO")]
@@ -21,5 +22,12 @@ public class StageDataSO : ScriptableObject
     // 공서연 여기에 할거 추가해
 
     [Header("Bool")]
-    public bool isClearStage = true;
+    public bool isClearStage = false;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        EditorUtility.SetDirty(this);
+    }
+#endif
 }

@@ -73,9 +73,10 @@ public class HitNode : Node, INodeAction
     {
         base.NodeClear();
 
-        SetAlpha(0f);
+        if (isClearNode == true) return;
+        isClearNode = true;
 
-        // 클리어 파티클?
+        SetAlpha(0f);
     }
 
     public override NodeType GetNodeType()

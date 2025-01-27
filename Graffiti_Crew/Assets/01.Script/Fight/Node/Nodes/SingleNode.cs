@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class SingleNode : Node, INodeAction
@@ -41,6 +42,9 @@ public class SingleNode : Node, INodeAction
     public override void NodeClear()
     {
         base.NodeClear();
+
+        if (isClearNode == true) return;
+        isClearNode = true;
 
         SetAlpha(0f);
 

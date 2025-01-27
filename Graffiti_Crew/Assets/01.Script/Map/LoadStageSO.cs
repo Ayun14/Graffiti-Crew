@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace AH.Map {
@@ -8,5 +9,12 @@ namespace AH.Map {
         public string GetLoadStageName() {
             return $"{chapter}/{stage}";
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorUtility.SetDirty(this);
+        }
+#endif
     }
 }

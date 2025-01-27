@@ -7,14 +7,13 @@ public class FoodImage : MonoBehaviour
     [Header("Canvas")]
     [SerializeField] private RectTransform _canvasRect;
 
-    [Header("Speed")]
+    [Header("Values")]
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _targetY = -550f;
+    [SerializeField] private float _clickY = -20f; // 클릭하면 내려갈 y 값
 
     private Image _foodImage;
     private FightSceneUIController _uiController;
-
-    private float _targetY = -600f;
-    private float _clickY = -20f; // 클릭하면 내려갈 y 값
 
     private void Awake()
     {
