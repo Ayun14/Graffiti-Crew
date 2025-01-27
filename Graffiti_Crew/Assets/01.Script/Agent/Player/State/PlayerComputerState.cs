@@ -11,6 +11,7 @@ public class PlayerComputerState : PlayerState
     {
         base.Enter();
 
+        _player.playerData.playerPosition = _player.transform.position;
         _player.MovementCompo.StopImmediately(true);
         _player.computerTimeline.Play();
     }

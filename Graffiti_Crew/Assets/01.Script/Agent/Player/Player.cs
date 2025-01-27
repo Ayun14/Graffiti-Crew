@@ -17,15 +17,15 @@ public class Player : Agent
 {
     [Header("Setting Values")]
     public float moveSpeed = 4f;
-    public DialogueUIController dialogueUIController;
-    [SerializeField] private PlayerInput _playerInput;
 
+    public DialogueUIController dialogueUIController;
     public PlayableDirector computerTimeline;
+    public HangOutPlayerDataSO playerData;
 
     public PlayerStateMachine StateMachine { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
     public INavigationable MovementCompo { get; protected set; }
-    public PlayerInput PlayerInput => _playerInput;
+    public PlayerInput PlayerInput { get; protected set; }
     public PlayerVFX PlayerVFXCompo => VFXCompo as PlayerVFX;
 
     [HideInInspector] public InteractionObject CurrentInteractionObject;
@@ -33,6 +33,7 @@ public class Player : Agent
     protected override void Awake()
     {
         base.Awake();
+        PlayerInput = GetComponent<PlayerInput>();
         MovementCompo = GetComponent<INavigationable>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         StateMachine = new PlayerStateMachine();
@@ -55,6 +56,8 @@ public class Player : Agent
 
     protected void Start()
     {
+        transform.position = playerData.playerPosition;
+
         NavMeshAgent.speed = moveSpeed;
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
