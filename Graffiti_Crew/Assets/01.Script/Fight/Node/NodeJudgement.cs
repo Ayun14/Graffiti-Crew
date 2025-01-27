@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class NodeJudgement : Observer<GameStateController>
+public class NodeJudgement : Observer<GameStateController>, INeedLoding
 {
     public event Action OnNodeSpawnStart;
 
@@ -11,20 +12,27 @@ public class NodeJudgement : Observer<GameStateController>
     [SerializeField] private int _sprayAmount;
     [SerializeField] private int _shakeAmount;
 
-    [Header("Graffiti")]
-    [SerializeField] private Sprite _startSprite;
+    // Graffiti
+    private Sprite _startSprite;
 
     [Header("Node")]
     [SerializeField] private LayerMask _whatIsNode;
-    [SerializeField] private List<NodeDataSO> _nodeDatas;
+    private List<NodeDataSO> _nodeDatas;
 
-    public bool isNodeClick => _currentNode != null;
+    [HideInInspector] public bool isNodeClick => _currentNode != null;
 
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
     private SprayController _sprayController;
 
     private Node _currentNode;
+
+    public void LodingHandle(StageDataSO stageData)
+    {
+        _startSprite = stageData.startGraffiti;
+
+        _nodeDatas = stageData.nodeDatas;
+    }
 
     private void Start()
     {

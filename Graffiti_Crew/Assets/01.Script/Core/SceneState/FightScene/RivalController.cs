@@ -1,11 +1,8 @@
 using UnityEngine;
 
-public class RivalController : Observer<GameStateController>
+public class RivalController : Observer<GameStateController>, INeedLoding
 {
-    // 라이벌을 SO로 관리하는게 좋을듯
-    // 그릴 그래피티 및 그리는 시간이 담긴 list, 이름, 버프내용, 대사 등등...
-
-    [SerializeField] private Sprite _graffiti;
+    private Sprite _graffiti;
     private SpriteRenderer _graffitiRenderer;
 
     private void Awake()
@@ -33,5 +30,10 @@ public class RivalController : Observer<GameStateController>
     private void SetGraffiti(Sprite sprite)
     {
         _graffitiRenderer.sprite = _graffiti;
+    }
+
+    public void LodingHandle(StageDataSO stageData)
+    {
+        _graffiti = stageData.rivalGraffiti;
     }
 }

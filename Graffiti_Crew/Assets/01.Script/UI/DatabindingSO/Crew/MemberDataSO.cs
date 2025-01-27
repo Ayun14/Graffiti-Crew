@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace AH.UI.Data {
@@ -6,10 +8,12 @@ namespace AH.UI.Data {
     [Serializable]
     public class MemberDataSO : ScriptableObject // Å©·ç¿ø
     {
-        public string name;
+        [Header("Dialogue")]
+        public string memberName;
         public string ability;
         public Sprite profile;
-        [Space]
+
+        [Header("Bool")]
         public bool isMyCrew = false;
 
     }

@@ -1,6 +1,6 @@
 using UnityEngine.Playables;
 
-public class FightSceneTimelineController : Observer<GameStateController>
+public class FightSceneTimelineController : Observer<GameStateController>, INeedLoding
 {
     private PlayableDirector _beforeFightTimeline;
     private PlayableDirector _finishtTimeline;
@@ -44,5 +44,10 @@ public class FightSceneTimelineController : Observer<GameStateController>
         {
             mySubject.ChangeGameState(GameState.Result);
         }
+    }
+
+    public void LodingHandle(StageDataSO stageData)
+    {
+        // 대사 장착 및 등등....
     }
 }
