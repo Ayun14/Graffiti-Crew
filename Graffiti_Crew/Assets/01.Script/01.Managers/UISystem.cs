@@ -15,12 +15,11 @@ namespace AH.UI {
         private List<UIView> _allViews = new List<UIView>();
 
         private ComputerView _computerView;
+        private SettingView _settingView;
 
         [Header("Models")]
         [SerializeField] private ComputerModel computerModel;
         private ComputerViewModel _computerViewModel;
-
-        public const string mainViewName = "ComputerView";
 
         void OnEnable() {
             _uiDocument = GetComponent<UIDocument>();
@@ -45,11 +44,13 @@ namespace AH.UI {
 
             _computerViewModel = new ComputerViewModel(computerModel);
 
-            _computerView = new ComputerView(root.Q<VisualElement>(mainViewName), _computerViewModel);
+            _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _computerViewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("TestView"), _computerViewModel);
 
             _allViews.Add(_computerView);
+            _allViews.Add(_settingView);
 
-            _computerView.Show();
+            _settingView.Show();
         }
 
         private void ChangeShowView(UIView newView) {
