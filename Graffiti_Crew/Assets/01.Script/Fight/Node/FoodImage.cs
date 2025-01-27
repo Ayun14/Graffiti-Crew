@@ -7,9 +7,7 @@ public class FoodImage : MonoBehaviour
     [Header("Canvas")]
     [SerializeField] private RectTransform _canvasRect;
 
-    [Header("Food Sprite")]
-    [SerializeField] private Sprite _eggSprite;
-    [SerializeField] private Sprite _tomatoSprite;
+    [Header("Speed")]
     [SerializeField] private float _moveSpeed;
 
     private Image _foodImage;
@@ -38,14 +36,9 @@ public class FoodImage : MonoBehaviour
         }
     }
 
-    public void OnFoodSprite()
+    public void OnFoodSprite(Sprite sprite)
     {
-        Sprite food = null;
-        if (Random.Range(0, 2) == 0)
-            food = _eggSprite;
-        else
-            food = _tomatoSprite;
-        _foodImage.sprite = food;
+        _foodImage.sprite = sprite;
 
         // ·£´ý À§Ä¡
         float canvasWidth = _canvasRect.rect.width;

@@ -7,7 +7,7 @@ public enum LongNodeType
     Stright, Curve
 }
 
-[CreateAssetMenu(fileName = "LongNodeDataSO", menuName = "SO/Lode/LongNodeDataSO")]
+[CreateAssetMenu(fileName = "LongNodeDataSO", menuName = "SO/Node/LongNodeDataSO")]
 public class LongNodeDataSO : NodeDataSO
 {
     [Header("Long Node Data")]
