@@ -17,8 +17,7 @@ public class StageDataSO : ScriptableObject
     public GameObject mapPrefab;
 
     [Header("Dialogue")]
-    public GameObject 이건지워;
-    // 공서연 여기에 할거 추가해
+    public DialogueDataReader dialogueData; 
 
     [Header("Bool")]
     public bool isClearStage = true;

@@ -27,7 +27,7 @@ public struct DialogueData
     }
 }
 
-[CreateAssetMenu(fileName = "DialogueReader", menuName = "Scriptable Object/DialogueDataReader", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "DialogueReader", menuName = "SO/Dialogue/DialogueDataReader", order = int.MaxValue)]
 public class DialogueDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]
@@ -116,7 +116,7 @@ public class DialogueDataReaderEditor : Editor
 
     void UpdateMethodOne(GstuSpreadSheet ss)
     {
-        for (int i = data.START_ROW_LENGTH; i <= data.END_ROW_LENGTH; ++i)
+        for (int i = data.START_ROW_LENGTH; i <= data.END_ROW_LENGTH; i++)
         {
             data.UpdateStats(ss.rows[i]);
         }
