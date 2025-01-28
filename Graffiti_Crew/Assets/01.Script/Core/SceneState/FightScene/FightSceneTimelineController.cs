@@ -4,6 +4,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 {
     private PlayableDirector _beforeFightTimeline;
     private PlayableDirector _finishtTimeline;
+    private DialogueUIController _dialogueUIController;
 
     private void Awake()
     {
@@ -11,6 +12,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
         _beforeFightTimeline = transform.Find("BeforeFightTimeline").GetComponent<PlayableDirector>();
         _finishtTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
+        _dialogueUIController = transform.Find("DialogueUI").GetComponent<DialogueUIController>();
     }
 
     private void OnDestroy()
@@ -46,8 +48,25 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
         }
     }
 
+    public void DialogueRival()
+    {
+        _beforeFightTimeline.Pause();
+        _dialogueUIController.StartDialogue(1, 1, PlayTimeline);
+    }
+
+    public void DialoguePlayer()
+    {
+        _beforeFightTimeline.Pause();
+        _dialogueUIController.StartDialogue(2, 2, PlayTimeline);
+    }
+
+    public void PlayTimeline()
+    {
+        _beforeFightTimeline.Play();
+    }
+
     public void LodingHandle(StageDataSO stageData)
     {
-        // 대사 장착 및 등등....
+        _dialogueUIController.dialogueDataReader = stageData.dialogueData;
     }
 }

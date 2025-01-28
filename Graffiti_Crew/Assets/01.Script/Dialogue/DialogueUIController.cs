@@ -17,7 +17,7 @@ public class DialogueUIController : MonoBehaviour
     private float _fadeDuration = 0.3f;
 
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueDataReader _dialogueDataReader;
+    public DialogueDataReader dialogueDataReader;
 
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
@@ -47,7 +47,7 @@ public class DialogueUIController : MonoBehaviour
 
     public void StartDialogue(int startID, int endID, Action onComplete)
     {
-        if (_dialogueDataReader == null || _dialogueDataReader.DialogueList.Count == 0)
+        if (dialogueDataReader == null || dialogueDataReader.DialogueList.Count == 0)
         {
             onComplete?.Invoke();
             return;
@@ -56,7 +56,7 @@ public class DialogueUIController : MonoBehaviour
         _dialogueStartID = startID;
         _dialogueEndID = endID;
 
-        _filteredDialogueList = _dialogueDataReader.DialogueList.FindAll(dialogue =>
+        _filteredDialogueList = dialogueDataReader.DialogueList.FindAll(dialogue =>
             dialogue.id >= _dialogueStartID && dialogue.id <= _dialogueEndID);
 
         if (_filteredDialogueList.Count == 0)
