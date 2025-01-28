@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -16,12 +17,21 @@ public class FightSceneUIController : Observer<GameStateController>
     private Material _blindMat;
     private bool _isBlind = false;
 
+    // StepValue Sin Graph
+    private float _frequency = 0.1f; // 주기
+    private float _amplitude = 0.005f; // 변화 폭
+    private float _baseStepValue;
+    private float _elapsedTime = 0f;
+
     // Shader
     private int _blindColor = Shader.PropertyToID("_BlindColor"); // 색상
     private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
     private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
     private int _noiseValue = Shader.PropertyToID("_NoiseValue"); // 보이는 noise 크기 15
     private int _offsetVec = Shader.PropertyToID("_OffsetVec"); // 보이는 uv 위치
+
+    // Loding
+    private Image _lodingPanel;
 
     // CountDown
     private Image _countDownPanel;
@@ -40,6 +50,7 @@ public class FightSceneUIController : Observer<GameStateController>
         Attach();
 
         mySubject.OnBlindEvent += BlindEventHandle;
+        mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
 
         Transform canvas = transform.Find("Canvas");
 
@@ -48,6 +59,9 @@ public class FightSceneUIController : Observer<GameStateController>
         _foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
         _blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
         _blindMat.SetFloat(_stepValue, 0f);
+
+        // Loding
+        _lodingPanel = canvas.Find("Panel_Loding").GetComponent<Image>();
 
         // CountDown
         _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
@@ -65,36 +79,58 @@ public class FightSceneUIController : Observer<GameStateController>
     private void OnDestroy()
     {
         mySubject.OnBlindEvent -= BlindEventHandle;
+        mySubject.OnRivalCheckEvent -= RivalCheckEventHandle;
 
         Detach();
+    }
+
+    private void Update()
+    {
+        ChangeBlindStepValue();
+    }
+
+    private void ChangeBlindStepValue()
+    {
+        if (_isBlind)
+        {
+            _elapsedTime += Time.deltaTime;
+
+            float newValue = _baseStepValue + Mathf.Sin(_elapsedTime * _frequency * Mathf.PI * 2) * _amplitude;
+            _blindMat.SetFloat(_stepValue, newValue);
+        }
+        else
+            _elapsedTime = 0f;
     }
 
     public override void NotifyHandle()
     {
         if (mySubject != null)
         {
-            // CountDown
             bool isCountDown = mySubject.GameState == GameState.CountDown;
+            bool isFight = mySubject.GameState == GameState.Fight;
+            bool isFinish = mySubject.GameState == GameState.Finish;
+
+            // Loding
+            _lodingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
+
+            // CountDown
             if (isCountDown) StartCoroutine(CountDownRoutine());
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            _spraySliderPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
-            _blindPanel.gameObject.SetActive(mySubject.GameState == GameState.Fight);
+            _spraySliderPanel.gameObject.SetActive(isFight);
+
+            if (isFinish && _isBlind)
+                StartBlindRoutine(false);
+            else
+                _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            _finishPanel.gameObject.SetActive(mySubject.GameState == GameState.Finish);
+            _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
             _resultPanel.gameObject.SetActive(mySubject.GameState == GameState.Result);
         }
-    }
-
-    private void BlindEventHandle()
-    {
-        if (_isBlind) return;
-
-        StartBlindRoutine(true);
     }
 
     private IEnumerator CountDownRoutine()
@@ -106,6 +142,24 @@ public class FightSceneUIController : Observer<GameStateController>
         }
 
         mySubject.ChangeGameState(GameState.Fight);
+    }
+
+    #region Rival Check
+
+    private void RivalCheckEventHandle()
+    {
+        // 여기에 UI 구현
+    }
+
+    #endregion
+
+    #region Blind
+
+    private void BlindEventHandle()
+    {
+        if (_isBlind) return;
+
+        StartBlindRoutine(true);
     }
 
     public void StartBlindRoutine(bool isOn)
@@ -134,7 +188,8 @@ public class FightSceneUIController : Observer<GameStateController>
         // Step Value
         float time = 0.5f;
         float currentTime = 0f;
-        float targetStepValue = Random.Range(0.35f, 0.45f);
+        float targetStepValue = Random.Range(0.45f, 0.51f);
+        _baseStepValue = targetStepValue;
         _blindMat.SetFloat(_stepValue, 0);
 
         while (currentTime < time)
@@ -153,8 +208,11 @@ public class FightSceneUIController : Observer<GameStateController>
         // Sprite
         _foodImage.OffFoodSprite();
 
+        // Bool
+        bool isFinish = mySubject.GameState == GameState.Finish;
+
         // Step Value
-        float time = 0.5f;
+        float time = isFinish ? 0.5f : 1f;
         float currentTime = 0f;
         float currentStepValue = _blindMat.GetFloat(_stepValue);
 
@@ -168,6 +226,11 @@ public class FightSceneUIController : Observer<GameStateController>
             yield return null;
         }
 
+        if (isFinish)
+            _blindPanel.gameObject.SetActive(false);
+
         _isBlind = false;
     }
+
+    #endregion
 }

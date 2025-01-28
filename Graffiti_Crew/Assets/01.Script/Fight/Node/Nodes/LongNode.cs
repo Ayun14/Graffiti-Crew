@@ -227,6 +227,9 @@ public class LongNode : Node, INodeAction
     {
         base.NodeClear();
 
+        if (isClearNode == true) return;
+        isClearNode = true;
+
         _isFollowingPath = false;
         SetAlpha(0f);
     }

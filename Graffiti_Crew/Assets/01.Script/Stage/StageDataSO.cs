@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageDataSO", menuName = "SO/Stage/StageDataSO")]
@@ -20,5 +21,12 @@ public class StageDataSO : ScriptableObject
     public DialogueDataReader dialogueData; 
 
     [Header("Bool")]
-    public bool isClearStage = true;
+    public bool isClearStage = false;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        EditorUtility.SetDirty(this);
+    }
+#endif
 }
