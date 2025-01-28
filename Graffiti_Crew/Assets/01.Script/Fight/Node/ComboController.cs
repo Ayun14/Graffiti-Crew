@@ -33,7 +33,6 @@ public class ComboController : MonoBehaviour
 
     public void FailCombo()
     {
-        Debug.Log("Fail");
         _allCombo += _currentCombo;
         _currentCombo = 0;
 

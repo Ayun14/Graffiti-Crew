@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -95,9 +94,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             else // HitNode Combo ½ÇÆÐ
             {
                 if (_currentNode != null && _currentNode.GetNodeType() == NodeType.HitNode)
-                {
                     NodeFalse(_currentNode);
-                }
             }
         }
     }
