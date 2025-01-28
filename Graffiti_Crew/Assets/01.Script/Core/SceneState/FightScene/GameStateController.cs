@@ -15,6 +15,7 @@ public enum GameState
 public class GameStateController : Subject
 {
     public Action OnBlindEvent;
+    public Action OnRivalCheckEvent; // 라이벌의 견제
 
     [SerializeField] private GameState gameState = GameState.None;
     public GameState GameState => gameState;
@@ -31,5 +32,15 @@ public class GameStateController : Subject
         Debug.Log("게임 상태 변경 : " + newState.ToString());
         gameState = newState;
         NotifyObservers(); // 관찰자들에게 알리기
+    }
+
+    public void InvokeBlindEvent()
+    {
+        OnBlindEvent?.Invoke();
+    }
+
+    public void InvokeRivalCheckEvent()
+    {
+        OnRivalCheckEvent?.Invoke();
     }
 }

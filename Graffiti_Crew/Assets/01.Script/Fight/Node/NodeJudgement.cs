@@ -145,6 +145,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         if (node == null) return;
 
         if (Random.Range(0, 100f) < 30)
-            mySubject?.OnBlindEvent?.Invoke();
+            mySubject?.InvokeBlindEvent();
     }
 }

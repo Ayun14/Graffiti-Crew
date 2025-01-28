@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -49,6 +50,7 @@ public class FightSceneUIController : Observer<GameStateController>
         Attach();
 
         mySubject.OnBlindEvent += BlindEventHandle;
+        mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
 
         Transform canvas = transform.Find("Canvas");
 
@@ -77,6 +79,7 @@ public class FightSceneUIController : Observer<GameStateController>
     private void OnDestroy()
     {
         mySubject.OnBlindEvent -= BlindEventHandle;
+        mySubject.OnRivalCheckEvent -= RivalCheckEventHandle;
 
         Detach();
     }
@@ -140,6 +143,15 @@ public class FightSceneUIController : Observer<GameStateController>
 
         mySubject.ChangeGameState(GameState.Fight);
     }
+
+    #region Rival Check
+
+    private void RivalCheckEventHandle()
+    {
+        // 여기에 UI 구현
+    }
+
+    #endregion
 
     #region Blind
 
