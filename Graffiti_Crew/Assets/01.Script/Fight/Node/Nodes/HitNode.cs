@@ -49,6 +49,9 @@ public class HitNode : Node, INodeAction
     {
         if (isClearNode) return;
 
+        // Combo
+        judgement.NodeSuccess(this);
+
         SetHitCount();
     }
 
