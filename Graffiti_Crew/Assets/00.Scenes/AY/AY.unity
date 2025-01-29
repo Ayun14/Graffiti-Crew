@@ -966,7 +966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235616111}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09950636, y: 0.4117747, z: -0.045290183, w: 0.9047038}
+  m_LocalRotation: {x: 0.09950637, y: 0.41177472, z: -0.045290194, w: 0.9047038}
   m_LocalPosition: {x: -12.03, y: 2.69, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1133,7 +1133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301575524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10970819, y: 0.37536252, z: -0.044796705, w: 0.9192717}
+  m_LocalRotation: {x: 0.10970819, y: 0.37536252, z: -0.044796705, w: 0.91927165}
   m_LocalPosition: {x: -3.44, y: 2.69, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3345,6 +3345,8 @@ GameObject:
   - component: {fileID: 1132627326}
   - component: {fileID: 1132627325}
   - component: {fileID: 1132627324}
+  - component: {fileID: 1132627328}
+  - component: {fileID: 1132627327}
   m_Layer: 0
   m_Name: Camera_Graffiti
   m_TagString: Untagged
@@ -3441,6 +3443,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1554516581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1132627327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132627323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 3
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -0.5, z: 0}
+--- !u!114 &1132627328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132627323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    AmplitudeGain: 2
+    FrequencyGain: 2
+    Duration: 0.8
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1139888996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,8 +4406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df19e4130984fbe44892d6d0de4519c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _graffitiCamera: {fileID: 1132627325}
-  _resultCamera: {fileID: 1319842212}
+  _shakeForce: 0.5
 --- !u!1 &1567606916
 GameObject:
   m_ObjectHideFlags: 0

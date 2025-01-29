@@ -15,7 +15,6 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _blindPanel;
     private FoodImage _foodImage;
     private Material _blindMat;
-    private bool _isBlind = false;
 
     // StepValue Sin Graph
     private float _frequency = 0.1f; // аж╠Б
@@ -91,7 +90,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void ChangeBlindStepValue()
     {
-        if (_isBlind)
+        if (mySubject.IsBlind)
         {
             _elapsedTime += Time.deltaTime;
 
@@ -121,7 +120,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _spraySliderPanel.gameObject.SetActive(isFight);
             _comboSliderPanel.gameObject.SetActive(isFight);
 
-            if (isFinish && _isBlind)
+            if (isFinish && mySubject.IsBlind)
                 StartBlindRoutine(false);
             else
                 _blindPanel.gameObject.SetActive(isFight);
@@ -158,8 +157,6 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void BlindEventHandle()
     {
-        if (_isBlind) return;
-
         StartBlindRoutine(true);
     }
 
@@ -171,7 +168,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator OnBlindRoutine()
     {
-        _isBlind = true;
+        mySubject.SetIsBlind(true);
 
         bool isEgg = Random.Range(0, 2) == 0 ? true : false;
         // Sprite
@@ -230,7 +227,7 @@ public class FightSceneUIController : Observer<GameStateController>
         if (isFinish)
             _blindPanel.gameObject.SetActive(false);
 
-        _isBlind = false;
+        mySubject.SetIsBlind(false);
     }
 
     #endregion

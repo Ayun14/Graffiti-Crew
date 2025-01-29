@@ -157,7 +157,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
         if (node.GetNodeType() == NodeType.LongNode)
         {
-            if (Random.Range(0, 100f) < 30)
+            if (!mySubject.IsBlind && Random.Range(0, 100f) < 30)
                 mySubject?.InvokeBlindEvent();
         }
 
