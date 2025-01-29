@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 namespace AH.UI.Views {
     public enum LanguageType {
         Korea,
-        Engilsh
+        English
     }
     public class SettingView : UIView {
         // 모델 받아야함
@@ -32,9 +32,9 @@ namespace AH.UI.Views {
             base.UnRegisterButtonCallbacks();
         }
         private void ChangeLanguage(ChangeEvent<Enum> evt) {
-            if(evt.newValue is LanguageType input) {
+            if (evt.newValue is LanguageType input) {
                 _lauguageType = input;
-                UIEvents.ChangeLanguage?.Invoke(_lauguageType);
+                UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
             }
         }
     }

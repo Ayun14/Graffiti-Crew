@@ -5,6 +5,7 @@ using UnityEngine;
 namespace AH.UI.Events {
     public static class UIEvents
     {
-        public static Action<LanguageType> ChangeLanguage;
+        public static Action<LanguageType> ChangeLanguageEvnet;
+        public static Action CloseComputerEvnet;
     }
 }
