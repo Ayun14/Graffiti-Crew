@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
@@ -126,6 +127,7 @@ public class FightSceneUIController : Observer<GameStateController>
                 _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
+            if (isFinish) Finish();
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
@@ -138,10 +140,35 @@ public class FightSceneUIController : Observer<GameStateController>
         for (int i = 3; i > 0; --i)
         {
             _countDownText.text = i.ToString();
+
+            // Position
+            _countDownText.rectTransform.localPosition = new Vector3(0, -100f, 0);
+
+            Sequence posSequence = DOTween.Sequence();
+            posSequence.Append(_countDownText.rectTransform.DOAnchorPosY(0f, 0.3f))
+                    .AppendInterval(0.4f)
+                    .Append(_countDownText.rectTransform.DOAnchorPosY(100f, 0.3f));
+
+            // Alpha
+            Color color = _countDownText.color;
+            color.a = 0f;
+            _countDownText.color = color;
+
+            Sequence alphaSequence = DOTween.Sequence();
+            alphaSequence.Append(_countDownText.DOFade(1f, 0.3f))
+                    .AppendInterval(0.4f)
+                    .Append(_countDownText.DOFade(0f, 0.3f));
+
+
             yield return new WaitForSeconds(1f);
         }
 
         mySubject.ChangeGameState(GameState.Fight);
+    }
+
+    private void Finish()
+    {
+
     }
 
     #region Rival Check
