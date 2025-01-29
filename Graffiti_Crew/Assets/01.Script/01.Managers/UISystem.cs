@@ -1,13 +1,20 @@
+using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class UISystem : MonoBehaviour {
         private UIDocument _uiDocument;
+
+        [Header("Input")]
+        [SerializeField] private InputReaderSO _inputReaderSO;
+        private Stack<UIView> _viewStack;
 
         private UIView _currentView;
         private UIView _previousView;
@@ -22,6 +29,7 @@ namespace AH.UI {
         private ComputerViewModel _computerViewModel;
 
         void OnEnable() {
+            _inputReaderSO.OnCancleEvent += CancelEvent;
             _uiDocument = GetComponent<UIDocument>();
 
             SetupViews();
@@ -32,10 +40,23 @@ namespace AH.UI {
         }
 
         void OnDisable() {
+            _inputReaderSO.OnCancleEvent -= CancelEvent;
             UnRegisterToEvents();
 
             foreach (UIView view in _allViews) {
                 view.Dispose();
+            }
+        }
+
+        private void CancelEvent() {
+            if(_viewStack.Count > 1) {
+                var view = _viewStack.Peek();
+                view.Show();
+                _viewStack.Pop();
+            }
+            else if (_viewStack.Count == 1) {
+                UIEvents.CloseComputerEvnet?.Invoke();
+                SceneManager.LoadScene("SY");
             }
         }
 

@@ -165,7 +165,7 @@ public class LongNode : Node, INodeAction
             if (_isFollowingPath)
             {
                 // 노드 실패 (중도 포기 실패)
-                judgement.LongNodeFalse(this);
+                judgement.NodeFalse(this);
             }
 
             ResetNode();
@@ -189,6 +189,9 @@ public class LongNode : Node, INodeAction
             // 현재 목표 포인트와의 거리 확인
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
+                // Combo
+                judgement.NodeSuccess(this);
+
                 judgement.AddShakeSliderAmount(-_sprayUseAmount);
                 judgement.AddSpraySliderAmount(-_sprayUseAmount);
 
@@ -202,7 +205,7 @@ public class LongNode : Node, INodeAction
             else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
             {
                 // 노드 실패 (경로 이탈 실패)
-                judgement.LongNodeFalse(this);
+                judgement.NodeFalse(this);
                 ResetNode();
             }
         }

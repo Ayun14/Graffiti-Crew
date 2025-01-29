@@ -46,6 +46,9 @@ public class SingleNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
 
+        // Combo
+        judgement.NodeSuccess(this);
+
         SetAlpha(0f);
 
         judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);

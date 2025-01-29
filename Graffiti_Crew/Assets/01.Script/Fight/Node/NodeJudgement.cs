@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +24,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
     private SprayController _sprayController;
+    private ComboController _comboController;
 
     private Node _currentNode;
 
@@ -45,6 +47,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _nodeSpawner = GetComponentInChildren<NodeSpawner>();
         _graffitiRenderer = GetComponentInChildren<GraffitiRenderer>();
         _sprayController = GetComponentInChildren<SprayController>();
+        _comboController = GetComponentInChildren<ComboController>();
 
         _currentNode = null;
     }
@@ -67,6 +70,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             _nodeSpawner.Init(this, _nodeDatas);
             _graffitiRenderer.Init(this, _startSprite);
             _sprayController.Init(this, _sprayAmount, _shakeAmount);
+            _comboController.Init(this);
 
             NodeSpawnJudgement();
         }
@@ -88,11 +92,13 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
                     NodeClick(_currentNode);
                 }
             }
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            if (_currentNode != null)
-                _currentNode = null;
+            else // HitNode Combo ½ÇÆÐ
+            {
+                if (_currentNode != null && _currentNode.GetNodeType() == NodeType.HitNode)
+                {
+                    NodeFalse(_currentNode);
+                }
+            }
         }
     }
 
@@ -108,6 +114,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         if (node == null || _currentNode == null) return;
 
+        // NodeClear
         if (node == _currentNode)
         {
             // Spawn
@@ -140,11 +147,23 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _sprayController.AddSprayAmount(value);
     }
 
-    public void LongNodeFalse(Node node)
+    public void NodeSuccess(Node node)
     {
         if (node == null) return;
 
-        if (Random.Range(0, 100f) < 30)
-            mySubject?.InvokeBlindEvent();
+        _comboController.SuccessCombo();
+    }
+
+    public void NodeFalse(Node node)
+    {
+        if (node == null) return;
+
+        if (node.GetNodeType() == NodeType.LongNode)
+        {
+            if (Random.Range(0, 100f) < 30)
+                mySubject?.InvokeBlindEvent();
+        }
+
+        _comboController.FailCombo();
     }
 }

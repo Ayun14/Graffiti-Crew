@@ -1,7 +1,9 @@
+using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -14,8 +16,8 @@ namespace AH.UI.Views {
         private const string _selectStageViewName = "StoreView";
         private const string _storeViewName = "SelectStageView";
 
-        private UIView _currentView;
-        private UIView _previousView;
+        private InputReaderSO _inputReaderSO;
+        private Stack<UIView> _viewStack;
 
         private ComputerViewModel ComputerViewModel;
 
@@ -34,12 +36,23 @@ namespace AH.UI.Views {
         }
 
         public override void Initialize() {
+            _inputReaderSO.OnCancleEvent += CancelEvent;
             ComputerViewModel = viewModel as ComputerViewModel;
 
             base.Initialize();
             SetupViews();
         }
-
+        private void CancelEvent() {
+            if (_viewStack.Count > 1) {
+                var view = _viewStack.Peek();
+                view.Show();
+                _viewStack.Pop();
+            }
+            else if (_viewStack.Count == 1) {
+                UIEvents.CloseComputerEvnet?.Invoke();
+                SceneManager.LoadScene("SY");
+            }
+        }
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _storeBtn = topElement.Q<Button>("store-btn");
@@ -67,6 +80,14 @@ namespace AH.UI.Views {
             // 버튼 클릭 이벤트 등록
             //_btn.RegisterCallback<ClickEvent>(ClickBtn);
         }
+        protected override void UnRegisterButtonCallbacks() {
+            base.UnRegisterButtonCallbacks();
+
+            // 구독 해제
+            _inputReaderSO.OnCancleEvent -= CancelEvent;
+            _displayMessageSubscription?.Dispose();
+
+        }
 
         private void CllickStoreBtn(ClickEvent evt) {
             _storeView.Show();
@@ -74,39 +95,12 @@ namespace AH.UI.Views {
         private void CllickStageBtn(ClickEvent evt) {
             _selectStageView.Show();
         }
-
-        protected override void UnRegisterButtonCallbacks() {
-            base.UnRegisterButtonCallbacks();
-
-            // 구독 해제
-            _displayMessageSubscription?.Dispose();
-        }
-
-        private void ClickBtn(ClickEvent evt) {
-            string inputName = _nameField.text;
-
-            // Command 패턴으로 ViewModel에 요청 전달
-            //ComputerViewModel.SetUserNameCommand.Execute(inputName);
-        }
-
         private void SetupViews() {
             _selectStageView = new SelectStageView(topElement.Q<VisualElement>(_storeViewName), ComputerViewModel);
             _storeView = new StoreView(topElement.Q<VisualElement>(_selectStageViewName), ComputerViewModel);
 
             _computerViews.Add(_selectStageView);
             _computerViews.Add(_storeView);
-        }
-        private void ChangeShowView(UIView newView) {
-            if (_currentView != null) {
-                _currentView.Hide();
-            }
-
-            _previousView = _currentView;
-            _currentView = newView;
-
-            if (_currentView != null) {
-                _currentView.Show();
-            }
         }
     }
 }

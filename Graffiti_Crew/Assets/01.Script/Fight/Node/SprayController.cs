@@ -43,15 +43,16 @@ public class SprayController : MonoBehaviour
     {
         _judgement = judgement;
 
-        if (_sprayAmountSlider == null || _shakeAmountSlider == null) return;
+        if (_sprayAmountSlider != null && _shakeAmountSlider != null)
+        {
+            // Spray
+            _sprayAmountSlider.maxValue = sprayAmount;
+            _sprayAmountSlider.value = sprayAmount;
 
-        // Spray
-        _sprayAmountSlider.maxValue = sprayAmount;
-        _sprayAmountSlider.value = sprayAmount;
-
-        // Shake
-        _shakeAmountSlider.maxValue = shakeAmount;
-        _shakeAmountSlider.value = shakeAmount;
+            // Shake
+            _shakeAmountSlider.maxValue = shakeAmount;
+            _shakeAmountSlider.value = shakeAmount;
+        }
 
         ResetShakeDetection();
     }

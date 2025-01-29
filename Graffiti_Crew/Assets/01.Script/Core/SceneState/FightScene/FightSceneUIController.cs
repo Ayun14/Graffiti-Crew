@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
-    [Header("Spray")]
+    [Header("Other Panel")]
     [SerializeField] private Image _spraySliderPanel;
+    [SerializeField] private Image _comboSliderPanel;
 
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
@@ -119,6 +120,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
             // Fight
             _spraySliderPanel.gameObject.SetActive(isFight);
+            _comboSliderPanel.gameObject.SetActive(isFight);
 
             if (isFinish && _isBlind)
                 StartBlindRoutine(false);
