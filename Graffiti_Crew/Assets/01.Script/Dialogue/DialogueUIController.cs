@@ -49,17 +49,17 @@ public class DialogueUIController : MonoBehaviour
         _dialogueCanvas.blocksRaycasts = false;
 
         dialogueDataReader = _dialogueDataReader_KR;
-        UIEvents.ChangeLanguage += HandleChangeLangauge;
+        UIEvents.ChangeLanguageEvnet += HandleChangeLangauge;
     }
 
     private void OnDisable()
     {
-        UIEvents.ChangeLanguage -= HandleChangeLangauge;
+        UIEvents.ChangeLanguageEvnet -= HandleChangeLangauge;
     }
 
     private void HandleChangeLangauge(LanguageType type)
     {
-        if (type == LanguageType.Engilsh)
+        if (type == LanguageType.English)
             dialogueDataReader = _dialogueDataReader_EN;
         else
             dialogueDataReader = _dialogueDataReader_KR;
