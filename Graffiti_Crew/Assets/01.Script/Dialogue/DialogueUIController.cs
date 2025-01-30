@@ -5,6 +5,8 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using AH.UI.Events;
+using AH.UI.Views;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -17,7 +19,9 @@ public class DialogueUIController : MonoBehaviour
     private float _fadeDuration = 0.3f;
 
     [Header("Dialogue Data")]
-    public DialogueDataReader dialogueDataReader;
+    [HideInInspector] public DialogueDataReader dialogueDataReader;
+    [SerializeField] private DialogueDataReader _dialogueDataReader_KR;
+    [SerializeField] private DialogueDataReader _dialogueDataReader_EN;
 
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
@@ -43,6 +47,22 @@ public class DialogueUIController : MonoBehaviour
         _dialogueCanvas.alpha = 0;
         _dialogueCanvas.interactable = false;
         _dialogueCanvas.blocksRaycasts = false;
+
+        dialogueDataReader = _dialogueDataReader_KR;
+        UIEvents.ChangeLanguage += HandleChangeLangauge;
+    }
+
+    private void OnDisable()
+    {
+        UIEvents.ChangeLanguage -= HandleChangeLangauge;
+    }
+
+    private void HandleChangeLangauge(LanguageType type)
+    {
+        if (type == LanguageType.Engilsh)
+            dialogueDataReader = _dialogueDataReader_EN;
+        else
+            dialogueDataReader = _dialogueDataReader_KR;
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete)
