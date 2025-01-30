@@ -3,5 +3,10 @@
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
         <engine:EnumField label="언어" value="Center" type="AH.UI.Views.LanguageType, Assembly-CSharp" name="language-field" class="grow-size-40" style="flex-grow: 0; width: 600px;" />
         <engine:DropdownField label="Dropdown" />
+        <engine:ProgressBar value="22" title="my-progress" style="width: 754px;">
+            <Bindings>
+                <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/SliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#SliderValueSO" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:ProgressBar>
     </engine:VisualElement>
 </engine:UXML>
