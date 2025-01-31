@@ -11,6 +11,7 @@ namespace AH.UI.Views {
     public class SettingView : UIView {
         // 모델 받아야함
         private EnumField _languageField;
+        private ProgressBar _progressBar;
         private LanguageType _lauguageType;
 
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
@@ -22,6 +23,7 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _languageField = topElement.Q<EnumField>();
+            _progressBar = topElement.Q<ProgressBar>();
         }
 
         protected override void RegisterButtonCallbacks() {

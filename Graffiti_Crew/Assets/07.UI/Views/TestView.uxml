@@ -1,12 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:EnumField label="언어" value="Center" type="AH.UI.Views.LanguageType, Assembly-CSharp" name="language-field" class="grow-size-40" style="flex-grow: 0; width: 600px;" />
-        <engine:DropdownField label="Dropdown" />
-        <engine:ProgressBar value="22" title="my-progress" style="width: 754px;">
+        <engine:ProgressBar name="player-progress" value="11.97" style="width: 847px;">
             <Bindings>
                 <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/SliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#SliderValueSO" binding-mode="ToTarget" />
             </Bindings>
         </engine:ProgressBar>
+        <engine:EnumField label="언어" value="Center" type="AH.UI.Views.LanguageType, Assembly-CSharp" name="language-field" class="grow-size-40" style="flex-grow: 0; width: 600px;" />
     </engine:VisualElement>
 </engine:UXML>

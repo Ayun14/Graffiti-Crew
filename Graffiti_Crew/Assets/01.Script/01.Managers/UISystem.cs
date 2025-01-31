@@ -11,6 +11,7 @@ namespace AH.UI {
 
         private ComputerView _computerView; // 이거 여기서 안쓸 것 같음
         private SettingView _settingView;
+        private FightView _fightView;
 
         [Header("Input")]
         [SerializeField] private InputReaderSO _inputReaderSO;
@@ -31,9 +32,9 @@ namespace AH.UI {
             RegisterToEvents();
 
             // Start with the home screen
-            ShowView(_computerView);
+            ShowView(_fightView);
         }
-
+        
         void OnDisable() {
             //_inputReaderSO.OnCancleEvent -= ShowPreviewEvent;
             UnRegisterToEvents();
@@ -72,9 +73,11 @@ namespace AH.UI {
 
             _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _computerViewModel);
             _settingView = new SettingView(root.Q<VisualElement>("TestView"), _computerViewModel);
+            _fightView = new FightView(root.Q<VisualElement>("FightView"), _computerViewModel);
 
             _allViews.Add(_computerView);
             _allViews.Add(_settingView);
+            _allViews.Add(_fightView);
         }
 
         private void RegisterToEvents() { }

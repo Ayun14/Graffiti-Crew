@@ -1,7 +1,9 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="ComputerView" src="project://database/Assets/07.UI/Views/Computer/ComputerView.uxml?fileID=9197481963319205126&amp;guid=f35aae524a066ac40a5c65eb67406737&amp;type=3#ComputerView" />
     <engine:Template name="TestView" src="project://database/Assets/07.UI/Views/TestView.uxml?fileID=9197481963319205126&amp;guid=a7f44685958283e43ba84ca3ae641447&amp;type=3#TestView" />
+    <engine:Template name="FightView" src="project://database/Assets/07.UI/Views/FightScene/FightView.uxml?fileID=9197481963319205126&amp;guid=3df5149eaa8ba7f4ea7b855ad2a04917&amp;type=3#FightView" />
     <Style src="project://database/Assets/07.UI/USS/MainView_USS.uss?fileID=7433441132597879392&amp;guid=a14d806bf43a9f5499bcbef93b38c1df&amp;type=3#MainView_USS" />
-    <engine:Instance template="ComputerView" name="ComputerView" style="flex-grow: 1; display: flex;" />
+    <engine:Instance template="ComputerView" name="ComputerView" style="flex-grow: 1; display: none;" />
     <engine:Instance template="TestView" name="TestView" style="flex-grow: 1; display: none;" />
+    <engine:Instance template="FightView" name="FightView" style="flex-grow: 1;" />
 </engine:UXML>
