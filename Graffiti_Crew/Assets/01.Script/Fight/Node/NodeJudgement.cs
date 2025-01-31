@@ -25,12 +25,14 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     private SprayController _sprayController;
     private ComboController _comboController;
 
+    [HideInInspector] public StageResultSO stageResult;
+
     private Node _currentNode;
 
     public void LodingHandle(StageDataSO stageData)
     {
+        stageResult = stageData.stageResult;
         _startSprite = stageData.startGraffiti;
-
         _nodeDatas = stageData.nodeDatas;
     }
 
@@ -154,6 +156,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     public void NodeFalse(Node node)
     {
         if (node == null) return;
+
+        if (stageResult != null)
+            stageResult.nodeFalseCnt++;
 
         if (node.GetNodeType() == NodeType.LongNode)
         {

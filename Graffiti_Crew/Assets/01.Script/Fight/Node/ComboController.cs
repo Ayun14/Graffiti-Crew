@@ -5,7 +5,6 @@ using UnityEngine;
 public class ComboController : MonoBehaviour
 {
     private int _currentCombo = 0;
-    private int _allCombo = 0;
 
     private TextMeshProUGUI _comboText;
     private TextMeshProUGUI _stateText;
@@ -15,6 +14,7 @@ public class ComboController : MonoBehaviour
     private Sequence _stateTextSequence;
 
     private NodeJudgement _judgement;
+    private StageResultSO _stageResult;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class ComboController : MonoBehaviour
     public void Init(NodeJudgement judgement)
     {
         _judgement = judgement;
+        _stageResult = judgement.stageResult;
         _currentCombo = 0;
 
         if (_comboText != null && _stateText != null)
@@ -44,7 +45,7 @@ public class ComboController : MonoBehaviour
 
     public void FailCombo()
     {
-        _allCombo += _currentCombo;
+        _stageResult.comboCnt += _currentCombo;
         _currentCombo = 0;
 
         StateTextUpdate("<color=red>Miss</color>");
@@ -65,7 +66,7 @@ public class ComboController : MonoBehaviour
         _comboTextSequence.Complete();
         _comboTextSequence = DOTween.Sequence();
         _comboTextSequence.Append(_comboText.rectTransform.DOAnchorPosY(_comboTextOrigin.y, 0.2f).SetEase(Ease.OutBack))
-                .AppendInterval(1.5f)
+                .AppendInterval(1f)
                 .Append(_comboText.DOFade(0f, 0.3f));
     }
 
@@ -83,7 +84,7 @@ public class ComboController : MonoBehaviour
         _stateTextSequence = DOTween.Sequence();
         _stateTextSequence.Append(_stateText.transform.DOScale(1.1f, 0.1f))
             .Append(_stateText.transform.DOScale(1f, 0.1f))
-                .AppendInterval(1.5f)
+                .AppendInterval(1f)
                 .Append(_stateText.DOFade(0f, 0.3f));
     }
 }

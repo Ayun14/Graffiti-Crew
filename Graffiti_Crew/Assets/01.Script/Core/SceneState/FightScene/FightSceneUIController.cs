@@ -127,7 +127,6 @@ public class FightSceneUIController : Observer<GameStateController>
                 _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            if (isFinish) Finish();
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
@@ -164,11 +163,6 @@ public class FightSceneUIController : Observer<GameStateController>
         }
 
         mySubject.ChangeGameState(GameState.Fight);
-    }
-
-    private void Finish()
-    {
-
     }
 
     #region Rival Check
