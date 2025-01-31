@@ -23,7 +23,10 @@ namespace AH.UI.ViewModels {
         }
         public ProductCategorySO GetCategory() {
             return _model.GetCategory();
-        } 
+        }
+        public InputReaderSO GetInputReader() {
+            return _model.GetInputReader();
+        }
         #endregion
 
         public void SetFriendImg(int btnIndex, int friendIndex) {

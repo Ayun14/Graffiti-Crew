@@ -1,46 +1,41 @@
-using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class UISystem : MonoBehaviour {
         private UIDocument _uiDocument;
 
+        private ComputerView _computerView; // 이거 여기서 안쓸 것 같음
+        private SettingView _settingView;
+
         [Header("Input")]
         [SerializeField] private InputReaderSO _inputReaderSO;
-        private Stack<UIView> _viewStack;
-
-        private UIView _currentView;
-        private UIView _previousView;
-
+        private Stack<UIView> _viewStack = new Stack<UIView>();
         private List<UIView> _allViews = new List<UIView>();
-
-        private ComputerView _computerView;
-        private SettingView _settingView;
 
         [Header("Models")]
         [SerializeField] private ComputerModel computerModel;
         private ComputerViewModel _computerViewModel;
 
+        private void Awake() {
+            //_inputReaderSO.OnCancleEvent += ShowPreviewEvent;
+        }
         void OnEnable() {
-            _inputReaderSO.OnCancleEvent += CancelEvent;
             _uiDocument = GetComponent<UIDocument>();
 
             SetupViews();
             RegisterToEvents();
 
             // Start with the home screen
-            ChangeShowView(_computerView);
+            ShowView(_computerView);
         }
 
         void OnDisable() {
-            _inputReaderSO.OnCancleEvent -= CancelEvent;
+            //_inputReaderSO.OnCancleEvent -= ShowPreviewEvent;
             UnRegisterToEvents();
 
             foreach (UIView view in _allViews) {
@@ -48,15 +43,25 @@ namespace AH.UI {
             }
         }
 
-        private void CancelEvent() {
-            if(_viewStack.Count > 1) {
+        private void ShowPreviewEvent() {
+            if(_viewStack.Count > 0) {
                 var view = _viewStack.Peek();
-                view.Show();
-                _viewStack.Pop();
+                if(view != null) {
+                    view.Hide();
+                    _viewStack.Pop();
+                }
             }
-            else if (_viewStack.Count == 1) {
-                UIEvents.CloseComputerEvnet?.Invoke();
-                SceneManager.LoadScene("SY");
+        }
+        private void ShowView(UIView newView, bool offPreview = false) {
+            if (offPreview) { // 이전뷰 끄기
+                ShowPreviewEvent();
+            }
+            if(newView != null) {
+                _viewStack.Push(newView);
+                var view = _viewStack.Peek();
+                if (view != null) {
+                    view.Show();
+                }
             }
         }
 
@@ -70,25 +75,9 @@ namespace AH.UI {
 
             _allViews.Add(_computerView);
             _allViews.Add(_settingView);
-
-            _settingView.Show();
-        }
-
-        private void ChangeShowView(UIView newView) {
-            if (_currentView != null) {
-                _currentView.Hide();
-            }
-
-            _previousView = _currentView;
-            _currentView = newView;
-
-            if (_currentView != null) {
-                _currentView.Show();
-            }
         }
 
         private void RegisterToEvents() { }
-
         private void UnRegisterToEvents() { }
     }
 }

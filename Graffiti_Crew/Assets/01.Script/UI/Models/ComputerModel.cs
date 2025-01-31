@@ -1,8 +1,6 @@
 using AH.Map;
 using AH.UI.Data;
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace AH.UI.Models {
     public class ComputerModel : Model {
@@ -17,6 +15,9 @@ namespace AH.UI.Models {
         [Header("Map")]
         [SerializeField] private LoadStageSO _loadStageSO;
 
+        [Header("Input")]
+        [SerializeField] private InputReaderSO _inputReaderSO;
+
         public CrewSO GetCrew() {
             return crew;
         }
@@ -28,6 +29,9 @@ namespace AH.UI.Models {
         }
         public ProductCategorySO GetCategory() {
             return _categorySO;
+        }
+        public InputReaderSO GetInputReader() {
+            return _inputReaderSO;
         }
 
         public void SetMemderImg(int index, Sprite sprite) {

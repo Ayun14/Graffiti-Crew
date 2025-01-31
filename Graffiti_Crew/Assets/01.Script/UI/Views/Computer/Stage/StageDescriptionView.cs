@@ -1,7 +1,6 @@
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
-using Unity.Properties;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -63,7 +62,7 @@ namespace AH.UI.Views {
 
         private void ClickSelectFirend(ClickEvent evt, int index) {
             _selectFriendView.CurrentBtnIndex = index;
-            _selectFriendView.Show();
+            ComputerView.ShowView(_selectFriendView);
         }
     }
 }

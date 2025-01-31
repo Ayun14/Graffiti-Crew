@@ -8,7 +8,8 @@ using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
     public class ComputerView : UIView {
-        private List<UIView> _computerViews = new List<UIView>();
+        private static ComputerView Instance;
+        private ComputerViewModel ComputerViewModel;
 
         private SelectStageView _selectStageView;
         private StoreView _storeView;
@@ -17,83 +18,71 @@ namespace AH.UI.Views {
         private const string _storeViewName = "SelectStageView";
 
         private InputReaderSO _inputReaderSO;
-        private Stack<UIView> _viewStack;
+        private Stack<UIView> _viewStack = new Stack<UIView>();
+        private List<UIView> _computerViews = new List<UIView>();
 
-        private ComputerViewModel ComputerViewModel;
-
-        // 지울거
-        private TextField _nameField;
-        private Button _btn;
-        private Label _displayLabel;
-
+        // ui
         private Button _storeBtn;
         private Button _stageBtn;
 
-        // IDisposable로 구독 관리
-        private IDisposable _displayMessageSubscription;
 
         public ComputerView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+            Instance = this;
         }
 
         public override void Initialize() {
-            _inputReaderSO.OnCancleEvent += CancelEvent;
             ComputerViewModel = viewModel as ComputerViewModel;
+            _inputReaderSO = ComputerViewModel.GetInputReader();
 
             base.Initialize();
             SetupViews();
         }
-        private void CancelEvent() {
-            if (_viewStack.Count > 1) {
+        private void ShowPreviewEvent() {
+            if (_viewStack.Count > 0) {
                 var view = _viewStack.Peek();
-                view.Show();
-                _viewStack.Pop();
+                if (view != null) {
+                    view.Hide();
+                    _viewStack.Pop();
+                }
             }
-            else if (_viewStack.Count == 1) {
+            else if (_viewStack.Count == 0) {
+                _viewStack.Clear();
                 UIEvents.CloseComputerEvnet?.Invoke();
                 SceneManager.LoadScene("SY");
+            }
+        }
+        public static void ShowView(UIView newView, bool offPreview = false) {
+            if (offPreview) { // 이전뷰 끄기
+                Instance.ShowPreviewEvent();
+            }
+            if (newView != null) {
+                Instance._viewStack.Push(newView);
+                var view = Instance._viewStack.Peek();
+                if (view != null) {
+                    view.Show();
+                }
             }
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _storeBtn = topElement.Q<Button>("store-btn");
             _stageBtn = topElement.Q<Button>("stage-btn");
-
-            // 지울거
-            //_nameField = topElement.Q<TextField>("name-TextField");
-            //_btn = topElement.Q<Button>("btn");
-            //_displayLabel = topElement.Q<Label>("display-label");
         }
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             _storeBtn.RegisterCallback<ClickEvent>(CllickStoreBtn);
             _stageBtn.RegisterCallback<ClickEvent>(CllickStageBtn);
-
-            // 지울거
-            // ReactiveProperty 구독
-            //_displayMessageSubscription = ComputerViewModel.FriendImg
-            //    .AsObservable() // AsObservable()를 사용하여 명시적으로 Observable로 변환
-            //    .Subscribe(message => {
-            //        _displayLabel.text = message;
-            //    });
-
-            // 버튼 클릭 이벤트 등록
-            //_btn.RegisterCallback<ClickEvent>(ClickBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-
-            // 구독 해제
-            _inputReaderSO.OnCancleEvent -= CancelEvent;
-            _displayMessageSubscription?.Dispose();
-
         }
 
         private void CllickStoreBtn(ClickEvent evt) {
-            _storeView.Show();
+            ShowView(_storeView);
         }
         private void CllickStageBtn(ClickEvent evt) {
-            _selectStageView.Show();
+            ShowView(_selectStageView);
         }
         private void SetupViews() {
             _selectStageView = new SelectStageView(topElement.Q<VisualElement>(_storeViewName), ComputerViewModel);
@@ -101,6 +90,15 @@ namespace AH.UI.Views {
 
             _computerViews.Add(_selectStageView);
             _computerViews.Add(_storeView);
+        }
+
+        public override void Show() {
+            _inputReaderSO.OnCancleEvent += ShowPreviewEvent;
+            base.Show();
+        }
+        public override void Hide() {
+            _inputReaderSO.OnCancleEvent -= ShowPreviewEvent;
+            base.Hide();
         }
     }
 }

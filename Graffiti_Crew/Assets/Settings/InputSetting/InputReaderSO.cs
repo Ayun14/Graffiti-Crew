@@ -7,7 +7,8 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
     public event Action OnCancleEvent;
 
     private InputActions _inputAction;
-
+    private void Awake() {
+    }
     private void OnEnable() {
         if (_inputAction == null) {
             _inputAction = new InputActions();
@@ -16,7 +17,9 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
         _inputAction.UI.Enable();
     }
     public void OnCancel(InputAction.CallbackContext context) { // esc누르면 호출
-        OnCancleEvent?.Invoke();
+        if (context.performed) {
+            OnCancleEvent?.Invoke();
+        }
     }
     #region Hide
     public void OnClick(InputAction.CallbackContext context) {
@@ -45,6 +48,6 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
     }
     public void OnTrackedDevicePosition(InputAction.CallbackContext context) {
 
-    } 
+    }
     #endregion
 }

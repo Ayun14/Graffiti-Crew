@@ -47,7 +47,7 @@ namespace AH.UI.Views {
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             // 본인 텍스트에 적힌 이름을 바탕으로 맵 스폰해주면 될 듯
             ComputerViewModel.SetStageData($"Chapter{data.chapter}", $"Stage{data.stage}");
-            _stageDescriptionView.Show();
+            ComputerView.ShowView(_stageDescriptionView);
         }
     }
 }
