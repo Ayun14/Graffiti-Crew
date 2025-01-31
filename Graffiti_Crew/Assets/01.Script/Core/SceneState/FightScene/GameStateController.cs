@@ -20,6 +20,9 @@ public class GameStateController : Subject
     [SerializeField] private GameState gameState = GameState.None;
     public GameState GameState => gameState;
 
+    private bool _isBlind = false;
+    public bool IsBlind => _isBlind;
+
     private void Start()
     {
         NotifyObservers();
@@ -38,6 +41,8 @@ public class GameStateController : Subject
     {
         OnBlindEvent?.Invoke();
     }
+
+    public void SetIsBlind(bool isBlind) => _isBlind = isBlind;
 
     public void InvokeRivalCheckEvent()
     {

@@ -1,8 +1,8 @@
-using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
@@ -16,7 +16,6 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _blindPanel;
     private FoodImage _foodImage;
     private Material _blindMat;
-    private bool _isBlind = false;
 
     // StepValue Sin Graph
     private float _frequency = 0.1f; // аж╠Б
@@ -92,7 +91,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void ChangeBlindStepValue()
     {
-        if (_isBlind)
+        if (mySubject.IsBlind)
         {
             _elapsedTime += Time.deltaTime;
 
@@ -122,7 +121,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _spraySliderPanel.gameObject.SetActive(isFight);
             _comboSliderPanel.gameObject.SetActive(isFight);
 
-            if (isFinish && _isBlind)
+            if (isFinish && mySubject.IsBlind)
                 StartBlindRoutine(false);
             else
                 _blindPanel.gameObject.SetActive(isFight);
@@ -140,6 +139,26 @@ public class FightSceneUIController : Observer<GameStateController>
         for (int i = 3; i > 0; --i)
         {
             _countDownText.text = i.ToString();
+
+            // Position
+            _countDownText.rectTransform.localPosition = new Vector3(0, -100f, 0);
+
+            Sequence posSequence = DOTween.Sequence();
+            posSequence.Append(_countDownText.rectTransform.DOAnchorPosY(0f, 0.3f))
+                    .AppendInterval(0.4f)
+                    .Append(_countDownText.rectTransform.DOAnchorPosY(100f, 0.3f));
+
+            // Alpha
+            Color color = _countDownText.color;
+            color.a = 0f;
+            _countDownText.color = color;
+
+            Sequence alphaSequence = DOTween.Sequence();
+            alphaSequence.Append(_countDownText.DOFade(1f, 0.3f))
+                    .AppendInterval(0.4f)
+                    .Append(_countDownText.DOFade(0f, 0.3f));
+
+
             yield return new WaitForSeconds(1f);
         }
 
@@ -159,8 +178,6 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void BlindEventHandle()
     {
-        if (_isBlind) return;
-
         StartBlindRoutine(true);
     }
 
@@ -172,7 +189,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator OnBlindRoutine()
     {
-        _isBlind = true;
+        mySubject.SetIsBlind(true);
 
         bool isEgg = Random.Range(0, 2) == 0 ? true : false;
         // Sprite
@@ -231,7 +248,7 @@ public class FightSceneUIController : Observer<GameStateController>
         if (isFinish)
             _blindPanel.gameObject.SetActive(false);
 
-        _isBlind = false;
+        mySubject.SetIsBlind(false);
     }
 
     #endregion

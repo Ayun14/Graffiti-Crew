@@ -83,9 +83,9 @@ public class SprayController : MonoBehaviour
         if (_shakeAmountSlider == null) return;
 
         float targetValue = _shakeAmountSlider.value + value;
-        DOTween.To(() => _shakeAmountSlider.value, 
+        DOTween.To(() => _shakeAmountSlider.value,
             x => _shakeAmountSlider.value = x, targetValue, 0.5f);
-        
+
     }
 
     private void ShakeInput()
