@@ -87,8 +87,13 @@ public class LongNode : Node, INodeAction
 
         if (strightPoints.Count > 0)
         {
-            _startPointRenderer.transform.position = strightPoints[0];
-            _endPointRenderer.transform.position = strightPoints[strightPoints.Count - 1];
+            _startPointRenderer.transform.position = 
+                new Vector3(strightPoints[0].x, strightPoints[0].y, _startPointRenderer.transform.position.z);
+            
+            _endPointRenderer.transform.position = 
+                new Vector3(strightPoints[strightPoints.Count - 1].x, 
+                strightPoints[strightPoints.Count - 1].y, 
+                _endPointRenderer.transform.position.z);
         }
 
         return strightPoints;
@@ -123,8 +128,13 @@ public class LongNode : Node, INodeAction
             }
         }
 
-        _startPointRenderer.transform.position = curvePoints[0];
-        _endPointRenderer.transform.position = curvePoints[curvePoints.Count - 1];
+        _startPointRenderer.transform.position =
+            new Vector3(curvePoints[0].x, curvePoints[0].y, _startPointRenderer.transform.position.z);
+
+        _endPointRenderer.transform.position =
+            new Vector3(curvePoints[curvePoints.Count - 1].x,
+            curvePoints[curvePoints.Count - 1].y,
+            _endPointRenderer.transform.position.z);
 
         return curvePoints;
     }
@@ -139,7 +149,9 @@ public class LongNode : Node, INodeAction
             // 자연스럽게 이어지게 보이게 하기 위해 포인트들을현재의 마지막 포인트 위치로
             for (int j = i; j < points.Count; ++j)
                 _lineRenderer.SetPosition(j, points[i]);
-            _endPointRenderer.transform.position = points[i];
+
+            _endPointRenderer.transform.position = new Vector3(points[i].x, points[i].y, 
+                _endPointRenderer.transform.position.z);
 
             yield return new WaitForSeconds(waitTime);
         }

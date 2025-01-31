@@ -18,7 +18,13 @@ public class StageDataSO : ScriptableObject
     public GameObject mapPrefab;
 
     [Header("Dialogue")]
-    public DialogueDataReader dialogueData; 
+    public DialogueDataReader dialogueData;
+
+    [Header("Stage Star Setting")]
+    public StageResultSO stageResult;
+    public int minCombo;
+    public int maxNodeFalse;
+    public int mindrawingTime;
 
     [Header("Bool")]
     public bool isClearStage = false;
