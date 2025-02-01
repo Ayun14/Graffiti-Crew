@@ -1,11 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class NodeJudgement : Observer<GameStateController>, INeedLoding
 {
     public event Action OnNodeSpawnStart;
+
+    [Header("Player")]
+    [SerializeField] private SliderValueSO _playerSliderValueSO;
+    private int _nodeCnt => _nodeDatas.Count;
+    private int _clearNodeCnt = 0;
 
     [Header("Spray")]
     [SerializeField] private int _sprayAmount;
@@ -51,6 +57,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _comboController = GetComponentInChildren<ComboController>();
 
         _currentNode = null;
+        _clearNodeCnt = 0;
+
+        _playerSliderValueSO.value = 0;
     }
 
     private void Update()
@@ -116,6 +125,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         // NodeClear
         if (node == _currentNode)
         {
+            // Player Slider Update
+            _playerSliderValueSO.value = ++_clearNodeCnt / _nodeCnt;
+
             // Spawn
             NodeSpawnJudgement();
 
@@ -150,6 +162,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         if (node == null) return;
 
+        // Combo
         _comboController.SuccessCombo();
     }
 

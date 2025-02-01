@@ -2499,6 +2499,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660360910}
   m_CullTransparentMesh: 1
+--- !u!1 &683574961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 683574962}
+  - component: {fileID: 683574963}
+  m_Layer: 0
+  m_Name: PlayerController | Observer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &683574962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683574961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &683574963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683574961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f112e6313fb5c9049a3a1f890a241565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &734903702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,6 +2975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719da138677fb224ca5732a2a7f1598d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSliderValueSO: {fileID: 0}
   _sprayAmount: 70
   _shakeAmount: 70
   _whatIsNode:
@@ -4954,6 +4999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e036fb8aeb7b67542ba4351b0db1cdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rivalSliderValueSO: {fileID: 11400000, guid: 628ec643260b84449beba64273f55cbd, type: 2}
 --- !u!1 &1789434604
 GameObject:
   m_ObjectHideFlags: 0
@@ -5413,6 +5459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _spraySliderValueSO: {fileID: 11400000, guid: 5eedf69875bf0844d9d80327b6183294, type: 2}
   _sprayAddAmount: 3
   _shakeThreshold: 5
   _shakeCountThreshold: 3
@@ -5677,5 +5725,6 @@ SceneRoots:
   - {fileID: 466866086}
   - {fileID: 78990494}
   - {fileID: 1858405859}
+  - {fileID: 683574962}
   - {fileID: 1714822142}
   - {fileID: 55859129}
