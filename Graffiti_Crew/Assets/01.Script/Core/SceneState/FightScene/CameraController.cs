@@ -7,26 +7,37 @@ public class CameraController : Observer<GameStateController>
     [Header("Values")]
     [SerializeField] private float _shakeForce = 1f;
 
+    // Fight
     private CinemachineCamera _graffitiCamera;
     private CinemachineImpulseSource _impulseSource;
 
+    // Result
     private CinemachineCamera _resultCamera;
+
+    // SprayBox
+    private CinemachineCamera _sprayBoxCamera;
 
     private void Awake()
     {
         Attach();
 
         mySubject.OnBlindEvent += BlindEventHandle;
+        mySubject.OnSprayEmptyEvent += SprayEmptyEventHandle;
+        mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
 
         _graffitiCamera = transform.Find("Camera_Graffiti").GetComponent<CinemachineCamera>();
         _impulseSource = _graffitiCamera.GetComponent<CinemachineImpulseSource>();
 
         _resultCamera = transform.Find("Camera_Result").GetComponent<CinemachineCamera>();
+
+        _sprayBoxCamera = transform.Find("Camera_SprayBox").GetComponent<CinemachineCamera>();
     }
 
     private void OnDestroy()
     {
         mySubject.OnBlindEvent -= BlindEventHandle;
+        mySubject.OnSprayEmptyEvent -= SprayEmptyEventHandle;
+        mySubject.OnSprayChangeEvent -= SprayChangeEventHandle;
 
         Detach();
     }
@@ -62,5 +73,17 @@ public class CameraController : Observer<GameStateController>
                 transform.DORotate(startRotation, 0.25f) // 원래 각도로 돌아감
                     .SetEase(Ease.InOutSine);
             });
+    }
+
+    private void SprayEmptyEventHandle()
+    {
+        // 카메라가 상자를 쳐다보게
+
+        _sprayBoxCamera.Priority.Value = 2;
+    }
+
+    private void SprayChangeEventHandle()
+    {
+        _sprayBoxCamera.Priority.Value = 0;
     }
 }

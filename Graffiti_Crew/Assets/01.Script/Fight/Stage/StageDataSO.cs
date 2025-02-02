@@ -11,7 +11,7 @@ public class StageDataSO : ScriptableObject
 
     [Header("Rival")]
     public Sprite rivalGraffiti;
-    public int clearTime; // 초 단위
+    public int rivalClearTime; // 초 단위
     public GameObject rivalPrefab;
 
     [Header("Map")]
