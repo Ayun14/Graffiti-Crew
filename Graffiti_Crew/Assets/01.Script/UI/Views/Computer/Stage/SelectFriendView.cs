@@ -1,8 +1,5 @@
 using AH.UI.ViewModels;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,7 +18,7 @@ namespace AH.UI.Views {
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
-            _profileAsset = Resources.Load<VisualTreeAsset>("UI/Profile/CrewMemberProfile");
+            _profileAsset = Resources.Load<VisualTreeAsset>("UI/Stage/CrewMemberProfile");
             base.Initialize();
         }
         protected override void SetVisualElements() {

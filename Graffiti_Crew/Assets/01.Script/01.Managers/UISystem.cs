@@ -32,7 +32,7 @@ namespace AH.UI {
             RegisterToEvents();
 
             // Start with the home screen
-            ShowView(_fightView);
+            ShowView(_computerView);
         }
         
         void OnDisable() {

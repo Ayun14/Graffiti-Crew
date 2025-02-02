@@ -1,5 +1,6 @@
 using AH.UI.Data;
 using AH.UI.Models;
+using System;
 using UnityEngine;
 
 namespace AH.UI.ViewModels {
@@ -21,7 +22,7 @@ namespace AH.UI.ViewModels {
         public ProductDescriptionSO GetProductDescription() {
             return _model.GetProductDescription();
         }
-        public ProductCategorySO GetCategory() {
+        public CategoryListSO GetCategory() {
             return _model.GetCategory();
         }
         public InputReaderSO GetInputReader() {
@@ -38,11 +39,18 @@ namespace AH.UI.ViewModels {
             _model.SetMemderImg(btnIndex, image);
             UpdateDisplay(friendIndex);
         }
+        public void SetSelectProduct(int categoryIndex, int index) {
+            _model.SetSelectProduct(categoryIndex, index);
+        }
+        public void ClearSelectProductData() {
+            _model.ClearSelectProductData();
+        }
         private void UpdateDisplay(int friendIndex) {
             //Friend1Img.Value = _model.GetFriendData(friendIndex);
         }
         public void SetStageData(string chapter, string stage) {
             _model.SetStage(chapter, stage);
         }
+
     }
 }
