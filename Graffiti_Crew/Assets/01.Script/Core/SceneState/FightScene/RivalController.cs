@@ -47,7 +47,6 @@ public class RivalController : Observer<GameStateController>, INeedLoding
 
         _currentTime += Time.deltaTime;
         _rivalSliderValueSO.value = _currentTime / _rivalDrawingTime;
-        Debug.Log(_rivalSliderValueSO.value);
     }
 
     public override void NotifyHandle()

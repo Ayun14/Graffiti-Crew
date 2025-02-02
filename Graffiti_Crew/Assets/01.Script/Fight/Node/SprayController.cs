@@ -152,15 +152,30 @@ public class SprayController : MonoBehaviour
 
     public void AddSprayAmount(float value)
     {
-        if (_spraySliderValueSO == null) return;
+        // So 버전
+        //if (_spraySliderValueSO == null) return;
 
-        float targetValue = _spraySliderValueSO.value + value;
-        DOTween.To(() => _spraySliderValueSO.value,
-            x => _spraySliderValueSO.value = x, targetValue, 0.5f);
+        //float targetValue = _spraySliderValueSO.value + value;
+        //DOTween.To(() => _spraySliderValueSO.value,
+        //    x => _spraySliderValueSO.value = x, targetValue, 0.5f);
 
-        if (_spraySliderValueSO.value < 0f)
+        //if (_spraySliderValueSO.value < 0f)
+        //{
+        //    Debug.LogWarning("Spray 모두 소진");
+        //    _judgement.SprayChangeEvent();
+        //}
+
+        // 원래 버전
+        if (_sprayAmountSlider == null) return;
+
+        float targetValue = _sprayAmountSlider.value + value;
+        DOTween.To(() => _sprayAmountSlider.value,
+            x => _sprayAmountSlider.value = x, targetValue, 0.5f);
+
+        // Spray Empty
+        if (targetValue <= 0f)
         {
-            Debug.LogWarning("Spray 모두 소진");
+            _judgement.SprayEmptyEvent();
         }
     }
 

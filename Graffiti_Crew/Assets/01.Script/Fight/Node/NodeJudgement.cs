@@ -46,7 +46,21 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         Attach();
 
+        mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
+
         Init();
+    }
+
+    private void Update()
+    {
+        NodeClickInput();
+    }
+
+    private void OnDestroy()
+    {
+        mySubject.OnSprayChangeEvent -= SprayChangeEventHandle;
+
+        Detach();
     }
 
     private void Init()
@@ -60,16 +74,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _clearNodeCnt = 0;
 
         _playerSliderValueSO.value = 0;
-    }
-
-    private void Update()
-    {
-        NodeClickInput();
-    }
-
-    private void OnDestroy()
-    {
-        Detach();
     }
 
     public override void NotifyHandle()
@@ -86,9 +90,11 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         }
     }
 
+    #region Input
+
     private void NodeClickInput()
     {
-        if (_sprayController.isSprayNone || _sprayController.isMustShakeSpray) return;
+        if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -117,6 +123,10 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             actionNode.NodeStartAction();
         }
     }
+
+    #endregion
+
+    #region Node Clear
 
     public void CheckNodeClear(Node node)
     {
@@ -148,15 +158,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         mySubject.ChangeGameState(GameState.Finish);
     }
 
-    public void AddShakeSliderAmount(float value)
-    {
-        _sprayController.AddShakeAmount(value);
-    }
+    #endregion
 
-    public void AddSpraySliderAmount(float value)
-    {
-        _sprayController.AddSprayAmount(value);
-    }
+    #region Combo
 
     public void NodeSuccess(Node node)
     {
@@ -181,4 +185,33 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
         _comboController.FailCombo();
     }
+
+    #endregion
+
+    #region Spray Event
+
+    public void AddShakeSliderAmount(float value)
+    {
+        _sprayController.AddShakeAmount(value);
+    }
+
+    public void AddSpraySliderAmount(float value)
+    {
+        _sprayController.AddSprayAmount(value);
+    }
+
+    public void SprayEmptyEvent()
+    {
+        if (mySubject.IsSprayEmpty) return;
+
+        mySubject.SetIsSprayEmpty(true);
+        mySubject?.InvokeSprayEmptyEvent();
+    }
+
+    private void SprayChangeEventHandle()
+    {
+        AddSpraySliderAmount(_sprayAmount);
+    }
+
+    #endregion
 }
