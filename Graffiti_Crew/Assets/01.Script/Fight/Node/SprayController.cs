@@ -10,7 +10,11 @@ public class SprayController : MonoBehaviour
     public bool isMustShakeSpray => _sprayAmountSlider.value == 0f;
     public bool isSprayNone => _shakeAmountSlider.value == 0f;
 
+    [Header("Shake")]
+    [SerializeField] private SliderValueSO _shakeSliderValueSO;
+
     [Header("Spray")]
+    [SerializeField] private SliderValueSO _spraySliderValueSO;
     [SerializeField] private float _sprayAddAmount;
 
     #region Shake Settings
@@ -45,6 +49,7 @@ public class SprayController : MonoBehaviour
 
         if (_sprayAmountSlider != null && _shakeAmountSlider != null)
         {
+            // ToDo 아윤 : slider max값 바꾸는거 아름이 껄로 연결하기
             // Spray
             _sprayAmountSlider.maxValue = sprayAmount;
             _sprayAmountSlider.value = sprayAmount;
@@ -52,6 +57,7 @@ public class SprayController : MonoBehaviour
             // Shake
             _shakeAmountSlider.maxValue = shakeAmount;
             _shakeAmountSlider.value = shakeAmount;
+            // ----------------------
         }
 
         ResetShakeDetection();
@@ -80,11 +86,11 @@ public class SprayController : MonoBehaviour
 
     public void AddShakeAmount(float value)
     {
-        if (_shakeAmountSlider == null) return;
+        if (_shakeSliderValueSO == null) return;
 
-        float targetValue = _shakeAmountSlider.value + value;
-        DOTween.To(() => _shakeAmountSlider.value,
-            x => _shakeAmountSlider.value = x, targetValue, 0.5f);
+        float targetValue = _shakeSliderValueSO.value + value;
+        DOTween.To(() => _shakeSliderValueSO.value,
+            x => _shakeSliderValueSO.value = x, targetValue, 0.5f);
 
     }
 
@@ -146,15 +152,30 @@ public class SprayController : MonoBehaviour
 
     public void AddSprayAmount(float value)
     {
+        // So 버전
+        //if (_spraySliderValueSO == null) return;
+
+        //float targetValue = _spraySliderValueSO.value + value;
+        //DOTween.To(() => _spraySliderValueSO.value,
+        //    x => _spraySliderValueSO.value = x, targetValue, 0.5f);
+
+        //if (_spraySliderValueSO.value < 0f)
+        //{
+        //    Debug.LogWarning("Spray 모두 소진");
+        //    _judgement.SprayChangeEvent();
+        //}
+
+        // 원래 버전
         if (_sprayAmountSlider == null) return;
 
         float targetValue = _sprayAmountSlider.value + value;
         DOTween.To(() => _sprayAmountSlider.value,
             x => _sprayAmountSlider.value = x, targetValue, 0.5f);
 
-        if (_sprayAmountSlider.value < 0f)
+        // Spray Empty
+        if (targetValue <= 0f)
         {
-            Debug.LogWarning("Spray 모두 소진");
+            _judgement.SprayEmptyEvent();
         }
     }
 

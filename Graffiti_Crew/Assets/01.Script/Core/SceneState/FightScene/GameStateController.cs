@@ -16,12 +16,17 @@ public class GameStateController : Subject
 {
     public Action OnBlindEvent;
     public Action OnRivalCheckEvent; // 라이벌의 견제
+    public Action OnSprayEmptyEvent; // 스프레이 모두 소모
+    public Action OnSprayChangeEvent; // 스프레이 갈기 성공
 
     [SerializeField] private GameState gameState = GameState.None;
     public GameState GameState => gameState;
 
     private bool _isBlind = false;
     public bool IsBlind => _isBlind;
+
+    private bool _isSprayEmpty = false;
+    public bool IsSprayEmpty => _isSprayEmpty;
 
     private void Start()
     {
@@ -47,5 +52,16 @@ public class GameStateController : Subject
     public void InvokeRivalCheckEvent()
     {
         OnRivalCheckEvent?.Invoke();
+    }
+
+    public void InvokeSprayEmptyEvent()
+    {
+        OnSprayEmptyEvent?.Invoke();
+    }
+    public void SetIsSprayEmpty(bool isSprayEmpty) => _isSprayEmpty = isSprayEmpty;
+
+    public void InvokeSprayChangeEvent()
+    {
+        OnSprayChangeEvent?.Invoke();
     }
 }

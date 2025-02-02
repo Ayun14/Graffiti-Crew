@@ -1,11 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class NodeJudgement : Observer<GameStateController>, INeedLoding
 {
     public event Action OnNodeSpawnStart;
+
+    [Header("Player")]
+    [SerializeField] private SliderValueSO _playerSliderValueSO;
+    private int _nodeCnt => _nodeDatas.Count;
+    private int _clearNodeCnt = 0;
 
     [Header("Spray")]
     [SerializeField] private int _sprayAmount;
@@ -40,7 +46,21 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         Attach();
 
+        mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
+
         Init();
+    }
+
+    private void Update()
+    {
+        NodeClickInput();
+    }
+
+    private void OnDestroy()
+    {
+        mySubject.OnSprayChangeEvent -= SprayChangeEventHandle;
+
+        Detach();
     }
 
     private void Init()
@@ -51,16 +71,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _comboController = GetComponentInChildren<ComboController>();
 
         _currentNode = null;
-    }
+        _clearNodeCnt = 0;
 
-    private void Update()
-    {
-        NodeClickInput();
-    }
-
-    private void OnDestroy()
-    {
-        Detach();
+        _playerSliderValueSO.value = 0;
     }
 
     public override void NotifyHandle()
@@ -77,9 +90,11 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         }
     }
 
+    #region Input
+
     private void NodeClickInput()
     {
-        if (_sprayController.isSprayNone || _sprayController.isMustShakeSpray) return;
+        if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -109,6 +124,10 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         }
     }
 
+    #endregion
+
+    #region Node Clear
+
     public void CheckNodeClear(Node node)
     {
         if (node == null || _currentNode == null) return;
@@ -116,6 +135,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         // NodeClear
         if (node == _currentNode)
         {
+            // Player Slider Update
+            _playerSliderValueSO.value = ++_clearNodeCnt / _nodeCnt;
+
             // Spawn
             NodeSpawnJudgement();
 
@@ -136,20 +158,15 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         mySubject.ChangeGameState(GameState.Finish);
     }
 
-    public void AddShakeSliderAmount(float value)
-    {
-        _sprayController.AddShakeAmount(value);
-    }
+    #endregion
 
-    public void AddSpraySliderAmount(float value)
-    {
-        _sprayController.AddSprayAmount(value);
-    }
+    #region Combo
 
     public void NodeSuccess(Node node)
     {
         if (node == null) return;
 
+        // Combo
         _comboController.SuccessCombo();
     }
 
@@ -168,4 +185,33 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
         _comboController.FailCombo();
     }
+
+    #endregion
+
+    #region Spray Event
+
+    public void AddShakeSliderAmount(float value)
+    {
+        _sprayController.AddShakeAmount(value);
+    }
+
+    public void AddSpraySliderAmount(float value)
+    {
+        _sprayController.AddSprayAmount(value);
+    }
+
+    public void SprayEmptyEvent()
+    {
+        if (mySubject.IsSprayEmpty) return;
+
+        mySubject.SetIsSprayEmpty(true);
+        mySubject?.InvokeSprayEmptyEvent();
+    }
+
+    private void SprayChangeEventHandle()
+    {
+        AddSpraySliderAmount(_sprayAmount);
+    }
+
+    #endregion
 }
