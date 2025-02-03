@@ -1,10 +1,7 @@
 using AH.UI.Events;
-using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -19,6 +16,14 @@ namespace AH.UI {
             Init();
             SetupViews();
         }
+        protected override void OnEnable() {
+            base.OnEnable();
+            FightEvent.SetActiveFightViewEvent += SetActiveFightView;
+        }
+        protected override void OnDisable() {
+            base.OnDisable();
+            FightEvent.SetActiveFightViewEvent -= SetActiveFightView;
+        }
 
         private void Init() {
             _uiDocument = GetComponent<UIDocument>();
@@ -30,6 +35,15 @@ namespace AH.UI {
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
             
             _fightView.Show();
+        }
+
+        private void SetActiveFightView(bool active) {
+            if (active) {
+                _fightView.Show();
+            }
+            else {
+                _fightView.Hide();
+            }
         }
     }
 }
