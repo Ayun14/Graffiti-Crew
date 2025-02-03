@@ -22,6 +22,7 @@ public class StageDataSO : ScriptableObject
 
     [Header("Stage Star Setting")]
     public StageResultSO stageResult;
+    public StageSaveDataSO stageSaveData;
     public int minCombo;
     public int maxNodeFalse;
     public int mindrawingTime;

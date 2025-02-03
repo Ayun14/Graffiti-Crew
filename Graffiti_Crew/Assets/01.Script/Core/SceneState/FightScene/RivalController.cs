@@ -25,7 +25,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         _graffitiRenderer = GetComponentInChildren<SpriteRenderer>();
         _graffitiRenderer.sprite = null;
 
-        _rivalSliderValueSO.value = 0;
+        _rivalSliderValueSO.value = _rivalSliderValueSO.min;
 
         _isFight = false;
         _currentTime = 0;
@@ -43,10 +43,15 @@ public class RivalController : Observer<GameStateController>, INeedLoding
 
     private void RivalProgressSliderUpdate()
     {
-        if (_isFight) return;
+        if (!_isFight) return;
 
-        _currentTime += Time.deltaTime;
-        _rivalSliderValueSO.value = _currentTime / _rivalDrawingTime;
+        if (_rivalDrawingTime >= _currentTime)
+        {
+            _currentTime += Time.deltaTime;
+
+            float percent = _currentTime / _rivalDrawingTime;
+            _rivalSliderValueSO.value = _rivalSliderValueSO.max * percent;
+        }
     }
 
     public override void NotifyHandle()

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,10 +11,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     [SerializeField] private SliderValueSO _playerSliderValueSO;
     private int _nodeCnt => _nodeDatas.Count;
     private int _clearNodeCnt = 0;
-
-    [Header("Spray")]
-    [SerializeField] private int _sprayAmount;
-    [SerializeField] private int _shakeAmount;
 
     // Graffiti
     private Sprite _startSprite;
@@ -73,7 +68,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _currentNode = null;
         _clearNodeCnt = 0;
 
-        _playerSliderValueSO.value = 0;
+        _playerSliderValueSO.value = _playerSliderValueSO.min;
     }
 
     public override void NotifyHandle()
@@ -83,7 +78,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             // Init
             _nodeSpawner.Init(this, _nodeDatas);
             _graffitiRenderer.Init(this, _startSprite);
-            _sprayController.Init(this, _sprayAmount, _shakeAmount);
+            _sprayController.Init(this);
             _comboController.Init(this);
 
             NodeSpawnJudgement();
@@ -136,7 +131,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         if (node == _currentNode)
         {
             // Player Slider Update
-            _playerSliderValueSO.value = ++_clearNodeCnt / _nodeCnt;
+            float percent = ++_clearNodeCnt / (float)_nodeCnt;
+            _playerSliderValueSO.value = _playerSliderValueSO.max * percent;
 
             // Spawn
             NodeSpawnJudgement();
@@ -210,7 +206,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     private void SprayChangeEventHandle()
     {
-        AddSpraySliderAmount(_sprayAmount);
+        _sprayController.SprayChange();
     }
 
     #endregion

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using AH.UI.Events;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
@@ -118,7 +119,8 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            _spraySliderPanel.gameObject.SetActive(isFight);
+            FightEvent.SetActiveFightViewEvent(isFight);
+            //_spraySliderPanel.gameObject.SetActive(isFight);
             _comboSliderPanel.gameObject.SetActive(isFight);
 
             if (isFinish && mySubject.IsBlind)

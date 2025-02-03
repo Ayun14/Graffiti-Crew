@@ -7,8 +7,8 @@ public class StageSaveDataSO : SaveDataSO {
     public bool isClear;
     public int star;
 
-    private bool _defaultIsClearData;
-    private int _defaultStarData;
+    private bool _defaultIsClearData = false;
+    private int _defaultStarData = 0;
 
     private void Awake() {
         _defaultIsClearData = isClear;

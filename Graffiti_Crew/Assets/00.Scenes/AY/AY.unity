@@ -331,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &13326231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 300}
+  m_AnchoredPosition: {x: -110, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &69935399
@@ -1881,7 +1881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348045541}
   m_Layer: 0
-  m_Name: ----------------------------------  (1)
+  m_Name: '---------------------------------- '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2330,7 +2330,7 @@ RectTransform:
   m_Father: {fileID: 1525710518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3102,7 +3102,7 @@ RectTransform:
   m_Father: {fileID: 157481332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3300,8 +3300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSliderValueSO: {fileID: 11400000, guid: d58bdf07d45f4934fb995998a082f09f, type: 2}
-  _sprayAmount: 2
-  _shakeAmount: 70
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 512
@@ -4127,7 +4125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 350}
+  m_AnchoredPosition: {x: -110, y: 300}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139888998
@@ -6201,6 +6199,8 @@ SceneRoots:
   - {fileID: 1665472160}
   - {fileID: 45490016}
   - {fileID: 1102590749}
+  - {fileID: 348045541}
+  - {fileID: 952709486}
   - {fileID: 1678951448}
   - {fileID: 873186866}
   - {fileID: 57160587}
@@ -6211,5 +6211,3 @@ SceneRoots:
   - {fileID: 683574962}
   - {fileID: 1714822142}
   - {fileID: 1407032216}
-  - {fileID: 348045541}
-  - {fileID: 952709486}
