@@ -7,7 +7,8 @@ namespace AH.SaveSystem {
         Int,
         String,
         Float,
-        Texture
+        Texture,
+        Stage
     }
     public abstract class SaveDataSO : ScriptableObject
     {
@@ -21,7 +22,6 @@ namespace AH.SaveSystem {
         public abstract void ResetData();
 #if UNITY_EDITOR
         protected virtual void OnValidate() {
-            //string path = AssetDatabase.GetAssetPath(this);
             ID = this.GetInstanceID();
         }
 #endif
