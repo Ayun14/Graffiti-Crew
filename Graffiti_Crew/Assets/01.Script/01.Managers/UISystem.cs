@@ -7,9 +7,10 @@ using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class UISystem : MonoBehaviour {
+        private static UISystem Instance;
         private UIDocument _uiDocument;
 
-        private ComputerView _computerView; // 이거 여기서 안쓸 것 같음
+        //private ComputerView _computerView; // 이거 여기서 안쓸 것 같음
         private SettingView _settingView;
         private FightView _fightView;
 
@@ -23,7 +24,20 @@ namespace AH.UI {
         private ComputerViewModel _computerViewModel;
 
         private void Awake() {
+            //Init();
+            Instance = this;
             //_inputReaderSO.OnCancleEvent += ShowPreviewEvent;
+        }
+        public void Init() {
+            GameObject root = GameObject.Find("UIManager");
+            if (root == null) {
+                root = new GameObject { name = "UIManager" };
+                root.AddComponent<UISystem>();
+                DontDestroyOnLoad(root);
+            }
+            else {
+                DontDestroyOnLoad(root);
+            }
         }
         void OnEnable() {
             _uiDocument = GetComponent<UIDocument>();
@@ -32,7 +46,7 @@ namespace AH.UI {
             RegisterToEvents();
 
             // Start with the home screen
-            ShowView(_computerView);
+            //ShowView(_computerView);
         }
         
         void OnDisable() {
@@ -53,17 +67,18 @@ namespace AH.UI {
                 }
             }
         }
-        private void ShowView(UIView newView, bool offPreview = false) {
+        public static void ShowView(UIView newView, bool offPreview = false, bool reset = false, bool offEsc = false) {
             if (offPreview) { // 이전뷰 끄기
-                ShowPreviewEvent();
+                Instance.ShowPreviewEvent();
             }
             if(newView != null) {
-                _viewStack.Push(newView);
-                var view = _viewStack.Peek();
+                Instance._viewStack.Push(newView);
+                var view = Instance._viewStack.Peek();
                 if (view != null) {
                     view.Show();
                 }
             }
+            Debug.Log(Instance._viewStack.Count);
         }
 
         private void SetupViews() {
@@ -71,13 +86,13 @@ namespace AH.UI {
 
             _computerViewModel = new ComputerViewModel(computerModel);
 
-            _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _computerViewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("TestView"), _computerViewModel);
-            _fightView = new FightView(root.Q<VisualElement>("FightView"), _computerViewModel);
+            //_computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _computerViewModel);
+            //_settingView = new SettingView(root.Q<VisualElement>("TestView"), _computerViewModel);
+            //_fightView = new FightView(root.Q<VisualElement>("FightView"), _computerViewModel);
 
-            _allViews.Add(_computerView);
-            _allViews.Add(_settingView);
-            _allViews.Add(_fightView);
+            //_allViews.Add(_computerView);
+            //_allViews.Add(_settingView);
+            //_allViews.Add(_fightView);
         }
 
         private void RegisterToEvents() { }

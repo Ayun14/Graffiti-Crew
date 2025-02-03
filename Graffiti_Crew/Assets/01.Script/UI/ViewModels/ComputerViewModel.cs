@@ -6,10 +6,10 @@ using UnityEngine;
 namespace AH.UI.ViewModels {
     public class ComputerViewModel : ViewModel {
         private ComputerModel _model;
+        public int currentBtnIndex = -1;
 
-        public ComputerViewModel(ComputerModel model) {
-            _model = model;
-            UpdateDisplay(0); // 초기 데이터를 View에 반영
+        public ComputerViewModel(Model model) {
+            _model = model as ComputerModel;
         }
 
         #region GetData
@@ -24,9 +24,6 @@ namespace AH.UI.ViewModels {
         }
         public CategoryListSO GetCategory() {
             return _model.GetCategory();
-        }
-        public InputReaderSO GetInputReader() {
-            return _model.GetInputReader();
         }
         #endregion
 

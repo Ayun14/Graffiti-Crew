@@ -17,9 +17,6 @@ namespace AH.UI.Models {
         [Header("Map")]
         [SerializeField] private LoadStageSO _loadStageSO;
 
-        [Header("Input")]
-        [SerializeField] private InputReaderSO _inputReaderSO;
-
         public CrewSO GetCrew() {
             return crewSO;
         }
@@ -31,9 +28,6 @@ namespace AH.UI.Models {
         }
         public CategoryListSO GetCategory() {
             return _categorySO;
-        }
-        public InputReaderSO GetInputReader() {
-            return _inputReaderSO;
         }
 
         public void SetMemderImg(int index, Sprite sprite) {

@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace AH.UI.Views {
         private ComputerViewModel ComputerViewModel;
 
         private const string _selectFriendViewName = "select-friend";
-        private SelectFriendView _selectFriendView;
 
         private Label _stageName;
         private Label _stageDescription;
@@ -27,7 +27,6 @@ namespace AH.UI.Views {
             ComputerViewModel = viewModel as ComputerViewModel;
 
             base.Initialize();
-            _selectFriendView = new SelectFriendView(topElement.Q<VisualElement>(_selectFriendViewName), ComputerViewModel);
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
@@ -57,12 +56,13 @@ namespace AH.UI.Views {
         }
 
         private void ClickStartGameBtn(ClickEvent evt) {
+            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             SceneManager.LoadScene("AY");
         }
 
         private void ClickSelectFirend(ClickEvent evt, int index) {
-            _selectFriendView.CurrentBtnIndex = index;
-            ComputerView.ShowView(_selectFriendView);
+            ComputerViewModel.currentBtnIndex = index;
+            ComputerEvent.ShowSelectFriendViewEvent?.Invoke();
         }
     }
 }

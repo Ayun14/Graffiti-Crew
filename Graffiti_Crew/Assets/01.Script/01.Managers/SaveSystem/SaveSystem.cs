@@ -9,6 +9,18 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             LoadGame();
+            Init();
+        }
+        public void Init() {
+            GameObject root = GameObject.Find("SaveManager");
+            if (root == null) {
+                root = new GameObject { name = "SaveManager" };
+                root.AddComponent<SaveSystem>();
+                DontDestroyOnLoad(root);
+            }
+            else {
+                DontDestroyOnLoad(root);
+            }
         }
         void OnApplicationQuit() {
             SaveGameData();

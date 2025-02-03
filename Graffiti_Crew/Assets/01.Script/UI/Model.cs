@@ -1,5 +1,7 @@
 using UnityEngine;
 
-public abstract class Model : MonoBehaviour {
+namespace AH.UI.Models {
+    public abstract class Model : MonoBehaviour {
 
+    }
 }

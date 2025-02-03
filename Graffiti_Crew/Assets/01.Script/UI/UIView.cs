@@ -1,3 +1,4 @@
+using AH.UI.ViewModels;
 using System;
 using UnityEngine.UIElements;
 
@@ -15,8 +16,9 @@ namespace AH.UI.Views {
         public UIView(VisualElement topContainer, ViewModel viewModel) {
             // null이 아니라면 m_TopElement에 topElement넣어주고 
             this.topElement = topContainer ?? throw new ArgumentNullException(nameof(topContainer));
-            this.viewModel = viewModel;
-
+            if (viewModel != null) {
+                this.viewModel = viewModel;
+            }
             Initialize();
         }
 

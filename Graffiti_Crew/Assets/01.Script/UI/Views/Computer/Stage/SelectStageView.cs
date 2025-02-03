@@ -1,4 +1,5 @@
 using AH.UI.CustomElement;
+using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +12,11 @@ namespace AH.UI.Views {
         private List<StagePointElement> _stagePointList;
         private List<StagePointElement> _requestPointList;
 
-        private const string _selectStageViewName = "StageDescriptionView";
-        private StageDescriptionView _stageDescriptionView;
-
-
         public SelectStageView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
-
         }
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
-            _stageDescriptionView = new StageDescriptionView(topElement.Q<VisualElement>(_selectStageViewName), viewModel);
             
             base.Initialize();
         }
@@ -47,7 +42,7 @@ namespace AH.UI.Views {
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             // 본인 텍스트에 적힌 이름을 바탕으로 맵 스폰해주면 될 듯
             ComputerViewModel.SetStageData($"Chapter{data.chapter}", $"Stage{data.stage}");
-            ComputerView.ShowView(_stageDescriptionView);
+            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
     }
 }

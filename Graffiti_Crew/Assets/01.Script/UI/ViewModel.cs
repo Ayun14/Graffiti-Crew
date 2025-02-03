@@ -1,5 +1,7 @@
 using UnityEngine;
 
-public abstract class ViewModel {
+namespace AH.UI.ViewModels { 
+    public abstract class ViewModel {
 
+    }
 }

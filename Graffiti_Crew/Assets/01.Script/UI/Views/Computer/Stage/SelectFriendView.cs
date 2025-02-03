@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using UnityEngine;
@@ -10,8 +11,8 @@ namespace AH.UI.Views {
         private VisualTreeAsset _profileAsset;
         private ScrollView _crewScrollView;
 
-        private int _currentBtnIndex = -1;
-        public int CurrentBtnIndex { get { return _currentBtnIndex; } set { _currentBtnIndex = value; } }
+        public int CurrentBtnIndex { get { return ComputerViewModel.currentBtnIndex; } 
+            set { ComputerViewModel.currentBtnIndex = value; } }
 
         public SelectFriendView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -47,8 +48,8 @@ namespace AH.UI.Views {
         private void SelectMember(ClickEvent evt, int index) {
             ComputerViewModel.SetFriendImg(CurrentBtnIndex, index);
             CurrentBtnIndex = -1;
-            this.Hide();
+            _crewScrollView.scrollOffset = Vector2.zero;
+            ComputerEvent.HideViewEvent?.Invoke();
         }
-
     }
 }
