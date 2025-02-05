@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using AH.UI.Events;
 using AH.UI.Views;
+using UnityEngine.Rendering;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class DialogueUIController : MonoBehaviour
 
     private Coroutine _typingCoroutine;
     private bool _isTyping = false;
+    private bool _isDialogue = false;
 
     private int _currentDialogueIndex = 0;
     private int _dialogueStartID = 0;
@@ -67,6 +69,8 @@ public class DialogueUIController : MonoBehaviour
 
     public void StartDialogue(int startID, int endID, Action onComplete)
     {
+        _isDialogue = true;
+
         if (dialogueDataReader == null || dialogueDataReader.DialogueList.Count == 0)
         {
             onComplete?.Invoke();
@@ -94,12 +98,23 @@ public class DialogueUIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_isDialogue)
         {
-            if (_isTyping)
-                CompleteTyping();
+            if(dialogueDataReader.readMode == ReadMode.Auto)
+            {
+                if (!_isTyping)
+                    ShowNextDialogue();
+            }
             else
-                ShowNextDialogue();
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (_isTyping)
+                        CompleteTyping();
+                    else
+                        ShowNextDialogue();
+                }
+            }
         }
     }
 
@@ -146,6 +161,9 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(_typingSpeed);
         }
 
+        if(dialogueDataReader.readMode == ReadMode.Auto)
+            yield return new WaitForSeconds(1.5f);
+
         _isTyping = false;
     }
 
@@ -172,6 +190,7 @@ public class DialogueUIController : MonoBehaviour
     {
         _dialogueCanvas.DOFade(0f, _fadeDuration).OnComplete(() =>
         {
+            _isDialogue = false;
             _dialogueCanvas.interactable = false;
             _dialogueCanvas.blocksRaycasts = false;
             _dialogueUI.SetActive(false);
