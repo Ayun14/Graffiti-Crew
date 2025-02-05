@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Fight/FightScene.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3#FightScene" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement name="m-container" class="fight-m-container">
+    <engine:VisualElement name="m-container" picking-mode="Ignore" class="fight-m-container">
         <engine:VisualElement name="top-container" style="flex-basis: 20%; flex-direction: row;">
             <engine:VisualElement name="rival-border" style="width: 50%; flex-direction: row-reverse; align-items: center; padding-left: 30px; justify-content: flex-end;">
                 <engine:ProgressBar value="22" name="rival-progress" class="graffiti-progress">
@@ -14,7 +14,7 @@
                 <engine:VisualElement name="rival-img" style="width: 150px; height: 150px; background-color: rgb(0, 122, 255);" />
             </engine:VisualElement>
             <engine:VisualElement name="player-border" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: flex-end; padding-right: 30px;">
-                <engine:ProgressBar name="player-progress" value="32.45" high-value="99.8" class="graffiti-progress" style="scale: -1 1;">
+                <engine:ProgressBar name="player-progress" value="32.45" high-value="99.8" class="graffiti-progress" style="scale: -1 1; left: 1%;">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
@@ -24,8 +24,8 @@
                 <engine:VisualElement name="rival-img" style="width: 150px; height: 150px; background-color: rgb(255, 0, 38);" />
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement name="bottom-container" style="flex-grow: 1; flex-direction: row;">
-            <engine:VisualElement style="flex-grow: 1;" />
+        <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;" />
             <engine:VisualElement name="spray-content" style="flex-basis: 20%; flex-direction: row; align-items: flex-end; justify-content: flex-end;">
                 <engine:ProgressBar name="spray-amount-progress" value="32.5" class="spray-progress" style="translate: 89% -1205%;">
                     <Bindings>
