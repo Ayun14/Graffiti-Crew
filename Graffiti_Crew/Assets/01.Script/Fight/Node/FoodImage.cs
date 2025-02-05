@@ -1,6 +1,8 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static DG.Tweening.DOTweenAnimation;
 
 public class FoodImage : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class FoodImage : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _targetY = -550f;
     [SerializeField] private float _clickY = -20f; // 클릭하면 내려갈 y 값
+
+    private float _currentAlpha;
+    private float _currentTime = 0;
 
     private Image _foodImage;
     private FightSceneUIController _uiController;
@@ -23,16 +28,6 @@ public class FoodImage : MonoBehaviour
         _uiController = GetComponentInParent<FightSceneUIController>();
 
         gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        _foodImage.rectTransform.anchoredPosition += Vector2.down * _moveSpeed * Time.deltaTime;
-
-        if (_foodImage.rectTransform.anchoredPosition.y < _targetY)
-        {
-            _uiController.StartBlindRoutine(false);
-        }
     }
 
     public void OnFoodSprite(Sprite sprite)
@@ -51,17 +46,60 @@ public class FoodImage : MonoBehaviour
         _foodImage.gameObject.SetActive(true);
         _foodImage.transform.localScale = Vector3.zero;
         _foodImage.transform.DOScale(1, 0.7f);
+        SetDoFade(1f, 0.7f);
     }
 
-    public void OffFoodSprite()
+
+    private void SetAlpha(float alpha)
     {
-        _foodImage.transform.localScale = Vector3.one;
-        _foodImage.transform.DOScale(0, 0.7f).OnComplete(() =>
-            _foodImage.gameObject.SetActive(false));
+        Color color = _foodImage.color;
+        color.a = alpha;
+        _foodImage.color = color;
+    }
+
+    public void SetDoFade(float endValue, float time)
+    {
+        float startValue = endValue == 1f ? 0f : 1f;
+        SetAlpha(startValue);
+        _foodImage.DOFade(endValue, time);
+    }
+
+    public void SetDoFade(float time)
+    {
+        StartCoroutine(SetAlphaRouine(time));
+    }
+
+    public void StopAllCoroutine() => StopAllCoroutines();
+
+    private IEnumerator SetAlphaRouine(float time)
+    {
+        _currentTime = 0;
+        _currentAlpha = _foodImage.color.a;
+
+        while (_currentTime < time)
+        {
+            _currentTime += Time.deltaTime;
+
+            float alpha = Mathf.Lerp(_currentAlpha, 0f, _currentTime / time);
+            SetAlpha(alpha);
+
+            if (alpha <= 0f) break;
+
+            yield return null;
+        }
+    }
+
+    public void SetCurrentTime(float targetTime)
+    {
+        DOTween.To(() => _currentTime,
+        x => _currentTime = x,
+                   targetTime, 0.3f).SetEase(Ease.InOutQuad);
     }
 
     public void OnSpriteClick()
     {
-        _foodImage.rectTransform.DOAnchorPosY(_foodImage.rectTransform.localPosition.y + _clickY, 0.1f);
+        if (false == _uiController.isBlind) return;
+
+        _uiController.BlindFastEvent();
     }
 }
