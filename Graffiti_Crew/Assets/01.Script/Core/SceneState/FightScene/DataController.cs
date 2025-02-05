@@ -43,7 +43,14 @@ public class DataController : Observer<GameStateController>
                 if (mySubject.GameState == GameState.Finish)
                 {
                     _stageData.stageResult.drawingTime = (int)_currentDrawingTime;
-                    _stageData.stageResult.CalculationStar(_stageData.minCombo, _stageData.maxNodeFalse, _stageData.mindrawingTime);
+                    int star = _stageData.stageResult.CalculationStar(_stageData.minCombo, _stageData.maxNodeFalse, _stageData.mindrawingTime);
+
+                    Debug.Log("star : " + star);
+                    if (star > _stageData.stageSaveData.star)
+                    {
+                        _stageData.stageSaveData.star = star;
+                        Debug.Log("star ภ๚ภๅตส");
+                    }
                 }
 
                 if (mySubject.GameState == GameState.Result)

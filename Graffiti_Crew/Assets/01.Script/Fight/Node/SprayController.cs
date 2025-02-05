@@ -4,17 +4,14 @@ using UnityEngine.UI;
 
 public class SprayController : MonoBehaviour
 {
-    private Slider _sprayAmountSlider;
-    private Slider _shakeAmountSlider;
-
-    public bool isMustShakeSpray => _sprayAmountSlider.value == 0f;
-    public bool isSprayNone => _shakeAmountSlider.value == 0f;
-
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
+    public bool isMustShakeSpray => _spraySliderValueSO.value == 0f;
+
 
     [Header("Spray")]
     [SerializeField] private SliderValueSO _spraySliderValueSO;
+    public bool isSprayNone => _shakeSliderValueSO.value == 0f;
     [SerializeField] private float _sprayAddAmount;
 
     #region Shake Settings
@@ -36,29 +33,15 @@ public class SprayController : MonoBehaviour
 
     private NodeJudgement _judgement;
 
-    private void Awake()
-    {
-        Transform parent = transform.Find("Panel_Sliders");
-        _sprayAmountSlider = parent.Find("Slider_SprayAmount").GetComponent<Slider>();
-        _shakeAmountSlider = parent.Find("Slider_ShakeAmount").GetComponent<Slider>();
-    }
-
-    public void Init(NodeJudgement judgement, int sprayAmount, int shakeAmount)
+    public void Init(NodeJudgement judgement)
     {
         _judgement = judgement;
 
-        if (_sprayAmountSlider != null && _shakeAmountSlider != null)
-        {
-            // ToDo 아윤 : slider max값 바꾸는거 아름이 껄로 연결하기
-            // Spray
-            _sprayAmountSlider.maxValue = sprayAmount;
-            _sprayAmountSlider.value = sprayAmount;
+        // Spray
+        _spraySliderValueSO.value = _spraySliderValueSO.max;
 
-            // Shake
-            _shakeAmountSlider.maxValue = shakeAmount;
-            _shakeAmountSlider.value = shakeAmount;
-            // ----------------------
-        }
+        // Shake
+        _shakeSliderValueSO.value = _shakeSliderValueSO.max;
 
         ResetShakeDetection();
     }
@@ -152,31 +135,20 @@ public class SprayController : MonoBehaviour
 
     public void AddSprayAmount(float value)
     {
-        // So 버전
-        //if (_spraySliderValueSO == null) return;
+        if (_spraySliderValueSO == null) return;
 
-        //float targetValue = _spraySliderValueSO.value + value;
-        //DOTween.To(() => _spraySliderValueSO.value,
-        //    x => _spraySliderValueSO.value = x, targetValue, 0.5f);
-
-        //if (_spraySliderValueSO.value < 0f)
-        //{
-        //    Debug.LogWarning("Spray 모두 소진");
-        //    _judgement.SprayChangeEvent();
-        //}
-
-        // 원래 버전
-        if (_sprayAmountSlider == null) return;
-
-        float targetValue = _sprayAmountSlider.value + value;
-        DOTween.To(() => _sprayAmountSlider.value,
-            x => _sprayAmountSlider.value = x, targetValue, 0.5f);
+        float targetValue = _spraySliderValueSO.value + value;
+        DOTween.To(() => _spraySliderValueSO.value,
+            x => _spraySliderValueSO.value = x, targetValue, 0.5f);
 
         // Spray Empty
         if (targetValue <= 0f)
-        {
             _judgement.SprayEmptyEvent();
-        }
+    }
+
+    public void SprayChange()
+    {
+        AddSprayAmount(_spraySliderValueSO.max);
     }
 
     #endregion
