@@ -768,10 +768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f893a0a33222a243b147b6d0ac43bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spraySliderPanel: {fileID: 13326232}
   _comboSliderPanel: {fileID: 761911252}
-  _eggSprite: {fileID: 1931213951, guid: 4c0d70f04c2e6f344b99b7b64d2d0aed, type: 3}
-  _tomatoSprite: {fileID: -1377874025, guid: 593c77133f5996a4f9afe023e2cf1b2c, type: 3}
+  _eggSprite: {fileID: 1141646716, guid: 824ca1d9270af0b45b901c28253572da, type: 3}
+  _tomatoSprite: {fileID: 1141646716, guid: 824ca1d9270af0b45b901c28253572da, type: 3}
+  _blindTime: 7
+  _fastBlindPercent: 0.1
 --- !u!1 &112846514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1207,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232865142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 1
@@ -1217,7 +1218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.1}
+  m_AnchoredPosition: {x: 0, y: -0.099998474}
   m_SizeDelta: {x: 160, y: 35}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &232865144
@@ -4397,6 +4398,7 @@ GameObject:
   - component: {fileID: 1258403826}
   - component: {fileID: 1258403825}
   - component: {fileID: 1258403824}
+  - component: {fileID: 1258403828}
   - component: {fileID: 1258403827}
   m_Layer: 0
   m_Name: Canvas
@@ -4500,6 +4502,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15dd0795d441da4caa9570c546acc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1258403828
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258403822}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1297259389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,7 +4930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5562,7 +5576,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 700, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1645862925
 MonoBehaviour:
@@ -5603,9 +5617,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0.54509807}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5656,7 +5670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1930152166, guid: ba8486815b363894ca47ca928cb27386, type: 3}
+  m_Sprite: {fileID: 1141646716, guid: 824ca1d9270af0b45b901c28253572da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

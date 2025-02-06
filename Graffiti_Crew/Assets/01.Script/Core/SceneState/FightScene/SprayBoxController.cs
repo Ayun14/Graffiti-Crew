@@ -9,18 +9,20 @@ public class SprayBoxController : Observer<GameStateController>
     private bool _isChangingSpray = false;
 
     // Slider
+    private CanvasGroup _canvasGroup;
     private Slider _sprayChangeTimeSlider;
 
     private void Awake()
     {
         Attach();
 
-        _sprayChangeTimeSlider = transform.Find("Canvas")
+        Transform canvasTrm = transform.Find("Canvas");
+        _canvasGroup = canvasTrm.GetComponent<CanvasGroup>();
+        _canvasGroup.alpha = 0;
+        _sprayChangeTimeSlider = canvasTrm
             .transform.Find("Slider_SprayChangeTime").GetComponent<Slider>();
         _sprayChangeTimeSlider.value = 0;
-        Color color = _sprayChangeTimeSlider.image.color;
-        color.a = 0;
-        _sprayChangeTimeSlider.image.color = color;
+        _sprayChangeTimeSlider.image.DOFade(0, 0);
 
         _currentTime = 0;
     }
@@ -48,7 +50,7 @@ public class SprayBoxController : Observer<GameStateController>
                 {
                     if (!_isChangingSpray) // 처음 감지되었을 때 한 번만 실행
                     {
-                        _sprayChangeTimeSlider.image.DOFade(1, 0.3f);
+                        _canvasGroup.DOFade(1, 0.3f);
                         _isChangingSpray = true;
                     }
 
@@ -73,7 +75,7 @@ public class SprayBoxController : Observer<GameStateController>
 
     private void ResetSprayChange()
     {
-        _sprayChangeTimeSlider.image.DOFade(0, 0.3f);
+        _canvasGroup.DOFade(0, 0.3f);
         _sprayChangeTimeSlider.value = 0;
         _currentTime = 0;
         _isChangingSpray = false;
