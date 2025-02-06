@@ -1,22 +1,26 @@
+using AH.UI.Events;
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using AH.UI.Events;
+using static DG.Tweening.DOTweenAnimation;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Other Panel")]
-    [SerializeField] private Image _spraySliderPanel;
     [SerializeField] private Image _comboSliderPanel;
 
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
+    [SerializeField] private float _blindTime;
+    [SerializeField] private float _fastBlindPercent = 0.1f; // 음식 눌렀을 때 줄일 알파의 퍼센트
+    private float _currentBlindTime;
     private Image _blindPanel;
     private FoodImage _foodImage;
     private Material _blindMat;
+    public bool isBlind => mySubject.IsBlind;
 
     // StepValue Sin Graph
     private float _frequency = 0.1f; // 주기
@@ -92,7 +96,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void ChangeBlindStepValue()
     {
-        if (mySubject.IsBlind)
+        if (isBlind)
         {
             _elapsedTime += Time.deltaTime;
 
@@ -119,12 +123,15 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            FightEvent.SetActiveFightViewEvent(isFight);
-            //_spraySliderPanel.gameObject.SetActive(isFight);
+            //FightEvent.SetActiveFightViewEvent(isFight);
+            FightEvent.SetActiveFightViewEvent(false);
             _comboSliderPanel.gameObject.SetActive(isFight);
 
-            if (isFinish && mySubject.IsBlind)
-                StartBlindRoutine(false);
+            if (isFinish && isBlind)
+            {
+                StopAllCoroutines();
+                StartCoroutine(OffBlindRoutine());
+            }
             else
                 _blindPanel.gameObject.SetActive(isFight);
 
@@ -180,13 +187,20 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void BlindEventHandle()
     {
-        StartBlindRoutine(true);
+        StartCoroutine(OnBlindRoutine());
     }
 
-    public void StartBlindRoutine(bool isOn)
+    public void BlindFastEvent()
     {
-        if (isOn) StartCoroutine(OnBlindRoutine());
-        else StartCoroutine(OffBlindRoutine());
+        float targetTime = _blindTime * _fastBlindPercent + _currentBlindTime;
+        
+        // Length Power
+        DOTween.To(() => _currentBlindTime,
+        x => _currentBlindTime = x,
+                   targetTime, 0.3f).SetEase(Ease.InOutQuad);
+
+        // Sprite
+        _foodImage.SetCurrentTime(targetTime);
     }
 
     private IEnumerator OnBlindRoutine()
@@ -198,9 +212,13 @@ public class FightSceneUIController : Observer<GameStateController>
         Sprite sprite = isEgg ? _eggSprite : _tomatoSprite;
         _foodImage.OnFoodSprite(sprite);
 
+        // Length Power
+        _blindMat.SetFloat(_lengthPower, Random.Range(3.5f, 5f));
+
         // Color
-        Color blindColor = isEgg ? Color.yellow : Color.red;
-        _blindMat.SetColor(_blindColor, blindColor);
+        string blindColorString = isEgg ? "#F1CF85" : "#E14722";
+        if (ColorUtility.TryParseHtmlString(blindColorString, out Color blindColor))
+            _blindMat.SetColor(_blindColor, blindColor);
 
         // Offset
         Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
@@ -222,33 +240,60 @@ public class FightSceneUIController : Observer<GameStateController>
 
             yield return null;
         }
+
+        StartCoroutine(BlindRoutine());
     }
 
-    private IEnumerator OffBlindRoutine()
+    private IEnumerator BlindRoutine()
     {
         // Sprite
-        _foodImage.OffFoodSprite();
+        _foodImage.SetDoFade(_blindTime);
 
-        // Bool
-        bool isFinish = mySubject.GameState == GameState.Finish;
+        // Length Power
+        _currentBlindTime = 0f;
+        float currentLengthPower = _blindMat.GetFloat(_lengthPower);
 
-        // Step Value
-        float time = isFinish ? 0.5f : 1f;
-        float currentTime = 0f;
-        float currentStepValue = _blindMat.GetFloat(_stepValue);
-
-        while (currentTime < time)
+        while (_currentBlindTime < _blindTime)
         {
-            currentTime += Time.deltaTime;
+            _currentBlindTime += Time.deltaTime;
 
-            float stepValue = Mathf.Lerp(currentStepValue, 0f, currentTime / time);
-            _blindMat.SetFloat(_stepValue, stepValue);
+            float lengthPower = Mathf.Lerp(currentLengthPower, 0f, _currentBlindTime / _blindTime);
+            _blindMat.SetFloat(_lengthPower, lengthPower);
+
+            if (lengthPower <= 0f) break;
 
             yield return null;
         }
 
-        if (isFinish)
+        StartCoroutine(OffBlindRoutine());
+    }
+
+
+    private IEnumerator OffBlindRoutine()
+    {
+        if (mySubject.GameState == GameState.Finish)
+        {
+            // Sprite
+            float time = 0.5f;
+            _foodImage.StopAllCoroutine();
+            _foodImage.SetDoFade(0, time);
+
+            // Length Power
+            float currentTime = 0f;
+            float currentLengthPower = _blindMat.GetFloat(_lengthPower);
+
+            while (currentTime < time)
+            {
+                currentTime += Time.deltaTime;
+
+                float lengthPower = Mathf.Lerp(currentLengthPower, 0f, currentTime / time);
+                _blindMat.SetFloat(_lengthPower, lengthPower);
+
+                yield return null;
+            }
+
             _blindPanel.gameObject.SetActive(false);
+        }
 
         mySubject.SetIsBlind(false);
     }
