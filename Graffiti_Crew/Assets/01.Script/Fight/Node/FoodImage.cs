@@ -73,6 +73,10 @@ public class FoodImage : MonoBehaviour
 
     private IEnumerator SetAlphaRouine(float time)
     {
+        float waitTime = time / 7;
+        yield return new WaitForSeconds(waitTime);
+
+        time -= waitTime;
         _currentTime = 0;
         _currentAlpha = _foodImage.color.a;
 

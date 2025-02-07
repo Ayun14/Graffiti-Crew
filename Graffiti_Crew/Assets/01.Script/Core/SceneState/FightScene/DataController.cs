@@ -47,10 +47,7 @@ public class DataController : Observer<GameStateController>
 
                     Debug.Log("star : " + star);
                     if (star > _stageData.stageSaveData.star)
-                    {
                         _stageData.stageSaveData.star = star;
-                        Debug.Log("star ภ๚ภๅตส");
-                    }
                 }
 
                 if (mySubject.GameState == GameState.Result)
