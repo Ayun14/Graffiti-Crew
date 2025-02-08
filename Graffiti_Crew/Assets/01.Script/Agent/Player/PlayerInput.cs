@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -37,7 +38,6 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckMoveInput()
     {
-
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -47,9 +47,12 @@ public class PlayerInput : MonoBehaviour
             {
                 InteractionEvent?.Invoke(hit.transform.GetComponent<InteractionObject>());
             }
-            else if(Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsGround))
+            else if (Physics.Raycast(ray, out hit, Mathf.Infinity, _whatIsGround))
             {
-                MovementEvent?.Invoke(hit.point);
+                if (IsPointOnNavMesh(hit.point))
+                {
+                    MovementEvent?.Invoke(hit.point);
+                }
             }
         }
 
@@ -63,5 +66,11 @@ public class PlayerInput : MonoBehaviour
                 InteractionEvent?.Invoke(hit.transform.GetComponent<InteractionObject>());
             }
         }
+    }
+
+    private bool IsPointOnNavMesh(Vector3 point)
+    {
+        NavMeshHit navMeshHit;
+        return NavMesh.SamplePosition(point, out navMeshHit, 0.5f, NavMesh.AllAreas);
     }
 }

@@ -1,22 +1,27 @@
+using AH.UI.Events;
+using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using AH.UI.Events;
+using Random = UnityEngine.Random;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Other Panel")]
-    [SerializeField] private Image _spraySliderPanel;
-    [SerializeField] private Image _comboSliderPanel;
+    [SerializeField] private Image _comboPanel;
 
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
+    [SerializeField] private float _blindTime;
+    [SerializeField] private float _fastBlindPercent = 0.1f; // 음식 눌렀을 때 줄일 알파의 퍼센트
+    private float _currentBlindTime;
     private Image _blindPanel;
     private FoodImage _foodImage;
     private Material _blindMat;
+    public bool isBlind => mySubject.IsBlind;
 
     // StepValue Sin Graph
     private float _frequency = 0.1f; // 주기
@@ -38,13 +43,16 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _countDownPanel;
     private TextMeshProUGUI _countDownText;
 
+    // Rival Check
+    private Image _rivalCheckPanel;
+    private RawImage _rivalCheckImage;
+
     // Finish
     private Image _finishPanel;
     private TextMeshProUGUI _finishText;
 
     // Result
     private Image _resultPanel;
-    private TextMeshProUGUI _resultText;
 
     private void Awake()
     {
@@ -68,13 +76,16 @@ public class FightSceneUIController : Observer<GameStateController>
         _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
         _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
 
+        // Rival Check
+        _rivalCheckPanel = canvas.Find("Panel_RivalCheck").GetComponent<Image>();
+        _rivalCheckImage = _rivalCheckPanel.transform.Find("RawImage_RivalCheck").GetComponent<RawImage>();
+
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishText = _finishPanel.transform.Find("Text_Finish").GetComponent<TextMeshProUGUI>();
 
         // Result
         _resultPanel = canvas.Find("Panel_Result").GetComponent<Image>();
-        _resultText = _resultPanel.transform.Find("Text_Result").GetComponent<TextMeshProUGUI>();
     }
 
     private void OnDestroy()
@@ -92,7 +103,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void ChangeBlindStepValue()
     {
-        if (mySubject.IsBlind)
+        if (isBlind)
         {
             _elapsedTime += Time.deltaTime;
 
@@ -120,11 +131,13 @@ public class FightSceneUIController : Observer<GameStateController>
 
             // Fight
             FightEvent.SetActiveFightViewEvent(isFight);
-            //_spraySliderPanel.gameObject.SetActive(isFight);
-            _comboSliderPanel.gameObject.SetActive(isFight);
+            _comboPanel.gameObject.SetActive(isFight);
 
-            if (isFinish && mySubject.IsBlind)
-                StartBlindRoutine(false);
+            if (isFinish && isBlind)
+            {
+                StopAllCoroutines();
+                StartCoroutine(OffBlindRoutine());
+            }
             else
                 _blindPanel.gameObject.SetActive(isFight);
 
@@ -171,7 +184,24 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void RivalCheckEventHandle()
     {
-        // 여기에 UI 구현
+        StartCoroutine(RivalCheckRoutine());
+    }
+
+    private IEnumerator RivalCheckRoutine()
+    {
+        _rivalCheckPanel.gameObject.SetActive(true);
+        SetRivalCheckImageScale(new Vector3(1.5f, 1.5f, 1.5f), 1f);
+
+        yield return new WaitForSeconds(3f);
+
+        SetRivalCheckImageScale(Vector3.one, 1f, () => _rivalCheckPanel.gameObject.SetActive(false));
+    }
+
+    private void SetRivalCheckImageScale(Vector3 scaleVec, float time, Action endAction = null)
+    {
+        _rivalCheckImage.transform.DOScale(scaleVec, time)
+            .SetEase(Ease.InOutBack)
+            .OnComplete(() => endAction?.Invoke());
     }
 
     #endregion
@@ -180,13 +210,20 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void BlindEventHandle()
     {
-        StartBlindRoutine(true);
+        StartCoroutine(OnBlindRoutine());
     }
 
-    public void StartBlindRoutine(bool isOn)
+    public void BlindFastEvent()
     {
-        if (isOn) StartCoroutine(OnBlindRoutine());
-        else StartCoroutine(OffBlindRoutine());
+        float targetTime = _blindTime * _fastBlindPercent + _currentBlindTime;
+
+        // Length Power
+        DOTween.To(() => _currentBlindTime,
+        x => _currentBlindTime = x,
+                   targetTime, 0.3f).SetEase(Ease.InOutQuad);
+
+        // Sprite
+        _foodImage.SetCurrentTime(targetTime);
     }
 
     private IEnumerator OnBlindRoutine()
@@ -198,9 +235,13 @@ public class FightSceneUIController : Observer<GameStateController>
         Sprite sprite = isEgg ? _eggSprite : _tomatoSprite;
         _foodImage.OnFoodSprite(sprite);
 
+        // Length Power
+        _blindMat.SetFloat(_lengthPower, Random.Range(3.5f, 5f));
+
         // Color
-        Color blindColor = isEgg ? Color.yellow : Color.red;
-        _blindMat.SetColor(_blindColor, blindColor);
+        string blindColorString = isEgg ? "#ECE9E2" : "#E14722";
+        if (ColorUtility.TryParseHtmlString(blindColorString, out Color blindColor))
+            _blindMat.SetColor(_blindColor, blindColor);
 
         // Offset
         Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
@@ -222,33 +263,60 @@ public class FightSceneUIController : Observer<GameStateController>
 
             yield return null;
         }
+
+        StartCoroutine(BlindRoutine());
     }
 
-    private IEnumerator OffBlindRoutine()
+    private IEnumerator BlindRoutine()
     {
         // Sprite
-        _foodImage.OffFoodSprite();
+        _foodImage.SetDoFade(_blindTime);
 
-        // Bool
-        bool isFinish = mySubject.GameState == GameState.Finish;
+        // Length Power
+        _currentBlindTime = 0f;
+        float currentLengthPower = _blindMat.GetFloat(_lengthPower);
 
-        // Step Value
-        float time = isFinish ? 0.5f : 1f;
-        float currentTime = 0f;
-        float currentStepValue = _blindMat.GetFloat(_stepValue);
-
-        while (currentTime < time)
+        while (_currentBlindTime < _blindTime)
         {
-            currentTime += Time.deltaTime;
+            _currentBlindTime += Time.deltaTime;
 
-            float stepValue = Mathf.Lerp(currentStepValue, 0f, currentTime / time);
-            _blindMat.SetFloat(_stepValue, stepValue);
+            float lengthPower = Mathf.Lerp(currentLengthPower, 0f, _currentBlindTime / _blindTime);
+            _blindMat.SetFloat(_lengthPower, lengthPower);
+
+            if (lengthPower <= 0f) break;
 
             yield return null;
         }
 
-        if (isFinish)
+        StartCoroutine(OffBlindRoutine());
+    }
+
+
+    private IEnumerator OffBlindRoutine()
+    {
+        if (mySubject.GameState == GameState.Finish)
+        {
+            // Sprite
+            float time = 0.5f;
+            _foodImage.StopAllCoroutine();
+            _foodImage.SetDoFade(0, time);
+
+            // Length Power
+            float currentTime = 0f;
+            float currentLengthPower = _blindMat.GetFloat(_lengthPower);
+
+            while (currentTime < time)
+            {
+                currentTime += Time.deltaTime;
+
+                float lengthPower = Mathf.Lerp(currentLengthPower, 0f, currentTime / time);
+                _blindMat.SetFloat(_lengthPower, lengthPower);
+
+                yield return null;
+            }
+
             _blindPanel.gameObject.SetActive(false);
+        }
 
         mySubject.SetIsBlind(false);
     }

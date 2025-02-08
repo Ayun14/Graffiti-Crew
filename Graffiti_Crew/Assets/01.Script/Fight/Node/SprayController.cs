@@ -6,12 +6,11 @@ public class SprayController : MonoBehaviour
 {
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
-    public bool isMustShakeSpray => _spraySliderValueSO.value == 0f;
-
+    public bool isMustShakeSpray => _shakeSliderValueSO.value <= 0f;
 
     [Header("Spray")]
     [SerializeField] private SliderValueSO _spraySliderValueSO;
-    public bool isSprayNone => _shakeSliderValueSO.value == 0f;
+    public bool isSprayNone => _spraySliderValueSO.value <= 0f;
     [SerializeField] private float _sprayAddAmount;
 
     #region Shake Settings
