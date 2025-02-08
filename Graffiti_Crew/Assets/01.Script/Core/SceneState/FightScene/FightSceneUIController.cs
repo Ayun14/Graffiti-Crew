@@ -1,15 +1,16 @@
 using AH.UI.Events;
 using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static DG.Tweening.DOTweenAnimation;
+using Random = UnityEngine.Random;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Other Panel")]
-    [SerializeField] private Image _comboSliderPanel;
+    [SerializeField] private Image _comboPanel;
 
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
@@ -42,13 +43,16 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _countDownPanel;
     private TextMeshProUGUI _countDownText;
 
+    // Rival Check
+    private Image _rivalCheckPanel;
+    private RawImage _rivalCheckImage;
+
     // Finish
     private Image _finishPanel;
     private TextMeshProUGUI _finishText;
 
     // Result
     private Image _resultPanel;
-    private TextMeshProUGUI _resultText;
 
     private void Awake()
     {
@@ -72,13 +76,16 @@ public class FightSceneUIController : Observer<GameStateController>
         _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
         _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
 
+        // Rival Check
+        _rivalCheckPanel = canvas.Find("Panel_RivalCheck").GetComponent<Image>();
+        _rivalCheckImage = _rivalCheckPanel.transform.Find("RawImage_RivalCheck").GetComponent<RawImage>();
+
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishText = _finishPanel.transform.Find("Text_Finish").GetComponent<TextMeshProUGUI>();
 
         // Result
         _resultPanel = canvas.Find("Panel_Result").GetComponent<Image>();
-        _resultText = _resultPanel.transform.Find("Text_Result").GetComponent<TextMeshProUGUI>();
     }
 
     private void OnDestroy()
@@ -123,9 +130,8 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            //FightEvent.SetActiveFightViewEvent(isFight);
-            FightEvent.SetActiveFightViewEvent(false);
-            _comboSliderPanel.gameObject.SetActive(isFight);
+            FightEvent.SetActiveFightViewEvent(isFight);
+            _comboPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)
             {
@@ -178,7 +184,24 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void RivalCheckEventHandle()
     {
-        // 여기에 UI 구현
+        StartCoroutine(RivalCheckRoutine());
+    }
+
+    private IEnumerator RivalCheckRoutine()
+    {
+        _rivalCheckPanel.gameObject.SetActive(true);
+        SetRivalCheckImageScale(new Vector3(1.5f, 1.5f, 1.5f), 1f);
+
+        yield return new WaitForSeconds(3f);
+
+        SetRivalCheckImageScale(Vector3.one, 1f, () => _rivalCheckPanel.gameObject.SetActive(false));
+    }
+
+    private void SetRivalCheckImageScale(Vector3 scaleVec, float time, Action endAction = null)
+    {
+        _rivalCheckImage.transform.DOScale(scaleVec, time)
+            .SetEase(Ease.InOutBack)
+            .OnComplete(() => endAction?.Invoke());
     }
 
     #endregion
@@ -193,7 +216,7 @@ public class FightSceneUIController : Observer<GameStateController>
     public void BlindFastEvent()
     {
         float targetTime = _blindTime * _fastBlindPercent + _currentBlindTime;
-        
+
         // Length Power
         DOTween.To(() => _currentBlindTime,
         x => _currentBlindTime = x,
@@ -216,7 +239,7 @@ public class FightSceneUIController : Observer<GameStateController>
         _blindMat.SetFloat(_lengthPower, Random.Range(3.5f, 5f));
 
         // Color
-        string blindColorString = isEgg ? "#F1CF85" : "#E14722";
+        string blindColorString = isEgg ? "#ECE9E2" : "#E14722";
         if (ColorUtility.TryParseHtmlString(blindColorString, out Color blindColor))
             _blindMat.SetColor(_blindColor, blindColor);
 

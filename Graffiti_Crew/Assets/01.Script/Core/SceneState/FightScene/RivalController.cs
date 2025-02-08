@@ -8,6 +8,9 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     private SpriteRenderer _graffitiRenderer;
 
     private bool _isFight = false;
+    private bool _isCompleteRivalCheck = false;
+
+    private int _rivalCheckPercent;
 
     private float _rivalDrawingTime;
     private float _currentTime = 0;
@@ -28,6 +31,8 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         _rivalSliderValueSO.value = _rivalSliderValueSO.min;
 
         _isFight = false;
+        _isCompleteRivalCheck = false;
+        _rivalCheckPercent = Random.Range(45, 70);
         _currentTime = 0;
     }
 
@@ -51,6 +56,19 @@ public class RivalController : Observer<GameStateController>, INeedLoding
 
             float percent = _currentTime / _rivalDrawingTime;
             _rivalSliderValueSO.value = _rivalSliderValueSO.max * percent;
+
+            RivalCheck();
+        }
+    }
+
+    private void RivalCheck()
+    {
+        if (_isCompleteRivalCheck) return;
+
+        if (_rivalSliderValueSO.value > _rivalCheckPercent)
+        {
+            _isCompleteRivalCheck = true;
+            mySubject.OnRivalCheckEvent();
         }
     }
 
