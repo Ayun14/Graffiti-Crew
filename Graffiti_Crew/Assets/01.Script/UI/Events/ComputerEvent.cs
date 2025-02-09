@@ -9,5 +9,7 @@ namespace AH.UI.Events {
         public static Action ShowStageDescriptionViewEvent;
      
         public static Action HideViewEvent;
+
+        public static Action<string, string> SelectStageEvent;
     }
 }

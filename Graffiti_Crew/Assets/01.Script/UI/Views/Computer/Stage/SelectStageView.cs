@@ -2,6 +2,7 @@ using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -40,9 +41,12 @@ namespace AH.UI.Views {
         }
 
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
-            // 본인 텍스트에 적힌 이름을 바탕으로 맵 스폰해주면 될 듯
-            ComputerViewModel.SetStageData($"Chapter{data.chapter}", $"Stage{data.stage}");
+            string chapter = $"Chapter{data.chapter}";
+            string stage = $"Stage{data.stage}";
+
+            ComputerViewModel.SetStageData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }
     }
 }
