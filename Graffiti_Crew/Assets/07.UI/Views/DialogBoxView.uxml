@@ -4,13 +4,25 @@
     <engine:VisualElement name="m-container" class="dialog-box-m-container" style="padding-right: 50px;">
         <engine:VisualElement name="top-content" class="dialog-box-top-content">
             <engine:VisualElement name="name-box" class="name-box">
-                <engine:Label text="name" name="name-txt" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center;" />
+                <engine:Label text="name" name="name-txt" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center;">
+                    <Bindings>
+                        <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
+                    </Bindings>
+                </engine:Label>
             </engine:VisualElement>
-            <engine:VisualElement name="target-img" style="width: 25%; height: 100%; background-color: rgb(255, 204, 248); right: 120px;" />
+            <engine:VisualElement name="target-img" style="width: 25%; height: 100%; right: 120px;">
+                <Bindings>
+                    <engine:DataBinding property="style.backgroundImage" data-source-path="profil" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
+                </Bindings>
+            </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="bottom-content" class="dialog-box-bottom-content">
             <engine:VisualElement name="text-box" class="text-box">
-                <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" class="conversation-txt grow-middle-size-60 grow-size-60" style="-unity-text-align: upper-left;" />
+                <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" class="conversation-txt grow-middle-size-60 grow-size-60" style="-unity-text-align: upper-left;">
+                    <Bindings>
+                        <engine:DataBinding property="text" data-source-path="dialogue" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
+                    </Bindings>
+                </engine:Label>
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>

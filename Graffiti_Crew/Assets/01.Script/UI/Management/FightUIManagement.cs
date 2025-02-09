@@ -7,9 +7,9 @@ using UnityEngine.UIElements;
 namespace AH.UI {
     public class FightUIManagement : UIManagement {
         private FightView _fightView;
+        private DialougeView _dialougeView;
 
         private FightViewModel _viewModel;
-
 
         protected override void Awake() {
             base.Awake();
@@ -33,7 +33,8 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
-            
+            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+
             _fightView.Show();
         }
 
