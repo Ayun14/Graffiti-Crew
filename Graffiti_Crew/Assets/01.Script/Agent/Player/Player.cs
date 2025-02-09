@@ -62,6 +62,11 @@ public class Player : Agent
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
 
+    private void OnApplicationQuit()
+    {
+        playerData.playerPosition = transform.position;
+    }
+
     protected void Update()
     {
         StateMachine.CurrentState.UpdateState();
