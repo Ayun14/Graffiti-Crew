@@ -1,5 +1,6 @@
 using AH.UI.Events;
 using AH.UI.Models;
+using AH.UI.ViewModels;
 using AH.UI.Views;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,20 @@ public class UIManagement : MonoBehaviour {
 
     protected virtual void Awake() {
         _uiDocument = GetComponent<UIDocument>();
+        Init();
+        SetupViews();
     }
     protected virtual void OnEnable() {
         _inputReaderSO.OnCancleEvent += ShowPreviewEvent;
     }
     protected virtual void OnDisable() {
         _inputReaderSO.OnCancleEvent -= ShowPreviewEvent;
+    }
+    protected virtual void Init() {
+
+    }
+    protected virtual void SetupViews() {
+
     }
     protected void ShowPreviewEvent() {
         if (_viewStack.Count > 0) {

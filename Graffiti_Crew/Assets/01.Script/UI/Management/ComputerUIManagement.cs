@@ -2,10 +2,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -18,12 +14,6 @@ namespace AH.UI {
 
         private ComputerViewModel _viewModel;
 
-
-        protected override void Awake() {
-            base.Awake();
-            Init();
-            SetupViews();
-        }
         protected override void OnEnable() {
             base.OnEnable();
             ComputerEvent.ShowSelectFriendViewEvent += ShowSelectFriendView;
@@ -41,11 +31,13 @@ namespace AH.UI {
             ComputerEvent.HideViewEvent -= HidwView;
         }
 
-        private void Init() {
+        protected override void Init() {
+            base.Init();
             _uiDocument = GetComponent<UIDocument>();
             _viewModel = new ComputerViewModel(_model as ComputerModel);
         }
-        private void SetupViews() {
+        protected override void SetupViews() {
+            base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
 
             _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _viewModel);
