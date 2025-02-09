@@ -1,7 +1,7 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -32,8 +32,13 @@ namespace AH.UI {
         }
 
         #region Handle
-        private void ShowResultView() {
-            _resultView.Show();
+        private void ShowResultView(bool active) {
+            if (active) {
+                _resultView.Show();
+            }
+            else {
+                _resultView.Hide();
+            }
         }
         private void ShowDialougeView() {
             _dialougeView.Show();

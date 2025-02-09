@@ -143,6 +143,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
             // Finish
             _finishPanel.gameObject.SetActive(isFinish);
+            FightEvent.ShowResultViewEvent?.Invoke(isFinish);
 
             // Result
             _resultPanel.gameObject.SetActive(mySubject.GameState == GameState.Result);
