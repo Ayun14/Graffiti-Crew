@@ -16,10 +16,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     private Sprite _startSprite;
 
     [Header("Node")]
+    [HideInInspector] public bool isNodeClick;
     [SerializeField] private LayerMask _whatIsNode;
     private List<NodeDataSO> _nodeDatas;
-
-    [HideInInspector] public bool isNodeClick => _currentNode != null;
 
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
@@ -68,7 +67,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _currentNode = null;
         _clearNodeCnt = 0;
 
-        _playerSliderValueSO.value = _playerSliderValueSO.min;
+        _playerSliderValueSO.Value = _playerSliderValueSO.min;
     }
 
     public override void NotifyHandle()
@@ -89,6 +88,9 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     private void NodeClickInput()
     {
+        if (Input.GetMouseButtonUp(0))
+            isNodeClick = false;
+
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
 
         if (Input.GetMouseButtonDown(0))
@@ -99,6 +101,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             {
                 if (hit.transform.parent.TryGetComponent(out Node node))
                 {
+                    isNodeClick = true;
+
                     _currentNode = node;
                     NodeClick(_currentNode);
                 }
@@ -132,7 +136,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         {
             // Player Slider Update
             float percent = ++_clearNodeCnt / (float)_nodeCnt;
-            _playerSliderValueSO.value = _playerSliderValueSO.max * percent;
+            _playerSliderValueSO.Value = _playerSliderValueSO.max * percent;
 
             // Spawn
             NodeSpawnJudgement();
