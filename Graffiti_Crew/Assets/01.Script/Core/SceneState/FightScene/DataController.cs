@@ -54,6 +54,7 @@ public class DataController : Observer<GameStateController>
                 {
                     // 스테이지 클리어
                     _stageData.isClearStage = true;
+                    _stageData.stageSaveData.isClear = true;
                 }
             }
         }

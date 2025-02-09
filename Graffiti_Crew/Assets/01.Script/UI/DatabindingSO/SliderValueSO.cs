@@ -5,5 +5,10 @@ public class SliderValueSO : ScriptableObject
 {
     public float min = 0;
     public float max = 100;
-    public float value;
+    public float _value;
+    public float Value
+    {
+        get { return _value; }
+        set { _value = Mathf.Clamp(value, min, max); }
+    }
 }

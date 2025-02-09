@@ -6,9 +6,9 @@
             <engine:VisualElement name="rival-border" style="width: 50%; flex-direction: row-reverse; align-items: center; padding-left: 30px; justify-content: flex-end;">
                 <engine:ProgressBar value="22" name="rival-progress" class="graffiti-progress">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
                 <engine:VisualElement name="rival-img" style="width: 150px; height: 150px; background-color: rgb(0, 122, 255);" />
@@ -16,9 +16,9 @@
             <engine:VisualElement name="player-border" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: flex-end; padding-right: 30px;">
                 <engine:ProgressBar name="player-progress" value="32.45" high-value="99.8" class="graffiti-progress" style="scale: -1 1; left: 1%;">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
                 <engine:VisualElement name="rival-img" style="width: 150px; height: 150px; background-color: rgb(255, 0, 38);" />
@@ -29,16 +29,16 @@
             <engine:VisualElement name="spray-content" style="flex-basis: 20%; flex-direction: row; align-items: flex-end; justify-content: flex-end;">
                 <engine:ProgressBar name="spray-amount-progress" value="32.5" class="spray-progress" style="translate: 89% -1205%;">
                     <Bindings>
-                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
                 <engine:ProgressBar name="spray-total-amount-progress" value="32.5" low-value="0.02" class="spray-progress" style="translate: -1% -1205%;">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
-                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
             </engine:VisualElement>
