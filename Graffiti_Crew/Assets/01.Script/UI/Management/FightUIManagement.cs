@@ -1,12 +1,14 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class FightUIManagement : UIManagement {
         private FightView _fightView;
         private DialougeView _dialougeView;
+        private ResultView _resultView;
 
         private FightViewModel _viewModel;
 
@@ -15,6 +17,7 @@ namespace AH.UI {
             FightEvent.SetActiveFightViewEvent += SetActiveFightView;
             FightEvent.ShowFightViewEvent += ShowFightView;
             FightEvent.HideFightViewEvent += HideFightView;
+            FightEvent.ShowResultViewEvent += ShowResultView;
             DialougeEvent.ShowDialougeViewEvent += ShowFightView;
             DialougeEvent.HideDialougeViewEvent += HideFightView;
         }
@@ -23,11 +26,15 @@ namespace AH.UI {
             FightEvent.SetActiveFightViewEvent -= SetActiveFightView;
             FightEvent.ShowFightViewEvent -= ShowFightView;
             FightEvent.HideFightViewEvent -= HideFightView;
+            FightEvent.ShowResultViewEvent -= ShowResultView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.HideDialougeViewEvent -= HideDialougeView;
         }
 
         #region Handle
+        private void ShowResultView() {
+            _resultView.Show();
+        }
         private void ShowDialougeView() {
             _dialougeView.Show();
         }
@@ -52,10 +59,10 @@ namespace AH.UI {
 
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
 
             _fightView.Show();
         }
-
         private void SetActiveFightView(bool active) {
             if (active) {
                 _fightView.Show();

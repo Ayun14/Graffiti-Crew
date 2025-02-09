@@ -3,26 +3,28 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" class="dialog-box-m-container" style="padding-right: 50px;">
         <engine:VisualElement name="top-content" class="dialog-box-top-content">
-            <engine:VisualElement name="name-box" class="name-box">
-                <engine:Label text="name" name="name-txt" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center;">
-                    <Bindings>
-                        <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
-                    </Bindings>
-                </engine:Label>
-            </engine:VisualElement>
-            <engine:VisualElement name="target-img" style="width: 25%; height: 100%; right: 120px;">
+            <engine:VisualElement name="target-img" style="width: 28%; height: 131%; position: absolute; top: 49px; left: 1034px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source-path="profil" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
                 </Bindings>
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="bottom-content" class="dialog-box-bottom-content">
-            <engine:VisualElement name="text-box" class="text-box">
-                <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" class="conversation-txt grow-middle-size-60 grow-size-60" style="-unity-text-align: upper-left;">
-                    <Bindings>
-                        <engine:DataBinding property="text" data-source-path="dialogue" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
-                    </Bindings>
-                </engine:Label>
+            <engine:VisualElement name="bottom-content" class="dialog-box-bottom-content" style="width: 74%; height: 88%;">
+                <engine:VisualElement name="text-box" class="text-box" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/TextBox/text.png?fileID=21300000&amp;guid=b8b07b4b5bc0e764b9a7115182db5831&amp;type=3#text&quot;); background-color: rgba(220, 220, 220, 0); align-items: center; justify-content: center;">
+                    <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" class="conversation-txt grow-size-60" style="flex-grow: 0;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source-path="dialogue" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+                <engine:VisualElement name="name-box" class="name-box" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/TextBox/text_name.png?fileID=21300000&amp;guid=f14ba014c1a41b14583dff6f99e7668d&amp;type=3#text_name&quot;); background-color: rgba(255, 255, 255, 0);">
+                    <engine:Label text="name" name="name-txt" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; width: 70%; height: 27%; flex-grow: 0; left: -3%;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
