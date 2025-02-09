@@ -11,11 +11,13 @@ using UnityEditor;
 [Serializable]
 public struct StageData
 {
+    public string id;
     public string title;
     public string description;
 
-    public StageData(string title, string description)
+    public StageData(string id, string title, string description)
     {
+        this.id = id;
         this.title = title;
         this.description = description;
     }
@@ -29,12 +31,15 @@ public class StageDataReader : DataReaderBase
 
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        string title = null, description = null;
+        string id = null, title = null, description = null;
 
         for (int i = 0; i < list.Count; i++)
         {
             switch (list[i].columnId)
             {
+                case "ID":
+                    id = list[i].value;
+                    break;
                 case "Title":
                     title = list[i].value;
                     break;
@@ -44,7 +49,7 @@ public class StageDataReader : DataReaderBase
             }
         }
 
-        StageList.Add(new StageData(title, description));
+        StageList.Add(new StageData(id, title, description));
     }
 }
 
