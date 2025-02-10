@@ -58,6 +58,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
             _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
 
             RivalCheck();
+            FinishCheck();
         }
     }
 
@@ -70,6 +71,12 @@ public class RivalController : Observer<GameStateController>, INeedLoding
             _isCompleteRivalCheck = true;
             mySubject.OnRivalCheckEvent();
         }
+    }
+
+    private void FinishCheck()
+    {
+        if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
+            mySubject.ChangeGameState(GameState.Finish);
     }
 
     public override void NotifyHandle()

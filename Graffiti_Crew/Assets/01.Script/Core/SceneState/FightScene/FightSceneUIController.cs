@@ -51,9 +51,6 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _finishPanel;
     private TextMeshProUGUI _finishText;
 
-    // Result
-    private Image _resultPanel;
-
     private void Awake()
     {
         Attach();
@@ -83,9 +80,6 @@ public class FightSceneUIController : Observer<GameStateController>
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishText = _finishPanel.transform.Find("Text_Finish").GetComponent<TextMeshProUGUI>();
-
-        // Result
-        _resultPanel = canvas.Find("Panel_Result").GetComponent<Image>();
     }
 
     private void OnDestroy()
@@ -130,7 +124,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            FightEvent.SetActiveFightViewEvent(isFight);
+            FightEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)
@@ -145,7 +139,6 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
-            //_resultPanel.gameObject.SetActive(mySubject.GameState == GameState.Result);
             FightEvent.ShowResultViewEvent?.Invoke(mySubject.GameState == GameState.Result);
         }
     }
