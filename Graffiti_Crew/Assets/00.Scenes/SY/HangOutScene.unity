@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 224458195}
   - component: {fileID: 224458197}
   - component: {fileID: 224458196}
+  - component: {fileID: 224458198}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -707,6 +708,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!208 &224458198
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224458194}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.3, y: 0.95, z: 0.3}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &229518938
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +879,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 20.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -888,8 +905,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26437163, y: -0.34493455, z: 0.10190725, w: 0.89484227}
-  m_LocalPosition: {x: -2.16, y: 5.9, z: 0.46}
+  m_LocalRotation: {x: -0.1462455, y: 0.85375434, z: -0.3530679, w: -0.35363656}
+  m_LocalPosition: {x: 6.74, y: 15, z: 9.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3939,11 +3956,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1608467573}
   - component: {fileID: 1608467581}
-  - component: {fileID: 1608467577}
   - component: {fileID: 1608467578}
   - component: {fileID: 1608467580}
   m_Layer: 7
-  m_Name: NPC
+  m_Name: Ella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3966,22 +3982,6 @@ Transform:
   - {fileID: 26114949}
   m_Father: {fileID: 75633940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &1608467577
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608467572}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.3, y: 0.95, z: 0.3}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &1608467578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3995,6 +3995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateEnum: 4
+  _lastStageDataSO: {fileID: 11400000, guid: 3b61c083df02e954985c1d8d1ecf6067, type: 2}
   startIndex: 1
   endIndex: 2
 --- !u!114 &1608467580
