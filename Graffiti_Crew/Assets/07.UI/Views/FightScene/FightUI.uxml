@@ -1,6 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="FightView" src="project://database/Assets/07.UI/Views/FightScene/FightView.uxml?fileID=9197481963319205126&amp;guid=3df5149eaa8ba7f4ea7b855ad2a04917&amp;type=3#FightView" />
     <engine:Template name="DialogBoxView" src="project://database/Assets/07.UI/Views/DialogBoxView.uxml?fileID=9197481963319205126&amp;guid=5f40de9b6050fbe438a6ed725b81467f&amp;type=3#DialogBoxView" />
+    <engine:Template name="ResultView" src="project://database/Assets/07.UI/Views/FightScene/ResultView.uxml?fileID=9197481963319205126&amp;guid=6f1198772a1f18c4cb08f8b8e24e642f&amp;type=3#ResultView" />
     <engine:Instance template="FightView" name="FightView" style="flex-grow: 1; display: flex;" />
     <engine:Instance template="DialogBoxView" name="DialougeView" style="display: none; flex-grow: 1;" />
+    <engine:Instance template="ResultView" name="ResultView" style="flex-grow: 1; display: none;" />
 </engine:UXML>

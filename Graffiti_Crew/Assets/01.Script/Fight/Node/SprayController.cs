@@ -1,16 +1,15 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SprayController : MonoBehaviour
 {
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
-    public bool isMustShakeSpray => _shakeSliderValueSO.value <= 0f;
+    public bool isMustShakeSpray => _shakeSliderValueSO.Value <= 0f;
 
     [Header("Spray")]
     [SerializeField] private SliderValueSO _spraySliderValueSO;
-    public bool isSprayNone => _spraySliderValueSO.value <= 0f;
+    public bool isSprayNone => _spraySliderValueSO.Value <= 0f;
     [SerializeField] private float _sprayAddAmount;
 
     #region Shake Settings
@@ -37,10 +36,10 @@ public class SprayController : MonoBehaviour
         _judgement = judgement;
 
         // Spray
-        _spraySliderValueSO.value = _spraySliderValueSO.max;
+        _spraySliderValueSO.Value = _spraySliderValueSO.max;
 
         // Shake
-        _shakeSliderValueSO.value = _shakeSliderValueSO.max;
+        _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
 
         ResetShakeDetection();
     }
@@ -70,10 +69,12 @@ public class SprayController : MonoBehaviour
     {
         if (_shakeSliderValueSO == null) return;
 
-        float targetValue = _shakeSliderValueSO.value + value;
-        DOTween.To(() => _shakeSliderValueSO.value,
-            x => _shakeSliderValueSO.value = x, targetValue, 0.5f);
-
+        float targetValue = _shakeSliderValueSO.Value + value;
+        DOTween.To(() => _shakeSliderValueSO.Value,
+            x => _shakeSliderValueSO.Value = x, targetValue, 0.5f)
+            .OnComplete(() =>
+            {
+            });
     }
 
     private void ShakeInput()
@@ -136,9 +137,9 @@ public class SprayController : MonoBehaviour
     {
         if (_spraySliderValueSO == null) return;
 
-        float targetValue = _spraySliderValueSO.value + value;
-        DOTween.To(() => _spraySliderValueSO.value,
-            x => _spraySliderValueSO.value = x, targetValue, 0.5f);
+        float targetValue = _spraySliderValueSO.Value + value;
+        DOTween.To(() => _spraySliderValueSO.Value,
+            x => _spraySliderValueSO.Value = x, targetValue, 0.5f);
 
         // Spray Empty
         if (targetValue <= 0f)

@@ -28,7 +28,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         _graffitiRenderer = GetComponentInChildren<SpriteRenderer>();
         _graffitiRenderer.sprite = null;
 
-        _rivalSliderValueSO.value = _rivalSliderValueSO.min;
+        _rivalSliderValueSO.Value = _rivalSliderValueSO.min;
 
         _isFight = false;
         _isCompleteRivalCheck = false;
@@ -55,9 +55,10 @@ public class RivalController : Observer<GameStateController>, INeedLoding
             _currentTime += Time.deltaTime;
 
             float percent = _currentTime / _rivalDrawingTime;
-            _rivalSliderValueSO.value = _rivalSliderValueSO.max * percent;
+            _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
 
             RivalCheck();
+            FinishCheck();
         }
     }
 
@@ -65,11 +66,17 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         if (_isCompleteRivalCheck) return;
 
-        if (_rivalSliderValueSO.value > _rivalCheckPercent)
+        if (_rivalSliderValueSO.Value > _rivalCheckPercent)
         {
             _isCompleteRivalCheck = true;
             mySubject.OnRivalCheckEvent();
         }
+    }
+
+    private void FinishCheck()
+    {
+        if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
+            mySubject.ChangeGameState(GameState.Finish);
     }
 
     public override void NotifyHandle()

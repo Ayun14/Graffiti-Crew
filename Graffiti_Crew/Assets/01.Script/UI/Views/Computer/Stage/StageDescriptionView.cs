@@ -57,7 +57,7 @@ namespace AH.UI.Views {
 
         private void ClickStartGameBtn(ClickEvent evt) {
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-            SceneManager.LoadScene("AY");
+            SceneManager.LoadScene("FightScene");
         }
 
         private void ClickSelectFirend(ClickEvent evt, int index) {
