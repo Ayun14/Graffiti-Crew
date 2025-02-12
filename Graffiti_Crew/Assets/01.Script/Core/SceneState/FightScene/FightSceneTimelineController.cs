@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using UnityEngine.Playables;
 
 public class FightSceneTimelineController : Observer<GameStateController>, INeedLoding
@@ -50,12 +51,14 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void DialogueRival()
     {
+        DialougeEvent.ShowDialougeViewEvent?.Invoke();
         _beforeFightTimeline.Pause();
         _dialogueUIController.StartDialogue(1, 1, PlayTimeline);
     }
 
     public void DialoguePlayer()
     {
+        DialougeEvent.ShowDialougeViewEvent?.Invoke();
         _beforeFightTimeline.Pause();
         _dialogueUIController.StartDialogue(2, 2, PlayTimeline);
     }

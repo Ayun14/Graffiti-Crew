@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using UnityEngine;
 
 public class PlayerNPCState : PlayerState
@@ -17,8 +18,8 @@ public class PlayerNPCState : PlayerState
 
         if (_player.dialogueUIController != null)
         {
-            _player.dialogueUIController.StartDialogue
-                (_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
+            DialougeEvent.ShowDialougeViewEvent?.Invoke();
+            _player.dialogueUIController.StartDialogue(_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
         }
     }
 

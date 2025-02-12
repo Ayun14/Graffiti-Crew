@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ public class DialogueController : Observer<GameStateController>
         if(mySubject.GameState == GameState.Talk)
         {
             List<DialogueData> list = _dialogueUIController.dialogueDataReader.DialogueList;
+            DialougeEvent.ShowDialougeViewEvent?.Invoke();
             _dialogueUIController.StartDialogue(1, list[list.Count-1].id,ChangeGameState);
         }
     }

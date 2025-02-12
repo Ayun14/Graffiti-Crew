@@ -11,15 +11,10 @@ using UnityEngine.Rendering;
 
 public class DialogueUIController : MonoBehaviour
 {
-    [Header("UI Elements")]
-    [SerializeField] private GameObject _dialogueUI;
-    [SerializeField] private CanvasGroup _dialogueCanvas;
-    [SerializeField] private TextMeshProUGUI _nameText;
-    [SerializeField] private TextMeshProUGUI _contextText;
-    [SerializeField] private Image _characterImage;
     private float _fadeDuration = 0.3f;
 
     [Header("Dialogue Data")]
+    [SerializeField] private DialogueSO _dialogueUIData;
     [HideInInspector] public DialogueDataReader dialogueDataReader;
     [SerializeField] private DialogueDataReader _dialogueDataReader_KR;
     [SerializeField] private DialogueDataReader _dialogueDataReader_EN;
@@ -41,14 +36,11 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
-        _dialogueUI.SetActive(false);
-        _nameText.text = "";
-        _contextText.text = "";
-        _characterImage.sprite = null;
+        DialougeEvent.HideDialougeViewEvent?.Invoke();
 
-        _dialogueCanvas.alpha = 0;
-        _dialogueCanvas.interactable = false;
-        _dialogueCanvas.blocksRaycasts = false;
+        _dialogueUIData.characterName = "";
+        _dialogueUIData.dialogue = "";
+        _dialogueUIData.profil = null;
 
         dialogueDataReader = _dialogueDataReader_KR;
         UIEvents.ChangeLanguageEvnet += HandleChangeLangauge;
@@ -89,7 +81,8 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        _dialogueUI.SetActive(true);
+        DialougeEvent.ShowDialougeViewEvent?.Invoke();
+
         _currentDialogueIndex = 0;
         _onDialogueComplete = onComplete;
 
@@ -120,16 +113,16 @@ public class DialogueUIController : MonoBehaviour
 
     private void ShowDialogue(int index)
     {
-        FadeIn();
+        //FadeIn
 
         if (index < 0 || index >= _filteredDialogueList.Count) return;
 
         DialogueData dialogue = _filteredDialogueList[index];
-        _nameText.text = dialogue.characterName;
+        _dialogueUIData.characterName = dialogue.characterName;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
         if (sprite != null)
-            _characterImage.sprite = sprite;
+            _dialogueUIData.profil = sprite;
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
@@ -143,7 +136,12 @@ public class DialogueUIController : MonoBehaviour
 
         if (_currentDialogueIndex >= _filteredDialogueList.Count)
         {
-            FadeOut();
+            //FadeOut
+
+            _isDialogue = false;
+            DialougeEvent.HideDialougeViewEvent?.Invoke();
+            _onDialogueComplete?.Invoke();
+
             return;
         }
 
@@ -153,11 +151,11 @@ public class DialogueUIController : MonoBehaviour
     private IEnumerator TypingEffect(string fullText)
     {
         _isTyping = true;
-        _contextText.text = "";
+        _dialogueUIData.dialogue = "";
 
         foreach (char letter in fullText)
         {
-            _contextText.text += letter;
+            _dialogueUIData.dialogue += letter;
             yield return new WaitForSeconds(_typingSpeed);
         }
 
@@ -172,29 +170,7 @@ public class DialogueUIController : MonoBehaviour
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
 
-        _contextText.text = _filteredDialogueList[_currentDialogueIndex].context;
+        _dialogueUIData.dialogue = _filteredDialogueList[_currentDialogueIndex].context;
         _isTyping = false;
-    }
-
-    public void FadeIn()
-    {
-        _dialogueCanvas.DOFade(1f, _fadeDuration).OnStart(() =>
-        {
-            _dialogueCanvas.interactable = true;
-            _dialogueCanvas.blocksRaycasts = true;
-
-        });
-    }
-
-    public void FadeOut()
-    {
-        _dialogueCanvas.DOFade(0f, _fadeDuration).OnComplete(() =>
-        {
-            _isDialogue = false;
-            _dialogueCanvas.interactable = false;
-            _dialogueCanvas.blocksRaycasts = false;
-            _dialogueUI.SetActive(false);
-            _onDialogueComplete?.Invoke();
-        });
     }
 }
