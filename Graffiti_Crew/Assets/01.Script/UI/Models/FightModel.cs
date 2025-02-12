@@ -1,6 +1,7 @@
-using AH.UI.Models;
 using UnityEngine;
 
-public class FightModel : Model {
+namespace AH.UI.Models {
+    public class FightModel : Model {
 
+    }
 }

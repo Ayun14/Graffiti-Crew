@@ -1,4 +1,5 @@
 using AH.UI.Events;
+using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
 using UnityEngine;
