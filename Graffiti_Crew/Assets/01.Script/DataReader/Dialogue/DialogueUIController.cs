@@ -36,11 +36,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
-        DialougeEvent.HideDialougeViewEvent?.Invoke();
-
-        _dialogueUIData.characterName = "";
-        _dialogueUIData.dialogue = "";
-        _dialogueUIData.profil = null;
+        _dialogueUIData.ResetData();
 
         dialogueDataReader = _dialogueDataReader_KR;
         UIEvents.ChangeLanguageEvnet += HandleChangeLangauge;
@@ -81,6 +77,7 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
+        Debug.Log("¥Î»≠¡ﬂ");
         DialougeEvent.ShowDialougeViewEvent?.Invoke();
 
         _currentDialogueIndex = 0;
