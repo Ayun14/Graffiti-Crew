@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9205216462639050471}
   - component: {fileID: 587552867296874969}
   - component: {fileID: 4736077380214728974}
+  - component: {fileID: 5621829251696150413}
   m_Layer: 0
   m_Name: HangOuttUI
   m_TagString: Untagged
@@ -67,6 +68,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 4743383168115187962}
   _inputReaderSO: {fileID: 11400000, guid: 0ef0000522ef6bc48b728bcef3549823, type: 2}
+--- !u!114 &5621829251696150413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6892174263343948809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
+  dialogueDataReader: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
+  _dialogueDataReader_KR: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
+  _dialogueDataReader_EN: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
+  _typingSpeed: 0.05
 --- !u!1 &7432062056643578100
 GameObject:
   m_ObjectHideFlags: 0

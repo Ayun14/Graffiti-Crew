@@ -1563,6 +1563,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4743383168115187962, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _languageSO
+      value: 
+      objectReference: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
     - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_Name
       value: HangOuttUI
@@ -1610,33 +1614,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 555015611}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
---- !u!1 &555015610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+--- !u!114 &555015611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
   m_PrefabInstance: {fileID: 555015609}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &555015611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555015610}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
-  dialogueDataReader: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
-  _dialogueDataReader_KR: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
-  _dialogueDataReader_EN: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
-  _typingSpeed: 0.05
 --- !u!1 &593124915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4326,7 +4316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1753040584
 MonoBehaviour:
   m_ObjectHideFlags: 0

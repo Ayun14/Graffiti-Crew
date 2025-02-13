@@ -1,6 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:EnumField label="언어" value="Center" type="AH.UI.Views.LanguageType, Assembly-CSharp" name="language-field" class="grow-size-40" style="flex-grow: 0; width: 600px;" />
+        <engine:DropdownField label="Dropdown" name="language-dropdownField" index="1" choices="테스트1,테스트2" class="grow-size-40" style="flex-grow: 0; width: 694px;">
+            <Bindings>
+                <engine:DataBinding property="label" data-source-path="title" data-source="project://database/Assets/08.SO/UI/LanguageSO.asset?fileID=11400000&amp;guid=d4f2450041366704da3b244c4941e3ac&amp;type=2#LanguageSO" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:DropdownField>
     </engine:VisualElement>
 </engine:UXML>

@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +11,10 @@ namespace AH.UI {
         private HangOutViewModel _viewModel;
 
         private DialougeView _dialougeView;
+        private SettingView _settingView;
+
+        private Button _settingBtn;
+        private Button _closeBtn;
 
         protected override void OnEnable() {
             base.OnEnable();
@@ -32,7 +37,20 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _viewModel);
-            Debug.Log(_dialougeView);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+            
+            _settingBtn = root.Q<Button>("setting-btn");
+            _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
+            _closeBtn = root.Q<Button>("close-btn");
+            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+        }
+
+        private void ClickCloseBtn(ClickEvent evt) {
+            _settingView.Hide();
+        }
+
+        private void ClickSettingBtn(ClickEvent evt) {
+            _settingView.Show();
         }
 
         private void ShowDialougeView() {
