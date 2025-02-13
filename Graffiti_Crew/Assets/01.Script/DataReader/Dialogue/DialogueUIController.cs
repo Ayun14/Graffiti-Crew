@@ -77,7 +77,6 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        Debug.Log("¥Î»≠¡ﬂ");
         DialougeEvent.ShowDialougeViewEvent?.Invoke();
 
         _currentDialogueIndex = 0;
