@@ -1,10 +1,16 @@
 using AH.UI.Events;
+using AH.UI.Models;
+using AH.UI.ViewModels;
 using AH.UI.Views;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AH.UI {
-    public class HideoutUIManagement : UIManagement {
+    public class HangOutUIManagement : UIManagement {
+        private HangOutViewModel _viewModel;
+
         private DialougeView _dialougeView;
+
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
@@ -14,6 +20,19 @@ namespace AH.UI {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.HideDialougeViewEvent -= HideDialougeView;
+        }
+
+        protected override void Init() {
+            base.Init();
+            _viewModel = new HangOutViewModel(_model as HangOutModel);
+        }
+
+        protected override void SetupViews() {
+            base.SetupViews();
+            VisualElement root = _uiDocument.rootVisualElement;
+
+            _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _viewModel);
+            Debug.Log(_dialougeView);
         }
 
         private void ShowDialougeView() {
