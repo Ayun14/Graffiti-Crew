@@ -22,7 +22,7 @@ public class FadeController : MonoBehaviour
         }).
         OnComplete(()=>
         {
-            SceneManager.LoadScene("AH");
+            SceneManager.LoadScene("ComputerScene");
         });
     }
 }
