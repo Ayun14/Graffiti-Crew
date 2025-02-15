@@ -19,6 +19,9 @@ public class DialogueUIController : MonoBehaviour
     [SerializeField] private DialogueDataReader _dialogueDataReader_KR;
     [SerializeField] private DialogueDataReader _dialogueDataReader_EN;
 
+    [Header("Dialogue Data")]
+    [SerializeField] private LanguageSO _languageSO;
+
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
 
@@ -50,9 +53,19 @@ public class DialogueUIController : MonoBehaviour
     private void HandleChangeLangauge(LanguageType type)
     {
         if (type == LanguageType.English)
+        {
+            _languageSO.title = "language";
+            _languageSO.languageTypes[0] = "Korea";
+            _languageSO.languageTypes[0] = "English";
             dialogueDataReader = _dialogueDataReader_EN;
+        }
         else
+        {
+            _languageSO.title = "언어";
+            _languageSO.languageTypes[0] = "한글";
+            _languageSO.languageTypes[0] = "영어";
             dialogueDataReader = _dialogueDataReader_KR;
+        }
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete)
