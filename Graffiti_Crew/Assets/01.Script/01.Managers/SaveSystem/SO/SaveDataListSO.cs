@@ -38,7 +38,6 @@ namespace AH.SaveSystem {
         }
         public void LoadJson(string json) {
             SaveDataWrapper wrapper = JsonUtility.FromJson<SaveDataWrapper>(json);
-            Debug.Log(wrapper);
             foreach (var data in wrapper.saveDataList) {
                 // 동일한 SO를 찾기
                 SaveDataSO findData = _saveDataSOList.Find(currentData => currentData.ID == data.ID && currentData.dataName == data.dataName);
