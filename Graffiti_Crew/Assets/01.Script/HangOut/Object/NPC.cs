@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class NPC : InteractionObject
 {
-    [SerializeField] private StageSaveDataSO _lastStageDataSO;
-    private GameObject _visual;
+    [SerializeField] private NPCSO _npcSO;
 
-    public int startIndex;
-    public int endIndex;
+    private GameObject _visual;
+    private StageSaveDataSO _lastStageDataSO;
+    [HideInInspector] public int startIndex;
+    [HideInInspector] public int endIndex;
 
     protected override void Awake()
     {
@@ -17,6 +18,10 @@ public class NPC : InteractionObject
 
     private void Start()
     {
+        startIndex = _npcSO.startIndex;
+        endIndex = _npcSO.endIndex;
+        _lastStageDataSO = _npcSO.lastStageDataSO;
+
         if(!_lastStageDataSO.isClear)
             _visual.SetActive(false);
         else
