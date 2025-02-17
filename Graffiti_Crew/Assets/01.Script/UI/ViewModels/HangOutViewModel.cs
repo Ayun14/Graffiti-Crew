@@ -9,8 +9,8 @@ namespace AH.UI.ViewModels {
             _model = model as HangOutModel;
         }
 
-        public string[] GetLanguageTypes() {
-            return _model.GetLanguageTypes();
+        public LanguageSO GetLanguageSO() {
+            return _model.GetLanguageSO();
         }
     }
 }

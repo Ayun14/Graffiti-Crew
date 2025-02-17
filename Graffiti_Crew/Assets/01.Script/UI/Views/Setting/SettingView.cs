@@ -13,11 +13,14 @@ namespace AH.UI.Views {
     }
     public class SettingView : UIView {
         private HangOutViewModel ViewModel;
-        // 모델 받아야함
+
         private DropdownField _languageField;
         private LanguageType _lauguageType;
 
-        private string[] _lauguageTypes => ViewModel.GetLanguageTypes();
+        private bool isLanguageChangeing;
+
+        private LanguageSO _lauguageSO => ViewModel.GetLanguageSO();
+        private string[] _lauguageTypes => _lauguageSO.languageTypes;
 
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -29,32 +32,43 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
-            SetLanguageItems();
         }
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
-            _languageField.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
+            _languageField.RegisterValueChangedCallback(ChangeLanguage);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            _languageField.UnregisterCallback<ChangeEvent<string>>(ChangeLanguage);
+            _languageField.RegisterValueChangedCallback(ChangeLanguage);
         }
+
         private void ChangeLanguage(ChangeEvent<string> evt) {
+            if (isLanguageChangeing) {
+                isLanguageChangeing = false;
+                return;
+            }
             LanguageType inputValue = LanguageType.Korea;
+            int index = -1;
 
             for (int i = 0; i < _lauguageTypes.Length; i++) {
                 if (_lauguageTypes[i] == evt.newValue) {
                     LanguageType[] states = (LanguageType[])Enum.GetValues(typeof(LanguageType));
                     inputValue = states[i];
+                    index = i;
                 }
             }
             _lauguageType = inputValue;
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
-
+            Debug.Log(index);
+            if (index > -1) {
+                _languageField.SetValueWithoutNotify(_lauguageTypes[index]);
+            }
             SetLanguageItems();
         }
         private void SetLanguageItems() {
+            isLanguageChangeing = true;
+            _languageField.label = _lauguageSO.title;
             _languageField.choices.Clear();
             _languageField.choices = _lauguageTypes.ToList();
         }

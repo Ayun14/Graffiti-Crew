@@ -8,6 +8,7 @@ using DG.Tweening;
 using AH.UI.Events;
 using AH.UI.Views;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -52,18 +53,17 @@ public class DialogueUIController : MonoBehaviour
 
     private void HandleChangeLangauge(LanguageType type)
     {
-        if (type == LanguageType.English)
-        {
+        Debug.Log(type.ToString());
+        if (type == LanguageType.English) {
             _languageSO.title = "language";
             _languageSO.languageTypes[0] = "Korea";
-            _languageSO.languageTypes[0] = "English";
+            _languageSO.languageTypes[1] = "English";
             dialogueDataReader = _dialogueDataReader_EN;
         }
-        else
-        {
+        else {
             _languageSO.title = "언어";
             _languageSO.languageTypes[0] = "한글";
-            _languageSO.languageTypes[0] = "영어";
+            _languageSO.languageTypes[1] = "영어";
             dialogueDataReader = _dialogueDataReader_KR;
         }
     }
