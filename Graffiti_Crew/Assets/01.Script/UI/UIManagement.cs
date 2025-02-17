@@ -1,6 +1,5 @@
 using AH.UI.Events;
 using AH.UI.Models;
-using AH.UI.ViewModels;
 using AH.UI.Views;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +41,7 @@ public class UIManagement : MonoBehaviour {
         else if (_viewStack.Count == 0) {
             _viewStack.Clear();
             UIEvents.CloseComputerEvnet?.Invoke();
-            SceneManager.LoadScene("SY");
+            SceneManager.LoadScene("HangOutScene");
         }
     }
     protected void ShowView(UIView newView, bool offPreview = false) {
