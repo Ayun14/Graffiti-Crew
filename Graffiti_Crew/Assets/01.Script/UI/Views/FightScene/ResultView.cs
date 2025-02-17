@@ -32,7 +32,7 @@ namespace AH.UI.Views {
         }
 
         private void ClickRetryBtn(ClickEvent evt) {
-            Debug.Log("아직 연결 안했어용");
+            SceneManager.LoadScene("FightScene");
         }
         private void ClickExitBtn(ClickEvent evt) {
             SceneManager.LoadScene("ComputerScene");

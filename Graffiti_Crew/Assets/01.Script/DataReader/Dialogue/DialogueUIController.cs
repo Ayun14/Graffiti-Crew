@@ -43,17 +43,23 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData.ResetData();
 
         dialogueDataReader = dialogueDataReader_KR;
-        UIEvents.ChangeLanguageEvnet += HandleChangeLangauge;
+
+        if (LanguageSystem.GetLanguageType()==LanguageType.English){
+            dialogueDataReader = dialogueDataReader_EN;
+        }
+        else {
+            dialogueDataReader = dialogueDataReader_KR;
+        }
+        LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
     }
 
     private void OnDisable()
     {
-        UIEvents.ChangeLanguageEvnet -= HandleChangeLangauge;
+        LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
     }
 
     private void HandleChangeLangauge(LanguageType type)
     {
-        Debug.Log(type.ToString());
         if (type == LanguageType.English) {
             _languageSO.title = "language";
             _languageSO.languageTypes[0] = "Korea";

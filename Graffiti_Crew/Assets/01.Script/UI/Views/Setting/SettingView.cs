@@ -45,6 +45,7 @@ namespace AH.UI.Views {
 
         private void ChangeLanguage(ChangeEvent<string> evt) {
             if (isLanguageChangeing) {
+                Debug.Log("cancel");
                 isLanguageChangeing = false;
                 return;
             }
@@ -60,7 +61,6 @@ namespace AH.UI.Views {
             }
             _lauguageType = inputValue;
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
-            Debug.Log(index);
             if (index > -1) {
                 _languageField.SetValueWithoutNotify(_lauguageTypes[index]);
             }
