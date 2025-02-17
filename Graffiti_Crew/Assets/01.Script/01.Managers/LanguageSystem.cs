@@ -6,7 +6,7 @@ using UnityEngine;
 public class LanguageSystem : MonoBehaviour {
     private static LanguageSystem instance;
     public static event Action<LanguageType> LanguageChangedEvent;
-    private LanguageType _currentLanguageType = LanguageType.Korea;
+    public LanguageType _currentLanguageType = LanguageType.Korea;
 
     private void Awake() {
         if (instance == null) {

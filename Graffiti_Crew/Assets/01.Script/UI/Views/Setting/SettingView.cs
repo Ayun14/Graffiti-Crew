@@ -18,7 +18,7 @@ namespace AH.UI.Views {
         private LanguageType _lauguageType;
 
         private bool isLanguageChangeing;
-
+        private LanguageType[] _enumValues;
         private LanguageSO _lauguageSO => ViewModel.GetLanguageSO();
         private string[] _lauguageTypes => _lauguageSO.languageTypes;
 
@@ -31,6 +31,7 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
+            _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
         }
 
@@ -45,21 +46,16 @@ namespace AH.UI.Views {
 
         private void ChangeLanguage(ChangeEvent<string> evt) {
             if (isLanguageChangeing) {
-                Debug.Log("cancel");
                 isLanguageChangeing = false;
                 return;
             }
-            LanguageType inputValue = LanguageType.Korea;
-            int index = -1;
 
-            for (int i = 0; i < _lauguageTypes.Length; i++) {
-                if (_lauguageTypes[i] == evt.newValue) {
-                    LanguageType[] states = (LanguageType[])Enum.GetValues(typeof(LanguageType));
-                    inputValue = states[i];
-                    index = i;
-                }
-            }
+            LanguageType inputValue = LanguageType.Korea;
+            int index = _languageField.index;
+
+            inputValue = _enumValues[index];
             _lauguageType = inputValue;
+
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
             if (index > -1) {
                 _languageField.SetValueWithoutNotify(_lauguageTypes[index]);
