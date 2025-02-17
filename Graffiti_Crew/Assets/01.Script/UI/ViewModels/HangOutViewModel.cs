@@ -12,5 +12,11 @@ namespace AH.UI.ViewModels {
         public LanguageSO GetLanguageSO() {
             return _model.GetLanguageSO();
         }
+        public int GetLanguageIndex() {
+            return _model.GetLanguageIndex();
+        }
+        public void SetLanguageIndex(int index) {
+            _model.SetLanguageIndex(index);
+        }
     }
 }
