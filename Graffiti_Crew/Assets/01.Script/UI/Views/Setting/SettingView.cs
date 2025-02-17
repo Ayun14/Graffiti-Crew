@@ -54,7 +54,6 @@ namespace AH.UI.Views {
         private void ChangeLanguage(ChangeEvent<string> evt) {
             if (isLanguageChangeing) {
                 isLanguageChangeing = false;
-                Debug.Log("cancel");
                 return;
             }
 
@@ -64,7 +63,7 @@ namespace AH.UI.Views {
             ViewModel.SetLanguageIndex(index);
             inputValue = _enumValues[index];
             _lauguageType = inputValue;
-            Debug.Log(_lauguageType);
+
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
             SetLanguageItems(true);
         }
