@@ -13,7 +13,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
         _beforeFightTimeline = transform.Find("BeforeFightTimeline").GetComponent<PlayableDirector>();
         _finishtTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
-        _dialogueUIController = transform.Find("DialogueUI").GetComponent<DialogueUIController>();
+        _dialogueUIController = transform.Find("FightUI").GetComponent<DialogueUIController>();
     }
 
     private void OnDestroy()

@@ -19,8 +19,8 @@ namespace AH.UI {
             FightEvent.ShowFightViewEvent += ShowFightView;
             FightEvent.HideFightViewEvent += HideFightView;
             FightEvent.ShowResultViewEvent += ShowResultView;
-            DialougeEvent.ShowDialougeViewEvent += ShowFightView;
-            DialougeEvent.HideDialougeViewEvent += HideFightView;
+            DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialougeEvent.HideDialougeViewEvent += HideDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();

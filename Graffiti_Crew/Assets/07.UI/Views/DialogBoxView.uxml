@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" class="dialog-box-m-container" style="padding-right: 50px;">
-        <engine:VisualElement name="top-content" class="dialog-box-top-content">
+        <engine:VisualElement name="top-content" class="dialog-box-top-content" style="flex-basis: 48%; flex-grow: 0;">
             <engine:VisualElement name="target-img" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" data-source-path="profil" style="width: 28%; height: 131%; position: absolute; top: 49px; left: 1034px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source-path="profil" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" />
