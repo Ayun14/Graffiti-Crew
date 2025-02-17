@@ -51,13 +51,11 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void DialogueRival()
     {
-        _beforeFightTimeline.Pause();
         _dialogueUIController.StartDialogue(1, 1, PlayTimeline);
     }
 
     public void DialoguePlayer()
     {
-        _beforeFightTimeline.Pause();
         _dialogueUIController.StartDialogue(2, 2, PlayTimeline);
     }
 
@@ -68,6 +66,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void LodingHandle(StageDataSO stageData)
     {
-        _dialogueUIController.dialogueDataReader = stageData.dialogueData;
+        _dialogueUIController.dialogueDataReader_KR = stageData.dialogueData_KR;
+        _dialogueUIController.dialogueDataReader_EN = stageData.dialogueData_EN;
     }
 }

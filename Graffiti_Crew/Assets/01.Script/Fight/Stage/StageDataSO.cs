@@ -18,7 +18,8 @@ public class StageDataSO : ScriptableObject
     public GameObject mapPrefab;
 
     [Header("Dialogue")]
-    public DialogueDataReader dialogueData;
+    public DialogueDataReader dialogueData_KR;
+    public DialogueDataReader dialogueData_EN;
 
     [Header("Stage Star Setting")]
     public StageResultSO stageResult;

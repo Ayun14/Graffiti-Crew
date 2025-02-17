@@ -17,8 +17,8 @@ public class DialogueUIController : MonoBehaviour
     [Header("Dialogue Data")]
     [SerializeField] private DialogueSO _dialogueUIData;
     [HideInInspector] public DialogueDataReader dialogueDataReader;
-    [SerializeField] private DialogueDataReader _dialogueDataReader_KR;
-    [SerializeField] private DialogueDataReader _dialogueDataReader_EN;
+    public DialogueDataReader dialogueDataReader_KR;
+    public DialogueDataReader dialogueDataReader_EN;
 
     [Header("Dialogue Data")]
     [SerializeField] private LanguageSO _languageSO;
@@ -42,7 +42,7 @@ public class DialogueUIController : MonoBehaviour
     {
         _dialogueUIData.ResetData();
 
-        dialogueDataReader = _dialogueDataReader_KR;
+        dialogueDataReader = dialogueDataReader_KR;
         UIEvents.ChangeLanguageEvnet += HandleChangeLangauge;
     }
 
@@ -58,13 +58,13 @@ public class DialogueUIController : MonoBehaviour
             _languageSO.title = "language";
             _languageSO.languageTypes[0] = "Korea";
             _languageSO.languageTypes[1] = "English";
-            dialogueDataReader = _dialogueDataReader_EN;
+            dialogueDataReader = dialogueDataReader_EN;
         }
         else {
             _languageSO.title = "언어";
             _languageSO.languageTypes[0] = "한글";
             _languageSO.languageTypes[1] = "영어";
-            dialogueDataReader = _dialogueDataReader_KR;
+            dialogueDataReader = dialogueDataReader_KR;
         }
     }
 
