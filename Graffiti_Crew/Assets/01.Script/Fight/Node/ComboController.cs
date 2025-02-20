@@ -41,11 +41,11 @@ public class ComboController : MonoBehaviour
     {
         StateTextUpdate("<color=white>Combo</color>");
         ComboTextUpdate(++_currentCombo);
+        _stageResult.comboCnt++;
     }
 
     public void FailCombo()
     {
-        _stageResult.comboCnt += _currentCombo;
         _currentCombo = 0;
 
         StateTextUpdate("<color=red>Miss</color>");

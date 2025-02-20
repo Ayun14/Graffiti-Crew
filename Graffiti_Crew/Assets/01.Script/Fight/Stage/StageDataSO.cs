@@ -26,7 +26,7 @@ public class StageDataSO : ScriptableObject
     public StageSaveDataSO stageSaveData;
     public int minCombo;
     public int maxNodeFalse;
-    public int mindrawingTime;
+    public int maxDrawingTime;
 
     [Header("Bool")]
     public bool isClearStage = false;
