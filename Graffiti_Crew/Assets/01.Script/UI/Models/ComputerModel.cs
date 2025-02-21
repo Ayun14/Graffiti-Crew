@@ -46,7 +46,7 @@ namespace AH.UI.Models {
             }
         }
         public void SetSelectProduct(int categoryIndex, int index) {
-            _descriptionSO.itemName = _categorySO.categoryList[categoryIndex].products[index].name;
+            _descriptionSO.itemName = _categorySO.categoryList[categoryIndex].products[index].itemName;
             _descriptionSO.description = _categorySO.categoryList[categoryIndex].products[index].description;
             _descriptionSO.price = _categorySO.categoryList[categoryIndex].products[index].price;
             _descriptionSO.image = _categorySO.categoryList[categoryIndex].products[index].image;

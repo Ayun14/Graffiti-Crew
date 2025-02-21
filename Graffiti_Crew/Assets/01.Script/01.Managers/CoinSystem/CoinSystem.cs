@@ -1,27 +1,36 @@
+using AH.SaveSystem;
 using UnityEngine;
 
 public class CoinSystem : MonoBehaviour {
-    private static int _coin;
+    private static CoinSystem instance;
+    [SerializeField] private IntSaveDataSO _coin;
 
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
     public static int GetCoin() {
-        return _coin;
+        return instance._coin.data;
     } 
     public static void SetCoin(int coin) {
-        _coin = coin;
+        instance._coin.data = coin;
     }
     public static void AddCoin(int coin) {
-        _coin += coin;
+        instance._coin.data += coin;
     }
-    public static void MinusCoin(int coin) {
+    public static bool MinusCoin(int coin) {
         if (coin < 0) {
-            return;
+            return false;
         }
 
-        if(_coin - coin >= 0) {
-            _coin -= coin;
+        if(instance._coin.data - coin >= 0) {
+            instance._coin.data -= coin;
+            return true;
         }
         else {
-            Debug.LogError("µ∑¿Ã -ø° ");
+            Debug.LogError("µ∑¿Ã -¿‘¥œ¥Ÿ");
+            return false;
         }
     }
 }

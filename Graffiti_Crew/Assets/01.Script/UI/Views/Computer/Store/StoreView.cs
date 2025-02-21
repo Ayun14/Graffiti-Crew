@@ -28,21 +28,8 @@ namespace AH.UI.Views {
             base.SetVisualElements();
 
             _productScrollView = topElement.Q<ScrollView>("category-scrollView");
+            ComputerViewModel.ClearSelectProductData();
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[0]);
-        }
-
-        private void ShowCurrentCategory(ProductCategorySO category) {
-            _productScrollView.Clear();
-            _categoryBtnList.Clear();
-            foreach (var data in category.products) {
-                var asset = _productAsset.Instantiate();
-                asset.Q<Label>("name-txt").text = data.itemName;
-                asset.Q<Label>("price-txt").text = data.price.ToString();
-                asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(data.image);
-                _productScrollView.Add(asset);
-            }
-            _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();
-            RegisterButtonCallbacks();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -65,6 +52,20 @@ namespace AH.UI.Views {
             }
         }
 
+        private void ShowCurrentCategory(ProductCategorySO category) {
+            _productScrollView.Clear();
+            _categoryBtnList.Clear();
+            foreach (var data in category.products) {
+                var asset = _productAsset.Instantiate();
+                asset.Q<Label>("name-txt").text = data.itemName;
+                asset.Q<Label>("price-txt").text = data.price.ToString();
+                asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(data.image);
+                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, ProductSO>(ClickBuyProduct, data);
+                _productScrollView.Add(asset);
+            }
+            _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();
+            RegisterButtonCallbacks();
+        }
         private void SelectMember(ClickEvent evt, int index) {
             ComputerViewModel.SetSelectProduct(_categoryIndex, index);
         }
@@ -72,6 +73,14 @@ namespace AH.UI.Views {
             _categoryIndex = index;
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[_categoryIndex]); // 새로운 category 띄우기
             ComputerViewModel.ClearSelectProductData(); // 보이던 상세 데이터 싹 비우고
+        }
+        private void ClickBuyProduct(ClickEvent evt, ProductSO item) {
+            if (item.BuyItem()) { // 구매할 수 있음(돈 계산 함)
+                ItemSystem.AddItem(item);
+            }
+            else {
+                // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
+            }
         }
     }
 }
