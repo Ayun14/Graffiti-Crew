@@ -37,13 +37,11 @@ public class ItemSystem : MonoBehaviour {
             }
             else {
                 instance._itemDictionary.Remove(item);
-                Debug.Log("remove");
             }
         }
         instance.PrintCurrentItem();
     }
     private void PrintCurrentItem() {
-        Debug.Log(_itemDictionary.Count);
         foreach (KeyValuePair<ProductSO, int> entry in _itemDictionary) {
             Debug.Log("Key: " + entry.Key + ", Value: " + entry.Value);
         }
@@ -52,14 +50,12 @@ public class ItemSystem : MonoBehaviour {
         for (int i = 0; i < tickets.Length; i++) {
             if (instance._itemDictionary.TryGetValue(tickets[i].ticketType, out int val)) {
                 if(tickets[i].count > val) {
-                    Debug.Log("갯수 부족");
                     return false;
                 }
                 else { // 갯수가 모자라거나
                 }
             }
             else { // 종류가 없거나
-                Debug.Log("해당 종류가 없음");
                 return false;
             }
         }
