@@ -9,6 +9,7 @@ namespace AH.UI.Models {
         [Header("Stage")]
         [SerializeField] private CrewSO crewSO;
         [SerializeField] private ExpeditionMemberSO _memberSO;
+        [SerializeField] private StageDescriptionSO _stageDescription;
 
         [Header("Store")]
         [SerializeField] private CategoryListSO _categorySO;
@@ -22,6 +23,9 @@ namespace AH.UI.Models {
         }
         public ExpeditionMemberSO GetExpeditionMember() {
             return _memberSO;
+        }
+        public StageDescriptionSO GetStageDescription() {
+            return _stageDescription;
         }
         public ProductDescriptionSO GetProductDescription() {
             return _descriptionSO;

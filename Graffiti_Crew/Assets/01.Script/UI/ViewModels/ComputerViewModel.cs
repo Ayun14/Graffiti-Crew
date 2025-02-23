@@ -19,6 +19,9 @@ namespace AH.UI.ViewModels {
         public ExpeditionMemberSO GetExpeditionMember() {
             return _model.GetExpeditionMember();
         }
+        public StageDescriptionSO GetStageDescription() {
+            return _model.GetStageDescription();
+        }
         public ProductDescriptionSO GetProductDescription() {
             return _model.GetProductDescription();
         }
