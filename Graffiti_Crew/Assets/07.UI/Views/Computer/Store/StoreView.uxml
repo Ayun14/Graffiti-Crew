@@ -1,14 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="ProductProfile" src="project://database/Assets/Resources/UI/Store/ProductProfile.uxml?fileID=9197481963319205126&amp;guid=30ed6e9c097fd2a4882a53044344b882&amp;type=3#ProductProfile" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:VisualElement name="m-container" style="flex-grow: 1;">
         <engine:VisualElement name="background-img" style="flex-grow: 1; background-color: rgb(255, 244, 200); padding-top: 75px; flex-direction: row; padding-left: 75px; padding-bottom: 75px; padding-right: 75px;">
             <engine:VisualElement name="left-contant" style="background-color: rgb(255, 229, 252); width: 60%;">
                 <engine:VisualElement name="menu-border" style="height: 13%; background-color: rgb(255, 198, 248); flex-direction: row;">
-                    <engine:Button text="카테고리1" name="menu-btn" class="grow-size-40 category-btn" />
-                    <engine:Button text="카테고리2" name="menu-btn" class="grow-size-40 category-btn" />
+                    <engine:Button name="menu-btn" text="카테고리" class="grow-size-40 category-btn" style="display: none;" />
                 </engine:VisualElement>
-                <engine:ScrollView name="category-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" />
+                <engine:ScrollView name="category-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                    <engine:Instance template="ProductProfile" />
+                </engine:ScrollView>
             </engine:VisualElement>
             <engine:VisualElement name="right-contant" style="flex-grow: 1; background-color: rgb(229, 248, 255); padding-top: 30px; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
                 <engine:VisualElement name="data-details-content" style="flex-grow: 1; background-color: rgb(178, 234, 255); padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">

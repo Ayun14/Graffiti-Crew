@@ -6,7 +6,11 @@ namespace AH.UI.Data {
     {
         public string itemName;
         public string description;
-        public float price;
+        public int price;
         public Sprite image;
+
+        public bool BuyItem() {
+            return CoinSystem.MinusCoin(price);
+        }
     }
 }

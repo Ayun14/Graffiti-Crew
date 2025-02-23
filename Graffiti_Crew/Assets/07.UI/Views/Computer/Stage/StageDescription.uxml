@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
         <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px;">
             <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80" style="flex-grow: 0; -unity-text-align: upper-center; margin-bottom: 30px;">
@@ -43,7 +43,7 @@
                     </engine:Label>
                 </engine:VisualElement>
                 <engine:VisualElement name="right-content" class="selectStage-description-BRight-content">
-                    <engine:Button text="시작" name="start-btn" class="grow-size-60" style="height: 45%; flex-grow: 0;" />
+                    <engine:VisualElement name="start-btn" style="flex-grow: 1; background-color: rgb(211, 211, 211); flex-direction: row; align-items: center; justify-content: center;" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>

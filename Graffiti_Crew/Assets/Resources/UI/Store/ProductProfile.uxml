@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement name="VisualElement" style="flex-direction: row; align-items: center; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: rgb(234, 234, 234);">
         <engine:VisualElement style="padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px; background-color: rgb(184, 184, 184);">
             <engine:VisualElement name="item-img" class="friend-img" style="width: 140px; height: 140px; background-image: resource(&apos;Sprite/Sub2&apos;); background-color: rgba(0, 0, 0, 0);">
@@ -9,15 +9,18 @@
                 </Bindings>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:Label text="이름" name="name-txt" class="grow-size-40" style="flex-basis: 125px; flex-grow: 0; margin-left: 16px;">
-            <Bindings>
-                <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
-            </Bindings>
-        </engine:Label>
-        <engine:Label text="가격" name="price-txt" class="grow-size-40" style="margin-left: 18px;">
-            <Bindings>
-                <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="ability" />
-            </Bindings>
-        </engine:Label>
+        <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <engine:Label text="분홍색 스프레이" name="name-txt" class="grow-size-40" style="margin-left: 16px;">
+                <Bindings>
+                    <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                </Bindings>
+            </engine:Label>
+            <engine:VisualElement style="align-items: flex-end; flex-direction: row; justify-content: flex-end; margin-right: 20px;">
+                <engine:Label text="가격" class="grow-size-40" style="flex-grow: 0;" />
+                <engine:Label text="100" name="price-txt" class="grow-size-40" style="margin-left: 18px; flex-grow: 0;" />
+                <engine:Label text="원" class="grow-size-40" style="flex-grow: 0;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button text="구매" name="buy-btn" class="grow-size-40" style="flex-grow: 0; width: 15%; height: 83%;" />
     </engine:VisualElement>
 </engine:UXML>

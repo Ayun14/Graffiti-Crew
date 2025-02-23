@@ -9,6 +9,7 @@ namespace AH.UI.Models {
         [Header("Stage")]
         [SerializeField] private CrewSO crewSO;
         [SerializeField] private ExpeditionMemberSO _memberSO;
+        [SerializeField] private StageDescriptionSO _stageDescription;
 
         [Header("Store")]
         [SerializeField] private CategoryListSO _categorySO;
@@ -22,6 +23,9 @@ namespace AH.UI.Models {
         }
         public ExpeditionMemberSO GetExpeditionMember() {
             return _memberSO;
+        }
+        public StageDescriptionSO GetStageDescription() {
+            return _stageDescription;
         }
         public ProductDescriptionSO GetProductDescription() {
             return _descriptionSO;
@@ -46,7 +50,7 @@ namespace AH.UI.Models {
             }
         }
         public void SetSelectProduct(int categoryIndex, int index) {
-            _descriptionSO.itemName = _categorySO.categoryList[categoryIndex].products[index].name;
+            _descriptionSO.itemName = _categorySO.categoryList[categoryIndex].products[index].itemName;
             _descriptionSO.description = _categorySO.categoryList[categoryIndex].products[index].description;
             _descriptionSO.price = _categorySO.categoryList[categoryIndex].products[index].price;
             _descriptionSO.image = _categorySO.categoryList[categoryIndex].products[index].image;
