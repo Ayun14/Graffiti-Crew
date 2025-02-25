@@ -27,7 +27,7 @@ public struct DialogueData
     }
 }
 
-[CreateAssetMenu(fileName = "DialogueReader", menuName = "SO/Dialogue/DialogueDataReader", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "DialogueReader", menuName = "SO/DataReader/DialogueDataReader", order = int.MaxValue)]
 public class DialogueDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]

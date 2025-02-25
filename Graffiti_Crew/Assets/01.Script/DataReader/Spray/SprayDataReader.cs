@@ -9,59 +9,54 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public struct StageData
+public struct SprayData
 {
-    public string id;
-    public string title;
-    public string description;
+    public string root;
+    public string num;
 
-    public StageData(string id, string title, string description)
+    public SprayData(string root, string num)
     {
-        this.id = id;
-        this.title = title;
-        this.description = description;
+        this.root = root;
+        this.num = num;
     }
 }
 
-[CreateAssetMenu(fileName = "StageReader", menuName = "SO/DataReader/StageDataReader", order = int.MaxValue)]
-public class StageDataReader : DataReaderBase
+[CreateAssetMenu(fileName = "SprayReader", menuName = "SO/DataReader/SprayDataReader", order = int.MaxValue)]
+public class SprayDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]
-    [SerializeField] public List<StageData> StageList = new List<StageData>();
+    [SerializeField] public List<SprayData> SprayList = new List<SprayData>();
 
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        string id = null, title = null, description = null;
+        string root = null, num = null;
 
         for (int i = 0; i < list.Count; i++)
         {
             switch (list[i].columnId)
             {
-                case "ID":
-                    id = list[i].value;
+                case "Root":
+                    root = list[i].value;
                     break;
-                case "Title":
-                    title = list[i].value;
-                    break;
-                case "Description":
-                    description = list[i].value;
+                case "Num":
+                    num = list[i].value;
                     break;
             }
         }
 
-        StageList.Add(new StageData(id, title, description));
+        SprayList.Add(new SprayData(root, num));
     }
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(StageDataReader))]
-public class StageDataReaderEditor : Editor
+[CustomEditor(typeof(SprayDataReader))]
+public class SprayDataReaderEditor : Editor
 {
-    StageDataReader data;
+    SprayDataReader data;
 
     void OnEnable()
     {
-        data = (StageDataReader)target;
+        data = (SprayDataReader)target;
     }
 
     public override void OnInspectorGUI()
@@ -73,7 +68,7 @@ public class StageDataReaderEditor : Editor
         if (GUILayout.Button("데이터 가져오기"))
         {
             UpdateStats(UpdateMethodOne);
-            data.StageList.Clear();
+            data.SprayList.Clear();
         }
     }
 
