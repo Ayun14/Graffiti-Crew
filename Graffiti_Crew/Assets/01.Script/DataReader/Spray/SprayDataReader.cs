@@ -3,6 +3,8 @@ using GoogleSheetsToUnity;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
+using AH.UI.Data;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,7 +28,6 @@ public class SprayDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]
     [SerializeField] public List<SprayData> SprayList = new List<SprayData>();
-
     internal void UpdateStats(List<GSTU_Cell> list)
     {
         string root = null, num = null;
@@ -45,6 +46,16 @@ public class SprayDataReader : DataReaderBase
         }
 
         SprayList.Add(new SprayData(root, num));
+    }
+    public AdmissionTicket[] ConversionSprayData() {
+        List<AdmissionTicket> array = new List<AdmissionTicket>();
+        for (int i = 0; i < SprayList.Count; i++) {
+            AdmissionTicket ticket = new AdmissionTicket();
+            ticket.ticketType = Resources.Load(SprayList[i].root) as ProductSO;
+            ticket.count = int.Parse(SprayList[i].num);
+            array.Add(ticket);
+        }
+        return array.ToArray();
     }
 }
 

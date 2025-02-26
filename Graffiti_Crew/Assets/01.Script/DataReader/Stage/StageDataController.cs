@@ -1,4 +1,5 @@
 using AH.UI.Events;
+using NUnit.Framework;
 using System;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class StageDataController : MonoBehaviour
 {
     [SerializeField] private StageDataReader _stageData;
     [SerializeField] private StageDescriptionSO _stageDescriptionSO;
+    [SerializeField] private SprayDataReader _sprayData;
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class StageDataController : MonoBehaviour
             {
                 _stageDescriptionSO.title = _stageData.StageList[i].title;
                 _stageDescriptionSO.description = _stageData.StageList[i].description;
+                _stageDescriptionSO.ticket = _sprayData.ConversionSprayData();
                 break;
             }
         }
