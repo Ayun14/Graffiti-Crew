@@ -72,8 +72,10 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public override void NotifyHandle()
     {
-        if (mySubject.GameState == GameState.Fight)
+        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti)
         {
+            Debug.Log("Ω√¿€");
+
             // Init
             _nodeSpawner.Init(this, _nodeDatas);
             _graffitiRenderer.Init(this, _startSprite);

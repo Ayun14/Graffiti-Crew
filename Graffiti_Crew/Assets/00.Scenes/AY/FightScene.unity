@@ -355,8 +355,9 @@ GameObject:
   m_Component:
   - component: {fileID: 55859129}
   - component: {fileID: 55859130}
+  - component: {fileID: 55859131}
   m_Layer: 0
-  m_Name: DataController | Observer
+  m_Name: FightDataController | Observer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,6 +388,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484eff8b74c75604db15a744d7e2dbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySubject: {fileID: 0}
+  _stageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
+  _stageData: {fileID: 0}
+  _isFight: 0
+  _currentDrawingTime: 0
+--- !u!114 &55859131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55859127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84265873313c26540a4767556e58d26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _stageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
