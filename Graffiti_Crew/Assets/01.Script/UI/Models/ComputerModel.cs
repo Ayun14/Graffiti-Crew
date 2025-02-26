@@ -65,5 +65,9 @@ namespace AH.UI.Models {
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
         }
+        public void SetRequest(string chapter, string stage) {
+            _loadStageSO.requestChapter = chapter;
+            _loadStageSO.requestStage = stage;
+        }
     }
 }

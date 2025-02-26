@@ -32,11 +32,17 @@ namespace AH.UI.Views {
             foreach (var button in _stagePointList) {
                 button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
             }
+            foreach (var button in _requestPointList) {
+                button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn, (button.chapter, button.stage));
+            }
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (var button in _stagePointList) {
                 button.UnregisterCallback<ClickEvent, (string chapter, string stage) > (ClickStageBtn);
+            }
+            foreach (var button in _requestPointList) {
+                button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
             }
         }
 
@@ -45,6 +51,14 @@ namespace AH.UI.Views {
             string stage = $"Stage{data.stage}";
 
             ComputerViewModel.SetStageData(chapter, stage);
+            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
+        }
+        private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
+            string chapter = $"Chapter{data.chapter}";
+            string stage = $"Request{data.stage}";
+
+            ComputerViewModel.SetRequest(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }

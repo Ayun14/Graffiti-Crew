@@ -51,6 +51,8 @@ namespace AH.UI.ViewModels {
         public void SetStageData(string chapter, string stage) {
             _model.SetStage(chapter, stage);
         }
-
+        public void SetRequest(string chapter, string stage) {
+            _model.SetRequest(chapter, stage);
+        }
     }
 }
