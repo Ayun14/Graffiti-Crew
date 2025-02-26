@@ -9,6 +9,7 @@ public enum GameState
     Loding, Timeline, CountDown, Fight, Finish, Result,
 
     // ÀÇ·Ú¾À
+    // Loding -> Talk -> Graffiti -> Result
     Talk, Graffiti
 }
 
