@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class DataController : Observer<GameStateController>
 {
-    [SerializeField] private LoadStageSO _stageSO;
+    [SerializeField] protected LoadStageSO stageSO;
 
     protected StageDataSO _stageData;
 
@@ -31,10 +31,7 @@ public abstract class DataController : Observer<GameStateController>
         }
     }
 
-    private void FindDatas()
-    {
-        _stageData = Resources.Load("StageData/" + _stageSO.GetLoadStageName()) as StageDataSO;
-    }
+    protected abstract void FindDatas();
 
     protected virtual void GiveData()
     {

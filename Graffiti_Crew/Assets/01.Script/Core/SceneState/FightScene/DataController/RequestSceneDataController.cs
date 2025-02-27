@@ -7,13 +7,17 @@ public class RequestSceneDataController : DataController
 
     }
 
+    protected override void FindDatas()
+    {
+        _stageData = Resources.Load("StageData/" + stageSO.GetLoadRequestName()) as StageDataSO;
+    }
+
 
     protected override void GiveData()
     {
         base.GiveData();
 
-        Debug.Log("GiveData");
-        mySubject.ChangeGameState(GameState.Talk);
-        //mySubject.ChangeGameState(GameState.Graffiti);
+        //mySubject.ChangeGameState(GameState.Talk);
+        mySubject.ChangeGameState(GameState.Graffiti);
     }
 }
