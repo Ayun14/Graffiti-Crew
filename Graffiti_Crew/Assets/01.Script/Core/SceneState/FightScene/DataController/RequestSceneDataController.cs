@@ -12,7 +12,8 @@ public class RequestSceneDataController : DataController
     {
         base.GiveData();
 
-        //mySubject.ChangeGameState(GameState.Talk);
-        mySubject.ChangeGameState(GameState.Graffiti);
+        Debug.Log("GiveData");
+        mySubject.ChangeGameState(GameState.Talk);
+        //mySubject.ChangeGameState(GameState.Graffiti);
     }
 }

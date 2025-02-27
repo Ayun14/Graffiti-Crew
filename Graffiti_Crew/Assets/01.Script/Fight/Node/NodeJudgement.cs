@@ -31,6 +31,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(StageDataSO stageData)
     {
+        Debug.Log("Loding");
+
         stageResult = stageData.stageResult;
         _startSprite = stageData.startGraffiti;
         _nodeDatas = stageData.nodeDatas;
