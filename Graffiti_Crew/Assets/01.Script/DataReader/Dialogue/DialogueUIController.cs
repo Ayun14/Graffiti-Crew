@@ -38,11 +38,14 @@ public class DialogueUIController : MonoBehaviour
 
     private List<DialogueData> _filteredDialogueList;
 
+    private void Awake()
+    {
+        dialogueDataReader = dialogueDataReader_KR;
+    }
+
     private void Start()
     {
         _dialogueUIData.ResetData();
-
-        dialogueDataReader = dialogueDataReader_KR;
 
         if (LanguageSystem.GetLanguageType()==LanguageType.English){
             dialogueDataReader = dialogueDataReader_EN;
