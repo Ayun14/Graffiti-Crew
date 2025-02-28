@@ -1,3 +1,4 @@
+using AH.SaveSystem;
 using UnityEngine;
 
 public class NPC : InteractionObject

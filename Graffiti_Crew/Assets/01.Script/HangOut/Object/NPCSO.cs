@@ -1,3 +1,4 @@
+using AH.SaveSystem;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NPCSO", menuName = "SO/NPC/NPCData")]
