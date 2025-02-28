@@ -13,11 +13,13 @@ using UnityEditor;
 [Serializable]
 public struct SprayData
 {
+    public string id;
     public string root;
     public string num;
 
-    public SprayData(string root, string num)
+    public SprayData(string id, string root, string num)
     {
+        this.id = id;
         this.root = root;
         this.num = num;
     }
@@ -30,12 +32,15 @@ public class SprayDataReader : DataReaderBase
     [SerializeField] public List<SprayData> SprayList = new List<SprayData>();
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        string root = null, num = null;
+        string id = null, root = null, num = null;
 
         for (int i = 0; i < list.Count; i++)
         {
             switch (list[i].columnId)
             {
+                case "ID":
+                    id = list[i].value;
+                    break;
                 case "Root":
                     root = list[i].value;
                     break;
@@ -45,16 +50,16 @@ public class SprayDataReader : DataReaderBase
             }
         }
 
-        SprayList.Add(new SprayData(root, num));
+        SprayList.Add(new SprayData(id, root, num));
     }
-    public AdmissionTicket[] ConversionSprayData() {
+
+    public AdmissionTicket[] ConversionSprayData(int i) 
+    {
         List<AdmissionTicket> array = new List<AdmissionTicket>();
-        for (int i = 0; i < SprayList.Count; i++) {
-            AdmissionTicket ticket = new AdmissionTicket();
-            ticket.ticketType = Resources.Load(SprayList[i].root) as ProductSO;
-            ticket.count = int.Parse(SprayList[i].num);
-            array.Add(ticket);
-        }
+        AdmissionTicket ticket = new AdmissionTicket();
+        ticket.ticketType = Resources.Load(SprayList[i].root) as ProductSO;
+        ticket.count = int.Parse(SprayList[i].num);
+        array.Add(ticket);
         return array.ToArray();
     }
 }

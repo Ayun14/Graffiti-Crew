@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,13 +37,17 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _nodeDatas = stageData.nodeDatas;
     }
 
-    private void Start()
+    private void Awake()
     {
         Attach();
 
         mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
 
         Init();
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()
@@ -74,8 +79,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti)
         {
-            Debug.Log("Ω√¿€");
-
             // Init
             _nodeSpawner.Init(this, _nodeDatas);
             _graffitiRenderer.Init(this, _startSprite);

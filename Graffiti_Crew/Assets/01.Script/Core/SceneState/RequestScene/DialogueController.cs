@@ -6,13 +6,11 @@ using UnityEngine;
 
 public class DialogueController : Observer<GameStateController>
 {
-    private DialogueUIController _dialogueUIController;
+    [SerializeField] private DialogueUIController _dialogueUIController;
 
     private void Awake()
     {
         Attach();
-
-        _dialogueUIController = GetComponentInChildren<DialogueUIController>();
     }
 
     private void OnDestroy()

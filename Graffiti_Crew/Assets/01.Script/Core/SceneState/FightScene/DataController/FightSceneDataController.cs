@@ -39,6 +39,11 @@ public class FightSceneDataController : DataController
         }
     }
 
+    protected override void FindDatas()
+    {
+        _stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
+    }
+
     protected override void GiveData()
     {
         base.GiveData();
