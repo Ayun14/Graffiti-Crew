@@ -7,7 +7,7 @@ namespace AH.SaveSystem {
     public class SaveDataListSO : ScriptableObject
     {
         public string saveFileName = "SaveFile";
-        [SerializeField] private List<SaveDataSO> _saveDataSOList = new List<SaveDataSO>();
+        public List<SaveDataSO> saveDataSOList = new List<SaveDataSO>();
 
         [System.Serializable]
         private class SaveDataSerialized {
@@ -25,7 +25,7 @@ namespace AH.SaveSystem {
         public string ToJson() {
             SaveDataWrapper wrapper = new SaveDataWrapper();
 
-            foreach (var saveData in _saveDataSOList) {
+            foreach (var saveData in saveDataSOList) {
                 wrapper.saveDataList.Add(new SaveDataSerialized {
                     dataName = saveData.dataName,
                     ID = saveData.ID,
@@ -40,14 +40,15 @@ namespace AH.SaveSystem {
             SaveDataWrapper wrapper = JsonUtility.FromJson<SaveDataWrapper>(json);
             foreach (var data in wrapper.saveDataList) {
                 // 동일한 SO를 찾기
-                SaveDataSO findData = _saveDataSOList.Find(currentData => currentData.ID == data.ID && currentData.dataName == data.dataName);
+                SaveDataSO findData = saveDataSOList.Find(currentData => currentData.ID == data.ID && currentData.dataName == data.dataName);
                 if (findData != null) {
                     findData.SetValueFromString(data.data);
                 }
             }
         }
+
         public void ResetDatas() {
-            foreach (var data in _saveDataSOList) {
+            foreach (var data in saveDataSOList) {
                 data.ResetData();
             }
         }

@@ -413,6 +413,7 @@ MonoBehaviour:
   _dataList:
   - {fileID: 11400000, guid: 8de463dd07fd85240ac004727e83709e, type: 2}
   - {fileID: 11400000, guid: ea995d6b87cfb354f8ab979b529b038f, type: 2}
+  - {fileID: 11400000, guid: 5c8fbb7c69584694aad9cf78e80d7c8d, type: 2}
   currentSlot: {fileID: 11400000, guid: 6ba238a9ee8d2674997e27aed841f6aa, type: 2}
 --- !u!4 &369916588
 Transform:
@@ -650,10 +651,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1444748936000037332, guid: cd103364e3276f64bac1a12b4626aefb, type: 3}
-      propertyPath: _sprayData
-      value: 
-      objectReference: {fileID: 11400000, guid: c71ae31e93c20a74c9f72b51942b5c2e, type: 2}
     - target: {fileID: 2218104245045263521, guid: cd103364e3276f64bac1a12b4626aefb, type: 3}
       propertyPath: m_Name
       value: StageDataController
@@ -747,6 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c050067e490d54499a189c086ba78e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveItemList: {fileID: 11400000, guid: 5c8fbb7c69584694aad9cf78e80d7c8d, type: 2}
 --- !u!1001 &7594297952850713066
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,7 +8,8 @@ namespace AH.SaveSystem {
         String,
         Float,
         Texture,
-        Stage
+        Stage,
+        Item
     }
     public abstract class SaveDataSO : ScriptableObject
     {

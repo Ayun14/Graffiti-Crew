@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40c2ec5be10d01b44a895d82a368ccaf, type: 3}
-  m_Name: StageListSO
+  m_Name: ItemListSO
   m_EditorClassIdentifier: 
-  saveFileName: SaveStatgeFile.txt
-  saveDataSOList: []
+  saveFileName: SaveItemFile.txt
+  saveDataSOList:
+  - {fileID: 11400000, guid: 5a42bf4c441fa6949bd09dc1376ecb37, type: 2}
+  - {fileID: 11400000, guid: ddeaaf5ff5f032b4e8a3ebf6d98f485c, type: 2}
