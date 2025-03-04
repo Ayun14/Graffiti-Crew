@@ -6150,41 +6150,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8216011376782922131, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 9131236472897914684, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: sourceAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 0e52dda1e9d92e54abdf55557dacf20a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8216011376782922131, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2002932595}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 693f4718e51417144a2039294c26c33c, type: 3}
---- !u!1 &2002932594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8216011376782922131, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-  m_PrefabInstance: {fileID: 2002932593}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2002932595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002932594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
-  dialogueDataReader: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
-  dialogueDataReader_KR: {fileID: 11400000, guid: fc855821e94d5584fb0d6e0395c94670, type: 2}
-  dialogueDataReader_EN: {fileID: 11400000, guid: ae75805a9990f53419d55d38a9490cad, type: 2}
-  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
-  _typingSpeed: 0.05
 --- !u!4 &2002932598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 197060448857626340, guid: 693f4718e51417144a2039294c26c33c, type: 3}

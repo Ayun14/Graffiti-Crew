@@ -36,6 +36,8 @@ namespace AH.UI {
         private void ShowResultView(bool active) {
             if (active) {
                 _resultView.Show();
+                FightEvent.VictorFullScreenEvent?.Invoke();
+                FightEvent.GameResultEvent?.Invoke(true);
             }
             else {
                 _resultView.Hide();
@@ -52,9 +54,8 @@ namespace AH.UI {
         }
         private void HideFightView() {
             _fightView.Hide();
-        } 
+        }
         #endregion
-
         protected override void Init() {
             base.Init();
             _viewModel = new FightViewModel(_model as FightModel);

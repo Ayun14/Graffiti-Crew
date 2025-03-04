@@ -93,10 +93,6 @@ public class ItemSystem : MonoBehaviour {
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
                 }
-                else {
-                    Debug.Log(path);
-                    Debug.LogError("¸øÃ£À½");
-                }
                 break;
             }
         }
