@@ -20,6 +20,7 @@ namespace AH.SaveSystem {
         private void Awake() {
             _defaultIsClearData = isClear;
             _defaultStarData = star;
+            dataType = DataType.Stage;
         }
         public override string GetDataType() {
             return dataType.ToString();

@@ -36,8 +36,6 @@ namespace AH.UI {
         private void ShowResultView(bool active) {
             if (active) {
                 _resultView.Show();
-                FightEvent.VictorFullScreenEvent?.Invoke();
-                FightEvent.GameResultEvent?.Invoke(true);
             }
             else {
                 _resultView.Hide();

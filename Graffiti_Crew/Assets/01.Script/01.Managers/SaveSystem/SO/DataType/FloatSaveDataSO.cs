@@ -8,6 +8,7 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             _defaultData = data;
+            dataType = DataType.Float;
         }
         public override string GetDataType() {
             return dataType.ToString();

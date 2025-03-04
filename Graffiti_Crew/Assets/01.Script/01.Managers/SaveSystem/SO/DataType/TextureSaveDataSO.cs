@@ -11,6 +11,7 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             _defaultData = data;
+            dataType = DataType.Texture;
         }
         public override string GetDataType() {
             SaveTexture(data, textureFilePath);

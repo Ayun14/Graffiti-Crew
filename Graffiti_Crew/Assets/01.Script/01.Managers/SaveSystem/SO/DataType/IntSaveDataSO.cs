@@ -9,6 +9,7 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             _defaultData = data;
+            dataType = DataType.Int;
         }
 
         public override string GetDataType() {
@@ -18,7 +19,9 @@ namespace AH.SaveSystem {
             return data.ToString();
         }
         public override void SetValueFromString(string value) {
+            Debug.Log(int.Parse(value));
             data = int.Parse(value);
+            Debug.Log(data);
         }
 
         public override void ResetData() {

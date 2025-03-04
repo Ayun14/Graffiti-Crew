@@ -2,7 +2,7 @@
     <engine:Template name="FightView" src="project://database/Assets/07.UI/Views/FightScene/FightView.uxml?fileID=9197481963319205126&amp;guid=3df5149eaa8ba7f4ea7b855ad2a04917&amp;type=3#FightView" />
     <engine:Template name="DialogBoxView" src="project://database/Assets/07.UI/Views/DialogBoxView.uxml?fileID=9197481963319205126&amp;guid=5f40de9b6050fbe438a6ed725b81467f&amp;type=3#DialogBoxView" />
     <engine:Template name="ResultView" src="project://database/Assets/07.UI/Views/FightScene/ResultView.uxml?fileID=9197481963319205126&amp;guid=6f1198772a1f18c4cb08f8b8e24e642f&amp;type=3#ResultView" />
-    <engine:Instance template="FightView" name="FightView" style="flex-grow: 1; display: none; position: absolute; width: 100%; height: 100%;" />
-    <engine:Instance template="DialogBoxView" name="DialougeView" style="display: flex; position: absolute; width: 100%; height: 100%;" />
+    <engine:Instance template="FightView" name="FightView" style="flex-grow: 1; display: flex; position: absolute; width: 100%; height: 100%;" />
+    <engine:Instance template="DialogBoxView" name="DialougeView" style="display: none; position: absolute; width: 100%; height: 100%;" />
     <engine:Instance template="ResultView" name="ResultView" style="display: none; position: absolute; width: 100%; height: 100%;" />
 </engine:UXML>

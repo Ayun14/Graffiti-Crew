@@ -18,5 +18,13 @@ namespace AH.UI.ViewModels {
         public void SetLanguageIndex(int index) {
             _model.SetLanguageIndex(index);
         }
+        public void SetBGMValue(int value)
+        {
+            _model.SetBGMValue(value);
+        }
+        public void SetVFXValue(int value)
+        {
+            _model.SetVFXValue(value);
+        }
     }
 }

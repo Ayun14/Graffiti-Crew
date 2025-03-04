@@ -42,6 +42,7 @@ namespace AH.SaveSystem {
                 // 동일한 SO를 찾기
                 SaveDataSO findData = saveDataSOList.Find(currentData => currentData.ID == data.ID && currentData.dataName == data.dataName);
                 if (findData != null) {
+                    Debug.Log(findData);
                     findData.SetValueFromString(data.data);
                 }
             }
