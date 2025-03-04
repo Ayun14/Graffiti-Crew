@@ -140,6 +140,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
             // Result
             FightEvent.ShowResultViewEvent?.Invoke(mySubject.GameState == GameState.Result);
+            StartCoroutine(ResultRoutine());
         }
     }
 
@@ -172,6 +173,14 @@ public class FightSceneUIController : Observer<GameStateController>
         }
 
         mySubject.ChangeGameState(GameState.Fight);
+    }
+
+    private IEnumerator ResultRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        FightEvent.GameResultEvent?.Invoke(mySubject.IsPlayerWin);
+        yield return new WaitForSeconds(2f);
+        FightEvent.VictorFullScreenEvent?.Invoke();
     }
 
     #region Rival Check
