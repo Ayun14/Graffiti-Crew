@@ -76,7 +76,10 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     private void FinishCheck()
     {
         if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
+        {
+            mySubject.SetWhoIsWin(false);
             mySubject.ChangeGameState(GameState.Finish);
+        }
     }
 
     public override void NotifyHandle()

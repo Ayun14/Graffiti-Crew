@@ -160,6 +160,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public void AllNodeClear()
     {
+        mySubject.SetWhoIsWin(true);
         mySubject.ChangeGameState(GameState.Finish);
     }
 

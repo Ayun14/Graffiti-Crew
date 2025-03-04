@@ -29,6 +29,9 @@ public class GameStateController : Subject
     private bool _isSprayEmpty = false;
     public bool IsSprayEmpty => _isSprayEmpty;
 
+    private bool _isPlayerWin = false;
+    public bool IsPlayerWin => _isPlayerWin;
+
     private void Start()
     {
         NotifyObservers();
@@ -49,6 +52,7 @@ public class GameStateController : Subject
     }
 
     public void SetIsBlind(bool isBlind) => _isBlind = isBlind;
+    public void SetWhoIsWin(bool isPlayerWind) => _isPlayerWin = isPlayerWind;
 
     public void InvokeRivalCheckEvent()
     {
