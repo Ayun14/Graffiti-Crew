@@ -14,6 +14,7 @@ namespace AH.UI.Views {
         public override void Initialize() {
             base.Initialize();
         }
+
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _rivalProgress = topElement.Q<ProgressBar>("rival-progress");

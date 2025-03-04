@@ -1,16 +1,23 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Fight/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: flex-end;">
-        <engine:VisualElement name="m-container" style="flex-grow: 1; width: 55%; padding-top: 20px; padding-left: 20px; padding-right: 20px;">
-            <engine:VisualElement name="result-container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/scoreboard.png?fileID=21300000&amp;guid=52fbeef322d6fef40ae058eae6c22a08&amp;type=3#scoreboard&quot;);">
-                <engine:VisualElement style="height: 70%; margin-top: 20px; align-items: center; justify-content: center;">
-                    <engine:VisualElement name="screen" style="width: 90%; height: 90%; flex-direction: row;">
-                        <engine:VisualElement style="flex-grow: 1;" />
-                        <engine:VisualElement name="side-content" style="width: 19%; align-items: center;">
-                            <engine:Button name="retry-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry.png?fileID=21300000&amp;guid=4481e71eeb47e5f40982cdea5c6417da&amp;type=3#retry&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 77%; height: 17%; margin-top: 22px; left: 3%;" />
-                            <engine:Button name="exit-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/exit.png?fileID=21300000&amp;guid=5f97459d921419241b1760eb05932166&amp;type=3#exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 77%; height: 17%; margin-top: 22px; left: 3%;" />
-                        </engine:VisualElement>
+    <engine:VisualElement style="flex-grow: 1; align-items: flex-end; flex-direction: row;">
+        <engine:VisualElement name="rival-screen" class="rival-screen">
+            <engine:VisualElement name="button-border" class="button-border hide-button-border">
+                <engine:Button text="나가기" name="exit-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
+                <engine:Button text="다시하기" name="retry-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="player-screen" class="player-screen" />
+    </engine:VisualElement>
+    <engine:VisualElement name="result-container" class="result-container">
+        <engine:VisualElement name="result-content" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/scoreboard.png?fileID=21300000&amp;guid=52fbeef322d6fef40ae058eae6c22a08&amp;type=3#scoreboard&quot;);">
+            <engine:VisualElement style="height: 70%; margin-top: 20px; align-items: center; justify-content: center;">
+                <engine:VisualElement name="screen" style="width: 90%; height: 90%; flex-direction: row;">
+                    <engine:VisualElement style="flex-grow: 1;" />
+                    <engine:VisualElement name="side-content" style="width: 19%; align-items: center;">
+                        <engine:Button name="retry-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry.png?fileID=21300000&amp;guid=4481e71eeb47e5f40982cdea5c6417da&amp;type=3#retry&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 77%; height: 17%; margin-top: 22px; left: 3%;" />
+                        <engine:Button name="exit-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/exit.png?fileID=21300000&amp;guid=5f97459d921419241b1760eb05932166&amp;type=3#exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 77%; height: 17%; margin-top: 22px; left: 3%;" />
                     </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>

@@ -6,6 +6,8 @@ namespace AH.UI.Events {
         public static Action HideFightViewEvent;
 
         public static Action<bool> ShowResultViewEvent;
+        public static Action<bool> GameResultEvent; // true : win, false : lose
+        public static Action VictorFullScreenEvent;
 
         public static Action<bool> SetActiveFightViewEvent;
     }
