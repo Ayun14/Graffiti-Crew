@@ -1,8 +1,7 @@
-using AH.UI.Events;
 using Unity.Cinemachine;
+using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
-using UnityEngine;
 
 public class FightSceneTimelineController : Observer<GameStateController>, INeedLoding
 {
@@ -62,17 +61,12 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void DialogueRival()
     {
-        _dialogueUIController.StartDialogue(1, 1, PlayTimeline);
+        _dialogueUIController.StartDialogue(1, 1);
     }
 
     public void DialoguePlayer()
     {
-        _dialogueUIController.StartDialogue(2, 2, PlayTimeline);
-    }
-
-    public void PlayTimeline()
-    {
-        _beforeFightTimeline.Play();
+        _dialogueUIController.StartDialogue(2, 2);
     }
 
     public void SetWinnerCam()
