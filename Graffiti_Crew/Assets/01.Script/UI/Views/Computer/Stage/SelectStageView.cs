@@ -1,8 +1,8 @@
+using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,11 +13,15 @@ namespace AH.UI.Views {
         private List<StagePointElement> _stagePointList;
         private List<StagePointElement> _requestPointList;
 
+        private string _saveDataPath = "SaveData/Stage/";
+        private StageSaveDataSO[] _saveStageData;
+
         public SelectStageView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
+            _saveStageData = Resources.LoadAll<StageSaveDataSO>(_saveDataPath);
             
             base.Initialize();
         }
@@ -26,6 +30,8 @@ namespace AH.UI.Views {
             
             _stagePointList = topElement.Query<StagePointElement>("stage-point").ToList();
             _requestPointList = topElement.Query<StagePointElement>("request-point").ToList();
+
+
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -50,9 +56,9 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Stage{data.stage}";
 
+            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }
         private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";

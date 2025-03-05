@@ -1,6 +1,5 @@
 using AH.UI.Events;
 using DG.Tweening;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -43,10 +42,6 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _countDownPanel;
     private TextMeshProUGUI _countDownText;
 
-    // Rival Check
-    private Image _rivalCheckPanel;
-    private RawImage _rivalCheckImage;
-
     // Finish
     private Image _finishPanel;
     private TextMeshProUGUI _finishText;
@@ -72,10 +67,6 @@ public class FightSceneUIController : Observer<GameStateController>
         // CountDown
         _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
         _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
-
-        // Rival Check
-        _rivalCheckPanel = canvas.Find("Panel_RivalCheck").GetComponent<Image>();
-        _rivalCheckImage = _rivalCheckPanel.transform.Find("RawImage_RivalCheck").GetComponent<RawImage>();
 
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
@@ -115,6 +106,7 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isCountDown = mySubject.GameState == GameState.CountDown;
             bool isFight = mySubject.GameState == GameState.Fight;
             bool isFinish = mySubject.GameState == GameState.Finish;
+            bool isResult = mySubject.GameState == GameState.Result;
 
             // Loding
             _lodingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
@@ -139,8 +131,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
-            FightEvent.ShowResultViewEvent?.Invoke(mySubject.GameState == GameState.Result);
-            StartCoroutine(ResultRoutine());
+            FightEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
 
@@ -175,36 +166,11 @@ public class FightSceneUIController : Observer<GameStateController>
         mySubject.ChangeGameState(GameState.Fight);
     }
 
-    private IEnumerator ResultRoutine()
-    {
-        yield return new WaitForSeconds(3f);
-        FightEvent.GameResultEvent?.Invoke(mySubject.IsPlayerWin);
-        yield return new WaitForSeconds(2f);
-        FightEvent.VictorFullScreenEvent?.Invoke();
-    }
-
     #region Rival Check
 
     private void RivalCheckEventHandle()
     {
-        StartCoroutine(RivalCheckRoutine());
-    }
-
-    private IEnumerator RivalCheckRoutine()
-    {
-        _rivalCheckPanel.gameObject.SetActive(true);
-        SetRivalCheckImageScale(new Vector3(1.5f, 1.5f, 1.5f), 1f);
-
-        yield return new WaitForSeconds(3f);
-
-        SetRivalCheckImageScale(Vector3.one, 1f, () => _rivalCheckPanel.gameObject.SetActive(false));
-    }
-
-    private void SetRivalCheckImageScale(Vector3 scaleVec, float time, Action endAction = null)
-    {
-        _rivalCheckImage.transform.DOScale(scaleVec, time)
-            .SetEase(Ease.InOutBack)
-            .OnComplete(() => endAction?.Invoke());
+        // ¶óÀÌ¹ú °ßÁ¦
     }
 
     #endregion
@@ -325,4 +291,9 @@ public class FightSceneUIController : Observer<GameStateController>
     }
 
     #endregion
+
+    public void SetResultUI()
+    {
+        FightEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
+    }
 }

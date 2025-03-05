@@ -1,10 +1,16 @@
-using AH.UI.Events;
+using Unity.Cinemachine;
+using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class FightSceneTimelineController : Observer<GameStateController>, INeedLoding
 {
+    [SerializeField] private CinemachineCamera _playerGraffitiCam;
+    [SerializeField] private CinemachineCamera _rivalGraffitiCam;
+
     private PlayableDirector _beforeFightTimeline;
-    private PlayableDirector _finishtTimeline;
+    private PlayableDirector _finishTimeline;
+    private PlayableDirector _resultTimeline;
     private DialogueUIController _dialogueUIController;
 
     private void Awake()
@@ -12,7 +18,8 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
         Attach();
 
         _beforeFightTimeline = transform.Find("BeforeFightTimeline").GetComponent<PlayableDirector>();
-        _finishtTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
+        _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
+        _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
         _dialogueUIController = transform.Find("FightUI").GetComponent<DialogueUIController>();
     }
 
@@ -29,7 +36,10 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
                 _beforeFightTimeline.Play();
 
             if (mySubject.GameState == GameState.Finish)
-                _finishtTimeline.Play();
+                _finishTimeline.Play();
+
+            if (mySubject.GameState == GameState.Result)
+                _resultTimeline.Play();
         }
     }
 
@@ -51,17 +61,27 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void DialogueRival()
     {
-        _dialogueUIController.StartDialogue(1, 1, PlayTimeline);
+        _dialogueUIController.StartDialogue(1, 1);
     }
 
     public void DialoguePlayer()
     {
-        _dialogueUIController.StartDialogue(2, 2, PlayTimeline);
+        _dialogueUIController.StartDialogue(2, 2);
     }
 
-    public void PlayTimeline()
+    public void SetWinnerCam()
     {
-        _beforeFightTimeline.Play();
+        TimelineAsset timeline = _resultTimeline.playableAsset as TimelineAsset;
+
+        foreach (var track in timeline.GetOutputTracks())
+        {
+            if (track is CinemachineTrack && track.name == "GraffitiCam")
+            {
+                CinemachineCamera newCamera = mySubject.IsPlayerWin ? _playerGraffitiCam : _rivalGraffitiCam;
+                _resultTimeline.SetGenericBinding(track, newCamera);
+                return;
+            }
+        }
     }
 
     public void LodingHandle(StageDataSO stageData)

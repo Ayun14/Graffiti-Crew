@@ -17,6 +17,8 @@ namespace AH.UI.Views {
         private AdmissionTicket[] tickets;
         private VisualTreeAsset _ticketAsset;
 
+        private Button _exitBtn;
+
         private IDisposable _friend1Btn;
 
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
@@ -31,6 +33,7 @@ namespace AH.UI.Views {
             base.SetVisualElements();
 
             _startBtn = topElement.Q<VisualElement>("start-btn");
+            _exitBtn = topElement.Q<Button>("exit-btn");
             SetAdmissionTicket();
 
             _selectFriendBtnList = topElement.Query<Button>(className: "select-friend-btn").ToList();
@@ -42,6 +45,7 @@ namespace AH.UI.Views {
                 btn.RegisterCallback<ClickEvent, int>(ClickSelectFirend, index++);
             }
             _startBtn.RegisterCallback<ClickEvent>(ClickStartGameBtn);
+            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -50,11 +54,16 @@ namespace AH.UI.Views {
             }
             _friend1Btn.Dispose();
             _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
+            _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
+        }
+
+        private void ClickExitBtn(ClickEvent evt) {
+            ComputerEvent.HideViewEvent?.Invoke();
         }
 
         public override void Show() {
-            base.Show();
             SetAdmissionTicket();
+            base.Show();
         }
 
         private void SetAdmissionTicket() {
@@ -73,6 +82,7 @@ namespace AH.UI.Views {
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
                 ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+                GameEvents.SaveGameEvent?.Invoke();
                 SceneManager.LoadScene("FightScene");
             }
             else {

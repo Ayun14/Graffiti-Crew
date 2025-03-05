@@ -1,9 +1,6 @@
 using AH.SaveSystem;
 using AH.UI.Data;
-using System;
 using System.Collections.Generic;
-using UniRx;
-using UnityEditor;
 using UnityEngine;
 
 public class ItemSystem : MonoBehaviour {
@@ -16,6 +13,8 @@ public class ItemSystem : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+    }
+    private void Start() {
         Init();
     }
     private void Init() {
@@ -30,41 +29,16 @@ public class ItemSystem : MonoBehaviour {
             instance._itemDictionary[item] = ++val;
             instance.AddSaveItem(item);
         }
-        else {
-            instance._itemDictionary.Add(item, 1);
-            instance.CreateItemSO(item);
-        }
-        instance.PrintCurrentItem();
+        //instance.PrintCurrentItem();
     }
     public static void RemoveItem(ProductSO item, int count= 1) {
         if (instance._itemDictionary.TryGetValue(item, out int val)) {
-            if (val - count >= 1) {
-                instance._itemDictionary[item] = val - count;
+            if (val - count >= 0) {
+                instance._itemDictionary[item] -= count;
                 instance.RemoveSaveItem(item, count);
-            }
-            else {
-                instance._itemDictionary.Remove(item);
-                instance.RemoveSaveItem(item);
             }
         }
         instance.PrintCurrentItem();
-    }
-
-    private void CreateItemSO(ProductSO item, int count = 1) {
-        ItemSaveDataSO newSO = ScriptableObject.CreateInstance<ItemSaveDataSO>();
-        newSO.dataName = item.saveName;
-        newSO.ID = newSO.GetInstanceID();
-        newSO.itemName = item.itemName;
-        newSO.count = count;
-
-        saveItemList.saveDataSOList.Add(newSO);
-
-        string assetPath = directoryPath + $"/{item.saveName}_Item.asset";
-        assetPath = AssetDatabase.GenerateUniqueAssetPath(assetPath);
-
-        AssetDatabase.CreateAsset(newSO, assetPath);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
     }
     private void AddSaveItem(ProductSO item) {
         foreach(var data in saveItemList.saveDataSOList) {
@@ -78,22 +52,9 @@ public class ItemSystem : MonoBehaviour {
         foreach (var data in saveItemList.saveDataSOList) {
             var conversionData = data as ItemSaveDataSO;
             if (conversionData.itemName == item.itemName) {
+                Debug.Log(conversionData.count);
                 conversionData.count -= count;
-            }
-        }
-    }
-    private void RemoveSaveItem(ProductSO item) {
-        foreach (var data in saveItemList.saveDataSOList) {
-            var conversionData = data as ItemSaveDataSO;
-            if (conversionData.itemName == item.itemName) {
-                saveItemList.saveDataSOList.Remove(conversionData);
-                string path = $"{directoryPath}/{conversionData.name}.asset"; // 삭제할 SO 경로
-                if (AssetDatabase.LoadAssetAtPath<ScriptableObject>(path) != null) {
-                    AssetDatabase.DeleteAsset(path);
-                    AssetDatabase.SaveAssets();
-                    AssetDatabase.Refresh();
-                }
-                break;
+                Debug.Log(conversionData.count);
             }
         }
     }

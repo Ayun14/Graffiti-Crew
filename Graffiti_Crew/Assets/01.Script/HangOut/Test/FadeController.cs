@@ -22,6 +22,7 @@ public class FadeController : MonoBehaviour
         }).
         OnComplete(()=>
         {
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("ComputerScene");
         });
     }

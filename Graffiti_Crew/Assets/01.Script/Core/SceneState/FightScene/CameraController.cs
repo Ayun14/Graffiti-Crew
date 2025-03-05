@@ -9,10 +9,8 @@ public class CameraController : Observer<GameStateController>
 
     // Fight
     private CinemachineCamera _graffitiCamera;
+    private CinemachineCamera _rivalGraffitiCamera;
     private CinemachineImpulseSource _impulseSource;
-
-    // Result
-    private CinemachineCamera _resultCamera;
 
     // SprayBox
     private CinemachineCamera _sprayBoxCamera;
@@ -25,10 +23,9 @@ public class CameraController : Observer<GameStateController>
         mySubject.OnSprayEmptyEvent += SprayEmptyEventHandle;
         mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
 
-        _graffitiCamera = transform.Find("Camera_Graffiti").GetComponent<CinemachineCamera>();
+        _graffitiCamera = transform.Find("Camera_PlayerGraffiti").GetComponent<CinemachineCamera>();
+        _rivalGraffitiCamera = transform.Find("Camera_RivalGraffiti").GetComponent<CinemachineCamera>();
         _impulseSource = _graffitiCamera.GetComponent<CinemachineImpulseSource>();
-
-        _resultCamera = transform.Find("Camera_Result").GetComponent<CinemachineCamera>();
 
         _sprayBoxCamera = transform.Find("Camera_SprayBox").GetComponent<CinemachineCamera>();
     }
@@ -51,7 +48,11 @@ public class CameraController : Observer<GameStateController>
             _graffitiCamera.Priority.Value = isgraffitiCameraOn ? 1 : 0;
 
             // Result
-            _resultCamera.Priority.Value = mySubject.GameState == GameState.Result ? 1 : 0;
+            if (mySubject.GameState == GameState.Result)
+            {
+                _graffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 1 : 0;
+                _rivalGraffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 0 : 1;
+            }
         }
     }
 

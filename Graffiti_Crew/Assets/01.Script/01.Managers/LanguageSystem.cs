@@ -13,6 +13,9 @@ public class LanguageSystem : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        else {
+            Destroy(this);
+        }
     }
     private void OnEnable() {
         UIEvents.ChangeLanguageEvnet += ChangeLanguageType;
