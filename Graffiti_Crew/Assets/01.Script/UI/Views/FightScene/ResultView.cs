@@ -2,7 +2,6 @@ using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -18,20 +17,22 @@ namespace AH.UI.Views {
         private Button _retryBtn;
         private Button _exitBtn;
 
-        private bool _playerWin = false;
+        //private bool _playerWin = false;
 
         public ResultView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel = viewModel as FightViewModel;
         }
         public override void Initialize() {
             base.Initialize();
-            FightEvent.GameResultEvent += GrowBigWinner;
-            FightEvent.VictorFullScreenEvent += FullScreen;
+            //FightEvent.GameResultEvent += GrowBigWinner;
+            //FightEvent.VictorFullScreenEvent += FullScreen;
+            FightEvent.ShowVictorScreenEvent += FullScreen;
         }
         public override void Dispose() {
             base.Dispose();
-            FightEvent.GameResultEvent -= GrowBigWinner;
-            FightEvent.VictorFullScreenEvent -= FullScreen;
+            //FightEvent.GameResultEvent -= GrowBigWinner;
+            //FightEvent.VictorFullScreenEvent -= FullScreen;
+            FightEvent.ShowVictorScreenEvent -= FullScreen;
         }
 
         protected override void SetVisualElements() {
@@ -50,7 +51,7 @@ namespace AH.UI.Views {
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
 
-        private void GrowBigWinner(bool result) {
+        /*private void GrowBigWinner(bool result) {
             if (result) {
                 GameWin();
             }
@@ -67,42 +68,43 @@ namespace AH.UI.Views {
             _playerWin = false;
             _rivalScreen.AddToClassList("win");
             _playerScreen.AddToClassList("lose");
-        }
+        }*/
 
-        private async void FullScreen() {
+        private async void FullScreen(bool result) {
             await Task.Delay(2000);
-            if (_playerWin) {
-                _playerScreen.AddToClassList("fullscreen");
-                _rivalScreen.AddToClassList("hidescreen");
-                await Task.Delay(600);
+            if (result) {
+                //_playerScreen.AddToClassList("fullscreen");
+                //_rivalScreen.AddToClassList("hidescreen");
+                //await Task.Delay(600);
                 _resultPanel.AddToClassList("result-in");
-                await Task.Delay(250);
-                SetResultView();
+                //await Task.Delay(250);
+                SetPlayerResultView();
             }
             else {
-                _rivalScreen.AddToClassList("fullscreen");
-                _playerScreen.AddToClassList("hidescreen");
-                await Task.Delay(600);
-                var buttonBorder = topElement.Q<VisualElement>("button-border");
-                _exitBtn = buttonBorder.Q<Button>("exit-btn");
-                _retryBtn = buttonBorder.Q<Button>("retry-btn");
-                _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
-                _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-                buttonBorder.RemoveFromClassList("hide-button-border");
+                //_rivalScreen.AddToClassList("fullscreen");
+                //_playerScreen.AddToClassList("hidescreen");
+                //await Task.Delay(600);
+                SetRivalResultView();
             }
         }
-        private void SetResultView() {
+        private void SetPlayerResultView() {
             _exitBtn = _resultPanel.Q<Button>("exit-btn");
             _retryBtn = _resultPanel.Q<Button>("retry-btn");
             _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
+        private void SetRivalResultView() {
+            var buttonBorder = topElement.Q<VisualElement>("button-border");
+            _exitBtn = buttonBorder.Q<Button>("exit-btn");
+            _retryBtn = buttonBorder.Q<Button>("retry-btn");
+            _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
+            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
+            buttonBorder.RemoveFromClassList("hide-button-border");
+        }
         private void ClickRetryBtn(ClickEvent evt) {
-            //Debug.Log("다시하기");
             SceneManager.LoadScene("FightScene");
         }
         private void ClickExitBtn(ClickEvent evt) {
-            //Debug.Log("나가기");
             SceneManager.LoadScene("ComputerScene");
         }
     }
