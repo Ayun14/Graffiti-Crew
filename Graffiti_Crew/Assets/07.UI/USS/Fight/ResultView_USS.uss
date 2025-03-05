@@ -13,32 +13,12 @@
     left: 46%;
 }
 
-.player-screen {
-    height: 100%;
-    background-image: url("project://database/Assets/05.Material/RenderTextrue/PlayerGraffitiRenderRT.renderTexture?fileID=8400000&guid=6271be13cc01c0e41802bf3cbff96771&type=2#PlayerGraffitiRenderRT");
-    width: 50%;
-    transition-duration: 0.5s;
-}
-
 .rival-screen {
     height: 100%;
     background-image: url("project://database/Assets/05.Material/RenderTextrue/RivalGraffitiRenderRT.renderTexture?fileID=8400000&guid=81a78427fd14e4349995441450896220&type=2#RivalGraffitiRenderRT");
-    flex-grow: 0;
+    flex-grow: 1;
     justify-content: flex-end;
-    width: 50%;
     transition-duration: 0.5s;
-}
-
-.lose {
-    width: 30%;
-}
-
-.win {
-    width: 70%;
-}
-
-.lose {
-    width: 30%;
 }
 
 .button-border {
@@ -55,11 +35,6 @@
     opacity: 0;
 }
 
-.fullscreen {
-    width: 100%;
-    flex-grow: 0;
-}
-
-.hidescreen {
-    width: 0;
+.hide-button-border {
+    opacity: 0;
 }
