@@ -115,6 +115,7 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isCountDown = mySubject.GameState == GameState.CountDown;
             bool isFight = mySubject.GameState == GameState.Fight;
             bool isFinish = mySubject.GameState == GameState.Finish;
+            bool isResult = mySubject.GameState == GameState.Result;
 
             // Loding
             _lodingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
@@ -139,8 +140,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
-            FightEvent.ShowResultViewEvent?.Invoke(mySubject.GameState == GameState.Result);
-            StartCoroutine(ResultRoutine());
+            FightEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
 
@@ -177,9 +177,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator ResultRoutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.7f);
         FightEvent.GameResultEvent?.Invoke(mySubject.IsPlayerWin);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         FightEvent.VictorFullScreenEvent?.Invoke();
     }
 
@@ -187,7 +187,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void RivalCheckEventHandle()
     {
-        StartCoroutine(RivalCheckRoutine());
+        //StartCoroutine(RivalCheckRoutine());
     }
 
     private IEnumerator RivalCheckRoutine()
