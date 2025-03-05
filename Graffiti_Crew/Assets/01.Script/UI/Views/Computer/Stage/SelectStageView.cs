@@ -56,9 +56,9 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Stage{data.stage}";
 
+            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }
         private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
