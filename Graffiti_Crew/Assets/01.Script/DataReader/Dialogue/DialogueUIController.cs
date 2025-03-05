@@ -64,7 +64,7 @@ public class DialogueUIController : MonoBehaviour
     private void HandleChangeLangauge(LanguageType type)
     {
         if (type == LanguageType.English) {
-            _languageSO.title = "language";
+            _languageSO.title = "Language";
             _languageSO.languageTypes[0] = "Korea";
             _languageSO.languageTypes[1] = "English";
             dialogueDataReader = dialogueDataReader_EN;
