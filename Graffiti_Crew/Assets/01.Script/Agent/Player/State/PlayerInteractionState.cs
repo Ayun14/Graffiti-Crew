@@ -19,9 +19,29 @@ public class PlayerInteractionState : PlayerState
 
     public override void UpdateState()
     {
+
+
         if (_player.MovementCompo.CanMoveCheck())
         {
-            _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
+            Vector3 target = _player.CurrentInteractionObject.transform.position;
+
+            if (_player.CurrentInteractionObject != null)
+            {
+                target.y = _player.transform.position.y;
+
+                Quaternion targetRotation = Quaternion.LookRotation(target - _player.transform.position);
+                _player.transform.rotation = Quaternion.Slerp(
+                    _player.transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * 5f
+                );
+            }
+
+            if (Quaternion.Angle(_player.transform.rotation, 
+                Quaternion.LookRotation(target - _player.transform.position)) < 10f)
+            {
+                _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
+            }
         }
     }
 

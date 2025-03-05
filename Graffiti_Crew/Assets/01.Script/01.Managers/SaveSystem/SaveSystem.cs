@@ -7,7 +7,7 @@ namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _dataList;
-        public SlotSO currentSlot => GameManager.currentSlot;
+        public SlotSO currentSlot;// => GameManager.currentSlot;
 
         private void Awake() {
             //Init();
