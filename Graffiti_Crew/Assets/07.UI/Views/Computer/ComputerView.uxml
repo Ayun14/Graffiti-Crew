@@ -1,13 +1,13 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="StoreView" src="project://database/Assets/07.UI/Views/Computer/Store/StoreView.uxml?fileID=9197481963319205126&amp;guid=5a4f1874a13d7244394ffa2d957d7fd0&amp;type=3#StoreView" />
     <engine:Template name="SelectStageView" src="project://database/Assets/07.UI/Views/Computer/Stage/SelectStageView.uxml?fileID=9197481963319205126&amp;guid=8507e2f3d3af60d4da3301e7aff538dc&amp;type=3#SelectStageView" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView_USs" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" class="conputer-m-container">
         <engine:VisualElement name="computer-screen" class="computer-screen">
-            <engine:Button name="store-btn" class="grow-size-40 computer-btn" style="top: 325px; left: 996px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/shop_icon.png?fileID=21300000&amp;guid=8b1ba4188779ade4f8527dca58c7fc2f&amp;type=3#shop_icon&quot;);" />
-            <engine:Button name="stage-btn" class="grow-size-40 computer-btn" style="top: 341px; left: 517px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/stage_icon.png?fileID=21300000&amp;guid=1c1257fb804cac7438ed10b20a768f08&amp;type=3#stage_icon&quot;);" />
-            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: none;" />
+            <engine:Button name="store-btn" class="grow-size-40 computer-btn" style="top: 325px; left: 996px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=8b1ba4188779ade4f8527dca58c7fc2f&amp;type=3#shop_icon&quot;);" />
+            <engine:Button name="stage-btn" class="grow-size-40 computer-btn" style="top: 341px; left: 517px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage_icon.png?fileID=21300000&amp;guid=1c1257fb804cac7438ed10b20a768f08&amp;type=3#stage_icon&quot;);" />
+            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: flex;" />
             <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%; display: none;" />
         </engine:VisualElement>
     </engine:VisualElement>
