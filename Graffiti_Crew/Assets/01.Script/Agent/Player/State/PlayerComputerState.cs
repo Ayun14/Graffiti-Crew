@@ -10,9 +10,8 @@ public class PlayerComputerState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
-        _player.playerData.playerPosition = _player.transform.position;
         _player.MovementCompo.StopImmediately(true);
+        _player.playerData.playerPosition = _player.transform.position;
         _player.computerTimeline.Play();
     }
 
