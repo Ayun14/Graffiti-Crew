@@ -1,6 +1,4 @@
 using AH.UI.Models;
-using UnityEngine;
-
 
 namespace AH.UI.ViewModels {
     public class HangOutViewModel : ViewModel{
@@ -25,6 +23,12 @@ namespace AH.UI.ViewModels {
         public void SetVFXValue(int value)
         {
             _model.SetVFXValue(value);
+        }
+        public int GetBGMValue() {
+            return _model.GetBGMValue();
+        }
+        public int GetVFXValue() {
+            return _model.GetVFXValue();
         }
     }
 }

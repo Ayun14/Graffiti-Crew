@@ -18,13 +18,10 @@ namespace AH.UI.Views {
 
         private Slider _bgmSlider;
         private Slider _vfxSlider;
-        private DropdownField _saveSlotField;
         private DropdownField _languageField;
         private Button _resetSaveData;
         private LanguageType _lauguageType;
 
-        private string slotPath = "UI/Setting/Slots/";
-        private SlotSO[] slots;
         private int bgmValue;
         private int vfxValue;
 
@@ -46,10 +43,9 @@ namespace AH.UI.Views {
                 ViewModel = viewModel as HangOutViewModel;
             }
 
-                _lauguageSO = ViewModel.GetLanguageSO();
+            _lauguageSO = ViewModel.GetLanguageSO();
             _lauguageTypes = _lauguageSO.languageTypes;
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
-            slots = Resources.LoadAll<SlotSO>(slotPath);
             base.Initialize();
         }
         protected override void SetVisualElements() {
@@ -57,7 +53,6 @@ namespace AH.UI.Views {
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
             _bgmSlider = topElement.Q<Slider>("bgm-slider");
             _vfxSlider = topElement.Q<Slider>("vfx-slider");
-            _saveSlotField = topElement.Q<DropdownField>("saveSlot-dropdownField");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
             _resetSaveData = topElement.Q<Button>("reset-saveData");
             SetLanguageItems(false);
@@ -66,7 +61,6 @@ namespace AH.UI.Views {
             base.RegisterButtonCallbacks();
             _bgmSlider.RegisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
-            _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _resetSaveData.RegisterCallback<ClickEvent>(ClickResetSaveData);
         }
@@ -74,7 +68,6 @@ namespace AH.UI.Views {
             base.UnRegisterButtonCallbacks();
             _bgmSlider.UnregisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
-            _saveSlotField.UnregisterValueChangedCallback(ChangeSlot);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
         }
 
@@ -94,10 +87,6 @@ namespace AH.UI.Views {
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
-        }
-        private void ChangeSlot(ChangeEvent<string> evt) {
-            SlotSO selectSlot = slots[_saveSlotField.index];
-            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
         }
         private void ClickResetSaveData(ClickEvent evt) {
 

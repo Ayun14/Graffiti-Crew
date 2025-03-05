@@ -1,3 +1,5 @@
+using AH.UI.Events;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,11 +7,13 @@ namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _dataList;
-        public SlotSO currentSlot;
+        public SlotSO currentSlot => GameManager.currentSlot;
 
         private void Awake() {
+            //Init();
+        }
+        private void Start() {
             LoadGame();
-            Init();
         }
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");

@@ -19,13 +19,17 @@ namespace AH.UI.Models {
         public void SetLanguageIndex(int index) {
             _languageIndexSO.data = index;
         }
-        public void SetBGMValue(int value)
-        {
+        public void SetBGMValue(int value) {
             _bgmData.data = value;
         }
-        public void SetVFXValue(int value)
-        {
+        public void SetVFXValue(int value) {
             _vfxData.data = value;
+        }
+        public int GetBGMValue() {
+            return _bgmData.data;
+        }
+        public int GetVFXValue() {
+            return _vfxData.data;
         }
     }
 }

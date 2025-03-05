@@ -1,8 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="SettingView" src="project://database/Assets/07.UI/Views/SettingView.uxml?fileID=9197481963319205126&amp;guid=8cbadba254f05f943b11f50b2aeaf6ff&amp;type=3#SettingView" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SettingView_USS.uss?fileID=7433441132597879392&amp;guid=30ddbd43ef509f64fb111766fe63b09c&amp;type=3#SettingView_USS" />
-    <engine:Instance template="SettingView" name="SettingView" style="flex-grow: 1;" />
-    <engine:Button text="설정" name="setting-btn" class="grow-size-60" style="position: absolute; top: 27px; left: 1678px; width: 190px; height: 211px;" />
-    <engine:Button text="닫기" name="close-btn" class="grow-size-60" style="position: absolute; top: 311px; left: 1676px; width: 190px; height: 211px;" />
+    <Style src="project://database/Assets/07.UI/USS/SettingView_USS.uss?fileID=7433441132597879392&amp;guid=30ddbd43ef509f64fb111766fe63b09c&amp;type=3#SettingView_USS" />
+    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+        <engine:DropdownField label="저장 슬롯" name="saveSlot-dropdownField" index="0" choices="슬롯1,슬롯2,슬롯3" class="grow-size-40 dropdownField" />
+        <engine:Button text="시작" name="start-btn" class="grow-size-50" style="width: 294px; height: 83px; flex-grow: 0;" />
+    </engine:VisualElement>
 </engine:UXML>

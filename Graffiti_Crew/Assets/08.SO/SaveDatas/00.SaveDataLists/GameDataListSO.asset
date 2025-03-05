@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df6035d916f7ac44888d181d8820873, type: 3}
-  m_Name: Data_BGM
+  m_Script: {fileID: 11500000, guid: 40c2ec5be10d01b44a895d82a368ccaf, type: 3}
+  m_Name: GameDataListSO
   m_EditorClassIdentifier: 
-  dataName: BGM
-  ID: 46978
-  dataType: 0
-  data: 100
+  saveFileName: SaveGameDataFile.txt
+  saveDataSOList:
+  - {fileID: 11400000, guid: 550c69bd881da074c8d5a37c3e26d200, type: 2}
