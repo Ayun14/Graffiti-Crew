@@ -1,14 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections;
-using System;
-using System.Collections.Generic;
-using DG.Tweening;
 using AH.UI.Events;
 using AH.UI.Views;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -47,10 +42,12 @@ public class DialogueUIController : MonoBehaviour
     {
         _dialogueUIData.ResetData();
 
-        if (LanguageSystem.GetLanguageType()==LanguageType.English){
+        if (LanguageSystem.GetLanguageType() == LanguageType.English)
+        {
             dialogueDataReader = dialogueDataReader_EN;
         }
-        else {
+        else
+        {
             dialogueDataReader = dialogueDataReader_KR;
         }
         LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
@@ -63,13 +60,15 @@ public class DialogueUIController : MonoBehaviour
 
     private void HandleChangeLangauge(LanguageType type)
     {
-        if (type == LanguageType.English) {
+        if (type == LanguageType.English)
+        {
             _languageSO.title = "Language";
             _languageSO.languageTypes[0] = "Korea";
             _languageSO.languageTypes[1] = "English";
             dialogueDataReader = dialogueDataReader_EN;
         }
-        else {
+        else
+        {
             _languageSO.title = "언어";
             _languageSO.languageTypes[0] = "한글";
             _languageSO.languageTypes[1] = "영어";
@@ -77,7 +76,7 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    public void StartDialogue(int startID, int endID, Action onComplete)
+    public void StartDialogue(int startID, int endID, Action onComplete = null)
     {
         _isDialogue = true;
 
@@ -111,7 +110,7 @@ public class DialogueUIController : MonoBehaviour
     {
         if (_isDialogue)
         {
-            if(dialogueDataReader.readMode == ReadMode.Auto)
+            if (dialogueDataReader.readMode == ReadMode.Auto)
             {
                 if (!_isTyping)
                     ShowNextDialogue();
@@ -177,7 +176,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(_typingSpeed);
         }
 
-        if(dialogueDataReader.readMode == ReadMode.Auto)
+        if (dialogueDataReader.readMode == ReadMode.Auto)
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
