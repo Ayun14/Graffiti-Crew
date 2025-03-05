@@ -26,6 +26,7 @@ public class StageResultSO : ScriptableObject
 
     public int CalculationStar(int minCombo, int maxNodeFalse, int maxDrawingTime)
     {
+        star = 0;
         if (comboCnt >= minCombo) ++star;
         if (nodeFalseCnt <= maxNodeFalse) ++star;
         if (drawingTime <= maxDrawingTime) ++star;
