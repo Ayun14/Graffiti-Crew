@@ -7,7 +7,6 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 namespace AH.UI {
 
@@ -39,6 +38,7 @@ namespace AH.UI {
         }
 
         private void ClickStartBtn(ClickEvent evt) {
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("HangOutScene");
         }
         private void ChangeSlot(ChangeEvent<string> evt) {

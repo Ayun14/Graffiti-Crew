@@ -102,9 +102,11 @@ namespace AH.UI.Views {
             buttonBorder.RemoveFromClassList("hide-button-border");
         }
         private void ClickRetryBtn(ClickEvent evt) {
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("FightScene");
         }
         private void ClickExitBtn(ClickEvent evt) {
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("ComputerScene");
         }
     }

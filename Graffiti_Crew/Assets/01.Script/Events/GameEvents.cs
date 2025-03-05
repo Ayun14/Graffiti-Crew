@@ -1,7 +1,6 @@
-using AH.SaveSystem;
 using System;
-using UnityEngine;
 
-public static class Events {
+public static class GameEvents {
     public static Action<StageDataSO> SendGameResultEvent;
+    public static Action SaveGameEvent;
 }

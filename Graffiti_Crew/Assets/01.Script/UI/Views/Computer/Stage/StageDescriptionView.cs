@@ -82,6 +82,7 @@ namespace AH.UI.Views {
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
                 ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+                GameEvents.SaveGameEvent?.Invoke();
                 SceneManager.LoadScene("FightScene");
             }
             else {

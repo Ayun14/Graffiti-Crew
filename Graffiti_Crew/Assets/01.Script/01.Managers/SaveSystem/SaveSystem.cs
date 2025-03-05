@@ -1,5 +1,3 @@
-using AH.UI.Events;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +10,16 @@ namespace AH.SaveSystem {
         private void Awake() {
             //Init();
         }
+
         private void Start() {
             LoadGame();
+        }
+        void OnEnable() {
+            GameEvents.SaveGameEvent += SaveGameData;
+        }
+
+        void OnDisable() {
+            GameEvents.SaveGameEvent -= SaveGameData;
         }
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");

@@ -27,8 +27,9 @@ namespace AH.UI.CustomElement {
                 dve.chapter = m_chapter.GetValueFromBag(bag, cc);
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
 
+                VisualElement container = new VisualElement();
                 VisualElement element = new VisualElement();
-
+                container.Add(element);
             }
         }
     }

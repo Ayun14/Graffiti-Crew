@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour {
     private void OnEnable() {
-        Events.SendGameResultEvent += GameResult;
+        GameEvents.SendGameResultEvent += GameResult;
     }
     private void OnDisable() {
-        Events.SendGameResultEvent -= GameResult;
+        GameEvents.SendGameResultEvent -= GameResult;
     }
 
     private void GameResult(StageDataSO stageData) {
