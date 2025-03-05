@@ -3,32 +3,47 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:VisualElement name="m-container" style="flex-grow: 1;">
-        <engine:VisualElement name="background-img" style="flex-grow: 1; background-color: rgb(255, 244, 200); padding-top: 75px; flex-direction: row; padding-left: 75px; padding-bottom: 75px; padding-right: 75px;">
-            <engine:VisualElement name="left-contant" style="background-color: rgb(255, 229, 252); width: 60%;">
-                <engine:VisualElement name="menu-border" style="height: 13%; background-color: rgb(255, 198, 248); flex-direction: row;">
+        <engine:VisualElement name="background-img" style="flex-grow: 1; background-color: rgb(255, 244, 200); padding-top: 60px; flex-direction: column; padding-left: 60px; padding-bottom: 60px; padding-right: 60px;">
+            <engine:VisualElement name="top-content" style="height: 13%; flex-direction: row; flex-basis: 10%;">
+                <engine:VisualElement name="menu-border" style="width: 60%; background-color: rgb(255, 198, 248);">
                     <engine:Button name="menu-btn" text="카테고리" class="grow-size-40 category-btn" style="display: none;" />
                 </engine:VisualElement>
-                <engine:ScrollView name="category-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
-                    <engine:Instance template="ProductProfile" />
-                </engine:ScrollView>
-            </engine:VisualElement>
-            <engine:VisualElement name="right-contant" style="flex-grow: 1; background-color: rgb(229, 248, 255); padding-top: 30px; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
-                <engine:VisualElement name="data-details-content" style="flex-grow: 1; background-color: rgb(178, 234, 255); padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
-                    <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 78%; height: 57%;">
-                        <Bindings>
-                            <engine:DataBinding property="style.backgroundImage" data-source-path="image" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
-                        </Bindings>
+                <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: flex-end; flex-direction: row;">
+                    <engine:VisualElement name="coin-border" style="height: 80%; width: 35%; background-color: rgb(255, 255, 255); flex-direction: row; margin-right: 20px;">
+                        <engine:VisualElement name="icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=8b1ba4188779ade4f8527dca58c7fc2f&amp;type=3#shop_icon&quot;); width: 80px; height: 80px;" />
+                        <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left;">
+                            <Bindings>
+                                <engine:DataBinding property="text" data-source-path="data" data-source="project://database/Assets/08.SO/SaveDatas/ComputerData/Data_Coin.asset?fileID=11400000&amp;guid=9c2f37cc0f92c0449bee7ba1a17f503e&amp;type=2#Data_Coin" binding-mode="ToTarget" />
+                            </Bindings>
+                        </engine:Label>
                     </engine:VisualElement>
-                    <engine:Label text="아이템 이름" name="data-name" class="grow-size-50" style="width: 100%; -unity-text-align: middle-center; flex-grow: 0;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="itemName" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
-                    <engine:Label text="아이템 설명 아이템 설명 아이템 설명 아이템 설명 아이템 설명 " name="data-explanation-txt" class="grow-middle-size-50 grow-size-40" style="width: 100%; white-space: pre-wrap; -unity-text-align: upper-left;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
+                    <engine:Button text="X" name="exit-btn" class="grow-size-40" style="width: 80px; height: 80px; flex-grow: 0;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <engine:VisualElement name="left-contant" style="background-color: rgb(255, 229, 252); width: 60%;">
+                    <engine:ScrollView name="category-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <engine:Instance template="ProductProfile" />
+                    </engine:ScrollView>
+                </engine:VisualElement>
+                <engine:VisualElement name="right-contant" style="flex-grow: 1; background-color: rgb(229, 248, 255); padding-top: 30px; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
+                    <engine:VisualElement name="data-details-content" style="flex-grow: 1; background-color: rgb(178, 234, 255); padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
+                        <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 78%; height: 57%;">
+                            <Bindings>
+                                <engine:DataBinding property="style.backgroundImage" data-source-path="image" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
+                            </Bindings>
+                        </engine:VisualElement>
+                        <engine:Label text="아이템 이름" name="data-name" class="grow-size-50" style="width: 100%; -unity-text-align: middle-center; flex-grow: 0;">
+                            <Bindings>
+                                <engine:DataBinding property="text" data-source-path="itemName" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
+                            </Bindings>
+                        </engine:Label>
+                        <engine:Label text="아이템 설명 아이템 설명 아이템 설명 아이템 설명 아이템 설명 " name="data-explanation-txt" class="grow-middle-size-50 grow-size-40" style="width: 100%; white-space: pre-wrap; -unity-text-align: upper-left;">
+                            <Bindings>
+                                <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
+                            </Bindings>
+                        </engine:Label>
+                    </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>

@@ -1,4 +1,5 @@
 using AH.UI.Data;
+using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace AH.UI.Views {
 
         private VisualTreeAsset _productAsset;
         private ScrollView _productScrollView;
+
+        private Button _exitBtn;
 
         private List<Button> _categoryBtnList = new List<Button>();
         private int _categoryIndex;
@@ -28,6 +31,7 @@ namespace AH.UI.Views {
             base.SetVisualElements();
 
             _productScrollView = topElement.Q<ScrollView>("category-scrollView");
+            _exitBtn = topElement.Q<Button>("exit-btn");
             ComputerViewModel.ClearSelectProductData();
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[0]);
         }
@@ -41,6 +45,7 @@ namespace AH.UI.Views {
             foreach(var button in _categoryBtnList) {
                 button.RegisterCallback<ClickEvent, int>(ClickCategory, categoryBtnIndex++);
             }
+            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -50,6 +55,11 @@ namespace AH.UI.Views {
             foreach (var button in _categoryBtnList) {
                 button.UnregisterCallback<ClickEvent, int>(ClickCategory);
             }
+            _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
+        }
+
+        private void ClickExitBtn(ClickEvent evt) {
+            ComputerEvent.HideViewEvent?.Invoke();
         }
 
         private void ShowCurrentCategory(ProductCategorySO category) {

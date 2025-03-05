@@ -1,19 +1,20 @@
+using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace AH.UI.Views
-{
-    public enum LanguageType
-    {
+namespace AH.UI.Views {
+    public enum LanguageType {
         Korea,
         English
     }
-    public class SettingView : UIView
-    {
+    public class SettingView : UIView {
         private HangOutViewModel ViewModel;
+
+        private bool isTitle = false;
 
         private Slider _bgmSlider;
         private Slider _vfxSlider;
@@ -22,6 +23,8 @@ namespace AH.UI.Views
         private Button _resetSaveData;
         private LanguageType _lauguageType;
 
+        private string slotPath = "UI/Setting/Slots/";
+        private SlotSO[] slots;
         private int bgmValue;
         private int vfxValue;
 
@@ -31,22 +34,25 @@ namespace AH.UI.Views
         private LanguageSO _lauguageSO;
         private string[] _lauguageTypes;
 
-        public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel)
-        {
+
+        public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
 
-        public override void Initialize()
-        {
-            ViewModel = viewModel as HangOutViewModel;
+        public override void Initialize() {
+            if (isTitle) {
+                //ViewModel = viewModel as TitleViewModel;
+            }
+            else {
+                ViewModel = viewModel as HangOutViewModel;
+            }
 
-            _lauguageSO = ViewModel.GetLanguageSO();
+                _lauguageSO = ViewModel.GetLanguageSO();
             _lauguageTypes = _lauguageSO.languageTypes;
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
-
+            slots = Resources.LoadAll<SlotSO>(slotPath);
             base.Initialize();
         }
-        protected override void SetVisualElements()
-        {
+        protected override void SetVisualElements() {
             base.SetVisualElements();
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
             _bgmSlider = topElement.Q<Slider>("bgm-slider");
@@ -56,9 +62,7 @@ namespace AH.UI.Views
             _resetSaveData = topElement.Q<Button>("reset-saveData");
             SetLanguageItems(false);
         }
-
-        protected override void RegisterButtonCallbacks()
-        {
+        protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             _bgmSlider.RegisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
@@ -66,43 +70,45 @@ namespace AH.UI.Views
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _resetSaveData.RegisterCallback<ClickEvent>(ClickResetSaveData);
         }
-        protected override void UnRegisterButtonCallbacks()
-        {
+        protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             _bgmSlider.UnregisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
             _saveSlotField.UnregisterValueChangedCallback(ChangeSlot);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
         }
-        public override void Hide()
-        {
+
+        public override void Show() {
+            SetSound();
+            base.Show();
+        }
+
+        public override void Hide() {
             ViewModel.SetBGMValue(bgmValue);
             ViewModel.SetVFXValue(vfxValue);
             base.Hide();
         }
 
-        private void ChangeBgmValue(ChangeEvent<float> evt)
-        {
+        private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
         }
-        private void ChangeVfxValue(ChangeEvent<float> evt)
-        {
+        private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
         }
-        private void ChangeSlot(ChangeEvent<string> evt)
-        {
+        private void ChangeSlot(ChangeEvent<string> evt) {
+            SlotSO selectSlot = slots[_saveSlotField.index];
+            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
+        }
+        private void ClickResetSaveData(ClickEvent evt) {
 
         }
-        private void ClickResetSaveData(ClickEvent evt)
-        {
 
+        private void SetSound() {
+            _bgmSlider.value = ViewModel.GetBGMValue();
+            _vfxSlider.value = ViewModel.GetVFXValue();
         }
-
-
-        private void ChangeLanguage(ChangeEvent<string> evt)
-        {
-            if (isLanguageChangeing)
-            {
+        private void ChangeLanguage(ChangeEvent<string> evt) {
+            if (isLanguageChangeing) {
                 isLanguageChangeing = false;
                 return;
             }
@@ -117,10 +123,8 @@ namespace AH.UI.Views
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
             SetLanguageItems(true);
         }
-        private void SetLanguageItems(bool active)
-        {
-            if (active)
-            {
+        private void SetLanguageItems(bool active) {
+            if (active) {
                 isLanguageChangeing = true;
             }
             _languageField.SetValueWithoutNotify(_lauguageTypes[_selectedIndex]);

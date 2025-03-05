@@ -11,9 +11,6 @@ namespace AH.UI.Views {
     public class ComputerView : UIView {
         private ComputerViewModel ComputerViewModel;
 
-        private const string _selectStageViewName = "StoreView";
-        private const string _storeViewName = "SelectStageView";
-
         // ui
         private Button _storeBtn;
         private Button _stageBtn;
