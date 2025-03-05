@@ -97,25 +97,27 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             isNodeClick = false;
 
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
-
-        if (Input.GetMouseButtonDown(0))
+        if (mySubject.GameState == GameState.Fight)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))
+            if (Input.GetMouseButtonDown(0))
             {
-                if (hit.transform.parent.TryGetComponent(out Node node))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))
                 {
-                    isNodeClick = true;
+                    if (hit.transform.parent.TryGetComponent(out Node node))
+                    {
+                        isNodeClick = true;
 
-                    _currentNode = node;
-                    NodeClick(_currentNode);
+                        _currentNode = node;
+                        NodeClick(_currentNode);
+                    }
                 }
-            }
-            else // HitNode Combo 실패
-            {
-                if (_currentNode != null && _currentNode.GetNodeType() == NodeType.HitNode)
-                    NodeFalse(_currentNode);
+                else // HitNode Combo 실패
+                {
+                    if (_currentNode != null && _currentNode.GetNodeType() == NodeType.HitNode)
+                        NodeFalse(_currentNode);
+                }
             }
         }
     }
