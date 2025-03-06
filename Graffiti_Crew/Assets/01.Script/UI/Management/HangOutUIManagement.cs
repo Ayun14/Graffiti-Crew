@@ -19,12 +19,10 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            DialougeEvent.HideDialougeViewEvent += HideDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialougeEvent.HideDialougeViewEvent -= HideDialougeView;
         }
 
         protected override void Init() {
@@ -52,12 +50,13 @@ namespace AH.UI {
         private void ClickSettingBtn(ClickEvent evt) {
             _settingView.Show();
         }
-
-        private void ShowDialougeView() {
-            _dialougeView.Show();
-        }
-        private void HideDialougeView() {
-            _dialougeView.Hide();
+        private void ShowDialougeView(bool active) {
+            if (active) {
+                _dialougeView.Show();
+            }
+            else {
+                _dialougeView.Hide();
+            }
         }
     }
 }

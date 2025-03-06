@@ -98,7 +98,7 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        DialougeEvent.ShowDialougeViewEvent?.Invoke();
+        DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
 
         _currentDialogueIndex = 0;
         _onDialogueComplete = onComplete;
@@ -156,7 +156,7 @@ public class DialogueUIController : MonoBehaviour
             //FadeOut
 
             _isDialogue = false;
-            DialougeEvent.HideDialougeViewEvent?.Invoke();
+            DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
             _onDialogueComplete?.Invoke();
 
             return;

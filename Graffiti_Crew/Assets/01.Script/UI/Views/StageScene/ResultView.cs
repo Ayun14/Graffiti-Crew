@@ -26,13 +26,13 @@ namespace AH.UI.Views {
             base.Initialize();
             //FightEvent.GameResultEvent += GrowBigWinner;
             //FightEvent.VictorFullScreenEvent += FullScreen;
-            FightEvent.ShowVictorScreenEvent += FullScreen;
+            StageEvent.ShowVictorScreenEvent += FullScreen;
         }
         public override void Dispose() {
             base.Dispose();
             //FightEvent.GameResultEvent -= GrowBigWinner;
             //FightEvent.VictorFullScreenEvent -= FullScreen;
-            FightEvent.ShowVictorScreenEvent -= FullScreen;
+            StageEvent.ShowVictorScreenEvent -= FullScreen;
         }
 
         protected override void SetVisualElements() {

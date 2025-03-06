@@ -15,21 +15,19 @@ namespace AH.UI {
 
         protected override void OnEnable() {
             base.OnEnable();
-            FightEvent.SetActiveFightViewEvent += SetActiveFightView;
-            FightEvent.ShowFightViewEvent += ShowFightView;
-            FightEvent.HideFightViewEvent += HideFightView;
-            FightEvent.ShowResultViewEvent += ShowResultView;
+            StageEvent.SetActiveFightViewEvent += SetActiveFightView;
+            StageEvent.ShowFightViewEvent += ShowFightView;
+            StageEvent.HideFightViewEvent += HideFightView;
+            StageEvent.ShowResultViewEvent += ShowResultView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            DialougeEvent.HideDialougeViewEvent += HideDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            FightEvent.SetActiveFightViewEvent -= SetActiveFightView;
-            FightEvent.ShowFightViewEvent -= ShowFightView;
-            FightEvent.HideFightViewEvent -= HideFightView;
-            FightEvent.ShowResultViewEvent -= ShowResultView;
+            StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
+            StageEvent.ShowFightViewEvent -= ShowFightView;
+            StageEvent.HideFightViewEvent -= HideFightView;
+            StageEvent.ShowResultViewEvent -= ShowResultView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialougeEvent.HideDialougeViewEvent -= HideDialougeView;
         }
 
         #region Handle
@@ -41,11 +39,13 @@ namespace AH.UI {
                 _resultView.Hide();
             }
         }
-        private void ShowDialougeView() {
-            _dialougeView.Show();
-        }
-        private void HideDialougeView() {
-            _dialougeView.Hide();
+        private void ShowDialougeView(bool active) {
+            if (active) {
+                _dialougeView.Show();
+            }
+            else {
+                _dialougeView.Hide();
+            }
         }
         private void ShowFightView() {
             _fightView.Show();

@@ -116,7 +116,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _countDownPanel.gameObject.SetActive(isCountDown);
 
             // Fight
-            FightEvent.SetActiveFightViewEvent?.Invoke(isFight);
+            StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)
@@ -131,7 +131,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
-            FightEvent.ShowResultViewEvent?.Invoke(isResult);
+            StageEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
 
@@ -294,6 +294,6 @@ public class FightSceneUIController : Observer<GameStateController>
 
     public void SetResultUI()
     {
-        FightEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
+        StageEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
     }
 }
