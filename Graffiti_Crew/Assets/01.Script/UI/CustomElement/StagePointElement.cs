@@ -1,9 +1,19 @@
-﻿using UnityEngine.UIElements;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
         public string chapter { get; set; }
         public string stage { get; set; }
+        private int _starCount;
+        public int starCount {
+            get => _starCount;
+            set {
+                _starCount = value;
+                UpdateStarDisplay(); 
+            }
+        }
 
         [System.Obsolete]
         public new class UxmlFactory : UxmlFactory<StagePointElement, UxmlTraits> { }
@@ -18,6 +28,10 @@ namespace AH.UI.CustomElement {
                 name = "stage",
                 defaultValue = "1"
             };
+            UxmlIntAttributeDescription m_starCount = new UxmlIntAttributeDescription {
+                name = "starCount",
+                defaultValue = 0
+            };
             // 스테이지 타입 넣을거면 넣기(의뢰인지, 대결인지)
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc) { // �ؽ�Ʈ ������ ������ �о� �ò�
                 base.Init(ve, bag, cc);
@@ -26,11 +40,57 @@ namespace AH.UI.CustomElement {
 
                 dve.chapter = m_chapter.GetValueFromBag(bag, cc);
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
+                dve.starCount = m_starCount.GetValueFromBag(bag, cc);
 
                 VisualElement container = new VisualElement();
                 VisualElement element = new VisualElement();
                 container.Add(element);
             }
+        }
+
+        private VisualElement _starBorder;
+        private VisualElement _star1;
+        private VisualElement _star2;
+        private VisualElement _star3;
+
+        public StagePointElement() {
+            _starBorder = new VisualElement() { name = "star-border",
+                style = {
+                    bottom = Length.Percent(-17),
+                    alignItems =Align.Center,
+                    flexDirection = FlexDirection.Row,
+                    justifyContent = Justify.SpaceAround,
+                    width = Length.Percent(100),
+                    height = 100
+                }
+            };
+            Add(_starBorder);
+
+            _star1 = new VisualElement() { name = "star1" };
+            _star2 = new VisualElement() { name = "star2"};
+            _star3 = new VisualElement() { name = "star3"};
+
+            ApplyStarBorderStyle(_star1);
+            ApplyStarBorderStyle(_star2);
+            ApplyStarBorderStyle(_star3);
+
+            _starBorder.Add(_star1);
+            _starBorder.Add(_star2);
+            _starBorder.Add(_star3);
+
+            //radialFill.generateVisualContent += OnGenerateVisualContent;
+        }
+        void ApplyStarBorderStyle(VisualElement element) {
+            element.style.width = 100;
+            element.style.height = 100;
+        }
+        private void UpdateStarDisplay() {
+            Color starColor = new Color(255, 255, 0, 255);
+            Color hideColor = new Color(255, 255, 0, 0);
+            _star1.style.backgroundColor = (starCount >= 1) ? starColor : hideColor;
+            _star2.style.backgroundColor = (starCount >= 2) ? starColor : hideColor;
+            _star3.style.backgroundColor = (starCount >= 3) ? starColor : hideColor;
+
         }
     }
 }
