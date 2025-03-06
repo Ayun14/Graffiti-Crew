@@ -39,7 +39,10 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
                 _finishTimeline.Play();
 
             if (mySubject.GameState == GameState.Result)
+            {
                 _resultTimeline.Play();
+                SetWinnerCam();
+            }
         }
     }
 
@@ -69,17 +72,23 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
         _dialogueUIController.StartDialogue(2, 2);
     }
 
-    public void SetWinnerCam()
+    private void SetWinnerCam()
     {
         TimelineAsset timeline = _resultTimeline.playableAsset as TimelineAsset;
 
         foreach (var track in timeline.GetOutputTracks())
         {
-            if (track is CinemachineTrack && track.name == "GraffitiCam")
+            if (track is CinemachineTrack)
             {
-                CinemachineCamera newCamera = mySubject.IsPlayerWin ? _playerGraffitiCam : _rivalGraffitiCam;
-                _resultTimeline.SetGenericBinding(track, newCamera);
-                return;
+                foreach (var clip in track.GetClips()) // 트랙 내부의 모든 클립 확인
+                {
+                    if (clip.displayName == "GraffitiCam") // 클립 이름이 "GraffitiCam"인지 확인
+                    {
+                        CinemachineCamera newCamera = mySubject.IsPlayerWin ? _playerGraffitiCam : _rivalGraffitiCam;
+                        _resultTimeline.SetGenericBinding(clip.asset, newCamera);
+                        return;
+                    }
+                }
             }
         }
     }

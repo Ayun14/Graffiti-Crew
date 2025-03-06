@@ -9,10 +9,10 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             //Init();
+            LoadGame();
         }
 
         private void Start() {
-            LoadGame();
         }
         void OnEnable() {
             GameEvents.SaveGameEvent += SaveGameData;
