@@ -1,4 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="FightView" src="project://database/Assets/07.UI/Views/StageScene/FightView.uxml?fileID=9197481963319205126&amp;guid=3df5149eaa8ba7f4ea7b855ad2a04917&amp;type=3#FightView" />
+    <engine:Template name="DialogBoxView" src="project://database/Assets/07.UI/Views/DialogBoxView.uxml?fileID=9197481963319205126&amp;guid=5f40de9b6050fbe438a6ed725b81467f&amp;type=3#DialogBoxView" />
     <engine:Instance template="FightView" name="SprayView" style="flex-grow: 1;" />
+    <engine:Instance template="DialogBoxView" name="DialougeView" style="flex-grow: 1; display: none;" />
 </engine:UXML>

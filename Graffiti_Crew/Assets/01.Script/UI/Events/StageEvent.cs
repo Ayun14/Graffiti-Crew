@@ -1,7 +1,7 @@
 using System;
 
 namespace AH.UI.Events {
-    public static class FightEvent {
+    public static class StageEvent {
         public static Action ShowFightViewEvent;
         public static Action HideFightViewEvent;
 
