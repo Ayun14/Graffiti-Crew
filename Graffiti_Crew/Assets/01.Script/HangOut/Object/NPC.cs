@@ -7,6 +7,8 @@ public class NPC : InteractionObject
 
     private GameObject _visual;
     private StageSaveDataSO _lastStageDataSO;
+    private Collider _col;
+
     [HideInInspector] public int startIndex;
     [HideInInspector] public int endIndex;
 
@@ -14,6 +16,7 @@ public class NPC : InteractionObject
     {
         base.Awake();
 
+        _col = GetComponent<Collider>();
         _visual = transform.Find("Visual").gameObject;
     }
 
@@ -24,8 +27,14 @@ public class NPC : InteractionObject
         _lastStageDataSO = _npcSO.lastStageDataSO;
 
         if(!_lastStageDataSO.isClear)
+        {
+            _col.enabled = false;
             _visual.SetActive(false);
+        }
         else
+        {
+            _col.enabled = true;
             _visual.SetActive(true);
+        }
     }
 }
