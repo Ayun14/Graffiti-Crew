@@ -11,6 +11,9 @@ public class FightSceneUIController : Observer<GameStateController>
     [Header("Other Panel")]
     [SerializeField] private Image _comboPanel;
 
+    [Header("Cursor")]
+    [SerializeField] private Texture2D _cursorTex;
+
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
@@ -52,6 +55,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
         mySubject.OnBlindEvent += BlindEventHandle;
         mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
+
+        // Cursor
+        Cursor.SetCursor(_cursorTex, Vector2.zero, CursorMode.Auto);
 
         Transform canvas = transform.Find("Canvas");
 
