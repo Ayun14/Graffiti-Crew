@@ -9,11 +9,14 @@ public class NodeSpawner : MonoBehaviour
     private Queue<NodeDataSO> _nodeDatas = new();
 
     private NodeJudgement _judgement;
+    private Node _currentNode;
 
     public void Init(NodeJudgement judgement, List<NodeDataSO> nodeDatas)
     {
         _judgement = judgement;
         _judgement.OnNodeSpawnStart += HandleNodeSpawn;
+
+        _currentNode = null;
 
         ResetSpawner();
         foreach (NodeDataSO data in nodeDatas)
@@ -43,6 +46,7 @@ public class NodeSpawner : MonoBehaviour
             NodeDataSO nodeData = _nodeDatas.Peek();
             PoolTypeSO poolType = _poolTypes.Find(type => type.name == nodeData.nodeType.ToString());
             IPoolable poolGo = _poolManager.Pop(poolType);
+            _currentNode = poolGo.GameObject.GetComponent<Node>();
 
             if (poolGo.GameObject != null && poolGo.GameObject.TryGetComponent(out Node node))
                 node.Init(_judgement, nodeData);
@@ -54,5 +58,11 @@ public class NodeSpawner : MonoBehaviour
     public void ResetSpawner()
     {
         _nodeDatas.Clear();
+    }
+
+    public void StopSpawn()
+    {
+        if (_currentNode != null)
+            _currentNode.PushObj();
     }
 }

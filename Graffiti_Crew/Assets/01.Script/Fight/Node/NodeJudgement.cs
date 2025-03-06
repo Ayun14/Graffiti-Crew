@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -87,6 +86,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
             NodeSpawnJudgement();
         }
+
+        if (mySubject.GameState == GameState.Finish) _nodeSpawner.StopSpawn();
     }
 
     #region Input

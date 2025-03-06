@@ -38,6 +38,8 @@ public abstract class Node : MonoBehaviour, IPoolable
         this.pool = pool;
     }
 
+    public void PushObj() => pool.Push(this);
+
     public void ResetItem() { }
     #endregion
 }
