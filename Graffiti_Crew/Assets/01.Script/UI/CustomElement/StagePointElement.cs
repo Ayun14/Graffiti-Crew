@@ -77,12 +77,10 @@ namespace AH.UI.CustomElement {
             _starBorder.Add(_star1);
             _starBorder.Add(_star2);
             _starBorder.Add(_star3);
-
-            //radialFill.generateVisualContent += OnGenerateVisualContent;
         }
         void ApplyStarBorderStyle(VisualElement element) {
-            element.style.width = 100;
-            element.style.height = 100;
+            element.style.width = 80;
+            element.style.height = 80;
         }
         private void UpdateStarDisplay() {
             Color starColor = new Color(255, 255, 0, 255);

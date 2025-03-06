@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -31,7 +32,7 @@ namespace AH.UI.Views {
             _stagePointList = topElement.Query<StagePointElement>("stage-point").ToList();
             _requestPointList = topElement.Query<StagePointElement>("request-point").ToList();
 
-
+            SetStar();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -67,6 +68,11 @@ namespace AH.UI.Views {
             ComputerViewModel.SetRequest(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
+        }
+        private void SetStar() {
+            for(int i = 0; i < _stagePointList.Count; i++) {
+                _stagePointList[i].starCount = _saveStageData[i].star;
+            }
         }
     }
 }
