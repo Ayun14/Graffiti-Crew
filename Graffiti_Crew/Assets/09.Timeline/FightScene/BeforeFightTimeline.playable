@@ -136,22 +136,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
---- !u!114 &-3076682023343912547
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 3.5
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 9fbfe91cf1bbb7a48a6db691bf61bf63, type: 2}
 --- !u!114 &-2311725488252571934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +160,6 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -5547209841232943503}
-    - {fileID: 8028425183483968569}
-    - {fileID: -3076682023343912547}
 --- !u!114 &-1537294287563110178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,22 +336,6 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &8028425183483968569
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 0
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: af4484de5673aeb4ca2f745d569cfa52, type: 2}
 --- !u!114 &8418614498852575293
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,7 +509,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: Camera_Graffiti
+    m_DisplayName: Camera_PlayerGraffiti
   m_Markers:
     m_Objects: []
   TrackPriority: 0

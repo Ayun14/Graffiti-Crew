@@ -24,17 +24,20 @@ public class NPC : InteractionObject
     {
         startIndex = _npcSO.startIndex;
         endIndex = _npcSO.endIndex;
-        _lastStageDataSO = _npcSO.lastStageDataSO;
 
-        if(!_lastStageDataSO.isClear)
+        if(_npcSO.lastStageDataSO != null)
         {
-            _col.enabled = false;
-            _visual.SetActive(false);
-        }
-        else
-        {
-            _col.enabled = true;
-            _visual.SetActive(true);
+            _lastStageDataSO = _npcSO.lastStageDataSO;
+            if (!_lastStageDataSO.isClear)
+            {
+                _col.enabled = false;
+                _visual.SetActive(false);
+            }
+            else
+            {
+                _col.enabled = true;
+                _visual.SetActive(true);
+            }
         }
     }
 }

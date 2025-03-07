@@ -10,7 +10,11 @@ public enum GameState
 
     // ÀÇ·Ú¾À
     // Loding -> Talk -> Graffiti -> Result
-    Talk, Graffiti
+    Talk, Graffiti,
+
+    // Æ©Åä¸®¾ó
+    // Dialogue -> Tutorial -> Dialogue -> Dialogue
+    Dialogue, Tutorial
 }
 
 public class GameStateController : Subject
