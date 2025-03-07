@@ -14,6 +14,8 @@ namespace AH.UI.Views {
         private List<StagePointElement> _stagePointList;
         private List<StagePointElement> _requestPointList;
 
+        private Button _exitBtn;
+
         private string _saveDataPath = "SaveData/Stage/";
         private StageSaveDataSO[] _saveStageData;
 
@@ -32,6 +34,8 @@ namespace AH.UI.Views {
             _stagePointList = topElement.Query<StagePointElement>("stage-point").ToList();
             _requestPointList = topElement.Query<StagePointElement>("request-point").ToList();
 
+            _exitBtn = topElement.Q<Button>("exit-btn");
+
             SetStar();
         }
         protected override void RegisterButtonCallbacks() {
@@ -42,6 +46,7 @@ namespace AH.UI.Views {
             foreach (var button in _requestPointList) {
                 button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn, (button.chapter, button.stage));
             }
+            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -51,6 +56,11 @@ namespace AH.UI.Views {
             foreach (var button in _requestPointList) {
                 button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
             }
+            _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
+        }
+
+        private void ClickExitBtn(ClickEvent evt) {
+            ComputerEvent.HideViewEvent?.Invoke();
         }
 
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
