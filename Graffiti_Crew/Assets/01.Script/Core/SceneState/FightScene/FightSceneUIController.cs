@@ -1,9 +1,7 @@
 using AH.UI.Events;
 using DG.Tweening;
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -36,12 +34,16 @@ public class FightSceneUIController : Observer<GameStateController>
     private float _baseStepValue;
     private float _elapsedTime = 0f;
 
-    // Shader
+    // Blind Shader
     private int _blindColor = Shader.PropertyToID("_BlindColor"); // 색상
     private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
     private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
-    private int _noiseValue = Shader.PropertyToID("_NoiseValue"); // 보이는 noise 크기 15
     private int _offsetVec = Shader.PropertyToID("_OffsetVec"); // 보이는 uv 위치
+
+    // Fail Shader
+    private Image _failFeedbackPanel;
+    private Material _failMat;
+    private int _failPower = Shader.PropertyToID("_Power");
 
     // Loding
     private Image _lodingPanel;
@@ -60,17 +62,22 @@ public class FightSceneUIController : Observer<GameStateController>
 
         mySubject.OnBlindEvent += BlindEventHandle;
         mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
+        mySubject.OnNodeFailEvent += NodeFailEventHandle;
 
         // Cursor
         Cursor.SetCursor(_cursorTex, Vector2.zero, CursorMode.Auto);
 
         Transform canvas = transform.Find("Canvas");
 
-        // Shader
+        // Blind Shader
         _blindPanel = canvas.Find("Panel_Blind").GetComponent<Image>();
         _foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
         _blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
         _blindMat.SetFloat(_stepValue, 0f);
+
+        // Fail Shader
+        _failFeedbackPanel = canvas.Find("Panel_FailFeedback").GetComponent<Image>();
+        _failMat = _failFeedbackPanel.transform.Find("Image_FailShader").GetComponent<Image>().material;
 
         // Loding
         _lodingPanel = canvas.Find("Panel_Loding").GetComponent<Image>();
@@ -88,6 +95,7 @@ public class FightSceneUIController : Observer<GameStateController>
     {
         mySubject.OnBlindEvent -= BlindEventHandle;
         mySubject.OnRivalCheckEvent -= RivalCheckEventHandle;
+        mySubject.OnNodeFailEvent -= NodeFailEventHandle;
 
         Detach();
     }
@@ -129,6 +137,7 @@ public class FightSceneUIController : Observer<GameStateController>
             // Fight
             StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
+            _failFeedbackPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)
             {
@@ -172,7 +181,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator FinishRoutine()
     {
-        _finishImage.rectTransform.anchoredPosition = new Vector2 (1200, 0);
+        _finishImage.rectTransform.anchoredPosition = new Vector2(1200, 0);
         _finishImage.rectTransform.DOAnchorPosX(0, 1f).SetEase(Ease.InOutBack);
         yield return new WaitForSeconds(3f);
         _finishImage.rectTransform.DOAnchorPosX(-1200, 1f).SetEase(Ease.InOutBack);
@@ -187,7 +196,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    #region Blind
+    #region Blind Shader
 
     private void BlindEventHandle()
     {
@@ -300,6 +309,36 @@ public class FightSceneUIController : Observer<GameStateController>
         }
 
         mySubject.SetIsBlind(false);
+    }
+
+    #endregion
+
+    #region Fail Shader
+
+    private void NodeFailEventHandle()
+    {
+        StartCoroutine(ChangeFailPower());
+    }
+
+    private IEnumerator ChangeFailPower()
+    {
+        float startValue = 15f;
+        float endValue = 2f;
+
+        yield return StartCoroutine(LerpFailPower(startValue, endValue, 0.3f));
+        yield return StartCoroutine(LerpFailPower(endValue, startValue, 0.6f));
+    }
+
+    private IEnumerator LerpFailPower(float start, float end, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            _failMat.SetFloat(_failPower, Mathf.Lerp(start, end, elapsed / duration));
+            yield return null;
+        }
+        _failMat.SetFloat(_failPower, end);
     }
 
     #endregion

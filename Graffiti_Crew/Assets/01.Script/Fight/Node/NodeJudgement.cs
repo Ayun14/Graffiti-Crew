@@ -76,7 +76,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public override void NotifyHandle()
     {
-        if (mySubject.GameState == GameState.Timeline)
+        if (mySubject.GameState == GameState.CountDown)
             _graffitiRenderer.Init(this, _startSprite);
 
         if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti)
@@ -193,6 +193,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             if (!mySubject.IsBlind && Random.Range(0, 100f) < 30)
                 mySubject?.InvokeBlindEvent();
         }
+
+        mySubject.InvokeNodeFailEvent();
 
         _comboController.FailCombo();
     }

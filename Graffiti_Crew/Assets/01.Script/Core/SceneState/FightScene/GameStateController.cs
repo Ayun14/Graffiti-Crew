@@ -19,7 +19,8 @@ public enum GameState
 
 public class GameStateController : Subject
 {
-    public Action OnBlindEvent;
+    public Action OnBlindEvent; // 시야 방해
+    public Action OnNodeFailEvent; // 노드 실패
     public Action OnRivalCheckEvent; // 라이벌의 견제
     public Action OnSprayEmptyEvent; // 스프레이 모두 소모
     public Action OnSprayChangeEvent; // 스프레이 갈기 성공
@@ -50,27 +51,25 @@ public class GameStateController : Subject
         NotifyObservers(); // 관찰자들에게 알리기
     }
 
-    public void InvokeBlindEvent()
-    {
-        OnBlindEvent?.Invoke();
-    }
+    #region Set Bool
 
     public void SetIsBlind(bool isBlind) => _isBlind = isBlind;
     public void SetWhoIsWin(bool isPlayerWind) => _isPlayerWin = isPlayerWind;
-
-    public void InvokeRivalCheckEvent()
-    {
-        OnRivalCheckEvent?.Invoke();
-    }
-
-    public void InvokeSprayEmptyEvent()
-    {
-        OnSprayEmptyEvent?.Invoke();
-    }
     public void SetIsSprayEmpty(bool isSprayEmpty) => _isSprayEmpty = isSprayEmpty;
 
-    public void InvokeSprayChangeEvent()
-    {
-        OnSprayChangeEvent?.Invoke();
-    }
+    #endregion
+
+    #region Invoke Event
+
+    public void InvokeBlindEvent() => OnBlindEvent?.Invoke();
+
+    public void InvokeNodeFailEvent() => OnNodeFailEvent?.Invoke();
+
+    public void InvokeRivalCheckEvent() => OnRivalCheckEvent?.Invoke();
+
+    public void InvokeSprayEmptyEvent() => OnSprayEmptyEvent?.Invoke();
+
+    public void InvokeSprayChangeEvent() => OnSprayChangeEvent?.Invoke();
+
+    #endregion
 }
