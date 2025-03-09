@@ -1,6 +1,8 @@
 using AH.UI.Events;
 using DG.Tweening;
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
     [Header("Cursor")]
     [SerializeField] private Texture2D _cursorTex;
+
+    [Header("Count Down")]
+    [SerializeField] private List<Sprite> _countDownImages = new();
 
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
@@ -43,11 +48,11 @@ public class FightSceneUIController : Observer<GameStateController>
 
     // CountDown
     private Image _countDownPanel;
-    private TextMeshProUGUI _countDownText;
+    private Image _countDownImage;
 
     // Finish
     private Image _finishPanel;
-    private TextMeshProUGUI _finishText;
+    private Image _finishImage;
 
     private void Awake()
     {
@@ -72,11 +77,11 @@ public class FightSceneUIController : Observer<GameStateController>
 
         // CountDown
         _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
-        _countDownText = _countDownPanel.transform.Find("Text_CountDown").GetComponent<TextMeshProUGUI>();
+        _countDownImage = _countDownPanel.transform.Find("Image_CountDown").GetComponent<Image>();
 
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
-        _finishText = _finishPanel.transform.Find("Text_Finish").GetComponent<TextMeshProUGUI>();
+        _finishImage = _finishPanel.transform.Find("Image_Finish").GetComponent<Image>();
     }
 
     private void OnDestroy()
@@ -134,6 +139,7 @@ public class FightSceneUIController : Observer<GameStateController>
                 _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
+            if (isFinish) StartCoroutine(FinishRoutine());
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
@@ -143,33 +149,33 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator CountDownRoutine()
     {
-        for (int i = 3; i > 0; --i)
+        Color color = _countDownImage.color;
+        color.a = 0;
+        _countDownImage.color = color;
+        for (int i = 0; i < 3; ++i)
         {
-            _countDownText.text = i.ToString();
+            _countDownImage.sprite = _countDownImages[i];
 
-            // Position
-            _countDownText.rectTransform.localPosition = new Vector3(0, -100f, 0);
+            _countDownImage.transform.localScale = Vector3.zero;
+            _countDownImage.transform.DOScale(1, 0.2f);
 
             Sequence posSequence = DOTween.Sequence();
-            posSequence.Append(_countDownText.rectTransform.DOAnchorPosY(0f, 0.3f))
-                    .AppendInterval(0.4f)
-                    .Append(_countDownText.rectTransform.DOAnchorPosY(100f, 0.3f));
-
-            // Alpha
-            Color color = _countDownText.color;
-            color.a = 0f;
-            _countDownText.color = color;
-
-            Sequence alphaSequence = DOTween.Sequence();
-            alphaSequence.Append(_countDownText.DOFade(1f, 0.3f))
-                    .AppendInterval(0.4f)
-                    .Append(_countDownText.DOFade(0f, 0.3f));
-
+            posSequence.Append(_countDownImage.DOFade(1, 0.2f))
+                    .AppendInterval(0.6f)
+                    .Append(_countDownImage.DOFade(0, 0.2f));
 
             yield return new WaitForSeconds(1f);
         }
 
         mySubject.ChangeGameState(GameState.Fight);
+    }
+
+    private IEnumerator FinishRoutine()
+    {
+        _finishImage.rectTransform.anchoredPosition = new Vector2 (1200, 0);
+        _finishImage.rectTransform.DOAnchorPosX(0, 1f).SetEase(Ease.InOutBack);
+        yield return new WaitForSeconds(3f);
+        _finishImage.rectTransform.DOAnchorPosX(-1200, 1f).SetEase(Ease.InOutBack);
     }
 
     #region Rival Check
