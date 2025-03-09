@@ -1,11 +1,18 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class RivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
 
+    // Graffiti
     private Sprite _graffiti;
     private SpriteRenderer _graffitiRenderer;
+
+    // Game Object
+    private Transform _rival;
+    private Transform _graffitiTrm;
+    private Transform _resultTrm;
 
     private bool _isFight = false;
     private bool _isCompleteRivalCheck = false;
@@ -19,11 +26,16 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         _graffiti = stageData.rivalGraffiti;
         _rivalDrawingTime = stageData.rivalClearTime;
+        _rival = Instantiate(stageData.rivalPrefab, Vector3.zero, Quaternion.identity, transform);
+        Debug.Log(_rival.Find("Visual").gameObject.activeSelf);
     }
 
     private void Awake()
     {
         Attach();
+
+        _graffitiTrm = transform.Find("GraffitiPos").GetComponent<Transform>();
+        _resultTrm = transform.Find("ResultPos").GetComponent<Transform>();
 
         _graffitiRenderer = GetComponentInChildren<SpriteRenderer>();
         _graffitiRenderer.sprite = null;
@@ -45,6 +57,34 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         RivalProgressSliderUpdate();
     }
+
+    public override void NotifyHandle()
+    {
+        if (mySubject != null)
+        {
+            if (mySubject.GameState == GameState.CountDown)
+            {
+                _rival.position = _graffitiTrm.position;
+                _rival.localRotation = _graffitiTrm.localRotation;
+            }
+
+            _isFight = mySubject.GameState == GameState.Fight;
+
+            if (mySubject.GameState == GameState.Finish)
+            {
+                SetGraffiti(null);
+                _rival.position = _resultTrm.position;
+                _rival.localRotation = _resultTrm.localRotation;
+            }
+        }
+    }
+
+    private void SetGraffiti(Sprite sprite)
+    {
+        _graffitiRenderer.sprite = _graffiti;
+    }
+
+    #region Slider
 
     private void RivalProgressSliderUpdate()
     {
@@ -82,19 +122,5 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         }
     }
 
-    public override void NotifyHandle()
-    {
-        if (mySubject != null)
-        {
-            _isFight = mySubject.GameState == GameState.Fight;
-
-            if (mySubject.GameState == GameState.Finish)
-                SetGraffiti(null);
-        }
-    }
-
-    private void SetGraffiti(Sprite sprite)
-    {
-        _graffitiRenderer.sprite = _graffiti;
-    }
+    #endregion
 }
