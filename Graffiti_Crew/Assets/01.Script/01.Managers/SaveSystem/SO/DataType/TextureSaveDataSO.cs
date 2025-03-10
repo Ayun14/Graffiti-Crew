@@ -5,12 +5,13 @@ using UnityEngine;
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/TextureSaveDataSO")]
     public class TextureSaveDataSO : SaveDataSO {
+        [Space]
         public string textureFilePath; // 파일 경로
         public Texture2D data;
-        private Texture2D _defaultData;
+        [Space]
+        [SerializeField] private Texture2D _defaultData;
 
         private void Awake() {
-            _defaultData = data;
             dataType = DataType.Texture;
         }
         public override string GetDataType() {
@@ -42,7 +43,7 @@ namespace AH.SaveSystem {
     }
     public static class TextureSaveLoadUtility {
         // 압축된 Texture2D를 읽을 수 있도록
-        public static Texture2D DeCompress(this Texture2D source) { 
+        public static Texture2D DeCompress(this Texture2D source) {
             RenderTexture renderTex = RenderTexture.GetTemporary(source.width, source.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Linear);
 
             Graphics.Blit(source, renderTex);

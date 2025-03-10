@@ -13,13 +13,11 @@ namespace AH.SaveSystem {
         public StageType stageType = StageType.Stage;
         public bool isClear;
         public int star;
-
-        private bool _defaultIsClearData = false;
-        private int _defaultStarData = 0;
+        [Space]
+        [SerializeField] private bool _defaultIsClearData = false;
+        [SerializeField] private int _defaultStarData = 0;
 
         private void Awake() {
-            _defaultIsClearData = isClear;
-            _defaultStarData = star;
             dataType = DataType.Stage;
         }
         public override string GetDataType() {

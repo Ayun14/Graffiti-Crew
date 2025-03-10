@@ -6,14 +6,12 @@ namespace AH.SaveSystem {
         [Space]
         public string itemName;
         public int count;
-
-        private string _defaultItemNameData;
-        private int _defaultStarData = 0;
+        [Space]
+        [SerializeField] private string _defaultItemNameData;
+        [SerializeField] private int _defaultStarData = 0;
 
         private void Awake() {
             dataType = DataType.Item;
-            _defaultItemNameData = itemName;
-            _defaultStarData = count;
         }
         public override string GetDataType() {
             return dataType.ToString();

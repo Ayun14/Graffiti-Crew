@@ -3,11 +3,12 @@ using UnityEngine;
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/StringSaveDataSO")]
     public class StringSaveDataSO : SaveDataSO {
+        [Space]
         public string data;
-        private string _defaultData;
+        [Space]
+        [SerializeField] private string _defaultData;
 
         private void Awake() {
-            _defaultData = data;
             dataType = DataType.String;
         }
         public override string GetDataType() {

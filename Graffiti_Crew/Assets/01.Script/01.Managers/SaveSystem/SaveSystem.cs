@@ -50,15 +50,15 @@ namespace AH.SaveSystem {
             }
         }
         public void SaveGameData() { // 모든 데이터를 저장
-            foreach (var saveData in _dataList) {   
+            foreach (var saveData in _dataList) {
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 //saveData.ResetDatas();
             }
         }
         private void ResetData() {
-            FileSystem.DeleteFolder(currentSlot.slotName); // 폴더 날려서 싹 지우고
-            CreateNewData(); // 완전히 새로 생성
+            //FileSystem.DeleteFolder(currentSlot.slotName); // 폴더 날려서 싹 지우고
+            //CreateNewData(); // 완전히 새로 생성
         }
     }
 }
