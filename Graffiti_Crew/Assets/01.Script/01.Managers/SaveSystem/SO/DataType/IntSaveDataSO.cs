@@ -3,12 +3,14 @@
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/IntSaveDataSO")]
 
-    public class IntSaveDataSO : SaveDataSO{
+    public class IntSaveDataSO : SaveDataSO {
+        [Space]
         public int data;
-        private int _defaultData;
+        [Space]
+        [SerializeField] private int defaultData;
 
         private void Awake() {
-            _defaultData = data;
+            defaultData = data;
             dataType = DataType.Int;
         }
 
@@ -23,7 +25,7 @@ namespace AH.SaveSystem {
         }
 
         public override void ResetData() {
-            data = _defaultData;
+            data = defaultData;
         }
     }
 }

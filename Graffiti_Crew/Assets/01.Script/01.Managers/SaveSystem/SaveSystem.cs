@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,17 +10,16 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             //Init();
-            LoadGame();
-        }
-
-        private void Start() {
+            CreateNewData();
         }
         void OnEnable() {
             GameEvents.SaveGameEvent += SaveGameData;
         }
-
         void OnDisable() {
             GameEvents.SaveGameEvent -= SaveGameData;
+        }
+        void OnApplicationQuit() {
+            SaveGameData();
         }
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
@@ -32,18 +32,17 @@ namespace AH.SaveSystem {
                 DontDestroyOnLoad(root);
             }
         }
-        void OnApplicationQuit() {
-            SaveGameData();
-        }
-
-        public void LoadGame() {
-            if (FileSystem.CheckToSlotFolder(currentSlot.slotName)) { // 폴더가 없어서 생성했다면 
-                // save파일에 기본값 넣기
-                foreach (var saveData in _dataList) {
+        private void CreateNewData() {
+            FileSystem.CheckToSlotFolder(currentSlot.slotName); // 폴더가 없으면 생성
+            foreach (var saveData in _dataList) { // save파일에 기본값 넣기
+                if (!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
                     string jsonFile = saveData.ToJson();
                     FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 }
             }
+            LoadGame();
+        }
+        private void LoadGame() {
             foreach (var saveData in _dataList) { // 데이터 load하기
                 if (FileSystem.LoadFromFile(currentSlot.slotName, saveData.saveFileName, out var jsonString)) {
                     saveData.LoadJson(jsonString);
@@ -51,11 +50,15 @@ namespace AH.SaveSystem {
             }
         }
         public void SaveGameData() { // 모든 데이터를 저장
-            foreach (var saveData in _dataList) {   
+            foreach (var saveData in _dataList) {
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
-                saveData.ResetDatas();
+                //saveData.ResetDatas();
             }
+        }
+        private void ResetData() {
+            //FileSystem.DeleteFolder(currentSlot.slotName); // 폴더 날려서 싹 지우고
+            //CreateNewData(); // 완전히 새로 생성
         }
     }
 }

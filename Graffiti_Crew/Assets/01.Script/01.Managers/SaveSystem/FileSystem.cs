@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading;
 using UnityEngine;
 
 namespace AH.SaveSystem {
@@ -24,14 +25,14 @@ namespace AH.SaveSystem {
                 return true;
             }
             return false;
-
         }
-        public static bool LoadFromFile(string saveSlotName, string fileName, out string result) {
-            var folderPath = Path.Combine(Application.persistentDataPath, saveSlotName);
-            var fullPath = Path.Combine(folderPath, fileName);
-            Debug.Log($"SaveFile Path : {fullPath}");
-
-            return CheckInText(out result, fullPath);
+        public static bool CheckToSaveFile(string slotName, string fileName) {
+            var slotPath = Path.Combine(Application.persistentDataPath, slotName);
+            var filePath = Path.Combine(slotPath, fileName);
+            if (File.Exists(filePath)) { // 파일 찾기
+                return true;
+            }
+            return false;
         }
         private static bool CheckInText(out string result, string fullPath) {
             if (!File.Exists(fullPath)) { // 경로에 파일이 없다면
@@ -46,6 +47,20 @@ namespace AH.SaveSystem {
                 result = "";
                 Debug.Log("return false");
                 return false;
+            }
+        }
+
+        public static bool LoadFromFile(string saveSlotName, string fileName, out string result) {
+            var folderPath = Path.Combine(Application.persistentDataPath, saveSlotName);
+            var fullPath = Path.Combine(folderPath, fileName);
+            Debug.Log($"SaveFile Path : {fullPath}");
+
+            return CheckInText(out result, fullPath);
+        }
+        public static void DeleteFolder(string saveSlotName) {
+            var folderPath = Path.Combine(Application.persistentDataPath, saveSlotName);
+            if (Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
             }
         }
     }

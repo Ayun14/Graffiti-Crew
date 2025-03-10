@@ -9,9 +9,10 @@ namespace AH.SaveSystem {
         Float,
         Texture,
         Stage,
-        Item
+        Item,
+        Ect
     }
-    public abstract class SaveDataSO : ScriptableObject
+    public abstract class SaveDataSO : ScriptableObject, IResetData // IResetData필요하면 사용 할 것
     {
         public string dataName;
         public int ID;
@@ -20,7 +21,9 @@ namespace AH.SaveSystem {
         public abstract string GetData();
         public abstract void SetValueFromString(string value);
         public abstract string GetDataType();
-        public abstract void ResetData();
+        public virtual void ResetData() {
+
+        }
 #if UNITY_EDITOR
         protected virtual void OnValidate() {
             ID = this.GetInstanceID();

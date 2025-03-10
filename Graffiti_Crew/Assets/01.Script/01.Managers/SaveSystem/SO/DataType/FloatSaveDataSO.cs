@@ -3,11 +3,12 @@ using UnityEngine;
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/FloatSaveDataSO")]
     public class FloatSaveDataSO : SaveDataSO {
+        [Space]
         public float data;
-        private float _defaultData;
+        [Space]
+        [SerializeField] private float _defaultData;
 
         private void Awake() {
-            _defaultData = data;
             dataType = DataType.Float;
         }
         public override string GetDataType() {
@@ -19,7 +20,6 @@ namespace AH.SaveSystem {
         public override void SetValueFromString(string value) {
             data = float.Parse(value);
         }
-
         public override void ResetData() {
             data = _defaultData;
         }
