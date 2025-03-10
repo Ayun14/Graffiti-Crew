@@ -16,6 +16,9 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
         }
         _inputAction.UI.Enable();
     }
+    private void OnDisable() {
+        _inputAction.UI.Disable();
+    }
     public void OnCancel(InputAction.CallbackContext context) { // esc누르면 호출
         if (context.performed) {
             OnCancleEvent?.Invoke();
