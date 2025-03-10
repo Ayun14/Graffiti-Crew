@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,6 @@ namespace AH.SaveSystem {
         void OnApplicationQuit() {
             SaveGameData();
         }
-        
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
             if (root == null) {
@@ -34,10 +34,8 @@ namespace AH.SaveSystem {
         }
         private void CreateNewData() {
             FileSystem.CheckToSlotFolder(currentSlot.slotName); // 폴더가 없으면 생성
-            // save파일에 기본값 넣기
-            foreach (var saveData in _dataList) {
-                if(!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
-                    Debug.Log(saveData.saveFileName);
+            foreach (var saveData in _dataList) { // save파일에 기본값 넣기
+                if (!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
                     string jsonFile = saveData.ToJson();
                     FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 }
@@ -59,8 +57,8 @@ namespace AH.SaveSystem {
             }
         }
         private void ResetData() {
-
-            CreateNewData();
+            FileSystem.DeleteFolder(currentSlot.slotName); // 폴더 날려서 싹 지우고
+            CreateNewData(); // 완전히 새로 생성
         }
     }
 }
