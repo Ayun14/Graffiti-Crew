@@ -24,7 +24,14 @@ namespace AH.SaveSystem {
                 return true;
             }
             return false;
-
+        }
+        public static bool CheckToSaveFile(string slotName, string fileName) {
+            var slotPath = Path.Combine(Application.persistentDataPath, slotName);
+            var filePath = Path.Combine(slotPath, fileName);
+            if (File.Exists(filePath)) { // 파일 찾기
+                return true;
+            }
+            return false;
         }
         public static bool LoadFromFile(string saveSlotName, string fileName, out string result) {
             var folderPath = Path.Combine(Application.persistentDataPath, saveSlotName);
@@ -47,6 +54,9 @@ namespace AH.SaveSystem {
                 Debug.Log("return false");
                 return false;
             }
+        }
+        public static void DeleteFolder() {
+
         }
     }
 }

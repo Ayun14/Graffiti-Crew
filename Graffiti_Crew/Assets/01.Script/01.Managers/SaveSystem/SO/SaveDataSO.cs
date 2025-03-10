@@ -11,7 +11,7 @@ namespace AH.SaveSystem {
         Stage,
         Item
     }
-    public abstract class SaveDataSO : ScriptableObject
+    public abstract class SaveDataSO : ScriptableObject // IResetData필요하면 사용 할 것
     {
         public string dataName;
         public int ID;

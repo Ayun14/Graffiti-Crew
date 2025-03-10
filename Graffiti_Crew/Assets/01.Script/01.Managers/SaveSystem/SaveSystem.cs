@@ -9,18 +9,18 @@ namespace AH.SaveSystem {
 
         private void Awake() {
             //Init();
-            LoadGame();
-        }
-
-        private void Start() {
+            CreateNewData();
         }
         void OnEnable() {
             GameEvents.SaveGameEvent += SaveGameData;
         }
-
         void OnDisable() {
             GameEvents.SaveGameEvent -= SaveGameData;
         }
+        void OnApplicationQuit() {
+            SaveGameData();
+        }
+        
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
             if (root == null) {
@@ -32,18 +32,19 @@ namespace AH.SaveSystem {
                 DontDestroyOnLoad(root);
             }
         }
-        void OnApplicationQuit() {
-            SaveGameData();
-        }
-
-        public void LoadGame() {
-            if (FileSystem.CheckToSlotFolder(currentSlot.slotName)) { // 폴더가 없어서 생성했다면 
-                // save파일에 기본값 넣기
-                foreach (var saveData in _dataList) {
+        private void CreateNewData() {
+            FileSystem.CheckToSlotFolder(currentSlot.slotName); // 폴더가 없으면 생성
+            // save파일에 기본값 넣기
+            foreach (var saveData in _dataList) {
+                if(!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
+                    Debug.Log(saveData.saveFileName);
                     string jsonFile = saveData.ToJson();
                     FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 }
             }
+            LoadGame();
+        }
+        private void LoadGame() {
             foreach (var saveData in _dataList) { // 데이터 load하기
                 if (FileSystem.LoadFromFile(currentSlot.slotName, saveData.saveFileName, out var jsonString)) {
                     saveData.LoadJson(jsonString);
@@ -54,8 +55,12 @@ namespace AH.SaveSystem {
             foreach (var saveData in _dataList) {   
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
-                saveData.ResetDatas();
+                //saveData.ResetDatas();
             }
+        }
+        private void ResetData() {
+
+            CreateNewData();
         }
     }
 }
