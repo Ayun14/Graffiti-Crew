@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement name="background" class="mini-background">
+            <engine:Label text="하이" name="dialog-txt" class="grow-size-30" style="flex-grow: 1;">
+                <Bindings>
+                    <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                </Bindings>
+            </engine:Label>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

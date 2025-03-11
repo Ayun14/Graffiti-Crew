@@ -11,6 +11,7 @@ namespace AH.UI {
         private HangOutViewModel _viewModel;
 
         private DialougeView _dialougeView;
+        private DialougeView _miniDialougeView;
         private SettingView _settingView;
 
         private Button _settingBtn;
@@ -19,10 +20,12 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
         }
 
         protected override void Init() {
@@ -35,6 +38,7 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _viewModel);
+            _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
             
             _settingBtn = root.Q<Button>("setting-btn");
@@ -56,6 +60,14 @@ namespace AH.UI {
             }
             else {
                 _dialougeView.Hide();
+            }
+        }
+        private void ShowMiniDialougeView(bool active) {
+            if (active) {
+                _miniDialougeView.Show();
+            }
+            else {
+                _miniDialougeView.Hide();
             }
         }
     }
