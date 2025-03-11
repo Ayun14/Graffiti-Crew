@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -123,7 +124,8 @@ public class FightSceneUIController : Observer<GameStateController>
         if (mySubject != null)
         {
             bool isCountDown = mySubject.GameState == GameState.CountDown;
-            bool isFight = mySubject.GameState == GameState.Fight;
+            bool isFight = mySubject.GameState == GameState.Fight
+                || mySubject.GameState == GameState.Tutorial;
             bool isFinish = mySubject.GameState == GameState.Finish;
             bool isResult = mySubject.GameState == GameState.Result;
 
@@ -176,7 +178,11 @@ public class FightSceneUIController : Observer<GameStateController>
             yield return new WaitForSeconds(1f);
         }
 
-        mySubject.ChangeGameState(GameState.Fight);
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+            mySubject.ChangeGameState(GameState.Tutorial);
+        else
+            mySubject.ChangeGameState(GameState.Fight);
+
     }
 
     private IEnumerator FinishRoutine()

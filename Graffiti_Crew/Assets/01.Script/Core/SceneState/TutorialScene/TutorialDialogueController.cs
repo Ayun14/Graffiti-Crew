@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialDialogueController : Observer<GameStateController>
 {
@@ -23,10 +24,10 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
+            StageEvent.HideFightViewEvent?.Invoke();
             // FadeOut
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
             NPCSO dialogue = _dialogueList[_dialogueNum];
-            _dialogueNum++;
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
     }
@@ -35,5 +36,18 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         // FadeIn
         DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+        _dialogueNum++;
+        if (_dialogueNum == 1)
+        {
+            mySubject.ChangeGameState(GameState.CountDown);
+        }
+        else if (_dialogueNum == 2)
+        {
+            NPCSO dialogue = _dialogueList[_dialogueNum];
+            _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+        }
+        else
+            SceneManager.LoadScene("HangOutScene");
+
     }
 }

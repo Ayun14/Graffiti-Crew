@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class NodeJudgement : Observer<GameStateController>, INeedLoding
@@ -79,7 +80,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         if (mySubject.GameState == GameState.CountDown)
             _graffitiRenderer.Init(this, _startSprite);
 
-        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti)
+        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
+            || mySubject.GameState == GameState.Tutorial)
         {
             // Init
             _nodeSpawner.Init(this, _nodeDatas);
@@ -100,7 +102,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             isNodeClick = false;
 
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
-        if (mySubject.GameState == GameState.Fight)
+        if (mySubject.GameState == GameState.Fight || 
+            mySubject.GameState == GameState.Tutorial)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -166,7 +169,11 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     public void AllNodeClear()
     {
         mySubject.SetWhoIsWin(true);
-        mySubject.ChangeGameState(GameState.Finish);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+            mySubject.ChangeGameState(GameState.Dialogue);
+        else
+            mySubject.ChangeGameState(GameState.Finish);
+
     }
 
     #endregion

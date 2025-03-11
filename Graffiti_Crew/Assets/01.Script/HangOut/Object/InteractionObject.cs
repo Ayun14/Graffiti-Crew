@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionObject : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class InteractionObject : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _targetPos = transform.Find("Target").position;
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("HangOutScene"))
+        {
+            _targetPos = transform.Find("Target").position;
+        }
     }
 }
