@@ -1,5 +1,6 @@
 using AH.SaveSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPC : InteractionObject
 {
@@ -16,8 +17,11 @@ public class NPC : InteractionObject
     {
         base.Awake();
 
-        _col = GetComponent<Collider>();
-        _visual = transform.Find("Visual").gameObject;
+        if(CheckHangOutScene())
+        {
+            _col = GetComponent<Collider>();
+            _visual = transform.Find("Visual").gameObject;
+        }
     }
 
     private void Start()
@@ -25,7 +29,7 @@ public class NPC : InteractionObject
         startIndex = _npcSO.startIndex;
         endIndex = _npcSO.endIndex;
 
-        if(_npcSO.lastStageDataSO != null)
+        if(_npcSO.lastStageDataSO != null && CheckHangOutScene())
         {
             _lastStageDataSO = _npcSO.lastStageDataSO;
             if (!_lastStageDataSO.isClear)
@@ -39,5 +43,13 @@ public class NPC : InteractionObject
                 _visual.SetActive(true);
             }
         }
+    }
+
+    private bool CheckHangOutScene()
+    {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("HangOutScene"))
+            return true;
+        else
+            return false;
     }
 }

@@ -27,7 +27,6 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         _graffiti = stageData.rivalGraffiti;
         _rivalDrawingTime = stageData.rivalClearTime;
         _rival = Instantiate(stageData.rivalPrefab, Vector3.zero, Quaternion.identity, transform).transform;
-        Debug.Log(_rival.Find("Visual").gameObject.activeSelf);
     }
 
     private void Awake()
