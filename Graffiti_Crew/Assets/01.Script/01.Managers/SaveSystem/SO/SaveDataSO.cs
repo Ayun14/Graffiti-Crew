@@ -10,7 +10,8 @@ namespace AH.SaveSystem {
         Texture,
         Stage,
         Item,
-        Ect
+        Ect,
+        Bool
     }
     public abstract class SaveDataSO : ScriptableObject, IResetData // IResetData필요하면 사용 할 것
     {
