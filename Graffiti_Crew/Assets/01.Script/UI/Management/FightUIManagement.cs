@@ -11,6 +11,8 @@ namespace AH.UI {
         private DialougeView _dialougeView;
         private ResultView _resultView;
 
+        private FightStartAnimation _fightStartAnimation;
+
         private FightViewModel _viewModel;
 
         protected override void OnEnable() {
@@ -66,7 +68,9 @@ namespace AH.UI {
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
 
-            _fightView.Show();
+            _fightStartAnimation = new FightStartAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
+
+            _fightStartAnimation.Show();
         }
         private void SetActiveFightView(bool active) {
             if (active) {

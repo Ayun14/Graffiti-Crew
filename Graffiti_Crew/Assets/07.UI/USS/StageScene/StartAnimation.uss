@@ -1,0 +1,37 @@
+.rival-screen {
+    flex-grow: 1;
+    background-color: rgb(255, 97, 211);
+    transition-duration: 0.7s;
+    left: 0;
+}
+
+.player-screen {
+    flex-grow: 1;
+    background-color: rgb(4, 180, 255);
+    transition-duration: 0.7s;
+    left: 0;
+}
+
+.move-left {
+    left: -52%;
+}
+
+.move-right {
+    right: -52%;
+}
+
+.start-content {
+    flex-grow: 1;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 0;
+    height: 0;
+    top: 25%;
+    left: 25%;
+    transition-duration: 0.4s;
+}
+
+.size-up {
+    width: 50%;
+    height: 50%;
+}

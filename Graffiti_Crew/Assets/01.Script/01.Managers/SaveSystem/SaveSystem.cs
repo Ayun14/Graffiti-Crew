@@ -21,6 +21,11 @@ namespace AH.SaveSystem {
         void OnApplicationQuit() {
             SaveGameData();
         }
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
+            }
+        }
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
             if (root == null) {
@@ -36,6 +41,9 @@ namespace AH.SaveSystem {
             FileSystem.CheckToSlotFolder(currentSlot.slotName); // 폴더가 없으면 생성
             foreach (var saveData in _dataList) { // save파일에 기본값 넣기
                 if (!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
+                    foreach(IResetData data in saveData.saveDataSOList) {
+                        data.ResetData();
+                    }
                     string jsonFile = saveData.ToJson();
                     FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 }
