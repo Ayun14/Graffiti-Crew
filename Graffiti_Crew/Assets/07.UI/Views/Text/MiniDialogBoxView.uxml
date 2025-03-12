@@ -9,7 +9,7 @@
                 </Bindings>
             </engine:VisualElement>
             <engine:VisualElement name="background" class="mini-background">
-                <engine:Label text="하이" name="dialog-txt" class="grow-size-40" style="flex-grow: 1;">
+                <engine:Label text="하이" name="dialog-txt" class="grow-size-40" style="flex-grow: 1; white-space: pre-wrap;">
                     <Bindings>
                         <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
                     </Bindings>
