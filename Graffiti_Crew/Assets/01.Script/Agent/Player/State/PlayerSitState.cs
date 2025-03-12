@@ -4,7 +4,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerSitState : PlayerState
 {
-    private bool _onInteraction = false;
     private bool _onRun = false;
 
     public PlayerSitState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
@@ -15,27 +14,20 @@ public class PlayerSitState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        _onInteraction = true;
-        _onRun = true;
+        _onRun = false;
 
-        Animation_Go();
+        if (_player.NavMeshAgent.destination == _player.CurrentInteractionObject.TargetPos)
+            Animation_Go();
+        else
+            Animation_Reverse();
 
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
-
         _player.MovementCompo.StopImmediately(true);
     }
 
     public override void UpdateState()
     {
         float animTime = _player.AnimatorCompo.GetCurrentAnimatorStateInfo(0).normalizedTime;
-
-        if (_onInteraction)
-        {
-            if (animTime >= 1.0f || animTime == 0)
-            {
-                _player.StateMachine.ChangeState(PlayerStateEnum.Interaction);
-            }
-        }
 
         if (_onRun)
         {
@@ -44,6 +36,9 @@ public class PlayerSitState : PlayerState
                 _player.StateMachine.ChangeState(PlayerStateEnum.Run);
             }
         }
+
+        if(animTime == 1.0f)
+            _player.StateMachine.ChangeState(PlayerStateEnum.SitStay);
     }
 
     public override void Exit()
@@ -55,12 +50,10 @@ public class PlayerSitState : PlayerState
 
     private void HandleMovementEvent(Vector3 movement)
     {
-        _player.AnimatorCompo.speed = 1;
         _player.NavMeshAgent.destination = movement;
 
         Animation_Reverse();
         _onRun = true;
-        //_player.StateMachine.ChangeState(PlayerStateEnum.Run);
     }
 
     private void Animation_Go()

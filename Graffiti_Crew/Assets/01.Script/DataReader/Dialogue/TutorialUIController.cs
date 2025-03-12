@@ -9,6 +9,7 @@ using UnityEngine;
 public class TutorialUIController : MonoBehaviour
 {
     [SerializeField] private BoolSaveDataSO _tutorialCheckData;
+    [SerializeField] private GameObject _computerLight;
 
     [Header("Dialogue Data")]
     [SerializeField] private DialogueSO _dialogueUIData;
@@ -59,6 +60,7 @@ public class TutorialUIController : MonoBehaviour
         }
         else
         {
+            _computerLight.SetActive(false);
             _computerCollider.enabled = false;
             StartDialogue();
         }
@@ -159,8 +161,9 @@ public class TutorialUIController : MonoBehaviour
         if (_currentDialogueIndex >= _dialogueList.Count)
         {
             _isDialogue = false;
-            _tutorialCheckData.data = true;
-            _computerCollider.enabled = true;
+
+            EndDialogue();
+
             DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             _onDialogueComplete?.Invoke();
 
@@ -168,6 +171,13 @@ public class TutorialUIController : MonoBehaviour
         }
 
         ShowDialogue(_currentDialogueIndex);
+    }
+
+    private void EndDialogue()
+    {
+        _tutorialCheckData.data = true;
+        _computerCollider.enabled = true;
+        _computerLight.SetActive(true);
     }
 
     private IEnumerator TypingEffect(string fullText)

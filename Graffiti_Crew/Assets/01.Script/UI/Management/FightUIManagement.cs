@@ -68,6 +68,7 @@ namespace AH.UI {
             }
             else {
                 _fightView.Hide();
+                Debug.Log("HIDE");
             }
         }
     }
