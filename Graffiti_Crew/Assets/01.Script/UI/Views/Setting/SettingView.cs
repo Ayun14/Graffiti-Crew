@@ -93,6 +93,8 @@ namespace AH.UI.Views {
         }
 
         private void SetSound() {
+            Debug.Log(ViewModel.GetBGMValue());
+            Debug.Log(ViewModel.GetVFXValue());
             _bgmSlider.value = ViewModel.GetBGMValue();
             _vfxSlider.value = ViewModel.GetVFXValue();
         }

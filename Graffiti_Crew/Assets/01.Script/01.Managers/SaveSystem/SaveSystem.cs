@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _dataList;
-        [SerializeField] private List<SaveDataListSO> _shareDataList;
+        List<SaveDataListSO> _shareDataList;
 
         private SlotSO _shareSlot;
         public SlotSO currentSlot {
@@ -16,9 +19,12 @@ namespace AH.SaveSystem {
                 GameManager.currentSlot = value;
             }
         }
-
-        private void Start() {
+        private void Awake() {
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
+            _shareDataList = Resources.LoadAll<SaveDataListSO>("ShareDataList").ToList();
+            
+        }
+        private void Start() {
             CreateAndLoadData();
         }
         void OnEnable() {
@@ -44,8 +50,9 @@ namespace AH.SaveSystem {
         private void CreateAndLoadData() {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
-            //SetData(currentSlot, _dataList);
-            //LoadData(currentSlot, _dataList);
+            GameManager.SetSlot();
+            SetData(currentSlot, _dataList);
+            LoadData(currentSlot, _dataList);
         }
 
         // 초기 파일 생성
@@ -53,7 +60,6 @@ namespace AH.SaveSystem {
             FileSystem.CheckToSlotFolder(slot.slotName); // 폴더가 없으면 생성
             foreach (var saveData in saveList) { // save파일에 기본값 넣기
                 if (!FileSystem.CheckToSaveFile(slot.slotName, saveData.saveFileName)) {
-                    Debug.Log($"create : {slot.slotName}");
                     foreach (IResetData data in saveData.saveDataSOList) {
                         data.ResetData();
                     }
@@ -79,7 +85,6 @@ namespace AH.SaveSystem {
             }
             foreach (var saveData in _dataList) { // 개별 파일 저장
                 string jsonFile = saveData.ToJson();
-                Debug.Log(jsonFile);
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 saveData.ResetDatas();
             }

@@ -18,17 +18,16 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this);
         }
     }
-    private void Start() {
-        slots = Resources.LoadAll<SlotSO>(slotPath);
-        currentSlot = slots[slotIndex.data];
-    }
     private void OnEnable() {
         UIEvents.ChangeSlotEvent += ChangeSlot;
     }
     private void OnDisable() {
         UIEvents.ChangeSlotEvent -= ChangeSlot;
     }
-
+    public static void SetSlot() {
+        instance.slots = Resources.LoadAll<SlotSO>(instance.slotPath);
+        currentSlot = instance.slots[instance.slotIndex.data];
+    }
     private void ChangeSlot(SlotSO slot) {
         currentSlot = slot;
     }

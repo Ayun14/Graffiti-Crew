@@ -38,12 +38,12 @@ public class ItemSystem : MonoBehaviour {
                 instance.RemoveSaveItem(item, count);
             }
         }
-        instance.PrintCurrentItem();
+        //instance.PrintCurrentItem();
     }
     private void AddSaveItem(ProductSO item) {
         foreach(var data in saveItemList.saveDataSOList) {
             var conversionData = data as ItemSaveDataSO;
-            if (conversionData.itemName == item.itemName) {
+            if (conversionData.itemName == item.saveName) {
                 conversionData.count++;
             }
         }
@@ -51,7 +51,7 @@ public class ItemSystem : MonoBehaviour {
     private void RemoveSaveItem(ProductSO item, int count = 1) {
         foreach (var data in saveItemList.saveDataSOList) {
             var conversionData = data as ItemSaveDataSO;
-            if (conversionData.itemName == item.itemName) {
+            if (conversionData.itemName == item.saveName) {
                 Debug.Log(conversionData.count);
                 conversionData.count -= count;
                 Debug.Log(conversionData.count);
