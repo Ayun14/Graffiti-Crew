@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LanguageSystem))]
 public class DialogueUIController : MonoBehaviour
 {
     private float _fadeDuration = 0.3f;
