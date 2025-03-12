@@ -15,6 +15,7 @@ namespace AH.UI {
 
         private DropdownField _saveSlotField;
         private Button _startBtn;
+        private Button _exitBtn;
         
         private string slotPath = "UI/Setting/Slots/";
         private SlotSO[] slots;
@@ -31,10 +32,17 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
             _saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
             _startBtn = root.Q<Button>("start-btn");
+            _exitBtn = root.Q<Button>("exit-btn");
 
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
+            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
+        }
+
+        private void ClickExitBtn(ClickEvent evt) {
+            Application.Quit();
+            Debug.Log("³ª°¡±â");
         }
 
         private void ClickStartBtn(ClickEvent evt) {
