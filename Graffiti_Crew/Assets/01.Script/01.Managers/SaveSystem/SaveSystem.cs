@@ -6,11 +6,20 @@ namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _dataList;
-        public SlotSO currentSlot;// => GameManager.currentSlot;
+        [SerializeField] private List<SaveDataListSO> _shareDataList;
 
-        private void Awake() {
-            //Init();
-            CreateNewData();
+        private SlotSO _shareSlot;
+        public SlotSO currentSlot {
+            get => GameManager.currentSlot;
+
+            set {
+                GameManager.currentSlot = value;
+            }
+        }
+
+        private void Start() {
+            _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
+            CreateAndLoadData();
         }
         void OnEnable() {
             GameEvents.SaveGameEvent += SaveGameData;
@@ -20,11 +29,6 @@ namespace AH.SaveSystem {
         }
         void OnApplicationQuit() {
             SaveGameData();
-        }
-        private void Update() {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
-            }
         }
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
@@ -37,36 +41,48 @@ namespace AH.SaveSystem {
                 DontDestroyOnLoad(root);
             }
         }
-        private void CreateNewData() {
-            FileSystem.CheckToSlotFolder(currentSlot.slotName); // 폴더가 없으면 생성
-            foreach (var saveData in _dataList) { // save파일에 기본값 넣기
-                if (!FileSystem.CheckToSaveFile(currentSlot.slotName, saveData.saveFileName)) {
-                    foreach(IResetData data in saveData.saveDataSOList) {
+        private void CreateAndLoadData() {
+            SetData(_shareSlot, _shareDataList);
+            LoadData(_shareSlot, _shareDataList);
+            //SetData(currentSlot, _dataList);
+            //LoadData(currentSlot, _dataList);
+        }
+
+        // 초기 파일 생성
+        private void SetData(SlotSO slot, List<SaveDataListSO> saveList) {
+            FileSystem.CheckToSlotFolder(slot.slotName); // 폴더가 없으면 생성
+            foreach (var saveData in saveList) { // save파일에 기본값 넣기
+                if (!FileSystem.CheckToSaveFile(slot.slotName, saveData.saveFileName)) {
+                    Debug.Log($"create : {slot.slotName}");
+                    foreach (IResetData data in saveData.saveDataSOList) {
                         data.ResetData();
                     }
                     string jsonFile = saveData.ToJson();
-                    FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
+                    FileSystem.WriteToFile(slot.slotName, saveData.saveFileName, jsonFile);
                 }
             }
-            LoadGame();
         }
-        private void LoadGame() {
-            foreach (var saveData in _dataList) { // 데이터 load하기
-                if (FileSystem.LoadFromFile(currentSlot.slotName, saveData.saveFileName, out var jsonString)) {
+
+        // file값을 바탕으로 so에 넣기
+        private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
+            foreach (var saveData in saveList) { // 데이터 load하기
+                if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
                     saveData.LoadJson(jsonString);
                 }
             }
         }
         public void SaveGameData() { // 모든 데이터를 저장
-            foreach (var saveData in _dataList) {
+            foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
-                FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
-                //saveData.ResetDatas();
+                FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
+                saveData.ResetDatas();
             }
-        }
-        private void ResetData() {
-            //FileSystem.DeleteFolder(currentSlot.slotName); // 폴더 날려서 싹 지우고
-            //CreateNewData(); // 완전히 새로 생성
+            foreach (var saveData in _dataList) { // 개별 파일 저장
+                string jsonFile = saveData.ToJson();
+                Debug.Log(jsonFile);
+                FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
+                saveData.ResetDatas();
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ public class UIManagement : MonoBehaviour {
     [SerializeField] protected Model _model;
     [SerializeField] protected InputReaderSO _inputReaderSO;
 
-    protected virtual void Awake() {
+    protected virtual void Start() {
         _uiDocument = GetComponent<UIDocument>();
         Init();
         SetupViews();

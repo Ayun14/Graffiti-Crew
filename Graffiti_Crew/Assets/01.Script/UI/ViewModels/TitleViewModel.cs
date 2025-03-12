@@ -11,7 +11,9 @@ namespace AH.UI.ViewModels {
         public TitleViewModel(Model model) {
             _model = model as TitleModel;
         }
-
+        public int GetSlotIndex() {
+            return _model.GetSlotIndex();
+        }
         public void SetSlotIndex(int index) {
             _model.SetSlotIndex(index);
         }

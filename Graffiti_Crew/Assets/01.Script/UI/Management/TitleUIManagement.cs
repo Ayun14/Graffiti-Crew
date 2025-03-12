@@ -7,6 +7,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 namespace AH.UI {
 
@@ -24,7 +25,6 @@ namespace AH.UI {
             base.Init();
             _viewModel = new TitleViewModel(_model as TitleModel);
             slots = Resources.LoadAll<SlotSO>(slotPath);
-
         }
 
         protected override void SetupViews() {
@@ -37,7 +37,7 @@ namespace AH.UI {
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-
+            _saveSlotField.index = _viewModel.GetSlotIndex();
         }
 
         private void ClickExitBtn(ClickEvent evt) {

@@ -1,11 +1,11 @@
 using AH.SaveSystem;
 using AH.UI.Events;
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     private static GameManager instance;
+
     public static SlotSO currentSlot;
 
     private string slotPath = "UI/Setting/Slots/";
@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(this);
         }
+    }
+    private void Start() {
         slots = Resources.LoadAll<SlotSO>(slotPath);
         currentSlot = slots[slotIndex.data];
     }
