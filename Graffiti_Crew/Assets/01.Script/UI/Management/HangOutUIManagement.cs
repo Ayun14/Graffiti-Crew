@@ -68,5 +68,6 @@ namespace AH.UI {
                 _miniDialougeView.Hide();
             }
         }
+
     }
 }
