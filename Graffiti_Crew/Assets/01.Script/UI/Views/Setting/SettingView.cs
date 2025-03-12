@@ -33,15 +33,11 @@ namespace AH.UI.Views {
 
 
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+            ViewModel.GetBGMValue();
         }
 
         public override void Initialize() {
-            if (isTitle) {
-                //ViewModel = viewModel as TitleViewModel;
-            }
-            else {
-                ViewModel = viewModel as HangOutViewModel;
-            }
+            ViewModel = viewModel as HangOutViewModel;
 
             _lauguageSO = ViewModel.GetLanguageSO();
             _lauguageTypes = _lauguageSO.languageTypes;
@@ -76,17 +72,13 @@ namespace AH.UI.Views {
             base.Show();
         }
 
-        public override void Hide() {
-            ViewModel.SetBGMValue(bgmValue);
-            ViewModel.SetVFXValue(vfxValue);
-            base.Hide();
-        }
-
         private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
+            ViewModel.SetBGMValue(bgmValue);
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
+            ViewModel.SetVFXValue(vfxValue);
         }
         private void ClickResetSaveData(ClickEvent evt) {
             // 리셋 연결 안함

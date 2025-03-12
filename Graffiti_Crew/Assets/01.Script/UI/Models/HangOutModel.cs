@@ -26,11 +26,9 @@ namespace AH.UI.Models {
             _vfxData.data = value;
         }
         public int GetBGMValue() {
-            Debug.Log(_bgmData.data);
             return _bgmData.data;
         }
         public int GetVFXValue() {
-            Debug.Log(_vfxData.data);
             return _vfxData.data;
         }
     }
