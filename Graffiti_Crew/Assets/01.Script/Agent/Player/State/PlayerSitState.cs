@@ -21,7 +21,6 @@ public class PlayerSitState : PlayerState
         Animation_Go();
 
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
 
         _player.MovementCompo.StopImmediately(true);
     }
@@ -50,23 +49,8 @@ public class PlayerSitState : PlayerState
     public override void Exit()
     {
         _player.PlayerInput.MovementEvent -= HandleMovementEvent;
-        _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
 
         base.Exit();
-    }
-
-    private void HandleInteractionEvent(InteractionObject interactionObject)
-    {
-        if (_player.CurrentInteractionObject == interactionObject)
-            return;
-
-        _player.AnimatorCompo.speed = 1;
-        _player.CurrentInteractionObject = interactionObject;
-        _player.NavMeshAgent.destination = interactionObject.TargetPos;
-
-        Animation_Reverse();
-        _onInteraction = true;
-        //_player.StateMachine.ChangeState(PlayerStateEnum.Interaction);
     }
 
     private void HandleMovementEvent(Vector3 movement)
