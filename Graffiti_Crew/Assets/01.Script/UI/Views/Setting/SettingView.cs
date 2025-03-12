@@ -89,12 +89,10 @@ namespace AH.UI.Views {
             vfxValue = (int)evt.newValue;
         }
         private void ClickResetSaveData(ClickEvent evt) {
-
+            // 리셋 연결 안함
         }
 
         private void SetSound() {
-            Debug.Log(ViewModel.GetBGMValue());
-            Debug.Log(ViewModel.GetVFXValue());
             _bgmSlider.value = ViewModel.GetBGMValue();
             _vfxSlider.value = ViewModel.GetVFXValue();
         }
