@@ -18,16 +18,12 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
-            StageEvent.ShowFightViewEvent += ShowFightView;
-            StageEvent.HideFightViewEvent += HideFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
-            StageEvent.ShowFightViewEvent -= ShowFightView;
-            StageEvent.HideFightViewEvent -= HideFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
         }
@@ -48,12 +44,6 @@ namespace AH.UI {
             else {
                 _dialougeView.Hide();
             }
-        }
-        private void ShowFightView() {
-            _fightView.Show();
-        }
-        private void HideFightView() {
-            _fightView.Hide();
         }
         #endregion
         protected override void Init() {

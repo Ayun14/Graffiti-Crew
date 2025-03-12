@@ -9,16 +9,21 @@ namespace AH.UI {
     public class RequestUIManagment : UIManagement {
         private RequestView _sprayView;
         private DialougeView _dialougeView;
+        private DialougeView _miniDialougeView;
 
         private RequestViewModel _viewModel;
 
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            StageEvent.SetActiveFightViewEvent += SetActiveFightView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
         }
 
         protected override void Init() {
@@ -31,6 +36,7 @@ namespace AH.UI {
 
             _sprayView = new RequestView(root.Q<VisualElement>("SprayView"), _viewModel);
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
 
             _sprayView.Show();
         }
@@ -40,6 +46,22 @@ namespace AH.UI {
             }
             else {
                 _dialougeView.Hide();
+            }
+        }
+        private void ShowMiniDialougeView(bool active) {
+            if (active) {
+                _miniDialougeView.Show();
+            }
+            else {
+                _miniDialougeView.Hide();
+            }
+        }
+        private void SetActiveFightView(bool active) {
+            if (active) {
+                _sprayView.Show();
+            }
+            else {
+                _sprayView.Hide();
             }
         }
     }
