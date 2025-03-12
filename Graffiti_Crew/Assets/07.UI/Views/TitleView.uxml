@@ -1,8 +1,15 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/SettingView_USS.uss?fileID=7433441132597879392&amp;guid=30ddbd43ef509f64fb111766fe63b09c&amp;type=3#SettingView_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:DropdownField label="저장 슬롯" name="saveSlot-dropdownField" index="0" choices="슬롯1,슬롯2,슬롯3" class="grow-size-40 dropdownField" />
-        <engine:Button text="시작" name="start-btn" class="grow-size-50" style="width: 294px; height: 83px; flex-grow: 0;" />
+    <Style src="project://database/Assets/07.UI/USS/TitleView_USS.uss?fileID=7433441132597879392&amp;guid=b550c22250dae5749acd66418dd49568&amp;type=3#TitleView_USS" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement name="top-container" style="height: 55%;">
+            <engine:VisualElement name="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/Graffiti/Player/Chapter%201/Name/3/1.Name3.png?fileID=1986060778&amp;guid=23bd8528ba6260d4aba5f0e4f7ec2d2d&amp;type=3#1.Name3_0&quot;);" />
+        </engine:VisualElement>
+        <engine:VisualElement name="bottom-container" style="flex-grow: 1; align-items: center; justify-content: center;">
+            <engine:Button text="시작" name="start-btn" class="grow-size-50 btn" />
+            <engine:DropdownField name="saveSlot-dropdownField" index="0" choices="슬롯1,슬롯2,슬롯3" class="grow-size-40 dropdownField btn" />
+            <engine:Button text="나가기" name="exit-btn" class="grow-size-50 btn" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
