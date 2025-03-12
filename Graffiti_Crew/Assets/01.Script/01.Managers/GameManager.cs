@@ -1,11 +1,11 @@
 using AH.SaveSystem;
 using AH.UI.Events;
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     private static GameManager instance;
+
     public static SlotSO currentSlot;
 
     private string slotPath = "UI/Setting/Slots/";
@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(this);
         }
-        slots = Resources.LoadAll<SlotSO>(slotPath);
-        currentSlot = slots[slotIndex.data];
     }
     private void OnEnable() {
         UIEvents.ChangeSlotEvent += ChangeSlot;
@@ -26,7 +24,10 @@ public class GameManager : MonoBehaviour {
     private void OnDisable() {
         UIEvents.ChangeSlotEvent -= ChangeSlot;
     }
-
+    public static void SetSlot() {
+        instance.slots = Resources.LoadAll<SlotSO>(instance.slotPath);
+        currentSlot = instance.slots[instance.slotIndex.data];
+    }
     private void ChangeSlot(SlotSO slot) {
         currentSlot = slot;
     }
