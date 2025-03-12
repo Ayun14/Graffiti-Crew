@@ -2,12 +2,19 @@
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement style="flex-grow: 1;">
-        <engine:VisualElement name="background" class="mini-background">
-            <engine:Label text="하이" name="dialog-txt" class="grow-size-30" style="flex-grow: 1;">
+        <engine:VisualElement style="flex-direction: row; align-items: center; top: 12%;">
+            <engine:VisualElement name="proflle" style="width: 234px; height: 350px; top: 7%;">
                 <Bindings>
-                    <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                    <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogSO" binding-mode="ToTarget" data-source-path="profil" />
                 </Bindings>
-            </engine:Label>
+            </engine:VisualElement>
+            <engine:VisualElement name="background" class="mini-background">
+                <engine:Label text="하이" name="dialog-txt" class="grow-size-40" style="flex-grow: 1;">
+                    <Bindings>
+                        <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                    </Bindings>
+                </engine:Label>
+            </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
