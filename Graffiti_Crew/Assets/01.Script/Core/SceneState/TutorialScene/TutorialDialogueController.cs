@@ -24,7 +24,6 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
-            StageEvent.HideFightViewEvent?.Invoke();
             // FadeOut
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
             NPCSO dialogue = _dialogueList[_dialogueNum];

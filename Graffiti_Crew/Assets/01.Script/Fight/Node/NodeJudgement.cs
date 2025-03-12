@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -170,7 +171,11 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         mySubject.SetWhoIsWin(true);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+        {
+            StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
             mySubject.ChangeGameState(GameState.Dialogue);
+        }
         else
             mySubject.ChangeGameState(GameState.Finish);
 

@@ -10,7 +10,8 @@ public enum PlayerStateEnum
     Run,
     Interaction,
     Computer,
-    NPC
+    NPC,
+    Sit
 }
 
 public class Player : Agent
@@ -80,10 +81,5 @@ public class Player : Agent
             return npc;
         else
             return null;
-    }
-
-    public void PlayBladeVFX()
-    {
-        //PlayerVFXCompo.PlayBladeVFX(currentComboCounter);
     }
 }

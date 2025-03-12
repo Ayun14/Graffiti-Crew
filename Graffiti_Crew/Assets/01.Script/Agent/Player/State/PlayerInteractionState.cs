@@ -27,9 +27,18 @@ public class PlayerInteractionState : PlayerState
 
             if (_player.CurrentInteractionObject != null)
             {
+                Quaternion targetRotation;
                 target.y = _player.transform.position.y;
 
-                Quaternion targetRotation = Quaternion.LookRotation(target - _player.transform.position);
+                if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit)
+                {
+                    targetRotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    targetRotation = Quaternion.LookRotation(target - _player.transform.position);
+                }
+
                 _player.transform.rotation = Quaternion.Slerp(
                     _player.transform.rotation,
                     targetRotation,
@@ -37,10 +46,16 @@ public class PlayerInteractionState : PlayerState
                 );
             }
 
-            if (Quaternion.Angle(_player.transform.rotation, 
-                Quaternion.LookRotation(target - _player.transform.position)) < 10f)
+            if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit)
             {
-                _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
+                if(Quaternion.Angle(_player.transform.rotation,Quaternion.Euler(0,0,0)) < 10f)
+                    _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
+            }
+            else
+            {
+                if (Quaternion.Angle(_player.transform.rotation,
+                    Quaternion.LookRotation(target - _player.transform.position)) < 10f)
+                    _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
             }
         }
     }
