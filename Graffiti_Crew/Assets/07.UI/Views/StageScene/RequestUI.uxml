@@ -7,5 +7,5 @@
     <engine:Instance template="FightView" name="SprayView" style="flex-grow: 1; display: none;" />
     <engine:Instance template="DialogBoxView" name="DialougeView" style="flex-grow: 1; display: none;" />
     <engine:Instance template="MiniDialogBoxView" name="MiniDialogBoxView" />
-    <engine:VisualElement name="fade-view" class="fade-view" style="flex-grow: 1;" />
+    <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>

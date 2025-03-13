@@ -53,7 +53,6 @@ namespace AH.SaveSystem {
             GameManager.SetSlot();
             SetData(currentSlot, _dataList);
             LoadData(currentSlot, _dataList);
-            Debug.Log("load");
         }
 
         // 초기 파일 생성

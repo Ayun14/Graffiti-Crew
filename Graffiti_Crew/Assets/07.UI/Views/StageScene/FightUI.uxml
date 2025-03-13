@@ -9,5 +9,5 @@
     <engine:Instance template="DialogBoxView" name="DialougeView" style="display: none; position: absolute; width: 100%; height: 100%;" />
     <engine:Instance template="ResultView" name="ResultView" style="display: none; position: absolute; width: 100%; height: 100%;" />
     <engine:Instance template="StartAnimation" name="StartAnimation" />
-    <engine:VisualElement name="fade-view" class="fade-view" style="flex-grow: 1;" />
+    <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>

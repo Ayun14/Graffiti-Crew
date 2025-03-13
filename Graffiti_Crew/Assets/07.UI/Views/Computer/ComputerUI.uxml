@@ -4,5 +4,5 @@
     <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView_USs" />
     <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:Instance template="ComputerView" name="ComputerView" style="flex-grow: 1; display: flex;" />
-    <engine:VisualElement name="fade-view" class="fade-view" style="flex-grow: 1;" />
+    <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>
