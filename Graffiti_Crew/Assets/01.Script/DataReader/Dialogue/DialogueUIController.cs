@@ -10,7 +10,9 @@ public class DialogueUIController : MonoBehaviour
     private float _fadeDuration = 0.3f;
 
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueSO _dialogueUIData;
+    private DialogueSO _dialogueUIData;
+    [SerializeField] private DialogueSO _bigDialogueUIData;
+    [SerializeField] private DialogueSO _miniDialogueUIData;
     [HideInInspector] public DialogueDataReader dialogueDataReader;
     public DialogueDataReader dialogueDataReader_KR;
     public DialogueDataReader dialogueDataReader_EN;
@@ -30,6 +32,7 @@ public class DialogueUIController : MonoBehaviour
     private int _dialogueEndID = 0;
 
     private Action _onDialogueComplete;
+    public Action<bool> ChangeDialogueUI;
 
     private List<DialogueData> _filteredDialogueList;
 
@@ -40,6 +43,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
+        _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
         if (LanguageSystem.GetLanguageType() == LanguageType.English)
@@ -51,11 +55,21 @@ public class DialogueUIController : MonoBehaviour
             dialogueDataReader = dialogueDataReader_KR;
         }
         LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
+        ChangeDialogueUI += HandleDialogueUIData;
     }
 
     private void OnDisable()
     {
         LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        ChangeDialogueUI -= HandleDialogueUIData;
+    }
+
+    private void HandleDialogueUIData(bool isBig)
+    {
+        if (isBig)
+            _dialogueUIData = _bigDialogueUIData;
+        else
+            _dialogueUIData = _miniDialogueUIData;
     }
 
     private void HandleChangeLangauge(LanguageType type)
@@ -98,7 +112,8 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+        if(_dialogueUIData == _bigDialogueUIData)
+            DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
 
         _currentDialogueIndex = 0;
         _onDialogueComplete = onComplete;
@@ -124,6 +139,12 @@ public class DialogueUIController : MonoBehaviour
                     else
                         ShowNextDialogue();
                 }
+            }
+
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                _currentDialogueIndex = _filteredDialogueList.Count;
+                ShowNextDialogue();
             }
         }
     }

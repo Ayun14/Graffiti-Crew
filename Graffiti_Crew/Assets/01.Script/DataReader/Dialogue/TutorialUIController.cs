@@ -8,8 +8,10 @@ using UnityEngine;
 
 public class TutorialUIController : MonoBehaviour
 {
+    [Header("TutorialData")]
     [SerializeField] private BoolSaveDataSO _tutorialCheckData;
     [SerializeField] private GameObject _computerLight;
+    [SerializeField] private Collider _computerCollider;
 
     [Header("Dialogue Data")]
     [SerializeField] private DialogueSO _dialogueUIData;
@@ -23,7 +25,6 @@ public class TutorialUIController : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
 
-    [SerializeField] private Collider _computerCollider;
 
     private Coroutine _typingCoroutine;
     private bool _isTyping = false;
