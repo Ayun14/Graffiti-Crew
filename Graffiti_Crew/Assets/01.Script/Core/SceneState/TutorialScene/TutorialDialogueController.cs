@@ -31,6 +31,7 @@ public class TutorialDialogueController : Observer<GameStateController>
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
 
             NPCSO dialogue = _dialogueList[_dialogueNum];
+            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
     }
@@ -47,6 +48,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         else if (_dialogueNum == 2)
         {
             NPCSO dialogue = _dialogueList[_dialogueNum];
+            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else

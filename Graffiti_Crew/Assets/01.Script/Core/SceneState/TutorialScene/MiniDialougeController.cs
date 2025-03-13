@@ -24,8 +24,6 @@ public class MiniDialougeController : MonoBehaviour
     private void HandleNodeCheck()
     {
         _dialogueUIController.ChangeDialogueUI?.Invoke(false);
-        DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
-        DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(true);
 
         _dialogueUIController.StartDialogue(_currentIndex, _currentIndex, DialogueEnd);
         _currentIndex++;
