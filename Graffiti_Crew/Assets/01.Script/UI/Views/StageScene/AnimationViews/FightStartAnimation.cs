@@ -12,7 +12,6 @@ public class FightStartAnimation : UIView {
 
     private int waitTime = 2000;
     public FightStartAnimation(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
-        UIAnimationEvent.StartFightStartAnimationEvnet += PlayAnimation;
     }
 
     public override void Dispose() {
@@ -21,6 +20,7 @@ public class FightStartAnimation : UIView {
     }
 
     public override void Initialize() {
+        UIAnimationEvent.StartFightStartAnimationEvnet += PlayAnimation;
         base.Initialize();
     }
     protected override void SetVisualElements() {

@@ -1,19 +1,17 @@
 .rival-screen {
     flex-grow: 1;
     background-color: rgb(255, 97, 211);
-    transition-duration: 0.7s;
     left: 0;
+    transition-duration: 1s;
+    opacity: 1;
 }
 
 .player-screen {
     flex-grow: 1;
     background-color: rgb(4, 180, 255);
-    transition-duration: 0.7s;
-    left: 0;
-}
-
-.move-left {
-    left: -52%;
+    right: 0;
+    transition-duration: 1s;
+    opacity: 1;
 }
 
 .move-right {
@@ -22,20 +20,36 @@
 
 .start-content {
     flex-grow: 1;
-    position: absolute;
     background-color: rgb(255, 255, 255);
-    width: 0;
-    height: 0;
-    top: 25%;
-    left: 25%;
-    transition-duration: 0.4s;
-    scale: 0 0;
+    width: 50%;
+    height: 45%;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    scale: 0 0;
+    left: 25%;
+    top: 27%;
+    transition-duration: 0.7s;
+}
+
+.btn {
+    width: 550px;
+    height: 83px;
+    flex-grow: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .size-up {
     width: 50%;
     height: 50%;
     scale: 1 1;
+}
+
+.move-left {
+    left: -52%;
+}
+
+.hide {
+    opacity: 0;
 }
