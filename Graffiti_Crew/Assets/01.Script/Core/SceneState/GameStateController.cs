@@ -14,7 +14,7 @@ public enum GameState
 
     // Æ©Åä¸®¾ó
     // Dialogue -> Tutorial -> Dialogue -> Dialogue
-    Dialogue, Tutorial
+    Dialogue, Tutorial, Explain
 }
 
 public class GameStateController : Subject

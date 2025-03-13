@@ -24,6 +24,7 @@ public class DialogueController : Observer<GameStateController>
         if(mySubject.GameState == GameState.Talk)
         {
             List<DialogueData> list = _dialogueUIController.dialogueDataReader.DialogueList;
+            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _dialogueUIController.StartDialogue(1, list[list.Count-1].id,ChangeGameState);
         }
     }

@@ -19,6 +19,7 @@ public class PlayerNPCState : PlayerState
 
         if (_player.dialogueUIController != null)
         {
+            _player.dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _player.dialogueUIController.StartDialogue(_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
         }
     }

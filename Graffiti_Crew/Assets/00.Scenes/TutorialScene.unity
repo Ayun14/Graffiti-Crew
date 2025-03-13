@@ -376,6 +376,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
+--- !u!1 &122685297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 122685299}
+  - component: {fileID: 122685298}
+  m_Layer: 0
+  m_Name: MiniDialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &122685298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122685297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05725df46b847594eb467f2af21f90e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueUIController: {fileID: 571393993}
+  _nodeJudgement: {fileID: 273441813}
+  _explainIndex: 28
+--- !u!4 &122685299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122685297}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &153353249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,10 +1047,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
-  dialogueDataReader: {fileID: 0}
+  _tutorialCheckData: {fileID: 0}
+  _computerLight: {fileID: 0}
+  _computerCollider: {fileID: 0}
+  _bigDialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
+  _miniDialogueUIData: {fileID: 11400000, guid: 1f40270623ad97e488a6d7c93280afeb, type: 2}
+  _tutorialDialogue: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
   dialogueDataReader_KR: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
   dialogueDataReader_EN: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
+  dialogueDataReader: {fileID: 0}
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
   _typingSpeed: 0.05
 --- !u!1 &607691725
@@ -4131,6 +4183,7 @@ SceneRoots:
   - {fileID: 1867617429}
   - {fileID: 2122694932}
   - {fileID: 710980657}
+  - {fileID: 122685299}
   - {fileID: 69701688}
   - {fileID: 838920028}
   - {fileID: 1448206204}

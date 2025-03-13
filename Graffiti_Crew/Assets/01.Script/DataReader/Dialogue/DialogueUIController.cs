@@ -1,3 +1,4 @@
+using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Views;
 using System;
@@ -7,19 +8,29 @@ using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour
 {
-    private float _fadeDuration = 0.3f;
+    [Header("TutorialData")]
+    [SerializeField] private BoolSaveDataSO _tutorialCheckData;
+    [SerializeField] private GameObject _computerLight;
+    [SerializeField] private Collider _computerCollider;
 
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueSO _dialogueUIData;
-    [HideInInspector] public DialogueDataReader dialogueDataReader;
+    private DialogueSO _dialogueUIData;
+    [SerializeField] private DialogueSO _bigDialogueUIData;
+    [SerializeField] private DialogueSO _miniDialogueUIData;
+
+    [SerializeField] private DialogueDataReader _tutorialDialogue;
     public DialogueDataReader dialogueDataReader_KR;
     public DialogueDataReader dialogueDataReader_EN;
+
+    [HideInInspector] public DialogueDataReader dialogueDataReader;
 
     [Header("Dialogue Data")]
     [SerializeField] private LanguageSO _languageSO;
 
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
+
+    private bool _isBigUIdata => _dialogueUIData == _bigDialogueUIData;
 
     private Coroutine _typingCoroutine;
     private bool _isTyping = false;
@@ -30,6 +41,7 @@ public class DialogueUIController : MonoBehaviour
     private int _dialogueEndID = 0;
 
     private Action _onDialogueComplete;
+    public Action<bool> ChangeDialogueUI;
 
     private List<DialogueData> _filteredDialogueList;
 
@@ -40,8 +52,35 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
+        LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
+        ChangeDialogueUI += HandleDialogueUIData;
+
+        _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
+        SetLanguageType();
+        CheckTutorial();
+    }
+
+    private void OnDisable()
+    {
+        LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        ChangeDialogueUI -= HandleDialogueUIData;
+    }
+
+    private void CheckTutorial()
+    {
+        if (_tutorialCheckData != null && !_tutorialCheckData.data)
+        {
+            ChangeDialogueUI?.Invoke(false);
+            _computerLight.SetActive(false);
+            _computerCollider.enabled = false;
+            StartDialogue(1, 1);
+        }
+    }
+
+    private void SetLanguageType()
+    {
         if (LanguageSystem.GetLanguageType() == LanguageType.English)
         {
             dialogueDataReader = dialogueDataReader_EN;
@@ -50,12 +89,20 @@ public class DialogueUIController : MonoBehaviour
         {
             dialogueDataReader = dialogueDataReader_KR;
         }
-        LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
     }
 
-    private void OnDisable()
+    private void HandleDialogueUIData(bool isBig)
     {
-        LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        if (isBig)
+        {
+            SetLanguageType();
+            _dialogueUIData = _bigDialogueUIData;
+        }
+        else
+        {
+            dialogueDataReader = _tutorialDialogue;
+            _dialogueUIData = _miniDialogueUIData;
+        }
     }
 
     private void HandleChangeLangauge(LanguageType type)
@@ -98,7 +145,16 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+        if (_isBigUIdata)
+        {
+            DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
+            DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+        }
+        else
+        {
+            DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+            DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(true);
+        }
 
         _currentDialogueIndex = 0;
         _onDialogueComplete = onComplete;
@@ -124,6 +180,12 @@ public class DialogueUIController : MonoBehaviour
                     else
                         ShowNextDialogue();
                 }
+            }
+
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                _currentDialogueIndex = _filteredDialogueList.Count;
+                ShowNextDialogue();
             }
         }
     }
@@ -156,13 +218,26 @@ public class DialogueUIController : MonoBehaviour
             //FadeOut
 
             _isDialogue = false;
-            DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+
+            if (!_isBigUIdata && _tutorialCheckData != null)
+                EndMiniDialogue();
+            else
+                DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
             _onDialogueComplete?.Invoke();
 
             return;
         }
 
         ShowDialogue(_currentDialogueIndex);
+    }
+
+    private void EndMiniDialogue()
+    {
+        _tutorialCheckData.data = true;
+        _computerCollider.enabled = true;
+        _computerLight.SetActive(true);
+
+        DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
     }
 
     private IEnumerator TypingEffect(string fullText)

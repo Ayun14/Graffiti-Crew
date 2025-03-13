@@ -22,6 +22,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     [SerializeField] private LayerMask _whatIsNode;
     private List<NodeDataSO> _nodeDatas;
 
+    public int ClearNodeCnt => _clearNodeCnt;
+
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
     private SprayController _sprayController;

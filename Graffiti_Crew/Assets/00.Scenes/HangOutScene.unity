@@ -1271,6 +1271,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _computerLight
+      value: 
+      objectReference: {fileID: 335519923}
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _computerCollider
+      value: 
+      objectReference: {fileID: 9101089168978235141}
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _tutorialDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 117cc1a0f0ef010409f0f8d271df9948, type: 2}
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _bigDialogueUIData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _tutorialCheckData
+      value: 
+      objectReference: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
+    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: _miniDialogueUIData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f40270623ad97e488a6d7c93280afeb, type: 2}
     - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_Name
       value: DialogueUI
@@ -4700,59 +4724,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.09, y: -0.07, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &2106523650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2106523652}
-  - component: {fileID: 2106523651}
-  m_Layer: 0
-  m_Name: TutorialController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2106523651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106523650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b537f9afef29f864897bbffc9d6147ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tutorialCheckData: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
-  _computerLight: {fileID: 335519923}
-  _dialogueUIData: {fileID: 11400000, guid: 1f40270623ad97e488a6d7c93280afeb, type: 2}
-  dialogueDataReader: {fileID: 0}
-  dialogueDataReader_KR: {fileID: 11400000, guid: 117cc1a0f0ef010409f0f8d271df9948, type: 2}
-  dialogueDataReader_EN: {fileID: 11400000, guid: 117cc1a0f0ef010409f0f8d271df9948, type: 2}
-  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
-  _typingSpeed: 0.05
-  _computerCollider: {fileID: 9101089168978235141}
---- !u!4 &2106523652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106523650}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252362691296125013
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,11 +5625,10 @@ SceneRoots:
   - {fileID: 1753040587}
   - {fileID: 1030093341}
   - {fileID: 1503807999}
+  - {fileID: 555015609}
   - {fileID: 521108019}
   - {fileID: 1759660904}
-  - {fileID: 2106523652}
   - {fileID: 1711786955}
   - {fileID: 1666189313}
   - {fileID: 52496374}
   - {fileID: 852669959}
-  - {fileID: 555015609}
