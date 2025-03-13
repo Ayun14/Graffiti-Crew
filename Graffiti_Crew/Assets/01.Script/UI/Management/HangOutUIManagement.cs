@@ -15,15 +15,21 @@ namespace AH.UI {
         private Button _settingBtn;
         private Button _closeBtn;
 
+        private VisualElement _fadeView;
+
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            PresentationEvents.FadeInOut += FadeInOut;
+
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
+            PresentationEvents.FadeInOut -= FadeInOut;
+
         }
 
         protected override void Init() {
@@ -38,7 +44,9 @@ namespace AH.UI {
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _viewModel);
             _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
-            
+
+            _fadeView = root.Q<VisualElement>("fade-view");
+
             _settingBtn = root.Q<Button>("setting-btn");
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
             _closeBtn = root.Q<Button>("close-btn");
@@ -68,6 +76,13 @@ namespace AH.UI {
                 _miniDialougeView.Hide();
             }
         }
-
+        private void FadeInOut(bool active) {
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
+            }
+        }
     }
 }

@@ -14,8 +14,11 @@ namespace AH.UI {
 
         private ComputerViewModel _viewModel;
 
+        private VisualElement _fadeView;
+
         protected override void OnEnable() {
             base.OnEnable();
+            PresentationEvents.FadeInOut += FadeInOut;
             ComputerEvent.ShowSelectFriendViewEvent += ShowSelectFriendView;
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
@@ -29,6 +32,7 @@ namespace AH.UI {
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
             ComputerEvent.HideViewEvent -= HidwView;
+            PresentationEvents.FadeInOut -= FadeInOut;
         }
 
         protected override void Init() {
@@ -46,6 +50,8 @@ namespace AH.UI {
             _selectFriendView = new SelectFriendView(root.Q<VisualElement>("select-friend"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
 
+            _fadeView = root.Q<VisualElement>("fade-view");
+
             _computerView.Show();
         }
         
@@ -60,6 +66,14 @@ namespace AH.UI {
         }
         private void ShowStageDescriptionView() {
             ShowView(_stageDescriptionView);
+        }
+        private void FadeInOut(bool active) {
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
+            }
         }
     }
 }

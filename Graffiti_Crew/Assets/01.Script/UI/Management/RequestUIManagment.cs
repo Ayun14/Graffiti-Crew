@@ -13,17 +13,21 @@ namespace AH.UI {
 
         private RequestViewModel _viewModel;
 
+        private VisualElement _fadeView;
+
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
+            PresentationEvents.FadeInOut += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
+            PresentationEvents.FadeInOut -= FadeInOut;
         }
 
         protected override void Init() {
@@ -37,6 +41,8 @@ namespace AH.UI {
             _sprayView = new RequestView(root.Q<VisualElement>("SprayView"), _viewModel);
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
+
+            _fadeView = root.Q<VisualElement>("fade-view");
 
             _sprayView.Show();
         }
@@ -62,6 +68,14 @@ namespace AH.UI {
             }
             else {
                 _sprayView.Hide();
+            }
+        }
+        private void FadeInOut(bool active) {
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
             }
         }
     }

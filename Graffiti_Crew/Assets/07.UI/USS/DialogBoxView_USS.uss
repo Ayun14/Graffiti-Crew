@@ -2,7 +2,7 @@
     flex-grow: 1;
     padding-top: 50px;
     padding-right: 50px;
-    padding-bottom: 0;
+    padding-bottom: 50px;
     padding-left: 50px;
 }
 
@@ -15,25 +15,26 @@
 
 .dialog-box-bottom-content {
     align-items: center;
-    flex-grow: 1;
     justify-content: center;
+    background-color: rgb(255, 255, 255);
+    height: 36%;
+    width: 100%;
 }
 
 .name-box {
-    width: 25%;
-    height: 51%;
-    background-color: rgb(255, 255, 255);
+    width: 380px;
+    flex-grow: 1;
+    background-color: rgb(175, 255, 208);
+    height: 95px;
     position: absolute;
-    top: -3%;
-    left: -4%;
-    justify-content: center;
-    align-items: center;
+    top: -17%;
+    left: 16%;
 }
 
 .text-box {
-    flex-grow: 1;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(197, 255, 175);
     width: 100%;
+    height: 80%;
 }
 
 .conversation-txt {
@@ -47,7 +48,7 @@
 
 .mini-background {
     background-image: url("project://database/Assets/02.Sprite/UI/TextBox/MiniDialogBox.png?fileID=21300000&guid=19a2f92a45ab1424cac42c7f67aa9777&type=3#MiniDialogBox");
-    width: 500px;
+    width: 550px;
     height: 300px;
     padding-top: 50px;
     padding-right: 55px;

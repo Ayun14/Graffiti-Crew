@@ -1,6 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="StartAnimation" src="project://database/Assets/07.UI/Views/StageScene/StartAnimation.uxml?fileID=9197481963319205126&amp;guid=e666f9c0a8d1b174a9ce9411f61d4258&amp;type=3#StartAnimation" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:EnumField label="언어" value="Center" type="AH.UI.Views.LanguageType, Assembly-CSharp" name="language-field" class="grow-size-40" style="flex-grow: 0; width: 600px;" />
-    </engine:VisualElement>
+    <engine:Instance template="StartAnimation" name="StartAnimation" style="flex-grow: 1; display: flex;" />
 </engine:UXML>

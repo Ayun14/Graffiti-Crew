@@ -9,9 +9,9 @@
                     <engine:Button name="menu-btn" text="카테고리" class="grow-size-40 category-btn" style="display: none;" />
                 </engine:VisualElement>
                 <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: flex-end; flex-direction: row;">
-                    <engine:VisualElement name="coin-border" style="height: 80%; width: 35%; background-color: rgb(255, 255, 255); flex-direction: row; margin-right: 20px;">
+                    <engine:VisualElement name="coin-border" style="width: 330px; background-color: rgb(255, 255, 255); flex-direction: row; margin-right: 20px; height: 80%;">
                         <engine:VisualElement name="icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=8b1ba4188779ade4f8527dca58c7fc2f&amp;type=3#shop_icon&quot;); width: 80px; height: 80px;" />
-                        <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left;">
+                        <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left; height: 80px;">
                             <Bindings>
                                 <engine:DataBinding property="text" data-source-path="data" data-source="project://database/Assets/08.SO/SaveDatas/ComputerData/Data_Coin.asset?fileID=11400000&amp;guid=9c2f37cc0f92c0449bee7ba1a17f503e&amp;type=2#Data_Coin" binding-mode="ToTarget" />
                             </Bindings>

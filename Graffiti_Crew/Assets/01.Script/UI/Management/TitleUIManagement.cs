@@ -4,10 +4,10 @@ using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 namespace AH.UI {
 
@@ -20,6 +20,17 @@ namespace AH.UI {
         
         private string slotPath = "UI/Setting/Slots/";
         private SlotSO[] slots;
+
+        private VisualElement _fadeView;
+
+        protected override void OnEnable() {
+            base.OnEnable();
+            PresentationEvents.FadeInOut += FadeInOut;
+        }
+        protected override void OnDisable() {
+            base.OnDisable();
+            PresentationEvents.FadeInOut -= FadeInOut;
+        }
 
         protected override void Init() {
             base.Init();
@@ -34,12 +45,13 @@ namespace AH.UI {
             _startBtn = root.Q<Button>("start-btn");
             _exitBtn = root.Q<Button>("exit-btn");
 
+            _fadeView = root.Q<VisualElement>("fade-view");
+
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
             _saveSlotField.index = _viewModel.GetSlotIndex();
         }
-
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();
             Debug.Log("³ª°¡±â");
@@ -54,6 +66,14 @@ namespace AH.UI {
             _viewModel.SetSlotIndex(index);
             SlotSO selectSlot = slots[index];
             UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
+        }
+        private void FadeInOut(bool active) {
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
+            }
         }
     }
 }

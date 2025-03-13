@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,18 +15,44 @@ namespace AH.UI {
         private FightStartAnimation _fightStartAnimation;
 
         private FightViewModel _viewModel;
+        private VisualElement _fadeView;
+
 
         protected override void OnEnable() {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            PresentationEvents.FadeInOut += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            PresentationEvents.FadeInOut -= FadeInOut;
+        }
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
+            }
+        }
+        protected override void Init() {
+            base.Init();
+            _viewModel = new FightViewModel(_model as FightModel);
+        }
+        protected override void SetupViews() {
+            base.SetupViews();
+            VisualElement root = _uiDocument.rootVisualElement;
+
+            _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
+            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
+            _fightStartAnimation = new FightStartAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
+
+            _fadeView = root.Q<VisualElement>("fade-view");
+
+            _fightStartAnimation.Show();
         }
 
         #region Handle
@@ -45,31 +72,23 @@ namespace AH.UI {
                 _dialougeView.Hide();
             }
         }
-        #endregion
-        protected override void Init() {
-            base.Init();
-            _viewModel = new FightViewModel(_model as FightModel);
-        }
-        protected override void SetupViews() {
-            base.SetupViews();
-            VisualElement root = _uiDocument.rootVisualElement;
-
-            _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
-            _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
-
-            _fightStartAnimation = new FightStartAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
-
-            _fightStartAnimation.Show();
-        }
         private void SetActiveFightView(bool active) {
             if (active) {
                 _fightView.Show();
             }
             else {
                 _fightView.Hide();
-                Debug.Log("HIDE");
             }
         }
+
+        private void FadeInOut(bool active) {
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
+            }
+        }
+        #endregion
     }
 }
