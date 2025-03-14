@@ -29,7 +29,8 @@
     scale: 0 0;
     left: 25%;
     top: 27%;
-    transition-duration: 0.7s;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-circ;
 }
 
 .btn {
@@ -40,14 +41,14 @@
     margin-bottom: 10px;
 }
 
+.move-left {
+    left: -52%;
+}
+
 .size-up {
     width: 50%;
     height: 50%;
     scale: 1 1;
-}
-
-.move-left {
-    left: -52%;
 }
 
 .hide {

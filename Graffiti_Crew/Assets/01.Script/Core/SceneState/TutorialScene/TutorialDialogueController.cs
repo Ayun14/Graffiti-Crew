@@ -2,7 +2,6 @@ using AH.UI.Events;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class TutorialDialogueController : Observer<GameStateController>
@@ -23,9 +22,14 @@ public class TutorialDialogueController : Observer<GameStateController>
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W)) {
+
+            PresentationEvents.SetFadeEvent(true);
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
+            PresentationEvents.FadeInOutEvent(true);
         }
     }
     public async override void NotifyHandle()

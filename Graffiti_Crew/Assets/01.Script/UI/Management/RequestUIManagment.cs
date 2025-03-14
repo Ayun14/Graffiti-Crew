@@ -84,7 +84,6 @@ namespace AH.UI {
         {
             if (startBlack)
             {
-                Debug.Log("fade");
                 _fadeView.AddToClassList("fade-out");
             }
             else
