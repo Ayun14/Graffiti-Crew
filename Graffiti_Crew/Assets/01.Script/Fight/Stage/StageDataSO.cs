@@ -13,10 +13,10 @@ public class StageDataSO : ScriptableObject
     [Header("Rival")]
     public Sprite rivalGraffiti;
     public int rivalClearTime; // √  ¥‹¿ß
-    public GameObject rivalPrefab;
+    public Transform rivalPrefab;
 
     [Header("Map")]
-    public GameObject mapPrefab;
+    public Transform mapPrefab;
 
     [Header("Dialogue")]
     public DialogueDataReader dialogueData_KR;
