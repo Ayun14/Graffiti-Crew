@@ -22,11 +22,13 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     private float _rivalDrawingTime;
     private float _currentTime = 0;
 
-    public void LodingHandle(StageDataSO stageData)
+    public void LodingHandle(DataController dataController)
     {
-        _graffiti = stageData.rivalGraffiti;
-        _rivalDrawingTime = stageData.rivalClearTime;
-        _rival = Instantiate(stageData.rivalPrefab, Vector3.zero, Quaternion.identity, transform).transform;
+        _graffiti = dataController.stageData.rivalGraffiti;
+        _rivalDrawingTime = dataController.stageData.rivalClearTime;
+        _rival = Instantiate(dataController.stageData.rivalPrefab, Vector3.zero, Quaternion.identity, transform).transform;
+
+        dataController.SuccessGiveData();
     }
 
     private void Awake()

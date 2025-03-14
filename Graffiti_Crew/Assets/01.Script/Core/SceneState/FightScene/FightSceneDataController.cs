@@ -20,23 +20,23 @@ public class FightSceneDataController : DataController
                 _isFight = mySubject.GameState == GameState.Fight;
             }
 
-            if (_stageData != null)
+            if (stageData != null)
             {
                 if (mySubject.GameState == GameState.Finish)
                 {
-                    _stageData.stageResult.drawingTime = (int)_currentDrawingTime;
-                    int star = _stageData.stageResult.CalculationStar(_stageData.minCombo, _stageData.maxNodeFalse, _stageData.maxDrawingTime);
-                    GameEvents.SendGameResultEvent?.Invoke(_stageData);
+                    stageData.stageResult.drawingTime = (int)_currentDrawingTime;
+                    int star = stageData.stageResult.CalculationStar(stageData.minCombo, stageData.maxNodeFalse, stageData.maxDrawingTime);
+                    GameEvents.SendGameResultEvent?.Invoke(stageData);
                     Debug.Log("star : " + star);
-                    if (star > _stageData.stageSaveData.star)
-                        _stageData.stageSaveData.star = star;
+                    if (star > stageData.stageSaveData.star)
+                        stageData.stageSaveData.star = star;
                 }
 
                 if (mySubject.GameState == GameState.Result)
                 {
                     // 스테이지 클리어
-                    _stageData.isClearStage = true;
-                    _stageData.stageSaveData.isClear = true;
+                    stageData.isClearStage = true;
+                    stageData.stageSaveData.isClear = true;
                 }
             }
         }
@@ -44,18 +44,16 @@ public class FightSceneDataController : DataController
 
     protected override void FindDatas()
     {
-        _stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
+        stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
     }
 
-    protected override void GiveData()
+    protected override void FinishGiveData()
     {
-        base.GiveData();
-
         // 클리어 되지 않았을 때만 타임라인 재생
-        GameState nextState = _stageData.isClearStage ? GameState.CountDown : GameState.Timeline;
+        GameState nextState = stageData.isClearStage ? GameState.CountDown : GameState.Timeline;
 
         // Stage Result SO Reset
-        _stageData.stageResult.Reset();
+        stageData.stageResult.Reset();
 
         mySubject.ChangeGameState(nextState);
     }

@@ -1,4 +1,4 @@
 public interface INeedLoding
 {
-    public abstract void LodingHandle(StageDataSO stageData);
+    public abstract void LodingHandle(DataController dataController);
 }

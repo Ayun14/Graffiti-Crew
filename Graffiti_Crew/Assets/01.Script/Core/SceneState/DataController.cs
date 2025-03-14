@@ -1,11 +1,16 @@
 using AH.SaveSystem;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class DataController : Observer<GameStateController>
 {
     [SerializeField] protected LoadStageSO stageSO;
 
-    protected StageDataSO _stageData;
+    public StageDataSO stageData;
+
+    private int _lodingCnt = 0;
+    private List<GameObject> _needLodingObjs;
 
     private void Awake()
     {
@@ -33,21 +38,29 @@ public abstract class DataController : Observer<GameStateController>
 
     protected abstract void FindDatas();
 
-    protected virtual void GiveData()
+    private void GiveData()
     {
-        if (_stageData != null)
+        if (stageData != null)
         {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("NeedLoding");
+            _lodingCnt = 0;
+            if (_needLodingObjs != null) _needLodingObjs.Clear();
+            _needLodingObjs = GameObject.FindGameObjectsWithTag("NeedLoding").ToList();
 
-            foreach (GameObject obj in objects)
+            foreach (GameObject obj in _needLodingObjs)
             {
                 if (obj.TryGetComponent(out INeedLoding needLoding))
-                    needLoding.LodingHandle(_stageData);
+                    needLoding.LodingHandle(this);
             }
-
-            // Change GameState
         }
     }
+
+    public void SuccessGiveData()
+    {
+        if (++_lodingCnt >= _needLodingObjs.Count)
+            Invoke("FinishGiveData", 1f);
+    }
+            
+    protected abstract void FinishGiveData(); // Change GameState...
 
     protected abstract void NotifyHandleChild();
 }

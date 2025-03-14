@@ -33,11 +33,13 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     private Node _currentNode;
 
-    public void LodingHandle(StageDataSO stageData)
+    public void LodingHandle(DataController dataController)
     {
-        stageResult = stageData.stageResult;
-        _startSprite = stageData.startGraffiti;
-        _nodeDatas = stageData.nodeDatas;
+        stageResult = dataController.stageData.stageResult;
+        _startSprite = dataController.stageData.startGraffiti;
+        _nodeDatas = dataController.stageData.nodeDatas;
+
+        dataController.SuccessGiveData();
     }
 
     private void Awake()

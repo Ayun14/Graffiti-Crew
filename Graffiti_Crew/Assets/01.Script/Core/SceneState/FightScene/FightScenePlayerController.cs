@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class FightScenePlayerController : Observer<GameStateController>, INeedLoding
+public class FightScenePlayerController : Observer<GameStateController>
 {
     // 여기에 플레이어 뭐 애니메이션... 위치.. 등등 구현하기
     private Transform _player;
     private Transform _graffitiTrm;
     private Transform _resultTrm;
-
-    public void LodingHandle(StageDataSO stageData)
-    {
-    }
 
     private void Awake()
     {
