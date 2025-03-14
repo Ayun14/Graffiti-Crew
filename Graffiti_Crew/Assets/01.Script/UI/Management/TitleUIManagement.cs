@@ -25,11 +25,11 @@ namespace AH.UI {
 
         protected override void OnEnable() {
             base.OnEnable();
-            PresentationEvents.FadeInOut += FadeInOut;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            PresentationEvents.FadeInOut -= FadeInOut;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
 
         protected override void Init() {

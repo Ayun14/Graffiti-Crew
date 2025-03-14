@@ -21,14 +21,14 @@ namespace AH.UI {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
-            PresentationEvents.FadeInOut += FadeInOut;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
 
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
-            PresentationEvents.FadeInOut -= FadeInOut;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
 
         }
 

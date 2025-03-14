@@ -18,7 +18,7 @@ namespace AH.UI {
 
         protected override void OnEnable() {
             base.OnEnable();
-            PresentationEvents.FadeInOut += FadeInOut;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
             ComputerEvent.ShowSelectFriendViewEvent += ShowSelectFriendView;
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
@@ -32,7 +32,7 @@ namespace AH.UI {
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
             ComputerEvent.HideViewEvent -= HidwView;
-            PresentationEvents.FadeInOut -= FadeInOut;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
 
         protected override void Init() {

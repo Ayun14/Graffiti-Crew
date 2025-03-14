@@ -20,14 +20,16 @@ namespace AH.UI {
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
-            PresentationEvents.FadeInOut += FadeInOut;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
+            PresentationEvents.SetFadeEvent += SetFade;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
-            PresentationEvents.FadeInOut -= FadeInOut;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
+            PresentationEvents.SetFadeEvent -= SetFade;
         }
 
         protected override void Init() {
@@ -76,6 +78,18 @@ namespace AH.UI {
             }
             else {
                 _fadeView.AddToClassList("fade-out");
+            }
+        }
+        private void SetFade(bool startBlack)
+        {
+            if (startBlack)
+            {
+                Debug.Log("fade");
+                _fadeView.AddToClassList("fade-out");
+            }
+            else
+            {
+                _fadeView.RemoveFromClassList("fade-out");
             }
         }
     }

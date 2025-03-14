@@ -1,5 +1,6 @@
 using AH.UI.Events;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -20,12 +21,21 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         Detach();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
 
-    public override void NotifyHandle()
+        }
+    }
+    public async override void NotifyHandle()
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
-            // FadeOut
+            PresentationEvents.SetFadeEvent(true);
+            await Task.Delay(2000);
+            PresentationEvents.FadeInOutEvent(true);
+
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
@@ -49,10 +59,15 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             NPCSO dialogue = _dialogueList[_dialogueNum];
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
+            PresentationEvents.FadeInOutEvent(false);
+            PresentationEvents.FadeInOutEvent(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else
+        {
+            PresentationEvents.FadeInOutEvent(false);
             SceneManager.LoadScene("HangOutScene");
+        }
 
     }
 }

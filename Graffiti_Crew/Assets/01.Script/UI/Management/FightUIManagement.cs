@@ -23,14 +23,14 @@ namespace AH.UI {
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            PresentationEvents.FadeInOut += FadeInOut;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            PresentationEvents.FadeInOut -= FadeInOut;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
         private void Update() {
             if (Input.GetKeyDown(KeyCode.Q)) {
