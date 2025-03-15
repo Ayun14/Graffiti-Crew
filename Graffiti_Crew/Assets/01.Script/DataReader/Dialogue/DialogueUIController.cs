@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -70,7 +71,8 @@ public class DialogueUIController : MonoBehaviour
 
     private void CheckTutorial()
     {
-        if (_tutorialCheckData != null && !_tutorialCheckData.data)
+        if (_tutorialCheckData != null && !_tutorialCheckData.data
+            && SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene())
         {
             ChangeDialogueUI?.Invoke(false);
             _computerLight.SetActive(false);
