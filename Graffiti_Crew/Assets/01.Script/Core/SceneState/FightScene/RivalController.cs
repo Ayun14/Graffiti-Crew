@@ -26,7 +26,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         _graffiti = dataController.stageData.rivalGraffiti;
         _rivalDrawingTime = dataController.stageData.rivalClearTime;
-        _rival = Instantiate(dataController.stageData.rivalPrefab, Vector3.zero, Quaternion.identity, transform).transform;
+        _rival = Instantiate(dataController.stageData.rivalPrefab.gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
 
         dataController.SuccessGiveData();
     }
