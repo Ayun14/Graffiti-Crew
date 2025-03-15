@@ -32,11 +32,11 @@ namespace AH.UI {
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
-        private void Update() {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
-            }
-        }
+        //private void Update() {
+        //    if (Input.GetKeyDown(KeyCode.Q)) {
+        //        UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
+        //    }
+        //}
         protected override void Init() {
             base.Init();
             _viewModel = new FightViewModel(_model as FightModel);
@@ -52,7 +52,7 @@ namespace AH.UI {
 
             _fadeView = root.Q<VisualElement>("fade-view");
 
-            _fightStartAnimation.Show();
+            //_fightStartAnimation.Show();
         }
 
         #region Handle
