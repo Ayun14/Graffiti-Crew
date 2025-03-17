@@ -1,11 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement name="container" style="flex-grow: 1; flex-direction: row;">
-        <engine:VisualElement name="rival-screen" class="rival-screen" />
-        <engine:VisualElement name="player-screen" class="player-screen" />
-    </engine:VisualElement>
-    <engine:VisualElement name="start-content" class="start-content" style="align-content: center;">
+    <engine:VisualElement name="start-content" class="start-content" style="transition-duration: 0.5s;">
         <engine:Label text="Label" name="txt" class="grow-size-300" style="flex-grow: 0;" />
+    </engine:VisualElement>
+    <engine:VisualElement name="countdown-content" class="countdown-content">
+        <engine:VisualElement name="countdown1" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
+        <engine:VisualElement name="countdown2" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
+        <engine:VisualElement name="countdown3" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
+    </engine:VisualElement>
+    <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row;">
+        <engine:VisualElement name="rival-screen" class="rival-screen move-left" style="background-color: rgb(255, 178, 255);" />
+        <engine:VisualElement name="player-screen" class="player-screen move-right" style="background-color: rgb(96, 218, 255);" />
     </engine:VisualElement>
 </engine:UXML>
