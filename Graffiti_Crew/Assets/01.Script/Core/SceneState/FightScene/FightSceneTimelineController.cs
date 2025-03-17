@@ -9,6 +9,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     [SerializeField] private CinemachineCamera _rivalGraffitiCam;
 
     [SerializeField] private PlayableDirector _beforeFightTimeline;
+    [SerializeField] private PlayableDirector _countDownTimeline;
     private PlayableDirector _finishTimeline;
     private PlayableDirector _resultTimeline;
     private DialogueUIController _dialogueUIController;
@@ -34,6 +35,9 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
             if (mySubject.GameState == GameState.Timeline)
                 _beforeFightTimeline.Play();
 
+            if (mySubject.GameState == GameState.CountDown)
+                _countDownTimeline.Play();
+
             if (mySubject.GameState == GameState.Finish)
                 _finishTimeline.Play();
 
@@ -49,6 +53,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     {
         if (mySubject != null)
         {
+            Debug.Log("Change Count Down");
             mySubject.ChangeGameState(GameState.CountDown);
         }
     }
@@ -57,6 +62,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     {
         if (mySubject != null)
         {
+            Debug.Log("Change Fight");
             mySubject.ChangeGameState(GameState.Fight);
         }
     }
