@@ -30,7 +30,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
 
             PresentationEvents.FadeInOutEvent(true);
-        }
+        }         
     }
     public async override void NotifyHandle()
     {
@@ -64,7 +64,6 @@ public class TutorialDialogueController : Observer<GameStateController>
             NPCSO dialogue = _dialogueList[_dialogueNum];
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             PresentationEvents.FadeInOutEvent(false);
-            PresentationEvents.FadeInOutEvent(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else
