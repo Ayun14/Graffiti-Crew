@@ -9,24 +9,23 @@ using UnityEngine.SceneManagement;
 
 public class DialogueUIController : MonoBehaviour
 {
-    [Header("TutorialData")]
+    [Header("Tutorial Data(Only HangOut)")]
     [SerializeField] private BoolSaveDataSO _tutorialCheckData;
     [SerializeField] private GameObject _computerLight;
     [SerializeField] private Collider _computerCollider;
 
-    [Header("Dialogue Data")]
-    private DialogueSO _dialogueUIData;
+    [Header("Dialogue UI Data")]
     [SerializeField] private DialogueSO _bigDialogueUIData;
     [SerializeField] private DialogueSO _miniDialogueUIData;
+    private DialogueSO _dialogueUIData;
 
+    [Header("Dialogue Data")]
+    [SerializeField] private LanguageSO _languageSO;
     [SerializeField] private DialogueDataReader _tutorialDialogue;
     public DialogueDataReader dialogueDataReader_KR;
     public DialogueDataReader dialogueDataReader_EN;
 
     [HideInInspector] public DialogueDataReader dialogueDataReader;
-
-    [Header("Dialogue Data")]
-    [SerializeField] private LanguageSO _languageSO;
 
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
