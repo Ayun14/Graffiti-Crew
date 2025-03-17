@@ -36,9 +36,12 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
-            PresentationEvents.SetFadeEvent(true);
-            await Task.Delay(2000);
-            PresentationEvents.FadeInOutEvent(true);
+            if(_dialogueNum == 0)
+            {
+                PresentationEvents.SetFadeEvent(true);
+                await Task.Delay(100);
+                PresentationEvents.FadeInOutEvent(true);
+            }
 
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
@@ -50,9 +53,8 @@ public class TutorialDialogueController : Observer<GameStateController>
         }
     }
 
-    private void DialogueEnd()
+    private async void DialogueEnd()
     {
-        // FadeIn
         DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
         _dialogueNum++;
         if (_dialogueNum == 1)
@@ -62,8 +64,13 @@ public class TutorialDialogueController : Observer<GameStateController>
         else if (_dialogueNum == 2)
         {
             NPCSO dialogue = _dialogueList[_dialogueNum];
-            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
+
+            await Task.Delay(500);
             PresentationEvents.FadeInOutEvent(false);
+            await Task.Delay(500);
+            PresentationEvents.FadeInOutEvent(true);
+
+            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else
