@@ -31,6 +31,8 @@ public class DialogueUIController : MonoBehaviour
     [SerializeField] private float _typingSpeed = 0.05f;
 
     private bool _isBigUIdata => _dialogueUIData == _bigDialogueUIData;
+    private bool _isHangoutScene =>
+        SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
 
     private Coroutine _typingCoroutine;
     private bool _isTyping = false;
@@ -70,8 +72,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void CheckTutorial()
     {
-        if (_tutorialCheckData != null && !_tutorialCheckData.data
-            && SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene())
+        if (_tutorialCheckData != null && !_tutorialCheckData.data && _isHangoutScene)
         {
             ChangeDialogueUI?.Invoke(false);
             _computerLight.SetActive(false);
@@ -165,6 +166,9 @@ public class DialogueUIController : MonoBehaviour
 
     private void Update()
     {
+        if (_isBigUIdata && !_isHangoutScene)
+            return;
+
         if (_isDialogue)
         {
             if (dialogueDataReader.readMode == ReadMode.Auto)
