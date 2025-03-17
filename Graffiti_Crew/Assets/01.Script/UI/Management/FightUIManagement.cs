@@ -22,6 +22,7 @@ namespace AH.UI {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
+            StageEvent.SetActiveStartAnimation -= SetActiveAnimationView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
         }
@@ -29,14 +30,10 @@ namespace AH.UI {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
+            StageEvent.SetActiveStartAnimation -= SetActiveAniamtionView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
-        //private void Update() {
-        //    if (Input.GetKeyDown(KeyCode.Q)) {
-        //        UIAnimationEvent.StartFightStartAnimationEvnet?.Invoke();
-        //    }
-        //}
         protected override void Init() {
             base.Init();
             _viewModel = new FightViewModel(_model as FightModel);
@@ -52,7 +49,7 @@ namespace AH.UI {
 
             _fadeView = root.Q<VisualElement>("fade-view");
 
-            //_fightStartAnimation.Show();
+            _fightStartAnimation.Show();
         }
 
         #region Handle
@@ -80,7 +77,14 @@ namespace AH.UI {
                 _fightView.Hide();
             }
         }
-
+        private void SetActiveAniamtionView(bool active) {
+            if (active) {
+                _fightStartAnimation.Show();
+            }
+            else {
+                _fightStartAnimation.Hide();
+            }
+        }
         private void FadeInOut(bool active) {
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");

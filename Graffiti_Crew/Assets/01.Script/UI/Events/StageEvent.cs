@@ -7,5 +7,6 @@ namespace AH.UI.Events {
 
         public static Action<bool> ShowVictorScreenEvent;
 
+        public static Action<bool> SetActiveStartAnimation;
     }
 }
