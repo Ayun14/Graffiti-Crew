@@ -498,11 +498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
   stageData: {fileID: 0}
---- !u!320 &66340263 stripped
-PlayableDirector:
-  m_CorrespondingSourceObject: {fileID: 6100014261861629371, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-  m_PrefabInstance: {fileID: 2002932593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &69935397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,7 +6344,6 @@ MonoBehaviour:
   _playerGraffitiCam: {fileID: 1132627325}
   _rivalGraffitiCam: {fileID: 811644761}
   _beforeFightTimeline: {fileID: 2002932599}
-  _countDownTimeline: {fileID: 66340263}
 --- !u!1 &1865649584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6610,10 +6604,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3502436490198602232, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1858405860}
     - target: {fileID: 6865147066262059450, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

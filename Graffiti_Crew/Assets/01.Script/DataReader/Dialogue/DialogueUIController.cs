@@ -166,7 +166,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Update()
     {
-        if (_isBigUIdata && !_isHangoutScene)
+        if (!_isBigUIdata && !_isHangoutScene)
             return;
 
         if (_isDialogue)
