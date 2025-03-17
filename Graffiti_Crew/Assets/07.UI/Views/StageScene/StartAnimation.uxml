@@ -10,7 +10,7 @@
         <engine:VisualElement name="countdown3" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
     </engine:VisualElement>
     <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row;">
-        <engine:VisualElement name="rival-screen" class="rival-screen move-left" style="background-color: rgb(255, 178, 255);" />
-        <engine:VisualElement name="player-screen" class="player-screen move-right" style="background-color: rgb(96, 218, 255);" />
+        <engine:VisualElement name="rival-screen" class="rival-screen" />
+        <engine:VisualElement name="player-screen" class="player-screen" />
     </engine:VisualElement>
 </engine:UXML>

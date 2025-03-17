@@ -15,9 +15,6 @@ public class FightSceneUIController : Observer<GameStateController>
     [Header("Cursor")]
     [SerializeField] private Texture2D _cursorTex;
 
-    [Header("Count Down")]
-    [SerializeField] private List<Sprite> _countDownImages = new();
-
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
@@ -49,10 +46,6 @@ public class FightSceneUIController : Observer<GameStateController>
     // Loding
     private Image _lodingPanel;
 
-    // CountDown
-    private Image _countDownPanel;
-    private Image _countDownImage;
-
     // Finish
     private Image _finishPanel;
     private Image _finishImage;
@@ -82,10 +75,6 @@ public class FightSceneUIController : Observer<GameStateController>
 
         // Loding
         _lodingPanel = canvas.Find("Panel_Loding").GetComponent<Image>();
-
-        // CountDown
-        _countDownPanel = canvas.Find("Panel_CountDown").GetComponent<Image>();
-        _countDownImage = _countDownPanel.transform.Find("Image_CountDown").GetComponent<Image>();
 
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
@@ -132,10 +121,6 @@ public class FightSceneUIController : Observer<GameStateController>
             // Loding
             _lodingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
-            // CountDown
-            if (isCountDown) StartCoroutine(CountDownRoutine());
-            _countDownPanel.gameObject.SetActive(isCountDown);
-
             // Fight
             StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
@@ -156,33 +141,6 @@ public class FightSceneUIController : Observer<GameStateController>
             // Result
             StageEvent.ShowResultViewEvent?.Invoke(isResult);
         }
-    }
-
-    private IEnumerator CountDownRoutine()
-    {
-        Color color = _countDownImage.color;
-        color.a = 0;
-        _countDownImage.color = color;
-        for (int i = 0; i < 3; ++i)
-        {
-            _countDownImage.sprite = _countDownImages[i];
-
-            _countDownImage.transform.localScale = Vector3.zero;
-            _countDownImage.transform.DOScale(1, 0.2f);
-
-            Sequence posSequence = DOTween.Sequence();
-            posSequence.Append(_countDownImage.DOFade(1, 0.2f))
-                    .AppendInterval(0.6f)
-                    .Append(_countDownImage.DOFade(0, 0.2f));
-
-            yield return new WaitForSeconds(1f);
-        }
-
-        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
-            mySubject.ChangeGameState(GameState.Tutorial);
-        else
-            mySubject.ChangeGameState(GameState.Fight);
-
     }
 
     private IEnumerator FinishRoutine()

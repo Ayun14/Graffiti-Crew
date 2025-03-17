@@ -8,7 +8,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     [SerializeField] private CinemachineCamera _playerGraffitiCam;
     [SerializeField] private CinemachineCamera _rivalGraffitiCam;
 
-    private PlayableDirector _beforeFightTimeline;
+    [SerializeField] private PlayableDirector _beforeFightTimeline;
     private PlayableDirector _finishTimeline;
     private PlayableDirector _resultTimeline;
     private DialogueUIController _dialogueUIController;
@@ -17,7 +17,6 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     {
         Attach();
 
-        _beforeFightTimeline = transform.Find("BeforeFightTimeline").GetComponent<PlayableDirector>();
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
         _dialogueUIController = transform.Find("FightUI").GetComponent<DialogueUIController>();
@@ -50,7 +49,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     {
         if (mySubject != null)
         {
-            mySubject.ChangeGameState(GameState.CountDown);
+            mySubject.ChangeGameState(GameState.Fight);
         }
     }
 
