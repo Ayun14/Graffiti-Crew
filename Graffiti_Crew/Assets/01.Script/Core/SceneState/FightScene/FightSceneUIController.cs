@@ -112,7 +112,6 @@ public class FightSceneUIController : Observer<GameStateController>
     {
         if (mySubject != null)
         {
-            bool isCountDown = mySubject.GameState == GameState.CountDown;
             bool isFight = mySubject.GameState == GameState.Fight
                 || mySubject.GameState == GameState.Tutorial;
             bool isFinish = mySubject.GameState == GameState.Finish;

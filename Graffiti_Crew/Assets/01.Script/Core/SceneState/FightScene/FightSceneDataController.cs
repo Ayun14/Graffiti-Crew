@@ -49,12 +49,9 @@ public class FightSceneDataController : DataController
 
     protected override void FinishGiveData()
     {
-        // 클리어 되지 않았을 때만 타임라인 재생
-        GameState nextState = stageData.isClearStage ? GameState.CountDown : GameState.Timeline;
-
         // Stage Result SO Reset
         stageData.stageResult.Reset();
 
-        mySubject.ChangeGameState(nextState);
+        mySubject.ChangeGameState(GameState.Timeline);
     }
 }

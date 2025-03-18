@@ -25,17 +25,18 @@ public class FightScenePlayerController : Observer<GameStateController>
     {
         if (mySubject != null)
         {
-            if (mySubject.GameState == GameState.CountDown)
-            {
-                _player.position = _graffitiTrm.position;
-                _player.localRotation = _graffitiTrm.localRotation;
-            }
-
             if (mySubject.GameState == GameState.Finish)
             {
                 _player.position = _resultTrm.position;
                 _player.localRotation = _resultTrm.localRotation;
             }
         }
+    }
+
+    public void PlayerPositionToGraffiti()
+    {
+        // ¿Ö ¾ÈµÅ
+        _player.position = _graffitiTrm.position;
+        _player.localRotation = _graffitiTrm.localRotation;
     }
 }
