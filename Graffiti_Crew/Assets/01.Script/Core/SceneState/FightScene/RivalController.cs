@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class RivalController : Observer<GameStateController>, INeedLoding
 {
@@ -63,12 +62,6 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         if (mySubject != null)
         {
-            if (mySubject.GameState == GameState.CountDown)
-            {
-                _rival.position = _graffitiTrm.position;
-                _rival.localRotation = _graffitiTrm.localRotation;
-            }
-
             _isFight = mySubject.GameState == GameState.Fight;
 
             if (mySubject.GameState == GameState.Finish)
@@ -83,6 +76,12 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     private void SetGraffiti(Sprite sprite)
     {
         _graffitiRenderer.sprite = _graffiti;
+    }
+
+    public void RivalPositionToGraffiti()
+    {
+        _rival.position = _graffitiTrm.position;
+        _rival.localRotation = _graffitiTrm.localRotation;
     }
 
     #region Slider

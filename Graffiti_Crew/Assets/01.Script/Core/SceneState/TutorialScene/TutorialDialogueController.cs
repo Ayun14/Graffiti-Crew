@@ -59,7 +59,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         _dialogueNum++;
         if (_dialogueNum == 1)
         {
-            mySubject.ChangeGameState(GameState.CountDown);
+            mySubject.ChangeGameState(GameState.Timeline); // CountDown¿Ãø¥¿Ω
         }
         else if (_dialogueNum == 2)
         {
