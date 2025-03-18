@@ -52,10 +52,13 @@ public class HitNode : Node, INodeAction
         // Combo
         judgement.NodeSuccess(this);
 
+        // Particle
+        PopGraffitiParticle(transform.position);
+
         SetHitCount();
     }
 
-    public void SetHitCount()
+    private void SetHitCount()
     {
         judgement.AddShakeSliderAmount(-_hitNodeData.sprayUseAmount);
         judgement.AddSpraySliderAmount(-_hitNodeData.sprayUseAmount);

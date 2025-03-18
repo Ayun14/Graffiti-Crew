@@ -8,9 +8,13 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     [Header("Pool")]
     protected Pool pool;
+    [SerializeField] protected PoolManagerSO poolManagerSO;
     [SerializeField] protected PoolTypeSO poolType;
     public PoolTypeSO PoolType => poolType;
     public GameObject GameObject => gameObject;
+
+    [Header("Graffiti Particle")]
+    [SerializeField] private PoolTypeSO _graffitiParticleTypeSO;
 
     public virtual void Init(NodeJudgement judgement, NodeDataSO nodeData)
     {
@@ -31,6 +35,14 @@ public abstract class Node : MonoBehaviour, IPoolable
     public abstract NodeType GetNodeType();
 
     public abstract NodeDataSO GetNodeDataSO();
+
+    protected void PopGraffitiParticle(Vector3 spawnPos)
+    {
+        IPoolable poolable = poolManagerSO.Pop(_graffitiParticleTypeSO);
+        poolable.GameObject.transform.position = spawnPos;
+        if (poolable.GameObject.transform.TryGetComponent(out ParticleSystem particleSystem))
+            particleSystem.Play();
+    }
 
     #region Pool
     public void SetUpPool(Pool pool)
