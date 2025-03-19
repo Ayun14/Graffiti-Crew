@@ -3,20 +3,24 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ComboController : MonoBehaviour
 {
     [SerializeField] private UIParticle _uiParticle;
 
+    [Header("Combo")]
+    [SerializeField] private Sprite _comboSprite;
+    [SerializeField] private Sprite _missSprite;
+
     private int _currentCombo = 0;
 
     private TextMeshProUGUI _comboText;
-    private TextMeshProUGUI _stateText;
+    private Image _stateImage;
 
     private Vector3 _comboTextOrigin;
     private Sequence _stateTextSequence;
-    private Vector3 _stateTextOrigin;
-    private float _textHideX = 120f;
+    private Vector3 _stateImageOrigin;
 
     private NodeJudgement _judgement;
     private StageResultSO _stageResult;
@@ -29,9 +33,9 @@ public class ComboController : MonoBehaviour
     {
         Transform parent = transform.Find("Panel_Combo");
         _comboText = parent.Find("Text_Combo").GetComponent<TextMeshProUGUI>();
-        _stateText = parent.Find("Text_State").GetComponent<TextMeshProUGUI>();
+        _stateImage = parent.Find("Image_State").GetComponent<Image>();
         _comboTextOrigin = _comboText.rectTransform.anchoredPosition;
-        _stateTextOrigin = _stateText.rectTransform.anchoredPosition;
+        _stateImageOrigin = _stateImage.rectTransform.anchoredPosition;
     }
 
     public void Init(NodeJudgement judgement)
@@ -40,10 +44,10 @@ public class ComboController : MonoBehaviour
         _stageResult = judgement.stageResult;
         _currentCombo = 0;
 
-        if (_comboText != null && _stateText != null)
+        if (_comboText != null && _stateImage != null)
         {
             _comboText.text = string.Empty;
-            _stateText.text = string.Empty;
+            _stateImage.DOFade(0, 0f);
         }
     }
 
@@ -71,7 +75,7 @@ public class ComboController : MonoBehaviour
         }
 
         _currentTime = 0;
-        StateTextUpdate("<color=white>Combo</color>");
+        StateTextUpdate(_comboSprite);
         ComboTextUpdate(++_currentCombo);
 
         if (_currentCombo % 100 == 0)
@@ -92,9 +96,9 @@ public class ComboController : MonoBehaviour
         _currentCombo = 0;
 
         // Particle Stop
-        _uiParticle.Stop();
+        //_uiParticle.Stop();
 
-        StateTextUpdate("<color=red>Miss</color>");
+        StateTextUpdate(_missSprite);
         ComboTextUpdate(_currentCombo);
     }
 
@@ -108,36 +112,43 @@ public class ComboController : MonoBehaviour
         _comboText.DOFade(1f, 0f);
     }
 
-    private void StateTextUpdate(string str)
+    private void StateTextUpdate(Sprite sprite)
     {
-        if (_stateText == null) return;
+        if (_stateImage == null) return;
 
-        _stateText.text = str;
+        if (_stateImage.sprite != sprite)
+            _stateImage.sprite = sprite;
 
         // Init
-        _stateText.DOFade(1f, 0f);
-        _stateText.transform.localScale = Vector3.one;
+        _stateImage.DOFade(1f, 0f);
+        _stateImage.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
         _stateTextSequence.Complete();
         _stateTextSequence = DOTween.Sequence();
-        _stateTextSequence.Append(_stateText.transform.DOScale(1.1f, 0.1f))
-            .Append(_stateText.transform.DOScale(1f, 0.1f));
+        _stateTextSequence.Append(_stateImage.rectTransform.DOScale(0.42f, 0.1f))
+            .Append(_stateImage.rectTransform.DOScale(0.4f, 0.1f));
     }
 
     private void TextReset()
     {
+        _comboText.rectTransform.DOKill();
+        _stateImage.rectTransform.DOKill();
+
         _comboText.rectTransform.anchoredPosition = _comboTextOrigin;
-        _stateText.rectTransform.anchoredPosition = _stateTextOrigin;
+
+
+
+        _stateImage.rectTransform.anchoredPosition = _stateImageOrigin;
         _comboText.DOFade(1f, 0f);
-        _stateText.DOFade(1f, 0f);
+        _stateImage.DOFade(1f, 0f);
     }
 
     private void TextHide()
     {
-        _comboText.rectTransform.DOAnchorPosX(_textHideX, 0.5f);
-        _stateText.rectTransform.DOAnchorPosX(_textHideX, 0.5f);
+        _comboText.rectTransform.DOAnchorPosX(129.7f, 0.5f);
+        _stateImage.rectTransform.DOAnchorPosX(218f, 0.5f);
         _comboText.DOFade(0f, 0.3f);
-        _stateText.DOFade(0f, 0.3f);
+        _stateImage.DOFade(0f, 0.3f);
     }
 
     private IEnumerator ComboEffectRoutine()

@@ -66,7 +66,6 @@ public class RivalController : Observer<GameStateController>, INeedLoding
 
             if (mySubject.GameState == GameState.Timeline)
             {
-                Debug.Log("애니메이션 해야대");
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Ready);
             }
             else if (mySubject.GameState == GameState.Fight)
