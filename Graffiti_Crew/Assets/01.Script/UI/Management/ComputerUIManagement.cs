@@ -47,7 +47,7 @@ namespace AH.UI {
             _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _viewModel);
             _selectStageView = new SelectStageView(root.Q<VisualElement>("SelectStageView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
-            _selectFriendView = new SelectFriendView(root.Q<VisualElement>("select-friend"), _viewModel);
+            //_selectFriendView = new SelectFriendView(root.Q<VisualElement>("select-friend"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
 
             _fadeView = root.Q<VisualElement>("fade-view");

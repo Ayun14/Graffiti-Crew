@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
+        public StageType type { get; set; } = StageType.Stage;
+        private bool _canPlay;
+        public bool canPlay {
+            get => _canPlay;
+            set {
+                _canPlay = value;
+                UpdateStagePointDisplay(_canPlay);
+            }
+        }
         public string chapter { get; set; }
         public string stage { get; set; }
         private int _starCount;
+
         public int starCount {
             get => _starCount;
             set {
@@ -20,6 +29,14 @@ namespace AH.UI.CustomElement {
 
         [System.Obsolete]
         public new class UxmlTraits : BindableElement.UxmlTraits {
+            UxmlEnumAttributeDescription<StageType> m_type = new UxmlEnumAttributeDescription<StageType> {
+                name = "type",
+                defaultValue = StageType.Stage 
+            };
+            UxmlBoolAttributeDescription m_canPlay = new UxmlBoolAttributeDescription {
+                name = "canPlay",
+                defaultValue = false
+            };
             UxmlStringAttributeDescription m_chapter = new UxmlStringAttributeDescription {
                 name = "chapter",
                 defaultValue = "1"
@@ -41,6 +58,8 @@ namespace AH.UI.CustomElement {
                 dve.chapter = m_chapter.GetValueFromBag(bag, cc);
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
                 dve.starCount = m_starCount.GetValueFromBag(bag, cc);
+                dve.canPlay = m_canPlay.GetValueFromBag(bag, cc);
+                dve.type = m_type.GetValueFromBag(bag, cc);
 
                 VisualElement container = new VisualElement();
                 VisualElement element = new VisualElement();
@@ -88,7 +107,14 @@ namespace AH.UI.CustomElement {
             _star1.style.backgroundColor = (starCount >= 1) ? starColor : hideColor;
             _star2.style.backgroundColor = (starCount >= 2) ? starColor : hideColor;
             _star3.style.backgroundColor = (starCount >= 3) ? starColor : hideColor;
-
+        }
+        private void UpdateStagePointDisplay(bool isClear) {
+            if (isClear) {
+                this.RemoveFromClassList("not-clear");
+            }
+            else {
+                this.AddToClassList("not-clear");
+            }
         }
     }
 }

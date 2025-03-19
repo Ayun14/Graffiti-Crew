@@ -36,22 +36,22 @@ namespace AH.UI.Views {
             _exitBtn = topElement.Q<Button>("exit-btn");
             SetAdmissionTicket();
 
-            _selectFriendBtnList = topElement.Query<Button>(className: "select-friend-btn").ToList();
+            //_selectFriendBtnList = topElement.Query<Button>(className: "select-friend-btn").ToList(); // ±‚»πø°º≠ ªÁ∂Û¡¸
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             int index = 0;
-            foreach (var btn in _selectFriendBtnList) {
-                btn.RegisterCallback<ClickEvent, int>(ClickSelectFirend, index++);
-            }
+            //foreach (var btn in _selectFriendBtnList) {
+            //    btn.RegisterCallback<ClickEvent, int>(ClickSelectFirend, index++);
+            //}
             _startBtn.RegisterCallback<ClickEvent>(ClickStartGameBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            foreach (var btn in _selectFriendBtnList) {
-                btn.UnregisterCallback<ClickEvent, int>(ClickSelectFirend);
-            }
+            //foreach (var btn in _selectFriendBtnList) {
+            //    btn.UnregisterCallback<ClickEvent, int>(ClickSelectFirend);
+            //}
             _friend1Btn.Dispose();
             _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);

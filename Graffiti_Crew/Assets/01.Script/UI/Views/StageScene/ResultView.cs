@@ -24,14 +24,10 @@ namespace AH.UI.Views {
         }
         public override void Initialize() {
             base.Initialize();
-            //FightEvent.GameResultEvent += GrowBigWinner;
-            //FightEvent.VictorFullScreenEvent += FullScreen;
             StageEvent.ShowVictorScreenEvent += FullScreen;
         }
         public override void Dispose() {
             base.Dispose();
-            //FightEvent.GameResultEvent -= GrowBigWinner;
-            //FightEvent.VictorFullScreenEvent -= FullScreen;
             StageEvent.ShowVictorScreenEvent -= FullScreen;
         }
 
@@ -50,40 +46,13 @@ namespace AH.UI.Views {
             _retryBtn.UnregisterCallback<ClickEvent>(ClickRetryBtn);
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
-
-        /*private void GrowBigWinner(bool result) {
-            if (result) {
-                GameWin();
-            }
-            else {
-                GameLose();
-            }
-        }
-        private void GameWin() {
-            _playerWin = true;
-            _playerScreen.AddToClassList("win");
-            _rivalScreen.AddToClassList("lose");
-        }
-        private void GameLose() {
-            _playerWin = false;
-            _rivalScreen.AddToClassList("win");
-            _playerScreen.AddToClassList("lose");
-        }*/
-
         private async void FullScreen(bool result) {
-            await Task.Delay(2000);
             if (result) {
-                //_playerScreen.AddToClassList("fullscreen");
-                //_rivalScreen.AddToClassList("hidescreen");
-                //await Task.Delay(600);
                 _resultPanel.AddToClassList("result-in");
-                //await Task.Delay(250);
+                await Task.Delay(250);
                 SetPlayerResultView();
             }
             else {
-                //_rivalScreen.AddToClassList("fullscreen");
-                //_playerScreen.AddToClassList("hidescreen");
-                //await Task.Delay(600);
                 SetRivalResultView();
             }
         }
