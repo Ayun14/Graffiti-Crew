@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -12,9 +13,6 @@ namespace AH.UI {
         private DialougeView _miniDialougeView;
         private SettingView _settingView;
 
-        private Button _settingBtn;
-        private Button _closeBtn;
-
         private VisualElement _fadeView;
 
         protected override void OnEnable() {
@@ -22,14 +20,14 @@ namespace AH.UI {
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
-
+            HangOutEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
-
+            HangOutEvent.HideViewEvent -= HideView;
         }
 
         protected override void Init() {
@@ -46,20 +44,23 @@ namespace AH.UI {
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
             _fadeView = root.Q<VisualElement>("fade-view");
-
-            _settingBtn = root.Q<Button>("setting-btn");
-            _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
-            _closeBtn = root.Q<Button>("close-btn");
-            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+        }
+        protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
+            evtFunction += EventFunction;
+            base.ShowPreviewEvent(evtFunction);
         }
 
-        private void ClickCloseBtn(ClickEvent evt) {
-            _settingView.Hide();
+        private void EventFunction() {
+            if (_settingView != null) {
+                if (_settingView.Root.style.display == DisplayStyle.Flex){
+                    HideView();
+                }
+                else {
+                    ShowView(_settingView);
+                }
+            }
         }
 
-        private void ClickSettingBtn(ClickEvent evt) {
-            _settingView.Show();
-        }
         private void ShowDialougeView(bool active) {
             if (active) {
                 _dialougeView.Show();

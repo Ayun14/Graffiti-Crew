@@ -306,9 +306,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    public void SetResultUI()
-    {
-        Debug.Log(mySubject.IsPlayerWin);
+    public void SetResultUI() {
         StageEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
     }
 }

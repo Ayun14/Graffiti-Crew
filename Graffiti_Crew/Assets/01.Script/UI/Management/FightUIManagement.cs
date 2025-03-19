@@ -17,7 +17,6 @@ namespace AH.UI {
         private FightViewModel _viewModel;
         private VisualElement _fadeView;
 
-
         protected override void OnEnable() {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;

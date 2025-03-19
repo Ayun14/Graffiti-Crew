@@ -3,13 +3,13 @@
     <engine:Template name="DialogBoxView" src="project://database/Assets/07.UI/Views/Text/DialogBoxView.uxml?fileID=9197481963319205126&amp;guid=5f40de9b6050fbe438a6ed725b81467f&amp;type=3#DialogBoxView" />
     <engine:Template name="ResultView" src="project://database/Assets/07.UI/Views/StageScene/ResultView.uxml?fileID=9197481963319205126&amp;guid=6f1198772a1f18c4cb08f8b8e24e642f&amp;type=3#ResultView" />
     <engine:Template name="StartAnimation" src="project://database/Assets/07.UI/Views/StageScene/StartAnimation.uxml?fileID=9197481963319205126&amp;guid=e666f9c0a8d1b174a9ce9411f61d4258&amp;type=3#StartAnimation" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3#Presentation_USS" />
+    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
+    <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
     <engine:Instance template="FightView" name="FightView" style="flex-grow: 1; display: none; position: absolute; width: 100%; height: 100%;" />
     <engine:Instance template="DialogBoxView" name="DialougeView" style="display: none; position: absolute; width: 100%; height: 100%;" />
-    <engine:Instance template="ResultView" name="ResultView" style="display: none; position: absolute; width: 100%; height: 100%;" />
-    <engine:Instance template="StartAnimation" name="StartAnimation" style="flex-grow: 1; display: flex;" />
+    <engine:Instance template="ResultView" name="ResultView" style="display: flex; position: absolute; width: 100%; height: 100%;" />
+    <engine:Instance template="StartAnimation" name="StartAnimation" style="flex-grow: 1; display: none;" />
     <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>

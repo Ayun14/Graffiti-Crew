@@ -4,6 +4,7 @@
     padding-right: 50px;
     padding-bottom: 50px;
     padding-left: 50px;
+    justify-content: flex-end;
 }
 
 .dialog-box-top-content {
@@ -16,8 +17,9 @@
 .dialog-box-bottom-content {
     align-items: center;
     justify-content: center;
-    height: 36%;
+    height: 40%;
     width: 100%;
+    position: relative;
 }
 
 .name-box {
@@ -25,9 +27,6 @@
     flex-grow: 1;
     background-color: rgb(175, 255, 208);
     height: 95px;
-    position: absolute;
-    top: -17%;
-    left: 16%;
 }
 
 .text-box {
@@ -52,4 +51,7 @@
     padding-right: 55px;
     padding-bottom: 85px;
     padding-left: 67px;
+}
+
+.hide-dialoge {
 }

@@ -5,5 +5,7 @@ namespace AH.UI.Events {
     public class DialougeEvent : MonoBehaviour {
         public static Action<bool> ShowDialougeViewEvent;
         public static Action<bool> ShowMiniDialougeViewEvent;
+
+        public static Action ChangeOpponentEvent;
     }
 }

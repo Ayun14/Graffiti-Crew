@@ -1,10 +1,11 @@
+using AH.UI;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReaderSO", menuName = "SO/InputReaderSO")]
 public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
-    public event Action OnCancleEvent;
+    public event Action<AfterExecution> OnCancleEvent;
 
     private InputActions _inputAction;
     private void Awake() {
@@ -21,7 +22,7 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
     }
     public void OnCancel(InputAction.CallbackContext context) { // esc누르면 호출
         if (context.performed) {
-            OnCancleEvent?.Invoke();
+            OnCancleEvent?.Invoke(null);
         }
     }
     #region Hide

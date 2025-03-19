@@ -11,8 +11,6 @@ namespace AH.UI.Views {
         private FightViewModel ViewModel;
 
         private VisualElement _resultPanel;
-        private VisualElement _playerScreen;
-        private VisualElement _rivalScreen;
 
         private Button _retryBtn;
         private Button _exitBtn;
@@ -34,8 +32,6 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _resultPanel = topElement.Q<VisualElement>("result-container");
-            _playerScreen = topElement.Q<VisualElement>("player-screen");
-            _rivalScreen = topElement.Q<VisualElement>("rival-screen");
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -53,6 +49,8 @@ namespace AH.UI.Views {
                 SetPlayerResultView();
             }
             else {
+                var buttonBorder = topElement.Q<VisualElement>("button-border");
+                buttonBorder.RemoveFromClassList("hide-button-border");
                 SetRivalResultView();
             }
         }
@@ -68,7 +66,6 @@ namespace AH.UI.Views {
             _retryBtn = buttonBorder.Q<Button>("retry-btn");
             _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-            buttonBorder.RemoveFromClassList("hide-button-border");
         }
         private void ClickRetryBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
