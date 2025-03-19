@@ -17,7 +17,6 @@ public class GraffitiParticle : MonoBehaviour, IPoolable
 
     private void OnDisable()
     {
-        Debug.Log("Push Graffiti Particle");
         _pool.Push(this);
     }
 }
