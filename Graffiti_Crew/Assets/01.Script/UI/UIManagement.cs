@@ -5,17 +5,21 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine;
+using System;
 
 namespace AH.UI {
-public class ViewData {
-    public UIView View { get; }
-    public bool Hide { get; }
+    public class ViewData {
+        public UIView View { get; }
+        public bool Hide { get; }
 
-    public ViewData(UIView view, bool hide) {
-        View = view;
-        Hide = hide;
+        public ViewData(UIView view, bool hide) {
+            View = view;
+            Hide = hide;
+        }
     }
-    }
+
+    public delegate void AfterExecution();
+
     public class UIManagement : MonoBehaviour {
         protected UIDocument _uiDocument;
         protected Stack<ViewData> _viewStack = new Stack<ViewData>();
@@ -52,7 +56,7 @@ public class ViewData {
         } 
         #endregion
 
-        protected void ShowPreviewEvent() {
+        protected virtual void ShowPreviewEvent(AfterExecution evtFunction = null) {
             if (_viewStack.Count > 0) {
                 var viewData = _viewStack.Peek();
                 if (viewData != null && !viewData.Hide) {
@@ -62,11 +66,14 @@ public class ViewData {
             }
             else if (_viewStack.Count == 0) {
                 _viewStack.Clear();
-                UIEvents.CloseComputerEvnet?.Invoke();
-                SceneManager.LoadScene("HangOutScene"); // 이거 변경해야해 코드를 받아서 실행하거나 하는 식으로 
+
+                if (evtFunction != null) {
+                    evtFunction();
+                }
+                
             }
         }
-        protected void ShowView(UIView newView, bool offPreview = false, bool hide = false) { // hide : esc로 안꺼짐
+        protected virtual void ShowView(UIView newView, bool offPreview = false, bool hide = false) { // hide : esc로 안꺼짐
             if (offPreview) { // 이전뷰 끄기
                 ShowPreviewEvent();
             }
@@ -78,7 +85,7 @@ public class ViewData {
                 }
             }
         }
-        protected void HidwView() {
+        protected virtual void HideView() {
             var viewData = _viewStack.Peek();
             if (viewData != null && !viewData.Hide) {
                 viewData.View.Hide();

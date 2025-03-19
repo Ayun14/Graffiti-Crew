@@ -1,12 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: flex-end; flex-direction: row;">
-        <engine:VisualElement name="rival-screen" class="rival-screen">
-            <engine:VisualElement name="button-border" class="button-border hide-button-border" style="background-color: rgb(255, 255, 255);">
-                <engine:Button text="나가기" name="exit-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
-                <engine:Button text="다시하기" name="retry-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
-            </engine:VisualElement>
+    <engine:VisualElement name="screen" style="flex-grow: 1; height: 100%; justify-content: flex-end;">
+        <engine:VisualElement name="button-border" class="button-border hide-button-border">
+            <engine:Button text="나가기" name="exit-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
+            <engine:Button text="다시하기" name="retry-btn" class="grow-size-50" style="flex-grow: 0; width: 417px;" />
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="result-container" class="result-container">

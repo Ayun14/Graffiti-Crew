@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -23,7 +24,7 @@ namespace AH.UI {
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
-            ComputerEvent.HideViewEvent += HidwView;
+            ComputerEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
@@ -31,7 +32,7 @@ namespace AH.UI {
             ComputerEvent.ShowSelectStageViewEvent -= ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
-            ComputerEvent.HideViewEvent -= HidwView;
+            ComputerEvent.HideViewEvent -= HideView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
 
@@ -54,7 +55,16 @@ namespace AH.UI {
 
             _computerView.Show();
         }
-        
+
+        protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
+            evtFunction += EventFunction;
+            base.ShowPreviewEvent(evtFunction);
+        }
+        private void EventFunction() {
+            UIEvents.CloseComputerEvnet?.Invoke();
+            SceneManager.LoadScene("HangOutScene"); // 이거 변경해야해 코드를 받아서 실행하거나 하는 식으로 
+        }
+
         private void ShowStoreView() {
             ShowView(_storeView);
         }

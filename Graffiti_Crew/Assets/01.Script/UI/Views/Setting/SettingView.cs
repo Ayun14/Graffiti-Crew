@@ -19,8 +19,9 @@ namespace AH.UI.Views {
         private Slider _bgmSlider;
         private Slider _vfxSlider;
         private DropdownField _languageField;
-        private Button _resetSaveData;
+        //private Button _resetSaveData;
         private LanguageType _lauguageType;
+        private Button _closeBtn;
 
         private int bgmValue;
         private int vfxValue;
@@ -50,7 +51,7 @@ namespace AH.UI.Views {
             _bgmSlider = topElement.Q<Slider>("bgm-slider");
             _vfxSlider = topElement.Q<Slider>("vfx-slider");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
-            _resetSaveData = topElement.Q<Button>("reset-saveData");
+            _closeBtn = topElement.Q<Button>("close-btn");
             SetLanguageItems(false);
         }
         protected override void RegisterButtonCallbacks() {
@@ -58,18 +59,22 @@ namespace AH.UI.Views {
             _bgmSlider.RegisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
-            _resetSaveData.RegisterCallback<ClickEvent>(ClickResetSaveData);
+            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             _bgmSlider.UnregisterValueChangedCallback(ChangeBgmValue);
             _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
+            _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
         public override void Show() {
             SetSound();
             base.Show();
+        }
+        private void ClickCloseBtn(ClickEvent evt) {
+            HangOutEvent.HideViewEvent?.Invoke();
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {

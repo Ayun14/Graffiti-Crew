@@ -11,8 +11,6 @@ namespace AH.UI.Views {
         private FightViewModel ViewModel;
 
         private VisualElement _resultPanel;
-        private VisualElement _playerScreen;
-        private VisualElement _rivalScreen;
 
         private Button _retryBtn;
         private Button _exitBtn;
@@ -34,8 +32,6 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _resultPanel = topElement.Q<VisualElement>("result-container");
-            _playerScreen = topElement.Q<VisualElement>("player-screen");
-            _rivalScreen = topElement.Q<VisualElement>("rival-screen");
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -54,8 +50,7 @@ namespace AH.UI.Views {
             }
             else {
                 var buttonBorder = topElement.Q<VisualElement>("button-border");
-                Debug.Log("remove");
-                buttonBorder.AddToClassList("hide-button-border");
+                buttonBorder.RemoveFromClassList("hide-button-border");
                 SetRivalResultView();
             }
         }
