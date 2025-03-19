@@ -1,7 +1,4 @@
-namespace SmallHedge.SoundManager
+public enum SoundType
 {
-    public enum SoundType
-    {
-        //Put sound names in here
-    }
+    //Put sound names in here
 }

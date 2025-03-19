@@ -64,7 +64,16 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         {
             _isFight = mySubject.GameState == GameState.Fight;
 
-            if (mySubject.GameState == GameState.Finish)
+            if (mySubject.GameState == GameState.Timeline)
+            {
+                Debug.Log("애니메이션 해야대");
+                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Ready);
+            }
+            else if (mySubject.GameState == GameState.Fight)
+            {
+                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Paint);
+            }
+            else if (mySubject.GameState == GameState.Finish)
             {
                 SetGraffiti(null);
                 _rival.position = _resultTrm.position;
