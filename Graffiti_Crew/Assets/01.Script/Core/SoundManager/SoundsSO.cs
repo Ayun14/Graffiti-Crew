@@ -1,10 +1,7 @@
 using UnityEngine;
 
-namespace SmallHedge.SoundManager
+[CreateAssetMenu(menuName = "SO/SoundSO")]
+public class SoundsSO : ScriptableObject
 {
-    [CreateAssetMenu(menuName = "SO/SoundSO")]
-    public class SoundsSO : ScriptableObject
-    {
-        public SoundList[] sounds;
-    }
+    public SoundList[] sounds;
 }

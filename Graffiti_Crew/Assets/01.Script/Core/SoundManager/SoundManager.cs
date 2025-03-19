@@ -1,52 +1,49 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace SmallHedge.SoundManager
+public class SoundManager : MonoSingleton<SoundManager>
 {
-    [RequireComponent(typeof(AudioSource))]
-    public class SoundManager : MonoBehaviour
-    {
-        [SerializeField] private SoundsSO SO;
-        private static SoundManager instance = null;
-        private AudioSource audioSource;
+    [SerializeField] private SoundsSO _soundsSO;
+    [SerializeField] private PoolManagerSO _poolManager;
+    [SerializeField] private PoolTypeSO _soundObjectTypeSO;
 
-        private void Awake()
+    public void PlaySound(SoundType sound, bool loop = false, float volume = 1)
+    {
+        SoundList soundList = _soundsSO.sounds[(int)sound];
+        AudioClip[] clips = soundList.sounds;
+        AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+
+        IPoolable poolable = _poolManager.Pop(_soundObjectTypeSO);
+        AudioSource source = poolable.GameObject.GetComponent<AudioSource>();
+        if (source)
         {
-            if (!instance)
-            {
-                instance = this;
-                audioSource = GetComponent<AudioSource>();
-            }
+            source.outputAudioMixerGroup = soundList.mixer;
+            source.clip = randomClip;
+            source.volume = volume * soundList.volume;
+            source.loop = loop;
+            source.Play();
         }
 
-        public static void PlaySound(SoundType sound, AudioSource source = null, float volume = 1)
+        if (!loop)
         {
-            SoundList soundList = instance.SO.sounds[(int)sound];
-            AudioClip[] clips = soundList.sounds;
-            AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-
-            if (source)
-            {
-                source.outputAudioMixerGroup = soundList.mixer;
-                source.clip = randomClip;
-                source.volume = volume * soundList.volume;
-                source.Play();
-            }
-            else
-            {
-                instance.audioSource.outputAudioMixerGroup = soundList.mixer;
-                instance.audioSource.PlayOneShot(randomClip, volume * soundList.volume);
-            }
+            StartCoroutine(ReturnToPool(poolable, randomClip.length));
         }
     }
 
-    [Serializable]
-    public struct SoundList
+    private IEnumerator ReturnToPool(IPoolable poolable, float delay)
     {
-        [HideInInspector] public string name;
-        [Range(0, 1)] public float volume;
-        public AudioMixerGroup mixer;
-        public AudioClip[] sounds;
+        yield return new WaitForSeconds(delay);
+        poolable.GameObject.GetComponent<SoundObject>().PushObject();
     }
+}
+
+[Serializable]
+public struct SoundList
+{
+    [HideInInspector] public string name;
+    [Range(0, 1)] public float volume;
+    public AudioMixerGroup mixer;
+    public AudioClip[] sounds;
 }
