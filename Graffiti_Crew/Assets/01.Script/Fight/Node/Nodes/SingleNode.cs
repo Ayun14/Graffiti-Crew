@@ -48,6 +48,9 @@ public class SingleNode : Node, INodeAction
         // Combo
         judgement.NodeSuccess(this);
 
+        // Particle
+        PopGraffitiParticle(transform.position);
+
         SetAlpha(0f);
 
         judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
