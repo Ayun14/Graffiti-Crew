@@ -42,6 +42,9 @@ public abstract class Node : MonoBehaviour, IPoolable
         poolable.GameObject.transform.position = spawnPos;
         if (poolable.GameObject.transform.TryGetComponent(out GraffitiParticle graffitiParticle))
             graffitiParticle.ParticlePlay();
+
+        // Sound
+        //SoundManager.Instance.PlaySound(SoundType.Spray);
     }
 
     #region Pool
