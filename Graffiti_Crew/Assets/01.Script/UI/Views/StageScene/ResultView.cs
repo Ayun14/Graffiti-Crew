@@ -55,7 +55,7 @@ namespace AH.UI.Views {
             else {
                 var buttonBorder = topElement.Q<VisualElement>("button-border");
                 Debug.Log("remove");
-                buttonBorder.RemoveFromClassList("hide-button-border");
+                buttonBorder.AddToClassList("hide-button-border");
                 SetRivalResultView();
             }
         }
