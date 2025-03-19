@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visual
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54ba2f56bd7fdb242abc390cf368aefc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4320098735860348617, guid: 54ba2f56bd7fdb242abc390cf368aefc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -282,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 26114948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.029}
+  m_LocalPosition: {x: 0, y: 0, z: 0.864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1995,6 +1999,51 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &911981469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911981471}
+  - component: {fileID: 911981470}
+  m_Layer: 0
+  m_Name: PoolSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &911981470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911981469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa53e2e898d85f4d994606cacd492e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
+--- !u!4 &911981471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911981469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &917054981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,7 +2874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561111b292dcb1045bd65abe8e1c851c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SO: {fileID: 11400000, guid: f51688d468138ec4081ef6edc22f4bc9, type: 2}
+  _soundsSO: {fileID: 11400000, guid: f51688d468138ec4081ef6edc22f4bc9, type: 2}
+  _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
+  _soundObjectTypeSO: {fileID: 11400000, guid: ac6bc7666531c7d459634ea6c97a9b9b, type: 2}
 --- !u!82 &1533042608
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5510,3 +5561,4 @@ SceneRoots:
   - {fileID: 52496374}
   - {fileID: 852669959}
   - {fileID: 1533042609}
+  - {fileID: 911981471}

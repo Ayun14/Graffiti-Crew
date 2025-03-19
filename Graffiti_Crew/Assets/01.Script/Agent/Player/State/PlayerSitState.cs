@@ -37,7 +37,7 @@ public class PlayerSitState : PlayerState
             }
         }
 
-        if(animTime == 1.0f)
+        if(animTime >= 9.9f)
             _player.StateMachine.ChangeState(PlayerStateEnum.SitStay);
     }
 

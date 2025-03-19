@@ -6,6 +6,8 @@ public enum AnimationEnum
     Idle,
     Ready,
     Paint,
+    Win,
+    Lose,
     People_Idle,
     People_Clap
 }

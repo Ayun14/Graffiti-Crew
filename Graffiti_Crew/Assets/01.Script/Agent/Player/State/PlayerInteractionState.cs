@@ -10,6 +10,7 @@ public class PlayerInteractionState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        //SoundManager.Instance.PlaySound(SoundType.Walk, true);
         _player.MovementCompo.StopImmediately(false);
         _player.MovementCompo.SetDestination(_player.NavMeshAgent.destination);
 
