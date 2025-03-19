@@ -138,6 +138,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
+            Debug.Log(isResult);
             StageEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
@@ -306,9 +307,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    public void SetResultUI()
-    {
-        Debug.Log(mySubject.IsPlayerWin);
+    public void SetResultUI() {
         StageEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
     }
 }

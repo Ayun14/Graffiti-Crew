@@ -1,16 +1,18 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement name="start-content" class="start-content" style="transition-duration: 0.5s;">
-        <engine:Label text="Label" name="txt" class="grow-size-300" style="flex-grow: 0;" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <engine:VisualElement name="start-content" class="start-content" style="transition-duration: 0.5s;" />
+    <engine:VisualElement name="countdown-content" class="countdown-content" style="display: none;">
+        <engine:VisualElement name="countdown1" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/countdown1.png?fileID=2800000&amp;guid=94b3165553391ad4a854cd13bc616fca&amp;type=3#countdown1&quot;);" />
+        <engine:VisualElement name="countdown2" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/countdown2.png?fileID=2800000&amp;guid=155f6bc513aff4a499e233905dfb42b0&amp;type=3#countdown2&quot;);" />
+        <engine:VisualElement name="countdown3" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/countdown3.png?fileID=2800000&amp;guid=49f97c0e52b97d94aab996f9e2e658a9&amp;type=3#countdown3&quot;);" />
     </engine:VisualElement>
-    <engine:VisualElement name="countdown-content" class="countdown-content">
-        <engine:VisualElement name="countdown1" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
-        <engine:VisualElement name="countdown2" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
-        <engine:VisualElement name="countdown3" style="width: 200px; height: 200px; background-color: rgb(255, 255, 255); position: absolute;" />
-    </engine:VisualElement>
-    <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row;">
-        <engine:VisualElement name="rival-screen" class="rival-screen" />
-        <engine:VisualElement name="player-screen" class="player-screen" />
+    <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row; display: none;">
+        <engine:VisualElement name="rival-screen" class="rival-screen">
+            <engine:VisualElement class="blur" style="rotate: 180deg;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="player-screen" class="player-screen">
+            <engine:VisualElement class="blur" style="rotate: 0;" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

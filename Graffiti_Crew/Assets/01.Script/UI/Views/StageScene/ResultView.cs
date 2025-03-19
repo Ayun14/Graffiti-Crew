@@ -53,6 +53,9 @@ namespace AH.UI.Views {
                 SetPlayerResultView();
             }
             else {
+                var buttonBorder = topElement.Q<VisualElement>("button-border");
+                Debug.Log("remove");
+                buttonBorder.RemoveFromClassList("hide-button-border");
                 SetRivalResultView();
             }
         }
@@ -68,7 +71,6 @@ namespace AH.UI.Views {
             _retryBtn = buttonBorder.Q<Button>("retry-btn");
             _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-            buttonBorder.RemoveFromClassList("hide-button-border");
         }
         private void ClickRetryBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
