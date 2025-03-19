@@ -30,7 +30,8 @@ public class PlayerInteractionState : PlayerState
                 Quaternion targetRotation;
                 target.y = _player.transform.position.y;
 
-                if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit)
+                if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit
+                    || _player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Computer)
                 {
                     targetRotation = Quaternion.Euler(0, 0, 0);
                 }
@@ -46,7 +47,8 @@ public class PlayerInteractionState : PlayerState
                 );
             }
 
-            if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit)
+            if (_player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Sit
+                || _player.CurrentInteractionObject.stateEnum == PlayerStateEnum.Computer)
             {
                 if(Quaternion.Angle(_player.transform.rotation,Quaternion.Euler(0,0,0)) < 10f)
                     _player.StateMachine.ChangeState(_player.CurrentInteractionObject.stateEnum);
