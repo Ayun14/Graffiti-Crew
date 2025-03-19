@@ -138,7 +138,6 @@ public class FightSceneUIController : Observer<GameStateController>
             _finishPanel.gameObject.SetActive(isFinish);
 
             // Result
-            Debug.Log(isResult);
             StageEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
