@@ -9,7 +9,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private PoolTypeSO _soundObjectTypeSO;
 
-    public void PlaySound(SoundType sound, bool loop = false, float volume = 1)
+    public GameObject PlaySound(SoundType sound, bool loop = false, float volume = 1)
     {
         SoundList soundList = _soundsSO.sounds[(int)sound];
         AudioClip[] clips = soundList.sounds;
@@ -27,9 +27,9 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
 
         if (!loop)
-        {
             StartCoroutine(ReturnToPool(poolable, randomClip.length));
-        }
+
+        return poolable.GameObject;
     }
 
     private IEnumerator ReturnToPool(IPoolable poolable, float delay)
