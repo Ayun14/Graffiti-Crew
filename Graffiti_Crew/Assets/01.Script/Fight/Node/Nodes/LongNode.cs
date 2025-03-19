@@ -204,6 +204,9 @@ public class LongNode : Node, INodeAction
                 // Combo
                 judgement.NodeSuccess(this);
 
+                // Particle
+                PopGraffitiParticle(mouseWorldPosition);
+
                 judgement.AddShakeSliderAmount(-_sprayUseAmount);
                 judgement.AddSpraySliderAmount(-_sprayUseAmount);
 
