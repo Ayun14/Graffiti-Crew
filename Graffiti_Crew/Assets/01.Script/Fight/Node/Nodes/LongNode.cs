@@ -8,8 +8,6 @@ public class LongNode : Node, INodeAction
     [SerializeField] private float _cameraDistance;
     [SerializeField] private float _fadeTime;
 
-    private float _sprayUseAmount;
-
     private LongNodeDataSO _longNodeData;
     private LineRenderer _lineRenderer;
     private LineRenderer _followLineRenderer;
@@ -36,8 +34,6 @@ public class LongNode : Node, INodeAction
 
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
-
-        _sprayUseAmount = (float)_longNodeData.sprayUseAmount / _longNodeData.points;
 
         ResetNode();
         SetAlpha(1f);
@@ -207,8 +203,9 @@ public class LongNode : Node, INodeAction
                 // Particle
                 PopGraffitiParticle(mouseWorldPosition);
 
-                judgement.AddShakeSliderAmount(-(_sprayUseAmount / _longNodeData.points));
-                judgement.AddSpraySliderAmount(-(_sprayUseAmount / _longNodeData.points));
+                // Spray
+                judgement.AddShakeSliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
+                judgement.AddSpraySliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
 
                 // 모든 포인트를 통과하면 클리어 처리
                 if (++_currentTargetIndex >= _pathPoints.Count)
