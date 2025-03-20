@@ -144,10 +144,10 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator FinishRoutine()
     {
-        _finishImage.rectTransform.anchoredPosition = new Vector2(1200, 0);
+        _finishImage.rectTransform.anchoredPosition = new Vector2(1400, 0);
         _finishImage.rectTransform.DOAnchorPosX(0, 1f).SetEase(Ease.InOutBack);
         yield return new WaitForSeconds(3f);
-        _finishImage.rectTransform.DOAnchorPosX(-1200, 1f).SetEase(Ease.InOutBack);
+        _finishImage.rectTransform.DOAnchorPosX(-1400, 1f).SetEase(Ease.InOutBack);
     }
 
     #region Rival Check
