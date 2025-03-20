@@ -1,6 +1,6 @@
 public enum SoundType
 {
-    //SFX
+    // [SFX]
     //FightScene
     Spray_Short,
     Spray_Long,
@@ -20,5 +20,12 @@ public enum SoundType
     Buy,
     Star,
 
-    // BGM
+    // [BGM]
+    Title_Front,
+    Title_Back,
+    Request,
+    Fight_Before,
+    Fight_Middle,
+    Fight_After,
+    HangOut,
 }

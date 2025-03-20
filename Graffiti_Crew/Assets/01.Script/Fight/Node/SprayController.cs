@@ -37,6 +37,10 @@ public class SprayController : MonoBehaviour
     private float _originYValue;
     private float _targetYValue;
     private Tween _jumpTween;
+
+    // Sound Object
+    private SoundObject _shakeSoundObj;
+
     #endregion
 
     private NodeJudgement _judgement;
@@ -93,6 +97,7 @@ public class SprayController : MonoBehaviour
 
         _shakeSliderValueSO.Value += value; 
 
+        // Shaking
         if (_shakeSliderValueSO.Value <= 0f)
         {
             isSprayCanShaking = true;
@@ -102,6 +107,9 @@ public class SprayController : MonoBehaviour
         {
             isSprayCanShaking = false;
             if (_jumpTween != null) _jumpTween.Kill(); // 기존 Tween이 있다면 제거
+
+            // Sound
+            _shakeSoundObj?.PushObject();
         }
     }
 
@@ -112,7 +120,13 @@ public class SprayController : MonoBehaviour
             if (IsShaking())
             {
                 if (!_isShaking)
+                {
                     _isShaking = true;
+
+                    // Sound
+                    _shakeSoundObj = SoundManager.Instance.PlaySound(SoundType.Spray_Shake, true)
+                        .GetComponent<SoundObject>();
+                }
 
                 _idleTimer = 0f;
             }
@@ -153,6 +167,9 @@ public class SprayController : MonoBehaviour
         _idleTimer = 0f;
         _shakeCount = 0;
         _isShaking = false;
+
+        // Sound
+        _shakeSoundObj?.PushObject();
 
         _currentDelayTime = Time.time + _shakeDelayTime;
     }

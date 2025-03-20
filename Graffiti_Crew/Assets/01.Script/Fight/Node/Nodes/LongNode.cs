@@ -17,6 +17,9 @@ public class LongNode : Node, INodeAction
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
+    // Sound
+    private SoundObject _sprayLongSoundObj;
+
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -162,6 +165,10 @@ public class LongNode : Node, INodeAction
         _isFollowingPath = true;
         _followLineRenderer.enabled = true;
         _currentTargetIndex = 0;
+
+        // Sound
+        _sprayLongSoundObj = SoundManager.Instance.PlaySound(SoundType.Spray_Long, true)
+            .GetComponent<SoundObject>();
     }
 
     #region Clear Check
@@ -174,6 +181,9 @@ public class LongNode : Node, INodeAction
             {
                 // 노드 실패 (중도 포기 실패)
                 judgement.NodeFalse(this);
+
+                // Sound
+                _sprayLongSoundObj?.PushObject();
             }
 
             ResetNode();
@@ -228,6 +238,9 @@ public class LongNode : Node, INodeAction
         _isFollowingPath = false;
         _followLineRenderer.enabled = false;
         _currentTargetIndex = 0;
+
+        // Sound
+        _sprayLongSoundObj?.PushObject();
     }
 
     #endregion
@@ -247,6 +260,9 @@ public class LongNode : Node, INodeAction
 
         _isFollowingPath = false;
         SetAlpha(0f);
+
+        // Sound
+        _sprayLongSoundObj?.PushObject();
     }
 
     #region Do Fade
