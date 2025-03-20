@@ -51,10 +51,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         Init();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         NodeClickInput();
@@ -207,8 +203,16 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         if (node.GetNodeType() == NodeType.LongNode)
         {
             if (!mySubject.IsBlind && Random.Range(0, 100f) < 30)
+            {
                 mySubject?.InvokeBlindEvent();
+
+                // Sound
+                SoundManager.Instance.PlaySound(SoundType.Throw_Egg);
+            }
         }
+
+        // Sound
+        SoundManager.Instance.PlaySound(SoundType.Spray_Miss);
 
         mySubject.InvokeNodeFailEvent();
 
