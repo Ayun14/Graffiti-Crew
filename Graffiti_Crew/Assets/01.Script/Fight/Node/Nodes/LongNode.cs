@@ -207,8 +207,8 @@ public class LongNode : Node, INodeAction
                 // Particle
                 PopGraffitiParticle(mouseWorldPosition);
 
-                judgement.AddShakeSliderAmount(-_sprayUseAmount);
-                judgement.AddSpraySliderAmount(-_sprayUseAmount);
+                judgement.AddShakeSliderAmount(-(_sprayUseAmount / _longNodeData.points));
+                judgement.AddSpraySliderAmount(-(_sprayUseAmount / _longNodeData.points));
 
                 // 모든 포인트를 통과하면 클리어 처리
                 if (++_currentTargetIndex >= _pathPoints.Count)
