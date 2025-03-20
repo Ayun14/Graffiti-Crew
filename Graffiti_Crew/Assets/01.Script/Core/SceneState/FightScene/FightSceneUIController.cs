@@ -11,6 +11,7 @@ public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Other Panel")]
     [SerializeField] private Image _comboPanel;
+    [SerializeField] private Image _sprayPanel;
 
     [Header("Cursor")]
     [SerializeField] private Texture2D _cursorTex;
@@ -123,6 +124,7 @@ public class FightSceneUIController : Observer<GameStateController>
             // Fight
             StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
+            _sprayPanel.gameObject.SetActive(isFight);
             _failFeedbackPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)

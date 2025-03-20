@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +7,12 @@ public class SprayController : MonoBehaviour
 {
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
-    public bool isMustShakeSpray => _shakeSliderValueSO.Value <= 0f;
+    public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
+    private bool isSprayCanShaking = false;
 
     [Header("Spray")]
     private Slider _spraySlider; // 곧 없앨거
+    private RectTransform _spraySliderTrm; // 곧 없앨거
     [SerializeField] private SliderValueSO _spraySliderValueSO;
     public bool isSprayNone => _spraySliderValueSO.Value <= 0f;
     [SerializeField] private float _sprayAddAmount;
@@ -28,7 +31,12 @@ public class SprayController : MonoBehaviour
     private Vector3 _previousMousePos; // 이전 마우스 위치
 
     private float _currentDelayTime = 0;
-    private float _shakeDelayTime = 1f;
+    private float _shakeDelayTime = 0.4f;
+
+    // Spray UI Animation
+    private float _originYValue;
+    private float _targetYValue;
+    private Tween _jumpTween;
     #endregion
 
     private NodeJudgement _judgement;
@@ -49,12 +57,18 @@ public class SprayController : MonoBehaviour
 
     private void Awake()
     {
-        _spraySlider = transform.Find("Panel_Spray").GetComponentInChildren<Slider>();
+        // Spray UI
+        Transform sprayPanelTrm = transform.Find("Panel_Spray");
+        _spraySlider = sprayPanelTrm.GetComponentInChildren<Slider>();
+        _spraySliderTrm = sprayPanelTrm.Find("Slider_Spray").GetComponent<RectTransform>();
+        _originYValue = _spraySliderTrm.anchoredPosition.y;
+        _targetYValue = _originYValue + 17f;
     }
 
     private void Update()
     {
-        ShakeSpray();
+        // shake 게이지 다 달았을 때만 흔들어야 한다고 표시
+        if (isSprayCanShaking) ShakeSpray();
     }
 
     #region Shake
@@ -77,9 +91,18 @@ public class SprayController : MonoBehaviour
     {
         if (_shakeSliderValueSO == null) return;
 
-        float targetValue = _shakeSliderValueSO.Value + value;
-        DOTween.To(() => _shakeSliderValueSO.Value,
-            x => _shakeSliderValueSO.Value = x, targetValue, 0.5f);
+        _shakeSliderValueSO.Value += value; 
+
+        if (_shakeSliderValueSO.Value <= 0f)
+        {
+            isSprayCanShaking = true;
+            SprayUIAnimation();
+        }
+        else if (_shakeSliderValueSO.Value >= _shakeSliderValueSO.max)
+        {
+            isSprayCanShaking = false;
+            if (_jumpTween != null) _jumpTween.Kill(); // 기존 Tween이 있다면 제거
+        }
     }
 
     private void ShakeInput()
@@ -132,6 +155,15 @@ public class SprayController : MonoBehaviour
         _isShaking = false;
 
         _currentDelayTime = Time.time + _shakeDelayTime;
+    }
+
+    private void SprayUIAnimation()
+    {
+        if (_jumpTween != null) _jumpTween.Kill(); // 기존 Tween이 있다면 제거
+
+        _jumpTween = _spraySliderTrm.DOAnchorPosY(_targetYValue, 0.3f)
+            .SetEase(Ease.InQuart)
+            .SetLoops(-1, LoopType.Yoyo); // 무한 반복 (Yoyo는 위아래 반복)
     }
 
     #endregion
