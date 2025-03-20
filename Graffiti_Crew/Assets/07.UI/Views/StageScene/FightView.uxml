@@ -1,5 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/StageScene/FightView_USS.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/StageScene/FightView_USS.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3#FightView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <engine:VisualElement name="m-container" picking-mode="Ignore" class="fight-m-container">
         <engine:VisualElement name="top-container" style="flex-basis: 20%; flex-direction: row;">
@@ -34,7 +34,7 @@
                         <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
-                <engine:ProgressBar name="spray-total-amount-progress" value="32.5" low-value="0.02" class="spray-progress" style="translate: 36% -126%;">
+                <engine:ProgressBar name="spray-total-amount-progress" value="32.5" low-value="0.02" class="spray-progress" style="translate: 36% -126%; display: none;">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=5eedf69875bf0844d9d80327b6183294&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
