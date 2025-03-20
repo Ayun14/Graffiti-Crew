@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SprayController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SprayController : MonoBehaviour
     public bool isMustShakeSpray => _shakeSliderValueSO.Value <= 0f;
 
     [Header("Spray")]
+    private Slider _spraySlider; // ╟П ╬Ь╬ы╟е
     [SerializeField] private SliderValueSO _spraySliderValueSO;
     public bool isSprayNone => _spraySliderValueSO.Value <= 0f;
     [SerializeField] private float _sprayAddAmount;
@@ -36,12 +38,18 @@ public class SprayController : MonoBehaviour
         _judgement = judgement;
 
         // Spray
+        _spraySlider.value = 1f;
         _spraySliderValueSO.Value = _spraySliderValueSO.max;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
 
         ResetShakeDetection();
+    }
+
+    private void Awake()
+    {
+        _spraySlider = transform.Find("Panel_Spray").GetComponentInChildren<Slider>();
     }
 
     private void Update()
@@ -71,10 +79,7 @@ public class SprayController : MonoBehaviour
 
         float targetValue = _shakeSliderValueSO.Value + value;
         DOTween.To(() => _shakeSliderValueSO.Value,
-            x => _shakeSliderValueSO.Value = x, targetValue, 0.5f)
-            .OnComplete(() =>
-            {
-            });
+            x => _shakeSliderValueSO.Value = x, targetValue, 0.5f);
     }
 
     private void ShakeInput()
@@ -141,8 +146,11 @@ public class SprayController : MonoBehaviour
         DOTween.To(() => _spraySliderValueSO.Value,
             x => _spraySliderValueSO.Value = x, targetValue, 0.5f);
 
+        // ╬Ь╬ж╬ъ го╢б╟е
+        _spraySlider.value += value / _spraySliderValueSO.max;
+
         // Spray Empty
-        if (targetValue <= 0f)
+        if (_spraySlider.value <= 0f) // targetValue <= 0f
             _judgement.SprayEmptyEvent();
     }
 
