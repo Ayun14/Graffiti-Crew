@@ -8,19 +8,17 @@
 }
 
 .spray-progress {
-    width: 600px;
-    height: 50px;
+    width: 250px;
+    height: 70px;
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
-    transform-origin: right bottom;
     rotate: -90deg;
-    translate: 0 -1205%;
 }
 
 .spray-progress > #unity-progress-bar > .unity-progress-bar__background {
-    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray_background.png?fileID=21300000&guid=402cd6f0fb5b5914d8d94a8db54ca271&type=3#spray_background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray-background.png?fileID=21300000&guid=7944ecb86dd482a4c902f59a5e2c9a2d&type=3#spray-background");
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -29,17 +27,28 @@
 }
 
 #spray-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray_total_amount.png?fileID=21300000&guid=da88c2803c7d00745a99f9749808a24d&type=3#spray_total_amount");
+    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray-fill.png?fileID=21300000&guid=22a80a59d42aff140b169d194e5ba4c0&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
-    top: -10%;
-    bottom: -10%;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    scale: 0.94 1;
+    translate: -3% 0;
+    -unity-background-image-tint-color: rgb(238, 255, 150);
 }
 
 #spray-total-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray_amount.png?fileID=21300000&guid=75fbd69610f13cd409eb4dfb97281543&type=3#spray_amount");
+    background-image: url("project://database/Assets/02.Sprite/UI/Slider/Spray/spray-fill.png?fileID=21300000&guid=22a80a59d42aff140b169d194e5ba4c0&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
     top: -10%;
     bottom: -10%;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    translate: -8% 0;
+    scale: 0.9 1;
 }
 
 .graffiti-progress {
