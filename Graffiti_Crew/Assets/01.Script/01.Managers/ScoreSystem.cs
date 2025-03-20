@@ -17,7 +17,7 @@ public class ScoreSystem : MonoBehaviour {
         //int failCount = stageData.stageResult.nodeFalseCnt;
 
         //double score = ((time * 1.3) + combo - (failCount * 2)) * starCount;
-        double score = 200 * starCount; // 여기 값 스테이지 별로 다르게 받아야해
-        Debug.Log(score);
+        int coin = 200 * starCount; // 여기 값 스테이지 별로 다르게 받아야해
+        CoinSystem.AddCoin(coin);
     }
 }

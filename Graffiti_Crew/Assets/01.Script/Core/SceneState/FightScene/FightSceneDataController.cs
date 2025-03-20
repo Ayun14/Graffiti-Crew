@@ -26,10 +26,10 @@ public class FightSceneDataController : DataController
                 {
                     stageData.stageResult.drawingTime = (int)_currentDrawingTime;
                     int star = stageData.stageResult.CalculationStar(stageData.minCombo, stageData.maxNodeFalse, stageData.maxDrawingTime);
-                    GameEvents.SendGameResultEvent?.Invoke(stageData);
                     Debug.Log("star : " + star);
                     if (star > stageData.stageSaveData.star)
                         stageData.stageSaveData.star = star;
+                    GameEvents.SendGameResultEvent?.Invoke(stageData);
                 }
 
                 if (mySubject.GameState == GameState.Result)

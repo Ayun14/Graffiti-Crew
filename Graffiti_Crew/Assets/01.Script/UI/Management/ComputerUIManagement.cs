@@ -62,6 +62,7 @@ namespace AH.UI {
         }
         private void EventFunction() {
             UIEvents.CloseComputerEvnet?.Invoke();
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("HangOutScene"); // 이거 변경해야해 코드를 받아서 실행하거나 하는 식으로 
         }
 
