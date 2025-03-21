@@ -12,11 +12,21 @@ public class GameManager : MonoBehaviour {
     private SlotSO[] slots;
     public IntSaveDataSO slotIndex;
 
+    #region Systems
+
+    public SoundManager SoundSystemCompo { get; private set; }
+    public LanguageSystem LanguageSystemCompo { get; private set; }
+
+    #endregion
+
     private void Awake() {
         if(instance == null) {
             instance = this;
             DontDestroyOnLoad(this);
         }
+
+        SoundSystemCompo = GetComponentInChildren<SoundManager>();
+        LanguageSystemCompo = GetComponentInChildren<LanguageSystem>();
     }
     private void OnEnable() {
         UIEvents.ChangeSlotEvent += ChangeSlot;
