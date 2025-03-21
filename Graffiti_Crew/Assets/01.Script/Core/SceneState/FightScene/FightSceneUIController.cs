@@ -1,9 +1,8 @@
 using AH.UI.Events;
 using DG.Tweening;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -47,6 +46,14 @@ public class FightSceneUIController : Observer<GameStateController>
     // Loding
     private Image _lodingPanel;
 
+    // Rival Check
+    private Vector2 _startPos, _endPos, _middlePos;
+    private Image _rivalCheckPanel;
+    private Image _backgroundImage;
+    private Image _blueLineImage;
+    private Image _rivalImage; // y가 97더 낮게 위치해 있음.
+    private Image _whiteLineImage;
+
     // Finish
     private Image _finishPanel;
     private Image _finishImage;
@@ -80,6 +87,16 @@ public class FightSceneUIController : Observer<GameStateController>
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishImage = _finishPanel.transform.Find("Image_Finish").GetComponent<Image>();
+
+        // Rival Check
+        _rivalCheckPanel = canvas.Find("Panel_RivalCheck").GetComponent<Image>();
+        _backgroundImage = _rivalCheckPanel.transform.Find("Image_Background").GetComponent<Image>();
+        _blueLineImage = _rivalCheckPanel.transform.Find("Image_BlueLine").GetComponent<Image>();
+        _rivalImage = _rivalCheckPanel.transform.Find("Image_Rival").GetComponent<Image>();
+        _whiteLineImage = _rivalCheckPanel.transform.Find("Image_WhiteLine").GetComponent<Image>();
+        _startPos = _rivalCheckPanel.transform.Find("StartPos").GetComponent<RectTransform>().anchoredPosition;
+        _middlePos = _rivalCheckPanel.transform.Find("MiddlePos").GetComponent<RectTransform>().anchoredPosition;
+        _endPos = _rivalCheckPanel.transform.Find("EndPos").GetComponent<RectTransform>().anchoredPosition;
     }
 
     private void OnDestroy()
@@ -126,6 +143,7 @@ public class FightSceneUIController : Observer<GameStateController>
             _comboPanel.gameObject.SetActive(isFight);
             _sprayPanel.gameObject.SetActive(isFight);
             _failFeedbackPanel.gameObject.SetActive(isFight);
+            _rivalCheckPanel.gameObject.SetActive(isFight);
 
             if (isFinish && isBlind)
             {
@@ -157,6 +175,41 @@ public class FightSceneUIController : Observer<GameStateController>
     private void RivalCheckEventHandle()
     {
         // 라이벌 견제
+        StartCoroutine(RivalCheckRoutine());
+    }
+
+    private IEnumerator RivalCheckRoutine()
+    {
+        // In
+        ImageMove(_backgroundImage, _startPos, _middlePos, 0.5f);
+        ImageMove(_rivalImage, new Vector2(_startPos.x, _startPos.y - 97f),
+            new Vector2(_middlePos.x, _middlePos.y - 97f), 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        ImageMove(_blueLineImage, _startPos, _middlePos, 0.4f);
+        yield return new WaitForSeconds(0.1f);
+        ImageMove(_whiteLineImage, _startPos, _middlePos, 0.3f);
+
+        // Wait
+        yield return new WaitForSeconds(2f);
+
+        // Out
+        ImageMove(_backgroundImage, _startPos, _endPos, 0.5f);
+        ImageMove(_rivalImage, new Vector2(_startPos.x, _startPos.y - 97f),
+            new Vector2(_endPos.x, _endPos.y - 97f), 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        ImageMove(_whiteLineImage, _startPos, _endPos, 0.4f);
+        yield return new WaitForSeconds(0.1f);
+        ImageMove(_blueLineImage, _startPos, _endPos, 0.3f);
+    }
+
+    private void ImageMove(Image image, Vector2 startPos, Vector2 endPos, float time, Action callback = null)
+    {
+        image.rectTransform.anchoredPosition = startPos;
+        image.rectTransform.DOAnchorPos(endPos, time)
+            .OnComplete(() =>
+            {
+                callback?.Invoke();
+            });
     }
 
     #endregion
@@ -308,7 +361,8 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    public void SetResultUI() {
+    public void SetResultUI()
+    {
         StageEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
     }
 }

@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;

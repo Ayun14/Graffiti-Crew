@@ -44,7 +44,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
 
         _isFight = false;
         _isCompleteRivalCheck = false;
-        _rivalCheckPercent = Random.Range(45, 70);
+        _rivalCheckPercent = Random.Range(60, 80);
         _currentTime = 0;
     }
 
