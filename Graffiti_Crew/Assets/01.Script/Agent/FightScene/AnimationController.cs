@@ -14,6 +14,8 @@ public enum AnimationEnum
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField] private AnimationEnum _defalutAnimation;
+
     private Animator _animator;
     private AnimationEnum _currentAnim;
     public int ObjectID;
@@ -21,6 +23,7 @@ public class AnimationController : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _currentAnim = _defalutAnimation;
     }
 
     private void Start()

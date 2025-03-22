@@ -123,7 +123,7 @@ public class SprayController : MonoBehaviour
                     _isShaking = true;
 
                     // Sound
-                    _shakeSoundObj = SoundManager.Instance.PlaySound(SoundType.Spray_Shake, true)
+                    _shakeSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Shake, true)
                         .GetComponent<SoundObject>();
                 }
 

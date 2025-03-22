@@ -167,7 +167,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        _sprayLongSoundObj = SoundManager.Instance.PlaySound(SoundType.Spray_Long, true)
+        _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true)
             .GetComponent<SoundObject>();
     }
 

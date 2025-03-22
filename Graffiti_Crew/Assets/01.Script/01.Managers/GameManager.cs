@@ -1,11 +1,8 @@
 using AH.SaveSystem;
 using AH.UI.Events;
-using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-    private static GameManager instance;
-
+public class GameManager : MonoSingleton<GameManager> {
     public static SlotSO currentSlot;
 
     private string slotPath = "UI/Setting/Slots/";
@@ -19,11 +16,8 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    private void Awake() {
-        if(instance == null) {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
+    protected override void Awake() {
+        base.Awake();
 
         SoundSystemCompo = GetComponentInChildren<SoundManager>();
         LanguageSystemCompo = GetComponentInChildren<LanguageSystem>();
@@ -35,8 +29,8 @@ public class GameManager : MonoBehaviour {
         UIEvents.ChangeSlotEvent -= ChangeSlot;
     }
     public static void SetSlot() {
-        instance.slots = Resources.LoadAll<SlotSO>(instance.slotPath);
-        currentSlot = instance.slots[instance.slotIndex.data];
+        Instance.slots = Resources.LoadAll<SlotSO>(Instance.slotPath);
+        currentSlot = Instance.slots[Instance.slotIndex.data];
     }
     private void ChangeSlot(SlotSO slot) {
         currentSlot = slot;

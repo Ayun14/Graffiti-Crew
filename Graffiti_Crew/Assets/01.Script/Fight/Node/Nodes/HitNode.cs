@@ -56,7 +56,7 @@ public class HitNode : Node, INodeAction
         PopGraffitiParticle(transform.position);
 
         // Sound
-        SoundManager.Instance.PlaySound(SoundType.Spray_Short);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Short);
 
         SetHitCount();
     }

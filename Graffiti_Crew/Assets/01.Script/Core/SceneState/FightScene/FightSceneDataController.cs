@@ -49,6 +49,10 @@ public class FightSceneDataController : DataController
 
     protected override void FinishGiveData()
     {
+        // Fade
+        PresentationEvents.SetFadeEvent?.Invoke(true);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
+
         // Stage Result SO Reset
         stageData.stageResult.Reset();
 
