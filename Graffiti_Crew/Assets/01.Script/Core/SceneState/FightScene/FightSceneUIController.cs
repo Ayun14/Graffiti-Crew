@@ -181,25 +181,25 @@ public class FightSceneUIController : Observer<GameStateController>
     private IEnumerator RivalCheckRoutine()
     {
         // In
-        ImageMove(_backgroundImage, _startPos, _middlePos, 0.5f);
+        ImageMove(_backgroundImage, _startPos, _middlePos, 0.3f);
         ImageMove(_rivalImage, new Vector2(_startPos.x, _startPos.y - 97f),
-            new Vector2(_middlePos.x, _middlePos.y - 97f), 0.5f);
+            new Vector2(_middlePos.x, _middlePos.y - 97f), 0.3f);
         yield return new WaitForSeconds(0.1f);
-        ImageMove(_blueLineImage, _startPos, _middlePos, 0.4f);
+        ImageMove(_blueLineImage, _startPos, _middlePos, 0.2f);
         yield return new WaitForSeconds(0.1f);
-        ImageMove(_whiteLineImage, _startPos, _middlePos, 0.3f);
+        ImageMove(_whiteLineImage, _startPos, _middlePos, 0.1f);
 
         // Wait
         yield return new WaitForSeconds(2f);
 
         // Out
-        ImageMove(_backgroundImage, _startPos, _endPos, 0.5f);
-        ImageMove(_rivalImage, new Vector2(_startPos.x, _startPos.y - 97f),
-            new Vector2(_endPos.x, _endPos.y - 97f), 0.5f);
+        ImageMove(_backgroundImage, _middlePos, _endPos, 0.4f);
+        ImageMove(_rivalImage, new Vector2(_middlePos.x, _middlePos.y - 97f),
+            new Vector2(_endPos.x, _endPos.y - 97f), 0.4f);
         yield return new WaitForSeconds(0.1f);
-        ImageMove(_whiteLineImage, _startPos, _endPos, 0.4f);
+        ImageMove(_whiteLineImage, _middlePos, _endPos, 0.3f);
         yield return new WaitForSeconds(0.1f);
-        ImageMove(_blueLineImage, _startPos, _endPos, 0.3f);
+        ImageMove(_blueLineImage, _middlePos, _endPos, 0.2f);
     }
 
     private void ImageMove(Image image, Vector2 startPos, Vector2 endPos, float time, Action callback = null)

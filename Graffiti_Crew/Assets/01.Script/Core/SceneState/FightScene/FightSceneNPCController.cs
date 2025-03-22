@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class FightSceneNPCController : Observer<GameStateController>
 {
+    private void Awake()
+    {
+        Attach();
+    }
+
+    private void OnDestroy()
+    {
+        Detach();
+    }
+
     public override void NotifyHandle()
     {
         if (mySubject != null)

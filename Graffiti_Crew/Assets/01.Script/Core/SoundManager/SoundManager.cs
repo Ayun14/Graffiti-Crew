@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,33 +10,35 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private PoolTypeSO _soundObjectTypeSO;
 
-    public GameObject PlaySound(SoundType sound, bool loop = false, float volume = 1)
+    public AudioSource PlaySound(SoundType sound, bool loop = false, float volume = 1)
     {
         SoundList soundList = _soundsSO.sounds[(int)sound];
         AudioClip[] clips = soundList.sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
 
-        IPoolable poolable = _poolManager.Pop(_soundObjectTypeSO);
-        AudioSource source = poolable.GameObject.GetComponent<AudioSource>();
+        AudioSource source = _poolManager.Pop(_soundObjectTypeSO).GameObject.GetComponent<AudioSource>();
         if (source)
         {
             source.outputAudioMixerGroup = soundList.mixer;
             source.clip = randomClip;
-            source.volume = volume * soundList.volume;
+
+            // Volume
+            source.volume = 0;
+            source.DOFade(volume * soundList.volume, 0.2f);
+
             source.loop = loop;
             source.Play();
+            if (!loop) StartCoroutine(ReturnToPool(source, randomClip.length));
         }
 
-        if (!loop)
-            StartCoroutine(ReturnToPool(poolable, randomClip.length));
-
-        return poolable.GameObject;
+        return source;
     }
 
-    private IEnumerator ReturnToPool(IPoolable poolable, float delay)
+    private IEnumerator ReturnToPool(AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);
-        poolable.GameObject.GetComponent<SoundObject>().PushObject();
+        source.DOFade(0, 0.2f)
+            .OnComplete(() => source.gameObject.GetComponent<SoundObject>().PushObject());
     }
 }
 
