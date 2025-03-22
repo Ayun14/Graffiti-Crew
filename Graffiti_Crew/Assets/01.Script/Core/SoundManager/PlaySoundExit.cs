@@ -5,6 +5,6 @@ public class PlaySoundExit : StateMachineBehaviour
     [SerializeField, Range(0, 1)] private float volume = 1;
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        SoundManager.Instance.PlaySound(sound, false, volume);
+        GameManager.Instance.SoundSystemCompo.PlaySound(sound, false, volume);
     }
 }

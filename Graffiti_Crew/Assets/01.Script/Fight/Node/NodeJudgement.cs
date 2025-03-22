@@ -207,12 +207,12 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
                 mySubject?.InvokeBlindEvent();
 
                 // Sound
-                SoundManager.Instance.PlaySound(SoundType.Throw_Egg);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Throw_Egg);
             }
         }
 
         // Sound
-        SoundManager.Instance.PlaySound(SoundType.Spray_Miss);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Miss);
 
         mySubject.InvokeNodeFailEvent();
 

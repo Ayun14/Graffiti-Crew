@@ -22,12 +22,12 @@ public class BGMController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
-                _fightBeforeSoundObj = SoundManager.Instance.PlaySound(SoundType.Fight_Before, true)
+                _fightBeforeSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true)
                     .GetComponent<SoundObject>();
             }
             else if (mySubject.GameState == GameState.Fight)
             {
-                _fightMiddleSoundObj = SoundManager.Instance.PlaySound(SoundType.Fight_Middle, true)
+                _fightMiddleSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true)
                     .GetComponent<SoundObject>();
             }
             else if (mySubject.GameState == GameState.Finish)
@@ -36,7 +36,7 @@ public class BGMController : Observer<GameStateController>
             }
             else if (mySubject.GameState == GameState.Result)
             {
-                _fightAfterSoundObj = SoundManager.Instance.PlaySound(SoundType.Fight_After, true)
+                _fightAfterSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true)
                     .GetComponent<SoundObject>();
             }
         }
