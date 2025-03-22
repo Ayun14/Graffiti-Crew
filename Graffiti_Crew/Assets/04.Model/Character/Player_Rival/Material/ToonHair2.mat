@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonHair1
+  m_Name: ToonHair2
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -131,7 +131,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4e73280d7e0436f4a9818ecb9d044530, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5fdf7dd79e90beb4baeeca92c58d2d80, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
@@ -310,7 +310,7 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
-    - _HighlightColorPower: 1
+    - _HighlightColorPower: 0.4
     - _InvTilingScale: 1
     - _Ior: 1.5
     - _IridescenceMask: 1
@@ -327,7 +327,7 @@ Material:
     - _MCapIntensity: 1
     - _MVCOL: 0
     - _MVWriMas: 40
-    - _MaiColPo: 2
+    - _MaiColPo: 5.5
     - _MaterialID: 1
     - _MaxFadDistance: 2
     - _Metallic: 0
@@ -398,7 +398,7 @@ Material:
     - _OutlineWidth: 0.28
     - _OutlineWidthAffectedByViewDistance: 1
     - _OutlineZPostionInCamera: 0.01
-    - _OverallShadowColorPower: 1
+    - _OverallShadowColorPower: 0.75
     - _PADist: 0
     - _PASize: 0.5
     - _PASmooTrans: 1
@@ -418,7 +418,7 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RecurRen: 0
-    - _ReduSha: 0
+    - _ReduSha: 1.93
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -441,10 +441,10 @@ Material:
     - _SelfLitPower: 50
     - _SelfShadowAffectedByLightShadowStrength: 0
     - _SelfShadowHardness: 1
-    - _SelfShadowRealTimeShadowColorPower: 1
+    - _SelfShadowRealTimeShadowColorPower: 0.94
     - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.93
+    - _SelfShadowThreshold: 0.92
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 0
     - _ShadowTColorPower: 1
@@ -527,7 +527,7 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 2, g: 2, b: 2, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 1.498039, g: 1.498039, b: 1.498039, a: 1}
+    - _HighlightColor: {r: 1.3350785, g: 1.3350785, b: 1.3350785, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
@@ -536,13 +536,13 @@ Material:
     - _ObjectRight: {r: -0.00000071525574, g: -1.0000006, b: 0.0000011920929, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverallShadowColor: {r: 0.4641509, g: 0.4641509, b: 0.4641509, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SSAOColor: {r: 0, g: 0, b: 0, a: 0}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfShadowRealTimeShadowColor: {r: 0.6679245, g: 0.6679245, b: 0.6679245, a: 1}
+    - _SelfShadowRealTimeShadowColor: {r: 0.79622644, g: 0.79622644, b: 0.79622644, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
