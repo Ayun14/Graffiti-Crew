@@ -50,3 +50,19 @@
 
 .hide-dialoge {
 }
+
+.profile {
+    width: 600px;
+    scale: -1 1;
+    overflow: hidden;
+    position: absolute;
+    height: 1000px;
+    opacity: 0;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease-in-out-circ;
+}
+
+.fade-profile {
+    opacity: 1;
+}

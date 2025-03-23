@@ -2,9 +2,7 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
-using AH.UI.Views;
-using System;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -48,10 +46,41 @@ namespace AH.UI {
             _fadeView = root.Q<VisualElement>("fade-view");
 
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
+            _saveSlotField.RegisterCallback<PointerDownEvent>(ClickSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
             _saveSlotField.index = _viewModel.GetSlotIndex();
+
+            StartCoroutine(Routine());
         }
+
+        private void ClickSlot(PointerDownEvent evt) {
+            _saveSlotField.schedule.Execute(() =>
+            {
+                var popup = _saveSlotField.Q<VisualElement>("unity-popup");
+
+                if (popup != null) {
+                    Debug.Log("Dropdown 팝업 감지 성공! 스타일 적용");
+                    popup.style.backgroundColor = Color.white;
+                    popup.style.borderBottomLeftRadius = 5;
+                    popup.style.borderBottomRightRadius = 5;
+                }
+                else {
+                    Debug.LogWarning("Dropdown 팝업을 찾을 수 없음, 다시 시도...");
+                    _saveSlotField.schedule.Execute(() => { /* 다시 체크 */ }).StartingIn(100);
+                }
+            }).StartingIn(100); // 100ms 후에 체크
+        }
+
+        private IEnumerator Routine() {
+            float delayTime = 0.73f;
+            
+            while(true){
+                yield return new WaitForSeconds(delayTime);
+                _startBtn.ToggleInClassList("show-btn");
+            }
+        }
+
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();
             Debug.Log("나가기");

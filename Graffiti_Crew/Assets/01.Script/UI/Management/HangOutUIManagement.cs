@@ -2,15 +2,15 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class HangOutUIManagement : UIManagement {
-        private HangOutViewModel _viewModel;
+        private HangOutViewModel _hangoutViewModel;
+        private DialogViewModel _dialogueViewModel;
 
         private DialougeView _dialougeView;
-        private DialougeView _miniDialougeView;
+        private MiniDialougeView _miniDialougeView;
         private SettingView _settingView;
 
         private VisualElement _fadeView;
@@ -32,16 +32,17 @@ namespace AH.UI {
 
         protected override void Init() {
             base.Init();
-            _viewModel = new HangOutViewModel(_model as HangOutModel);
+            _hangoutViewModel = new HangOutViewModel(_model as HangOutModel);
+            _dialogueViewModel = new DialogViewModel(_model as DialogModel);
         }
 
         protected override void SetupViews() {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
 
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _viewModel);
-            _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+            _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
+            _miniDialougeView = new MiniDialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _hangoutViewModel);
 
             _fadeView = root.Q<VisualElement>("fade-view");
         }

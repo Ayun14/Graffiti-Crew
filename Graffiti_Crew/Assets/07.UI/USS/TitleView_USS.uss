@@ -1,12 +1,39 @@
 .btn {
-    width: 550px;
-    height: 85px;
+    width: 460px;
+    height: 105px;
     flex-grow: 0;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.hide-btn {
+    opacity: 0;
+    transition-duration: 0.7s;
+}
+
+.show-btn {
+    opacity: 1;
+}
+
+#saveSlot-dropdownField > VisualElement {
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 #saveSlot-dropdownField > .unity-base-field__input > PopupTextElement {
     -unity-text-align: upper-center;
-    margin-right: -20px;
+    margin-right: 0;
+}
+
+.unity-base-field > .unity-base-field__input > VisualElement {
+    background-image: none;
+    width: 0;
+    height: 0;
 }

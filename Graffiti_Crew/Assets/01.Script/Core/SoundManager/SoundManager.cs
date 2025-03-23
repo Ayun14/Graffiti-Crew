@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private PoolTypeSO _soundObjectTypeSO;
 
-    public AudioSource PlaySound(SoundType sound, bool loop = false, float volume = 1)
+    public AudioSource PlaySound(SoundType sound, bool loop = false, float pitch = 1, float volume = 1)
     {
         SoundList soundList = _soundsSO.sounds[(int)sound];
         AudioClip[] clips = soundList.sounds;
@@ -21,6 +21,9 @@ public class SoundManager : MonoBehaviour
         {
             source.outputAudioMixerGroup = soundList.mixer;
             source.clip = randomClip;
+
+            // Pitch
+            source.pitch = pitch;
 
             // Volume
             source.volume = 0;

@@ -206,7 +206,7 @@ public class DialogueUIController : MonoBehaviour
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
         if (sprite != null)
-            _dialogueUIData.profil = sprite;
+            _dialogueUIData.SetProfile(sprite);
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);

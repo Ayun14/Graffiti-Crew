@@ -53,6 +53,7 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _blueLineImage;
     private Image _rivalImage; // y가 97더 낮게 위치해 있음.
     private Image _whiteLineImage;
+    private AudioSource _clockSound;
 
     // Finish
     private Image _finishPanel;
@@ -154,8 +155,9 @@ public class FightSceneUIController : Observer<GameStateController>
                 _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            if (isFinish) StartCoroutine(FinishRoutine());
-            _finishPanel.gameObject.SetActive(isFinish);
+            if (isFinish)StartCoroutine(FinishRoutine());
+            _finishPanel.gameObject.SetActive(isFinish); 
+            _clockSound?.GetComponent<SoundObject>().PushObject();
 
             // Result
             StageEvent.ShowResultViewEvent?.Invoke(isResult);
@@ -180,6 +182,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private IEnumerator RivalCheckRoutine()
     {
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.RivalCheck);
+
         // In
         ImageMove(_backgroundImage, _startPos, _middlePos, 0.3f);
         ImageMove(_rivalImage, new Vector2(_startPos.x, _startPos.y - 97f),
@@ -200,6 +205,9 @@ public class FightSceneUIController : Observer<GameStateController>
         ImageMove(_whiteLineImage, _middlePos, _endPos, 0.3f);
         yield return new WaitForSeconds(0.1f);
         ImageMove(_blueLineImage, _middlePos, _endPos, 0.2f);
+
+        // Sound
+        _clockSound = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Clock, true);
     }
 
     private void ImageMove(Image image, Vector2 startPos, Vector2 endPos, float time, Action callback = null)

@@ -6,6 +6,6 @@ namespace AH.UI.Events {
         public static Action<bool> ShowDialougeViewEvent;
         public static Action<bool> ShowMiniDialougeViewEvent;
 
-        public static Action ChangeOpponentEvent;
+        public static Action<Sprite> ChangeOpponentEvent;
     }
 }

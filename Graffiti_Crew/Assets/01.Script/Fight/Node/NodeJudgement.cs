@@ -212,7 +212,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         }
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Miss);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Miss, false, Random.Range(0.8f, 1.2f));
 
         mySubject.InvokeNodeFailEvent();
 

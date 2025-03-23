@@ -23,6 +23,7 @@ namespace AH.UI {
             StageEvent.ShowResultViewEvent += ShowResultView;
             StageEvent.SetActiveStartAnimation += SetActiveAnimationView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            PresentationEvents.SetFadeEvent += SetFade;
             PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
@@ -31,6 +32,7 @@ namespace AH.UI {
             StageEvent.ShowResultViewEvent -= ShowResultView;
             StageEvent.SetActiveStartAnimation -= SetActiveAnimationView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            PresentationEvents.SetFadeEvent -= SetFade;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
         protected override void Init() {
@@ -84,7 +86,17 @@ namespace AH.UI {
                 _fightStartAnimation.Hide();
             }
         }
+        private void SetFade(bool startBlack) {
+            _fadeView.ToggleInClassList("fade-set");
+            if (startBlack) {
+                _fadeView.AddToClassList("fade-out");
+            }
+            else {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+        }
         private void FadeInOut(bool active) {
+            Debug.Log(active);
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");
             }
