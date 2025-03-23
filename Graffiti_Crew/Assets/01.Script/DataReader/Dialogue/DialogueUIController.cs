@@ -208,6 +208,10 @@ public class DialogueUIController : MonoBehaviour
         if (sprite != null)
             _dialogueUIData.SetProfile(sprite);
 
+        //AudioClip sound = Resources.Load<AudioClip>($"Sound/{dialogue.soundName}");
+        //if (sound != null)
+        //    GameManager.Instance.SoundSystemCompo.PlaySound();
+
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
 
