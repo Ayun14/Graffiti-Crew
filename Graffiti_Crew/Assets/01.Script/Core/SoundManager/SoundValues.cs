@@ -1,6 +1,8 @@
+using UnityEngine;
+
 public enum SoundType
 {
-    //SFX
+    [Header("SFX")]
     //FightScene
     Spray_Short,
     Spray_Long,
@@ -9,10 +11,14 @@ public enum SoundType
     Throw_Egg,
     Win,
     Lose,
+    RivalCheck,
+    Clock,
+
     // HangOut
     Sofa,
     Typing,
     Walk,
+
     // UI
     Text_Typing,
     Click_Mouse,
@@ -20,5 +26,12 @@ public enum SoundType
     Buy,
     Star,
 
-    // BGM
+    [Header("BGM")]
+    Title_Front,
+    Title_Back,
+    Request,
+    Fight_Before,
+    Fight_Middle,
+    Fight_After,
+    HangOut,
 }

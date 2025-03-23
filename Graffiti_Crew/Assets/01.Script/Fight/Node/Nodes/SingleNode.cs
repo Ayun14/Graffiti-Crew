@@ -51,6 +51,9 @@ public class SingleNode : Node, INodeAction
         // Particle
         PopGraffitiParticle(transform.position);
 
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Short);
+
         SetAlpha(0f);
 
         judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);

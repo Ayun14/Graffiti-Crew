@@ -65,7 +65,6 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             NPCSO dialogue = _dialogueList[_dialogueNum];
 
-            await Task.Delay(500);
             PresentationEvents.FadeInOutEvent(false);
             await Task.Delay(500);
             PresentationEvents.FadeInOutEvent(true);

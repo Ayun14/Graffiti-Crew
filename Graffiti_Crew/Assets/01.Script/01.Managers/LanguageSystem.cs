@@ -4,19 +4,9 @@ using System;
 using UnityEngine;
 
 public class LanguageSystem : MonoBehaviour {
-    private static LanguageSystem instance;
     public static event Action<LanguageType> LanguageChangedEvent;
     public LanguageType _currentLanguageType = LanguageType.Korea;
 
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else {
-            Destroy(this);
-        }
-    }
     private void OnEnable() {
         UIEvents.ChangeLanguageEvnet += ChangeLanguageType;
     }
@@ -29,6 +19,6 @@ public class LanguageSystem : MonoBehaviour {
         LanguageChangedEvent?.Invoke(_currentLanguageType);
     }
     public static LanguageType GetLanguageType() {
-        return instance._currentLanguageType;
+        return GameManager.Instance.LanguageSystemCompo._currentLanguageType;
     }
 }
