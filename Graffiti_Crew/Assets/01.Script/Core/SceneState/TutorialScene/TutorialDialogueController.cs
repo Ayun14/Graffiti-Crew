@@ -66,7 +66,7 @@ public class TutorialDialogueController : Observer<GameStateController>
             NPCSO dialogue = _dialogueList[_dialogueNum];
 
             PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(500);
+            await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
 
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
@@ -75,6 +75,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         else
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
             GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("HangOutScene");
         }

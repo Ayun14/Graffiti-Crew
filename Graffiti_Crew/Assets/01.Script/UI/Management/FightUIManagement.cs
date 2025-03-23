@@ -2,8 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
-using UnityEngine;
+using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -86,22 +85,23 @@ namespace AH.UI {
                 _fightStartAnimation.Hide();
             }
         }
-        private void SetFade(bool startBlack) {
-            _fadeView.ToggleInClassList("fade-set");
-            if (startBlack) {
-                _fadeView.AddToClassList("fade-out");
-            }
-            else {
-                _fadeView.RemoveFromClassList("fade-out");
-            }
-        }
         private void FadeInOut(bool active) {
-            Debug.Log(active);
+            _fadeView.AddToClassList("fade-set");
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");
             }
             else {
                 _fadeView.AddToClassList("fade-out");
+            }
+        }
+        private async void SetFade(bool startBlack) {
+            _fadeView.RemoveFromClassList("fade-set"); // 없으면 추가 있으면 삭제
+            await Task.Delay(500);
+            if (startBlack) {
+                _fadeView.AddToClassList("fade-out");
+            }
+            else {
+                _fadeView.RemoveFromClassList("fade-out");
             }
         }
         #endregion

@@ -73,7 +73,7 @@ namespace AH.UI {
             }
         }
         private void FadeInOut(bool active) {
-            _fadeView.ToggleInClassList("fade-set");
+            _fadeView.RemoveFromClassList("fade-set");
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");
             }
@@ -83,7 +83,7 @@ namespace AH.UI {
         }
         private void SetFade(bool startBlack)
         {
-            _fadeView.ToggleInClassList("fade-set"); // 없으면 추가 있으면 삭제
+            _fadeView.AddToClassList("fade-set"); // 없으면 추가 있으면 삭제
             if (startBlack)
             {
                 _fadeView.AddToClassList("fade-out");
