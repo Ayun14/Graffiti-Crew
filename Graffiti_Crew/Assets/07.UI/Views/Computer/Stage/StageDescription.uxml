@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px;">
-            <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80" style="flex-grow: 0; -unity-text-align: upper-center; margin-bottom: 30px;">
+        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-background.png?fileID=21300000&amp;guid=b430dfc39913a624aba62385d2991d68&amp;type=3#selectStage-background&quot;);">
+            <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80" style="flex-grow: 0; -unity-text-align: upper-center; margin-bottom: 30px; color: rgb(255, 255, 255);">
                 <Bindings>
                     <engine:DataBinding property="text" data-source-path="title" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                 </Bindings>
@@ -36,14 +36,14 @@
             </engine:VisualElement>
             <engine:VisualElement name="bottom-container" class="selectStage-description-bottom-container" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
                 <engine:VisualElement name="left-content" class="selectStage-description-BLeft-content">
-                    <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-50">
+                    <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-50" style="color: rgb(255, 255, 255);">
                         <Bindings>
                             <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                         </Bindings>
                     </engine:Label>
                 </engine:VisualElement>
                 <engine:VisualElement name="right-content" class="selectStage-description-BRight-content">
-                    <engine:VisualElement name="start-btn" style="background-color: rgb(211, 211, 211); align-items: center; justify-content: center; flex-grow: 1;" />
+                    <engine:VisualElement name="start-btn" style="align-items: center; justify-content: center; flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-start.png?fileID=21300000&amp;guid=5f64f6108809e8b4fbf456a5a7d61068&amp;type=3#selectStage-start&quot;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
@@ -51,6 +51,6 @@
             <engine:ScrollView name="crew-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" />
         </engine:VisualElement>
         <AH.UI.CustomElement.StagePointElement />
-        <engine:Button text="X" name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 8%; left: 84%;" />
+        <engine:Button class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 8%; left: 84%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
     </engine:VisualElement>
 </engine:UXML>
