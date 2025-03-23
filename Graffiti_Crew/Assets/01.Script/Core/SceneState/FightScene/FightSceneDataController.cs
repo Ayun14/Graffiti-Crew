@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class FightSceneDataController : DataController
@@ -49,7 +50,6 @@ public class FightSceneDataController : DataController
 
     protected override void FinishGiveData()
     {
-        // Fade
         PresentationEvents.SetFadeEvent?.Invoke(true);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
 
