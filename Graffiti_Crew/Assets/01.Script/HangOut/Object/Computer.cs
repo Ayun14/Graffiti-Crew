@@ -1,5 +1,6 @@
 using UnityEngine;
 using AH.SaveSystem;
+using System.Threading.Tasks;
 
 public class Computer : InteractionObject
 {
@@ -8,8 +9,16 @@ public class Computer : InteractionObject
         base.Awake();
     }
 
-    public void ComputerSignal()
+    private async void Start()
     {
-        //PresentationEvents.FadeInOutEvent?.Invoke(false);
+        PresentationEvents.SetFadeEvent?.Invoke(true);
+        await Task.Delay(1100);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
+    }
+
+    public async void ComputerSignal()
+    {
+        PresentationEvents.FadeInOutEvent?.Invoke(false);
+        await Task.Delay(1100);
     }
 }

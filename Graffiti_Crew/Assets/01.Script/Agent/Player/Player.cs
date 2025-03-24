@@ -1,9 +1,7 @@
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 public enum PlayerStateEnum
 {
@@ -41,7 +39,7 @@ public class Player : Agent
         NavMeshAgent = GetComponent<NavMeshAgent>();
         StateMachine = new PlayerStateMachine();
 
-        foreach(PlayerStateEnum stateEnum in Enum.GetValues(typeof(PlayerStateEnum)))
+        foreach (PlayerStateEnum stateEnum in Enum.GetValues(typeof(PlayerStateEnum)))
         {
             string typeName = stateEnum.ToString();
             try
@@ -50,19 +48,16 @@ public class Player : Agent
                 PlayerState playerState = Activator.CreateInstance(
                                     t, this, StateMachine, typeName) as PlayerState;
                 StateMachine.AddState(stateEnum, playerState);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Debug.LogError($"{typeName} is loading error, check Message {ex.Message}");
             }
         }
     }
 
-    protected async void Start()
+    protected void Start()
     {
-        PresentationEvents.SetFadeEvent?.Invoke(true);
-        await Task.Delay(1100);
-        PresentationEvents.FadeInOutEvent?.Invoke(true);
-
         transform.position = playerData.playerPosition;
 
         NavMeshAgent.speed = moveSpeed;
@@ -81,7 +76,7 @@ public class Player : Agent
 
     public NPC GetNPC()
     {
-        if(CurrentInteractionObject == null) return null;
+        if (CurrentInteractionObject == null) return null;
 
         if (CurrentInteractionObject.TryGetComponent<NPC>(out NPC npc))
             return npc;
