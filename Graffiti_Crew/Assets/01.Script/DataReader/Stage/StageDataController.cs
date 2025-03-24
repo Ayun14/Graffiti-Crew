@@ -27,6 +27,7 @@ public class StageDataController : MonoBehaviour
             {
                 _stageDescriptionSO.title = _stageData.StageList[i].title;
                 _stageDescriptionSO.description = _stageData.StageList[i].description;
+                _stageDescriptionSO.graffiti = Resources.Load<Sprite>($"UI/Stage/Sprite/{_stageData.StageList[i].sprite}");
                 _stageDescriptionSO.ticket = _sprayData.ConversionSprayData(i);
                 break;
             }

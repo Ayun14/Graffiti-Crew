@@ -14,12 +14,14 @@ public struct StageData
     public string id;
     public string title;
     public string description;
+    public string sprite;
 
-    public StageData(string id, string title, string description)
+    public StageData(string id, string title, string description, string sprite)
     {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.sprite = sprite;
     }
 }
 
@@ -31,7 +33,7 @@ public class StageDataReader : DataReaderBase
 
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        string id = null, title = null, description = null;
+        string id = null, title = null, description = null, sprite = null;
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -46,10 +48,13 @@ public class StageDataReader : DataReaderBase
                 case "Description":
                     description = list[i].value;
                     break;
+                case "Sprite":
+                    sprite = list[i].value;
+                    break;
             }
         }
 
-        StageList.Add(new StageData(id, title, description));
+        StageList.Add(new StageData(id, title, description, sprite));
     }
 }
 
