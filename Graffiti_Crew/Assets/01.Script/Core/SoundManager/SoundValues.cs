@@ -14,6 +14,8 @@ public enum SoundType
     RivalCheck,
     Clock,
     CountDown,
+    Drum_Kick,
+    Drum_Snap,
 
     // HangOut
     Sofa,

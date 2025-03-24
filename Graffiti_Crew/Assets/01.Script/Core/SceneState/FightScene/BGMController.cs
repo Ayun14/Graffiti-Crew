@@ -1,10 +1,12 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class BGMController : Observer<GameStateController>
 {
-    private SoundObject _fightBeforeSoundObj;
-    private SoundObject _fightMiddleSoundObj;
-    private SoundObject _fightAfterSoundObj;
+    private AudioSource _fightBeforeAudioSource;
+    private AudioSource _fightMiddleAudioSource;
+    private AudioSource _fightAfterAudioSource;
 
     private void Awake()
     {
@@ -22,41 +24,50 @@ public class BGMController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
-                _fightBeforeSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true)
-                    .GetComponent<SoundObject>();
+                _fightBeforeAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true);
             }
             else if (mySubject.GameState == GameState.Fight)
             {
-                _fightMiddleSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true)
-                    .GetComponent<SoundObject>();
+                _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true);
             }
             else if (mySubject.GameState == GameState.Finish)
             {
-                _fightMiddleSoundObj?.PushObject();
+                _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject();
             }
             else if (mySubject.GameState == GameState.Result)
             {
-                _fightAfterSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true)
-                    .GetComponent<SoundObject>();
+                _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
             }
         }
     }
 
     private void OnDisable()
     {
-        _fightAfterSoundObj?.PushObject();
+        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject();
     }
 
     public void FightBeforeBGMStop()
     {
-        _fightBeforeSoundObj?.PushObject();
+        _fightBeforeAudioSource.DOFade(0, 0.8f)
+            .OnComplete(() => _fightBeforeAudioSource?.GetComponent<SoundObject>().PushObject());
     }
 
     #region SFX Play
 
     public void CountDownSound()
     {
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.CountDown);
+        StartCoroutine(CountDownRoutine());
+    }
+
+    private IEnumerator CountDownRoutine()
+    {
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Snap);
     }
 
     #endregion
