@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,23 +14,17 @@ namespace AH.UI {
 
         private RequestViewModel _viewModel;
 
-        private VisualElement _fadeView;
-
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
-            PresentationEvents.FadeInOutEvent += FadeInOut;
-            PresentationEvents.SetFadeEvent += SetFade;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
-            PresentationEvents.FadeInOutEvent -= FadeInOut;
-            PresentationEvents.SetFadeEvent -= SetFade;
         }
 
         protected override void Init() {
@@ -43,8 +38,6 @@ namespace AH.UI {
             _sprayView = new RequestView(root.Q<VisualElement>("SprayView"), _viewModel);
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
-
-            _fadeView = root.Q<VisualElement>("fade-view");
 
             _sprayView.Show();
         }
@@ -72,26 +65,6 @@ namespace AH.UI {
                 _sprayView.Hide();
             }
         }
-        private void FadeInOut(bool active) {
-            _fadeView.RemoveFromClassList("fade-set");
-            if (active) {
-                _fadeView.RemoveFromClassList("fade-out");
-            }
-            else {
-                _fadeView.AddToClassList("fade-out");
-            }
-        }
-        private void SetFade(bool startBlack)
-        {
-            _fadeView.AddToClassList("fade-set"); // 없으면 추가 있으면 삭제
-            if (startBlack)
-            {
-                _fadeView.AddToClassList("fade-out");
-            }
-            else
-            {
-                _fadeView.RemoveFromClassList("fade-out");
-            }
-        }
+        
     }
 }

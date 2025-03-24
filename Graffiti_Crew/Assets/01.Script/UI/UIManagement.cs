@@ -24,6 +24,8 @@ namespace AH.UI {
         protected UIDocument _uiDocument;
         protected Stack<ViewData> _viewStack = new Stack<ViewData>();
 
+        private VisualElement _fadeView;
+
         [SerializeField] protected Model _model;
         [SerializeField] protected InputReaderSO _inputReaderSO;
 
@@ -37,16 +39,22 @@ namespace AH.UI {
         #region Base
         protected virtual void OnEnable() {
             _inputReaderSO.OnCancleEvent += ShowPreviewEvent;
+
+            PresentationEvents.SetFadeEvent += SetFade;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected virtual void OnDisable() {
             _inputReaderSO.OnCancleEvent -= ShowPreviewEvent;
+
+            PresentationEvents.SetFadeEvent -= SetFade;
+            PresentationEvents.FadeInOutEvent -= FadeInOut;
             Unregister();
         }
         protected virtual void Init() {
 
         }
         protected virtual void SetupViews() {
-
+            _fadeView = _uiDocument.rootVisualElement.Q<VisualElement>("fade-view");
         }
         protected virtual void Register() {
 
@@ -90,6 +98,26 @@ namespace AH.UI {
             if (viewData != null && !viewData.Hide) {
                 viewData.View.Hide();
                 _viewStack.Pop();
+            }
+        }
+
+        protected virtual void FadeInOut(bool active) { // 여기서 함수 받고 실행 할 수 있도록 // 밝아지는게 이상함
+            _fadeView.RemoveFromClassList("fade-set");
+            if (active) {
+                _fadeView.RemoveFromClassList("fade-out");
+            }
+            else {
+                _fadeView.AddToClassList("fade-out");
+            }
+            //await Task.Delay(1100);
+        }
+        protected virtual void SetFade(bool startBlack) {
+            _fadeView.AddToClassList("fade-set"); // 없으면 추가 있으면 삭제
+            if (startBlack) {
+                _fadeView.AddToClassList("fade-out");
+            }
+            else {
+                _fadeView.RemoveFromClassList("fade-out");
             }
         }
     }

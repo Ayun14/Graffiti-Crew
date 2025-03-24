@@ -14,7 +14,6 @@ namespace AH.UI {
         private FightStartAnimation _fightStartAnimation;
 
         private FightViewModel _viewModel;
-        private VisualElement _fadeView;
 
         protected override void OnEnable() {
             base.OnEnable();
@@ -22,8 +21,6 @@ namespace AH.UI {
             StageEvent.ShowResultViewEvent += ShowResultView;
             StageEvent.SetActiveStartAnimation += SetActiveAnimationView;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            PresentationEvents.SetFadeEvent += SetFade;
-            PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
@@ -31,8 +28,6 @@ namespace AH.UI {
             StageEvent.ShowResultViewEvent -= ShowResultView;
             StageEvent.SetActiveStartAnimation -= SetActiveAnimationView;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            PresentationEvents.SetFadeEvent -= SetFade;
-            PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
         protected override void Init() {
             base.Init();
@@ -46,8 +41,6 @@ namespace AH.UI {
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
             _fightStartAnimation = new FightStartAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
-
-            _fadeView = root.Q<VisualElement>("fade-view");
 
             _fightStartAnimation.Show();
         }
@@ -83,25 +76,6 @@ namespace AH.UI {
             }
             else {
                 _fightStartAnimation.Hide();
-            }
-        }
-        private void FadeInOut(bool active) {
-            _fadeView.AddToClassList("fade-set");
-            if (active) {
-                _fadeView.RemoveFromClassList("fade-out");
-            }
-            else {
-                _fadeView.AddToClassList("fade-out");
-            }
-        }
-        private async void SetFade(bool startBlack) {
-            _fadeView.RemoveFromClassList("fade-set"); // 없으면 추가 있으면 삭제
-            await Task.Delay(500);
-            if (startBlack) {
-                _fadeView.AddToClassList("fade-out");
-            }
-            else {
-                _fadeView.RemoveFromClassList("fade-out");
             }
         }
         #endregion

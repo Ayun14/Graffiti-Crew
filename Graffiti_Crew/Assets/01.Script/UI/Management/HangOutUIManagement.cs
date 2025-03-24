@@ -13,20 +13,16 @@ namespace AH.UI {
         private MiniDialougeView _miniDialougeView;
         private SettingView _settingView;
 
-        private VisualElement _fadeView;
-
         protected override void OnEnable() {
             base.OnEnable();
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
-            PresentationEvents.FadeInOutEvent += FadeInOut;
             HangOutEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
-            PresentationEvents.FadeInOutEvent -= FadeInOut;
             HangOutEvent.HideViewEvent -= HideView;
         }
 
@@ -43,8 +39,6 @@ namespace AH.UI {
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
             _miniDialougeView = new MiniDialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _hangoutViewModel);
-
-            _fadeView = root.Q<VisualElement>("fade-view");
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;
@@ -76,14 +70,6 @@ namespace AH.UI {
             }
             else {
                 _miniDialougeView.Hide();
-            }
-        }
-        private void FadeInOut(bool active) {
-            if (active) {
-                _fadeView.RemoveFromClassList("fade-out");
-            }
-            else {
-                _fadeView.AddToClassList("fade-out");
             }
         }
     }
