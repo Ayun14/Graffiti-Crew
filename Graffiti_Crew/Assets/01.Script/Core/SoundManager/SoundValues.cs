@@ -13,6 +13,7 @@ public enum SoundType
     Lose,
     RivalCheck,
     Clock,
+    CountDown,
 
     // HangOut
     Sofa,
