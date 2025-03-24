@@ -26,15 +26,15 @@ public class BGMController : Observer<GameStateController>
             {
                 _fightBeforeAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true);
             }
-            else if (mySubject.GameState == GameState.Fight)
+
+            if (mySubject.GameState == GameState.Finish)
             {
-                _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true);
-            }
-            else if (mySubject.GameState == GameState.Finish)
-            {
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+                
                 _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject();
             }
-            else if (mySubject.GameState == GameState.Result)
+
+            if (mySubject.GameState == GameState.Result)
             {
                 _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
             }
@@ -61,13 +61,16 @@ public class BGMController : Observer<GameStateController>
 
     private IEnumerator CountDownRoutine()
     {
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Two);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Kick);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_One);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Drum_Snap);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Yeah);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+
+        _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true);
     }
 
     #endregion

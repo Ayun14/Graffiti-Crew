@@ -13,9 +13,12 @@ public enum SoundType
     Lose,
     RivalCheck,
     Clock,
-    CountDown,
     Drum_Kick,
     Drum_Snap,
+    DJ_Sound,
+    DJ_One,
+    DJ_Two,
+    DJ_Yeah,
 
     // HangOut
     Sofa,
