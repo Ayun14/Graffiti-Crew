@@ -19,7 +19,6 @@ public class RequestSceneDataController : DataController
     protected async override void FinishGiveData()
     {
         // Fade
-        Debug.Log("request");
         PresentationEvents.SetFadeEvent?.Invoke(true);
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
