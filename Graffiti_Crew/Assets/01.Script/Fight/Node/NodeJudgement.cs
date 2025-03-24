@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -167,12 +168,14 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             _graffitiRenderer.SetSprite(_currentNode.GetNodeDataSO().graffitiSprite);
     }
 
-    public void AllNodeClear()
+    public async void AllNodeClear()
     {
         mySubject.SetWhoIsWin(true);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
         {
-            StageEvent.SetActiveFightViewEvent?.Invoke(false);
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
 
             mySubject.ChangeGameState(GameState.Dialogue);
         }

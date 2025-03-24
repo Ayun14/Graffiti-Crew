@@ -3,8 +3,6 @@ using AH.SaveSystem;
 
 public class Computer : InteractionObject
 {
-    [SerializeField] private FadeController _fadeController;
-
     protected override void Awake()
     {
         base.Awake();
@@ -12,6 +10,6 @@ public class Computer : InteractionObject
 
     public void ComputerSignal()
     {
-        _fadeController.FadeIn();
+        //PresentationEvents.FadeInOutEvent?.Invoke(false);
     }
 }

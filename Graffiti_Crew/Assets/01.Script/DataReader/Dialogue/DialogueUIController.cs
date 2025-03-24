@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class DialogueUIController : MonoBehaviour
     [Header("Dialogue UI Data")]
     [SerializeField] private DialogueSO _bigDialogueUIData;
     [SerializeField] private DialogueSO _miniDialogueUIData;
+    public GameObject _dialogueBG;
     private DialogueSO _dialogueUIData;
 
     [Header("Dialogue Data")]
@@ -37,10 +39,13 @@ public class DialogueUIController : MonoBehaviour
     private Coroutine _typingCoroutine;
     private bool _isTyping = false;
     private bool _isDialogue = false;
+    public bool IsDialogue => _isDialogue;
 
     private int _currentDialogueIndex = 0;
     private int _dialogueStartID = 0;
     private int _dialogueEndID = 0;
+
+    private AudioSource _textTypingAudio;
 
     private Action _onDialogueComplete;
     public Action<bool> ChangeDialogueUI;
@@ -57,6 +62,7 @@ public class DialogueUIController : MonoBehaviour
         LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
         ChangeDialogueUI += HandleDialogueUIData;
 
+        _dialogueBG?.SetActive(false);
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
@@ -149,6 +155,9 @@ public class DialogueUIController : MonoBehaviour
 
         if (_isBigUIdata)
         {
+            if(!_isHangoutScene)
+                _dialogueBG?.SetActive(true);
+
             DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
         }
@@ -181,7 +190,10 @@ public class DialogueUIController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (_isTyping)
+                    {
+                        _textTypingAudio?.GetComponent<SoundObject>().PushObject();
                         CompleteTyping();
+                    }
                     else
                         ShowNextDialogue();
                 }
@@ -197,8 +209,6 @@ public class DialogueUIController : MonoBehaviour
 
     private void ShowDialogue(int index)
     {
-        //FadeIn
-
         if (index < 0 || index >= _filteredDialogueList.Count) return;
 
         DialogueData dialogue = _filteredDialogueList[index];
@@ -208,9 +218,9 @@ public class DialogueUIController : MonoBehaviour
         if (sprite != null)
             _dialogueUIData.SetProfile(sprite);
 
-        //AudioClip sound = Resources.Load<AudioClip>($"Sound/{dialogue.soundName}");
-        //if (sound != null)
-        //    GameManager.Instance.SoundSystemCompo.PlaySound();
+        string sound = dialogue.soundName;
+        if (sound != null)
+            GameManager.Instance.SoundSystemCompo.PlaySound(sound);
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
@@ -224,8 +234,6 @@ public class DialogueUIController : MonoBehaviour
 
         if (_currentDialogueIndex >= _filteredDialogueList.Count)
         {
-            //FadeOut
-
             _isDialogue = false;
 
             if (!_isBigUIdata && _tutorialCheckData != null)
@@ -251,6 +259,7 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator TypingEffect(string fullText)
     {
+        _textTypingAudio = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Text_Typing, true);
         _isTyping = true;
         _dialogueUIData.dialogue = "";
 
@@ -264,6 +273,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
+        _textTypingAudio?.GetComponent<SoundObject>().PushObject();
     }
 
     private void CompleteTyping()
