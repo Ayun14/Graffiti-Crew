@@ -60,9 +60,10 @@ public class DialogueDataReader : DataReaderBase
                 case "Character Name":
                     if (string.IsNullOrWhiteSpace(list[i].value))
                     {
-                        if (DialogueList.Count > 0)
-                            characterName = DialogueList[DialogueList.Count - 1].characterName;
-                        else return;
+                        //if (DialogueList.Count > 0)
+                        //    characterName = DialogueList[DialogueList.Count - 1].characterName;
+                        //else 
+                            characterName = null;
                     }
                     else
                     {

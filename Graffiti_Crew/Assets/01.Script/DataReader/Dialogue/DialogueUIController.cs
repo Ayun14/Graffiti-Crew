@@ -62,7 +62,8 @@ public class DialogueUIController : MonoBehaviour
         LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
         ChangeDialogueUI += HandleDialogueUIData;
 
-        _dialogueBG?.SetActive(false);
+        if(_dialogueBG!=null)
+            _dialogueBG.SetActive(false);
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
@@ -201,6 +202,7 @@ public class DialogueUIController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.K))
             {
+                _textTypingAudio?.GetComponent<SoundObject>().PushObject();
                 _currentDialogueIndex = _filteredDialogueList.Count;
                 ShowNextDialogue();
             }
@@ -212,7 +214,10 @@ public class DialogueUIController : MonoBehaviour
         if (index < 0 || index >= _filteredDialogueList.Count) return;
 
         DialogueData dialogue = _filteredDialogueList[index];
-        _dialogueUIData.characterName = dialogue.characterName;
+        if (_dialogueUIData.characterName == null)
+            _dialogueUIData.characterName = "";
+        else
+            _dialogueUIData.characterName = dialogue.characterName;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
         if (sprite != null)
