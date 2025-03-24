@@ -43,8 +43,8 @@ public class FightSceneUIController : Observer<GameStateController>
     private Material _failMat;
     private int _failPower = Shader.PropertyToID("_Power");
 
-    // Loding
-    private Image _lodingPanel;
+    // Loading
+    private Image _loadingPanel;
 
     // Rival Check
     private Vector2 _startPos, _endPos, _middlePos;
@@ -83,7 +83,7 @@ public class FightSceneUIController : Observer<GameStateController>
         _failMat = _failFeedbackPanel.transform.Find("Image_FailShader").GetComponent<Image>().material;
 
         // Loding
-        _lodingPanel = canvas.Find("Panel_Loding").GetComponent<Image>();
+        _loadingPanel = canvas.Find("Panel_Loading").GetComponent<Image>();
 
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
@@ -137,7 +137,7 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isResult = mySubject.GameState == GameState.Result;
 
             // Loding
-            _lodingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
+            _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
             // Fight
             StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
