@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="ProductProfile" src="project://database/Assets/Resources/UI/Store/ProductProfile.uxml?fileID=9197481963319205126&amp;guid=30ed6e9c097fd2a4882a53044344b882&amp;type=3#ProductProfile" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:VisualElement name="m-container" style="flex-grow: 1;">
         <engine:VisualElement name="background-img" style="flex-grow: 1; padding-top: 60px; flex-direction: column; padding-left: 60px; padding-bottom: 60px; padding-right: 60px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-background.png?fileID=21300000&amp;guid=7bc1dcc71ef1e62439e19451d8fdc919&amp;type=3#shop-background&quot;);">
             <engine:VisualElement name="top-content" style="height: 13%; flex-direction: row; flex-basis: 10%;">
@@ -9,9 +9,9 @@
                     <engine:Button name="menu-btn" text="카테고리" class="grow-size-40 category-btn" style="display: none;" />
                 </engine:VisualElement>
                 <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: flex-end; flex-direction: row;">
-                    <engine:VisualElement name="coin-border" style="width: 330px; flex-direction: row; margin-right: 20px; height: 80%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=2800000&amp;guid=98f05b29f01c4ea4aa0b652c919fac1f&amp;type=3#money-content&quot;);">
+                    <engine:VisualElement name="coin-border" style="width: 330px; flex-direction: row; margin-right: 20px; height: 80%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=2800000&amp;guid=98f05b29f01c4ea4aa0b652c919fac1f&amp;type=3#money-content&quot;); align-items: center;">
                         <engine:VisualElement name="icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/money-icon.png?fileID=2800000&amp;guid=6fea3fc25cf78b340805ebdd81c59efc&amp;type=3#money-icon&quot;); width: 80px; height: 80px; bottom: 9%;" />
-                        <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left; height: 80px;">
+                        <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left; height: 73%; bottom: 4%;">
                             <Bindings>
                                 <engine:DataBinding property="text" data-source-path="data" data-source="project://database/Assets/08.SO/SaveDatas/ComputerData/Data_Coin.asset?fileID=11400000&amp;guid=9c2f37cc0f92c0449bee7ba1a17f503e&amp;type=2#Data_Coin" binding-mode="ToTarget" />
                             </Bindings>
@@ -48,5 +48,5 @@
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-deco.png?fileID=2800000&amp;guid=d48691fff18ddd74aaf39f2e82cf9ad5&amp;type=3#shop-deco&quot;); width: 1920px; height: 1080px;" />
+    <engine:VisualElement style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-deco.png?fileID=21300000&amp;guid=e4b40d69e6d15214d8a833fb8861092a&amp;type=3#shop-deco&quot;); width: 1920px; height: 1080px;" />
 </engine:UXML>
