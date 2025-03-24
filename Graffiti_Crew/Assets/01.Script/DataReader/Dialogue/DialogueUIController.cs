@@ -219,13 +219,18 @@ public class DialogueUIController : MonoBehaviour
         else
             _dialogueUIData.characterName = dialogue.characterName;
 
-        Sprite sprite = Resources.Load<Sprite>($"Sprite/{dialogue.spriteName}");
+        Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");
         if (sprite != null)
             _dialogueUIData.SetProfile(sprite);
 
         string sound = dialogue.soundName;
         if (sound != null)
             GameManager.Instance.SoundSystemCompo.PlaySound(sound);
+
+        if(dialogue.bgSprite != null)
+        {
+            _dialogueBG.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Sprite/BG/{dialogue.bgSprite}");
+        }
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
