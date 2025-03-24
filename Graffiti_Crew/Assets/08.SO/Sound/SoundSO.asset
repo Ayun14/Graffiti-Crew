@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Spray_Short
-    volume: 0.656
+    volume: 1
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: e6485e8417be3c84a85943bbbba14d29, type: 3}
@@ -24,112 +24,117 @@ MonoBehaviour:
     sounds:
     - {fileID: 8300000, guid: e8ce7527681541245a34a28c716f3a74, type: 3}
   - name: Spray_Miss
-    volume: 1
+    volume: 0.5
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
-    - {fileID: 8300000, guid: 7de7ccd5b5168f94bb1f238e25a45c31, type: 3}
+    - {fileID: 8300000, guid: 4ac8aa5a188025d4595493c9c191b65d, type: 3}
   - name: Spray_Shake
     volume: 1
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 3b5ab8817f6dbc1469158b93e06384f8, type: 3}
   - name: Throw_Egg
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
-    - {fileID: 8300000, guid: 0eecc25eaf7852145bd73a9c5930897a, type: 3}
+    - {fileID: 8300000, guid: 7de7ccd5b5168f94bb1f238e25a45c31, type: 3}
   - name: Win
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 478596c3ff962234692bb7f1cf9c1e14, type: 3}
   - name: Lose
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: ae8f73f1fac4e4148a1d1074df97a158, type: 3}
   - name: RivalCheck
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: be0290d9d00a0a447bd438e115809e6c, type: 3}
   - name: Clock
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 864122f5cdf75fc43b094baff4b59047, type: 3}
-  - name: Sofa
+  - name: CountDown
     volume: 1
+    mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
+    sounds:
+    - {fileID: 8300000, guid: abde05f2194ac594393509096fb87dba, type: 3}
+  - name: Sofa
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 0956ce2d436472a4b893f5078264c7d3, type: 3}
   - name: Typing
-    volume: 0.5
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 2f0c046419958ed43a42a6f758ce8f94, type: 3}
   - name: Walk
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 7c6402639e81558419f478374c6e871b, type: 3}
   - name: Text_Typing
-    volume: 0.5
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: a3ecc0fc92f7f3743912451ad23bb574, type: 3}
   - name: Click_Mouse
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 5e92a6c4c6afebd4aaefa40eba0251f3, type: 3}
   - name: Click_UI
-    volume: 1
+    volume: 0.3
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 2e31c88434b635f4483cc0b7548e7407, type: 3}
   - name: Buy
-    volume: 1
+    volume: 0.6
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 7f41fe8698abbd74ab168c1ed916e433, type: 3}
   - name: Star
-    volume: 1
+    volume: 0.6
     mixer: {fileID: -3640957555583678342, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 60a7afb4e8d41f04dab37a2056549cc7, type: 3}
   - name: Title_Front
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 9225e6195f768ed4d811f319b91bf7fd, type: 3}
   - name: Title_Back
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 29fb3af231d58174581f909edc87c844, type: 3}
   - name: Request
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 95fa059501202c54f97398b7eb3f4900, type: 3}
   - name: Fight_Before
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: d944fdc2caced0a40840583f39bd79f3, type: 3}
   - name: Fight_Middle
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: f05abea80780f3f4bad8dca2ee5b97ca, type: 3}
   - name: Fight_After
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: 7548d4331cb001644a22a1be4a5bdddf, type: 3}
   - name: HangOut
-    volume: 0.8
+    volume: 0.5
     mixer: {fileID: 1896378131873786698, guid: cb07957082ea2a042b3015971adad64e, type: 2}
     sounds:
     - {fileID: 8300000, guid: a9b7512a2bc5375459e22584ab272772, type: 3}

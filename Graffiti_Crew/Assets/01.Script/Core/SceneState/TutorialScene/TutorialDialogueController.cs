@@ -28,7 +28,6 @@ public class TutorialDialogueController : Observer<GameStateController>
             {
                 PresentationEvents.SetFadeEvent?.Invoke(true);
                 await Task.Delay(1100);
-                Debug.Log("start");
                 PresentationEvents.FadeInOutEvent?.Invoke(true);
             }
 
@@ -49,11 +48,9 @@ public class TutorialDialogueController : Observer<GameStateController>
         if (_dialogueNum == 1)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
-            Debug.Log("end1");
             await Task.Delay(2100);
             _dialogueUIController._dialogueBG.SetActive(false);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
-            Debug.Log("end2");
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }

@@ -51,4 +51,13 @@ public class BGMController : Observer<GameStateController>
     {
         _fightBeforeSoundObj?.PushObject();
     }
+
+    #region SFX Play
+
+    public void CountDownSound()
+    {
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.CountDown);
+    }
+
+    #endregion
 }

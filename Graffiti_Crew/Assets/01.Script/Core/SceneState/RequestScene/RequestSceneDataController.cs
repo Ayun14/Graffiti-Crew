@@ -2,6 +2,7 @@ using UnityEngine;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using AH.UI.Models;
+using System.Threading.Tasks;
 
 public class RequestSceneDataController : DataController
 {
@@ -15,10 +16,11 @@ public class RequestSceneDataController : DataController
         stageData = Resources.Load("StageData/" + stageSO.GetLoadRequestName()) as StageDataSO;
     }
 
-    protected override void FinishGiveData()
+    protected async override void FinishGiveData()
     {
         // Fade
         PresentationEvents.SetFadeEvent?.Invoke(true);
+        await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
 
         //mySubject.ChangeGameState(GameState.Talk);

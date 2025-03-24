@@ -52,9 +52,7 @@ public class ItemSystem : MonoBehaviour {
         foreach (var data in saveItemList.saveDataSOList) {
             var conversionData = data as ItemSaveDataSO;
             if (conversionData.itemName == item.saveName) {
-                Debug.Log(conversionData.count);
                 conversionData.count -= count;
-                Debug.Log(conversionData.count);
             }
         }
     }
