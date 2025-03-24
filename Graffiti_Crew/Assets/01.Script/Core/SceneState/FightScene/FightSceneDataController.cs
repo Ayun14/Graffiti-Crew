@@ -48,14 +48,14 @@ public class FightSceneDataController : DataController
         stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
     }
 
-    protected override void FinishGiveData()
+    protected async override void FinishGiveData()
     {
-        PresentationEvents.SetFadeEvent?.Invoke(true);
-        PresentationEvents.FadeInOutEvent?.Invoke(true);
-
         // Stage Result SO Reset
         stageData.stageResult.Reset();
+        mySubject.ChangeGameState(GameState.Timeline); // ui·Îµå »ç¶óÁü
 
-        mySubject.ChangeGameState(GameState.Timeline);
+        PresentationEvents.SetFadeEvent?.Invoke(true);
+        await Task.Delay(1100);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
     }
 }

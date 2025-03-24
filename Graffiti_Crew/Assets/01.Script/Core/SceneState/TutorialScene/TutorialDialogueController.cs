@@ -28,7 +28,6 @@ public class TutorialDialogueController : Observer<GameStateController>
             {
                 PresentationEvents.SetFadeEvent?.Invoke(true);
                 await Task.Delay(1100);
-                Debug.Log("start");
                 PresentationEvents.FadeInOutEvent?.Invoke(true);
             }
 
