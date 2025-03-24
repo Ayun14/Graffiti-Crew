@@ -57,11 +57,11 @@ public class Player : Agent
         }
     }
 
-    protected void Start()
+    protected async void Start()
     {
-        //PresentationEvents.SetFadeEvent?.Invoke(true);
-        //await Task.Delay(100);
-        //PresentationEvents.FadeInOutEvent?.Invoke(true);
+        PresentationEvents.SetFadeEvent?.Invoke(true);
+        await Task.Delay(1100);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
 
         transform.position = playerData.playerPosition;
 

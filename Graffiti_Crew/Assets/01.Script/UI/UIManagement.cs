@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine;
 using System;
+using System.Threading.Tasks;
 
 namespace AH.UI {
     public class ViewData {
@@ -109,7 +110,6 @@ namespace AH.UI {
             else {
                 _fadeView.AddToClassList("fade-out");
             }
-            //await Task.Delay(1100);
         }
         protected virtual void SetFade(bool startBlack) {
             _fadeView.AddToClassList("fade-set"); // 없으면 추가 있으면 삭제

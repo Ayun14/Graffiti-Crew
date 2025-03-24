@@ -20,18 +20,6 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         Detach();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W)) {
-
-            PresentationEvents.SetFadeEvent?.Invoke(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
-        }         
-    }
     public async override void NotifyHandle()
     {
         if (mySubject.GameState == GameState.Dialogue)
@@ -39,7 +27,8 @@ public class TutorialDialogueController : Observer<GameStateController>
             if(_dialogueNum == 0)
             {
                 PresentationEvents.SetFadeEvent?.Invoke(true);
-                await Task.Delay(100);
+                await Task.Delay(1100);
+                Debug.Log("start");
                 PresentationEvents.FadeInOutEvent?.Invoke(true);
             }
 
@@ -60,9 +49,11 @@ public class TutorialDialogueController : Observer<GameStateController>
         if (_dialogueNum == 1)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(1100);
+            Debug.Log("end1");
+            await Task.Delay(2100);
             _dialogueUIController._dialogueBG.SetActive(false);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
+            Debug.Log("end2");
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }
