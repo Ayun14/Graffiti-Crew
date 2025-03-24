@@ -1,27 +1,27 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/StageScene/FightView_USS.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3#FightView_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <engine:VisualElement name="m-container" picking-mode="Ignore" class="fight-m-container">
         <engine:VisualElement name="top-container" style="flex-basis: 22%; flex-direction: row;">
             <engine:VisualElement name="rival-border" style="width: 50%; flex-direction: row-reverse; align-items: center; padding-left: 30px; justify-content: flex-end;">
-                <engine:ProgressBar value="22" name="rival-progress" class="graffiti-progress" style="left: -9%;">
+                <engine:ProgressBar value="22" name="rival-progress" class="graffiti-progress" style="left: -1.5%;">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/RivalProgressSliderValueSO.asset?fileID=11400000&amp;guid=628ec643260b84449beba64273f55cbd&amp;type=2#RivalProgressSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
-                <engine:VisualElement name="rival-img" style="width: 160px; height: 200px; background-image: resource(&apos;Sprite/Jia.&apos;); scale: -1 1;" />
+                <engine:VisualElement name="rival-img" class="profile" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Profile/JiaBarInage.png?fileID=2800000&amp;guid=0214c24d8dd21b24bbe317b4e3b29e71&amp;type=3#JiaBarInage&quot;);" />
             </engine:VisualElement>
             <engine:VisualElement name="player-border" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: flex-end; padding-right: 30px;">
-                <engine:ProgressBar name="player-progress" value="32.45" high-value="99.8" class="graffiti-progress" style="scale: -1 1; left: 9%;">
+                <engine:ProgressBar name="player-progress" value="32.45" high-value="99.8" class="graffiti-progress" style="scale: -1 1; left: 1.5%;">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
-                <engine:VisualElement name="rival-img" style="width: 160px; height: 200px; background-image: resource(&apos;Sprite/Ella&apos;); scale: -1 1;" />
+                <engine:VisualElement name="rival-img" class="profile" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Profile/EllaBarImage.png?fileID=21300000&amp;guid=d6ca9431f3fbdd348b729fe28e826881&amp;type=3#EllaBarImage&quot;); scale: -1 1;" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">

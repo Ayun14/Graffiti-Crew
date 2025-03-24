@@ -1,34 +1,34 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="ProductProfile" src="project://database/Assets/Resources/UI/Store/ProductProfile.uxml?fileID=9197481963319205126&amp;guid=30ed6e9c097fd2a4882a53044344b882&amp;type=3#ProductProfile" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3" />
     <engine:VisualElement name="m-container" style="flex-grow: 1;">
-        <engine:VisualElement name="background-img" style="flex-grow: 1; background-color: rgb(255, 244, 200); padding-top: 60px; flex-direction: column; padding-left: 60px; padding-bottom: 60px; padding-right: 60px;">
+        <engine:VisualElement name="background-img" style="flex-grow: 1; padding-top: 60px; flex-direction: column; padding-left: 60px; padding-bottom: 60px; padding-right: 60px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-background.png?fileID=21300000&amp;guid=7bc1dcc71ef1e62439e19451d8fdc919&amp;type=3#shop-background&quot;);">
             <engine:VisualElement name="top-content" style="height: 13%; flex-direction: row; flex-basis: 10%;">
-                <engine:VisualElement name="menu-border" style="width: 60%; background-color: rgb(255, 198, 248);">
+                <engine:VisualElement name="menu-border" style="width: 60%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-menu-container.png?fileID=-1722201500&amp;guid=29d7135e237a67d4cb25efda1bc7a9ea&amp;type=3#shop-menu-container_0&quot;);">
                     <engine:Button name="menu-btn" text="카테고리" class="grow-size-40 category-btn" style="display: none;" />
                 </engine:VisualElement>
                 <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: flex-end; flex-direction: row;">
-                    <engine:VisualElement name="coin-border" style="width: 330px; background-color: rgb(255, 255, 255); flex-direction: row; margin-right: 20px; height: 80%;">
-                        <engine:VisualElement name="icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=8b1ba4188779ade4f8527dca58c7fc2f&amp;type=3#shop_icon&quot;); width: 80px; height: 80px;" />
+                    <engine:VisualElement name="coin-border" style="width: 330px; flex-direction: row; margin-right: 20px; height: 80%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=2800000&amp;guid=98f05b29f01c4ea4aa0b652c919fac1f&amp;type=3#money-content&quot;);">
+                        <engine:VisualElement name="icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/money-icon.png?fileID=2800000&amp;guid=6fea3fc25cf78b340805ebdd81c59efc&amp;type=3#money-icon&quot;); width: 80px; height: 80px; bottom: 9%;" />
                         <engine:Label text="Label" name="coin-txt" class="grow-size-40" style="-unity-text-align: upper-left; height: 80px;">
                             <Bindings>
                                 <engine:DataBinding property="text" data-source-path="data" data-source="project://database/Assets/08.SO/SaveDatas/ComputerData/Data_Coin.asset?fileID=11400000&amp;guid=9c2f37cc0f92c0449bee7ba1a17f503e&amp;type=2#Data_Coin" binding-mode="ToTarget" />
                             </Bindings>
                         </engine:Label>
                     </engine:VisualElement>
-                    <engine:Button text="X" name="exit-btn" class="grow-size-40" style="width: 80px; height: 80px; flex-grow: 0;" />
+                    <engine:Button name="exit-btn" class="grow-size-40" style="width: 80px; height: 80px; flex-grow: 0; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
                 </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
-                <engine:VisualElement name="left-contant" style="background-color: rgb(255, 229, 252); width: 60%;">
+                <engine:VisualElement name="left-contant" style="width: 60%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-product-content.png?fileID=2800000&amp;guid=e235e718a471c224582eb07304fbe842&amp;type=3#shop-product-content&quot;);">
                     <engine:ScrollView name="category-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
                         <engine:Instance template="ProductProfile" />
                     </engine:ScrollView>
                 </engine:VisualElement>
-                <engine:VisualElement name="right-contant" style="flex-grow: 1; background-color: rgb(229, 248, 255); padding-top: 30px; padding-left: 30px; padding-bottom: 30px; padding-right: 30px;">
-                    <engine:VisualElement name="data-details-content" style="flex-grow: 1; background-color: rgb(178, 234, 255); padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
-                        <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 78%; height: 57%;">
+                <engine:VisualElement name="right-contant" style="flex-grow: 1; padding-top: 30px; padding-left: 30px; padding-bottom: 49px; padding-right: 50px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-product-description-content.png?fileID=2800000&amp;guid=8822b4351c6e51042957a2416c52da7e&amp;type=3#shop-product-description-content&quot;);">
+                    <engine:VisualElement name="data-details-content" style="flex-grow: 1; padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
+                        <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 370px; height: 370px;">
                             <Bindings>
                                 <engine:DataBinding property="style.backgroundImage" data-source-path="image" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
                             </Bindings>
@@ -48,4 +48,5 @@
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
+    <engine:VisualElement style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-deco.png?fileID=2800000&amp;guid=d48691fff18ddd74aaf39f2e82cf9ad5&amp;type=3#shop-deco&quot;); width: 1920px; height: 1080px;" />
 </engine:UXML>
