@@ -28,7 +28,6 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-
             _productScrollView = topElement.Q<ScrollView>("category-scrollView");
             _exitBtn = topElement.Q<Button>("exit-btn");
             ComputerViewModel.ClearSelectProductData();

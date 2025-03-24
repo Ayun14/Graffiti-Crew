@@ -10,12 +10,15 @@ namespace AH.UI.Views {
     public class ResultView : UIView {
         private FightViewModel ViewModel;
 
-        private VisualElement _resultPanel;
+        private VisualElement _cResultPanel;
+        private VisualElement _lResultPanel;
 
-        private Button _retryBtn;
-        private Button _exitBtn;
+        private Button c_retryBtn;
+        private Button c_nextBtn;
+        private Button c_quitBtn;
 
-        //private bool _playerWin = false;
+        private Button l_retryBtn;
+        private Button l_quitBtn;
 
         public ResultView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel = viewModel as FightViewModel;
@@ -31,7 +34,8 @@ namespace AH.UI.Views {
 
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _resultPanel = topElement.Q<VisualElement>("result-container");
+            _cResultPanel = topElement.Q<VisualElement>("clear-result-container");
+            _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -39,37 +43,43 @@ namespace AH.UI.Views {
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            _retryBtn.UnregisterCallback<ClickEvent>(ClickRetryBtn);
-            _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
+            c_retryBtn.UnregisterCallback<ClickEvent>(ClickRetryBtn);
+            c_quitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
-        private async void FullScreen(bool result) {
+        private void FullScreen(bool result) {
             if (result) {
-                _resultPanel.AddToClassList("result-in");
-                await Task.Delay(250);
+                _cResultPanel.AddToClassList("result-in");
                 SetPlayerResultView();
             }
             else {
-                var buttonBorder = topElement.Q<VisualElement>("button-border");
-                buttonBorder.RemoveFromClassList("hide-button-border");
+                _lResultPanel.AddToClassList("result-in");
                 SetRivalResultView();
             }
         }
         private void SetPlayerResultView() {
-            _exitBtn = _resultPanel.Q<Button>("exit-btn");
-            _retryBtn = _resultPanel.Q<Button>("retry-btn");
-            _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
-            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
+            c_nextBtn = _cResultPanel.Q<Button>("next-btn");
+            c_retryBtn = _cResultPanel.Q<Button>("retry-btn");
+            c_quitBtn = _cResultPanel.Q<Button>("quti-btn");
+
+            c_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
+            c_nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
+            c_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         private void SetRivalResultView() {
-            var buttonBorder = topElement.Q<VisualElement>("button-border");
-            _exitBtn = buttonBorder.Q<Button>("exit-btn");
-            _retryBtn = buttonBorder.Q<Button>("retry-btn");
-            _retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
-            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
+            l_retryBtn = _lResultPanel.Q<Button>("retry-btn");
+            l_quitBtn = _lResultPanel.Q<Button>("quti-btn");
+
+            l_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
+            l_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         private void ClickRetryBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene("FightScene");
+        }
+        private void ClickNextBtn(ClickEvent evt) {
+            Debug.Log("¿¬°á ¾ÈµÊ");
+            //GameEvents.SaveGameEvent?.Invoke();
+            //SceneManager.LoadScene("FightScene");
         }
         private void ClickExitBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();

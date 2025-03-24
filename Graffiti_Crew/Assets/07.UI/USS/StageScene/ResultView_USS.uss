@@ -1,39 +1,33 @@
 .result-container {
-    width: 55%;
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    position: absolute;
+    width: 100%;
     height: 100%;
     left: 100%;
-    transition-duration: 0.7s;
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&guid=ea81d5b7079037f4c8d7acef8810686c&type=3#title-background");
+    opacity: 0;
+    transition-property: left, opacity;
+    transition-duration: 0.7s, 0.5s;
+    position: absolute;
 }
 
 .result-in {
-    left: 46%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
 }
 
-.rival-screen {
-    height: 100%;
-    flex-grow: 1;
-    justify-content: flex-end;
-    transition-duration: 0.5s;
+.btn {
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    width: 400px;
+    height: 170px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.button-border {
-    flex-direction: row;
-    justify-content: flex-end;
-    height: 16%;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    transition-duration: 0.7s;
-    transition-timing-function: ease-in;
-}
-
-.hide-button-border {
-    opacity: 0;
-}
-
-.hide-button-border {
-    opacity: 0;
+.star {
+    width: 220px;
+    height: 220px;
 }
