@@ -20,15 +20,27 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         Detach();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W)) {
+
+            PresentationEvents.SetFadeEvent?.Invoke(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
+        }         
+    }
     public async override void NotifyHandle()
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
             if(_dialogueNum == 0)
             {
-                PresentationEvents.SetFadeEvent(true);
-                await Task.Delay(1100);
-                PresentationEvents.FadeInOutEvent(true);
+                PresentationEvents.SetFadeEvent?.Invoke(true);
+                await Task.Delay(100);
+                PresentationEvents.FadeInOutEvent?.Invoke(true);
             }
 
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
@@ -47,21 +59,14 @@ public class TutorialDialogueController : Observer<GameStateController>
         _dialogueNum++;
         if (_dialogueNum == 1)
         {
-            mySubject.ChangeGameState(GameState.Tutorial); // CountDown¿Ãø¥¿Ω
-        }
-        else if (_dialogueNum == 2)
-        {
-            NPCSO dialogue = _dialogueList[_dialogueNum];
-
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
+            _dialogueUIController._dialogueBG.SetActive(false);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
-            await Task.Delay(1100);
 
-            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
-            _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+            mySubject.ChangeGameState(GameState.Tutorial);
         }
-        else
+        else if (_dialogueNum == 2)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);

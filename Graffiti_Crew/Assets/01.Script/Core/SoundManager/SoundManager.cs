@@ -37,6 +37,15 @@ public class SoundManager : MonoBehaviour
         return source;
     }
 
+    public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
+    {
+        if (Enum.TryParse(soundName, true, out SoundType soundType))
+        {
+            return PlaySound(soundType, loop, pitch, volume);
+        }
+        return null;
+    }
+
     private IEnumerator ReturnToPool(AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
@@ -58,6 +59,10 @@ public class Player : Agent
 
     protected void Start()
     {
+        //PresentationEvents.SetFadeEvent?.Invoke(true);
+        //await Task.Delay(100);
+        //PresentationEvents.FadeInOutEvent?.Invoke(true);
+
         transform.position = playerData.playerPosition;
 
         NavMeshAgent.speed = moveSpeed;
