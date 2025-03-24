@@ -11,6 +11,7 @@ public class TutorialDialogueController : Observer<GameStateController>
     [SerializeField] private List<NPCSO> _dialogueList;
     private int _dialogueNum = 0;
 
+
     private void Awake()
     {
         Attach();

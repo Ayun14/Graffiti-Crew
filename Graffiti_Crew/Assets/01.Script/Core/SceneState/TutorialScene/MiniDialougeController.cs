@@ -10,14 +10,19 @@ public class MiniDialougeController : MonoBehaviour
     [SerializeField] private int _explainIndex;
     private int _currentIndex;
 
+    private AudioSource _bgm;
+
     private void Start()
     {
         _nodeJudgement.OnNodeSpawnStart += HandleNodeCheck;
         _currentIndex = _explainIndex;
+
+        _bgm = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
     }
 
     private void OnDestroy()
     {
+        _bgm?.GetComponent<SoundObject>().PushObject();
         _nodeJudgement.OnNodeSpawnStart -= HandleNodeCheck;
     }
 
