@@ -16,6 +16,8 @@ namespace AH.UI.CustomElement {
         public string stage { get; set; }
         private int _starCount;
 
+        private Sprite[] _stars;
+
         public int starCount {
             get => _starCount;
             set {
@@ -75,7 +77,7 @@ namespace AH.UI.CustomElement {
         public StagePointElement() {
             _starBorder = new VisualElement() { name = "star-border",
                 style = {
-                    bottom = Length.Percent(-17),
+                    bottom = Length.Percent(-19),
                     alignItems =Align.Center,
                     flexDirection = FlexDirection.Row,
                     justifyContent = Justify.SpaceAround,
@@ -98,15 +100,17 @@ namespace AH.UI.CustomElement {
             _starBorder.Add(_star3);
         }
         void ApplyStarBorderStyle(VisualElement element) {
-            element.style.width = 80;
-            element.style.height = 80;
+            element.style.width = 100;
+            element.style.height = 100;
         }
         private void UpdateStarDisplay() {
-            Color starColor = new Color(255, 255, 0, 255);
-            Color hideColor = new Color(255, 255, 0, 0);
-            _star1.style.backgroundColor = (starCount >= 1) ? starColor : hideColor;
-            _star2.style.backgroundColor = (starCount >= 2) ? starColor : hideColor;
-            _star3.style.backgroundColor = (starCount >= 3) ? starColor : hideColor;
+            _stars = Resources.LoadAll<Sprite>("UI/Stage/Stars");
+            StyleBackground star1 = new StyleBackground(_stars[0]);
+            StyleBackground star2 = new StyleBackground(_stars[1]);
+            StyleBackground star3 = new StyleBackground(_stars[2]);
+            _star1.style.backgroundImage = (starCount >= 1) ? star1 : null;
+            _star2.style.backgroundImage = (starCount >= 2) ? star2 : null;
+            _star3.style.backgroundImage = (starCount >= 3) ? star3 : null;
         }
         private void UpdateStagePointDisplay(bool isClear) {
             if (isClear) {
