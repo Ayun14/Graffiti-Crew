@@ -205,6 +205,7 @@ public class SprayController : MonoBehaviour
     public void SprayChange()
     {
         AddSprayAmount(_spraySliderValueSO.max);
+        AddShakeAmount(_shakeSliderValueSO.max);
     }
 
     #endregion
