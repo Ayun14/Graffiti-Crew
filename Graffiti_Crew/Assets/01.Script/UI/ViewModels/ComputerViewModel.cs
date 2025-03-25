@@ -13,12 +13,6 @@ namespace AH.UI.ViewModels {
         }
 
         #region GetData
-        public CrewSO GetCrew() {
-            return _model.GetCrew();
-        }
-        public ExpeditionMemberSO GetExpeditionMember() {
-            return _model.GetExpeditionMember();
-        }
         public StageDescriptionSO GetStageDescription() {
             return _model.GetStageDescription();
         }
@@ -30,15 +24,6 @@ namespace AH.UI.ViewModels {
         }
         #endregion
 
-        public void SetFriendImg(int btnIndex, int friendIndex) {
-            if(btnIndex < 0) {
-                Debug.LogWarning("¹®Á¦ »ý±è");
-                return;
-            }
-            Sprite image = _model.GetCrew().GetProfile(friendIndex);
-            _model.SetMemderImg(btnIndex, image);
-            UpdateDisplay(friendIndex);
-        }
         public void SetSelectProduct(int categoryIndex, int index) {
             _model.SetSelectProduct(categoryIndex, index);
         }
@@ -51,7 +36,10 @@ namespace AH.UI.ViewModels {
         public void SetStageData(string chapter, string stage) {
             _model.SetStage(chapter, stage);
         }
-        public void SetRequest(string chapter, string stage) {
+        public void SetStoryData(string chapter, string stage) {
+            _model.SetStoryData(chapter, stage);
+        }
+        public void SetRequestData(string chapter, string stage) {
             _model.SetRequest(chapter, stage);
         }
     }

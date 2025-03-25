@@ -11,11 +11,16 @@ namespace AH.SaveSystem {
 
         public string requestChapter;
         public string requestStage;
+
+        public string stroyChapter;
+        public string stroyStage;
         [Space]
         [SerializeField] private string _defaultChapter;
         [SerializeField] private string _defaultStage;
         [SerializeField] private string _defaultRequestChapter;
         [SerializeField] private string _defaultRequestStage;
+        [SerializeField] private string _defaultStroyChapter;
+        [SerializeField] private string _defaultStroyStage;
 
         private void Awake() {
             dataType = DataType.Ect;
@@ -36,6 +41,8 @@ namespace AH.SaveSystem {
             stage = datas[1];
             requestChapter = datas[2];
             requestStage = datas[3];
+            stroyChapter = datas[4];
+            stroyStage = datas[5];
         }
         public override string GetDataType() {
             return dataType.ToString();
@@ -45,6 +52,8 @@ namespace AH.SaveSystem {
             stage = _defaultStage;
             requestChapter = _defaultRequestChapter;
             requestStage = _defaultRequestStage;
+            stroyChapter = _defaultStroyChapter;
+            stroyStage = _defaultStroyStage;
         }
     }
 }

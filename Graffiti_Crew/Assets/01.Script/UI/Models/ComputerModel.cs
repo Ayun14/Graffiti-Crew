@@ -1,5 +1,6 @@
 using AH.SaveSystem;
 using AH.UI.Data;
+using System;
 using UnityEngine;
 
 namespace AH.UI.Models
@@ -7,8 +8,6 @@ namespace AH.UI.Models
     public class ComputerModel : Model
     {
         [Header("Stage")]
-        [SerializeField] private CrewSO crewSO;
-        [SerializeField] private ExpeditionMemberSO _memberSO;
         [SerializeField] private StageDescriptionSO _stageDescription;
 
         [Header("Store")]
@@ -18,14 +17,6 @@ namespace AH.UI.Models
         [Header("Map")]
         [SerializeField] private LoadStageSO _loadStageSO;
 
-        public CrewSO GetCrew()
-        {
-            return crewSO;
-        }
-        public ExpeditionMemberSO GetExpeditionMember()
-        {
-            return _memberSO;
-        }
         public StageDescriptionSO GetStageDescription()
         {
             return _stageDescription;
@@ -39,26 +30,6 @@ namespace AH.UI.Models
             return _categorySO;
         }
 
-        public void SetMemderImg(int index, Sprite sprite)
-        {
-            if (index > 2)
-            {
-                Debug.LogError("°³»ç°í");
-                return;
-            }
-            if (index == 0)
-            {
-                _memberSO.memder1Profile = sprite;
-            }
-            else if (index == 1)
-            {
-                _memberSO.memder2Profile = sprite;
-            }
-            else if (index == 2)
-            {
-                _memberSO.memder3Profile = sprite;
-            }
-        }
         public void SetSelectProduct(int categoryIndex, int index)
         {
             _descriptionSO.itemName = _categorySO.categoryList[categoryIndex].products[index].itemName;
@@ -78,10 +49,15 @@ namespace AH.UI.Models
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
         }
+        public void SetStoryData(string chapter, string stage) {
+            _loadStageSO.stroyChapter = chapter;
+            _loadStageSO.stroyStage = stage;
+        }
         public void SetRequest(string chapter, string stage)
         {
             _loadStageSO.requestChapter = chapter;
             _loadStageSO.requestStage = stage;
         }
+
     }
 }

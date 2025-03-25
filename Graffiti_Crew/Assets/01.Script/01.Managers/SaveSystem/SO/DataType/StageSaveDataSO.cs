@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum StageType {
     Stage,
-    Request
+    Request,
+    Story
 }
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "Chapter_Stage_", menuName = "SO/Save/Data/StageSaveDataSO")]

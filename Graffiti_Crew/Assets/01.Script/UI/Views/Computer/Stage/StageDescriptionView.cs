@@ -90,10 +90,5 @@ namespace AH.UI.Views {
                 Debug.Log("입장권이 부족합니다");
             }
         }
-
-        private void ClickSelectFirend(ClickEvent evt, int index) {
-            ComputerViewModel.currentBtnIndex = index;
-            ComputerEvent.ShowSelectFriendViewEvent?.Invoke();
-        }
     }
 }
