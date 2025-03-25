@@ -27,7 +27,10 @@ public enum SoundType
 
     // UI
     Text_Typing,
+    Laughing,
     Paper,
+    Sigh,
+    Surprised,
     Click_Mouse,
     Click_UI,
     Buy,

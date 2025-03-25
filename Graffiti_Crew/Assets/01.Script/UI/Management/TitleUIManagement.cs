@@ -4,6 +4,7 @@ using AH.UI.Models;
 using AH.UI.ViewModels;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -23,6 +24,20 @@ namespace AH.UI {
         private SlotSO[] slots;
 
         private VisualElement _fadeView;
+
+        protected override void Start()
+        {
+            base.Start();
+
+            PlayerBGM();
+        }
+
+        private async void PlayerBGM()
+        {
+            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Title_Front);
+            await Task.Delay(4304);
+            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Title_Back, true);
+        }
 
         protected override void OnEnable() {
             base.OnEnable();
