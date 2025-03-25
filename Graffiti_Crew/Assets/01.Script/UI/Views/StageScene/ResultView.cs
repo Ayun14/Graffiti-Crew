@@ -1,7 +1,7 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -48,6 +48,7 @@ namespace AH.UI.Views {
         }
         private void FullScreen(bool result) {
             if (result) {
+                SetStar();
                 _cResultPanel.AddToClassList("result-in");
                 SetPlayerResultView();
             }
@@ -56,6 +57,13 @@ namespace AH.UI.Views {
                 SetRivalResultView();
             }
         }
+
+        private void SetStar()
+        {
+            List<VisualElement> stars = topElement.Query<VisualElement>("star-border").ToList();
+            
+        }
+
         private void SetPlayerResultView() {
             c_nextBtn = _cResultPanel.Q<Button>("next-btn");
             c_retryBtn = _cResultPanel.Q<Button>("retry-btn");
