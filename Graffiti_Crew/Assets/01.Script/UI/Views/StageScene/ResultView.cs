@@ -59,7 +59,7 @@ namespace AH.UI.Views {
         private void SetPlayerResultView() {
             c_nextBtn = _cResultPanel.Q<Button>("next-btn");
             c_retryBtn = _cResultPanel.Q<Button>("retry-btn");
-            c_quitBtn = _cResultPanel.Q<Button>("quti-btn");
+            c_quitBtn = _cResultPanel.Q<Button>("quit-btn");
 
             c_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             c_nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
@@ -67,7 +67,7 @@ namespace AH.UI.Views {
         }
         private void SetRivalResultView() {
             l_retryBtn = _lResultPanel.Q<Button>("retry-btn");
-            l_quitBtn = _lResultPanel.Q<Button>("quti-btn");
+            l_quitBtn = _lResultPanel.Q<Button>("quit-btn");
 
             l_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             l_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);

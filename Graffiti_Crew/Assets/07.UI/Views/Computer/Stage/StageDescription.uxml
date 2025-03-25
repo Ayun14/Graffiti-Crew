@@ -1,9 +1,9 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(255, 255, 255); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-background.png?fileID=21300000&amp;guid=b430dfc39913a624aba62385d2991d68&amp;type=3#selectStage-background&quot;);">
-            <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80" style="flex-grow: 0; -unity-text-align: upper-center; margin-bottom: 30px; color: rgb(255, 255, 255);">
+        <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(0, 0, 0); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-background.png?fileID=21300000&amp;guid=b430dfc39913a624aba62385d2991d68&amp;type=3#selectStage-background&quot;); border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px;">
+            <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-80 grow-size-150" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/99.Asset/Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); -unity-text-align: middle-center; flex-grow: 0; margin-top: 15px;">
                 <Bindings>
                     <engine:DataBinding property="text" data-source-path="title" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                 </Bindings>
@@ -17,39 +17,23 @@
                     </engine:VisualElement>
                 </engine:VisualElement>
                 <engine:VisualElement name="right-content" class="selectStage-description-TRight-content">
-                    <engine:Button name="select-friend-btn" class="select-friend-btn">
-                        <Bindings>
-                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder1Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Button>
-                    <engine:Button name="select-friend-btn" class="select-friend-btn">
-                        <Bindings>
-                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder2Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Button>
-                    <engine:Button name="select-friend-btn" class="select-friend-btn">
-                        <Bindings>
-                            <engine:DataBinding property="style.backgroundImage" data-source-path="memder3Profile" data-source="project://database/Assets/08.SO/UI/Computer/Stage/ExpeditionMember/ExpeditionMemberSO.asset?fileID=11400000&amp;guid=c4545a9d36e969a4792deaa967c4d7a8&amp;type=2#ExpeditionMemberSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Button>
-                </engine:VisualElement>
-            </engine:VisualElement>
-            <engine:VisualElement name="bottom-container" class="selectStage-description-bottom-container" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
-                <engine:VisualElement name="left-content" class="selectStage-description-BLeft-content">
-                    <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-50" style="color: rgb(255, 255, 255);">
+                    <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-50" style="color: rgb(255, 255, 255); white-space: normal; height: 100%;">
                         <Bindings>
                             <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                         </Bindings>
                     </engine:Label>
                 </engine:VisualElement>
-                <engine:VisualElement name="right-content" class="selectStage-description-BRight-content">
-                    <engine:VisualElement name="start-btn" style="align-items: center; justify-content: center; flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-start.png?fileID=21300000&amp;guid=5f64f6108809e8b4fbf456a5a7d61068&amp;type=3#selectStage-start&quot;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
+            </engine:VisualElement>
+            <engine:VisualElement name="bottom-container" class="selectStage-description-bottom-container" style="padding-right: 20px; padding-bottom: 20px; height: 25%; flex-grow: 0;">
+                <engine:VisualElement name="left-content" class="selectStage-description-BLeft-content" />
+                <engine:VisualElement name="right-content" class="selectStage-description-BRight-content" style="justify-content: flex-end; align-items: flex-end;">
+                    <engine:VisualElement name="start-btn" style="align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-start.png?fileID=21300000&amp;guid=5f64f6108809e8b4fbf456a5a7d61068&amp;type=3#selectStage-start&quot;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); width: 330px; height: 180px;" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="select-friend" style="background-color: rgb(190, 190, 190); width: 40%; height: 40%; position: absolute; display: none;">
             <engine:ScrollView name="crew-scrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" />
         </engine:VisualElement>
-        <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 8%; left: 84%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+        <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 8%; left: 84%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
     </engine:VisualElement>
 </engine:UXML>
