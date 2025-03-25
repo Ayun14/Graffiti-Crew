@@ -227,7 +227,7 @@ public class DialogueUIController : MonoBehaviour
         if (sound != null)
             GameManager.Instance.SoundSystemCompo.PlaySound(sound);
 
-        if(dialogue.bgSprite != "")
+        if(dialogue.bgSprite != "" && _dialogueBG != null)
         {
             _dialogueBG.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Sprite/BG/{dialogue.bgSprite}");
         }

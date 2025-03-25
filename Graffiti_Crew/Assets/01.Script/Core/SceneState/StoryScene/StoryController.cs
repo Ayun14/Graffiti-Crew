@@ -9,7 +9,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private DialogueUIController _dialogueUIController;
 
-    [SerializeField] private List<NPCSO> _dialogueList;
+    private StoryDialogueSO _storyDialogueSO;
     private int _dialogueNum = 0;
 
     private Image _loadingPanel;
@@ -39,7 +39,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
                 DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
 
-                NPCSO dialogue = _dialogueList[_dialogueNum];
+                NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
             }
@@ -54,7 +54,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         _dialogueNum++;
 
 
-        if (_dialogueNum == _dialogueList.Count)
+        if (_dialogueNum == _storyDialogueSO.storyList.Count)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
@@ -63,7 +63,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         }
         else
         {
-            NPCSO dialogue = _dialogueList[_dialogueNum];
+            NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
@@ -73,6 +73,9 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
+        _storyDialogueSO = dataController.stageData.storyDialogue;
+        Debug.Log(dataController.stageData.storyDialogue);
+
         _dialogueUIController.dialogueDataReader = dataController.stageData.dialogueData_KR;
         _dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
         _dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
