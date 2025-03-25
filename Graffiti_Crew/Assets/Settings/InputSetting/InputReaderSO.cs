@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "InputReaderSO", menuName = "SO/InputReaderSO")]
 public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
     public event Action<AfterExecution> OnCancleEvent;
+    public event Action<AfterExecution> OnPressAnyKeyEvent;
 
     private InputActions _inputAction;
     private void Awake() {
@@ -23,6 +24,11 @@ public class InputReaderSO : ScriptableObject, InputActions.IUIActions {
     public void OnCancel(InputAction.CallbackContext context) { // esc누르면 호출
         if (context.performed) {
             OnCancleEvent?.Invoke(null);
+        }
+    }
+    public void OnPressAnyKey(InputAction.CallbackContext context) {
+        if (context.performed) {
+            OnPressAnyKeyEvent?.Invoke(null);
         }
     }
     #region Hide

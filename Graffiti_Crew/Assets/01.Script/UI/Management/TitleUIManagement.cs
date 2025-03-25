@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,10 +27,14 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
+            _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
         }
+
+
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
+            _inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
         }
 
         protected override void Init() {
@@ -65,7 +70,9 @@ namespace AH.UI {
         }
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();
-            Debug.Log("³ª°¡±â");
+        }
+        private void PressAnyKey(AfterExecution execution) {
+            ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
