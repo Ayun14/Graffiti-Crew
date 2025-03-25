@@ -9,14 +9,14 @@
                 </Bindings>
             </engine:Label>
             <engine:VisualElement name="top-container" class="selectStage-description-top-container">
-                <engine:VisualElement name="left-content" class="selectStage-description-TLeft-content">
+                <engine:VisualElement name="left-content" class="selectStage-description-TLeft-content" style="background-color: rgb(65, 65, 65); border-top-left-radius: 19px; border-top-right-radius: 19px; border-bottom-right-radius: 19px; border-bottom-left-radius: 19px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;">
                     <engine:VisualElement name="graffti-img" class="graffti-img">
                         <Bindings>
                             <engine:DataBinding property="style.backgroundImage" data-source-path="graffiti" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                         </Bindings>
                     </engine:VisualElement>
                 </engine:VisualElement>
-                <engine:VisualElement name="right-content" class="selectStage-description-TRight-content">
+                <engine:VisualElement name="right-content" class="selectStage-description-TRight-content" style="margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; background-color: rgb(65, 65, 65); border-top-left-radius: 19px; border-top-right-radius: 19px; border-bottom-right-radius: 19px; border-bottom-left-radius: 19px; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px;">
                     <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-50" style="color: rgb(255, 255, 255); white-space: normal; height: 100%;">
                         <Bindings>
                             <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
