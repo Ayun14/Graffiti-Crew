@@ -27,10 +27,13 @@ public class SoundManager : MonoBehaviour
 
             // Volume
             source.volume = 0;
-            source.DOFade(volume * soundList.volume, 0.2f);
 
             source.loop = loop;
+            Debug.Log("Play");
             source.Play();
+
+            source.DOFade(volume * soundList.volume, 0.3f);
+
             if (!loop) StartCoroutine(ReturnToPool(source, randomClip.length));
         }
 
@@ -49,7 +52,7 @@ public class SoundManager : MonoBehaviour
     private IEnumerator ReturnToPool(AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);
-        source.DOFade(0, 0.2f)
+        source.DOFade(0, 0.3f)
             .OnComplete(() => source.gameObject.GetComponent<SoundObject>().PushObject());
     }
 }
