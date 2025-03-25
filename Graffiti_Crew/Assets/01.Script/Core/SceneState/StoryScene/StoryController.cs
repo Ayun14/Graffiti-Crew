@@ -59,6 +59,8 @@ public class StoryController : Observer<GameStateController>, INeedLoding
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
             GameEvents.SaveGameEvent?.Invoke();
+
+            
             SceneManager.LoadScene("ComputerScene");
         }
         else
@@ -73,6 +75,8 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
+        dataController.stageData.stageSaveData.isClear = true;
+
         _storyDialogueSO = dataController.stageData.storyDialogue;
         Debug.Log(dataController.stageData.storyDialogue);
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerInteractionState : PlayerState
 {
+    private AudioSource _walkSound;
+
     public PlayerInteractionState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
         : base(player, stateMachine, animBoolName)
     {
@@ -10,7 +12,8 @@ public class PlayerInteractionState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //SoundManager.Instance.PlaySound(SoundType.Walk, true);
+        _walkSound = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Walk, true);
+
         _player.MovementCompo.StopImmediately(false);
         _player.MovementCompo.SetDestination(_player.NavMeshAgent.destination);
 
@@ -65,6 +68,8 @@ public class PlayerInteractionState : PlayerState
 
     public override void Exit()
     {
+        _walkSound?.GetComponent<SoundObject>().PushObject();
+
         _player.PlayerInput.MovementEvent -= HandleMovementEvent;
         _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
 

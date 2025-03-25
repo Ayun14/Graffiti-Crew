@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class TutorialDataController : DataController
 {
+    private AudioSource _bgm;
+
+
+    private void Start()
+    {
+        _bgm = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+    }
+
     protected override void NotifyHandleChild()
     {
     }
