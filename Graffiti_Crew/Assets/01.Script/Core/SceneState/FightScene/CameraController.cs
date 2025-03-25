@@ -86,5 +86,6 @@ public class CameraController : Observer<GameStateController>
     private void SprayChangeEventHandle()
     {
         _sprayBoxCamera.Priority.Value = 0;
+        _graffitiCamera.Priority.Value = 1;
     }
 }
