@@ -21,6 +21,7 @@ public class StageDataSO : ScriptableObject
     [Header("Dialogue")]
     public DialogueDataReader dialogueData_KR;
     public DialogueDataReader dialogueData_EN;
+    public StoryDialogueSO storyDialogue;
 
     [Header("Stage Star Setting")]
     public StageResultSO stageResult;

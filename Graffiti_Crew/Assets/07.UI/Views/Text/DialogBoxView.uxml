@@ -49,7 +49,7 @@
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="background" style="flex-grow: 1; justify-content: flex-end; align-items: center;">
-            <engine:VisualElement name="profile" class="profile fade-profile">
+            <engine:VisualElement name="profile" class="profile fade-profile" style="height: 1150px; width: 920px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>
