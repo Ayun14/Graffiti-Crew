@@ -32,6 +32,9 @@ namespace AH.SaveSystem {
         public string GetLoadRequestName() {
             return $"{requestChapter}/{requestStage}";
         }
+        public string GetLoadStoryName() {
+            return $"{stroyChapter}/{stroyStage}";
+        }
         public override string GetData() {
             return $"{chapter} {stage} {requestChapter} {requestStage}";
         }
