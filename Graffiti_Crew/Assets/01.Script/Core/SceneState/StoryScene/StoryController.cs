@@ -64,7 +64,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
             GameEvents.SaveGameEvent?.Invoke();
-            _bgm?.GetComponent<SoundObject>().PushObject();
+            _bgm?.GetComponent<SoundObject>().PushObject(true);
             
             SceneManager.LoadScene("ComputerScene");
         }

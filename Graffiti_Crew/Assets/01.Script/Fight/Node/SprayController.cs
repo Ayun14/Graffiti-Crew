@@ -108,7 +108,7 @@ public class SprayController : MonoBehaviour
             if (_jumpTween != null) _jumpTween.Kill(); // 기존 Tween이 있다면 제거
 
             // Sound
-            _shakeSoundObj?.PushObject();
+            _shakeSoundObj?.PushObject(true);
         }
     }
 
@@ -168,7 +168,7 @@ public class SprayController : MonoBehaviour
         _isShaking = false;
 
         // Sound
-        _shakeSoundObj?.PushObject();
+        _shakeSoundObj?.PushObject(true);
 
         _currentDelayTime = Time.time + _shakeDelayTime;
     }

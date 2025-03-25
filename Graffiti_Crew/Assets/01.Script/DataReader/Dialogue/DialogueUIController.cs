@@ -192,7 +192,7 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (_isTyping)
                     {
-                        _textTypingAudio?.GetComponent<SoundObject>().PushObject();
+                        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
                         CompleteTyping();
                     }
                     else
@@ -202,7 +202,7 @@ public class DialogueUIController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.K))
             {
-                _textTypingAudio?.GetComponent<SoundObject>().PushObject();
+                _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
                 _currentDialogueIndex = _filteredDialogueList.Count;
                 ShowNextDialogue();
             }
@@ -283,7 +283,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
-        _textTypingAudio?.GetComponent<SoundObject>().PushObject();
+        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
     }
 
     private void CompleteTyping()

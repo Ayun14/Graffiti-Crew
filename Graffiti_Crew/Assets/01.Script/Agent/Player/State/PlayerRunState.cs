@@ -32,7 +32,7 @@ public class PlayerRunState : PlayerState
 
     public override void Exit()
     {
-        _walkSound?.GetComponent<SoundObject>().PushObject();
+        _walkSound?.GetComponent<SoundObject>().PushObject(false);
         _player.PlayerInput.MovementEvent -= HandleMovementEvent;
         _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
 

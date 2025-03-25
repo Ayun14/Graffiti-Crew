@@ -11,6 +11,6 @@ public class ComputerSceneBGM : MonoBehaviour
 
     private void OnDisable()
     {
-        _bgmAudioSource?.GetComponent<SoundObject>().PushObject();
+        _bgmAudioSource?.GetComponent<SoundObject>().PushObject(true);
     }
 }

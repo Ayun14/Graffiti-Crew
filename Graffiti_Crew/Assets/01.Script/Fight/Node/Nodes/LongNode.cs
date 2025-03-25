@@ -183,7 +183,7 @@ public class LongNode : Node, INodeAction
                 judgement.NodeFalse(this);
 
                 // Sound
-                _sprayLongSoundObj?.PushObject();
+                _sprayLongSoundObj?.PushObject(true);
             }
 
             ResetNode();
@@ -240,7 +240,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        _sprayLongSoundObj?.PushObject();
+        _sprayLongSoundObj?.PushObject(true);
     }
 
     #endregion
@@ -262,7 +262,7 @@ public class LongNode : Node, INodeAction
         SetAlpha(0f);
 
         // Sound
-        _sprayLongSoundObj?.PushObject();
+        _sprayLongSoundObj?.PushObject(true);
     }
 
     #region Do Fade
