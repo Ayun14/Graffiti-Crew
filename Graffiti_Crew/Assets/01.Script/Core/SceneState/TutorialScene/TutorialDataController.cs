@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class TutorialDataController : DataController
@@ -9,11 +10,14 @@ public class TutorialDataController : DataController
     protected override void FindDatas()
     {
         stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
-        Debug.Log(stageSO.GetLoadStageName());
     }
 
-    protected override void FinishGiveData()
+    protected async override void FinishGiveData()
     {
+        PresentationEvents.SetFadeEvent?.Invoke(true);
+        await Task.Delay(1100);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
+
         mySubject.ChangeGameState(GameState.Dialogue);
     }
 }

@@ -65,7 +65,7 @@ public class DialogueDataReader : DataReaderBase
                         //if (DialogueList.Count > 0)
                         //    characterName = DialogueList[DialogueList.Count - 1].characterName;
                         //else 
-                            characterName = null;
+                        characterName = null;
                     }
                     else
                     {
@@ -83,7 +83,7 @@ public class DialogueDataReader : DataReaderBase
                     break;
                 case "BGSprite":
                     if (string.IsNullOrWhiteSpace(list[i].value))
-                        bgSprite = null;
+                        bgSprite = "";
                     else
                         bgSprite = list[i].value;
                     break;

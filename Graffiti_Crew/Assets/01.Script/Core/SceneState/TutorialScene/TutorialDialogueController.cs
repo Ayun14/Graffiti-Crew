@@ -21,17 +21,10 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         Detach();
     }
-    public async override void NotifyHandle()
+    public override void NotifyHandle()
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
-            if(_dialogueNum == 0)
-            {
-                PresentationEvents.SetFadeEvent?.Invoke(true);
-                await Task.Delay(1100);
-                PresentationEvents.FadeInOutEvent?.Invoke(true);
-            }
-
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
