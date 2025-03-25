@@ -1,5 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
         <engine:VisualElement name="stage-description" style="width: 80%; height: 90%; background-color: rgb(0, 0, 0); padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; position: absolute; top: 53px; left: 192px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-background.png?fileID=21300000&amp;guid=b430dfc39913a624aba62385d2991d68&amp;type=3#selectStage-background&quot;); border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px;">
@@ -25,8 +25,10 @@
                 </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement name="bottom-container" class="selectStage-description-bottom-container" style="padding-right: 20px; padding-bottom: 20px; height: 25%; flex-grow: 0;">
-                <engine:VisualElement name="left-content" class="selectStage-description-BLeft-content" />
-                <engine:VisualElement name="right-content" class="selectStage-description-BRight-content" style="justify-content: flex-end; align-items: flex-end;">
+                <engine:VisualElement name="left-content" class="selectStage-description-BLeft-content">
+                    <engine:VisualElement name="ticket-content" style="flex-grow: 1; width: 100%; background-color: rgb(65, 65, 65); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; flex-direction: row; justify-content: flex-end; align-items: center; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;" />
+                </engine:VisualElement>
+                <engine:VisualElement name="right-content" class="selectStage-description-BRight-content" style="justify-content: flex-end; align-items: center;">
                     <engine:VisualElement name="start-btn" style="align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-start.png?fileID=21300000&amp;guid=5f64f6108809e8b4fbf456a5a7d61068&amp;type=3#selectStage-start&quot;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); width: 330px; height: 180px;" />
                 </engine:VisualElement>
             </engine:VisualElement>

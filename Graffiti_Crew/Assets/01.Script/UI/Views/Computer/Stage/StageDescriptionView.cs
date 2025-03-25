@@ -34,7 +34,7 @@ namespace AH.UI.Views {
 
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _exitBtn = topElement.Q<Button>("exit-btn");
-            //SetAdmissionTicket();
+            SetAdmissionTicket();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -53,18 +53,19 @@ namespace AH.UI.Views {
         }
 
         public override void Show() {
-            tickets = ComputerViewModel.GetStageDescription().ticket;
-            //SetAdmissionTicket();
+            SetAdmissionTicket();
             base.Show();
         }
 
         private void SetAdmissionTicket() {
-            _startBtn.Clear();
+            tickets = ComputerViewModel.GetStageDescription().ticket;
+            var content = topElement.Q<VisualElement>("ticket-content");
+            content.Clear();
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
                 asset.Q<VisualElement>("spray-img").style.backgroundImage = new StyleBackground(data.ticketType.image);
                 asset.Q<Label>("count-txt").text = data.count.ToString();
-                _startBtn.Add(asset);
+                content.Add(asset);
             }
         }
         private bool CheckTicket() {
