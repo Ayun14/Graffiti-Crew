@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace AH.SaveSystem {
 
         public string stroyChapter;
         public string stroyStage;
+
+        private string _currentStage;
+        private StageType _currentStageType;
         [Space]
         [SerializeField] private string _defaultChapter;
         [SerializeField] private string _defaultStage;
@@ -27,16 +31,28 @@ namespace AH.SaveSystem {
         }
 
         public string GetLoadStageName() {
+            _currentStage = $"{chapter}/{stage}";
+            _currentStageType = StageType.Stage;
             return $"{chapter}/{stage}";
         }
         public string GetLoadRequestName() {
+            _currentStage = $"{requestChapter}/{requestStage}";
+            _currentStageType = StageType.Request;
             return $"{requestChapter}/{requestStage}";
         }
         public string GetLoadStoryName() {
+            _currentStage = $"{stroyChapter}/{stroyStage}";
+            _currentStageType = StageType.Story;
             return $"{stroyChapter}/{stroyStage}";
         }
         public override string GetData() {
             return $"{chapter} {stage} {requestChapter} {requestStage}";
+        }
+        public string GetCurrentStage() {
+            return _currentStage;
+        }
+        public StageType GetStageType() {
+            return _currentStageType;
         }
         public override void SetValueFromString(string value) {
             string[] datas = value.Split(" ");
@@ -58,5 +74,6 @@ namespace AH.SaveSystem {
             stroyChapter = _defaultStroyChapter;
             stroyStage = _defaultStroyStage;
         }
+
     }
 }

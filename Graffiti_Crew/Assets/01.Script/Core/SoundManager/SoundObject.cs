@@ -25,7 +25,7 @@ public class SoundObject : MonoBehaviour, IPoolable
 
     public void PushObject()
     {
-        _audioSource.DOFade(0, 0.2f)
+        _audioSource.DOFade(0, 0.4f)
             .OnComplete(() => _pool.Push(this));
     }
 
