@@ -69,14 +69,8 @@ namespace AH.UI {
         }
         private void ClickStartBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
-            if (_checkFirstLoad.data)
-            {
-                SceneManager.LoadScene("TutorialScene");
-            }
-            else
-            {
-                SceneManager.LoadScene("HangOutScene");
-            }
+            string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
+            SceneManager.LoadScene(sceneName);
         }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
