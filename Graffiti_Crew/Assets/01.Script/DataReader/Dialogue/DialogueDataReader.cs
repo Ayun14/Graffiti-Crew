@@ -16,14 +16,16 @@ public struct DialogueData
     [TextArea] public string context;
     public string spriteName;
     public string soundName;
+    public string bgSprite;
 
-    public DialogueData(int id, string characterName, string context, string spriteName, string soundName)
+    public DialogueData(int id, string characterName, string context, string spriteName, string soundName, string bgSprite)
     {
         this.id = id;
         this.characterName = characterName;
         this.context = context;
         this.spriteName = spriteName;
         this.soundName = soundName;
+        this.bgSprite = bgSprite;
     }
 }
 
@@ -41,7 +43,7 @@ public class DialogueDataReader : DataReaderBase
     internal void UpdateStats(List<GSTU_Cell> list)
     {
         int id = -1;
-        string characterName = null, context = null, spriteName = null, soundName = null;
+        string characterName = null, context = null, spriteName = null, soundName = null, bgSprite = null;
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -79,10 +81,16 @@ public class DialogueDataReader : DataReaderBase
                 case "Sound Name":
                     soundName = list[i].value;
                     break;
+                case "BGSprite":
+                    if (string.IsNullOrWhiteSpace(list[i].value))
+                        bgSprite = null;
+                    else
+                        bgSprite = list[i].value;
+                    break;
             }
         }
 
-        DialogueList.Add(new DialogueData(id, characterName, context, spriteName, soundName));
+        DialogueList.Add(new DialogueData(id, characterName, context, spriteName, soundName, bgSprite));
     }
 }
 
