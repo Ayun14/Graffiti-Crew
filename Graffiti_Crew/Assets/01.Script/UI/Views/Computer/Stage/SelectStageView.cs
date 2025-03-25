@@ -47,7 +47,6 @@ namespace AH.UI.Views {
 
         public override void Show() {
             SetStagePoint();
-            SetStar();
             RegisterButtonCallbacks();
             base.Show();
         }
@@ -114,50 +113,39 @@ namespace AH.UI.Views {
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }
 
-        private void SetStar() {
-            int index = 0;
-            int storyIndex = 0;
-            int stageIndex = 0;
-            int requestIndex = 0;
-            while (index <= _stagePointList.Count - _saveRequestData.Length) {
-                if (_stagePointList[index].type == StageType.Stage) {
-                    _stagePointList[index].starCount = _saveStageData[storyIndex++].star;
-                }
-                else if (_stagePointList[index].type == StageType.Story) {
-                    _stagePointList[index].starCount = _saveStoryData[stageIndex++].star;
-                }
-                else {
-                    _stagePointList[index].starCount = _saveRequestData[requestIndex++].star;
-                }
-                index++;
-            }
-        }
         private void SetStagePoint() {
             int index = 0;
             int stageIndex = 0;
             int storyIndex = 0;
             int requestIndex = 0;
+
             while (index <= _stagePointList.Count - _saveRequestData.Length) {
                 if (_stagePointList[index].type == StageType.Stage) {
-                    if (!_saveStageData[stageIndex].isClear) { // 다음 스테이지 보이도록
-                        _stagePointList[index].canPlay = true;
+                    if (!_saveStageData[stageIndex].isClear) {
+                        _stagePointList[index].canPlay = true; // 다음 스테이지 보이도록
                         break;
                     }
-                    _stagePointList[index].canPlay = _saveStageData[stageIndex++].isClear;
+                    _stagePointList[index].canPlay = _saveStageData[stageIndex].isClear;
+                    _stagePointList[index].starCount = _saveStageData[stageIndex].star;
+                    stageIndex++;
                 }
                 else if (_stagePointList[index].type == StageType.Story) {
-                    if (!_saveStoryData[storyIndex].isClear) { // 다음 스테이지 보이도록
-                        _stagePointList[index].canPlay = true;
+                    if (!_saveStoryData[storyIndex].isClear) {
+                        _stagePointList[index].canPlay = true; // 다음 스테이지 보이도록
                         break;
                     }
-                    _stagePointList[index].canPlay = _saveStoryData[storyIndex++].isClear;
+                    _stagePointList[index].canPlay = _saveStoryData[storyIndex].isClear;
+                    _stagePointList[index].starCount = _saveStoryData[storyIndex].star;
+                    storyIndex++;
                 }
-                else {
-                    if (!_saveRequestData[requestIndex].isClear) { // 다음 스테이지 보이도록
-                        _stagePointList[index].canPlay = true;
+                else if (_stagePointList[index].type == StageType.Request) {
+                    if (!_saveRequestData[requestIndex].isClear) {
+                        _stagePointList[index].canPlay = true; // 다음 스테이지 보이도록
                         break;
                     }
-                    _stagePointList[index].canPlay = _saveRequestData[requestIndex++].isClear;
+                    _stagePointList[index].canPlay = _saveRequestData[requestIndex].isClear;
+                    _stagePointList[index].starCount = _saveRequestData[requestIndex].star;
+                    requestIndex++;
                 }
                 index++;
             }
