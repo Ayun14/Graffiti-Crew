@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -17,26 +16,30 @@ public class SoundManager : MonoBehaviour
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
 
         AudioSource source = _poolManager.Pop(_soundObjectTypeSO).GameObject.GetComponent<AudioSource>();
+
         if (source)
         {
+            source.Stop();
+
             source.outputAudioMixerGroup = soundList.mixer;
             source.clip = randomClip;
 
             // Pitch
             source.pitch = pitch;
 
-            // Volume
-            source.volume = 0;
-
             source.loop = loop;
             source.Play();
 
-            source.DOFade(volume * soundList.volume, 0.3f);
+            // Volume
+            source.volume = 0;
+            source.DOFade(volume * soundList.volume, 0.2f)
+                .OnComplete(() => source.volume = volume * soundList.volume);
 
-            if (!loop) StartCoroutine(ReturnToPool(source, randomClip.length));
+            if (!loop)
+                source.GetComponent<SoundObject>().PushObject(false);
         }
 
-        return source;
+            return source;
     }
 
     public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
@@ -46,13 +49,6 @@ public class SoundManager : MonoBehaviour
             return PlaySound(soundType, loop, pitch, volume);
         }
         return null;
-    }
-
-    private IEnumerator ReturnToPool(AudioSource source, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        source.DOFade(0, 0.3f)
-            .OnComplete(() => source.gameObject.GetComponent<SoundObject>().PushObject());
     }
 }
 

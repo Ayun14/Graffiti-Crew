@@ -157,7 +157,7 @@ public class FightSceneUIController : Observer<GameStateController>
             // Finish
             if (isFinish)StartCoroutine(FinishRoutine());
             _finishPanel.gameObject.SetActive(isFinish); 
-            _clockSound?.GetComponent<SoundObject>().PushObject();
+            _clockSound?.GetComponent<SoundObject>().PushObject(true);
 
             // Result
             StageEvent.ShowResultViewEvent?.Invoke(isResult);

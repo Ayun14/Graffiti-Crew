@@ -32,35 +32,33 @@ public class BGMController : Observer<GameStateController>
 
             if (mySubject.GameState == GameState.Finish)
             {
-                FinishFunc();
+                _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject(true);
+
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+            }
+
+            if (mySubject.GameState == GameState.Result)
+            {
+                _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
             }
         }
     }
 
-    private void FinishFunc()
-    {
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
-
-        _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject();
-        _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
-
-    }
-
     private void OnDisable()
     {
-        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject();
+        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject(true);
     }
 
     public void FightBeforeBGMStop()
     {
         _fightBeforeAudioSource.DOFade(0, 0.8f)
-            .OnComplete(() => _fightBeforeAudioSource?.GetComponent<SoundObject>().PushObject());
+            .OnComplete(() => _fightBeforeAudioSource?.GetComponent<SoundObject>().PushObject(true));
     }
 
     private void HandleRivalCheckEvent()
     {
         if (_fightMiddleAudioSource == null) return;
-        _fightMiddleAudioSource.pitch = 1.2f;
+        _fightMiddleAudioSource.pitch = 1.1f;
     }
 
     #region SFX Play
@@ -74,9 +72,9 @@ public class BGMController : Observer<GameStateController>
     {
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Two);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_One);
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Yeah);
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class SoundObject : MonoBehaviour, IPoolable
@@ -23,15 +24,20 @@ public class SoundObject : MonoBehaviour, IPoolable
         _pool = pool;
     }
 
-    public void PushObject()
+    public void PushObject(bool isLoop)
     {
-        _audioSource.DOFade(0, 0.4f)
-            .OnComplete(() => _pool.Push(this));
+        if (!gameObject.activeSelf) return;
+
+        StartCoroutine(PushObjectRoutine(isLoop));
     }
 
-    private void OnDestroy()
+    private IEnumerator PushObjectRoutine(bool isLoop)
     {
-        PushObject();
+        if (!isLoop)
+            yield return new WaitForSeconds(_audioSource.clip.length + 0.2f);
+
+        _audioSource.DOFade(0, 0.2f)
+            .OnComplete(() => _pool.Push(this));
     }
 }
 
