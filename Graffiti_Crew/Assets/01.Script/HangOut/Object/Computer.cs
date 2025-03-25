@@ -25,8 +25,8 @@ public class Computer : InteractionObject
     {
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
-
         _hangoutBGM?.GetComponent<SoundObject>().PushObject();
+        GameEvents.SaveGameEvent?.Invoke();
         SceneManager.LoadScene("ComputerScene");
     }
 }
