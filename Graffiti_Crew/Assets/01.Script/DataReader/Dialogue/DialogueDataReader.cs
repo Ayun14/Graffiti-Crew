@@ -83,7 +83,7 @@ public class DialogueDataReader : DataReaderBase
                     break;
                 case "BGSprite":
                     if (string.IsNullOrWhiteSpace(list[i].value))
-                        bgSprite = null;
+                        bgSprite = "";
                     else
                         bgSprite = list[i].value;
                     break;
