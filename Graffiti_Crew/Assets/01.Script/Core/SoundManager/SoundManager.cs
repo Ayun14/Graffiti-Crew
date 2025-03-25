@@ -29,7 +29,6 @@ public class SoundManager : MonoBehaviour
             source.volume = 0;
 
             source.loop = loop;
-            Debug.Log("Play");
             source.Play();
 
             source.DOFade(volume * soundList.volume, 0.3f);

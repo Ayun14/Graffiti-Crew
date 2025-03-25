@@ -34,24 +34,15 @@ namespace AH.UI.Views {
 
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _exitBtn = topElement.Q<Button>("exit-btn");
-            SetAdmissionTicket();
-
-            //_selectFriendBtnList = topElement.Query<Button>(className: "select-friend-btn").ToList(); // ±‚»πø°º≠ ªÁ∂Û¡¸
+            //SetAdmissionTicket();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
-            int index = 0;
-            //foreach (var btn in _selectFriendBtnList) {
-            //    btn.RegisterCallback<ClickEvent, int>(ClickSelectFirend, index++);
-            //}
             _startBtn.RegisterCallback<ClickEvent>(ClickStartGameBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            //foreach (var btn in _selectFriendBtnList) {
-            //    btn.UnregisterCallback<ClickEvent, int>(ClickSelectFirend);
-            //}
             _friend1Btn.Dispose();
             _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
@@ -62,12 +53,12 @@ namespace AH.UI.Views {
         }
 
         public override void Show() {
-            SetAdmissionTicket();
+            tickets = ComputerViewModel.GetStageDescription().ticket;
+            //SetAdmissionTicket();
             base.Show();
         }
 
         private void SetAdmissionTicket() {
-            tickets = ComputerViewModel.GetStageDescription().ticket;
             _startBtn.Clear();
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
