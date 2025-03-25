@@ -65,7 +65,7 @@ public class DialogueDataReader : DataReaderBase
                         //if (DialogueList.Count > 0)
                         //    characterName = DialogueList[DialogueList.Count - 1].characterName;
                         //else 
-                            characterName = null;
+                        characterName = null;
                     }
                     else
                     {
