@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class BGMController : Observer<GameStateController>
     private void Awake()
     {
         Attach();
+
+        mySubject.OnRivalCheckEvent += HandleRivalCheckEvent;
     }
 
     private void OnDestroy()
@@ -29,16 +32,18 @@ public class BGMController : Observer<GameStateController>
 
             if (mySubject.GameState == GameState.Finish)
             {
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
-                
-                _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject();
-            }
-
-            if (mySubject.GameState == GameState.Result)
-            {
-                _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                FinishFunc();
             }
         }
+    }
+
+    private void FinishFunc()
+    {
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+
+        _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject();
+        _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+
     }
 
     private void OnDisable()
@@ -50,6 +55,12 @@ public class BGMController : Observer<GameStateController>
     {
         _fightBeforeAudioSource.DOFade(0, 0.8f)
             .OnComplete(() => _fightBeforeAudioSource?.GetComponent<SoundObject>().PushObject());
+    }
+
+    private void HandleRivalCheckEvent()
+    {
+        if (_fightMiddleAudioSource == null) return;
+        _fightMiddleAudioSource.pitch = 1.2f;
     }
 
     #region SFX Play

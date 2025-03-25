@@ -96,9 +96,6 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
     public void LodingHandle(DataController dataController)
     {
-        _dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
-        _dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
-
         dataController.SuccessGiveData();
     }
 }
