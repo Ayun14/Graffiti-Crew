@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="start-content" class="start-content" />
     <engine:VisualElement name="countdown-content" class="countdown-content">
         <engine:VisualElement name="countdown1" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Countdown/countdown1.png?fileID=2800000&amp;guid=94b3165553391ad4a854cd13bc616fca&amp;type=3#countdown1&quot;);" />
@@ -14,6 +14,10 @@
         <engine:VisualElement name="player-screen" class="player-screen">
             <engine:VisualElement class="blur" style="rotate: 0;" />
         </engine:VisualElement>
-        <engine:VisualElement name="vs" style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Text/VS.png?fileID=21300000&amp;guid=69e320ed67d0f864dbf2465a49ad6a1f&amp;type=3#VS&quot;); width: 580px; height: 325px; top: 35%; left: 34%;" />
+        <engine:VisualElement name="vs" style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Text/VS.png?fileID=21300000&amp;guid=2afaf2643e63e84488175e2c2fb3086c&amp;type=3#VS&quot;); width: 580px; height: 325px; top: 35%; left: 34%;" />
+    </engine:VisualElement>
+    <engine:VisualElement style="position: absolute; width: 100%; height: 100%; justify-content: space-between;">
+        <engine:VisualElement name="top-border" class="hide-border" />
+        <engine:VisualElement name="bottom-border" class="hide-border" />
     </engine:VisualElement>
 </engine:UXML>

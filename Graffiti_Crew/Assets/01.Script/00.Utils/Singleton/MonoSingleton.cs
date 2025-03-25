@@ -6,13 +6,14 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 
     protected virtual void Awake()
     {
-        if (_instance != null){
+        if (_instance != null)
+        {
+            Destroy(gameObject);
             return;
         }
 
-        T instance = this as T;
-
-        _instance = instance;
+        _instance = this as T;
+        DontDestroyOnLoad(gameObject);
     }
 
     public static bool IsExist() => _instance != null;
@@ -29,6 +30,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             {
                 Debug.LogWarning($"{typeof(T)} is not exist. Creating new instance.");
                 _instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
+                DontDestroyOnLoad(_instance.gameObject);
             }
 
             _instance.transform.SetParent(null);
@@ -36,29 +38,13 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             return _instance;
         }
     }
-    /*public static T Instance {
-        get {
-            if (destroyed) {
-                return null;
-            }
-
-            if (instance == null) {
-                instance = (T)FindObjectOfType(typeof(T));
-
-                if (instance == null) {
-                    instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
-                }
-            }
-            return instance;
-        }
-    }*/
 
     protected virtual void OnDestroy()
     {
 #if UNITY_EDITOR
         if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-        if(_instance == this)
+        if (_instance == this)
             _instance = null;
     }
 }

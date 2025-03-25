@@ -2,9 +2,7 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -13,6 +11,8 @@ namespace AH.UI {
 
     public class TitleUIManagement : UIManagement {
         private TitleViewModel _viewModel;
+
+        [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
         private DropdownField _saveSlotField;
         private Button _startBtn;
@@ -69,7 +69,8 @@ namespace AH.UI {
         }
         private void ClickStartBtn(ClickEvent evt) {
             GameEvents.SaveGameEvent?.Invoke();
-            SceneManager.LoadScene("HangOutScene");
+            string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
+            SceneManager.LoadScene(sceneName);
         }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
