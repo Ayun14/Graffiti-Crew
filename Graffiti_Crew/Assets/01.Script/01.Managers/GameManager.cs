@@ -19,8 +19,8 @@ public class GameManager : MonoSingleton<GameManager> {
     protected override void Awake() {
         base.Awake();
 
-        SoundSystemCompo = GetComponentInChildren<SoundManager>();
-        LanguageSystemCompo = GetComponentInChildren<LanguageSystem>();
+        SoundSystemCompo = GetComponent<SoundManager>();
+        LanguageSystemCompo = GetComponent<LanguageSystem>();
     }
     private void OnEnable() {
         UIEvents.ChangeSlotEvent += ChangeSlot;
