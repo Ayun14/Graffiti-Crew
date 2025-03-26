@@ -29,7 +29,17 @@ public class NPC : InteractionObject
         startIndex = _npcSO.startIndex;
         endIndex = _npcSO.endIndex;
 
-        if(_npcSO.lastStageDataSO != null && CheckHangOutScene())
+        SaveDataEvents.LoadEndEvent += CheckStageData;
+    }
+
+    private void OnDisable()
+    {
+        SaveDataEvents.LoadEndEvent -= CheckStageData;
+    }
+
+    private void CheckStageData()
+    {
+        if (_npcSO.lastStageDataSO != null && CheckHangOutScene())
         {
             _lastStageDataSO = _npcSO.lastStageDataSO;
             if (!_lastStageDataSO.isClear)

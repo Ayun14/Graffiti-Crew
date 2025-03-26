@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visual
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54ba2f56bd7fdb242abc390cf368aefc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4320098735860348617, guid: 54ba2f56bd7fdb242abc390cf368aefc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1776,7 +1780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4020b4b229d9ebe4e9e76859e38e78d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataList: []
+  _dataList:
+  - {fileID: 11400000, guid: 8de463dd07fd85240ac004727e83709e, type: 2}
 --- !u!4 &852669959
 Transform:
   m_ObjectHideFlags: 0
@@ -3069,7 +3074,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.35449064
   m_Height: 1.9218647
