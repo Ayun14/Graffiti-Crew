@@ -90,8 +90,9 @@ namespace AH.UI {
             ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
-            GameEvents.SaveGameEvent?.Invoke();
+            Debug.Assert(_checkFirstLoad.data);
             string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
+            GameEvents.SaveGameEvent?.Invoke();
             SceneManager.LoadScene(sceneName);
         }
         private void ChangeSlot(ChangeEvent<string> evt) {
