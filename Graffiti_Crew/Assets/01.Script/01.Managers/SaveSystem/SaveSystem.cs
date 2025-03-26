@@ -74,6 +74,7 @@ namespace AH.SaveSystem {
                     saveData.LoadJson(jsonString);
                 }
             }
+            SaveDataEvents.LoadEndEvent?.Invoke();
         }
         public void SaveGameData() { // 모든 데이터를 저장
             foreach (var saveData in _shareDataList) { // 공용 저장
