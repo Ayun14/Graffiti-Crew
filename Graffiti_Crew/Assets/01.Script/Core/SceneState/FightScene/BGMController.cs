@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BGMController : Observer<GameStateController>
@@ -18,6 +19,8 @@ public class BGMController : Observer<GameStateController>
 
     private void OnDestroy()
     {
+        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject(true);
+
         Detach();
     }
 
@@ -34,20 +37,11 @@ public class BGMController : Observer<GameStateController>
             {
                 _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject(true);
 
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound); 
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
                 _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
-            }
-
-            if (mySubject.GameState == GameState.Result)
-            {
-                //_fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                _fightAfterAudioSource.Play();
             }
         }
-    }
-
-    private void OnDisable()
-    {
-        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject(true);
     }
 
     public void FightBeforeBGMStop()
