@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
@@ -26,10 +27,10 @@ namespace AH.SaveSystem {
             CreateAndLoadData();
         }
         void OnEnable() {
-            GameEvents.SaveGameEvent += SaveGameData;
+            SaveDataEvents.SaveGameEvent += SaveGameData;
         }
         void OnDisable() {
-            GameEvents.SaveGameEvent -= SaveGameData;
+            SaveDataEvents.SaveGameEvent -= SaveGameData;
         }
         void OnApplicationQuit() {
             SaveGameData();
@@ -76,7 +77,7 @@ namespace AH.SaveSystem {
             }
             SaveDataEvents.LoadEndEvent?.Invoke();
         }
-        public void SaveGameData() { // 모든 데이터를 저장
+        public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
@@ -86,6 +87,9 @@ namespace AH.SaveSystem {
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 saveData.ResetDatas();
+            }
+            if(sceneName != "") {
+                SceneManager.LoadScene(sceneName);
             }
         }
     }
