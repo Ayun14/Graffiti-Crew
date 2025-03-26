@@ -1,10 +1,8 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -12,7 +10,6 @@ namespace AH.UI.Views {
         private ComputerViewModel ComputerViewModel;
 
         private VisualElement _startBtn;
-        private List<Button> _selectFriendBtnList;
 
         private AdmissionTicket[] tickets;
         private VisualTreeAsset _ticketAsset;
