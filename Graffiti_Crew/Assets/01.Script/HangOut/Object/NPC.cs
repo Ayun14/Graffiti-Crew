@@ -29,7 +29,12 @@ public class NPC : InteractionObject
         startIndex = _npcSO.startIndex;
         endIndex = _npcSO.endIndex;
 
-        
+        SaveDataEvents.LoadEndEvent += CheckStageData;
+    }
+
+    private void OnDisable()
+    {
+        SaveDataEvents.LoadEndEvent -= CheckStageData;
     }
 
     private void CheckStageData()
