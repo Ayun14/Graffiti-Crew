@@ -61,7 +61,7 @@ namespace AH.UI.Views {
 
         private void SetStar()
         {
-            List<VisualElement> stars = topElement.Query<VisualElement>("star-border").ToList();
+            List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
             StageSaveDataSO currentStageData = null;
             string stageName = ViewModel.GetStageName();
             StageType stageType = ViewModel.GetStageType();
@@ -77,8 +77,9 @@ namespace AH.UI.Views {
                     currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Story/{stageName}");
                     break;
             }
-            for(int i = 0; i < currentStageData.star; i++) {
-                stars[0].RemoveFromClassList("star");
+            Debug.Log(currentStageData.star);
+            for(int i = 0; i < 3 - currentStageData.star; i++) {
+                stars[i].RemoveFromClassList("star");
             }
         }
 

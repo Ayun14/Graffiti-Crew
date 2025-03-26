@@ -16,7 +16,7 @@ namespace AH.SaveSystem {
         public string stroyChapter;
         public string stroyStage;
 
-        private string _currentStage;
+        private string _currentStageName;
         private StageType _currentStageType;
         [Space]
         [SerializeField] private string _defaultChapter;
@@ -31,17 +31,17 @@ namespace AH.SaveSystem {
         }
 
         public string GetLoadStageName() {
-            _currentStage = $"{chapter}/{stage}";
+            _currentStageName = $"{chapter}{stage}";
             _currentStageType = StageType.Stage;
             return $"{chapter}/{stage}";
         }
         public string GetLoadRequestName() {
-            _currentStage = $"{requestChapter}/{requestStage}";
+            _currentStageName = $"{requestChapter}{requestStage}";
             _currentStageType = StageType.Request;
             return $"{requestChapter}/{requestStage}";
         }
         public string GetLoadStoryName() {
-            _currentStage = $"{stroyChapter}/{stroyStage}";
+            _currentStageName = $"{stroyChapter}{stroyStage}";
             _currentStageType = StageType.Story;
             return $"{stroyChapter}/{stroyStage}";
         }
@@ -49,7 +49,7 @@ namespace AH.SaveSystem {
             return $"{chapter} {stage} {requestChapter} {requestStage}";
         }
         public string GetCurrentStage() {
-            return _currentStage;
+            return _currentStageName;
         }
         public StageType GetStageType() {
             return _currentStageType;
