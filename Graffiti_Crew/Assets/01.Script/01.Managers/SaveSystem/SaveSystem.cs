@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _dataList;
-        List<SaveDataListSO> _shareDataList;
+        private List<SaveDataListSO> _shareDataList;
+        private SaveDataListSO slotGameData;
 
         private SlotSO _shareSlot;
         public SlotSO currentSlot {
@@ -17,19 +19,22 @@ namespace AH.SaveSystem {
                 GameManager.currentSlot = value;
             }
         }
+
         private void Awake() {
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
-            _shareDataList = Resources.LoadAll<SaveDataListSO>("ShareDataList").ToList();
-            
+            _shareDataList = Resources.LoadAll<SaveDataListSO>("DataList/Share").ToList();
+            slotGameData = Resources.Load<SaveDataListSO>("DataList/Slot/SaveGameListSO");
+            Debug.Log(_shareDataList);
+            Debug.Log(slotGameData);
         }
         private void Start() {
             CreateAndLoadData();
         }
         void OnEnable() {
-            GameEvents.SaveGameEvent += SaveGameData;
+            SaveDataEvents.SaveGameEvent += SaveGameData;
         }
         void OnDisable() {
-            GameEvents.SaveGameEvent -= SaveGameData;
+            SaveDataEvents.SaveGameEvent -= SaveGameData;
         }
         void OnApplicationQuit() {
             SaveGameData();
@@ -49,6 +54,8 @@ namespace AH.SaveSystem {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
             GameManager.SetSlot();
+            SetData(currentSlot, slotGameData);
+            LoadData(currentSlot, slotGameData);
             SetData(currentSlot, _dataList);
             LoadData(currentSlot, _dataList);
         }
@@ -66,6 +73,16 @@ namespace AH.SaveSystem {
                 }
             }
         }
+        private void SetData(SlotSO slot, SaveDataListSO saveData) {
+            FileSystem.CheckToSlotFolder(slot.slotName); // 폴더가 없으면 생성
+            if (!FileSystem.CheckToSaveFile(slot.slotName, saveData.saveFileName)) {
+                foreach (IResetData data in saveData.saveDataSOList) {
+                    data.ResetData();
+                }
+                string jsonFile = saveData.ToJson();
+                FileSystem.WriteToFile(slot.slotName, saveData.saveFileName, jsonFile);
+            }
+        }
 
         // file값을 바탕으로 so에 넣기
         private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
@@ -76,7 +93,14 @@ namespace AH.SaveSystem {
             }
             SaveDataEvents.LoadEndEvent?.Invoke();
         }
-        public void SaveGameData() { // 모든 데이터를 저장
+        private void LoadData(SlotSO slot, SaveDataListSO saveData) {
+            if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
+                saveData.LoadJson(jsonString);
+            }
+            SaveDataEvents.LoadEndEvent?.Invoke();
+        }
+
+        public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
@@ -86,6 +110,9 @@ namespace AH.SaveSystem {
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 saveData.ResetDatas();
+            }
+            if(sceneName != "") {
+                SceneManager.LoadScene(sceneName);
             }
         }
     }

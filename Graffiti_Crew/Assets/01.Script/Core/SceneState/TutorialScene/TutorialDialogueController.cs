@@ -52,8 +52,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
-            GameEvents.SaveGameEvent?.Invoke();
-            SceneManager.LoadScene("HangOutScene");
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
 
     }

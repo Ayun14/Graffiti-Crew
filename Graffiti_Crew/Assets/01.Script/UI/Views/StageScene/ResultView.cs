@@ -100,8 +100,7 @@ namespace AH.UI.Views {
             l_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         private void ClickRetryBtn(ClickEvent evt) {
-            GameEvents.SaveGameEvent?.Invoke();
-            SceneManager.LoadScene("FightScene");
+            SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
         }
         private void ClickNextBtn(ClickEvent evt) {
             Debug.Log("¿¬°á ¾ÈµÊ");
@@ -109,8 +108,7 @@ namespace AH.UI.Views {
             //SceneManager.LoadScene("FightScene");
         }
         private void ClickExitBtn(ClickEvent evt) {
-            GameEvents.SaveGameEvent?.Invoke();
-            SceneManager.LoadScene("ComputerScene");
+            SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
     }
 }
