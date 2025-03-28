@@ -77,7 +77,6 @@ namespace AH.UI.Views {
                     currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Story/{stageName}");
                     break;
             }
-            Debug.Log(currentStageData.star);
             for(int i = 0; i < 3 - currentStageData.star; i++) {
                 stars[i].RemoveFromClassList("star");
             }
