@@ -50,8 +50,8 @@ public class CameraController : Observer<GameStateController>
             // Result
             if (mySubject.GameState == GameState.Result)
             {
-                _graffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 1 : 0;
-                _rivalGraffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 0 : 1;
+                _graffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 5 : 0;
+                _rivalGraffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 0 : 5;
             }
         }
     }
