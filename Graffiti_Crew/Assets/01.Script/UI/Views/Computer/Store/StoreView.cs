@@ -37,7 +37,7 @@ namespace AH.UI.Views {
             base.RegisterButtonCallbacks();
             int scrollviewIndex = 0;
             foreach (var child in _productScrollView.Children()) {
-                child.RegisterCallback<ClickEvent, int>(SelectMember, scrollviewIndex++);
+                child.RegisterCallback<ClickEvent, int>(SelectProduct, scrollviewIndex++);
             }
             int categoryBtnIndex = 0;
             foreach(var button in _categoryBtnList) {
@@ -48,7 +48,7 @@ namespace AH.UI.Views {
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (var child in _productScrollView.Children()) {
-                child.UnregisterCallback<ClickEvent, int>(SelectMember);
+                child.UnregisterCallback<ClickEvent, int>(SelectProduct);
             }
             foreach (var button in _categoryBtnList) {
                 button.UnregisterCallback<ClickEvent, int>(ClickCategory);
@@ -74,7 +74,7 @@ namespace AH.UI.Views {
             _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();
             RegisterButtonCallbacks();
         }
-        private void SelectMember(ClickEvent evt, int index) {
+        private void SelectProduct(ClickEvent evt, int index) {
             ComputerViewModel.SetSelectProduct(_categoryIndex, index);
         }
         private void ClickCategory(ClickEvent evt, int index) {
@@ -85,6 +85,7 @@ namespace AH.UI.Views {
         private void ClickBuyProduct(ClickEvent evt, ProductSO item) {
             if (item.BuyItem()) { // 구매할 수 있음(돈 계산 함)
                 ItemSystem.AddItem(item);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
             }
             else {
                 // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
