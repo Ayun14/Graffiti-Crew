@@ -13,6 +13,7 @@
                 <engine:Button name="stage-btn" class="grow-size-40 computer-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage_icon.png?fileID=21300000&amp;guid=4f73c8ca316210e458c00a9e27ddf03b&amp;type=3#stage_icon&quot;);" />
                 <engine:Label text="스테이지" class="grow-size-40" style="flex-grow: 0; color: rgb(243, 243, 243); -unity-text-align: upper-center;" />
             </engine:VisualElement>
+            <engine:Button text="나가기" name="exit-btn" class="test" />
             <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: none;" />
             <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%; display: none;" />
         </engine:VisualElement>

@@ -14,8 +14,6 @@ namespace AH.UI {
 
         private ComputerViewModel _viewModel;
 
-        private VisualElement _fadeView;
-
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
@@ -47,8 +45,6 @@ namespace AH.UI {
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
 
-            _fadeView = root.Q<VisualElement>("fade-view");
-
             _computerView.Show();
         }
 
@@ -57,7 +53,7 @@ namespace AH.UI {
             base.ShowPreviewEvent(evtFunction);
         }
         private void EventFunction() {
-            UIEvents.CloseComputerEvnet?.Invoke();
+            //UIEvents.CloseComputerEvnet?.Invoke();
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
 

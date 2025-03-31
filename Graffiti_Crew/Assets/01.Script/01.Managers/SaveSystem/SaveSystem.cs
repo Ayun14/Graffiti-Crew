@@ -24,8 +24,6 @@ namespace AH.SaveSystem {
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
             _shareDataList = Resources.LoadAll<SaveDataListSO>("DataList/Share").ToList();
             slotGameData = Resources.Load<SaveDataListSO>("DataList/Slot/SaveGameListSO");
-            Debug.Log(_shareDataList);
-            Debug.Log(slotGameData);
         }
         private void Start() {
             CreateAndLoadData();
@@ -53,9 +51,12 @@ namespace AH.SaveSystem {
         private void CreateAndLoadData() {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
-            GameManager.SetSlot();
+            GameManager.SetSlot(); // 슬롯 세팅
+            
+            // 슬롯 별 전체 데이터 뿌리고
             SetData(currentSlot, slotGameData);
             LoadData(currentSlot, slotGameData);
+            // 개인 데이터
             SetData(currentSlot, _dataList);
             LoadData(currentSlot, _dataList);
         }
@@ -101,6 +102,7 @@ namespace AH.SaveSystem {
         }
 
         public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
+            slotGameData.ResetDatas();
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
