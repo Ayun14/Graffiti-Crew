@@ -9,7 +9,7 @@
 | **플랫폼** | Windows |
 | **개발 언어** | C# (Unity) |
 | **개발 기간** | 2025.01.01 ~ (개발중) |
-| **개발 인원** | [김아윤](https://github.com/Ayun14)  [공서연](https://github.com/gongsy1221)  [박아름](https://github.com/ahreum0408)  이지우  김대   |
+| **개발 인원** | [김아윤](https://github.com/Ayun14)  [공서연](https://github.com/gongsy1221)  [박아름](https://github.com/ahreum0408)  이지우  김대현  |
 
 
 <br><br>
