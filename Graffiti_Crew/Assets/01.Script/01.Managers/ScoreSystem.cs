@@ -11,13 +11,16 @@ public class ScoreSystem : MonoBehaviour {
     }
 
     private void GameResult(StageDataSO stageData) {
-        int starCount = stageData.stageSaveData.star;
-        //int combo = stageData.stageResult.comboCnt;
-        //int time = stageData.stageResult.drawingTime;
-        //int failCount = stageData.stageResult.nodeFalseCnt;
+        int combo = stageData.stageResult.comboCnt;
+        int failCount = stageData.stageResult.nodeFalseCnt;
+        int score = 0;
 
-        //double score = ((time * 1.3) + combo - (failCount * 2)) * starCount;
-        int coin = 200 * starCount; // 여기 값 스테이지 별로 다르게 받아야해
-        CoinSystem.AddCoin(coin);
+        if (failCount != 0) {
+            score = (combo / 2) / failCount;
+        }
+        else {
+            score = combo / 2;
+        }
+        CoinSystem.AddCoin(score);
     }
 }
