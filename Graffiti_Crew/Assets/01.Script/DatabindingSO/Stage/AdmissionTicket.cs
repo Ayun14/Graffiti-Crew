@@ -5,6 +5,6 @@ using UnityEngine;
 [Serializable]
 public class AdmissionTicket
 {
-    public ProductSO ticketType;
+    public ProductSO ticketItem;
     public int count;
 }

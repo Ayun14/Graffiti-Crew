@@ -57,8 +57,10 @@ public class SprayDataReader : DataReaderBase
     {
         List<AdmissionTicket> array = new List<AdmissionTicket>();
         AdmissionTicket ticket = new AdmissionTicket();
-        ticket.ticketType = Resources.Load(SprayList[i].root) as ProductSO;
-        ticket.count = int.Parse(SprayList[i].num);
+        ticket.ticketItem = Resources.Load(SprayList[i].root) as ProductSO;
+        if (SprayList[i].num != string.Empty) {
+            ticket.count = int.Parse(SprayList[i].num);
+        }
         array.Add(ticket);
         return array.ToArray();
     }
