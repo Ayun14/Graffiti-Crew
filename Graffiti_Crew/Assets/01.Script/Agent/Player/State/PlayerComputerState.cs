@@ -11,9 +11,10 @@ public class PlayerComputerState : PlayerState
     {
         base.Enter();
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Typing);
+
         _player.MovementCompo.StopImmediately(true);
         _player.playerData.playerPosition = _player.transform.position;
-        _player.computerTimeline.Play();
+        _player.CurrentInteractionObject?.GetComponent<Computer>().ComputerEvent();
     }
 
     public override void UpdateState()

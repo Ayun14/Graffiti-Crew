@@ -20,7 +20,6 @@ public class Player : Agent
     public float moveSpeed = 4f;
 
     public DialogueUIController dialogueUIController;
-    public PlayableDirector computerTimeline;
     public HangOutPlayerDataSO playerData;
 
     public PlayerStateMachine StateMachine { get; private set; }
