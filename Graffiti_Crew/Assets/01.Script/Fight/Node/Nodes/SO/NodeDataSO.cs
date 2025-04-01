@@ -2,8 +2,8 @@ using UnityEngine;
 
 public enum NodeType
 {
-    // 단일, 연타, 롱
-    SingleNode, HitNode, LongNode
+    // 단일, 연타, 롱, 길게누르기, 부메랑
+    SingleNode, HitNode, LongNode, PressNode, BoomerangNode
 }
 
 public class NodeDataSO : ScriptableObject
