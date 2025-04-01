@@ -15,6 +15,10 @@ public class PlayerIdleState : PlayerState
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
         _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
 
+        if(_player.CurrentInteractionObject != null)
+            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Idle;
+
+
         _player.MovementCompo.StopImmediately(true);
     }
 

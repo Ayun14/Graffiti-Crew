@@ -34,10 +34,10 @@ public class Computer : InteractionObject
     private IEnumerator ComputerRoutine()
     {
         _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
 
-        _transitionMat.DOFloat(0f, "_Lerp", 0.5f);
-        yield return new WaitForSeconds(1f);
+        _transitionMat.DOFloat(0f, "_Lerp", 0.3f);
+        yield return new WaitForSeconds(0.8f);
 
         _hangoutBGM?.GetComponent<SoundObject>().PushObject(true);
         SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");

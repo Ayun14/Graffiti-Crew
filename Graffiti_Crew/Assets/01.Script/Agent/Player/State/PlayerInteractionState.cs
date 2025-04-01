@@ -13,6 +13,8 @@ public class PlayerInteractionState : PlayerState
     {
         base.Enter();
         _walkSound = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Walk, true);
+        if (_player.CurrentInteractionObject != null)
+            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Interaction;
 
         _player.MovementCompo.StopImmediately(false);
         _player.MovementCompo.SetDestination(_player.NavMeshAgent.destination);

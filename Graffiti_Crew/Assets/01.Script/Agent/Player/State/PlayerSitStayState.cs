@@ -14,6 +14,8 @@ public class PlayerSitStayState : PlayerState
     {
         base.Enter();
         _onRun = true;
+        if (_player.CurrentInteractionObject != null)
+            _player.CurrentInteractionObject.playerState = PlayerStateEnum.SitStay;
 
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
 
