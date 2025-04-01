@@ -60,8 +60,8 @@ public class SprayDataReader : DataReaderBase
         ticket.ticketItem = Resources.Load(SprayList[i].root) as ProductSO;
         if (SprayList[i].num != string.Empty) {
             ticket.count = int.Parse(SprayList[i].num);
+            array.Add(ticket);
         }
-        array.Add(ticket);
         return array.ToArray();
     }
 }

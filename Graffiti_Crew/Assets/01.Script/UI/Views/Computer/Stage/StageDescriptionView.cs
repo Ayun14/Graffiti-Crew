@@ -1,7 +1,6 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -54,9 +53,10 @@ namespace AH.UI.Views {
         }
 
         private void SetAdmissionTicket() {
-            tickets = ComputerViewModel.GetStageDescription().ticket;
             var content = topElement.Q<VisualElement>("ticket-content");
             content.Clear();
+            tickets = ComputerViewModel.GetStageDescription().ticket;
+            Debug.Log("get : " + tickets.Length);
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
                 if (data.ticketItem) {
@@ -67,6 +67,9 @@ namespace AH.UI.Views {
             }
         }
         private bool CheckTicket() {
+            if (tickets == null) { // 티겟이 없는 스테이지임
+                return true;
+            }
             return ItemSystem.CheckTicket(tickets);
         }
         private void ClickStartGameBtn(ClickEvent evt) {

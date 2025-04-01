@@ -2,7 +2,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 

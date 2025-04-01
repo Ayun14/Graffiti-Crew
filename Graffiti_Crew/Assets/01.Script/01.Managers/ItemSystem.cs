@@ -23,13 +23,13 @@ public class ItemSystem : MonoBehaviour {
             var conversionData = data as ItemSaveDataSO;
             instance._itemDictionary.Add(item, conversionData.count);
         }
+        instance.PrintCurrentItem();
     }
     public static void AddItem(ProductSO item) {
         if (instance._itemDictionary.TryGetValue(item, out int val)) {
             instance._itemDictionary[item] = ++val;
             instance.AddSaveItem(item);
         }
-        //instance.PrintCurrentItem();
     }
     public static void RemoveItem(ProductSO item, int count= 1) {
         if (instance._itemDictionary.TryGetValue(item, out int val)) {
