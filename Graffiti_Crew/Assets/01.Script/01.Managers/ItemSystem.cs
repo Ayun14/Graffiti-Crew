@@ -29,7 +29,6 @@ public class ItemSystem : MonoBehaviour {
             instance._itemDictionary[item] = ++val;
             instance.AddSaveItem(item);
         }
-        //instance.PrintCurrentItem();
     }
     public static void RemoveItem(ProductSO item, int count= 1) {
         if (instance._itemDictionary.TryGetValue(item, out int val)) {
@@ -64,7 +63,7 @@ public class ItemSystem : MonoBehaviour {
     }
     public static bool CheckTicket(AdmissionTicket[] tickets) {
         for (int i = 0; i < tickets.Length; i++) {
-            if (instance._itemDictionary.TryGetValue(tickets[i].ticketType, out int val)) {
+            if (instance._itemDictionary.TryGetValue(tickets[i].ticketItem, out int val)) {
                 if(tickets[i].count > val) {
                     return false;
                 }
@@ -76,7 +75,7 @@ public class ItemSystem : MonoBehaviour {
             }
         }
         for (int i = 0; i < tickets.Length; i++) { // 계산
-            RemoveItem(tickets[i].ticketType, tickets[i].count);
+            RemoveItem(tickets[i].ticketItem, tickets[i].count);
         }
         // 입장 가능
         return true;

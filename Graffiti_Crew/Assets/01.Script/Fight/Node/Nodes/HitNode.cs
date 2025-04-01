@@ -88,13 +88,7 @@ public class HitNode : Node, INodeAction
         SetAlpha(0f);
     }
 
-    public override NodeType GetNodeType()
-    {
-        return _hitNodeData.nodeType;
-    }
+    public override NodeType GetNodeType() => _hitNodeData.nodeType;
 
-    public override NodeDataSO GetNodeDataSO()
-    {
-        return _hitNodeData;
-    }
+    public override NodeDataSO GetNodeDataSO() => _hitNodeData;
 }

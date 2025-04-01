@@ -29,6 +29,9 @@ namespace AH.UI.Models
         {
             return _categorySO;
         }
+        public LoadStageSO GetLoadStage() {
+            return _loadStageSO;
+        }
 
         public void SetSelectProduct(int categoryIndex, int index)
         {
@@ -48,16 +51,18 @@ namespace AH.UI.Models
         {
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
+            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Stage);
         }
         public void SetStoryData(string chapter, string stage) {
             _loadStageSO.stroyChapter = chapter;
             _loadStageSO.stroyStage = stage;
+            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Story);
         }
         public void SetRequest(string chapter, string stage)
         {
             _loadStageSO.requestChapter = chapter;
             _loadStageSO.requestStage = stage;
+            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Request);
         }
-
     }
 }

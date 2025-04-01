@@ -1,7 +1,7 @@
 using AH.UI.Events;
+using AH.UI.Models;
 using AH.UI.ViewModels;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -31,7 +31,6 @@ namespace AH.UI.Views {
 
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _exitBtn = topElement.Q<Button>("exit-btn");
-            SetAdmissionTicket();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -55,23 +54,35 @@ namespace AH.UI.Views {
         }
 
         private void SetAdmissionTicket() {
-            tickets = ComputerViewModel.GetStageDescription().ticket;
             var content = topElement.Q<VisualElement>("ticket-content");
             content.Clear();
+            tickets = ComputerViewModel.GetStageDescription().ticket;
+
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
-                asset.Q<VisualElement>("spray-img").style.backgroundImage = new StyleBackground(data.ticketType.image);
-                asset.Q<Label>("count-txt").text = data.count.ToString();
-                content.Add(asset);
+                if (data.ticketItem) {
+                    asset.Q<VisualElement>("spray-img").style.backgroundImage = new StyleBackground(data.ticketItem.image);
+                    asset.Q<Label>("count-txt").text = data.count.ToString();
+                    content.Add(asset);
+                }
             }
         }
         private bool CheckTicket() {
+            if (tickets == null) { // 티겟이 없는 스테이지임
+                return true;
+            }
             return ItemSystem.CheckTicket(tickets);
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
-                ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-                SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
+                Debug.Log(ComputerViewModel.GetCurrentStageName());
+                Debug.Log(ComputerViewModel.GetCurrentStageName().Contains("Stage"));
+                if (ComputerViewModel.GetCurrentStageName().Contains("Stage")) {
+                    SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
+                }
+                else {
+                    SaveDataEvents.SaveGameEvent?.Invoke("RequestScene");
+                }
             }
             else {
                 // 경고창 or 붉을색으로 못 누르게 변경 해야함

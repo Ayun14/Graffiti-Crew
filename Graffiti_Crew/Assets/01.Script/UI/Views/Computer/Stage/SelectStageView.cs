@@ -2,14 +2,10 @@ using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEngine.Rendering.VolumeComponent;
 
 namespace AH.UI.Views {
     public class SelectStageView : UIView {
@@ -90,7 +86,7 @@ namespace AH.UI.Views {
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Stage{data.stage}";
-
+            
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
@@ -99,17 +95,17 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
 
-            ComputerViewModel.SetStoryData(chapter, stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
+            ComputerViewModel.SetStoryData(chapter, stage);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
         }
         private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Request{data.stage}";
 
+            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetRequestData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
         }
 
         private void SetStagePoint() {

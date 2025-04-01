@@ -1,10 +1,15 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class GraffitiRenderer : MonoBehaviour
 {
-    private SpriteRenderer _renderer;
+    [SerializeField] private GameObject _graffitiRender;
 
+    private SpriteRenderer _renderer;
     private NodeJudgement _judgement;
+
+    // Graffiti Dissolve Shader
+    private int _verticalDissolve = Shader.PropertyToID("_VerticalDissolve"); // 0 ~ 1.1
 
     private void Awake()
     {
@@ -21,8 +26,17 @@ public class GraffitiRenderer : MonoBehaviour
 
     public void SetSprite(Sprite sprite)
     {
-        if (_renderer == null || sprite == null) return;
+        if (sprite == null) return;
 
-        _renderer.sprite = sprite;
+        SpriteRenderer renderer = Instantiate(_graffitiRender, transform.position, Quaternion.identity, transform)
+            .GetComponent<SpriteRenderer>();
+
+        renderer.sprite = sprite;
+
+        // Fade
+        Color color = renderer.color;
+        color.a = 0;
+        renderer.color = color;
+        renderer.DOFade(1, 0.6f);
     }
 }

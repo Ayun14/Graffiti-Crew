@@ -31,27 +31,25 @@ namespace AH.SaveSystem {
         }
 
         public string GetLoadStageName() {
-            _currentStageName = $"{chapter}{stage}";
-            _currentStageType = StageType.Stage;
             return $"{chapter}/{stage}";
         }
         public string GetLoadRequestName() {
-            _currentStageName = $"{requestChapter}{requestStage}";
-            _currentStageType = StageType.Request;
             return $"{requestChapter}/{requestStage}";
         }
         public string GetLoadStoryName() {
-            _currentStageName = $"{stroyChapter}{stroyStage}";
-            _currentStageType = StageType.Story;
             return $"{stroyChapter}/{stroyStage}";
         }
         public override string GetData() {
             return $"{chapter} {stage} {requestChapter} {requestStage}";
         }
-        public string GetCurrentStage() {
+        public void SetCurrentStage(string stage, StageType type) {
+            _currentStageName = $"{stage}";
+            _currentStageType = StageType.Story;
+        }
+        public string GetCurrentStageName() {
             return _currentStageName;
         }
-        public StageType GetStageType() {
+        public StageType GetCurrentStageType() {
             return _currentStageType;
         }
         public override void SetValueFromString(string value) {
