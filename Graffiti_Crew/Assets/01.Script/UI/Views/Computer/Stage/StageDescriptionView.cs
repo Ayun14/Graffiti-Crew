@@ -1,4 +1,5 @@
 using AH.UI.Events;
+using AH.UI.Models;
 using AH.UI.ViewModels;
 using System;
 using UnityEngine;
@@ -56,7 +57,7 @@ namespace AH.UI.Views {
             var content = topElement.Q<VisualElement>("ticket-content");
             content.Clear();
             tickets = ComputerViewModel.GetStageDescription().ticket;
-            Debug.Log("get : " + tickets.Length);
+
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
                 if (data.ticketItem) {
@@ -74,8 +75,14 @@ namespace AH.UI.Views {
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
-                ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-                SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
+                Debug.Log(ComputerViewModel.GetCurrentStageName());
+                Debug.Log(ComputerViewModel.GetCurrentStageName().Contains("Stage"));
+                if (ComputerViewModel.GetCurrentStageName().Contains("Stage")) {
+                    SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
+                }
+                else {
+                    SaveDataEvents.SaveGameEvent?.Invoke("RequestScene");
+                }
             }
             else {
                 // 경고창 or 붉을색으로 못 누르게 변경 해야함

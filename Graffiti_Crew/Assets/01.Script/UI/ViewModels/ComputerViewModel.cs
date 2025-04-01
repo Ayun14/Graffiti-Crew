@@ -30,9 +30,6 @@ namespace AH.UI.ViewModels {
         public void ClearSelectProductData() {
             _model.ClearSelectProductData();
         }
-        private void UpdateDisplay(int friendIndex) {
-            //Friend1Img.Value = _model.GetFriendData(friendIndex);
-        }
         public void SetStageData(string chapter, string stage) {
             _model.SetStage(chapter, stage);
         }
@@ -41,6 +38,9 @@ namespace AH.UI.ViewModels {
         }
         public void SetRequestData(string chapter, string stage) {
             _model.SetRequest(chapter, stage);
+        }
+        public string GetCurrentStageName() {
+            return _model.GetLoadStage().GetCurrentStageName();
         }
     }
 }
