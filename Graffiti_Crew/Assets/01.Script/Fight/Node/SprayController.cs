@@ -1,11 +1,14 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class SprayController : MonoBehaviour
 {
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
+    [SerializeField] private Texture2D _sprayCursor;
+    [SerializeField] private Texture2D _shakeSprayCursor;
     public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
     private bool isSprayCanShaking = false;
 
@@ -100,11 +103,13 @@ public class SprayController : MonoBehaviour
         if (_shakeSliderValueSO.Value <= 0f)
         {
             isSprayCanShaking = true;
+            Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
             SprayUIAnimation();
         }
         else if (_shakeSliderValueSO.Value >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
+            Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
             if (_jumpTween != null) _jumpTween.Kill(); // 기존 Tween이 있다면 제거
 
             // Sound
