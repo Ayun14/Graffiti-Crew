@@ -99,8 +99,8 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
 
-            ComputerViewModel.SetStoryData(chapter, stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
+            ComputerViewModel.SetStoryData(chapter, stage);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
         }
         private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
