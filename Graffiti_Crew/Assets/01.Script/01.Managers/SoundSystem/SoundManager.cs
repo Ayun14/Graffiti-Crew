@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,6 +9,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SoundsSO _soundsSO;
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private PoolTypeSO _soundObjectTypeSO;
+
+    private Dictionary<SoundType, AudioSource> _loopingSounds = new();
 
     public AudioSource PlaySound(SoundType sound, bool loop = false, float pitch = 1, float volume = 1)
     {
@@ -35,11 +38,16 @@ public class SoundManager : MonoBehaviour
             source.DOFade(volume * soundList.volume, 0.2f)
                 .OnComplete(() => source.volume = volume * soundList.volume);
 
-            if (!loop)
+            if (loop)
+            {
+                StopLoopSound(sound);
+                _loopingSounds[sound] = source;
+            }
+            else
                 source.GetComponent<SoundObject>().PushObject(false);
         }
 
-            return source;
+        return source;
     }
 
     public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
@@ -49,6 +57,17 @@ public class SoundManager : MonoBehaviour
             return PlaySound(soundType, loop, pitch, volume);
         }
         return null;
+    }
+
+    public void StopLoopSound(SoundType sound)
+    {
+        if (_loopingSounds.TryGetValue(sound, out AudioSource source))
+        {
+            source.Stop();
+            source.GetComponent<SoundObject>().PushObject(true);
+
+            _loopingSounds.Remove(sound);
+        }
     }
 }
 

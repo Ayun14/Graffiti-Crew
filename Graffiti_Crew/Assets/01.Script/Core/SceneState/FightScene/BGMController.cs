@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class BGMController : Observer<GameStateController>
 {
-    private AudioSource _fightBeforeAudioSource;
     private AudioSource _fightMiddleAudioSource;
-    private AudioSource _fightAfterAudioSource;
 
     private void Awake()
     {
@@ -19,7 +17,7 @@ public class BGMController : Observer<GameStateController>
 
     private void OnDestroy()
     {
-        _fightAfterAudioSource?.GetComponent<SoundObject>().PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_After);
 
         Detach();
     }
@@ -30,27 +28,25 @@ public class BGMController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
-                _fightBeforeAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true);
             }
 
             if (mySubject.GameState == GameState.Finish)
             {
-                _fightMiddleAudioSource?.GetComponent<SoundObject>().PushObject(true);
-
+                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_Middle);
                 GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
             }
 
             if (mySubject.GameState == GameState.Result)
             {
-                _fightAfterAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
             }
         }
     }
 
     public void FightBeforeBGMStop()
     {
-        _fightBeforeAudioSource.DOFade(0, 0.8f)
-            .OnComplete(() => _fightBeforeAudioSource?.GetComponent<SoundObject>().PushObject(true));
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_Before);
     }
 
     private void HandleRivalCheckEvent()
