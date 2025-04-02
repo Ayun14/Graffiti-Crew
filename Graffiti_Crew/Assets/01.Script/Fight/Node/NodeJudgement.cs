@@ -79,13 +79,14 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public override void NotifyHandle()
     {
-        if (mySubject.GameState == GameState.Timeline)
+        if (mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Talk)
             _graffitiRenderer.Init(this, _startSprite);
 
         if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
             || mySubject.GameState == GameState.Tutorial)
         {
             // Init
+            _graffitiRenderer.Init(this, _startSprite); // 나중에 지우기
             _nodeSpawner.Init(this, _nodeDatas);
             _sprayController.Init(this);
             _comboController.Init(this);
@@ -104,8 +105,8 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             isNodeClick = false;
 
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return;
-        if (mySubject.GameState == GameState.Fight || 
-            mySubject.GameState == GameState.Tutorial)
+        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
+            || mySubject.GameState == GameState.Tutorial)
         {
             if (Input.GetMouseButtonDown(0))
             {
