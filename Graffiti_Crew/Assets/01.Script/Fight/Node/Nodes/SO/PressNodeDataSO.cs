@@ -6,4 +6,5 @@ public class PressNodeDataSO : NodeDataSO
     public Vector3 pos;
     public Sprite sprite;
     [Range(0.1f, 10)] public float pressTime;
+    [Range(0.1f, 1f)] public float possibleRange;
 }
