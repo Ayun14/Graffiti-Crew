@@ -8,9 +8,6 @@ public class GraffitiRenderer : MonoBehaviour
     private SpriteRenderer _renderer;
     private NodeJudgement _judgement;
 
-    // Graffiti Dissolve Shader
-    private int _verticalDissolve = Shader.PropertyToID("_VerticalDissolve"); // 0 ~ 1.1
-
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();

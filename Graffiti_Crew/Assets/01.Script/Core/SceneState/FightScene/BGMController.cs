@@ -34,12 +34,8 @@ public class BGMController : Observer<GameStateController>
             if (mySubject.GameState == GameState.Finish)
             {
                 GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_Middle);
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
-            }
-
-            if (mySubject.GameState == GameState.Result)
-            {
                 GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
             }
         }
     }

@@ -17,9 +17,6 @@ public class LongNode : Node, INodeAction
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
-    // Sound
-    private SoundObject _sprayLongSoundObj;
-
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -167,8 +164,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true)
-            .GetComponent<SoundObject>();
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true).GetComponent<SoundObject>();
     }
 
     #region Clear Check
@@ -183,7 +179,7 @@ public class LongNode : Node, INodeAction
                 judgement.NodeFalse(this);
 
                 // Sound
-                _sprayLongSoundObj?.PushObject(true);
+                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
             }
 
             ResetNode();
@@ -240,7 +236,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        _sprayLongSoundObj?.PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
     }
 
     #endregion
@@ -262,7 +258,7 @@ public class LongNode : Node, INodeAction
         SetAlpha(0f);
 
         // Sound
-        _sprayLongSoundObj?.PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
     }
 
     #region Do Fade
