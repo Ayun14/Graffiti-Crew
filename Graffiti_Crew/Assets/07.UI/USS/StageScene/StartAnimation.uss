@@ -50,7 +50,7 @@
 }
 
 .blur {
-    background-image: url("project://database/Assets/02.Sprite/UI/Blur/leftblur.png?fileID=2023193778&guid=42f057c5542b5974ca5362de3f9d4219&type=3#blur_0");
+    background-image: url('project://database/Assets/02.Sprite/UI/Blur/leftblur.png?fileID=2023193778&guid=42f057c5542b5974ca5362de3f9d4219&type=3#blur_0');
     width: 380px;
     height: 100%;
 }
@@ -64,4 +64,92 @@
 .hide-border {
     height: 10%;
     background-color: rgb(0, 0, 0);
+}
+
+.default-whiteline {
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/RivalCheck/whiteLine.png?fileID=2800000&guid=bd536589870e2c84da4b2cc308dfb222&type=3#whiteLine");
+    width: 1700px;
+    height: 200px;
+    justify-content: center;
+    rotate: -15deg;
+    left: -90%;
+    top: 33%;
+}
+
+.default-whiteline-move-screen {
+    left: -22%;
+    top: 1%;
+    transition-duration: 0.1s;
+}
+
+.default-whiteline-move-outside {
+    left: 64%;
+    top: -40%;
+    transition-duration: 0.3s;
+}
+
+.default-color {
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/RivalCheck/background.png?fileID=2800000&guid=d234914593ff20a41ba00cd6902ac929&type=3#background");
+    height: 173px;
+    width: 1700px;
+    rotate: -15deg;
+    top: 18.6%;
+    left: -90%;
+}
+
+.default-color-move-screen {
+    left: -22%;
+    top: -13.5%;
+    transition-duration: 0.3s;
+}
+
+.default-color-move-outside {
+    left: 64%;
+    top: -54.5%;
+    transition-duration: 0.4s;
+}
+
+.default-blueline {
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/RivalCheck/blueLine.png?fileID=2800000&guid=bf698c10b7d7ae745b9647f8f0020a4f&type=3#blueLine");
+    align-items: center;
+    justify-content: center;
+    width: 1700px;
+    height: 173px;
+    rotate: -15deg;
+    top: 5%;
+    left: -90%;
+}
+
+.default-blueline-move-screen {
+    left: -22%;
+    top: -27%;
+    transition-duration: 0.2s;
+}
+
+.default-blueline-move-outside {
+    left: 64%;
+    top: -68%;
+    transition-duration: 0.2s;
+}
+
+.default-face {
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/RivalCheck/RivalCheck_Ella.png?fileID=2800000&guid=8c2b921c5122deb4d8d6e5a3f78a4139&type=3#RivalCheck_Ella");
+    width: 600px;
+    height: 750px;
+    rotate: -4deg;
+    scale: 1 1.05;
+    left: -60%;
+    top: -22.5%;
+}
+
+.default-face-move-screen {
+    left: 6%;
+    top: -53.55%;
+    transition-duration: 0.2s;
+}
+
+.default-face-move-outside {
+    left: 97%;
+    top: -97%;
+    transition-duration: 0.2s;
 }

@@ -27,11 +27,11 @@
         <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">
             <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;" />
             <engine:VisualElement name="spray-content" style="flex-basis: 20%; flex-direction: row; align-items: flex-end; justify-content: flex-end; padding-bottom: 20px; padding-right: 20px;">
-                <engine:ProgressBar name="spray-total-amount-progress" value="32.5" low-value="0.02" class="spray-progress" style="translate: 26% -98%; display: flex;">
+                <engine:ProgressBar name="spray-total-amount-progress" value="40.6" low-value="0.02" class="spray-progress" style="translate: 26% -98%; display: flex;">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="lowValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" data-source-path="min" />
+                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:ProgressBar>
             </engine:VisualElement>

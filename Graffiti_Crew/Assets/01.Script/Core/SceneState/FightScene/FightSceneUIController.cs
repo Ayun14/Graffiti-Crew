@@ -176,8 +176,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void RivalCheckEventHandle()
     {
+        UIAnimationEvent.SetActiveRivalCheckAnimationEvnet?.Invoke(true);
         // 라이벌 견제
-        StartCoroutine(RivalCheckRoutine());
+        //StartCoroutine(RivalCheckRoutine());
     }
 
     private IEnumerator RivalCheckRoutine()

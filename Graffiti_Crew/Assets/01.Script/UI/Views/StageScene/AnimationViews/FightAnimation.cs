@@ -1,5 +1,6 @@
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,16 +10,21 @@ public enum FightUIAnimationType {
 }
 public class FightAnimation : UIView {
     private VisualElement _startAnimation;
-    private VisualElement _tensionAnimation;
+    private VisualElement _rivalCheckAnimation;
+
+    private VisualElement _lineBackground;
+    private VisualElement _colorBackground;
+    private VisualElement _blueLine;
+    private VisualElement _rivalFace;
     
     public FightAnimation(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
-        UIAnimationEvent.SetActiveTensionAnimationEvnet += TensionAnimation;
+        UIAnimationEvent.SetActiveRivalCheckAnimationEvnet += RivalCheckAnimation;
     }
 
     public override void Dispose() { 
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
-        UIAnimationEvent.SetActiveTensionAnimationEvnet -= TensionAnimation;
+        UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
         base.Dispose();
     }
     public override void Initialize() {
@@ -27,9 +33,14 @@ public class FightAnimation : UIView {
     protected override void SetVisualElements() {
         base.SetVisualElements();
         _startAnimation = topElement.Q<VisualElement>("startAnimation");
-        Debug.Log(_startAnimation);
-        _tensionAnimation = topElement.Q<VisualElement>("tensionAnimation");
-        Debug.Log(_tensionAnimation);
+        _rivalCheckAnimation = topElement.Q<VisualElement>("rivalCheckAnimation");
+
+        _lineBackground = _rivalCheckAnimation.Q<VisualElement>("line-background");
+        _colorBackground = _rivalCheckAnimation.Q<VisualElement>("color-background");
+        _blueLine = _rivalCheckAnimation.Q<VisualElement>("blue-line");
+        _rivalFace = _rivalCheckAnimation.Q<VisualElement>("rival-face");
+
+        Show(_startAnimation);
     }
 
     #region Handles
@@ -41,16 +52,42 @@ public class FightAnimation : UIView {
             Hide(_startAnimation);
         }
     }
-    private void TensionAnimation(bool active) {
+    private void RivalCheckAnimation(bool active) {
         if (active) {
-            Show(_tensionAnimation);
+            Show(_rivalCheckAnimation);
+            StartRivalCheck();
         }
         else {
-            Hide(_tensionAnimation);
+            Hide(_rivalCheckAnimation);
         }
-    } 
+    }
     #endregion
+    private async void StartRivalCheck() {
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.RivalCheck);
 
+        // In
+        _colorBackground.AddToClassList("default-color-move-screen");
+        _rivalFace.AddToClassList("default-face-move-screen");
+        await Task.Delay(100);
+        _lineBackground.AddToClassList("default-whiteline-move-screen");
+        await Task.Delay(100);
+        _blueLine.AddToClassList("default-blueline-move-screen");
+
+        // Wait
+        await Task.Delay(2000);
+
+        // Out
+        _colorBackground.AddToClassList("default-color-move-outside");
+        _rivalFace.AddToClassList("default-face-move-outside");
+        await Task.Delay(100);
+        _lineBackground.AddToClassList("default-whiteline-move-outside");
+        await Task.Delay(100);
+        _blueLine.AddToClassList("default-blueline-move-outside");
+
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Clock, true);
+    }
     private void Show(VisualElement view) {
         view.style.display = DisplayStyle.Flex;
     }

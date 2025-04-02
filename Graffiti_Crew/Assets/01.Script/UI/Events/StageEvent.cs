@@ -6,7 +6,5 @@ namespace AH.UI.Events {
         public static Action<bool> ShowResultViewEvent;
 
         public static Action<bool> ShowVictorScreenEvent;
-
-        public static Action<FightUIAnimationType, bool> SetActiveStartAnimation;
     }
 }
