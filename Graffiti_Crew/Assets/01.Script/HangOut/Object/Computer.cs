@@ -39,7 +39,7 @@ public class Computer : InteractionObject
         _transitionMat.DOFloat(0f, "_Lerp", 0.3f);
         yield return new WaitForSeconds(0.8f);
 
-        _hangoutBGM?.GetComponent<SoundObject>().PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.HangOut);
         SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
     }
 }

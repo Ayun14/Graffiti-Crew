@@ -63,7 +63,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
-            _bgm?.GetComponent<SoundObject>().PushObject(true);
+            GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_After);
 
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }

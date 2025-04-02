@@ -192,7 +192,7 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (_isTyping)
                     {
-                        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
+                        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
                         CompleteTyping();
                     }
                     else
@@ -202,7 +202,7 @@ public class DialogueUIController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.K))
             {
-                _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
+                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
                 _currentDialogueIndex = _filteredDialogueList.Count;
                 ShowNextDialogue();
             }
@@ -283,7 +283,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
-        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
     }
 
     private void CompleteTyping()
