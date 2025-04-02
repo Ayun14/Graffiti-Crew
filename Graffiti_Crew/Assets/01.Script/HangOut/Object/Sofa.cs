@@ -7,8 +7,10 @@ public class Sofa : InteractionObject
     [SerializeField] private CinemachineCamera _cam;
     private float _zoomSpeed = 10f;
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (playerState == PlayerStateEnum.Sit)
             Zoom();
         else
