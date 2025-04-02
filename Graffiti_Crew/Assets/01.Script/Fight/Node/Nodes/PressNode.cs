@@ -102,7 +102,7 @@ public class PressNode : Node, INodeAction
 
     private void CheckNodeClear()
     {
-        if (_pressTime - _currentTime <= 0.5f)
+        if (Mathf.Abs(_pressTime - _currentTime) <= _pressNodeData.possibleRange)
         {
             NodeClear();
         }
