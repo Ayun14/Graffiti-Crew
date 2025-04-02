@@ -25,15 +25,12 @@ public class InteractionObject : MonoBehaviour
         _interactionImg.enabled = false;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (CheckMousePos() && playerState != PlayerStateEnum.Interaction)
+        if (CheckMousePos() && playerState != PlayerStateEnum.Interaction && stateEnum != playerState)
         {
-            if(stateEnum != playerState)
-            {
-                _interactionImg.transform.LookAt(Camera.main.transform);
-                _interactionImg.enabled = true;
-            }
+            _interactionImg.transform.LookAt(Camera.main.transform);
+            _interactionImg.enabled = true;
         }
         else
         {
