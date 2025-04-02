@@ -562,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.106733344, y: 0.8740792, z: -0.22314015, w: -0.41809326}
+  m_LocalRotation: {x: -0.107375, y: 0.87373567, z: -0.22448163, w: -0.41792896}
   m_LocalPosition: {x: 7.233, y: 7.88, z: 8.103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 888425313}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1156,6 +1156,10 @@ PrefabInstance:
     - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_Name
       value: DialogueUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9205216462639050471, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1232,6 +1236,10 @@ PrefabInstance:
     - target: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4853109351183306631, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
       propertyPath: m_Name
@@ -2047,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4853109351183306631, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
       propertyPath: m_Name
       value: InteractionCanvas
@@ -2292,7 +2304,7 @@ MonoBehaviour:
       Size: {x: 0.2, y: 0.2}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 1.04, z: 0}
+  TargetOffset: {x: 0, y: 0.99, z: 0}
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 0
@@ -2369,7 +2381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917054981}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.106733374, y: 0.8740792, z: -0.22314018, w: -0.41809332}
+  m_LocalRotation: {x: -0.10737502, y: 0.87373567, z: -0.22448163, w: -0.41792902}
   m_LocalPosition: {x: 7.233, y: 7.88, z: 8.103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3671,7 +3683,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 559045508}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4726,10 +4738,10 @@ MonoBehaviour:
         z: 0.7705084
       Rotation:
         value:
-          x: -0.14951856
-          y: 0.7724074
-          z: -0.31602228
-          w: -0.530246
+          x: -0.14951855
+          y: 0.77240753
+          z: -0.31602222
+          w: -0.53024596
     - Position:
         x: -3.88
         y: 1.17
@@ -5852,6 +5864,7 @@ MonoBehaviour:
   _interactionImg: {fileID: 1493947009}
   stateEnum: 5
   playerState: 0
+  _cam: {fileID: 917054984}
 --- !u!1001 &8395605314881364262
 PrefabInstance:
   m_ObjectHideFlags: 0
