@@ -47,7 +47,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
         if (mySubject != null)
         {
             mySubject.ChangeGameState(GameState.Fight);
-            StageEvent.SetActiveStartAnimation?.Invoke(false);
+            StageEvent.SetActiveStartAnimation?.Invoke(FightUIAnimationType.FightStart, false);
         }
     }
 

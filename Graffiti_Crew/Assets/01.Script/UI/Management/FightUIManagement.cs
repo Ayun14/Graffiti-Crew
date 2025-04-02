@@ -2,7 +2,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -11,7 +10,7 @@ namespace AH.UI {
         private DialougeView _dialougeView;
         private ResultView _resultView;
 
-        private FightStartAnimation _fightStartAnimation;
+        private FightAnimation _fightStartAnimation;
 
         private FightViewModel _viewModel;
 
@@ -19,14 +18,14 @@ namespace AH.UI {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
-            StageEvent.SetActiveStartAnimation += SetActiveAnimationView;
+            StageEvent.SetActiveStartAnimation += SetActiveFightStartAnimation;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
-            StageEvent.SetActiveStartAnimation -= SetActiveAnimationView;
+            StageEvent.SetActiveStartAnimation -= SetActiveFightStartAnimation;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
         }
         protected override void Init() {
@@ -40,7 +39,7 @@ namespace AH.UI {
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
             _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
-            _fightStartAnimation = new FightStartAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
+            _fightStartAnimation = new FightAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
 
             _fightStartAnimation.Show();
         }
@@ -70,12 +69,14 @@ namespace AH.UI {
                 _fightView.Hide();
             }
         }
-        private void SetActiveAnimationView(bool active) {
-            if (active) {
-                _fightStartAnimation.Show();
-            }
-            else {
-                _fightStartAnimation.Hide();
+        private void SetActiveFightStartAnimation(FightUIAnimationType type, bool active) {
+            switch (type) {
+                case FightUIAnimationType.FightStart:
+                    UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(active);
+                    break;
+                case FightUIAnimationType.Tension:
+                    UIAnimationEvent.SetActiveTensionAnimationEvnet?.Invoke(active);
+                    break;
             }
         }
         #endregion

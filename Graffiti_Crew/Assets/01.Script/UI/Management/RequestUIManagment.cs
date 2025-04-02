@@ -2,7 +2,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -64,6 +63,5 @@ namespace AH.UI {
                 _sprayView.Hide();
             }
         }
-        
     }
 }

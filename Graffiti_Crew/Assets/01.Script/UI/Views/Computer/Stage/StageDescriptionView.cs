@@ -75,8 +75,6 @@ namespace AH.UI.Views {
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
-                Debug.Log(ComputerViewModel.GetCurrentStageName());
-                Debug.Log(ComputerViewModel.GetCurrentStageName().Contains("Stage"));
                 if (ComputerViewModel.GetCurrentStageName().Contains("Stage")) {
                     SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
                 }

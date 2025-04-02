@@ -8,17 +8,13 @@
 }
 
 .spray-progress {
-    width: 250px;
-    height: 70px;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    width: 259px;
+    height: 79px;
     rotate: -90deg;
 }
 
 .spray-progress > #unity-progress-bar > .unity-progress-bar__background {
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-background.png?fileID=21300000&guid=7944ecb86dd482a4c902f59a5e2c9a2d&type=3#spray-background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-background.png?fileID=2800000&guid=06fbc87a234da3b4ab3a9b3979e7e33b&type=3#spray-background");
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -27,7 +23,7 @@
 }
 
 #spray-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=21300000&guid=22a80a59d42aff140b169d194e5ba4c0&type=3#spray-fill");
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=2800000&guid=22dbe3847c5b4e94787a30f2eb3136ef&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
     margin-top: 4px;
     margin-right: 4px;
@@ -35,20 +31,13 @@
     margin-left: 4px;
     scale: 0.94 1;
     translate: -3% 0;
-    -unity-background-image-tint-color: rgb(238, 255, 150);
 }
 
 #spray-total-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=21300000&guid=22a80a59d42aff140b169d194e5ba4c0&type=3#spray-fill");
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=2800000&guid=22dbe3847c5b4e94787a30f2eb3136ef&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
-    top: -10%;
-    bottom: -10%;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    translate: -8% 0;
-    scale: 0.9 1;
+    -unity-background-image-tint-color: rgb(200, 131, 255);
+    width: 82%;
 }
 
 .graffiti-progress {
