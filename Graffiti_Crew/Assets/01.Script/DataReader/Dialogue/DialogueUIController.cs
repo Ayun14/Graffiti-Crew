@@ -217,13 +217,13 @@ public class DialogueUIController : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
 
-            DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
-            DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+            DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
+            DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
         else
         {
-            DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
-            DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(true);
+            DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+            DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
         }
 
         ShowDialogue(_currentDialogueIndex);
@@ -270,7 +270,7 @@ public class DialogueUIController : MonoBehaviour
             if (!_isBigUIdata && _tutorialCheckData != null)
                 EndMiniDialogue();
             else
-                DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+                DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             if(_defaultCam != null)
                 _defaultCam.SetActive(true);
             _onDialogueComplete?.Invoke();
@@ -287,7 +287,7 @@ public class DialogueUIController : MonoBehaviour
         _computerCollider.enabled = true;
         _computerLight.SetActive(true);
 
-        DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
+        DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
     }
 
     private IEnumerator TypingEffect(string fullText)

@@ -27,7 +27,7 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
-            DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+            DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
 
             NPCSO dialogue = _dialogueList[_dialogueNum];
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
@@ -37,7 +37,7 @@ public class TutorialDialogueController : Observer<GameStateController>
 
     private async void DialogueEnd()
     {
-        DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
         _dialogueNum++;
         if (_dialogueNum == 1)
         {

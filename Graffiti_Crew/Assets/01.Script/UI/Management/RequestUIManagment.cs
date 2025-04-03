@@ -7,21 +7,21 @@ using UnityEngine.UIElements;
 namespace AH.UI {
     public class RequestUIManagment : UIManagement {
         private RequestView _sprayView;
-        private DialougeView _dialougeView;
-        private DialougeView _miniDialougeView;
+        private DialogueView _dialougeView;
+        private DialogueView _miniDialougeView;
 
         private RequestViewModel _viewModel;
 
         protected override void OnEnable() {
             base.OnEnable();
-            DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
+            DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialogueEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
         }
 
@@ -34,8 +34,8 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _sprayView = new RequestView(root.Q<VisualElement>("SprayView"), _viewModel);
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
-            _miniDialougeView = new DialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
+            _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _miniDialougeView = new DialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
 
             _sprayView.Show();
         }

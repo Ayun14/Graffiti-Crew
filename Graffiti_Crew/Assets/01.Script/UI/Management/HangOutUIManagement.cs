@@ -9,20 +9,20 @@ namespace AH.UI {
         private HangOutViewModel _hangoutViewModel;
         private DialogViewModel _dialogueViewModel;
 
-        private DialougeView _dialougeView;
-        private MiniDialougeView _miniDialougeView;
+        private DialogueView _dialougeView;
+        private MiniDialogueView _miniDialougeView;
         private SettingView _settingView;
 
         protected override void OnEnable() {
             base.OnEnable();
-            DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
-            DialougeEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+            DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             HangOutEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialougeEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
+            DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialogueEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             HangOutEvent.HideViewEvent -= HideView;
         }
 
@@ -36,8 +36,8 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
 
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
-            _miniDialougeView = new MiniDialougeView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
+            _dialougeView = new DialogueView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
+            _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _hangoutViewModel);
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {

@@ -42,7 +42,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
-                DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
+                DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
 
                 NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
@@ -55,7 +55,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     {
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
-        DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
         _dialogueNum++;
 
 

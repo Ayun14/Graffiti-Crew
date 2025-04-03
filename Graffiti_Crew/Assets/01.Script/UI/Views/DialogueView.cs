@@ -8,7 +8,7 @@ public enum DialougeCharacter {
     Other
 }
 namespace AH.UI.Views {
-    public class DialougeView : UIView {
+    public class DialogueView : UIView {
         private DialogViewModel ViewModel;
 
         private VisualElement _otherDialouge;
@@ -19,18 +19,18 @@ namespace AH.UI.Views {
         private VisualElement _profile;
 
 
-        public DialougeView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+        public DialogueView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
         public override void Initialize() {
             base.Initialize();
             ViewModel = viewModel as DialogViewModel;
-            DialougeEvent.SetCharacterEvent += SetCharscter;
-            DialougeEvent.ChangeCharacterEvent += ChangeCharacter;
+            DialogueEvent.SetCharacterEvent += SetCharscter;
+            DialogueEvent.ChangeCharacterEvent += ChangeCharacter;
         }
 
         public override void Dispose() {
-            DialougeEvent.SetCharacterEvent -= SetCharscter;
-            DialougeEvent.ChangeCharacterEvent -= ChangeCharacter;
+            DialogueEvent.SetCharacterEvent -= SetCharscter;
+            DialogueEvent.ChangeCharacterEvent -= ChangeCharacter;
             base.Dispose();
         }
         protected override void SetVisualElements() {

@@ -7,17 +7,17 @@ using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class StoryUIManagment : UIManagement {
-        private DialougeView _dialougeView;
+        private DialogueView _dialougeView;
 
         private RequestViewModel _viewModel;
 
         protected override void OnEnable() {
             base.OnEnable();
-            DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
         }
 
         protected override void Init() {
@@ -28,7 +28,7 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
 
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _dialougeView.Show();
         }
         private void ShowDialougeView(bool active) {

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace AH.UI {
     public class FightUIManagement : UIManagement {
         private FightView _fightView;
-        private DialougeView _dialougeView;
+        private DialogueView _dialougeView;
         private ResultView _resultView;
 
         private FightAnimation _fightStartAnimation;
@@ -18,13 +18,13 @@ namespace AH.UI {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
-            DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
+            DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
-            DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
         }
         protected override void Init() {
             base.Init();
@@ -35,7 +35,7 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
-            _dialougeView = new DialougeView(root.Q<VisualElement>("DialougeView"), _viewModel);
+            _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
             _fightStartAnimation = new FightAnimation(root.Q<VisualElement>("StartAnimation"), _viewModel);
 

@@ -33,6 +33,6 @@ public class MiniDialougeController : MonoBehaviour
 
     private void DialogueEnd()
     {
-        DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
+        DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
     }
 }
