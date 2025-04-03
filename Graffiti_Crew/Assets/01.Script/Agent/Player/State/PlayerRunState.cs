@@ -35,7 +35,8 @@ public class PlayerRunState : PlayerState
 
     public override void Exit()
     {
-        _walkSound?.GetComponent<SoundObject>().PushObject(false);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Walk);
+
         _player.PlayerInput.MovementEvent -= HandleMovementEvent;
         _player.PlayerInput.InteractionEvent -= HandleInteractionEvent;
 

@@ -32,6 +32,9 @@ public class DialogueUIController : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
 
+    [Header("Dialogue Camera")]
+    [SerializeField] private GameObject _defaultCam;
+
     private bool _isBigUIdata => _dialogueUIData == _bigDialogueUIData;
     private bool _isHangoutScene =>
         SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
@@ -60,6 +63,7 @@ public class DialogueUIController : MonoBehaviour
     private void Start()
     {
         LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
+        SaveDataEvents.LoadEndEvent += HandleTutorialDialogue;
         ChangeDialogueUI += HandleDialogueUIData;
 
         if(_dialogueBG!=null)
@@ -68,35 +72,61 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData.ResetData();
 
         SetLanguageType();
-        CheckTutorial();
     }
 
     private void OnDisable()
     {
         LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        SaveDataEvents.LoadEndEvent -= HandleTutorialDialogue;
         ChangeDialogueUI -= HandleDialogueUIData;
     }
 
-    private void CheckTutorial()
+
+    private void Update()
     {
+        if (!_isBigUIdata && !_isHangoutScene)
+            return;
+
+        if (_isDialogue)
+        {
+            if (dialogueDataReader.readMode == ReadMode.Auto)
+            {
+                if (!_isTyping)
+                    ShowNextDialogue();
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (_isTyping)
+                    {
+                        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
+                        CompleteTyping();
+                    }
+                    else
+                        ShowNextDialogue();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
+                _currentDialogueIndex = _filteredDialogueList.Count;
+                ShowNextDialogue();
+            }
+        }
+    }
+
+    #region Handle Event
+    private void HandleTutorialDialogue()
+    {
+        Debug.Log("Start tutorial");
         if (_tutorialCheckData != null && !_tutorialCheckData.data && _isHangoutScene)
         {
             ChangeDialogueUI?.Invoke(false);
             _computerLight.SetActive(false);
             _computerCollider.enabled = false;
             StartDialogue(1, 1);
-        }
-    }
-
-    private void SetLanguageType()
-    {
-        if (LanguageSystem.GetLanguageType() == LanguageType.English)
-        {
-            dialogueDataReader = dialogueDataReader_EN;
-        }
-        else
-        {
-            dialogueDataReader = dialogueDataReader_KR;
         }
     }
 
@@ -132,6 +162,20 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    private void SetLanguageType()
+    {
+        if (LanguageSystem.GetLanguageType() == LanguageType.English)
+        {
+            dialogueDataReader = dialogueDataReader_EN;
+        }
+        else
+        {
+            dialogueDataReader = dialogueDataReader_KR;
+        }
+    }
+
     public void StartDialogue(int startID, int endID, Action onComplete = null)
     {
         _isDialogue = true;
@@ -154,10 +198,24 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
+        _currentDialogueIndex = 0;
+        _onDialogueComplete = onComplete;
+
+        StartCoroutine(DialogueRoutine());
+    }
+
+    private IEnumerator DialogueRoutine()
+    {
+
         if (_isBigUIdata)
         {
-            if(!_isHangoutScene)
+            if (!_isHangoutScene)
                 _dialogueBG?.SetActive(true);
+
+            if (_defaultCam != null)
+                _defaultCam.SetActive(false);
+
+            yield return new WaitForSeconds(1.5f);
 
             DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             DialougeEvent.ShowDialougeViewEvent?.Invoke(true);
@@ -168,47 +226,10 @@ public class DialogueUIController : MonoBehaviour
             DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(true);
         }
 
-        _currentDialogueIndex = 0;
-        _onDialogueComplete = onComplete;
-
         ShowDialogue(_currentDialogueIndex);
     }
 
-    private void Update()
-    {
-        if (!_isBigUIdata && !_isHangoutScene)
-            return;
-
-        if (_isDialogue)
-        {
-            if (dialogueDataReader.readMode == ReadMode.Auto)
-            {
-                if (!_isTyping)
-                    ShowNextDialogue();
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (_isTyping)
-                    {
-                        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
-                        CompleteTyping();
-                    }
-                    else
-                        ShowNextDialogue();
-                }
-            }
-
-            if(Input.GetKeyDown(KeyCode.K))
-            {
-                _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
-                _currentDialogueIndex = _filteredDialogueList.Count;
-                ShowNextDialogue();
-            }
-        }
-    }
-
+    #region DialogueController
     private void ShowDialogue(int index)
     {
         if (index < 0 || index >= _filteredDialogueList.Count) return;
@@ -250,6 +271,8 @@ public class DialogueUIController : MonoBehaviour
                 EndMiniDialogue();
             else
                 DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
+            if(_defaultCam != null)
+                _defaultCam.SetActive(true);
             _onDialogueComplete?.Invoke();
 
             return;
@@ -283,7 +306,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
-        _textTypingAudio?.GetComponent<SoundObject>().PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
     }
 
     private void CompleteTyping()
@@ -294,4 +317,5 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData.dialogue = _filteredDialogueList[_currentDialogueIndex].context;
         _isTyping = false;
     }
+    #endregion
 }

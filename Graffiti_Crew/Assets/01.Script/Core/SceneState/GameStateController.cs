@@ -13,8 +13,8 @@ public enum GameState
     Talk, Graffiti,
 
     // 튜토리얼
-    // Dialogue -> Tutorial -> Dialogue -> Dialogue
-    Dialogue, Tutorial, Explain
+    // Dialogue -> Tutorial -> Dialogue
+    Dialogue, Tutorial
 }
 
 public class GameStateController : Subject
@@ -22,8 +22,6 @@ public class GameStateController : Subject
     public Action OnBlindEvent; // 시야 방해
     public Action OnNodeFailEvent; // 노드 실패
     public Action OnRivalCheckEvent; // 라이벌의 견제
-    public Action OnSprayEmptyEvent; // 스프레이 모두 소모
-    public Action OnSprayChangeEvent; // 스프레이 갈기 성공
 
     [SerializeField] private GameState gameState = GameState.None;
     public GameState GameState => gameState;
@@ -66,10 +64,6 @@ public class GameStateController : Subject
     public void InvokeNodeFailEvent() => OnNodeFailEvent?.Invoke();
 
     public void InvokeRivalCheckEvent() => OnRivalCheckEvent?.Invoke();
-
-    public void InvokeSprayEmptyEvent() => OnSprayEmptyEvent?.Invoke();
-
-    public void InvokeSprayChangeEvent() => OnSprayChangeEvent?.Invoke();
 
     #endregion
 }
