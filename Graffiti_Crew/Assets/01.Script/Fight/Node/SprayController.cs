@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,7 +50,7 @@ public class SprayController : MonoBehaviour
 
         // Spray
         _spraySlider.value = 1f;
-        _spraySliderValueSO.Value = _spraySliderValueSO.max;
+        //_spraySliderValueSO.Value = _spraySliderValueSO.max;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
@@ -94,6 +95,7 @@ public class SprayController : MonoBehaviour
         if (_shakeSliderValueSO == null) return;
 
         _shakeSliderValueSO.Value += value; 
+        StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Shaking
         if (_shakeSliderValueSO.Value <= 0f)

@@ -16,5 +16,9 @@ namespace AH.UI.ViewModels {
         public StageType GetStageType() {
             return _model.GetStageType();
         }
+
+        public SliderValueSO GetSprayData() {
+            return _model.GetSprayData();
+        }
     }
 }
