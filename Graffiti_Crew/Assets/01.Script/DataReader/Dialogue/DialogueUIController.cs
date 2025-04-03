@@ -212,7 +212,9 @@ public class DialogueUIController : MonoBehaviour
             if (!_isHangoutScene)
                 _dialogueBG?.SetActive(true);
 
-            _defaultCam.SetActive(false);
+            if (_defaultCam != null)
+                _defaultCam.SetActive(false);
+
             yield return new WaitForSeconds(1.5f);
 
             DialougeEvent.ShowMiniDialougeViewEvent?.Invoke(false);
@@ -269,7 +271,8 @@ public class DialogueUIController : MonoBehaviour
                 EndMiniDialogue();
             else
                 DialougeEvent.ShowDialougeViewEvent?.Invoke(false);
-            _defaultCam.SetActive(true);
+            if(_defaultCam != null)
+                _defaultCam.SetActive(true);
             _onDialogueComplete?.Invoke();
 
             return;
