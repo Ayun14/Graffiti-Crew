@@ -10,7 +10,6 @@ public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Other Panel")]
     [SerializeField] private Image _comboPanel;
-    [SerializeField] private Image _sprayPanel;
 
     [Header("Cursor")]
     [SerializeField] private Texture2D _cursorTex;
@@ -142,7 +141,6 @@ public class FightSceneUIController : Observer<GameStateController>
             // Fight
             StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _comboPanel.gameObject.SetActive(isFight);
-            _sprayPanel.gameObject.SetActive(isFight);
             _failFeedbackPanel.gameObject.SetActive(isFight);
             _rivalCheckPanel.gameObject.SetActive(isFight);
 
@@ -155,8 +153,8 @@ public class FightSceneUIController : Observer<GameStateController>
                 _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            if (isFinish)StartCoroutine(FinishRoutine());
-            _finishPanel.gameObject.SetActive(isFinish); 
+            if (isFinish) StartCoroutine(FinishRoutine());
+            _finishPanel.gameObject.SetActive(isFinish);
             _clockSound?.GetComponent<SoundObject>().PushObject(true);
 
             // Result

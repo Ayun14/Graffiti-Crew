@@ -12,29 +12,20 @@ public class CameraController : Observer<GameStateController>
     private CinemachineCamera _rivalGraffitiCamera;
     private CinemachineImpulseSource _impulseSource;
 
-    // SprayBox
-    private CinemachineCamera _sprayBoxCamera;
-
     private void Awake()
     {
         Attach();
 
         mySubject.OnBlindEvent += BlindEventHandle;
-        mySubject.OnSprayEmptyEvent += SprayEmptyEventHandle;
-        mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
 
         _graffitiCamera = transform.Find("Camera_PlayerGraffiti").GetComponent<CinemachineCamera>();
         _rivalGraffitiCamera = transform.Find("Camera_RivalGraffiti").GetComponent<CinemachineCamera>();
         _impulseSource = _graffitiCamera.GetComponent<CinemachineImpulseSource>();
-
-        _sprayBoxCamera = transform.Find("Camera_SprayBox").GetComponent<CinemachineCamera>();
     }
 
     private void OnDestroy()
     {
         mySubject.OnBlindEvent -= BlindEventHandle;
-        mySubject.OnSprayEmptyEvent -= SprayEmptyEventHandle;
-        mySubject.OnSprayChangeEvent -= SprayChangeEventHandle;
 
         Detach();
     }
@@ -74,18 +65,5 @@ public class CameraController : Observer<GameStateController>
                 transform.DORotate(startRotation, 0.25f) // 원래 각도로 돌아감
                     .SetEase(Ease.InOutSine);
             });
-    }
-
-    private void SprayEmptyEventHandle()
-    {
-        // 카메라가 상자를 쳐다보게
-
-        _sprayBoxCamera.Priority.Value = 2;
-    }
-
-    private void SprayChangeEventHandle()
-    {
-        _sprayBoxCamera.Priority.Value = 0;
-        _graffitiCamera.Priority.Value = 1;
     }
 }
