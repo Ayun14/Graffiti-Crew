@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+public enum StageRuleType
+{
+    SpeedRule, PerfectRule, OneTouchRule
+}
+
 [CreateAssetMenu(fileName = "StageDataSO", menuName = "SO/Stage/StageDataSO")]
 public class StageDataSO : ScriptableObject
 {
+    [Header("Stage")]
+    public StageRuleType stageRule;
+    public Transform mapPrefab;
+
     [Header("Player Graffiti")]
     public Sprite startGraffiti;
     public List<NodeDataSO> nodeDatas;
@@ -14,9 +23,6 @@ public class StageDataSO : ScriptableObject
     public Sprite rivalGraffiti;
     public int rivalClearTime; // √  ¥‹¿ß
     public Transform rivalPrefab;
-
-    [Header("Map")]
-    public Transform mapPrefab;
 
     [Header("Dialogue")]
     public DialogueDataReader dialogueData_KR;
