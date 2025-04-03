@@ -234,11 +234,11 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         _sprayController.AddSprayAmount(value);
     }
 
-    public void SprayEmptyEvent()
+    public void SetSprayEmpty(bool isEmpty)
     {
-        if (mySubject.IsSprayEmpty) return;
+        if (mySubject.IsSprayEmpty == isEmpty) return;
 
-        mySubject.SetIsSprayEmpty(true);
+        mySubject.SetIsSprayEmpty(isEmpty);
     }
 
     #endregion

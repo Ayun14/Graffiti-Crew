@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -13,8 +14,14 @@ public class SprayController : MonoBehaviour
     private bool _isShaking = false;
 
     [Header("Spray")]
-    [SerializeField] private SliderValueSO _spraySliderValueSO;
-    public bool isSprayNone => _spraySliderValueSO.Value <= 0f;
+    [SerializeField] private float _maxSprayValue;
+    private float _currentSprayValue = 0;
+    public float CurrentSparyValue
+    {
+        get { return _currentSprayValue; }
+        set { _currentSprayValue = Mathf.Clamp(value, 0, _maxSprayValue); }
+    }
+    public bool isSprayNone => _currentSprayValue <= 0f;
     [SerializeField] private float _sprayAddAmount;
 
     private NodeJudgement _judgement;
@@ -24,7 +31,7 @@ public class SprayController : MonoBehaviour
         _judgement = judgement;
 
         // Spray
-        _spraySliderValueSO.Value = _spraySliderValueSO.max;
+        CurrentSparyValue = _maxSprayValue;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
@@ -66,6 +73,7 @@ public class SprayController : MonoBehaviour
         if (_shakeSliderValueSO == null) return;
 
         _shakeSliderValueSO.Value += value;
+        StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Shaking
         if (_shakeSliderValueSO.Value <= 0f)
@@ -86,16 +94,13 @@ public class SprayController : MonoBehaviour
 
     public void AddSprayAmount(float value)
     {
-        if (_spraySliderValueSO == null) return;
-
-        float targetValue = _spraySliderValueSO.Value + value;
-        DOTween.To(() => _spraySliderValueSO.Value,
-            x => _spraySliderValueSO.Value = x, targetValue, 0.5f);
+        CurrentSparyValue += value;
 
         // Spray Empty
-        if (targetValue <= 0f)
+        if (CurrentSparyValue <= 0f)
         {
             StartCoroutine(SprayEmpty());
+            _judgement.SetSprayEmpty(true);
         }
     }
 
@@ -103,14 +108,15 @@ public class SprayController : MonoBehaviour
     {
         // 스프레이 통 떨구기
         Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
         ResetSpray();
+        _judgement.SetSprayEmpty(false);
     }
 
     private void ResetSpray()
     {
-        AddSprayAmount(_spraySliderValueSO.max);
+        AddSprayAmount(_maxSprayValue);
         AddShakeAmount(_shakeSliderValueSO.max);
     }
 
