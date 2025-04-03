@@ -1,9 +1,7 @@
-using AH.UI.Events;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class NodeJudgement : Observer<GameStateController>, INeedLoding
@@ -47,8 +45,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     {
         Attach();
 
-        mySubject.OnSprayChangeEvent += SprayChangeEventHandle;
-
         Init();
     }
 
@@ -59,8 +55,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     private void OnDestroy()
     {
-        mySubject.OnSprayChangeEvent -= SprayChangeEventHandle;
-
         Detach();
     }
 
@@ -171,8 +165,14 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public async void AllNodeClear()
     {
-        mySubject.SetWhoIsWin(true);
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+        if (mySubject.GameState == GameState.Fight)
+        {
+            mySubject.SetWhoIsWin(true);
+            mySubject.ChangeGameState(GameState.Finish);
+        }
+        else if (mySubject.GameState == GameState.Fight)
+            mySubject.ChangeGameState(GameState.Result);
+        else if (mySubject.GameState == GameState.Tutorial)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
@@ -180,9 +180,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
             mySubject.ChangeGameState(GameState.Dialogue);
         }
-        else
-            mySubject.ChangeGameState(GameState.Finish);
-
     }
 
     #endregion
@@ -242,12 +239,6 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
         if (mySubject.IsSprayEmpty) return;
 
         mySubject.SetIsSprayEmpty(true);
-        mySubject?.InvokeSprayEmptyEvent();
-    }
-
-    private void SprayChangeEventHandle()
-    {
-        _sprayController.SprayChange();
     }
 
     #endregion
