@@ -1,6 +1,7 @@
 .dialog-box-m-container {
     flex-grow: 1;
     justify-content: flex-end;
+    padding-bottom: 120px;
 }
 
 .dialog-box-top-content {
@@ -13,22 +14,25 @@
 .dialog-box-bottom-content {
     align-items: center;
     justify-content: center;
-    height: 40%;
+    height: 45%;
     width: 100%;
     position: relative;
 }
 
 .name-box {
     width: 380px;
-    flex-grow: 1;
-    height: 95px;
-    background-image: url("project://database/Assets/02.Sprite/UI/TextBox/name-box.png?fileID=21300000&guid=5af1ae9e520ea854c9638fef1fe5526b&type=3#name-box");
+    height: 110px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/namebox.png?fileID=21300000&guid=95e134e48b963744795ca3ffbf227e91&type=3#namebox");
 }
 
 .text-box {
     width: 100%;
     height: 80%;
-    background-image: url("project://database/Assets/02.Sprite/UI/TextBox/text-box.png?fileID=21300000&guid=5fd08a4a7d0126646aa3c855c8bb3795&type=3#text-box");
+    background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/textbox.png?fileID=21300000&guid=3ba7c2793242c38478b8db30493f3375&type=3#textbox");
+    padding-top: 70px;
+    padding-right: 140px;
+    padding-bottom: 65px;
+    padding-left: 85px;
 }
 
 .conversation-txt {
@@ -39,13 +43,13 @@
 }
 
 .mini-background {
-    background-image: url("project://database/Assets/02.Sprite/UI/TextBox/MiniDialogBox.png?fileID=21300000&guid=19a2f92a45ab1424cac42c7f67aa9777&type=3#MiniDialogBox");
+    background-image: url('project://database/Assets/02.Sprite/UI/TextBox/MiniDialogBox.png?fileID=21300000&guid=19a2f92a45ab1424cac42c7f67aa9777&type=3#MiniDialogBox');
     width: 550px;
-    height: 300px;
-    padding-top: 50px;
-    padding-right: 55px;
+    height: 360px;
+    padding-top: 60px;
+    padding-right: 70px;
     padding-bottom: 85px;
-    padding-left: 67px;
+    padding-left: 55px;
 }
 
 .hide-dialoge {
@@ -64,4 +68,17 @@
 
 .fade-profile {
     opacity: 1;
+}
+
+.spray-size-up {
+    scale: 1.2 1.2;
+}
+
+.skip-btn {
+    width: 205px;
+    height: 110px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/skip-btn.png?fileID=21300000&guid=64e0582584c1a5d4a8403bfd7e297111&type=3#skip-btn");
+    position: absolute;
+    top: 56%;
+    right: 4%;
 }

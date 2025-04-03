@@ -30,7 +30,7 @@ public class FightSceneDataController : DataController
                     Debug.Log("star : " + star);
                     if (star > stageData.stageSaveData.star)
                         stageData.stageSaveData.star = star;
-                    GameEvents.SendGameResultEvent?.Invoke(stageData);
+                    GameEvents.SendFightGameResultEvent?.Invoke(stageData);
                 }
 
                 if (mySubject.GameState == GameState.Result)

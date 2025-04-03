@@ -1,16 +1,15 @@
-using AH.SaveSystem;
-using System;
 using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour {
     private void OnEnable() {
-        GameEvents.SendGameResultEvent += GameResult;
+        GameEvents.SendFightGameResultEvent += FightGameResult;
     }
     private void OnDisable() {
-        GameEvents.SendGameResultEvent -= GameResult;
+        GameEvents.SendFightGameResultEvent -= FightGameResult;
     }
 
-    private void GameResult(StageDataSO stageData) {
+    private void FightGameResult(StageDataSO stageData) {
+        Debug.Log("result");
         int combo = stageData.stageResult.comboCnt;
         int failCount = stageData.stageResult.nodeFalseCnt;
         int score = 0;
@@ -23,4 +22,5 @@ public class ScoreSystem : MonoBehaviour {
         }
         CoinSystem.AddCoin(score);
     }
+    
 }

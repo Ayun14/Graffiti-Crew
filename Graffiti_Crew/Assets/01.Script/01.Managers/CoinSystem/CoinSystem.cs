@@ -42,6 +42,7 @@ public class CoinSystem : MonoBehaviour {
             return false;
         }
     }
+
     private IEnumerator CalculateCoin(int price) {
         WaitForSeconds waitTime = new WaitForSeconds(0.05f);
         int halfPrice = price / 2; // 가격의 절반 지점

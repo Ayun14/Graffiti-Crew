@@ -1,74 +1,58 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <engine:VisualElement name="m-container" class="dialog-box-m-container">
-        <engine:VisualElement name="left-bottom-content" class="dialog-box-bottom-content" style="flex-direction: row; display: none;">
+        <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content" style="flex-direction: row; display: none;">
             <engine:VisualElement name="profile" style="height: 350px; width: 350px; scale: -1 1;">
-                <Bindings>
-                    <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profil" />
-                </Bindings>
-            </engine:VisualElement>
-            <engine:VisualElement style="flex-grow: 1; height: 100%;">
-                <engine:VisualElement name="name-box" class="name-box">
-                    <engine:Label text="name" name="name-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="characterName" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; flex-grow: 1;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
-                </engine:VisualElement>
-                <engine:VisualElement name="text-box" class="text-box" style="align-items: center; justify-content: center; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
-                    <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="dialogue" class="conversation-txt grow-size-40" style="flex-grow: 1;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="dialogue" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
-                </engine:VisualElement>
-            </engine:VisualElement>
-        </engine:VisualElement>
-        <engine:VisualElement name="right-bottom-content" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: none;">
-            <engine:VisualElement name="profile" style="height: 350px; width: 350px; scale: -1 1;">
-                <Bindings>
-                    <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profil" />
-                </Bindings>
-            </engine:VisualElement>
-            <engine:VisualElement style="flex-grow: 1; height: 100%;">
-                <engine:VisualElement name="name-box" class="name-box">
-                    <engine:Label text="name" name="name-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="characterName" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; flex-grow: 1;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
-                </engine:VisualElement>
-                <engine:VisualElement name="text-box" class="text-box" style="align-items: center; justify-content: center; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
-                    <engine:Label text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney" name="conversation-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="dialogue" class="conversation-txt grow-size-40" style="flex-grow: 1;">
-                        <Bindings>
-                            <engine:DataBinding property="text" data-source-path="dialogue" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
-                        </Bindings>
-                    </engine:Label>
-                </engine:VisualElement>
-            </engine:VisualElement>
-        </engine:VisualElement>
-        <engine:VisualElement name="background" style="flex-grow: 1; justify-content: flex-end; align-items: center;">
-            <engine:VisualElement name="profile" class="profile fade-profile" style="height: 1150px; width: 920px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>
             </engine:VisualElement>
-            <engine:VisualElement style="height: 70%; width: 100%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/%EB%8B%A8%EB%9D%BD%20%ED%85%8D%EC%8A%A4%ED%8A%B8.png?fileID=-1397668088&amp;guid=296e98b7a52d4854aaa8f57ff3fa6de2&amp;type=3#단락 텍스트_0&quot;); padding-top: 350px; padding-right: 120px; padding-bottom: 60px; padding-left: 120px;">
-                <engine:Label text="Label" name="name" class="grow-size-50" style="color: rgb(255, 255, 255); flex-grow: 0; margin-bottom: 15px;">
-                    <Bindings>
-                        <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="characterName" />
-                    </Bindings>
-                </engine:Label>
-                <engine:Label text="Label" name="text" class="grow-size-50" style="color: rgb(255, 255, 255); white-space: normal; -unity-text-align: upper-left;">
-                    <Bindings>
-                        <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
-                    </Bindings>
-                </engine:Label>
+            <engine:VisualElement style="height: 100%; width: 95%; flex-direction: column-reverse;">
+                <engine:VisualElement name="text-box" class="text-box" style="scale: -1 1;">
+                    <engine:Label text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" class="grow-size-50" style="width: 100%; white-space: normal; scale: -1 1;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Button name="skip-btn" class="skip-btn" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-color: rgba(188, 188, 188, 0); right: 84%; scale: -1 1;" />
+                </engine:VisualElement>
+                <engine:VisualElement name="name-box" class="name-box" style="top: 14%; right: -11%;">
+                    <engine:Label text="name" name="name-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="characterName" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; flex-grow: 0; top: 6%;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
             </engine:VisualElement>
-            <Bindings>
-                <engine:DataBinding property="style.backgroundImage" data-source-path="background" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
-            </Bindings>
         </engine:VisualElement>
+        <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: none;">
+            <engine:VisualElement name="profile" style="height: 350px; width: 350px; scale: -1 1;">
+                <Bindings>
+                    <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profile" />
+                </Bindings>
+            </engine:VisualElement>
+            <engine:VisualElement style="height: 100%; width: 95%; flex-direction: column-reverse;">
+                <engine:VisualElement name="text-box" class="text-box">
+                    <engine:Label text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" class="grow-size-50" style="width: 100%; white-space: normal;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Button name="skip-btn" class="skip-btn" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-color: rgba(188, 188, 188, 0);" />
+                </engine:VisualElement>
+                <engine:VisualElement name="name-box" class="name-box" style="top: 14%; right: -64%;">
+                    <engine:Label text="name" name="name-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="characterName" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; flex-grow: 0; top: 6%;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement style="width: 100%; height: 100%; justify-content: space-between; position: absolute;">
+        <engine:VisualElement name="top-border" class="hide-border" style="background-color: rgb(0, 0, 0); height: 100px;" />
+        <engine:VisualElement name="bottom-border" class="hide-border" style="background-color: rgb(0, 0, 0); height: 100px;" />
     </engine:VisualElement>
 </engine:UXML>
