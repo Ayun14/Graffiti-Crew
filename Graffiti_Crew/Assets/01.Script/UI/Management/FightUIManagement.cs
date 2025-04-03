@@ -18,14 +18,12 @@ namespace AH.UI {
             base.OnEnable();
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
-            StageEvent.SetActiveStartAnimation += SetActiveFightStartAnimation;
             DialougeEvent.ShowDialougeViewEvent += ShowDialougeView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
-            StageEvent.SetActiveStartAnimation -= SetActiveFightStartAnimation;
             DialougeEvent.ShowDialougeViewEvent -= ShowDialougeView;
         }
         protected override void Init() {
@@ -67,16 +65,6 @@ namespace AH.UI {
             }
             else {
                 _fightView.Hide();
-            }
-        }
-        private void SetActiveFightStartAnimation(FightUIAnimationType type, bool active) {
-            switch (type) {
-                case FightUIAnimationType.FightStart:
-                    UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(active);
-                    break;
-                case FightUIAnimationType.Tension:
-                    UIAnimationEvent.SetActiveTensionAnimationEvnet?.Invoke(active);
-                    break;
             }
         }
         #endregion

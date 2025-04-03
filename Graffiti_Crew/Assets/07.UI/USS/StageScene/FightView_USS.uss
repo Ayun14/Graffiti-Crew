@@ -2,42 +2,53 @@
     flex-grow: 1;
 }
 
+.fight-profile {
+    width: 160px;
+    height: 160px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    visibility: visible;
+    display: flex;
+}
+
 .unity-progress-bar__container {
     max-height: 100%;
     height: 100%;
 }
 
 .spray-progress {
-    width: 259px;
-    height: 79px;
-    rotate: -90deg;
+    width: 260px;
+    height: 80px;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
 }
 
 .spray-progress > #unity-progress-bar > .unity-progress-bar__background {
     background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-background.png?fileID=2800000&guid=06fbc87a234da3b4ab3a9b3979e7e33b&type=3#spray-background");
     background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-#spray-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=2800000&guid=22dbe3847c5b4e94787a30f2eb3136ef&type=3#spray-fill");
-    background-color: rgba(0, 0, 0, 0);
-    margin-top: 4px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    margin-left: 4px;
-    scale: 0.94 1;
-    translate: -3% 0;
-}
-
 #spray-total-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
     background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=2800000&guid=22dbe3847c5b4e94787a30f2eb3136ef&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
     -unity-background-image-tint-color: rgb(200, 131, 255);
-    width: 82%;
+    scale: 0.84 1;
+    translate: -8% 0;
 }
 
 .graffiti-progress {
@@ -69,25 +80,34 @@
     margin-left: 4px;
 }
 
+.rival-move-screen {
+    left: -22%;
+    top: 3%;
+    transition-duration: 0.3s;
+}
+
 .hide {
     display: none;
 }
 
-.fight-profile {
-    width: 160px;
-    height: 160px;
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
-    visibility: visible;
-    display: flex;
+.spray-outline {
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-outline.png?fileID=2800000&guid=55a475b5791575241b169b3974b84e80&type=3#spray-outline");
+    rotate: -90deg;
+    translate: 26% -98%;
+    align-items: center;
+    justify-content: center;
+    width: 285px;
+    height: 105px;
+    transition-duration: 0.2s;
+    transition-property: all;
+    background-color: rgba(0, 0, 0, 0);
+    transition-timing-function: ease-in-out-sine;
+}
+
+.spray-size-up {
+    scale: 1.1 1.1;
+}
+
+.spray-color-change {
+    -unity-background-image-tint-color: rgb(255, 0, 0);
 }
