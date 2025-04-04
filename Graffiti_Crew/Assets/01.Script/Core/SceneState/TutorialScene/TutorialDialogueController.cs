@@ -27,6 +27,8 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
+            DialogueEvent.SetCharacterEvent?.Invoke(DialougeCharacter.Jia);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
 
             NPCSO dialogue = _dialogueList[_dialogueNum];

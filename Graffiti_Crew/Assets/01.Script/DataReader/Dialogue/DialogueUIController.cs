@@ -81,7 +81,6 @@ public class DialogueUIController : MonoBehaviour
         ChangeDialogueUI -= HandleDialogueUIData;
     }
 
-
     private void Update()
     {
         if (!_isBigUIdata && !_isHangoutScene)
@@ -218,6 +217,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
+            DialogueEvent.SetCharacterEvent?.Invoke(DialougeCharacter.Jia);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
         else
@@ -233,8 +233,12 @@ public class DialogueUIController : MonoBehaviour
     private void ShowDialogue(int index)
     {
         if (index < 0 || index >= _filteredDialogueList.Count) return;
-
         DialogueData dialogue = _filteredDialogueList[index];
+
+        if ((_dialogueUIData.characterName == "지아" && dialogue.characterName != "지아")
+            || (_dialogueUIData.characterName != "지아" && dialogue.characterName == "지아"))
+            DialogueEvent.ChangeCharacterEvent?.Invoke();
+
         if (_dialogueUIData.characterName == null)
             _dialogueUIData.characterName = "";
         else

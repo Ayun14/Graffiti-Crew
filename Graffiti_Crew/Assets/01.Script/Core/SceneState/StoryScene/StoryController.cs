@@ -42,6 +42,8 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
+                DialogueEvent.SetCharacterEvent?.Invoke(DialougeCharacter.Jia);
                 DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
 
                 NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
