@@ -170,7 +170,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             mySubject.SetWhoIsWin(true);
             mySubject.ChangeGameState(GameState.Finish);
         }
-        else if (mySubject.GameState == GameState.Fight)
+        else if (mySubject.GameState == GameState.Graffiti)
             mySubject.ChangeGameState(GameState.Result);
         else if (mySubject.GameState == GameState.Tutorial)
         {

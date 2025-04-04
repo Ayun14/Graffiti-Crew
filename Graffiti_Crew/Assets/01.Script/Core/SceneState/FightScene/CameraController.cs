@@ -9,7 +9,6 @@ public class CameraController : Observer<GameStateController>
 
     // Fight
     private CinemachineCamera _graffitiCamera;
-    private CinemachineCamera _rivalGraffitiCamera;
     private CinemachineImpulseSource _impulseSource;
 
     private void Awake()
@@ -19,7 +18,6 @@ public class CameraController : Observer<GameStateController>
         mySubject.OnBlindEvent += BlindEventHandle;
 
         _graffitiCamera = transform.Find("Camera_PlayerGraffiti").GetComponent<CinemachineCamera>();
-        _rivalGraffitiCamera = transform.Find("Camera_RivalGraffiti").GetComponent<CinemachineCamera>();
         _impulseSource = _graffitiCamera.GetComponent<CinemachineImpulseSource>();
     }
 
@@ -37,13 +35,6 @@ public class CameraController : Observer<GameStateController>
             // Fight
             bool isgraffitiCameraOn = mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Timeline;
             _graffitiCamera.Priority.Value = isgraffitiCameraOn ? 1 : 0;
-
-            // Result
-            if (mySubject.GameState == GameState.Result)
-            {
-                _graffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 5 : 0;
-                _rivalGraffitiCamera.Priority.Value = mySubject.IsPlayerWin ? 0 : 5;
-            }
         }
     }
 
