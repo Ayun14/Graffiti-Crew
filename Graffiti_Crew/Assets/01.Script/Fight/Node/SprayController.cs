@@ -11,7 +11,8 @@ public class SprayController : MonoBehaviour
     [SerializeField] private Texture2D _shakeSprayCursor;
     public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
     private bool isSprayCanShaking = false;
-    private bool _isShaking = false;
+    private bool _isShaking = false; 
+    private Tween _shakeValueChangeTween;
 
     [Header("Spray")]
     [SerializeField] private float _maxSprayValue;
@@ -71,17 +72,21 @@ public class SprayController : MonoBehaviour
     public void AddShakeAmount(float value)
     {
         if (_shakeSliderValueSO == null) return;
+        if (_shakeValueChangeTween != null && _shakeValueChangeTween.IsActive())
+            _shakeValueChangeTween.Complete();
 
-        _shakeSliderValueSO.Value += value;
+        float targetValue = _shakeSliderValueSO.Value + value;
+        _shakeValueChangeTween = DOTween.To(() => _shakeSliderValueSO.Value,
+            x => _shakeSliderValueSO.Value = x, targetValue, 0.1f);
         StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Shaking
-        if (_shakeSliderValueSO.Value <= 0f)
+        if (targetValue <= 0f)
         {
             isSprayCanShaking = true;
             Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
         }
-        else if (_shakeSliderValueSO.Value >= _shakeSliderValueSO.max)
+        else if (targetValue >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
             Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
