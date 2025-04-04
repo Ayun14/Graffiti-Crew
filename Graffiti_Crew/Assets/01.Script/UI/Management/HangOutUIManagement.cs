@@ -49,9 +49,11 @@ namespace AH.UI {
             if (_settingView != null) {
                 if (_settingView.Root.style.display == DisplayStyle.Flex){
                     HideView();
+                    HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
                 }
                 else {
                     ShowView(_settingView);
+                    HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
                 }
             }
         }
