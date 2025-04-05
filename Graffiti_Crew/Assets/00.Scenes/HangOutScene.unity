@@ -2943,7 +2943,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1057839776}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 9101089168978235139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6234,6 +6234,7 @@ Transform:
   m_Children:
   - {fileID: 638344606}
   - {fileID: 888425315}
+  - {fileID: 1039672298}
   m_Father: {fileID: 1130777455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9101089168978235140
@@ -6251,6 +6252,7 @@ MonoBehaviour:
   _interactionImg: {fileID: 519900640}
   stateEnum: 3
   playerState: 0
+  _transitionCanvas: {fileID: 1039672297}
   _transitionMat: {fileID: 2100000, guid: 426c64a3d23838744b5599c9f44830aa, type: 2}
 --- !u!65 &9101089168978235141
 BoxCollider:
@@ -6283,7 +6285,6 @@ SceneRoots:
   - {fileID: 1030093341}
   - {fileID: 1503807999}
   - {fileID: 555015609}
-  - {fileID: 1039672298}
   - {fileID: 1759660904}
   - {fileID: 1711786955}
   - {fileID: 852669959}

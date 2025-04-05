@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class Computer : InteractionObject
 {
+    [SerializeField] private GameObject _transitionCanvas;
     [SerializeField] private Material _transitionMat;
     private AudioSource _hangoutBGM;
 
@@ -17,6 +18,7 @@ public class Computer : InteractionObject
 
     private async void Start()
     {
+        _transitionCanvas.SetActive(false);
         _transitionMat.SetFloat("_Lerp", 1);
 
         PresentationEvents.SetFadeEvent?.Invoke(true);
@@ -33,6 +35,7 @@ public class Computer : InteractionObject
 
     private IEnumerator ComputerRoutine()
     {
+        _transitionCanvas.SetActive(true);
         _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
         yield return new WaitForSeconds(2f);
 

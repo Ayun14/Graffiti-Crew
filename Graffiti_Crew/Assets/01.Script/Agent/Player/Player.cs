@@ -57,10 +57,23 @@ public class Player : Agent
 
     protected void Start()
     {
+        HangOutEvent.SetPlayerMovementEvent += HandlePlayerMove;
+
         transform.position = playerData.playerPosition;
 
         NavMeshAgent.speed = moveSpeed;
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
+    }
+
+    private void OnEnable()
+    {
+        HangOutEvent.SetPlayerMovementEvent -= HandlePlayerMove;
+    }
+
+    private void HandlePlayerMove(bool isMove)
+    {
+        Debug.Log(isMove);
+        PlayerInput.SetPlayerInput(isMove);
     }
 
     private void OnApplicationQuit()
