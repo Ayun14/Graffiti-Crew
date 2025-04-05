@@ -71,12 +71,12 @@ namespace AH.UI.Views {
 
         public override void Show() {
             SetSound();
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
             base.Show();
         }
         public override void Hide() {
             base.Hide();
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
