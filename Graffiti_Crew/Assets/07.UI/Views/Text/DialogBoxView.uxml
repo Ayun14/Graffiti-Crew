@@ -26,8 +26,8 @@
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: none;">
-            <engine:VisualElement name="profile" style="height: 400px; width: 350px; scale: -1 1;">
+        <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: flex;">
+            <engine:VisualElement name="profile" style="height: 400px; width: 350px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>

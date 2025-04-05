@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -47,14 +48,7 @@ namespace AH.UI {
 
         private void EventFunction() {
             if (_settingView != null) {
-                if (_settingView.Root.style.display == DisplayStyle.Flex){
-                    HideView();
-                    HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
-                }
-                else {
-                    ShowView(_settingView);
-                    HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
-                }
+                ShowView(_settingView);
             }
         }
 
