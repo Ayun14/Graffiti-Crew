@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour {
@@ -9,18 +10,43 @@ public class ScoreSystem : MonoBehaviour {
     }
 
     private void FightGameResult(StageDataSO stageData) {
-        Debug.Log("result");
+        CalStar(stageData);
+
+        int score = 0;
         int combo = stageData.stageResult.comboCnt;
         int failCount = stageData.stageResult.nodeFalseCnt;
-        int score = 0;
+        int increase = 1; // 기본값
+        int decrease = 1; // 기본값
 
-        if (failCount != 0) {
-            score = (combo / 2) / failCount;
+        switch (stageData.stagetype) {
+            case StageType.Stage:
+                increase = 1;
+                decrease = 2;
+                break;
+            case StageType.Request:
+                increase = 2;
+                decrease = 1;
+                break;
         }
-        else {
-            score = combo / 2;
-        }
+        score = increase * ((combo / decrease) / failCount);
         CoinSystem.AddCoin(score);
     }
-    
+
+    private void CalStar(StageDataSO stageData) {
+        int star = 0;
+        switch (stageData.stageRuleType) {
+            case StageRuleType.SpeedRule:
+                star = stageData.stageResult.CalculationSpeedRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                break;
+            case StageRuleType.PerfectRule:
+                star = stageData.stageResult.CalculationPerfectRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                break;
+            case StageRuleType.OneTouchRule:
+                star = stageData.stageResult.CalculationOneTouchRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                break;
+        }
+        Debug.Log("star : " + star);
+        if (star > stageData.stageSaveData.star)
+            stageData.stageSaveData.star = star;
+    }
 }

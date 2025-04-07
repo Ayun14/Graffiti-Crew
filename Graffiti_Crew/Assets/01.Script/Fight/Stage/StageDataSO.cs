@@ -7,12 +7,12 @@ public enum StageRuleType
 {
     SpeedRule, PerfectRule, OneTouchRule
 }
-
 [CreateAssetMenu(fileName = "StageDataSO", menuName = "SO/Stage/StageDataSO")]
 public class StageDataSO : ScriptableObject
 {
     [Header("Stage")]
-    public StageRuleType stageRule;
+    public StageType stagetype;
+    public StageRuleType stageRuleType;
     public Transform mapPrefab;
 
     [Header("Player Graffiti")]
@@ -32,9 +32,10 @@ public class StageDataSO : ScriptableObject
     [Header("Stage Star Setting")]
     public StageResultSO stageResult;
     public StageSaveDataSO stageSaveData;
-    public int minCombo;
-    public int maxNodeFalse;
-    public int maxDrawingTime;
+
+    public int minStandard;
+    public int middleStandard;
+    public int maxStandard;
 
     [Header("Bool")]
     public bool isClearStage = false;
