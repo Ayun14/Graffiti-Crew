@@ -2,13 +2,14 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
     public class RequestUIManagment : UIManagement {
         private RequestView _sprayView;
         private DialogueView _dialougeView;
-        private DialogueView _miniDialougeView;
+        private MiniDialogueView _miniDialougeView;
 
         private RequestViewModel _viewModel;
 
@@ -16,6 +17,7 @@ namespace AH.UI {
             base.OnEnable();
             DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
+                ;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
         }
         protected override void OnDisable() {
@@ -35,16 +37,18 @@ namespace AH.UI {
 
             _sprayView = new RequestView(root.Q<VisualElement>("SprayView"), _viewModel);
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
-            _miniDialougeView = new DialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
+            _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
 
             _sprayView.Show();
         }
         private void ShowDialougeView(bool active) {
             if (active) {
                 _dialougeView.Show();
+                Debug.Log("show");
             }
             else {
                 _dialougeView.Hide();
+                Debug.Log("hide");
             }
         }
         private void ShowMiniDialougeView(bool active) {

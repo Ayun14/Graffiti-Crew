@@ -171,7 +171,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             mySubject.ChangeGameState(GameState.Finish);
         }
         else if (mySubject.GameState == GameState.Graffiti)
-            mySubject.ChangeGameState(GameState.Result);
+            mySubject.ChangeGameState(GameState.Talk);
         else if (mySubject.GameState == GameState.Tutorial)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);

@@ -9,7 +9,8 @@ public enum AnimationEnum
     Win,
     Lose,
     People_Idle,
-    People_Clap
+    People_Clap,
+    Talk
 }
 
 public class AnimationController : MonoBehaviour

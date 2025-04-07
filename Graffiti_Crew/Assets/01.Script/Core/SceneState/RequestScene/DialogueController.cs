@@ -2,12 +2,17 @@ using AH.UI.Events;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DialogueController : Observer<GameStateController>
 {
     [SerializeField] private DialogueUIController _dialogueUIController;
+
+    [SerializeField] private NPCSO _startDialogue;
+    [SerializeField] private NPCSO _endDialogue;
+    private int _dialogueNum = 0;
 
     private void Awake()
     {
@@ -23,14 +28,40 @@ public class DialogueController : Observer<GameStateController>
     {
         if(mySubject.GameState == GameState.Talk)
         {
-            List<DialogueData> list = _dialogueUIController.dialogueDataReader.DialogueList;
+            AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
+            AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Talk);
+
             _dialogueUIController.ChangeDialogueUI?.Invoke(true);
-            _dialogueUIController.StartDialogue(1, list[list.Count-1].id,ChangeGameState);
+            if (_dialogueNum == 0)
+                _dialogueUIController.StartDialogue(_startDialogue.startIndex, _startDialogue.endIndex, DialogueEnd);
+            else
+                EndDialogue();
         }
     }
 
-    private void ChangeGameState()
+    private async void EndDialogue()
     {
-        mySubject.ChangeGameState(GameState.Graffiti);
+        await Task.Delay(1000);
+        _dialogueUIController.StartDialogue(_endDialogue.startIndex, _endDialogue.endIndex, DialogueEnd);
+    }
+
+    private async void DialogueEnd()
+    {
+        _dialogueNum++;
+        if (_dialogueNum == 1)
+        {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(2100);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
+
+            mySubject.ChangeGameState(GameState.Graffiti);
+        }
+        else if (_dialogueNum == 2)
+        {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
+            SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
+        }
+
     }
 }

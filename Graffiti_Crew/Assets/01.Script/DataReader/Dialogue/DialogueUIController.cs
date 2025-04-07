@@ -208,8 +208,8 @@ public class DialogueUIController : MonoBehaviour
 
         if (_isBigUIdata)
         {
-            if (!_isHangoutScene)
-                _dialogueBG?.SetActive(true);
+            if (!_isHangoutScene && _dialogueBG !=null)
+                _dialogueBG.SetActive(true);
 
             if (_defaultCam != null)
                 _defaultCam.SetActive(false);

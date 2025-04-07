@@ -23,7 +23,7 @@ public class RequestSceneDataController : DataController
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
 
-        //mySubject.ChangeGameState(GameState.Talk);
-        mySubject.ChangeGameState(GameState.Graffiti);
+        mySubject.ChangeGameState(GameState.Talk);
+        //mySubject.ChangeGameState(GameState.Graffiti);
     }
 }
