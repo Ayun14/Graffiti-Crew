@@ -1,9 +1,12 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class PressNode : Node, INodeAction
 {
+    [Header("PressNode")]
     [SerializeField] private float _fadeTime = 0.5f;
+    [SerializeField] private Color _fitColor;
 
     private float _currentTime = 0;
     private float _pressTime;
@@ -68,7 +71,11 @@ public class PressNode : Node, INodeAction
         if (isClearNode) return;
 
         _isPressing = true;
+
+        // Ring
         SetRingScale(_targetRingScale, _pressTime);
+        StopCoroutine(RingColorRoutine());
+        StartCoroutine(RingColorRoutine());
 
         // Sound
         _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true)
@@ -145,6 +152,15 @@ public class PressNode : Node, INodeAction
     {
         _ringRenderer.transform.DOKill();
         _ringRenderer.transform.DOScale(target, time);
+    }
+
+    private IEnumerator RingColorRoutine()
+    {
+        Color originColor = _ringRenderer.color;
+        yield return new WaitForSeconds(_pressTime - _pressNodeData.possibleRange);
+        _ringRenderer.color = _fitColor;
+        yield return new WaitForSeconds(_pressNodeData.possibleRange * 2);
+        _ringRenderer.color = originColor;
     }
 
     #endregion
