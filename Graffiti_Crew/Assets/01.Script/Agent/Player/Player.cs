@@ -11,7 +11,8 @@ public enum PlayerStateEnum
     Computer,
     NPC,
     Sit,
-    SitStay
+    SitStay,
+    Mirror
 }
 
 public class Player : Agent
