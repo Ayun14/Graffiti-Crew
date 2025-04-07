@@ -25,5 +25,6 @@ public class RequestSceneDataController : DataController
 
         //mySubject.ChangeGameState(GameState.Talk);
         mySubject.ChangeGameState(GameState.Graffiti);
+        GameEvents.SendFightGameResultEvent?.Invoke(stageData);
     }
 }

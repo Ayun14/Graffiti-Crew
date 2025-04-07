@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,10 +28,32 @@ public class StageResultSO : ScriptableObject
     public int CalculationStar(int minCombo, int maxNodeFalse, int maxDrawingTime)
     {
         star = 0;
-        if (comboCnt >= minCombo) ++star;
+        if (comboCnt <= minCombo) ++star;
         if (nodeFalseCnt <= maxNodeFalse) ++star;
         if (drawingTime <= maxDrawingTime) ++star;
 
+        return star;
+    }
+
+    public int CalculationSpeedRuleStar(int min, int middle, int max) {
+        star = 0;
+        if (drawingTime <= min) ++star;
+        if (drawingTime <= middle) ++star;
+        if (drawingTime <= max) ++star;
+        return star;
+    }
+    public int CalculationPerfectRuleStar(int min, int middle, int max) {
+        star = 0;
+        if (comboCnt <= min) ++star;
+        if (comboCnt <= middle) ++star;
+        if (comboCnt <= max) ++star;
+        return star;
+    }
+    public int CalculationOneTouchRuleStar(int min, int middle, int max) {
+        star = 0;
+        if (nodeFalseCnt >= min) ++star;
+        if (nodeFalseCnt <= middle) ++star;
+        if (nodeFalseCnt <= max) ++star;
         return star;
     }
 
@@ -39,5 +62,8 @@ public class StageResultSO : ScriptableObject
     {
         EditorUtility.SetDirty(this);
     }
+
+
+
 #endif
 }

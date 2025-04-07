@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020801cc592d9bb42b066e7df8b74c6a, type: 3}
   m_Name: Stage4
   m_EditorClassIdentifier: 
-  stageRule: 0
+  stagetype: 0
+  stageRuleType: 0
   mapPrefab: {fileID: 0}
   startGraffiti: {fileID: 437461228, guid: 7413ba2d2fb087349bf9846c0a407272, type: 3}
   nodeDatas:
@@ -64,7 +65,7 @@ MonoBehaviour:
   storyDialogue: {fileID: 0}
   stageResult: {fileID: 11400000, guid: a6177551f3f3f2e4ea9c4cb3ab6210b2, type: 2}
   stageSaveData: {fileID: 11400000, guid: 6ac1430204892914a98d3bba6b54189e, type: 2}
-  minCombo: 400
-  maxNodeFalse: 2
-  maxDrawingTime: 20
+  minStandard: 30
+  middleStandard: 60
+  maxStandard: 90
   isClearStage: 1
