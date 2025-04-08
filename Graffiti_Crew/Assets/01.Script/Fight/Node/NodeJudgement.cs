@@ -35,7 +35,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
-        stageRuleType = dataController.stageData.stageRule;
+        stageRuleType = dataController.stageData.stageRuleType;
         stageResult = dataController.stageData.stageResult;
         _startSprite = dataController.stageData.startGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
