@@ -20,20 +20,22 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
     [HideInInspector] public bool isNodeClick;
     [SerializeField] private LayerMask _whatIsNode;
     private List<NodeDataSO> _nodeDatas;
-
+    private Node _currentNode;
     public int ClearNodeCnt => _clearNodeCnt;
 
+    // Children
     private NodeSpawner _nodeSpawner;
     private GraffitiRenderer _graffitiRenderer;
     private SprayController _sprayController;
     private ComboController _comboController;
 
+    // Stage Data
+    [HideInInspector] public StageRuleType stageRuleType;
     [HideInInspector] public StageResultSO stageResult;
-
-    private Node _currentNode;
 
     public void LodingHandle(DataController dataController)
     {
+        stageRuleType = dataController.stageData.stageRule;
         stageResult = dataController.stageData.stageResult;
         _startSprite = dataController.stageData.startGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
@@ -50,7 +52,14 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
 
     private void Update()
     {
-        NodeClickInput();
+        if (stageRuleType == StageRuleType.PerfectRule)
+        {
+
+        }
+        else
+        {
+            NodeClickInput();
+        }
     }
 
     private void OnDestroy()
@@ -171,7 +180,7 @@ public class NodeJudgement : Observer<GameStateController>, INeedLoding
             mySubject.ChangeGameState(GameState.Finish);
         }
         else if (mySubject.GameState == GameState.Graffiti)
-            mySubject.ChangeGameState(GameState.Result);
+            mySubject.ChangeGameState(GameState.Talk);
         else if (mySubject.GameState == GameState.Tutorial)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);

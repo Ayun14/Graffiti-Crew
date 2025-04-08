@@ -38,7 +38,6 @@ namespace AH.UI.Views {
 
             _otherDialouge = topElement.Q<VisualElement>("left-dialouge");
             _jiaDialouge = topElement.Q<VisualElement>("right-dialouge");
-
             _profile = topElement.Q<VisualElement>("profile");
         }
         protected override void RegisterButtonCallbacks() {
