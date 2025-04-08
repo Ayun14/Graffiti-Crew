@@ -28,8 +28,13 @@ public class ScoreSystem : MonoBehaviour {
                 decrease = 1;
                 break;
         }
-        score = increase * ((combo / decrease) / failCount);
-        CoinSystem.AddCoin(score);
+        if (failCount !=0 ) {
+            score = increase * ((combo / decrease) / failCount);
+        }
+        else {
+            score = increase * (combo / decrease);
+        }
+            CoinSystem.AddCoin(score);
     }
 
     private void CalStar(StageDataSO stageData) {

@@ -8,7 +8,7 @@ public enum FightUIAnimationType {
     FightStart,
     Tension
 }
-public class FightAnimation : UIView {
+public class FightAnimationView : UIView {
     private VisualElement _startAnimation;
     private VisualElement _rivalCheckAnimation;
 
@@ -17,13 +17,15 @@ public class FightAnimation : UIView {
     private VisualElement _blueLine;
     private VisualElement _rivalFace;
     
-    public FightAnimation(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+    public FightAnimationView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
+        UIAnimationEvent.SetActiveEndAnimationEvnet += SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet += RivalCheckAnimation;
     }
 
     public override void Dispose() { 
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
+        UIAnimationEvent.SetActiveEndAnimationEvnet -= SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
         base.Dispose();
     }
@@ -46,6 +48,18 @@ public class FightAnimation : UIView {
     #region Handles
     private void SetActiveStartAnimation(bool active) {
         if (active) {
+            Show(_startAnimation);
+        }
+        else {
+            Hide(_startAnimation);
+        }
+    }
+    private void SetActiveEndAnimation(bool active) {
+        if (active) {
+            var rivalScreen = _startAnimation.Q<VisualElement>("rival-screen");
+            var playerScreen = _startAnimation.Q<VisualElement>("player-screen");
+            rivalScreen.AddToClassList("move-left");
+            rivalScreen.AddToClassList("move-right");
             Show(_startAnimation);
         }
         else {
