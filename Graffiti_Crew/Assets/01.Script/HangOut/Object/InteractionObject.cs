@@ -4,14 +4,13 @@ using DG.Tweening;
 
 public class InteractionObject : MonoBehaviour
 {
-    [SerializeField] private Image _interactionImg;
-
     public PlayerStateEnum stateEnum;
-    [HideInInspector] public PlayerStateEnum playerState;
+    public Image interactionImg;
 
     public Vector3 TargetPos => _targetPos;
     private Vector3 _targetPos;
 
+    public Collider Col => _col;
     private Collider _col;
 
     protected virtual void Awake()
@@ -22,30 +21,7 @@ public class InteractionObject : MonoBehaviour
 
     private void Start()
     {
-        _interactionImg.enabled = false;
+        interactionImg.enabled = false;
     }
 
-    protected virtual void Update()
-    {
-        if (CheckMousePos() && playerState != PlayerStateEnum.Interaction && stateEnum != playerState)
-        {
-            _interactionImg.transform.LookAt(Camera.main.transform);
-            _interactionImg.enabled = true;
-        }
-        else
-        {
-            _interactionImg.enabled = false;
-        }
-    }
-
-    private bool CheckMousePos()
-    {
-        if (_col != null)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            return _col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
-        }
-
-        return false;
-    }
 }

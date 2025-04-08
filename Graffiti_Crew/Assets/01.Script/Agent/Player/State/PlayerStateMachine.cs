@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class PlayerStateMachine
 {
     public PlayerState CurrentState { get; private set; }
+    public PlayerStateEnum CurrentStateEnum { get; private set; }
     public Dictionary<PlayerStateEnum, PlayerState> stateDictionary;
 
     private Player _player;
@@ -15,6 +16,7 @@ public class PlayerStateMachine
     public void Initialize(PlayerStateEnum startState, Player player)
     {
         _player = player;
+        CurrentStateEnum = startState;
         CurrentState = stateDictionary[startState];
         CurrentState.Enter();
     }
@@ -24,6 +26,7 @@ public class PlayerStateMachine
         if (_player.CanStateChangeable == false) return;
 
         CurrentState.Exit();
+        CurrentStateEnum = newState;
         CurrentState = stateDictionary[newState];
         CurrentState.Enter();
     }
