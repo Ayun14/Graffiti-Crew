@@ -84,7 +84,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         dataController.stageData.stageSaveData.isClear = true;
 
         _storyDialogueSO = dataController.stageData.storyDialogue;
-        Debug.Log(dataController.stageData.storyDialogue);
 
         _dialogueUIController.dialogueDataReader = dataController.stageData.dialogueData_KR;
         _dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;

@@ -44,11 +44,9 @@ namespace AH.UI {
         private void ShowDialougeView(bool active) {
             if (active) {
                 _dialougeView.Show();
-                Debug.Log("show");
             }
             else {
                 _dialougeView.Hide();
-                Debug.Log("hide");
             }
         }
         private void ShowMiniDialougeView(bool active) {

@@ -5,18 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class DialogueController : Observer<GameStateController>
+public class DialogueController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private DialogueUIController _dialogueUIController;
 
-    [SerializeField] private NPCSO _startDialogue;
-    [SerializeField] private NPCSO _endDialogue;
+    [SerializeField] private StoryDialogueSO _requestDialogueSO;
     private int _dialogueNum = 0;
+
+    private Image _loadingPanel;
 
     private void Awake()
     {
         Attach();
+
+        Transform canvas = transform.Find("Canvas");
+        _loadingPanel = canvas.Find("Panel_Loading").GetComponent<Image>();
     }
 
     private void OnDestroy()
@@ -26,23 +31,35 @@ public class DialogueController : Observer<GameStateController>
 
     public override void NotifyHandle()
     {
-        if(mySubject.GameState == GameState.Talk)
+        if (mySubject != null)
         {
-            AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
-            AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Talk);
+            _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
-            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
-            if (_dialogueNum == 0)
-                _dialogueUIController.StartDialogue(_startDialogue.startIndex, _startDialogue.endIndex, DialogueEnd);
-            else
-                EndDialogue();
+            if (mySubject.GameState == GameState.Talk)
+            {
+                AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
+                AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Talk);
+
+                NPCSO dialogue = _requestDialogueSO.storyList[_dialogueNum];
+
+                _dialogueUIController.ChangeDialogueUI?.Invoke(true);
+                if (_dialogueNum == 0)
+                    _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+                else
+                    EndDialogue();
+            }
         }
     }
 
     private async void EndDialogue()
     {
-        await Task.Delay(1000);
-        _dialogueUIController.StartDialogue(_endDialogue.startIndex, _endDialogue.endIndex, DialogueEnd);
+        NPCSO dialogue = _requestDialogueSO.storyList[_dialogueNum];
+
+        await Task.Delay(1500);
+        PresentationEvents.FadeInOutEvent?.Invoke(false);
+        _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+        await Task.Delay(2100);
+        PresentationEvents.FadeInOutEvent?.Invoke(true);
     }
 
     private async void DialogueEnd()
@@ -63,5 +80,18 @@ public class DialogueController : Observer<GameStateController>
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
 
+    }
+
+    public void LodingHandle(DataController dataController)
+    {
+        //dataController.stageData.stageSaveData.isClear = true;
+
+        _requestDialogueSO = dataController.stageData.storyDialogue;
+
+        _dialogueUIController.dialogueDataReader = dataController.stageData.dialogueData_KR;
+        _dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
+        _dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
+
+        dataController.SuccessGiveData();
     }
 }
