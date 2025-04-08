@@ -1,5 +1,6 @@
 using AH.SaveSystem;
 using AH.UI.Data;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,5 +80,14 @@ public class ItemSystem : MonoBehaviour {
         }
         // 입장 가능
         return true;
+    }
+
+    public static bool CheckHaveItem(ProductSO item) {
+        if(instance._itemDictionary.TryGetValue(item, out int val)) {
+            if (val > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

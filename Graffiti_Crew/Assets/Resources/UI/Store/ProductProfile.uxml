@@ -1,26 +1,25 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3" />
-    <engine:VisualElement name="VisualElement" style="flex-direction: row; align-items: center; margin-top: 15px; margin-right: 15px; margin-bottom: 15px; margin-left: 15px; padding-top: 15px; padding-right: 42px; padding-bottom: 30px; padding-left: 28px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&amp;guid=af4c83d722e80d343a58d81a6c7e93d3&amp;type=3#shop-product-background&quot;); height: 170px;">
-        <engine:VisualElement name="VisualElement" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/shop-product-item-background.png?fileID=21300000&amp;guid=5319b4c6c1fe3cd4cb4a65c0d3713486&amp;type=3#shop-product-item-background&quot;); width: 130px; height: 130px; align-items: center; justify-content: center;">
-            <engine:VisualElement name="item-img" class="friend-img" style="width: 120px; height: 120px; background-image: url(&quot;project://database/Assets/02.Sprite/Graffiti/Player/Chapter%201/Name/2/1.Name2.png?fileID=2800000&amp;guid=8c0195d67c16863418b7155ca5c240f7&amp;type=3#1.Name2&quot;); background-color: rgba(0, 0, 0, 0);">
-                <Bindings>
-                    <engine:DataBinding property="style.backgroundImage" binding-mode="ToTarget" data-source-path="image" />
-                </Bindings>
-            </engine:VisualElement>
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
+    <engine:VisualElement name="VisualElement" style="flex-direction: row; align-items: center; margin-top: 15px; margin-right: 15px; margin-bottom: 15px; margin-left: 15px; padding-top: 1.5%; padding-right: 2%; padding-bottom: 3%; padding-left: 2%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/Product/shop-product-background.png?fileID=21300000&amp;guid=af4c83d722e80d343a58d81a6c7e93d3&amp;type=3#shop-product-background&quot;); height: 200px;">
+        <engine:VisualElement name="item-img" style="width: 140px; height: 140px; background-image: url(&quot;project://database/Assets/02.Sprite/Graffiti/Player/Chapter%201/Name/2/1.Name2.png?fileID=2800000&amp;guid=8c0195d67c16863418b7155ca5c240f7&amp;type=3#1.Name2&quot;); background-color: rgb(221, 221, 221);">
+            <Bindings>
+                <engine:DataBinding property="style.backgroundImage" binding-mode="ToTarget" data-source-path="image" />
+            </Bindings>
         </engine:VisualElement>
-        <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
-            <engine:Label text="분홍색 스프레이" name="name-txt" class="grow-size-40" style="margin-left: 16px;">
+        <engine:VisualElement style="align-items: flex-start; justify-content: center; flex-grow: 1;">
+            <engine:Label text="분홍색 스프레이" name="name-txt" class="grow-size-40" style="margin-left: 16px; flex-grow: 0; -unity-font-style: bold;">
                 <Bindings>
                     <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
                 </Bindings>
             </engine:Label>
             <engine:VisualElement style="align-items: flex-end; flex-direction: row; justify-content: flex-end; margin-right: 20px;">
-                <engine:Label text="가격" class="grow-size-40" style="flex-grow: 0;" />
-                <engine:Label text="100" name="price-txt" class="grow-size-40" style="margin-left: 18px; flex-grow: 0;" />
-                <engine:Label text="원" class="grow-size-40" style="flex-grow: 0;" />
+                <engine:Label text="가격" class="grow-size-35" style="flex-grow: 0; margin-left: 16px;" />
+                <engine:Label text="100" name="price-txt" class="grow-size-35" style="flex-grow: 0;" />
+                <engine:Label text="원" class="grow-size-35" style="flex-grow: 0;" />
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:Button name="buy-btn" class="grow-size-40" style="flex-grow: 0; width: 150px; height: 110px; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-buy.png?fileID=21300000&amp;guid=b4d06ff60d030d94382c66c4d0789a6a&amp;type=3#shop-product-buy&quot;);" />
+        <engine:Label text="보유 / 미보유" name="possession-txt" class="grow-size-35" style="flex-grow: 2; -unity-text-align: middle-right; color: rgb(80, 224, 56); margin-right: 10px;" />
+        <engine:Button name="buy-btn" class="grow-size-40" style="flex-grow: 0; width: 20%; height: 80%; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/Product/shop-product-buy.png?fileID=21300000&amp;guid=b4d06ff60d030d94382c66c4d0789a6a&amp;type=3#shop-product-buy&quot;); min-width: 150px; min-height: 110px;" />
     </engine:VisualElement>
 </engine:UXML>

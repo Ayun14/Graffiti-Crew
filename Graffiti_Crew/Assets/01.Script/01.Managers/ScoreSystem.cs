@@ -28,21 +28,26 @@ public class ScoreSystem : MonoBehaviour {
                 decrease = 1;
                 break;
         }
-        score = increase * ((combo / decrease) / failCount);
-        CoinSystem.AddCoin(score);
+        if (failCount !=0 ) {
+            score = increase * ((combo / decrease) / failCount);
+        }
+        else {
+            score = increase * (combo / decrease);
+        }
+            CoinSystem.AddCoin(score);
     }
 
     private void CalStar(StageDataSO stageData) {
         int star = 0;
         switch (stageData.stageRuleType) {
             case StageRuleType.SpeedRule:
-                star = stageData.stageResult.CalculationSpeedRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                star = stageData.stageResult.CalculationStar(stageData.stageResult.drawingTime, stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
                 break;
             case StageRuleType.PerfectRule:
-                star = stageData.stageResult.CalculationPerfectRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                star = stageData.stageResult.CalculationStar(stageData.stageResult.comboCnt, stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
                 break;
             case StageRuleType.OneTouchRule:
-                star = stageData.stageResult.CalculationOneTouchRuleStar(stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+                star = stageData.stageResult.CalculationStar(stageData.stageResult.nodeFalseCnt , stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
                 break;
         }
         Debug.Log("star : " + star);

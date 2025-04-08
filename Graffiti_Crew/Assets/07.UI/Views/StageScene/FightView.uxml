@@ -16,7 +16,7 @@
             <engine:VisualElement name="player-border" style="width: 50%; flex-direction: row; align-items: center; justify-content: flex-end; padding-right: 30px;">
                 <engine:ProgressBar value="22" name="player-progress" class="graffiti-progress" style="left: 1.5%; scale: -1 1;">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="_value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
+                        <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="lowValue" data-source-path="min" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                         <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/PlayerProgressSliderValueSO.asset?fileID=11400000&amp;guid=d58bdf07d45f4934fb995998a082f09f&amp;type=2#PlayerProgressSliderValueSO" binding-mode="ToTarget" />
                     </Bindings>

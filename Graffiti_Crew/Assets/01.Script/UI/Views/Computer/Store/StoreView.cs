@@ -31,7 +31,6 @@ namespace AH.UI.Views {
             _productScrollView = topElement.Q<ScrollView>("category-scrollView");
             _exitBtn = topElement.Q<Button>("exit-btn");
             ComputerViewModel.ClearSelectProductData();
-            ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[0]);
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -60,15 +59,28 @@ namespace AH.UI.Views {
             ComputerEvent.HideViewEvent?.Invoke();
         }
 
+        public override void Show() {
+            ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[0]);
+            base.Show();
+        }
+
         private void ShowCurrentCategory(ProductCategorySO category) {
             _productScrollView.Clear();
             _categoryBtnList.Clear();
-            foreach (var data in category.products) {
+            foreach (var item in category.products) {
                 var asset = _productAsset.Instantiate();
-                asset.Q<Label>("name-txt").text = data.itemName;
-                asset.Q<Label>("price-txt").text = data.price.ToString();
-                asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(data.image);
-                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, ProductSO>(ClickBuyProduct, data);
+                asset.Q<Label>("name-txt").text = item.itemName;
+                asset.Q<Label>("price-txt").text = item.price.ToString();
+                asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(item.image);
+                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, ProductSO>(ClickBuyProduct, item);
+
+                Label possessionTxt = asset.Q<Label>("possession-txt");
+                bool isHave = ComputerViewModel.HaveItem(item);
+                string txt = isHave ? "보유중" : "미보유";
+                Color color = isHave ? Color.green : Color.red;
+                possessionTxt.style.color = new StyleColor(color);
+                possessionTxt.text = txt.ToString();
+
                 _productScrollView.Add(asset);
             }
             _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();

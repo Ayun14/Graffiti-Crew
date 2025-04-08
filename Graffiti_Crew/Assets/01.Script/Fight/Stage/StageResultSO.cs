@@ -25,35 +25,36 @@ public class StageResultSO : ScriptableObject
         star = 0;
     }
 
-    public int CalculationStar(int minCombo, int maxNodeFalse, int maxDrawingTime)
+    public int CalculationStar(int data, int minCombo, int maxNodeFalse, int maxDrawingTime)
     {
         star = 0;
-        if (comboCnt <= minCombo) ++star;
-        if (nodeFalseCnt <= maxNodeFalse) ++star;
-        if (drawingTime <= maxDrawingTime) ++star;
+
+        if (data <= minCombo) ++star;
+        if (data <= maxNodeFalse) ++star;
+        if (data <= maxDrawingTime) ++star;
 
         return star;
     }
+    public int CalculationStar(StageRuleType type, int minCombo, int maxNodeFalse, int maxDrawingTime) {
+        star = 0;
+        int data = 0;
 
-    public int CalculationSpeedRuleStar(int min, int middle, int max) {
-        star = 0;
-        if (drawingTime <= min) ++star;
-        if (drawingTime <= middle) ++star;
-        if (drawingTime <= max) ++star;
-        return star;
-    }
-    public int CalculationPerfectRuleStar(int min, int middle, int max) {
-        star = 0;
-        if (comboCnt <= min) ++star;
-        if (comboCnt <= middle) ++star;
-        if (comboCnt <= max) ++star;
-        return star;
-    }
-    public int CalculationOneTouchRuleStar(int min, int middle, int max) {
-        star = 0;
-        if (nodeFalseCnt >= min) ++star;
-        if (nodeFalseCnt <= middle) ++star;
-        if (nodeFalseCnt <= max) ++star;
+        switch (type) {
+            case StageRuleType.SpeedRule:
+                data = drawingTime;
+                break;
+            case StageRuleType.PerfectRule:
+                data = comboCnt;
+                break;
+            case StageRuleType.OneTouchRule:
+                data = nodeFalseCnt;
+                break;
+        }
+
+        if (data <= minCombo) ++star;
+        if (data <= maxNodeFalse) ++star;
+        if (data <= maxDrawingTime) ++star;
+
         return star;
     }
 

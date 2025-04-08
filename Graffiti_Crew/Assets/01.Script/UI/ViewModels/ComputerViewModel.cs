@@ -42,5 +42,9 @@ namespace AH.UI.ViewModels {
         public string GetCurrentStageName() {
             return _model.GetLoadStage().GetCurrentStageName();
         }
+
+        public bool HaveItem(ProductSO item) {
+            return ItemSystem.CheckHaveItem(item);
+        }
     }
 }
