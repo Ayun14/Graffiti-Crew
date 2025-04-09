@@ -1,18 +1,13 @@
 .result-container {
-    width: 100%;
+    width: 50%;
     height: 100%;
-    left: 100%;
-    background-image: url("project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&guid=ea81d5b7079037f4c8d7acef8810686c&type=3#title-background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/ResultView/result-background.png?fileID=21300000&guid=8800f77fd17b8db4db6c2c0b39ee6808&type=3#result-background");
     opacity: 0;
-    transition-property: left, opacity;
-    transition-duration: 0.7s, 0.5s;
+    transition-property: top, opacity, right;
+    transition-duration: 0.7s, 0.5s, 0.7s;
     position: absolute;
-}
-
-.result-in {
-    left: 0;
-    opacity: 1;
-    position: absolute;
+    right: 100%;
+    top: 25%;
 }
 
 .btn {
@@ -20,14 +15,23 @@
     border-right-color: rgba(149, 149, 149, 0);
     border-top-color: rgba(149, 149, 149, 0);
     border-bottom-color: rgba(149, 149, 149, 0);
-    width: 400px;
-    height: 170px;
+    width: 331px;
+    height: 108px;
     margin-top: 25px;
     margin-bottom: 25px;
     background-color: rgba(0, 0, 0, 0);
 }
 
 .star {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.result-in {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 50%;
 }

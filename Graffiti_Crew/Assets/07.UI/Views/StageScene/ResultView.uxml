@@ -1,31 +1,42 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
-    <engine:VisualElement name="clear-result-container" class="result-container">
-        <engine:VisualElement name="result-content" style="flex-grow: 1; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
-            <engine:VisualElement style="justify-content: flex-start; flex-direction: row; align-items: center;">
-                <engine:VisualElement style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/clear.png?fileID=21300000&amp;guid=40a351ff020fbd742b54215e97a9635f&amp;type=3#clear&quot;); width: 1100px; height: 300px;" />
+    <engine:VisualElement name="clear-result-container" class="result-container" style="display: flex;">
+        <engine:VisualElement name="result-content" style="flex-grow: 1;">
+            <engine:VisualElement style="justify-content: flex-start; align-items: center; height: 24%; rotate: -7deg; translate: -84px 5%;">
                 <engine:VisualElement name="star-border" style="flex-grow: 1; height: 100%; justify-content: center; flex-direction: row; align-items: center;">
                     <engine:VisualElement name="star1" class="star" style="background-image: resource(&apos;UI/Stage/Stars/Twinkle-Twinkle-Little-Star_0001_star_0001_Layer-3&apos;);" />
                     <engine:VisualElement name="star2" class="star" style="background-image: resource(&apos;UI/Stage/Stars/Twinkle-Twinkle-Little-Star_0002_star_0000_Layer-4&apos;);" />
                     <engine:VisualElement name="star3" class="star" style="background-image: resource(&apos;UI/Stage/Stars/Twinkle-Twinkle-Little-Star_0000_star_0002_Layer-2&apos;);" />
                 </engine:VisualElement>
             </engine:VisualElement>
-            <engine:VisualElement style="align-items: flex-end; justify-content: space-evenly; flex-grow: 1;">
-                <engine:Button name="retry-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry-btn.png?fileID=21300000&amp;guid=afd9c5ccd4cf4d448abeb8a7c3c44b2b&amp;type=3#retry-btn&quot;);" />
-                <engine:Button name="next-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/next-btn.png?fileID=21300000&amp;guid=d8d02e520295de54bbb0d0a7523a5d51&amp;type=3#next-btn&quot;); width: 550px;" />
-                <engine:Button name="quit-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/quit-btn.png?fileID=21300000&amp;guid=4633bcf5e2fd1ef4b8b7fdd565c42aec&amp;type=3#quit-btn&quot;); width: 500px;" />
+            <engine:VisualElement style="align-items: center; justify-content: space-evenly; flex-grow: 1;">
+                <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 99%; height: 50%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/clear-txt.png?fileID=21300000&amp;guid=ade102dd1b8e552469f2b41bbf947da9&amp;type=3#clear-txt&quot;); translate: -5% 4%;" />
+                <engine:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: center; width: 100%; flex-direction: row; padding-bottom: 20px; padding-right: 20px; padding-left: 20px;">
+                    <engine:VisualElement style="flex-grow: 1; align-items: flex-start; padding-left: 33px;">
+                        <engine:Button name="next-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/next-btn.png?fileID=21300000&amp;guid=d8d02e520295de54bbb0d0a7523a5d51&amp;type=3#next-btn&quot;);" />
+                        <engine:Button name="quit-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/quit-btn.png?fileID=21300000&amp;guid=4633bcf5e2fd1ef4b8b7fdd565c42aec&amp;type=3#quit-btn&quot;);" />
+                    </engine:VisualElement>
+                    <engine:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-end; padding-right: 51px;">
+                        <engine:Button name="retry-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry-btn.png?fileID=21300000&amp;guid=afd9c5ccd4cf4d448abeb8a7c3c44b2b&amp;type=3#retry-btn&quot;); width: 274px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement name="fail-result-container" class="result-container">
-        <engine:VisualElement name="result-content" style="flex-grow: 1; padding-top: 100px; padding-right: 40px; padding-bottom: 40px; padding-left: 100px;">
-            <engine:VisualElement style="justify-content: flex-start; flex-direction: row; align-items: center;">
-                <engine:VisualElement style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/lose.png?fileID=21300000&amp;guid=94be87db8be896245af6f4b34db087fc&amp;type=3#lose&quot;); width: 1532px; height: 454px;" />
-            </engine:VisualElement>
-            <engine:VisualElement style="align-items: flex-end; justify-content: space-evenly; flex-grow: 1;">
-                <engine:Button name="retry-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry-btn.png?fileID=21300000&amp;guid=afd9c5ccd4cf4d448abeb8a7c3c44b2b&amp;type=3#retry-btn&quot;);" />
-                <engine:Button name="quit-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/quit-btn.png?fileID=21300000&amp;guid=4633bcf5e2fd1ef4b8b7fdd565c42aec&amp;type=3#quit-btn&quot;); width: 500px;" />
+    <engine:VisualElement name="fail-result-container" class="result-container" style="display: flex;">
+        <engine:VisualElement name="result-content" style="flex-grow: 1;">
+            <engine:VisualElement style="justify-content: flex-start; align-items: center; height: 24%;" />
+            <engine:VisualElement style="align-items: center; justify-content: space-evenly; flex-grow: 1;">
+                <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 82%; height: 33%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/lose-txt.png?fileID=21300000&amp;guid=15506e06c00b9be488b71fe171adfcb2&amp;type=3#lose-txt&quot;); translate: -5% 30%; rotate: -4deg;" />
+                <engine:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: center; width: 100%; flex-direction: row; padding-bottom: 20px; padding-right: 20px; padding-left: 20px;">
+                    <engine:VisualElement style="flex-grow: 1; align-items: flex-start; padding-left: 33px;">
+                        <engine:Button name="quit-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/quit-btn.png?fileID=21300000&amp;guid=4633bcf5e2fd1ef4b8b7fdd565c42aec&amp;type=3#quit-btn&quot;);" />
+                    </engine:VisualElement>
+                    <engine:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-end; padding-right: 51px;">
+                        <engine:Button name="retry-btn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/retry-btn.png?fileID=21300000&amp;guid=afd9c5ccd4cf4d448abeb8a7c3c44b2b&amp;type=3#retry-btn&quot;); width: 274px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>

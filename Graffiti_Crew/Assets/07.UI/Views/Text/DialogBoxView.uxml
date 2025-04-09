@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" class="dialog-box-m-container">
-        <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content" style="flex-direction: row; display: none;">
+        <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content" style="flex-direction: row; display: flex;">
             <engine:VisualElement name="profile" style="height: 400px; width: 350px; scale: -1 1;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="profile" />
@@ -17,7 +17,7 @@
                     </engine:Label>
                     <engine:Button name="skip-btn" class="skip-btn" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-color: rgba(188, 188, 188, 0); right: 84%; scale: -1 1;" />
                 </engine:VisualElement>
-                <engine:VisualElement name="name-box" class="name-box" style="top: 14%; right: -11%;">
+                <engine:VisualElement name="name-box" class="name-box" style="top: 14%; right: -11%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/namebox2.png?fileID=21300000&amp;guid=2d4e7dfd3c2a9704a8018f8b6d856bb1&amp;type=3#namebox2&quot;);">
                     <engine:Label text="name" name="name-txt" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" data-source-path="characterName" class="grow-middle-size-50 grow-size-50" style="-unity-text-align: middle-center; flex-grow: 0; top: 6%;">
                         <Bindings>
                             <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
