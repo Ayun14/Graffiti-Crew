@@ -65,7 +65,6 @@ namespace AH.UI.Views {
             StageSaveDataSO currentStageData = null;
             string stageName = ViewModel.GetStageName();
             StageType stageType = ViewModel.GetStageType();
-
             switch (stageType) {
                 case StageType.Stage:
                     currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Stage/{stageName}");

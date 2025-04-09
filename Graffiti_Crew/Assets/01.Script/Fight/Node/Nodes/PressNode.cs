@@ -31,9 +31,9 @@ public class PressNode : Node, INodeAction
         _orginRingScale = _ringRenderer.transform.localScale;
     }
 
-    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
+    public override void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement, nodeData);
+        base.Init(stageGameRule, judgement, nodeData);
 
         _pressNodeData = nodeData as PressNodeDataSO;
         _renderer.sprite = _pressNodeData.sprite;
@@ -96,7 +96,7 @@ public class PressNode : Node, INodeAction
         if (_isPressing)
         {
             // Combo
-            judgement.NodeSuccess(this);
+            _stageGameRule.NodeSuccess(this);
 
             // Particle
             PopGraffitiParticle(transform.position);
@@ -116,7 +116,7 @@ public class PressNode : Node, INodeAction
         else
         {
             // 노드 실패 (중도 포기 실패)
-            judgement.NodeFalse(this);
+            _stageGameRule.NodeFalse(this);
             ResetNode();
 
             // Sound

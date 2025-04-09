@@ -4,7 +4,8 @@ public abstract class Node : MonoBehaviour, IPoolable
 {
     protected bool isClearNode = false;
 
-    protected NodeJudgement judgement;
+    protected StageGameRule _stageGameRule;
+    protected NodeJudgement _judgement;
 
     [Header("Pool")]
     protected Pool pool;
@@ -16,10 +17,13 @@ public abstract class Node : MonoBehaviour, IPoolable
     [Header("Graffiti Particle")]
     [SerializeField] private PoolTypeSO _graffitiParticleTypeSO;
 
-    public virtual void Init(NodeJudgement judgement, NodeDataSO nodeData)
+    public virtual void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
-        if (this.judgement == null)
-            this.judgement = judgement;
+        if (_judgement == null)
+            _judgement = judgement;
+
+        if (_stageGameRule == null)
+            _stageGameRule = stageGameRule;
 
         isClearNode = false;
     }
@@ -29,7 +33,7 @@ public abstract class Node : MonoBehaviour, IPoolable
         if (isClearNode == true) return;
 
         // 자신이 클리어된 사실을 Judgement에게 알림
-        judgement?.CheckNodeClear(this);
+        _judgement?.NodeClear(this);
     }
 
     public abstract NodeType GetNodeType();

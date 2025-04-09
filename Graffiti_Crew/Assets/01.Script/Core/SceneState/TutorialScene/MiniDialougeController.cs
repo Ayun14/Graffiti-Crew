@@ -13,14 +13,14 @@ public class MiniDialougeController : MonoBehaviour
 
     private void Start()
     {
-        _nodeJudgement.OnNodeSpawnStart += HandleNodeCheck;
+        //_nodeJudgement.OnNodeSpawnStart += HandleNodeCheck;
         _currentIndex = _explainIndex;
 
     }
 
     private void OnDestroy()
     {
-        _nodeJudgement.OnNodeSpawnStart -= HandleNodeCheck;
+        //_nodeJudgement.OnNodeSpawnStart -= HandleNodeCheck;
     }
 
     private void HandleNodeCheck()
