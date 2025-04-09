@@ -19,9 +19,6 @@ public class PlayerRunState : PlayerState
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
         _player.PlayerInput.InteractionEvent += HandleInteractionEvent;
 
-        if (_player.CurrentInteractionObject != null)
-            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Run;
-
         //_player.PlayerVFXCompo.UpdateFootStep(true);
     }
 

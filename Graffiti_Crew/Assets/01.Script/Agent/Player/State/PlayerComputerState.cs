@@ -12,11 +12,9 @@ public class PlayerComputerState : PlayerState
         base.Enter();
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Typing);
 
-        if (_player.CurrentInteractionObject != null)
-            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Computer;
-
         _player.MovementCompo.StopImmediately(true);
         _player.playerData.playerPosition = _player.transform.position;
+        _player.playerData.playerRotation = _player.transform.rotation;
         _player.CurrentInteractionObject?.GetComponent<Computer>().ComputerEvent();
     }
 

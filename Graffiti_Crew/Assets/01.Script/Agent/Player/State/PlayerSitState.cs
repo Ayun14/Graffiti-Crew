@@ -14,8 +14,6 @@ public class PlayerSitState : PlayerState
     {
         base.Enter();
         _onRun = false;
-        if (_player.CurrentInteractionObject != null)
-            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Sit;
 
         if (_player.NavMeshAgent.destination == _player.CurrentInteractionObject.TargetPos)
             Animation_Go();

@@ -86,8 +86,8 @@ public class ComboController : MonoBehaviour
             StartCoroutine(ComboEffectRoutine());
         }
 
-        if (_currentCombo > _stageResult.comboCnt)
-            _stageResult.comboCnt = _currentCombo;
+        if (_stageGameRule.stageRule == StageRuleType.PerfectRule && _currentCombo > _stageResult.value)
+            _stageResult.value = _currentCombo;
     }
 
     public void FailCombo()

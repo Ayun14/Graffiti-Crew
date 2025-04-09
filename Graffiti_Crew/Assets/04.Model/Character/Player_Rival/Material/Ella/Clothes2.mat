@@ -65,7 +65,6 @@ Material:
   - _TEXTUREPATTERNSTYLE_OFF
   - _USESECONDARYCUTOUT_OFF
   - _VERTEXCOLORBLUEAFFECTOUTLINEWITDH_OFF
-  - _VERTEXCOLORGREENCONTROLSELFSHADOWTHRESHOLD_OFF
   - _VERTEXCOLORREDCONTROLSMOOTHOBJECTNORMAL_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -451,9 +450,9 @@ Material:
     - _SelfShadowAffectedByLightShadowStrength: 0
     - _SelfShadowHardness: 0
     - _SelfShadowRealTimeShadowColorPower: 1
-    - _SelfShadowRealtimeShadowIntensity: 1
+    - _SelfShadowRealtimeShadowIntensity: 0.433
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.849
+    - _SelfShadowThreshold: 0
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 0
     - _ShadowTColorPower: 1
@@ -517,7 +516,7 @@ Material:
     - _UseShadowThreshold: 0
     - _UseTLB: 0
     - _VertexColorBlueAffectOutlineWitdh: 0
-    - _VertexColorGreenControlSelfShadowThreshold: 0
+    - _VertexColorGreenControlSelfShadowThreshold: 1
     - _VertexColorRedControlSmoothObjectNormal: 0
     - _ZTeForLiOpa: 3
     - _ZTestDepthEqualForOpaque: 3
@@ -545,11 +544,11 @@ Material:
     - _ObjectRight: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    - _OverallShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SSAOColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+    - _SSAOColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}

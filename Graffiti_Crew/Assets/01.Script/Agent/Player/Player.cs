@@ -61,6 +61,7 @@ public class Player : Agent
         HangOutEvent.SetPlayerMovementEvent += HandlePlayerMove;
 
         transform.position = playerData.playerPosition;
+        transform.rotation = playerData.playerRotation;
 
         NavMeshAgent.speed = moveSpeed;
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
@@ -79,6 +80,7 @@ public class Player : Agent
     private void OnApplicationQuit()
     {
         playerData.playerPosition = transform.position;
+        playerData.playerRotation = transform.rotation;
     }
 
     protected void Update()

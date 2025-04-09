@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DialogueController : Observer<GameStateController>, INeedLoding
+public class RequestDialogueController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private DialogueUIController _dialogueUIController;
 
@@ -37,6 +37,8 @@ public class DialogueController : Observer<GameStateController>, INeedLoding
 
             if (mySubject.GameState == GameState.Talk)
             {
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Request);
+
                 AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
                 AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Talk);
 
@@ -77,6 +79,8 @@ public class DialogueController : Observer<GameStateController>, INeedLoding
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
+
+            GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Request);
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
 

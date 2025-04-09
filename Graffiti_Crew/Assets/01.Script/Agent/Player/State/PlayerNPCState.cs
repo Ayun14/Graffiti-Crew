@@ -14,8 +14,6 @@ public class PlayerNPCState : PlayerState
     {
         base.Enter();
         _isDialogueFinished = false;
-        if (_player.CurrentInteractionObject != null)
-            _player.CurrentInteractionObject.playerState = PlayerStateEnum.Interaction;
 
         _player.MovementCompo.StopImmediately(true);
 
