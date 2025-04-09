@@ -6,16 +6,16 @@ public class GraffitiRenderer : MonoBehaviour
     [SerializeField] private GameObject _graffitiRender;
 
     private SpriteRenderer _renderer;
-    private NodeJudgement _judgement;
+    protected StageGameRule _stageGameRule;
 
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Init(NodeJudgement judgement, Sprite startSprite)
+    public void Init(StageGameRule stageGameRule, Sprite startSprite)
     {
-        _judgement = judgement;
+        _stageGameRule = stageGameRule;
 
         if (_renderer == null) return;
         _renderer.sprite = startSprite;

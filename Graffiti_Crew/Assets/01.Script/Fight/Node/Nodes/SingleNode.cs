@@ -13,9 +13,9 @@ public class SingleNode : Node, INodeAction
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
+    public override void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement, nodeData);
+        base.Init(stageGameRule, judgement, nodeData);
 
         _singleNodeData = nodeData as SingleNodeDataSO;
         _renderer.sprite = _singleNodeData.sprite;
@@ -46,7 +46,7 @@ public class SingleNode : Node, INodeAction
         isClearNode = true;
 
         // Combo
-        judgement.NodeSuccess(this);
+        _stageGameRule.NodeSuccess(this);
 
         // Particle
         PopGraffitiParticle(transform.position);
@@ -56,8 +56,8 @@ public class SingleNode : Node, INodeAction
 
         SetAlpha(0f);
 
-        judgement.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
-        judgement.AddSpraySliderAmount(-_singleNodeData.sprayUseAmount);
+        _stageGameRule.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
+        _stageGameRule.AddSpraySliderAmount(-_singleNodeData.sprayUseAmount);
     }
 
     public override NodeType GetNodeType()
