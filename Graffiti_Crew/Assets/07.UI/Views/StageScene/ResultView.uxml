@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
-    <engine:VisualElement name="clear-result-container" class="result-container" style="display: flex;">
+    <engine:VisualElement name="clear-result-container" class="result-container result-in" style="display: flex;">
         <engine:VisualElement name="result-content" style="flex-grow: 1;">
             <engine:VisualElement style="justify-content: flex-start; align-items: center; height: 24%; rotate: -7deg; translate: -84px 5%;">
                 <engine:VisualElement name="star-border" style="flex-grow: 1; height: 100%; justify-content: center; flex-direction: row; align-items: center;">

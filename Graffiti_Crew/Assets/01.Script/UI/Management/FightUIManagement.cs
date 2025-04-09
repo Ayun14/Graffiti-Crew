@@ -41,7 +41,7 @@ namespace AH.UI {
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
             _fightAnimationView = new FightAnimationView(root.Q<VisualElement>("StartAnimation"), _viewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel, false);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
             _fightAnimationView.Show();
             UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
