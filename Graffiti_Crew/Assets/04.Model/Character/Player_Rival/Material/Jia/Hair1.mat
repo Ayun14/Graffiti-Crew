@@ -15,16 +15,12 @@ Material:
   - N_F_EAL_ON
   - N_F_ESSAO_ON
   - N_F_GLOT_ON
-  - N_F_GLO_ON
   - N_F_NM_ON
   - N_F_O_MOTTSO_ON
   - N_F_O_ON
   - N_F_RDC_ON
   - N_F_RELGI_ON
-  - N_F_RL_ON
   - N_F_SS_ON
-  - N_F_STSDFM_ON
-  - N_F_ST_ON
   - N_F_TRANSAFFSHA_ON
   - _NORMALMAP
   m_InvalidKeywords:
@@ -247,7 +243,7 @@ Material:
     - _BleModSour: 1
     - _BlendMode: 0
     - _BumpScale: 1
-    - _ClipAdju: 0
+    - _ClipAdju: -1.12
     - _CoatMask: 0
     - _Compa: 4
     - _ComputeMeshIndex: 0
@@ -291,7 +287,7 @@ Material:
     - _GIFlatShade: 0
     - _GIShadeThreshold: 1
     - _GlossColorPower: 1
-    - _GlossIntensity: 1
+    - _GlossIntensity: 0
     - _GlossMapScale: 1
     - _GlossSoftness: 0
     - _GlossTextureFollowLight: 0
@@ -327,7 +323,7 @@ Material:
     - _MCapIntensity: 1
     - _MVCOL: 0
     - _MVWriMas: 40
-    - _MaiColPo: 2
+    - _MaiColPo: 1
     - _MaterialID: 1
     - _MaxFadDistance: 2
     - _Metallic: 0
@@ -351,7 +347,7 @@ Material:
     - _N_F_ESSR: 1
     - _N_F_ESSS: 1
     - _N_F_FR: 0
-    - _N_F_GLO: 1
+    - _N_F_GLO: 0
     - _N_F_GLOT: 1
     - _N_F_HDLS: 0
     - _N_F_HPSAS: 0
@@ -369,17 +365,17 @@ Material:
     - _N_F_PT: 0
     - _N_F_R: 0
     - _N_F_RDC: 1
-    - _N_F_RL: 1
+    - _N_F_RL: 0
     - _N_F_SCO: 0
     - _N_F_SCT: 0
     - _N_F_SE: 0
     - _N_F_SL: 0
     - _N_F_SON: 0
     - _N_F_SS: 1
-    - _N_F_ST: 1
+    - _N_F_ST: 0
     - _N_F_STIAL: 0
     - _N_F_STIS: 0
-    - _N_F_STSDFM: 1
+    - _N_F_STSDFM: 0
     - _N_F_TP: 0
     - _NoiseSize: 100
     - _NoisyOutlineIntensity: 0
@@ -400,7 +396,7 @@ Material:
     - _OutlineZPostionInCamera: 0.01
     - _OverallShadowColorPower: 1
     - _PADist: 0
-    - _PASize: 0.5
+    - _PASize: 2.79
     - _PASmooTrans: 1
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -410,15 +406,15 @@ Material:
     - _PSGLOTEX: 0
     - _PTexturePower: 1
     - _Parallax: 0.02
-    - _PointSpotlightIntensity: 0
-    - _PresAdju: 1
+    - _PointSpotlightIntensity: 1.24
+    - _PresAdju: -2.11
     - _RELG: 1
     - _RTGIShaFallo: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RecurRen: 0
-    - _ReduSha: -4.17
+    - _ReduSha: -2.28
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -440,11 +436,11 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 50
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 1
+    - _SelfShadowHardness: 0.646
     - _SelfShadowRealTimeShadowColorPower: 1
-    - _SelfShadowRealtimeShadowIntensity: 1
+    - _SelfShadowRealtimeShadowIntensity: 0.457
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0
+    - _SelfShadowThreshold: 0.951
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 0
     - _ShadowTColorPower: 1
@@ -527,7 +523,7 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 2, g: 2, b: 2, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 1.9999998, g: 1.9999998, b: 1.9999998, a: 1}
+    - _HighlightColor: {r: 2.996078, g: 2.996078, b: 2.996078, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
@@ -536,13 +532,13 @@ Material:
     - _ObjectRight: {r: -0.00000071525574, g: -1.0000006, b: 0.0000011920929, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverallShadowColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SSAOColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SSAOColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SelfShadowRealTimeShadowColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
