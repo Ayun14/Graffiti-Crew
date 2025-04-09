@@ -1,34 +1,59 @@
+using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class InteractionController : MonoBehaviour
 {
     [SerializeField] private Player _player;
 
+    [Header("UI Elements")]
     [SerializeField] private RectTransform _canvasRect;
     [SerializeField] private RectTransform _interactionIndicator;
+    [SerializeField] private List<InteractionObject> _interactionObjects;
+
+    [Header("Zoom Data")]
+    [SerializeField] private CinemachineCamera _cam;
+    private float _zoomSpeed = 10f;
 
     private Camera _mainCamera;
     private InteractionObject _currentTarget;
-    private List<InteractionObject> _interactionObjects = new();
 
     private void Start()
     {
         _mainCamera = Camera.main;
         _interactionIndicator.gameObject.SetActive(false);
-
-        // 자동 등록
-        _interactionObjects.AddRange(FindObjectsOfType<InteractionObject>());
     }
 
     private void Update()
     {
         UpdateCurrentTarget();
         UpdateUI();
+        CheckZoom();
     }
 
-    void UpdateCurrentTarget()
+    private void CheckZoom()
+    {
+        if (_player.StateMachine.CurrentStateEnum == PlayerStateEnum.Sit)
+            Zoom();
+        else
+            _cam.Lens.FieldOfView = 12;
+    }
+
+    private void Zoom()
+    {
+        float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * _zoomSpeed;
+        float camFOV = _cam.Lens.FieldOfView + distance;
+        if (distance != 0 && camFOV >= 4 && camFOV <= 12)
+        {
+            _cam.Lens.FieldOfView += distance;
+        }
+    }
+
+    private void UpdateCurrentTarget()
     {
         _currentTarget = null;
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -40,19 +65,18 @@ public class InteractionController : MonoBehaviour
 
             if (CheckMousePos(interaction.Col))
             {
+                if (_currentTarget != null)
+                    _currentTarget.interactionImg.enabled = false;
                 _currentTarget = interaction;
                 break;
             }
         }
     }
 
-    void UpdateUI()
+    private void UpdateUI()
     {
-        if (_currentTarget == null || !CheckMousePos(_currentTarget.Col))
+        if (_currentTarget == null)
         {
-            if (_currentTarget != null)
-                _currentTarget.interactionImg.enabled = false;
-
             _interactionIndicator.gameObject.SetActive(false);
             _currentTarget = null;
             return;
@@ -63,20 +87,20 @@ public class InteractionController : MonoBehaviour
 
         if (isVisible)
         {
+            _interactionIndicator.gameObject.SetActive(false);
             _currentTarget.interactionImg.enabled = true;
             _currentTarget.interactionImg.transform.LookAt(_mainCamera.transform);
-            _interactionIndicator.gameObject.SetActive(false);
         }
         else
         {
             _currentTarget.interactionImg.enabled = false;
-            ShowOffScreenIndicator(_currentTarget);
+            ShowIndicator(_currentTarget);
         }
     }
 
-    void ShowOffScreenIndicator(InteractionObject obj)
+    private void ShowIndicator(InteractionObject obj)
     {
-        Vector3 screenPos = _mainCamera.WorldToScreenPoint(obj.TargetPos);
+        Vector3 screenPos = _mainCamera.WorldToScreenPoint(obj.interactionImg.transform.position);
         Vector3 clamped = screenPos;
         clamped.x = Mathf.Clamp(clamped.x, 50, Screen.width - 50);
         clamped.y = Mathf.Clamp(clamped.y, 50, Screen.height - 50);

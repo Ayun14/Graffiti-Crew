@@ -24,4 +24,20 @@ public class InteractionObject : MonoBehaviour
         interactionImg.enabled = false;
     }
 
+    protected virtual void Update()
+    {
+        if (!CheckMousePos())
+            interactionImg.enabled = false;
+    }
+
+    private bool CheckMousePos()
+    {
+        if (_col != null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            return _col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
+        }
+
+        return false;
+    }
 }
