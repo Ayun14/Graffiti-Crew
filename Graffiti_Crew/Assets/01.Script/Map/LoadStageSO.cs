@@ -44,7 +44,7 @@ namespace AH.SaveSystem {
         }
         public void SetCurrentStage(string stage, StageType type) {
             _currentStageName = $"{stage}";
-            _currentStageType = StageType.Story;
+            _currentStageType = type;
         }
         public string GetCurrentStageName() {
             return _currentStageName;
