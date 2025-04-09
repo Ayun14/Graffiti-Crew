@@ -37,6 +37,8 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
 
             if (mySubject.GameState == GameState.Talk)
             {
+                StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
                 GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Request);
 
                 AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
@@ -44,6 +46,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
 
                 NPCSO dialogue = _requestDialogueSO.storyList[_dialogueNum];
 
+                
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 if (_dialogueNum == 0)
                     _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
