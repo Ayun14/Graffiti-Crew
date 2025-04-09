@@ -25,9 +25,9 @@ public class LongNode : Node, INodeAction
         _followLineRenderer = transform.Find("FollowLine").GetComponent<LineRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
+    public override void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement, nodeData);
+        base.Init(stageGameRule, judgement, nodeData);
 
         _longNodeData = nodeData as LongNodeDataSO;
         _lineRenderer.material = _longNodeData.lineRendererMat;
@@ -176,7 +176,7 @@ public class LongNode : Node, INodeAction
             if (_isFollowingPath)
             {
                 // 노드 실패 (중도 포기 실패)
-                judgement.NodeFalse(this);
+                _stageGameRule.NodeFalse(this);
 
                 // Sound
                 GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
@@ -204,14 +204,14 @@ public class LongNode : Node, INodeAction
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
                 // Combo
-                judgement.NodeSuccess(this);
+                _stageGameRule.NodeSuccess(this);
 
                 // Particle
                 PopGraffitiParticle(mouseWorldPosition);
 
                 // Spray
-                judgement.AddShakeSliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
-                judgement.AddSpraySliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
+                _stageGameRule.AddShakeSliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
+                _stageGameRule.AddSpraySliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
 
                 // 모든 포인트를 통과하면 클리어 처리
                 if (++_currentTargetIndex >= _pathPoints.Count)
@@ -223,7 +223,7 @@ public class LongNode : Node, INodeAction
             else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
             {
                 // 노드 실패 (경로 이탈 실패)
-                judgement.NodeFalse(this);
+                _stageGameRule.NodeFalse(this);
                 ResetNode();
             }
         }

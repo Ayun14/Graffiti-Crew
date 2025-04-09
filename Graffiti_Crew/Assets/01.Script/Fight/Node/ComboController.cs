@@ -22,7 +22,7 @@ public class ComboController : MonoBehaviour
     private Sequence _stateTextSequence;
     private Vector3 _stateImageOrigin;
 
-    private NodeJudgement _judgement;
+    protected StageGameRule _stageGameRule;
     private StageResultSO _stageResult;
 
     private bool _isCombo = false;
@@ -38,10 +38,10 @@ public class ComboController : MonoBehaviour
         _stateImageOrigin = _stateImage.rectTransform.anchoredPosition;
     }
 
-    public void Init(NodeJudgement judgement)
+    public void Init(StageGameRule stageGameRule)
     {
-        _judgement = judgement;
-        _stageResult = judgement.stageResult;
+        _stageGameRule = stageGameRule;
+        _stageResult = stageGameRule.stageResult;
         _currentCombo = 0;
 
         if (_comboText != null && _stateImage != null)

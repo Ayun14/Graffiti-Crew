@@ -17,9 +17,9 @@ public class HitNode : Node, INodeAction
         _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void Init(NodeJudgement judgement, NodeDataSO nodeData)
+    public override void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
-        base.Init(judgement, nodeData);
+        base.Init(stageGameRule, judgement, nodeData);
 
         _hitNodeData = nodeData as HitNodeDataSO;
         _renderer.sprite = _hitNodeData.sprite;
@@ -50,7 +50,7 @@ public class HitNode : Node, INodeAction
         if (isClearNode) return;
 
         // Combo
-        judgement.NodeSuccess(this);
+        _stageGameRule.NodeSuccess(this);
 
         // Particle
         PopGraffitiParticle(transform.position);
@@ -63,8 +63,8 @@ public class HitNode : Node, INodeAction
 
     private void SetHitCount()
     {
-        judgement.AddShakeSliderAmount(-_hitNodeData.sprayUseAmount);
-        judgement.AddSpraySliderAmount(-_hitNodeData.sprayUseAmount);
+        _stageGameRule.AddShakeSliderAmount(-_hitNodeData.sprayUseAmount);
+        _stageGameRule.AddSpraySliderAmount(-_hitNodeData.sprayUseAmount);
 
         if (--_currentHitCount <= 0)
         {

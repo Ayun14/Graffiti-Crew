@@ -13,7 +13,9 @@ public class StageDataSO : ScriptableObject
     [Header("Stage")]
     public StageType stagetype;
     public StageRuleType stageRuleType;
-    public Transform mapPrefab;
+    public GameObject judgementPrefab;
+    public GameObject spawnerPrefab;
+    public GameObject mapPrefab;
 
     [Header("Player Graffiti")]
     public Sprite startGraffiti;
