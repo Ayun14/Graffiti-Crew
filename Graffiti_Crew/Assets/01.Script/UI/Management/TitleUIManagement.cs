@@ -4,6 +4,7 @@ using AH.UI.Models;
 using AH.UI.ViewModels;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,14 +43,14 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
-            _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
+            //_inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
         }
 
 
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
-            _inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
+            //_inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
         }
 
         protected override void Init() {
@@ -71,6 +72,21 @@ namespace AH.UI {
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
             _saveSlotField.index = _viewModel.GetSlotIndex();
+
+            // 드롭다운 아이템들 스타일 접근
+            //_saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
+            //{
+
+            //    Debug.Log(root);
+            //    var content = root.Q<VisualElement>(className: "unity-base-dropdown__container-outer");
+            //    var test = root.Q<VisualElement>(className: "TitleUI-conteiner");
+            //    Debug.Log(test);
+            //    Debug.Log(content);
+            //    VisualElement hoveredItem = evt.target as VisualElement;
+            //    if (hoveredItem != null) {
+            //        hoveredItem.style.backgroundColor = new Color(1f, 0f, 0f, 1f); // 빨간색
+            //    }
+            //});
 
             StartCoroutine(Routine());
         }

@@ -56,10 +56,6 @@ public class FightAnimationView : UIView {
     }
     private void SetActiveEndAnimation(bool active) {
         if (active) {
-            //var rivalScreen = _startAnimation.Q<VisualElement>("rival-screen");
-            //var playerScreen = _startAnimation.Q<VisualElement>("player-screen");
-            //rivalScreen.AddToClassList("move-left");
-            //rivalScreen.AddToClassList("move-right");
             Show(_endAnimation);
         }
         else {
