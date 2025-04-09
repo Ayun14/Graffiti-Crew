@@ -16,9 +16,30 @@ namespace AH.UI.ViewModels {
         public StageType GetStageType() {
             return _model.GetStageType();
         }
-
         public SliderValueSO GetSprayData() {
             return _model.GetSprayData();
+        }
+
+        public LanguageSO GetLanguageSO() {
+            return _model.GetLanguageSO();
+        }
+        public int GetLanguageIndex() {
+            return _model.GetLanguageIndex();
+        }
+        public void SetLanguageIndex(int index) {
+            _model.SetLanguageIndex(index);
+        }
+        public void SetBGMValue(int value) {
+            _model.SetBGMValue(value);
+        }
+        public void SetVFXValue(int value) {
+            _model.SetVFXValue(value);
+        }
+        public int GetBGMValue() {
+            return _model.GetBGMValue();
+        }
+        public int GetVFXValue() {
+            return _model.GetVFXValue();
         }
     }
 }
