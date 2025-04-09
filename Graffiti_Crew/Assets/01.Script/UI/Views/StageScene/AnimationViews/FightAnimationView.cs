@@ -10,6 +10,7 @@ public enum FightUIAnimationType {
 }
 public class FightAnimationView : UIView {
     private VisualElement _startAnimation;
+    private VisualElement _endAnimation;
     private VisualElement _rivalCheckAnimation;
 
     private VisualElement _lineBackground;
@@ -35,14 +36,13 @@ public class FightAnimationView : UIView {
     protected override void SetVisualElements() {
         base.SetVisualElements();
         _startAnimation = topElement.Q<VisualElement>("startAnimation");
+        _endAnimation = topElement.Q<VisualElement>("endAnimation");
         _rivalCheckAnimation = topElement.Q<VisualElement>("rivalCheckAnimation");
 
         _lineBackground = _rivalCheckAnimation.Q<VisualElement>("line-background");
         _colorBackground = _rivalCheckAnimation.Q<VisualElement>("color-background");
         _blueLine = _rivalCheckAnimation.Q<VisualElement>("blue-line");
         _rivalFace = _rivalCheckAnimation.Q<VisualElement>("rival-face");
-
-        Show(_startAnimation);
     }
 
     #region Handles
@@ -56,14 +56,14 @@ public class FightAnimationView : UIView {
     }
     private void SetActiveEndAnimation(bool active) {
         if (active) {
-            var rivalScreen = _startAnimation.Q<VisualElement>("rival-screen");
-            var playerScreen = _startAnimation.Q<VisualElement>("player-screen");
-            rivalScreen.AddToClassList("move-left");
-            rivalScreen.AddToClassList("move-right");
-            Show(_startAnimation);
+            //var rivalScreen = _startAnimation.Q<VisualElement>("rival-screen");
+            //var playerScreen = _startAnimation.Q<VisualElement>("player-screen");
+            //rivalScreen.AddToClassList("move-left");
+            //rivalScreen.AddToClassList("move-right");
+            Show(_endAnimation);
         }
         else {
-            Hide(_startAnimation);
+            Hide(_endAnimation);
         }
     }
     private void RivalCheckAnimation(bool active) {

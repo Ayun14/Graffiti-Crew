@@ -10,7 +10,7 @@ namespace AH.UI {
         private DialogueView _dialougeView;
         private ResultView _resultView;
 
-        private FightAnimationView _fightStartAnimation;
+        private FightAnimationView _fightAnimationView;
 
         private FightViewModel _viewModel;
 
@@ -37,9 +37,10 @@ namespace AH.UI {
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
-            _fightStartAnimation = new FightAnimationView(root.Q<VisualElement>("StartAnimation"), _viewModel);
+            _fightAnimationView = new FightAnimationView(root.Q<VisualElement>("StartAnimation"), _viewModel);
 
-            _fightStartAnimation.Show();
+            _fightAnimationView.Show();
+            UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         }
 
         #region Handle
