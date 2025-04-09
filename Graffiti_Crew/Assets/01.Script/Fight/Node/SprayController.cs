@@ -25,11 +25,11 @@ public class SprayController : MonoBehaviour
     public bool isSprayNone => _currentSprayValue <= 0f;
     [SerializeField] private float _sprayAddAmount;
 
-    private NodeJudgement _judgement;
+    protected StageGameRule _stageGameRule;
 
-    public void Init(NodeJudgement judgement)
+    public void Init(StageGameRule stageGameRule)
     {
-        _judgement = judgement;
+        _stageGameRule = stageGameRule;
 
         // Spray
         CurrentSparyValue = _maxSprayValue;
@@ -48,7 +48,7 @@ public class SprayController : MonoBehaviour
 
     private void ShakeSpray()
     {
-        if (_judgement.isNodeClick) return;
+        //if (_judgement.isNodeClick) return;
 
         if (_isShaking == false && Input.GetMouseButtonDown(0))
         {
@@ -105,7 +105,7 @@ public class SprayController : MonoBehaviour
         if (CurrentSparyValue <= 0f)
         {
             StartCoroutine(SprayEmpty());
-            _judgement.SetSprayEmpty(true);
+            _stageGameRule.SetSprayEmpty(true);
         }
     }
 
@@ -116,7 +116,7 @@ public class SprayController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
         ResetSpray();
-        _judgement.SetSprayEmpty(false);
+        _stageGameRule.SetSprayEmpty(false);
     }
 
     private void ResetSpray()
