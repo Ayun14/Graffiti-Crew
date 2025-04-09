@@ -1,6 +1,3 @@
-using UnityEditor.EditorTools;
-using UnityEngine;
-
 public class SequentialNodeSpawner : NodeSpawner
 {
     public override void NodeSpawn()
@@ -21,7 +18,7 @@ public class SequentialNodeSpawner : NodeSpawner
             if (poolGo.GameObject != null && poolGo.GameObject.TryGetComponent(out Node node))
                 node.Init(_stageGameRule, _nodeJudgement, nodeData);
 
-            _nodeDatas.Dequeue();
+            DequeueNode();
         }
     }
 }

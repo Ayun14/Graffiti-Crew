@@ -1,11 +1,10 @@
-using Cysharp.Threading.Tasks.Triggers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class StageGameRule : Observer<GameStateController>
 {
-    protected StageRuleType _stageRule;
+    public StageRuleType stageRule;
 
     // Children
     protected NodeJudgement _nodeJudgement;
@@ -46,6 +45,9 @@ public abstract class StageGameRule : Observer<GameStateController>
         return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
             || mySubject.GameState == GameState.Tutorial;
     }
+
+    public void NodeSpawn() => _nodeSpawner.NodeSpawn();
+    public NodeDataSO GetCurrentNode() => _nodeSpawner.PeekNode();
 
     #region Loding And Notify
 
@@ -121,8 +123,8 @@ public abstract class StageGameRule : Observer<GameStateController>
     {
         if (node == null) return;
 
-        if (stageResult != null && _stageRule == StageRuleType.OneTouchRule)
-            stageResult.nodeFalseCnt++;
+        if (stageResult != null && stageRule == StageRuleType.OneTouchRule)
+            stageResult.value++;
 
         if (node.GetNodeType() == NodeType.LongNode)
         {

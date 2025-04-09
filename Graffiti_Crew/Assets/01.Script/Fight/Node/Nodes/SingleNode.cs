@@ -1,10 +1,9 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class SingleNode : Node, INodeAction
 {
-    [SerializeField] private float _fadeTime = 1f;
-
     private SingleNodeDataSO _singleNodeData;
     private SpriteRenderer _renderer;
 
@@ -20,21 +19,18 @@ public class SingleNode : Node, INodeAction
         _singleNodeData = nodeData as SingleNodeDataSO;
         _renderer.sprite = _singleNodeData.sprite;
         transform.position = _singleNodeData.pos;
-
-        SetAlpha(1f);
     }
 
-    private void SetAlpha(float endValue)
+    public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
         float startValue = endValue == 1f ? 0f : 1f;
         Color color = _renderer.color;
         color.a = startValue;
         _renderer.color = color;
-        _renderer.DOFade(endValue, _fadeTime)
+        _renderer.DOFade(endValue, fadeTime)
             .OnComplete(() =>
             {
-                if (endValue == 0f)
-                    pool.Push(this); // Push
+                callback?.Invoke();
             });
     }
 
@@ -54,7 +50,7 @@ public class SingleNode : Node, INodeAction
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Short);
 
-        SetAlpha(0f);
+        SetAlpha(0f, fadeTime, () => pool.Push(this));
 
         _stageGameRule.AddShakeSliderAmount(-_singleNodeData.sprayUseAmount);
         _stageGameRule.AddSpraySliderAmount(-_singleNodeData.sprayUseAmount);

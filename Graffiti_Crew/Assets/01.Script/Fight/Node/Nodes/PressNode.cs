@@ -1,11 +1,11 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PressNode : Node, INodeAction
 {
     [Header("PressNode")]
-    [SerializeField] private float _fadeTime = 0.5f;
     [SerializeField] private Color _fitColor;
 
     private float _currentTime = 0;
@@ -41,11 +41,9 @@ public class PressNode : Node, INodeAction
 
         _pressTime = _pressNodeData.pressTime;
         _currentTime = 0;
-
-        SetAlpha(1f);
     }
 
-    private void SetAlpha(float endValue)
+    public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
         // Init
         float startValue = endValue == 1f ? 0f : 1f;
@@ -54,15 +52,11 @@ public class PressNode : Node, INodeAction
         _renderer.color = color;
         _ringRenderer.color = color;
 
-        _ringRenderer.DOFade(endValue, _fadeTime);
-        _renderer.DOFade(endValue, _fadeTime)
+        _ringRenderer.DOFade(endValue, fadeTime);
+        _renderer.DOFade(endValue, fadeTime)
             .OnComplete(() =>
             {
-                if (endValue == 0f)
-                {
-                    ResetNode();
-                    pool.Push(this); // Push
-                }
+                callback?.Invoke();
             });
     }
 
@@ -131,7 +125,7 @@ public class PressNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
 
-        SetAlpha(0f);
+        SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
 
     private void ResetNode()
