@@ -56,8 +56,12 @@ namespace AH.UI.Views {
         private void SetAdmissionTicket() {
             var content = topElement.Q<VisualElement>("ticket-content");
             content.Clear();
+            content.style.flexGrow = 0;
             tickets = ComputerViewModel.GetStageDescription().ticket;
 
+            if (tickets.Length > 0) {
+                content.style.flexGrow = 1;
+            }
             foreach (var data in tickets) {
                 var asset = _ticketAsset.Instantiate();
                 if (data.ticketItem) {
