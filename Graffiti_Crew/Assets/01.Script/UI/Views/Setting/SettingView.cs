@@ -32,7 +32,6 @@ namespace AH.UI.Views {
         private LanguageSO _lauguageSO;
         private string[] _lauguageTypes;
 
-
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel.GetBGMValue();
         }
@@ -72,14 +71,17 @@ namespace AH.UI.Views {
         public override void Show() {
             SetSound();
             HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+            GameManager.SetPause(true);
             base.Show();
         }
         public override void Hide() {
             base.Hide();
+            GameManager.SetPause(false);
             HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
+            Debug.Log("click");
             HangOutEvent.HideViewEvent?.Invoke();
         }
 

@@ -45,7 +45,6 @@ namespace AH.UI {
             evtFunction += EventFunction;
             base.ShowPreviewEvent(evtFunction);
         }
-
         private void EventFunction() {
             if (_settingView != null) {
                 ShowView(_settingView);

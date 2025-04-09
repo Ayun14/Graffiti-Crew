@@ -1,11 +1,11 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class HitNode : Node, INodeAction
 {
     [SerializeField] private TextMeshProUGUI _hitCountText;
-    [SerializeField] private float _fadeTime = 0.5f;
 
     private int _currentHitCount;
 
@@ -27,21 +27,18 @@ public class HitNode : Node, INodeAction
 
         _currentHitCount = _hitNodeData.hitNum;
         _hitCountText.text = _currentHitCount.ToString();
-
-        SetAlpha(1f);
     }
 
-    private void SetAlpha(float endValue)
+    public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
         float startValue = endValue == 1f ? 0f : 1f;
         Color color = _renderer.color;
         color.a = startValue;
         _renderer.color = color;
-        _renderer.DOFade(endValue, _fadeTime)
+        _renderer.DOFade(endValue, fadeTime)
             .OnComplete(() =>
             {
-                if (endValue == 0f)
-                    pool.Push(this); // Push
+                callback?.Invoke();
             });
     }
 
@@ -85,7 +82,7 @@ public class HitNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
 
-        SetAlpha(0f);
+        SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
 
     public override NodeType GetNodeType() => _hitNodeData.nodeType;
