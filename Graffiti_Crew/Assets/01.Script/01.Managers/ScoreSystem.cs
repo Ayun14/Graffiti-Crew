@@ -9,12 +9,13 @@ public class ScoreSystem : MonoBehaviour {
         GameEvents.SendFightGameResultEvent -= FightGameResult;
     }
 
+    // TODO : 기획에 따라 바뀌여서 계산 함수 교체해야함
     private void FightGameResult(StageDataSO stageData) {
         CalStar(stageData);
 
         int score = 0;
-        int combo = stageData.stageResult.comboCnt;
-        int failCount = stageData.stageResult.nodeFalseCnt;
+        int combo = stageData.stageResult.value;
+        int failCount = stageData.stageResult.value;
         int increase = 1; // 기본값
         int decrease = 1; // 기본값
 
@@ -38,18 +39,10 @@ public class ScoreSystem : MonoBehaviour {
     }
 
     private void CalStar(StageDataSO stageData) {
-        int star = 0;
-        switch (stageData.stageRuleType) {
-            case StageRuleType.SpeedRule:
-                star = stageData.stageResult.CalculationStar(stageData.stageResult.drawingTime, stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
-                break;
-            case StageRuleType.PerfectRule:
-                star = stageData.stageResult.CalculationStar(stageData.stageResult.comboCnt, stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
-                break;
-            case StageRuleType.OneTouchRule:
-                star = stageData.stageResult.CalculationStar(stageData.stageResult.nodeFalseCnt , stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
-                break;
-        }
+        int star = 0; 
+        star = stageData.stageResult.CalculationStar
+            (stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+
         Debug.Log("star : " + star);
         if (star > stageData.stageSaveData.star)
             stageData.stageSaveData.star = star;

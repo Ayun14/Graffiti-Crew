@@ -26,6 +26,9 @@ public abstract class NodeSpawner : MonoBehaviour
 
     public abstract void NodeSpawn();
 
+    public void DequeueNode() => _nodeDatas.Dequeue();
+    public NodeDataSO PeekNode() => _nodeDatas.Peek();
+
     public void ResetSpawner()
     {
         _nodeDatas.Clear();

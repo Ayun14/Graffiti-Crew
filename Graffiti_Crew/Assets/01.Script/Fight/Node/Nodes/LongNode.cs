@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine;
 public class LongNode : Node, INodeAction
 {
     [SerializeField] private float _cameraDistance;
-    [SerializeField] private float _fadeTime;
 
     private LongNodeDataSO _longNodeData;
     private LineRenderer _lineRenderer;
@@ -36,7 +36,6 @@ public class LongNode : Node, INodeAction
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
 
         ResetNode();
-        SetAlpha(1f);
         ConnectLine();
     }
 
@@ -139,7 +138,7 @@ public class LongNode : Node, INodeAction
     {
         _lineRenderer.positionCount = points.Count;
 
-        float waitTime = _fadeTime / points.Count;
+        float waitTime = fadeTime / points.Count;
         for (int i = 0; i < points.Count; ++i)
         {
             // 자연스럽게 이어지게 보이게 하기 위해 포인트들을현재의 마지막 포인트 위치로
@@ -255,7 +254,7 @@ public class LongNode : Node, INodeAction
         isClearNode = true;
 
         _isFollowingPath = false;
-        SetAlpha(0f);
+        SetAlpha(0f, fadeTime, () => pool.Push(this));
 
         // Sound
         GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
@@ -263,7 +262,7 @@ public class LongNode : Node, INodeAction
 
     #region Do Fade
 
-    private void SetAlpha(float endValue)
+    public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
         float startValue = endValue == 1f ? 0f : 1f;
 
@@ -277,8 +276,8 @@ public class LongNode : Node, INodeAction
 
         fadeSequence
             // SpriteRenderer
-            .Join(_startPointRenderer.DOFade(endValue, _fadeTime))
-            .Join(_endPointRenderer.DOFade(endValue, _fadeTime))
+            .Join(_startPointRenderer.DOFade(endValue, fadeTime))
+            .Join(_endPointRenderer.DOFade(endValue, fadeTime))
             // LineRenderer
             .Join(DOTween.To(() => _lineRenderer.material.color.a,
                 x =>
@@ -287,7 +286,7 @@ public class LongNode : Node, INodeAction
                     color.a = x;
                     _lineRenderer.material.color = color;
                 },
-                endValue, _fadeTime))
+                endValue, fadeTime))
             .Join(DOTween.To(() => _followLineRenderer.material.color.a,
                 x =>
                 {
@@ -295,11 +294,10 @@ public class LongNode : Node, INodeAction
                     color.a = x;
                     _followLineRenderer.material.color = color;
                 },
-                endValue, _fadeTime))
+                endValue, fadeTime))
             .OnComplete(() =>
             {
-                if (endValue == 0f)
-                    pool.Push(this); // Push
+                callback?.Invoke();
             });
     }
 
