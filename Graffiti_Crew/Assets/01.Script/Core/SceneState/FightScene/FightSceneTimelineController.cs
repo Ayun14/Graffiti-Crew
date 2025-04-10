@@ -9,6 +9,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     [SerializeField] private PlayableDirector _beforeFightTimeline;
     private PlayableDirector _finishTimeline;
     private PlayableDirector _resultTimeline;
+    private PlayableDirector _endFightTimeline;
     private DialogueUIController _dialogueUIController;
 
     private void Awake()
@@ -17,6 +18,7 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
 
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
+        _endFightTimeline = transform.Find("EndFightTimeline").GetComponent<PlayableDirector>();
         _dialogueUIController = transform.Find("FightUI").GetComponent<DialogueUIController>();
     }
 
@@ -57,6 +59,11 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
         {
             mySubject.ChangeGameState(GameState.Result);
         }
+    }
+
+    public void ResultTimelineEnd()
+    {
+        _endFightTimeline?.Play();
     }
 
     public void DialogueRival()

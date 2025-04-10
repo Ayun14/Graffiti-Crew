@@ -7,7 +7,7 @@ public abstract class DataController : Observer<GameStateController>
 {
     [SerializeField] protected LoadStageSO stageSO;
 
-    public StageDataSO stageData;
+    [HideInInspector] public StageDataSO stageData;
 
     private int _lodingCnt = 0;
     private List<GameObject> _needLodingObjs;

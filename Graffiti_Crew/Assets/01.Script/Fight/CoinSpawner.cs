@@ -1,7 +1,8 @@
+using AH.SaveSystem;
 using System.Collections;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class CoinSpawner : MonoBehaviour, INeedLoding
 {
     [SerializeField] private GameObject _coinPrefab;
     [SerializeField] private float _width, _height;
@@ -10,30 +11,30 @@ public class CoinSpawner : MonoBehaviour
     private Vector3 _playerCoinSpawnPos;
     private Vector3 _rivalCoinSpawnPos;
 
+    private StageSaveDataSO _stageSaveDataSO;
+
+    public void LodingHandle(DataController dataController)
+    {
+        _stageSaveDataSO = dataController.stageData.stageSaveData;
+    }
+
     private void Awake()
     {
         _playerCoinSpawnPos = transform.Find("PlayerCoinSpawnPos").GetComponent<Transform>().position;
         _rivalCoinSpawnPos = transform.Find("RivalCoinSpawnPos").GetComponent<Transform>().position;
     }
 
-    private void Update()
-    {
-        // Test
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SpawnCoinToPlayer();
-            SpawnCoinToRival();
-        }
-    }
-
     public void SpawnCoinToPlayer()
     {
-        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, 10));
+        int star = _stageSaveDataSO.star;
+        int coin = 0;
+        if (0 < star) coin = 10 + (7 * star);
+        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, coin));
     }
 
     public void SpawnCoinToRival()
     {
-        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, 10));
+        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, Random.Range(15, 25)));
     }
 
     private IEnumerator SpawnCoin(Vector3 spawnTrm, int spawnNum)
