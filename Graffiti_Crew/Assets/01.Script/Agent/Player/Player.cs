@@ -12,7 +12,8 @@ public enum PlayerStateEnum
     NPC,
     Sit,
     SitStay,
-    Mirror
+    Mirror,
+    BoomBox
 }
 
 public class Player : Agent

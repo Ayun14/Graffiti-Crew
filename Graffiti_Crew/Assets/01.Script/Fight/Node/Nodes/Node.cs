@@ -21,7 +21,7 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     [Header("Node")]
     public float fadeTime = 0.5f;
-    protected float _visibleTime;
+    [HideInInspector] public float visibleTime;
 
     public virtual void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
@@ -32,7 +32,7 @@ public abstract class Node : MonoBehaviour, IPoolable
             _stageGameRule = stageGameRule;
 
         isClearNode = false;
-        _visibleTime = nodeData.visibleTime;
+        visibleTime = nodeData.visibleTime;
 
         if (stageGameRule.stageRule != StageRuleType.PerfectRule)
             SetAlpha(1f, fadeTime);
@@ -66,7 +66,7 @@ public abstract class Node : MonoBehaviour, IPoolable
     private IEnumerator VisibleRoutine()
     {
         SetAlpha(1, fadeTime);
-        yield return new WaitForSeconds(fadeTime + _visibleTime);
+        yield return new WaitForSeconds(fadeTime + visibleTime);
         SetAlpha(0, fadeTime, () => PushObj());
     }
 

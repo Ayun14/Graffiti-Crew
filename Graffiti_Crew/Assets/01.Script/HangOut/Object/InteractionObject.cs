@@ -19,7 +19,7 @@ public class InteractionObject : MonoBehaviour
         _targetPos = transform.Find("Target").position;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         interactionImg.enabled = false;
     }

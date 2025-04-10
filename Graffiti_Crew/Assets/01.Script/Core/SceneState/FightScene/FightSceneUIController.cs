@@ -371,6 +371,5 @@ public class FightSceneUIController : Observer<GameStateController>
     public void SetResultUI()
     {
         UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
-        StageEvent.ShowVictorScreenEvent(mySubject.IsPlayerWin);
     }
 }

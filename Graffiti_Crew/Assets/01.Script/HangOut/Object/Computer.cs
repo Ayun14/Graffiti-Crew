@@ -16,7 +16,7 @@ public class Computer : InteractionObject
         base.Awake();
     }
 
-    private async void Start()
+    protected override async void Start()
     {
         _transitionCanvas.SetActive(false);
         _transitionMat.SetFloat("_Lerp", 1);
