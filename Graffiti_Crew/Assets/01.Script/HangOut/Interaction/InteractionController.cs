@@ -34,13 +34,15 @@ public class InteractionController : MonoBehaviour
     {
         UpdateCurrentTarget();
         UpdateUI();
+
         CheckZoom();
     }
 
     private void CheckZoom()
     {
         if (_player.StateMachine.CurrentStateEnum == PlayerStateEnum.Sit
-            || _player.StateMachine.CurrentStateEnum == PlayerStateEnum.Mirror)
+            || _player.StateMachine.CurrentStateEnum == PlayerStateEnum.Mirror
+            || _player.StateMachine.CurrentStateEnum == PlayerStateEnum.BoomBox)
             Zoom();
         else
             _cam.Lens.FieldOfView = 12;

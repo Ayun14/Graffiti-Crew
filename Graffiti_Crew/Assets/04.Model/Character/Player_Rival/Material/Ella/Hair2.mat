@@ -14,8 +14,6 @@ Material:
   m_ValidKeywords:
   - N_F_EAL_ON
   - N_F_ESSAO_ON
-  - N_F_GLOT_ON
-  - N_F_GLO_ON
   - N_F_NM_ON
   - N_F_O_MOTTSO_ON
   - N_F_O_ON
@@ -56,7 +54,6 @@ Material:
   - _TEXTUREPATTERNSTYLE_OFF
   - _USESECONDARYCUTOUT_OFF
   - _VERTEXCOLORBLUEAFFECTOUTLINEWITDH_OFF
-  - _VERTEXCOLORGREENCONTROLSELFSHADOWTHRESHOLD_OFF
   - _VERTEXCOLORREDCONTROLSMOOTHOBJECTNORMAL_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -291,7 +288,7 @@ Material:
     - _GIFlatShade: 0
     - _GIShadeThreshold: 1
     - _GlossColorPower: 1
-    - _GlossIntensity: 1
+    - _GlossIntensity: 0.788
     - _GlossMapScale: 1
     - _GlossSoftness: 0
     - _GlossTextureFollowLight: 0
@@ -351,8 +348,8 @@ Material:
     - _N_F_ESSR: 1
     - _N_F_ESSS: 1
     - _N_F_FR: 0
-    - _N_F_GLO: 1
-    - _N_F_GLOT: 1
+    - _N_F_GLO: 0
+    - _N_F_GLOT: 0
     - _N_F_HDLS: 0
     - _N_F_HPSAS: 0
     - _N_F_HPSS: 0
@@ -444,7 +441,7 @@ Material:
     - _SelfShadowRealTimeShadowColorPower: 1
     - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0
+    - _SelfShadowThreshold: 0.715
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 0
     - _ShadowTColorPower: 1
@@ -508,7 +505,7 @@ Material:
     - _UseShadowThreshold: 0
     - _UseTLB: 0
     - _VertexColorBlueAffectOutlineWitdh: 0
-    - _VertexColorGreenControlSelfShadowThreshold: 0
+    - _VertexColorGreenControlSelfShadowThreshold: 1
     - _VertexColorRedControlSmoothObjectNormal: 0
     - _ZTeForLiOpa: 3
     - _ZTestDepthEqualForOpaque: 3
@@ -527,16 +524,16 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 2, g: 2, b: 2, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 1.9999998, g: 1.9999998, b: 1.9999998, a: 1}
+    - _HighlightColor: {r: 1.2830187, g: 1.2830187, b: 1.2830187, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
     - _ObjectForward: {r: -1.0000006, g: 0.00000011920929, b: 0.000000834465, a: 0}
     - _ObjectRight: {r: -0.00000071525574, g: -1.0000006, b: 0.0000011920929, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverallShadowColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
