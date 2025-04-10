@@ -52,7 +52,6 @@ namespace AH.UI {
         }
         private void EventFunction() {
             if (_settingView != null) {
-                Debug.Log("show");
                 ShowView(_settingView);
             }
         }

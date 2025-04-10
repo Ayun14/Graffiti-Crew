@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager> {
     public static SlotSO currentSlot;
-    public static bool isPause = false;
+    private static bool _isPause = false;
 
     private string slotPath = "UI/Setting/Slots/";
     private SlotSO[] slots;
@@ -30,15 +30,16 @@ public class GameManager : MonoSingleton<GameManager> {
         UIEvents.ChangeSlotEvent -= ChangeSlot;
     }
     public static void SetPause(bool pause) { // true : stop
-        isPause = pause;
+        _isPause = pause;
         if (pause) {
-            Debug.Log("stop");
             Time.timeScale = 0f;
         }
         else {
-            Debug.Log("go");
             Time.timeScale = 1f;
         }
+    }
+    public static bool IsPause() {
+        return _isPause;
     }
     public static void SetSlot() {
         Instance.slots = Resources.LoadAll<SlotSO>(Instance.slotPath);
