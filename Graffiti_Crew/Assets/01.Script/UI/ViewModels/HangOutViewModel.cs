@@ -7,28 +7,28 @@ namespace AH.UI.ViewModels {
             _model = model as HangOutModel;
         }
 
-        public LanguageSO GetLanguageSO() {
+        #region Setting
+        public override LanguageSO GetLanguageSO() {
             return _model.GetLanguageSO();
         }
-        public int GetLanguageIndex() {
+        public override int GetLanguageIndex() {
             return _model.GetLanguageIndex();
         }
-        public void SetLanguageIndex(int index) {
+        public override void SetLanguageIndex(int index) {
             _model.SetLanguageIndex(index);
         }
-        public void SetBGMValue(int value)
-        {
+        public override void SetBGMValue(int value) {
             _model.SetBGMValue(value);
         }
-        public void SetVFXValue(int value)
-        {
+        public override void SetVFXValue(int value) {
             _model.SetVFXValue(value);
         }
-        public int GetBGMValue() {
+        public override int GetBGMValue() {
             return _model.GetBGMValue();
         }
-        public int GetVFXValue() {
+        public override int GetVFXValue() {
             return _model.GetVFXValue();
         }
+        #endregion
     }
 }
