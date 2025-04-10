@@ -11,6 +11,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Player _player;
 
     [Header("UI Elements")]
+    [SerializeField] private GameObject _interactionCanvas;
     [SerializeField] private RectTransform _canvasRect;
     [SerializeField] private RectTransform _interactionIndicator;
     [SerializeField] private List<InteractionObject> _interactionObjects;
@@ -25,6 +26,7 @@ public class InteractionController : MonoBehaviour
     private void Start()
     {
         _mainCamera = Camera.main;
+        _interactionCanvas.SetActive(false);
         _interactionIndicator.gameObject.SetActive(false);
     }
 
@@ -37,7 +39,8 @@ public class InteractionController : MonoBehaviour
 
     private void CheckZoom()
     {
-        if (_player.StateMachine.CurrentStateEnum == PlayerStateEnum.Sit)
+        if (_player.StateMachine.CurrentStateEnum == PlayerStateEnum.Sit
+            || _player.StateMachine.CurrentStateEnum == PlayerStateEnum.Mirror)
             Zoom();
         else
             _cam.Lens.FieldOfView = 12;
@@ -77,6 +80,7 @@ public class InteractionController : MonoBehaviour
     {
         if (_currentTarget == null)
         {
+            _interactionCanvas.SetActive(false);
             _interactionIndicator.gameObject.SetActive(false);
             _currentTarget = null;
             return;
@@ -87,6 +91,7 @@ public class InteractionController : MonoBehaviour
 
         if (isVisible)
         {
+            _interactionCanvas.SetActive(false);
             _interactionIndicator.gameObject.SetActive(false);
             _currentTarget.interactionImg.enabled = true;
             _currentTarget.interactionImg.transform.LookAt(_mainCamera.transform);
@@ -101,13 +106,12 @@ public class InteractionController : MonoBehaviour
     private void ShowIndicator(InteractionObject obj)
     {
         Vector3 screenPos = _mainCamera.WorldToScreenPoint(obj.interactionImg.transform.position);
-        Vector3 clamped = screenPos;
-        clamped.x = Mathf.Clamp(clamped.x, 50, Screen.width - 50);
-        clamped.y = Mathf.Clamp(clamped.y, 50, Screen.height - 50);
+        screenPos.x = Mathf.Clamp(screenPos.x, 50, Screen.width - 50);
+        screenPos.y = Mathf.Clamp(screenPos.y, 50, Screen.height - 50);
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            _canvasRect, clamped, _mainCamera, out Vector2 localPoint);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, screenPos, _mainCamera, out Vector2 localPoint);
 
+        _interactionCanvas.SetActive(true);
         _interactionIndicator.anchoredPosition = localPoint;
         _interactionIndicator.gameObject.SetActive(true);
 
