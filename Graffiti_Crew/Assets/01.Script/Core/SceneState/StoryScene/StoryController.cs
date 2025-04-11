@@ -13,7 +13,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     private int _dialogueNum = 0;
 
     private Image _loadingPanel;
-    private AudioSource _bgm;
 
 
     private void Awake()
@@ -38,7 +37,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
             if (mySubject.GameState == GameState.Dialogue)
             {
-                _bgm = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
