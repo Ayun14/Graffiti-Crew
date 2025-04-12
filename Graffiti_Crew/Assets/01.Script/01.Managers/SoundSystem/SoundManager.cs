@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private PoolTypeSO _soundObjectTypeSO;
 
-    private Dictionary<SoundType, AudioSource> _loopingSounds = new();
+    private Dictionary<SoundType, SoundObject> _loopingSounds = new();
 
     public AudioSource PlaySound(SoundType sound, bool loop = false, float pitch = 1, float volume = 1)
     {
@@ -18,36 +18,36 @@ public class SoundManager : MonoBehaviour
         AudioClip[] clips = soundList.sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
 
-        AudioSource source = _poolManager.Pop(_soundObjectTypeSO).GameObject.GetComponent<AudioSource>();
+        SoundObject soundObj = _poolManager.Pop(_soundObjectTypeSO) as SoundObject;
 
-        if (source)
+        if (soundObj.AudioSource)
         {
-            source.Stop();
+            soundObj.AudioSource.Stop();
 
-            source.outputAudioMixerGroup = soundList.mixer;
-            source.clip = randomClip;
+            soundObj.AudioSource.outputAudioMixerGroup = soundList.mixer;
+            soundObj.AudioSource.clip = randomClip;
 
             // Pitch
-            source.pitch = pitch;
+            soundObj.AudioSource.pitch = pitch;
 
-            source.loop = loop;
-            source.Play();
+            soundObj.AudioSource.loop = loop;
+            soundObj.AudioSource.Play();
 
             // Volume
-            source.volume = 0;
-            source.DOFade(volume * soundList.volume, 0.2f)
-                .OnComplete(() => source.volume = volume * soundList.volume);
+            soundObj.AudioSource.volume = 0;
+            soundObj.AudioSource.DOFade(volume * soundList.volume, 0.2f)
+                .OnComplete(() => soundObj.AudioSource.volume = volume * soundList.volume);
 
             if (loop)
             {
                 StopLoopSound(sound);
-                _loopingSounds[sound] = source;
+                _loopingSounds[sound] = soundObj;
             }
             else
-                source.GetComponent<SoundObject>().PushObject(false);
+                soundObj.PushObject(false);
         }
 
-        return source;
+        return soundObj.AudioSource;
     }
 
     public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
@@ -61,10 +61,10 @@ public class SoundManager : MonoBehaviour
 
     public void StopLoopSound(SoundType sound)
     {
-        if (_loopingSounds.TryGetValue(sound, out AudioSource source))
+        if (_loopingSounds.TryGetValue(sound, out SoundObject soundObj))
         {
-            source.Stop();
-            source.GetComponent<SoundObject>().PushObject(true);
+            soundObj.AudioSource.Stop();
+            soundObj.PushObject(true);
 
             _loopingSounds.Remove(sound);
         }

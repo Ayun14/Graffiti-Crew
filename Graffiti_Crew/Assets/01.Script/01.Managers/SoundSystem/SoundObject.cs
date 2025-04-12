@@ -11,6 +11,7 @@ public class SoundObject : MonoBehaviour, IPoolable
     public GameObject GameObject => gameObject;
 
     private AudioSource _audioSource;
+    public AudioSource AudioSource => _audioSource;
 
     private void Awake()
     {
