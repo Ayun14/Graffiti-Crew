@@ -19,43 +19,42 @@ public class SoundManager : MonoBehaviour
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
 
         SoundObject soundObj = _poolManager.Pop(_soundObjectTypeSO) as SoundObject;
+        AudioSource audioSource = soundObj.AudioSource;
 
-        if (soundObj.AudioSource)
+        if (audioSource)
         {
-            soundObj.AudioSource.Stop();
+            audioSource.Stop();
 
-            soundObj.AudioSource.outputAudioMixerGroup = soundList.mixer;
-            soundObj.AudioSource.clip = randomClip;
+            audioSource.outputAudioMixerGroup = soundList.mixer;
+            audioSource.clip = randomClip;
 
             // Pitch
-            soundObj.AudioSource.pitch = pitch;
+            audioSource.pitch = pitch;
 
-            soundObj.AudioSource.loop = loop;
-            soundObj.AudioSource.Play();
+            audioSource.loop = loop;
+            audioSource.Play();
 
             // Volume
-            soundObj.AudioSource.volume = 0;
-            soundObj.AudioSource.DOFade(volume * soundList.volume, 0.2f)
-                .OnComplete(() => soundObj.AudioSource.volume = volume * soundList.volume);
+            audioSource.volume = 0;
+            audioSource.DOFade(volume * soundList.volume, 0.2f)
+                .OnComplete(() => audioSource.volume = volume * soundList.volume);
 
             if (loop)
             {
                 StopLoopSound(sound);
                 _loopingSounds[sound] = soundObj;
             }
-            else
-                soundObj.PushObject(false);
+            else soundObj.PushObject(false);
         }
 
-        return soundObj.AudioSource;
+        return audioSource;
     }
 
     public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
     {
         if (Enum.TryParse(soundName, true, out SoundType soundType))
-        {
             return PlaySound(soundType, loop, pitch, volume);
-        }
+
         return null;
     }
 
