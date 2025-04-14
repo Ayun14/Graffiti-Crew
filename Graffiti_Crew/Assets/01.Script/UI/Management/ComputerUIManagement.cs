@@ -2,7 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -11,22 +11,27 @@ namespace AH.UI {
         private SelectStageView _selectStageView;
         private StoreView _storeView;
         private StageDescriptionView _stageDescriptionView;
+        private ItemCountView _itemCountView;
 
         private ComputerViewModel _viewModel;
 
         protected override void OnEnable() {
             base.OnEnable();
-            PresentationEvents.FadeInOutEvent += FadeInOut;
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
+            ComputerEvent.ShowItemCountViewEvent += ShowItemCountView;
+
             ComputerEvent.HideViewEvent += HideView;
+            PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
             base.OnDisable();
             ComputerEvent.ShowSelectStageViewEvent -= ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
+            ComputerEvent.ShowItemCountViewEvent -= ShowItemCountView;
+
             ComputerEvent.HideViewEvent -= HideView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
@@ -44,6 +49,7 @@ namespace AH.UI {
             _selectStageView = new SelectStageView(root.Q<VisualElement>("SelectStageView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
+            _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
 
             _computerView.Show();
         }
@@ -65,6 +71,10 @@ namespace AH.UI {
         }
         private void ShowStageDescriptionView() {
             ShowView(_stageDescriptionView);
+        }
+        private void ShowItemCountView(Vector2 mousePos) {
+            ComputerEvent.SetItemCountViewPosEvent?.Invoke(mousePos);
+            ShowView(_itemCountView);
         }
     }
 }

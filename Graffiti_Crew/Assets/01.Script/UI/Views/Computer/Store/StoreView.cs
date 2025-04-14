@@ -2,7 +2,6 @@ using AH.UI.Data;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
-using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,6 +16,8 @@ namespace AH.UI.Views {
 
         private List<Button> _categoryBtnList = new List<Button>();
         private int _categoryIndex;
+
+        private VisualElement _itemCountView;
 
         public StoreView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -73,7 +74,7 @@ namespace AH.UI.Views {
                 asset.Q<Label>("name-txt").text = item.itemName;
                 asset.Q<Label>("price-txt").text = item.price.ToString();
                 asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(item.image);
-                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, (ProductSO, VisualElement)>(ClickBuyProduct, (item, asset));
+                asset.Q<Button>("buy-btn").RegisterCallback<PointerDownEvent, (ProductSO, VisualElement)>(ClickBuyProduct, (item, asset));
                 SetPossessionItem(item, asset);
 
                 _productScrollView.Add(asset);
@@ -99,15 +100,19 @@ namespace AH.UI.Views {
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[_categoryIndex]); // 새로운 category 띄우기
             ComputerViewModel.ClearSelectProductData(); // 보이던 상세 데이터 싹 비우고
         }
-        private void ClickBuyProduct(ClickEvent evt, (ProductSO, VisualElement) data) {
-            Debug.Log("click");
-            if (data.Item1.BuyItem()) { // 구매할 수 있음(돈 계산 함)
-                ItemSystem.AddItem(data.Item1);
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
-                SetPossessionItem(data.Item1, data.Item2);
+        private void ClickBuyProduct(PointerDownEvent evt, (ProductSO, VisualElement) data) {
+            if (evt.button == 1) {
+                ComputerEvent.ShowItemCountViewEvent?.Invoke(evt.localPosition);
             }
             else {
-                // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
+                if (data.Item1.BuyItem()) { // 구매할 수 있음(돈 계산 함)
+                    ItemSystem.AddItem(data.Item1);
+                    GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
+                    SetPossessionItem(data.Item1, data.Item2);
+                }
+                else {
+                    // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
+                }
             }
         }
     }

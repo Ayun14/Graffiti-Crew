@@ -16,8 +16,6 @@ namespace AH.UI.Views {
 
         private Button _exitBtn;
 
-        private IDisposable _friend1Btn;
-
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
 
@@ -39,7 +37,6 @@ namespace AH.UI.Views {
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            _friend1Btn.Dispose();
             _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }

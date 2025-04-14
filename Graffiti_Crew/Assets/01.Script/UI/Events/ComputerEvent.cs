@@ -6,6 +6,8 @@ namespace AH.UI.Events {
         public static Action ShowStoreViewEvent;
         public static Action ShowSelectStageViewEvent;
         public static Action ShowStageDescriptionViewEvent;
+        public static Action<Vector2> ShowItemCountViewEvent;
+        public static Action<Vector2> SetItemCountViewPosEvent;
      
         public static Action HideViewEvent;
 
