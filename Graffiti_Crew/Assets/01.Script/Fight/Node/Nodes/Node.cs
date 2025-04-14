@@ -61,7 +61,8 @@ public abstract class Node : MonoBehaviour, IPoolable
             graffitiParticle.ParticlePlay();
     }
 
-    public void StartVisibleRoutine() => StartCoroutine(VisibleRoutine());
+    public void StartVisibleRoutine() => StartCoroutine("VisibleRoutine");
+    public void StopVisibleRoutine() => StopCoroutine("VisibleRoutine");
 
     private IEnumerator VisibleRoutine()
     {

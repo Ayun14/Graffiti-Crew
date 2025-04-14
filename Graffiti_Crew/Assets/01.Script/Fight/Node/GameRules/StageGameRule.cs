@@ -119,7 +119,7 @@ public abstract class StageGameRule : Observer<GameStateController>
         _comboController.SuccessCombo();
     }
 
-    public void NodeFalse(Node node)
+    public virtual void NodeFalse(Node node)
     {
         if (node == null) return;
 

@@ -16,12 +16,22 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
     public void LodingHandle(DataController dataController)
     {
         _stageSaveDataSO = dataController.stageData.stageSaveData;
+
+        dataController.SuccessGiveData();
     }
 
     private void Awake()
     {
         _playerCoinSpawnPos = transform.Find("PlayerCoinSpawnPos").GetComponent<Transform>().position;
         _rivalCoinSpawnPos = transform.Find("RivalCoinSpawnPos").GetComponent<Transform>().position;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SpawnCoinToRival();
+        }    
     }
 
     public void SpawnCoinToPlayer()

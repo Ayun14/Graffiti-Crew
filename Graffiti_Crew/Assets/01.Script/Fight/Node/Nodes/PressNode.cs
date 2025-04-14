@@ -45,6 +45,9 @@ public class PressNode : Node, INodeAction
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
+        _ringRenderer.DOComplete();
+        _renderer.DOComplete();
+
         // Init
         float startValue = endValue == 1f ? 0f : 1f;
         Color color = _renderer.color;
@@ -89,9 +92,6 @@ public class PressNode : Node, INodeAction
 
         if (_isPressing)
         {
-            // Combo
-            _stageGameRule.NodeSuccess(this);
-
             // Particle
             PopGraffitiParticle(transform.position);
 
@@ -124,6 +124,9 @@ public class PressNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
+
+        // Combo
+        _stageGameRule.NodeSuccess(this);
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }

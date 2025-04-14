@@ -31,6 +31,8 @@ public class HitNode : Node, INodeAction
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
+        _renderer.DOComplete();
+
         float startValue = endValue == 1f ? 0f : 1f;
         Color color = _renderer.color;
         color.a = startValue;
@@ -45,9 +47,6 @@ public class HitNode : Node, INodeAction
     public void NodeStartAction()
     {
         if (isClearNode) return;
-
-        // Combo
-        _stageGameRule.NodeSuccess(this);
 
         // Particle
         PopGraffitiParticle(transform.position);
@@ -81,6 +80,9 @@ public class HitNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
+
+        // Combo
+        _stageGameRule.NodeSuccess(this);
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }

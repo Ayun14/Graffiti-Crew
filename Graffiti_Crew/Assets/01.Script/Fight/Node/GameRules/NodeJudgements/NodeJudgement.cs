@@ -23,7 +23,8 @@ public abstract class NodeJudgement : MonoBehaviour
 
     protected virtual void Update()
     {
-        NodeInput();
+        if (GameManager.IsPause() == false)
+            NodeInput();
     }
 
     protected abstract void NodeInput();

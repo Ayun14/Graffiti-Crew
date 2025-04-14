@@ -17,6 +17,8 @@ public class LongNode : Node, INodeAction
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
+    private Sequence _fadeSequence;
+
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -60,7 +62,8 @@ public class LongNode : Node, INodeAction
                 break;
         }
 
-        StartCoroutine(ConnectLineRoutine(_pathPoints));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(ConnectLineRoutine(_pathPoints));
     }
 
     private List<Vector3> StrightLine()
@@ -202,9 +205,6 @@ public class LongNode : Node, INodeAction
             // 현재 목표 포인트와의 거리 확인
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
-                // Combo
-                _stageGameRule.NodeSuccess(this);
-
                 // Particle
                 PopGraffitiParticle(mouseWorldPosition);
 
@@ -252,12 +252,15 @@ public class LongNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
-
         _isFollowingPath = false;
-        SetAlpha(0f, fadeTime, () => pool.Push(this));
+
+        // Combo
+        _stageGameRule.NodeSuccess(this);
 
         // Sound
         GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
+
+        SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
 
     #region Do Fade
@@ -272,9 +275,10 @@ public class LongNode : Node, INodeAction
         InitializeAlpha(_lineRenderer.material, startValue);
         InitializeAlpha(_followLineRenderer.material, startValue);
 
-        Sequence fadeSequence = DOTween.Sequence();
+        if (_fadeSequence.IsActive()) _fadeSequence.Complete();
+        _fadeSequence = DOTween.Sequence();
 
-        fadeSequence
+        _fadeSequence
             // SpriteRenderer
             .Join(_startPointRenderer.DOFade(endValue, fadeTime))
             .Join(_endPointRenderer.DOFade(endValue, fadeTime))

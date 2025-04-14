@@ -23,6 +23,8 @@ public class SingleNode : Node, INodeAction
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
     {
+        _renderer.DOComplete();
+
         float startValue = endValue == 1f ? 0f : 1f;
         Color color = _renderer.color;
         color.a = startValue;
