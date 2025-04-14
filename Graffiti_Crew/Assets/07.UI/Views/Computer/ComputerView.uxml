@@ -14,7 +14,7 @@
                 <engine:Label text="스테이지" class="grow-size-40" style="flex-grow: 0; color: rgb(243, 243, 243); -unity-text-align: upper-center;" />
             </engine:VisualElement>
             <engine:Button text="나가기" name="exit-btn" class="test" />
-            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: none;" />
+            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: flex;" />
             <engine:Instance template="SelectStageView" name="SelectStageView" style="height: 100%; display: none;" />
         </engine:VisualElement>
     </engine:VisualElement>

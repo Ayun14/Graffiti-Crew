@@ -1,5 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="ProductProfile" src="project://database/Assets/Resources/UI/Store/ProductProfile.uxml?fileID=9197481963319205126&amp;guid=30ed6e9c097fd2a4882a53044344b882&amp;type=3#ProductProfile" />
+    <engine:Template name="ItemCountView" src="project://database/Assets/07.UI/Views/Computer/Store/ItemCountView.uxml?fileID=9197481963319205126&amp;guid=f5bc81f4323b53f4bbd9d9dd4883630d&amp;type=3#ItemCountView" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:VisualElement name="m-container" style="flex-grow: 1;">
@@ -17,7 +18,7 @@
                             </Bindings>
                         </engine:Label>
                     </engine:VisualElement>
-                    <engine:Button name="exit-btn" class="grow-size-40" style="width: 80px; height: 80px; flex-grow: 0; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+                    <engine:Button name="exit-btn" class="grow-size-40" style="width: 80px; height: 80px; flex-grow: 0; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
                 </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
@@ -28,7 +29,7 @@
                 </engine:VisualElement>
                 <engine:VisualElement name="right-contant" style="flex-grow: 1; padding-top: 30px; padding-left: 30px; padding-bottom: 49px; padding-right: 50px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/shop-product-description-content.png?fileID=2800000&amp;guid=8822b4351c6e51042957a2416c52da7e&amp;type=3#shop-product-description-content&quot;);">
                     <engine:VisualElement name="data-details-content" style="flex-grow: 1; padding-top: 50px; padding-left: 50px; padding-bottom: 50px; padding-right: 50px; align-items: center;">
-                        <engine:VisualElement name="data-icon" style="background-image: url(&quot;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&quot;); width: 370px; height: 370px;">
+                        <engine:VisualElement name="data-icon" style="background-image: url(&apos;project://database/Assets/02.Sprite/Node/WhiteRectangle.png?fileID=1930152166&amp;guid=ba8486815b363894ca47ca928cb27386&amp;type=3#WhiteRectangle_0&apos;); width: 370px; height: 370px;">
                             <Bindings>
                                 <engine:DataBinding property="style.backgroundImage" data-source-path="image" data-source="project://database/Assets/08.SO/UI/Computer/Store/ProductDescriptionSO.asset?fileID=11400000&amp;guid=8ac528e931fbede4ca6a0eb447c6af80&amp;type=2#ProductDescriptionSO" binding-mode="ToTarget" />
                             </Bindings>
@@ -47,6 +48,7 @@
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/shop-deco.png?fileID=21300000&amp;guid=e4b40d69e6d15214d8a833fb8861092a&amp;type=3#shop-deco&quot;); width: 1920px; height: 1080px; top: -1px; left: 0;" />
+        <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/shop-deco.png?fileID=21300000&amp;guid=e4b40d69e6d15214d8a833fb8861092a&amp;type=3#shop-deco&quot;); width: 100%; height: 100%; position: absolute;" />
     </engine:VisualElement>
+    <engine:Instance template="ItemCountView" name="ItemCountView" style="position: absolute;" />
 </engine:UXML>
