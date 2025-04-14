@@ -76,13 +76,11 @@ public class ComboController : MonoBehaviour
 
         _currentTime = 0;
         StateTextUpdate(_comboSprite);
-        ComboTextUpdate(++_currentCombo);
+        _currentCombo += 500;
+        ComboTextUpdate(_currentCombo);
 
-        if (_currentCombo % 100 == 0)
+        if (_currentCombo % 1000 == 0)
         {
-            // Particle
-            //_uiParticle.Play();
-
             StartCoroutine(ComboEffectRoutine());
         }
 

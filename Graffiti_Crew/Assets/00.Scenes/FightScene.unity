@@ -5621,7 +5621,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 1239041058, guid: c473ed88d06b36546bc7a26b3e62185e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.9490196}
   m_FlipX: 0
   m_FlipY: 0
@@ -5629,7 +5629,7 @@ SpriteRenderer:
   m_Size: {x: 6.5641026, y: 6.5641026}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &630152380
@@ -12639,7 +12639,7 @@ GameObject:
   - component: {fileID: 1858405860}
   m_Layer: 0
   m_Name: TimelineController | Observer
-  m_TagString: NeedLoding
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14518,7 +14518,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7271626426940954005, guid: 693f4718e51417144a2039294c26c33c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

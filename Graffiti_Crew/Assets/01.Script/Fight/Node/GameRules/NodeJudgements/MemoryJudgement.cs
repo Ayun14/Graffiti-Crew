@@ -9,7 +9,6 @@ public class MemoryJudgement : NodeJudgement
 
         if (_stageGameRule.IsCanInput() && Input.GetMouseButtonDown(0))
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))

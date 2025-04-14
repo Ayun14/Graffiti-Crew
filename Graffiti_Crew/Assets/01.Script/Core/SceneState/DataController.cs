@@ -57,7 +57,10 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
+        {
+
             Invoke("FinishGiveData", 1f);
+        }
     }
             
     protected abstract void FinishGiveData(); // Change GameState...

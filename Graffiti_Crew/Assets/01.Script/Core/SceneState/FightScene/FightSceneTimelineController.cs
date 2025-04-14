@@ -1,10 +1,7 @@
-using AH.UI.Events;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
-public class FightSceneTimelineController : Observer<GameStateController>, INeedLoding
+public class FightSceneTimelineController : Observer<GameStateController>
 {
     [SerializeField] private PlayableDirector _beforeFightTimeline;
     private PlayableDirector _finishTimeline;
@@ -74,10 +71,5 @@ public class FightSceneTimelineController : Observer<GameStateController>, INeed
     public void DialoguePlayer()
     {
         _dialogueUIController.StartDialogue(2, 2);
-    }
-
-    public void LodingHandle(DataController dataController)
-    {
-        dataController.SuccessGiveData();
     }
 }
