@@ -2,6 +2,7 @@ using AH.UI.Data;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
+using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -68,24 +69,28 @@ namespace AH.UI.Views {
             _productScrollView.Clear();
             _categoryBtnList.Clear();
             foreach (var item in category.products) {
-                var asset = _productAsset.Instantiate();
+                VisualElement asset = _productAsset.Instantiate();
                 asset.Q<Label>("name-txt").text = item.itemName;
                 asset.Q<Label>("price-txt").text = item.price.ToString();
                 asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(item.image);
-                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, ProductSO>(ClickBuyProduct, item);
-
-                Label possessionTxt = asset.Q<Label>("possession-txt");
-                bool isHave = ComputerViewModel.HaveItem(item);
-                string txt = isHave ? "보유중" : "미보유";
-                Color color = isHave ? Color.green : Color.red;
-                possessionTxt.style.color = new StyleColor(color);
-                possessionTxt.text = txt.ToString();
+                asset.Q<Button>("buy-btn").RegisterCallback<ClickEvent, (ProductSO, VisualElement)>(ClickBuyProduct, (item, asset));
+                SetPossessionItem(item, asset);
 
                 _productScrollView.Add(asset);
             }
             _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();
             RegisterButtonCallbacks();
         }
+
+        private void SetPossessionItem(ProductSO item, VisualElement asset) {
+            Label possessionTxt = asset.Q<Label>("possession-txt");
+            bool isHave = ComputerViewModel.HaveItem(item);
+            string txt = isHave ? "보유중" : "미보유";
+            Color color = isHave ? Color.green : Color.red;
+            possessionTxt.style.color = new StyleColor(color);
+            possessionTxt.text = txt.ToString();
+        }
+
         private void SelectProduct(ClickEvent evt, int index) {
             ComputerViewModel.SetSelectProduct(_categoryIndex, index);
         }
@@ -94,10 +99,12 @@ namespace AH.UI.Views {
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[_categoryIndex]); // 새로운 category 띄우기
             ComputerViewModel.ClearSelectProductData(); // 보이던 상세 데이터 싹 비우고
         }
-        private void ClickBuyProduct(ClickEvent evt, ProductSO item) {
-            if (item.BuyItem()) { // 구매할 수 있음(돈 계산 함)
-                ItemSystem.AddItem(item);
+        private void ClickBuyProduct(ClickEvent evt, (ProductSO, VisualElement) data) {
+            Debug.Log("click");
+            if (data.Item1.BuyItem()) { // 구매할 수 있음(돈 계산 함)
+                ItemSystem.AddItem(data.Item1);
                 GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
+                SetPossessionItem(data.Item1, data.Item2);
             }
             else {
                 // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
