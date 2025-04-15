@@ -1,11 +1,11 @@
 using AH.UI.Events;
 using UnityEngine;
 
-public class PlayerNPCState : PlayerState
+public class PlayerTalkState : PlayerState
 {
     private bool _isDialogueFinished = false;
 
-    public PlayerNPCState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
+    public PlayerTalkState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
         : base(player, stateMachine, animBoolName)
     {
     }

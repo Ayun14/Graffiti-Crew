@@ -103,7 +103,10 @@ public class DialogueUIController : MonoBehaviour
                         CompleteTyping();
                     }
                     else
+                    {
+                        AnimationEvent.EndDialogueAnimation?.Invoke();
                         ShowNextDialogue();
+                    }
                 }
             }
 
@@ -252,10 +255,7 @@ public class DialogueUIController : MonoBehaviour
         if (sound != null)
             GameManager.Instance.SoundSystemCompo.PlaySound(sound);
 
-        if(dialogue.bgSprite != "" && _dialogueBG != null)
-        {
-            _dialogueBG.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Sprite/BG/{dialogue.bgSprite}");
-        }
+        AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);

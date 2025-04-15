@@ -9,7 +9,7 @@ public enum PlayerStateEnum
     Run,
     Interaction,
     Computer,
-    NPC,
+    Talk,
     Sit,
     SitStay,
     Mirror,

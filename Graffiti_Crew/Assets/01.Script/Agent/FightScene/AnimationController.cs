@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum AnimationEnum
 {
+    // Fight
     Idle,
     Ready,
     Paint,
@@ -10,6 +11,8 @@ public enum AnimationEnum
     Lose,
     People_Idle,
     People_Clap,
+
+    // Dialogue
     Talk
 }
 
