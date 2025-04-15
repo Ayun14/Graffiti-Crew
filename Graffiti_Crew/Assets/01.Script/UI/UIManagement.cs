@@ -1,12 +1,8 @@
-using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.Views;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine;
-using System;
-using System.Threading.Tasks;
 
 namespace AH.UI {
     public class ViewData {

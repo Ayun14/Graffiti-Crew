@@ -18,6 +18,7 @@ namespace AH.UI.Views {
         private int _categoryIndex;
 
         private VisualElement _itemCountView;
+        private VisualElement _hideScreen;
 
         public StoreView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -26,12 +27,20 @@ namespace AH.UI.Views {
             ComputerViewModel = viewModel as ComputerViewModel;
             _productAsset = Resources.Load<VisualTreeAsset>("UI/Store/ProductProfile");
 
+            ComputerEvent.BuyItemEvent += BuyItem;
             base.Initialize();
         }
+
+        public override void Dispose() {
+            ComputerEvent.BuyItemEvent -= BuyItem;
+            base.Dispose();
+        }
+
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _productScrollView = topElement.Q<ScrollView>("category-scrollView");
             _exitBtn = topElement.Q<Button>("exit-btn");
+            _hideScreen = topElement.Q<VisualElement>("check-hide-input");
             ComputerViewModel.ClearSelectProductData();
         }
         protected override void RegisterButtonCallbacks() {
@@ -44,6 +53,7 @@ namespace AH.UI.Views {
             foreach(var button in _categoryBtnList) {
                 button.RegisterCallback<ClickEvent, int>(ClickCategory, categoryBtnIndex++);
             }
+            _hideScreen.RegisterCallback<PointerDownEvent>(HideItemCountView);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
@@ -54,18 +64,23 @@ namespace AH.UI.Views {
             foreach (var button in _categoryBtnList) {
                 button.UnregisterCallback<ClickEvent, int>(ClickCategory);
             }
+            _hideScreen.UnregisterCallback<PointerDownEvent>(HideItemCountView);
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
-
-        private void ClickExitBtn(ClickEvent evt) {
-            ComputerEvent.HideViewEvent?.Invoke();
-        }
-
         public override void Show() {
             ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[0]);
             base.Show();
         }
 
+        #region Category
+        private void ClickExitBtn(ClickEvent evt) {
+            ComputerEvent.HideViewEvent?.Invoke();
+        }
+        private void ClickCategory(ClickEvent evt, int index) {
+            _categoryIndex = index;
+            ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[_categoryIndex]); // 새로운 category 띄우기
+            ComputerViewModel.ClearSelectProductData(); // 보이던 상세 데이터 싹 비우고
+        }
         private void ShowCurrentCategory(ProductCategorySO category) {
             _productScrollView.Clear();
             _categoryBtnList.Clear();
@@ -74,7 +89,7 @@ namespace AH.UI.Views {
                 asset.Q<Label>("name-txt").text = item.itemName;
                 asset.Q<Label>("price-txt").text = item.price.ToString();
                 asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(item.image);
-                asset.Q<Button>("buy-btn").RegisterCallback<PointerDownEvent, (ProductSO, VisualElement)>(ClickBuyProduct, (item, asset));
+                asset.Q<Button>("buy-btn").RegisterCallback<PointerDownEvent, (ProductSO, VisualElement, int)>(ClickBuyProduct, (item, asset, 1));
                 SetPossessionItem(item, asset);
 
                 _productScrollView.Add(asset);
@@ -82,7 +97,9 @@ namespace AH.UI.Views {
             _categoryBtnList = topElement.Query<Button>(className: "category-btn").ToList();
             RegisterButtonCallbacks();
         }
+        #endregion
 
+        #region Item
         private void SetPossessionItem(ProductSO item, VisualElement asset) {
             Label possessionTxt = asset.Q<Label>("possession-txt");
             bool isHave = ComputerViewModel.HaveItem(item);
@@ -91,29 +108,34 @@ namespace AH.UI.Views {
             possessionTxt.style.color = new StyleColor(color);
             possessionTxt.text = txt.ToString();
         }
-
         private void SelectProduct(ClickEvent evt, int index) {
             ComputerViewModel.SetSelectProduct(_categoryIndex, index);
         }
-        private void ClickCategory(ClickEvent evt, int index) {
-            _categoryIndex = index;
-            ShowCurrentCategory(ComputerViewModel.GetCategory().categoryList[_categoryIndex]); // 새로운 category 띄우기
-            ComputerViewModel.ClearSelectProductData(); // 보이던 상세 데이터 싹 비우고
-        }
-        private void ClickBuyProduct(PointerDownEvent evt, (ProductSO, VisualElement) data) {
+        private void ClickBuyProduct(PointerDownEvent evt, (ProductSO, VisualElement, int) data) {
             if (evt.button == 1) {
-                ComputerEvent.ShowItemCountViewEvent?.Invoke(evt.localPosition);
+                ComputerEvent.SetItemCountViewPosEvent?.Invoke(evt.position, data);
+                ComputerEvent.ActiveItemCountViewEvent?.Invoke(true);
             }
             else {
-                if (data.Item1.BuyItem()) { // 구매할 수 있음(돈 계산 함)
-                    ItemSystem.AddItem(data.Item1);
-                    GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
-                    SetPossessionItem(data.Item1, data.Item2);
-                }
-                else {
-                    // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
-                }
+                BuyItem(data);
             }
+        }
+
+        private void BuyItem((ProductSO, VisualElement, int) data) {
+            if (data.Item1.BuyItem(data.Item3)) { // 구매할 수 있음(돈 계산 함)
+                Debug.Log(data.Item3);
+                ItemSystem.AddItem(data.Item1, data.Item3);
+                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
+                SetPossessionItem(data.Item1, data.Item2);
+            }
+            else {
+                // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
+            }
+        }
+        #endregion
+
+        private void HideItemCountView(PointerDownEvent evt) {
+            ComputerEvent.ActiveItemCountViewEvent?.Invoke(false);
         }
     }
 }

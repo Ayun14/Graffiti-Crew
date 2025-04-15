@@ -1,6 +1,5 @@
 using AH.SaveSystem;
 using AH.UI.Data;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +30,13 @@ public class ItemSystem : MonoBehaviour {
             instance.AddSaveItem(item);
         }
     }
+    public static void AddItem(ProductSO item, int cnt) {
+        if (instance._itemDictionary.TryGetValue(item, out int val)) {
+            Debug.Log(cnt);
+            instance._itemDictionary[item] += cnt;
+            instance.AddSaveItem(item, cnt);
+        }
+    }
     public static void RemoveItem(ProductSO item, int count= 1) {
         if (instance._itemDictionary.TryGetValue(item, out int val)) {
             if (val - count >= 0) {
@@ -45,6 +51,14 @@ public class ItemSystem : MonoBehaviour {
             var conversionData = data as ItemSaveDataSO;
             if (conversionData.itemName == item.saveName) {
                 conversionData.count++;
+            }
+        }
+    }
+    private void AddSaveItem(ProductSO item, int cnt) {
+        foreach (var data in saveItemList.saveDataSOList) {
+            var conversionData = data as ItemSaveDataSO;
+            if (conversionData.itemName == item.saveName) {
+                conversionData.count += cnt;
             }
         }
     }

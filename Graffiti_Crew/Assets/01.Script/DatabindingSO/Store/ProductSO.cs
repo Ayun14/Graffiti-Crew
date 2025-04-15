@@ -13,5 +13,8 @@ namespace AH.UI.Data {
         public bool BuyItem() {
             return CoinSystem.MinusCoin(price);
         }
+        public bool BuyItem(int cnt) {
+            return CoinSystem.MinusCoin(price * cnt);
+        }
     }
 }

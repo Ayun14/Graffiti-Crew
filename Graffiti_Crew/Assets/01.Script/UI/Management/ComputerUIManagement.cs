@@ -2,7 +2,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -20,7 +19,7 @@ namespace AH.UI {
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
-            ComputerEvent.ShowItemCountViewEvent += ShowItemCountView;
+            ComputerEvent.ActiveItemCountViewEvent += ShowItemCountView;
 
             ComputerEvent.HideViewEvent += HideView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
@@ -30,7 +29,7 @@ namespace AH.UI {
             ComputerEvent.ShowSelectStageViewEvent -= ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
-            ComputerEvent.ShowItemCountViewEvent -= ShowItemCountView;
+            ComputerEvent.ActiveItemCountViewEvent -= ShowItemCountView;
 
             ComputerEvent.HideViewEvent -= HideView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
@@ -72,9 +71,15 @@ namespace AH.UI {
         private void ShowStageDescriptionView() {
             ShowView(_stageDescriptionView);
         }
-        private void ShowItemCountView(Vector2 mousePos) {
-            ComputerEvent.SetItemCountViewPosEvent?.Invoke(mousePos);
-            ShowView(_itemCountView);
+        private void ShowItemCountView(bool active) {
+            if (active) {
+                ShowView(_itemCountView);
+            }
+            else {
+                if (_itemCountView.Root.style.display == DisplayStyle.Flex) {
+                    HideView();
+                }
+            }
         }
     }
 }
