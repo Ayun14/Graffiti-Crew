@@ -1,5 +1,6 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -34,13 +35,6 @@ namespace AH.UI.Views {
             _playerProgress = topElement.Q<ProgressBar>("player-progress");
             _sprayProgress = topElement.Q<ProgressBar>("spray-total-amount-progress");
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
-        }
-
-        protected override void RegisterButtonCallbacks() {
-            base.RegisterButtonCallbacks();
-        }
-        protected override void UnRegisterButtonCallbacks() {
-            base.UnRegisterButtonCallbacks();
         }
         private void UpdateSpray() {
             if (_viewModel.GetSprayData().value <= 0) {

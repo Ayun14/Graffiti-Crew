@@ -7,5 +7,7 @@ namespace AH.UI.Events {
 
         public static Action<bool> ShowVictorScreenEvent;
         public static Action ChangeSprayValueEvent;
+
+        public static Action HideViewEvent;
     }
 }

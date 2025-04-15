@@ -22,12 +22,14 @@ namespace AH.UI {
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
             StageEvent.ShowResultViewEvent += ShowResultView;
             DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
+            StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
             StageEvent.ShowResultViewEvent -= ShowResultView;
             DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
+            StageEvent.HideViewEvent -= HideView;
         }
         protected override void Init() {
             base.Init();

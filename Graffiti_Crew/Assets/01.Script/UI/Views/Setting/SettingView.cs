@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 namespace AH.UI.Views {
     public enum LanguageType {
@@ -77,8 +76,7 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
-            Debug.Log("click");
-            HangOutEvent.HideViewEvent?.Invoke();
+            StageEvent.HideViewEvent?.Invoke();
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {
