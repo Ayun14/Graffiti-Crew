@@ -50,5 +50,8 @@
         </engine:VisualElement>
         <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/shop-deco.png?fileID=21300000&amp;guid=e4b40d69e6d15214d8a833fb8861092a&amp;type=3#shop-deco&quot;); width: 100%; height: 100%; position: absolute;" />
     </engine:VisualElement>
+    <engine:VisualElement picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center;">
+        <engine:VisualElement name="not-enough-view" class="not-enought-view show" />
+    </engine:VisualElement>
     <engine:Instance template="ItemCountView" name="ItemCountView" style="position: absolute; width: 100%; height: 100%;" />
 </engine:UXML>

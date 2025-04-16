@@ -11,6 +11,7 @@ namespace AH.UI.Events {
         public static Action<bool> ActiveItemCountViewEvent;
         public static Action<Vector2, (ProductSO, VisualElement, int)> SetItemCountViewPosEvent;
         public static Action<(ProductSO, VisualElement, int)> BuyItemEvent;
+        public static Action ShowNotEnoughViewEvent;
      
         public static Action HideViewEvent;
 

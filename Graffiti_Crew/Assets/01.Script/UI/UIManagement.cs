@@ -48,7 +48,7 @@ namespace AH.UI {
             Unregister();
         }
         protected virtual void Init() {
-
+            _uiDocument = GetComponent<UIDocument>();
         }
         protected virtual void SetupViews() {
             _fadeView = _uiDocument.rootVisualElement.Q<VisualElement>("fade-view");

@@ -5,7 +5,7 @@
     <engine:VisualElement name="item-count-container" style="position: absolute; width: 400px; height: 170px; background-color: rgb(255, 255, 255); padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; justify-content: center;">
         <engine:Label text="구매할 아이템 수" class="grow-size-30" style="flex-grow: 0;" />
         <engine:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center;">
-            <engine:IntegerField value="42" name="item-count-field" password="false" max-length="5" class="item-count-field grow-size-30" />
+            <engine:IntegerField value="1" name="item-count-field" password="false" max-length="5" class="item-count-field grow-size-30" />
             <engine:Button text="구매" name="buy-btn" class="grow-size-30" style="width: 27%; height: 60%; flex-grow: 0;" />
         </engine:VisualElement>
     </engine:VisualElement>

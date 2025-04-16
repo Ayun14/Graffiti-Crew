@@ -17,3 +17,16 @@
     flex-grow: 1;
     height: 60%;
 }
+
+.not-enought-view {
+    width: 500px;
+    height: 300px;
+    background-color: rgb(255, 85, 85);
+    opacity: 0;
+    transition-duration: 1s;
+    transition-timing-function: ease-out-back;
+}
+
+.show {
+    opacity: 1;
+}

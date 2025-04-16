@@ -46,9 +46,11 @@ namespace AH.UI.Views {
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             int scrollviewIndex = 0;
-            foreach (var child in _productScrollView.Children()) {
-                child.RegisterCallback<ClickEvent, int>(SelectProduct, scrollviewIndex++);
-            }
+            //foreach (var child in _productScrollView.Children()) {
+            //    VisualElement checker = child.Q<VisualElement>("click-checker");
+            //    Debug.Log(checker);
+            //    checker.RegisterCallback<ClickEvent, int>(SelectProduct, scrollviewIndex++);
+            //}
             int categoryBtnIndex = 0;
             foreach(var button in _categoryBtnList) {
                 button.RegisterCallback<ClickEvent, int>(ClickCategory, categoryBtnIndex++);
@@ -89,7 +91,7 @@ namespace AH.UI.Views {
                 asset.Q<Label>("name-txt").text = item.itemName;
                 asset.Q<Label>("price-txt").text = item.price.ToString();
                 asset.Q<VisualElement>("item-img").style.backgroundImage = new StyleBackground(item.image);
-                asset.Q<Button>("buy-btn").RegisterCallback<PointerDownEvent, (ProductSO, VisualElement, int)>(ClickBuyProduct, (item, asset, 1));
+                asset.Q<VisualElement>("buy-btn").RegisterCallback<PointerDownEvent, (ProductSO, VisualElement, int)>(ClickBuyProduct, (item, asset, 1));
                 SetPossessionItem(item, asset);
 
                 _productScrollView.Add(asset);
@@ -112,12 +114,12 @@ namespace AH.UI.Views {
             ComputerViewModel.SetSelectProduct(_categoryIndex, index);
         }
         private void ClickBuyProduct(PointerDownEvent evt, (ProductSO, VisualElement, int) data) {
-            if (evt.button == 1) {
+            if (evt.button == 0) {
+                BuyItem(data);
+            }
+            else if (evt.button == 1) {
                 ComputerEvent.SetItemCountViewPosEvent?.Invoke(evt.position, data);
                 ComputerEvent.ActiveItemCountViewEvent?.Invoke(true);
-            }
-            else {
-                BuyItem(data);
             }
         }
 
@@ -129,7 +131,8 @@ namespace AH.UI.Views {
                 SetPossessionItem(data.Item1, data.Item2);
             }
             else {
-                // 여기서 돈이 -인지 아닌지 bool로 받고 그거에 따라서 구매 실패 띄우기
+                Debug.Log("너 돈 업서");
+                ComputerEvent.ShowNotEnoughViewEvent?.Invoke();
             }
         }
         #endregion

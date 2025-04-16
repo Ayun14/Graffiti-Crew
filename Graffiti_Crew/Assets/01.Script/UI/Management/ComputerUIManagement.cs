@@ -11,6 +11,7 @@ namespace AH.UI {
         private StoreView _storeView;
         private StageDescriptionView _stageDescriptionView;
         private ItemCountView _itemCountView;
+        private NotEnoughView _notEnoughView;
 
         private ComputerViewModel _viewModel;
 
@@ -20,6 +21,7 @@ namespace AH.UI {
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
             ComputerEvent.ActiveItemCountViewEvent += ShowItemCountView;
+            ComputerEvent.ShowNotEnoughViewEvent += ShowNotEnoughView;
 
             ComputerEvent.HideViewEvent += HideView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
@@ -30,6 +32,7 @@ namespace AH.UI {
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
             ComputerEvent.ActiveItemCountViewEvent -= ShowItemCountView;
+            ComputerEvent.ShowNotEnoughViewEvent -= ShowNotEnoughView;
 
             ComputerEvent.HideViewEvent -= HideView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
@@ -37,7 +40,6 @@ namespace AH.UI {
 
         protected override void Init() {
             base.Init();
-            _uiDocument = GetComponent<UIDocument>();
             _viewModel = new ComputerViewModel(_model as ComputerModel);
         }
         protected override void SetupViews() {
@@ -49,6 +51,7 @@ namespace AH.UI {
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
+            _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);
 
             _computerView.Show();
         }
@@ -80,6 +83,9 @@ namespace AH.UI {
                     HideView();
                 }
             }
+        }
+        private void ShowNotEnoughView() {
+            ShowView(_notEnoughView);
         }
     }
 }

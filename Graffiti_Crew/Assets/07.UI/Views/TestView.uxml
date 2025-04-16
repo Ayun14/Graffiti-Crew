@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="ProductProfile" src="project://database/Assets/Resources/UI/Store/ProductProfile.uxml?fileID=9197481963319205126&amp;guid=30ed6e9c097fd2a4882a53044344b882&amp;type=3#ProductProfile" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(213, 255, 245);">
-        <engine:Slider label="Slider" value="42" high-value="100" style="width: 60%;" />
-        <engine:DropdownField label="Dropdown" choices="테스트1,테스트2" index="0" style="width: 60%;" />
-    </engine:VisualElement>
+    <engine:Instance template="ProductProfile" />
+    <engine:Button text="Button" name="test" />
+    <engine:VisualElement name="click-target" style="flex-grow: 1; background-color: rgb(124, 255, 135);" />
 </engine:UXML>
