@@ -75,7 +75,7 @@ public class PressNode : Node, INodeAction
         StartCoroutine(RingColorRoutine());
 
         // Sound
-        _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true)
+        _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long)
             .GetComponent<SoundObject>();
     }
 

@@ -25,7 +25,7 @@ public class Computer : InteractionObject
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
 
-        _hangoutBGM = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.HangOut, true);
+        _hangoutBGM = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.HangOut);
     }
 
     public void ComputerEvent()
@@ -42,7 +42,7 @@ public class Computer : InteractionObject
         _transitionMat.DOFloat(0f, "_Lerp", 0.3f);
         yield return new WaitForSeconds(0.8f);
 
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.HangOut);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.HangOut);
         SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
     }
 }

@@ -125,7 +125,7 @@ namespace AH.UI.Views {
             if (data.Item1.BuyItem(data.Item3)) { // 구매할 수 있음(돈 계산 함)
                 Debug.Log(data.Item3);
                 ItemSystem.AddItem(data.Item1, data.Item3);
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Buy);
+                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Buy);
                 SetPossessionItem(data.Item1, data.Item2);
             }
             else {

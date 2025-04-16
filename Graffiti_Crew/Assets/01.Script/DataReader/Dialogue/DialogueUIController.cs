@@ -48,8 +48,6 @@ public class DialogueUIController : MonoBehaviour
     private int _dialogueStartID = 0;
     private int _dialogueEndID = 0;
 
-    private AudioSource _textTypingAudio;
-
     private Action _onDialogueComplete;
     public Action<bool> ChangeDialogueUI;
 
@@ -99,7 +97,7 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (_isTyping)
                     {
-                        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
+                        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
                         CompleteTyping();
                     }
                     else
@@ -112,7 +110,7 @@ public class DialogueUIController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
                 _currentDialogueIndex = _filteredDialogueList.Count;
                 ShowNextDialogue();
             }
@@ -296,7 +294,7 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator TypingEffect(string fullText)
     {
-        _textTypingAudio = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Text_Typing, true);
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Text_Typing);
         _isTyping = true;
         _dialogueUIData.dialogue = "";
 
@@ -310,7 +308,7 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         _isTyping = false;
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Text_Typing);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
     private void CompleteTyping()

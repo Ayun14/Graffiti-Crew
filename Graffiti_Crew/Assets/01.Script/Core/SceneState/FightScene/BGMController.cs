@@ -17,7 +17,7 @@ public class BGMController : Observer<GameStateController>
 
     private void OnDestroy()
     {
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_After);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
 
         Detach();
     }
@@ -28,21 +28,21 @@ public class BGMController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Before, true);
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Before);
             }
 
             if (mySubject.GameState == GameState.Finish)
             {
-                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_Middle);
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Middle);
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
+                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
             }
         }
     }
 
     public void FightBeforeBGMStop()
     {
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_Before);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Before);
     }
 
     private void HandleRivalCheckEvent()
@@ -60,16 +60,16 @@ public class BGMController : Observer<GameStateController>
 
     private IEnumerator CountDownRoutine()
     {
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Yeah);
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.DJ_Sound);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Yeah);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
 
-        _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_Middle, true);
+        _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Middle);
     }
 
     #endregion

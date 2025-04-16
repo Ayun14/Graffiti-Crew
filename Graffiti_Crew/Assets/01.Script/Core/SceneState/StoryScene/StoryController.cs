@@ -1,8 +1,6 @@
 using AH.UI.Events;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StoryController : Observer<GameStateController>, INeedLoding
@@ -37,7 +35,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
             if (mySubject.GameState == GameState.Dialogue)
             {
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
@@ -64,7 +62,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
-            GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Fight_After);
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
 
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }

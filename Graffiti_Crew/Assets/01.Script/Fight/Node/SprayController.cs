@@ -56,7 +56,7 @@ public class SprayController : MonoBehaviour
             AddShakeAmount(_sprayAddAmount);
 
             //Sound
-            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Shake);
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Shake);
         }
         
         if (_isShaking == true && Input.GetMouseButtonDown(1))
@@ -65,7 +65,7 @@ public class SprayController : MonoBehaviour
             AddShakeAmount(_sprayAddAmount);
 
             //Sound
-            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Shake);
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Shake);
         }
     }
 

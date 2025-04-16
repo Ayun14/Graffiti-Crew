@@ -10,7 +10,7 @@ public class PlayerComputerState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Typing);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Typing);
 
         _player.MovementCompo.StopImmediately(true);
         _player.playerData.playerPosition = _player.transform.position;

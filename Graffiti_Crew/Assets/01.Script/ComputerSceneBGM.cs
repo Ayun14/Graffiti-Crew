@@ -4,11 +4,11 @@ public class ComputerSceneBGM : MonoBehaviour
 {
     private void Start()
     {
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Request, true);
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Request);
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Request);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Request);
     }
 }
