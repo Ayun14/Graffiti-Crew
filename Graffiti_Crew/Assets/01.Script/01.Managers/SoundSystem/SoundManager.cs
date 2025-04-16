@@ -2,11 +2,8 @@ using AH.SaveSystem;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
@@ -16,9 +13,15 @@ public class SoundManager : MonoBehaviour
     [Space]
     [SerializeField] private IntSaveDataSO _bgmData;
     [SerializeField] private IntSaveDataSO _sfxData;
-
-    private float bgmVolume => _bgmData.data * 0.01f;
+    private float bgmVolume =>_bgmData.data * 0.01f;
     private float sfxVolume => _sfxData.data * 0.01f;
+
+    private void OnEnable() {
+        GameEvents.BgmChangeEvnet += ChangedBGMVolume;
+    }
+    private void OnDisable() {
+        GameEvents.BgmChangeEvnet -= ChangedBGMVolume;
+    }
 
     private Dictionary<SoundType, SoundObject> _loopingSounds = new();
 
@@ -43,11 +46,11 @@ public class SoundManager : MonoBehaviour
 
             audioSource.loop = true;
             audioSource.Play();
-            Debug.Log(sfxVolume);
+
             // Volume
             audioSource.volume = 0;
-            audioSource.DOFade(soundList.volume * sfxVolume, 0.2f)
-                .OnComplete(() => audioSource.volume = soundList.volume * sfxVolume);
+            audioSource.DOFade(soundList.volume, 0.2f)
+                .OnComplete(() => audioSource.volume = soundList.volume);
 
             StopBGM(sound);
             _loopingSounds[sound] = soundObj;

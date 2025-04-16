@@ -76,12 +76,12 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
-            Debug.Log("click");
             StageEvent.HideViewEvent?.Invoke();
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
+            GameEvents.BgmChangeEvnet?.Invoke();
             viewModel.SetBGMValue(bgmValue);
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
