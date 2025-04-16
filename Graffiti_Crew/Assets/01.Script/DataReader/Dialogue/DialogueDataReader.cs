@@ -81,8 +81,8 @@ public class DialogueDataReader : DataReaderBase
                 case "Sound Name":
                     soundName = list[i].value;
                     break;
-                case "BGSprite":
-                    if (list[i].value == "")
+                case "Anim Name":
+                    if (string.IsNullOrWhiteSpace(list[i].value))
                         animName = "Idle";
                     else
                         animName = list[i].value;

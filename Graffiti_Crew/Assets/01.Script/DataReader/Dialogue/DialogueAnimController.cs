@@ -42,7 +42,6 @@ public class DialogueAnimController : MonoBehaviour
 
         if (_animValue != 0)
         {
-            Debug.Log(dialogue.animName);
             AnimationEvent.SetAnimation?.Invoke(_animValue,
                 (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName));
         }
