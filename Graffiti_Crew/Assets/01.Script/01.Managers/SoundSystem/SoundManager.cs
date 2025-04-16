@@ -2,8 +2,11 @@ using AH.SaveSystem;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
@@ -19,7 +22,7 @@ public class SoundManager : MonoBehaviour
 
     private Dictionary<SoundType, SoundObject> _loopingSounds = new();
 
-    public AudioSource PlaySound(SoundType sound, bool loop = false, float pitch = 1, float volume = 1)
+    public AudioSource PlayBGM(SoundType sound, float pitch = 1)
     {
         SoundList soundList = _soundsSO.sounds[(int)sound];
         AudioClip[] clips = soundList.sounds;
@@ -38,34 +41,68 @@ public class SoundManager : MonoBehaviour
             // Pitch
             audioSource.pitch = pitch;
 
-            audioSource.loop = loop;
+            audioSource.loop = true;
             audioSource.Play();
             Debug.Log(sfxVolume);
             // Volume
             audioSource.volume = 0;
-            audioSource.DOFade(volume * soundList.volume * sfxVolume, 0.2f)
-                .OnComplete(() => audioSource.volume = volume * soundList.volume * sfxVolume);
+            audioSource.DOFade(soundList.volume * sfxVolume, 0.2f)
+                .OnComplete(() => audioSource.volume = soundList.volume * sfxVolume);
 
-            if (loop)
-            {
-                StopLoopSound(sound);
-                _loopingSounds[sound] = soundObj;
-            }
-            else soundObj.PushObject(false);
+            StopBGM(sound);
+            _loopingSounds[sound] = soundObj;
         }
 
         return audioSource;
     }
 
-    public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1, float volume = 1)
+    public AudioSource PlaySFX(SoundType sound, float pitch = 1)
+    {
+        SoundList soundList = _soundsSO.sounds[(int)sound];
+        AudioClip[] clips = soundList.sounds;
+        AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+
+        SoundObject soundObj = _poolManager.Pop(_soundObjectTypeSO) as SoundObject;
+        AudioSource audioSource = soundObj.AudioSource;
+
+        if (audioSource)
+        {
+            audioSource.Stop();
+
+            audioSource.outputAudioMixerGroup = soundList.mixer;
+            audioSource.clip = randomClip;
+
+            // Pitch
+            audioSource.pitch = pitch;
+
+            audioSource.loop = false;
+            audioSource.Play();
+
+            // Volume
+            audioSource.volume = 0;
+            audioSource.DOFade(soundList.volume * sfxVolume, 0.2f)
+                .OnComplete(() => audioSource.volume = soundList.volume * sfxVolume);
+
+            soundObj.PushObject(false);
+        }
+
+        return audioSource;
+    }
+
+    public AudioSource PlaySound(string soundName, bool loop = false, float pitch = 1)
     {
         if (Enum.TryParse(soundName, true, out SoundType soundType))
-            return PlaySound(soundType, loop, pitch, volume * sfxVolume);
+        {
+            if (loop)
+                return PlayBGM(soundType, pitch);
+            else
+                return PlaySFX(soundType, pitch);
+        }
 
         return null;
     }
 
-    public void StopLoopSound(SoundType sound)
+    public void StopBGM(SoundType sound)
     {
         if (_loopingSounds.TryGetValue(sound, out SoundObject soundObj))
         {
@@ -74,6 +111,12 @@ public class SoundManager : MonoBehaviour
 
             _loopingSounds.Remove(sound);
         }
+    }
+
+    public void ChangedBGMVolume()
+    {
+        foreach (KeyValuePair<SoundType, SoundObject> sound in _loopingSounds)
+            sound.Value.AudioSource.volume = bgmVolume;
     }
 }
 

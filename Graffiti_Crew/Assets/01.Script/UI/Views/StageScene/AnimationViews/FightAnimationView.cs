@@ -74,7 +74,7 @@ public class FightAnimationView : UIView {
     #endregion
     private async void StartRivalCheck() {
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.RivalCheck);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.RivalCheck);
 
         // In
         _colorBackground.AddToClassList("default-color-move-screen");
@@ -96,7 +96,7 @@ public class FightAnimationView : UIView {
         _blueLine.AddToClassList("default-blueline-move-outside");
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Clock, true);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Clock);
     }
     private void Show(VisualElement view) {
         view.style.display = DisplayStyle.Flex;

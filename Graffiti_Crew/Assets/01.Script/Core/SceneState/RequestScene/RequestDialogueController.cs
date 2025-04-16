@@ -39,7 +39,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
             {
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Request);
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Request);
 
                 AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.Talk);
                 AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Talk);
@@ -83,7 +83,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
 
-            GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Request);
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Request);
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
 

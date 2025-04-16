@@ -8,7 +8,7 @@ public class TutorialDataController : DataController
 
     private void Start()
     {
-        _bgm = GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Fight_After, true);
+        _bgm = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
     }
 
     protected override void NotifyHandleChild()

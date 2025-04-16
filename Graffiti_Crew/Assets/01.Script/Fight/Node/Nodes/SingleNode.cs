@@ -50,7 +50,7 @@ public class SingleNode : Node, INodeAction
         PopGraffitiParticle(transform.position);
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Short);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Short);
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
 

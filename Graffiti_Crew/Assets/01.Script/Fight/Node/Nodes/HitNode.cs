@@ -52,7 +52,7 @@ public class HitNode : Node, INodeAction
         PopGraffitiParticle(transform.position);
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Short);
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Short);
 
         SetHitCount();
     }

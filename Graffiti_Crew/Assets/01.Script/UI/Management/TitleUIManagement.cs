@@ -35,9 +35,9 @@ namespace AH.UI {
 
         private async void PlayerBGM()
         {
-            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Title_Front);
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Title_Front);
             await Task.Delay(4304);
-            GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Title_Back, true);
+            GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Title_Back);
         }
 
         protected override void OnEnable() {

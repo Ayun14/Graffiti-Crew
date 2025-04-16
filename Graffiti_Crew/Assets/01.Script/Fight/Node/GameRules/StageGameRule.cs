@@ -133,12 +133,12 @@ public abstract class StageGameRule : Observer<GameStateController>
                 mySubject?.InvokeBlindEvent();
 
                 // Sound
-                GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Throw_Egg);
+                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Throw_Egg);
             }
         }
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Miss, false, Random.Range(0.8f, 1.2f));
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, Random.Range(0.8f, 1.2f));
         mySubject.InvokeNodeFailEvent();
         _comboController.FailCombo();
     }

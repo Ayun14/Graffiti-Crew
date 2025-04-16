@@ -166,7 +166,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySound(SoundType.Spray_Long, true).GetComponent<SoundObject>();
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long);
     }
 
     #region Clear Check
@@ -181,7 +181,7 @@ public class LongNode : Node, INodeAction
                 _stageGameRule.NodeFalse(this);
 
                 // Sound
-                GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
             }
 
             ResetNode();
@@ -235,7 +235,7 @@ public class LongNode : Node, INodeAction
         _currentTargetIndex = 0;
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
     }
 
     #endregion
@@ -258,7 +258,7 @@ public class LongNode : Node, INodeAction
         _stageGameRule.NodeSuccess(this);
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.StopLoopSound(SoundType.Spray_Long);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
