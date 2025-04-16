@@ -76,6 +76,7 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
+            Debug.Log("click");
             StageEvent.HideViewEvent?.Invoke();
         }
 
