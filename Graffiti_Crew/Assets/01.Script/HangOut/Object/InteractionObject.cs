@@ -11,7 +11,7 @@ public class InteractionObject : MonoBehaviour
     private Vector3 _targetPos;
 
     public Collider Col => _col;
-    private Collider _col;
+    protected Collider _col;
 
     protected virtual void Awake()
     {

@@ -12,48 +12,47 @@ public class SplashController : MonoBehaviour
     [SerializeField] private float _fadeSpeed;
     [SerializeField] private float _fadeSlowSpeed;
 
-    public static bool isfinished = true;
+    public bool isFinished = false;
 
     public IEnumerator Splash()
     {
-        isfinished = false;
-        StartCoroutine(FadeOut(true, false));
-        yield return new WaitUntil(() => isfinished);
-        isfinished = false;
-        StartCoroutine(FadeIn(true, false));
+        isFinished = false;
+        yield return StartCoroutine(FadeOut(true, false));
+        isFinished = false;
+        yield return StartCoroutine(FadeIn(true, false));
     }
 
     public IEnumerator FadeOut(bool isWhite, bool isSlow)
     {
-        Color color = (isWhite == true) ? _colorWhite : _colorBlack;
+        Color color = isWhite ? _colorWhite : _colorBlack;
         color.a = 0;
-
         _splashImage.color = color;
 
         while (color.a < 1)
         {
-            color.a += (isSlow == true) ? _fadeSlowSpeed : _fadeSpeed;
+            color.a += (isSlow ? _fadeSlowSpeed : _fadeSpeed) * Time.deltaTime;
+            color.a = Mathf.Min(color.a, 1f);
             _splashImage.color = color;
             yield return null;
         }
 
-        isfinished = true;
+        isFinished = true;
     }
 
     public IEnumerator FadeIn(bool isWhite, bool isSlow)
     {
-        Color color = (isWhite == true) ? _colorWhite : _colorBlack;
+        Color color = isWhite ? _colorWhite : _colorBlack;
         color.a = 1;
-
         _splashImage.color = color;
 
         while (color.a > 0)
         {
-            color.a -= (isSlow == true) ? _fadeSlowSpeed : _fadeSpeed;
+            color.a -= (isSlow ? _fadeSlowSpeed : _fadeSpeed) * Time.deltaTime;
+            color.a = Mathf.Max(color.a, 0f);
             _splashImage.color = color;
             yield return null;
         }
 
-        isfinished = true;
+        isFinished = true;
     }
 }
