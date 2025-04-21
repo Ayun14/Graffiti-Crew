@@ -6,7 +6,9 @@ namespace AH.UI.Events {
         public static Action<bool> ShowDialougeViewEvent;
         public static Action<bool> ShowMiniDialougeViewEvent;
 
-        public static Action<DialougeCharacter> SetCharacterEvent;
+        public static Action<DialougeCharacter> SetDialogueEvent;
         public static Action ChangeCharacterEvent;
+        public static Action ShowFeelingDialogueEvent;
+        public static Action DialogueSkipEvent;
     }
 }

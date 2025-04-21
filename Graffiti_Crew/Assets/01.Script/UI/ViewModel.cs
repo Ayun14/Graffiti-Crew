@@ -14,7 +14,7 @@ namespace AH.UI.ViewModels {
         public virtual void SetBGMValue(int value) {
 
         }
-        public virtual void SetVFXValue(int value) {
+        public virtual void SetSFXValue(int value) {
 
         }
         public virtual int GetBGMValue() {

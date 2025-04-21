@@ -84,7 +84,7 @@ namespace AH.UI.Views {
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
-            viewModel.SetVFXValue(vfxValue);
+            viewModel.SetSFXValue(vfxValue);
         }
         private void ClickResetSaveData(ClickEvent evt) {
             // 리셋 연결 안함
