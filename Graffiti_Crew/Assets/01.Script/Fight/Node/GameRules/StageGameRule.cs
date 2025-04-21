@@ -84,9 +84,24 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     #endregion
 
-    #region Node Clear
+    #region Node Clear Check
 
-    public abstract void NodeClear();
+    public virtual void NodeClear()
+    {
+        // Combo
+        _comboController.SuccessCombo();
+    }
+
+    public virtual void NodeFalse()
+    {
+        if (stageResult != null && stageRule == StageRuleType.OneTouchRule)
+            stageResult.value++;
+
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, Random.Range(0.8f, 1.2f));
+        mySubject.InvokeNodeFailEvent();
+        _comboController.FailCombo();
+    }
 
     public async void AllNodeClear()
     {
@@ -105,42 +120,6 @@ public abstract class StageGameRule : Observer<GameStateController>
 
             mySubject.ChangeGameState(GameState.Dialogue);
         }
-    }
-
-    #endregion
-
-    #region Combo
-
-    public void NodeSuccess(Node node)
-    {
-        if (node == null) return;
-
-        // Combo
-        _comboController.SuccessCombo();
-    }
-
-    public virtual void NodeFalse(Node node)
-    {
-        if (node == null) return;
-
-        if (stageResult != null && stageRule == StageRuleType.OneTouchRule)
-            stageResult.value++;
-
-        if (node.GetNodeType() == NodeType.LongNode)
-        {
-            if (!mySubject.IsBlind && Random.Range(0, 100f) < 30)
-            {
-                mySubject?.InvokeBlindEvent();
-
-                // Sound
-                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Throw_Egg);
-            }
-        }
-
-        // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, Random.Range(0.8f, 1.2f));
-        mySubject.InvokeNodeFailEvent();
-        _comboController.FailCombo();
     }
 
     #endregion

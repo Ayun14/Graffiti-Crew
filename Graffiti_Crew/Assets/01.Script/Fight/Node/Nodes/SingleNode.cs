@@ -43,9 +43,6 @@ public class SingleNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
 
-        // Combo
-        _stageGameRule.NodeSuccess(this);
-
         // Particle
         PopGraffitiParticle(transform.position);
 

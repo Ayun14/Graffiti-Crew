@@ -114,7 +114,6 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isFight = mySubject.GameState == GameState.Fight
                 || mySubject.GameState == GameState.Tutorial;
             bool isFinish = mySubject.GameState == GameState.Finish;
-            bool isResult = mySubject.GameState == GameState.Result;
 
             // Loding
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
@@ -129,16 +128,15 @@ public class FightSceneUIController : Observer<GameStateController>
                 StopAllCoroutines();
                 StartCoroutine(OffBlindRoutine());
             }
-            else
-                _blindPanel.gameObject.SetActive(isFight);
+            else _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            if (isFinish) StartCoroutine(FinishRoutine());
+            if (isFinish)
+            {
+                StartCoroutine(FinishRoutine());
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Clock);
+            }
             _finishPanel.gameObject.SetActive(isFinish);
-            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Clock);
-
-            // Result
-            StageEvent.ShowResultViewEvent?.Invoke(isResult);
         }
     }
 
@@ -306,8 +304,9 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    public void SetResultUI()
+    public void SetResultUI() // 이거 뭔지 물어보기
     {
         UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
+        StageEvent.ShowResultViewEvent?.Invoke(true);
     }
 }
