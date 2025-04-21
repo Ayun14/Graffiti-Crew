@@ -8,7 +8,6 @@ public class NPC : InteractionObject
 
     private GameObject _visual;
     private StageSaveDataSO _lastStageDataSO;
-    private Collider _col;
 
     [HideInInspector] public int startIndex;
     [HideInInspector] public int endIndex;
@@ -24,7 +23,7 @@ public class NPC : InteractionObject
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
         startIndex = _npcSO.startIndex;
         endIndex = _npcSO.endIndex;

@@ -4,40 +4,35 @@ using UnityEngine.UI;
 
 public class CutSceneController : MonoBehaviour
 {
-    public static bool isFinished = false;
+    public bool isFinished = false;
 
     [SerializeField] private SplashController _splashController;
 
-    [SerializeField] private Image _cutSsceneImg;
+    [SerializeField] private Image _cutSceneImg;
 
-    public IEnumerator CutSceneRoutine(string p_CutSceneName, bool p_isShow)
+    public IEnumerator CutSceneRoutine(string cutSceneName, bool isShow)
     {
-        SplashController.isfinished = false;
-        StartCoroutine(_splashController.FadeOut(true, false));
-        yield return new WaitUntil(() => SplashController.isfinished);
+        _splashController.isFinished = false;
+        yield return StartCoroutine(_splashController.FadeOut(false, true));
 
-        if (p_isShow)
+        if (isShow)
         {
-            Sprite t_sprite = Resources.Load<Sprite>("CutScene/" + p_CutSceneName);
-            if (t_sprite != null)
+            Sprite sprite = Resources.Load<Sprite>("Sprite/CutScene/" + cutSceneName);
+            if (sprite != null)
             {
-                _cutSsceneImg.gameObject.SetActive(true);
-                _cutSsceneImg.sprite = t_sprite;
-
+                _cutSceneImg.gameObject.SetActive(true);
+                _cutSceneImg.sprite = sprite;
             }
             else
-            {
                 Debug.Log("NO CutScene");
-            }
         }
         else
         {
-            _cutSsceneImg.gameObject.SetActive(false);
+            _cutSceneImg.gameObject.SetActive(false);
         }
 
-        SplashController.isfinished = false;
-        StartCoroutine(_splashController.FadeIn(true, false));
-        yield return new WaitUntil(() => SplashController.isfinished);
+        _splashController.isFinished = false;
+        yield return StartCoroutine(_splashController.FadeIn(false, true));
 
         yield return new WaitForSeconds(0.5f);
 
