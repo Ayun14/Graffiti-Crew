@@ -232,8 +232,9 @@ public class DialogueUIController : MonoBehaviour
 
             yield return null;
 
-            if (_filteredDialogueList[0].characterName == "지아")
+            if (_filteredDialogueList[0].characterName == "지아") {
                 DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+            }
             else if (_filteredDialogueList[0].characterName == null)
                 DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
             else
