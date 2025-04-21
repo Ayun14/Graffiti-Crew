@@ -81,9 +81,6 @@ public class HitNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
 
-        // Combo
-        _stageGameRule.NodeSuccess(this);
-
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
 

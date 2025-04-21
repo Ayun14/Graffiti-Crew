@@ -34,7 +34,7 @@ public class ClickJudgement : NodeJudgement
                 else // HitNode Combo ½ÇÆÐ
                 {
                     if (currentNode != null && currentNode.GetNodeType() == NodeType.HitNode)
-                        _stageGameRule.NodeFalse(currentNode);
+                        _stageGameRule.NodeFalse();
                 }
             }
         }
@@ -42,14 +42,15 @@ public class ClickJudgement : NodeJudgement
 
     public override void NodeClear(Node node)
     {
-        base.NodeClear(node);
+        if (node == null || currentNode == null) return;
 
-        // NodeClear
         if (node == currentNode)
         {
             // Player Slider Update
             float percent = ++_clearNodeCnt / (float)_stageGameRule.NodeCnt;
             _playerSliderValueSO.Value = _playerSliderValueSO.max * percent;
         }
+
+        base.NodeClear(node);
     }
 }

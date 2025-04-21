@@ -38,6 +38,8 @@ public abstract class NodeJudgement : MonoBehaviour
     }
     #endregion
 
+    #region Node Clear Check
+
     public virtual void NodeClear(Node node)
     {
         if (node == null || currentNode == null) return;
@@ -50,4 +52,11 @@ public abstract class NodeJudgement : MonoBehaviour
             currentNode = null;
         }
     }
+
+    public virtual void NodeFalse()
+    {
+        _stageGameRule.NodeFalse();
+    }
+
+    #endregion
 }

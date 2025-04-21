@@ -12,9 +12,9 @@ public class OneTouchGameRule : StageGameRule
             _graffitiRenderer.SetSprite(_nodeJudgement.currentNode.GetNodeDataSO().graffitiSprite);
     }
 
-    public override void NodeFalse(Node node)
+    public override void NodeFalse()
     {
-        base.NodeFalse(node);
+        base.NodeFalse();
 
         if (++falseCount == 5)
         {
