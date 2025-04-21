@@ -4,9 +4,9 @@ using UnityEngine.Playables;
 public class FightSceneTimelineController : Observer<GameStateController>
 {
     [SerializeField] private PlayableDirector _beforeFightTimeline;
+    [SerializeField] private PlayableDirector _endFightTimeline;
     private PlayableDirector _finishTimeline;
     private PlayableDirector _resultTimeline;
-    private PlayableDirector _endFightTimeline;
     private DialogueUIController _dialogueUIController;
 
     private void Awake()
@@ -15,7 +15,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
-        _endFightTimeline = transform.Find("EndFightTimeline").GetComponent<PlayableDirector>();
+        //_endFightTimeline = transform.Find("EndFightTimeline").GetComponent<PlayableDirector>();
         _dialogueUIController = transform.Find("FightUI").GetComponent<DialogueUIController>();
     }
 
@@ -58,6 +58,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
     public void ResultTimelineEnd()
     {
+        Debug.Log("start");
         _endFightTimeline?.Play();
     }
 
