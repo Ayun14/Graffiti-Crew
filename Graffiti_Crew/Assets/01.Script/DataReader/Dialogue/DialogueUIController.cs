@@ -60,7 +60,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
-        LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
+        //LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
         SaveDataEvents.LoadEndEvent += HandleTutorialDialogue;
         ChangeDialogueUI += HandleDialogueUIData;
 
@@ -69,12 +69,12 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
-        SetLanguageType();
+        //SetLanguageType();
     }
 
     private void OnDisable()
     {
-        LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        //LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
         SaveDataEvents.LoadEndEvent -= HandleTutorialDialogue;
         ChangeDialogueUI -= HandleDialogueUIData;
     }
@@ -134,7 +134,7 @@ public class DialogueUIController : MonoBehaviour
     {
         if (isBig)
         {
-            SetLanguageType();
+            //SetLanguageType();
             _dialogueUIData = _bigDialogueUIData;
         }
         else
@@ -144,37 +144,37 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    private void HandleChangeLangauge(LanguageType type)
-    {
-        if (type == LanguageType.English)
-        {
-            _languageSO.title = "Language";
-            _languageSO.languageTypes[0] = "Korea";
-            _languageSO.languageTypes[1] = "English";
-            dialogueDataReader = dialogueDataReader_EN;
-        }
-        else
-        {
-            _languageSO.title = "언어";
-            _languageSO.languageTypes[0] = "한글";
-            _languageSO.languageTypes[1] = "영어";
-            dialogueDataReader = dialogueDataReader_KR;
-        }
-    }
+    //private void HandleChangeLangauge(LanguageType type)
+    //{
+    //    if (type == LanguageType.English)
+    //    {
+    //        _languageSO.title = "Language";
+    //        _languageSO.languageTypes[0] = "Korea";
+    //        _languageSO.languageTypes[1] = "English";
+    //        dialogueDataReader = dialogueDataReader_EN;
+    //    }
+    //    else
+    //    {
+    //        _languageSO.title = "언어";
+    //        _languageSO.languageTypes[0] = "한글";
+    //        _languageSO.languageTypes[1] = "영어";
+    //        dialogueDataReader = dialogueDataReader_KR;
+    //    }
+    //}
 
     #endregion
 
-    private void SetLanguageType()
-    {
-        if (LanguageSystem.GetLanguageType() == LanguageType.English)
-        {
-            dialogueDataReader = dialogueDataReader_EN;
-        }
-        else
-        {
-            dialogueDataReader = dialogueDataReader_KR;
-        }
-    }
+    //private void SetLanguageType()
+    //{
+    //    if (LanguageSystem.GetLanguageType() == LanguageType.English)
+    //    {
+    //        dialogueDataReader = dialogueDataReader_EN;
+    //    }
+    //    else
+    //    {
+    //        dialogueDataReader = dialogueDataReader_KR;
+    //    }
+    //}
 
     public void StartDialogue(int startID, int endID, Action onComplete = null)
     {
