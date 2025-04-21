@@ -5,42 +5,48 @@ using UnityEngine;
 public class AutoNodeSpawner : NodeSpawner
 {
     private List<Node> _spawnedNode = new();
+    private Coroutine _spawnRoutine;
 
     public override void NodeSpawn()
     {
         if (_nodeDatas.Count == 0)
             _stageGameRule.AllNodeClear();
 
-        StopCoroutine("NodeSpawnRoutine");
-        StartCoroutine("NodeSpawnRoutine");
+        if (_spawnRoutine != null) StopCoroutine(_spawnRoutine);
+        _spawnRoutine = StartCoroutine(NodeSpawnRoutine());
     }
 
     private IEnumerator NodeSpawnRoutine()
     {
-        if (_spawnedNode != null && _spawnedNode.Count > 0)
+        // 기존 노드 제거
+        foreach (Node node in _spawnedNode)
         {
-            foreach (Node node in _spawnedNode)
-                if (node != null) node.PushObj();
+            node?.PushObj();
         }
+        _spawnedNode.Clear();
 
         List<NodeDataSO> nodeDatasCopy = new List<NodeDataSO>(_nodeDatas);
-
-        for (int i = 0; i < nodeDatasCopy.Count; ++i)
+        foreach (NodeDataSO nodeData in nodeDatasCopy)
         {
-            NodeDataSO nodeData = nodeDatasCopy[i];
-
-            // PoolManager에서 가져오기
             PoolTypeSO poolType = _poolTypes.Find(type => type.name == nodeData.nodeType.ToString());
             IPoolable poolGo = _poolManager.Pop(poolType);
 
-            if (poolGo.GameObject != null && poolGo.GameObject.TryGetComponent(out Node node))
+            if (poolGo.GameObject.TryGetComponent(out Node node))
             {
                 _spawnedNode.Add(node);
                 _currentNode = node;
                 node.Init(_stageGameRule, _nodeJudgement, nodeData);
-                node.StartVisibleRoutine();
-                yield return new WaitForSeconds(node.fadeTime);
+                node.StartVisibleRoutine(() =>
+                {
+                    _spawnedNode.Remove(node);
+                });
+
+                float waitTime = node.fadeTime + (node.visibleTime / 2);
+                yield return new WaitForSeconds(waitTime);
             }
         }
+
+        yield return new WaitUntil(() => _spawnedNode.Count != 0);
+        NodeSpawn();
     }
 }

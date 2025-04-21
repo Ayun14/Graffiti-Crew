@@ -6,6 +6,8 @@ public class OneTouchGameRule : StageGameRule
 
     public override void NodeClear()
     {
+        base.NodeClear();
+
         NodeSpawn();
 
         if (_graffitiRenderer != null && _nodeJudgement.currentNode != null)

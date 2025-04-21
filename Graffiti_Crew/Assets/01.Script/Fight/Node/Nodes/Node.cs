@@ -22,6 +22,7 @@ public abstract class Node : MonoBehaviour, IPoolable
     [Header("Node")]
     public float fadeTime = 0.5f;
     [HideInInspector] public float visibleTime;
+    private Coroutine _visibleRoutine;
 
     public virtual void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
@@ -61,14 +62,26 @@ public abstract class Node : MonoBehaviour, IPoolable
             graffitiParticle.ParticlePlay();
     }
 
-    public void StartVisibleRoutine() => StartCoroutine("VisibleRoutine");
-    public void StopVisibleRoutine() => StopCoroutine("VisibleRoutine");
-
-    private IEnumerator VisibleRoutine()
+    public void StartVisibleRoutine(Action onComplete = null)
     {
-        SetAlpha(1, fadeTime);
-        yield return new WaitForSeconds(fadeTime + visibleTime);
-        SetAlpha(0, fadeTime, () => PushObj());
+        if (_visibleRoutine != null)  StopCoroutine(_visibleRoutine);
+        _visibleRoutine = StartCoroutine(VisibleRoutine(onComplete));
+    }
+
+    private IEnumerator VisibleRoutine(Action onComplete = null)
+    {
+        bool fadedOut = false;
+        SetAlpha(1, fadeTime, () => fadedOut = true);
+
+        yield return new WaitUntil(() => fadedOut);
+        yield return new WaitForSeconds(visibleTime);
+
+        fadedOut = false;
+        SetAlpha(0, fadeTime, () =>
+        {
+            onComplete?.Invoke();
+            PushObj();
+        });
     }
 
     #region Pool
@@ -77,7 +90,11 @@ public abstract class Node : MonoBehaviour, IPoolable
         this.pool = pool;
     }
 
-    public void PushObj() => pool.Push(this);
+    public void PushObj()
+    {
+        if (_visibleRoutine != null) StopCoroutine(_visibleRoutine);
+        pool.Push(this);
+    }
 
     public void ResetItem() { }
     #endregion
