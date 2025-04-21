@@ -1,7 +1,7 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,13 +14,11 @@ namespace AH.UI.Views {
     public class DialogueView : UIView {
         private DialogViewModel ViewModel;
 
-        private VisualElement _otherDialouge;
         private VisualElement _jiaDialouge;
+        private VisualElement _otherDialouge;
         private VisualElement _fellingDialouge;
         private VisualElement _currentDialouge;
         private VisualElement _preDialouge;
-
-        private VisualElement _profile;
 
         private List<Button> _skipBtnList;
 
@@ -31,21 +29,21 @@ namespace AH.UI.Views {
             base.Initialize();
             ViewModel = viewModel as DialogViewModel;
             DialogueEvent.SetDialogueEvent += SetCharscter;
-            DialogueEvent.ChangeCharacterEvent += ChangeCharacter;
         }
-
         public override void Dispose() {
             DialogueEvent.SetDialogueEvent -= SetCharscter;
-            DialogueEvent.ChangeCharacterEvent -= ChangeCharacter;
             base.Dispose();
         }
+
         protected override void SetVisualElements() {
             base.SetVisualElements();
 
-            _otherDialouge = topElement.Q<VisualElement>("left-dialouge");
             _jiaDialouge = topElement.Q<VisualElement>("right-dialouge");
+            _otherDialouge = topElement.Q<VisualElement>("left-dialouge");
             _fellingDialouge = topElement.Q<VisualElement>("felling-dialouge");
-            _profile = topElement.Q<VisualElement>("profile");
+            Hide(_otherDialouge);
+            Hide(_jiaDialouge);
+            Hide(_fellingDialouge);
 
             _skipBtnList = topElement.Query<Button>("skip-btn").ToList();
         }
@@ -77,26 +75,31 @@ namespace AH.UI.Views {
                     _currentDialouge = _fellingDialouge;
                     break;
             }
-            Show(_currentDialouge, _preDialouge);
+            ShowAndHide(_currentDialouge, _preDialouge);
         }
-        private void ChangeCharacter() {
-            VisualElement emptyView = _currentDialouge;
-            _currentDialouge = _preDialouge;
-            _preDialouge = emptyView;
-
-            Show(_currentDialouge, _preDialouge);
-        }
-        public virtual void Show(VisualElement showView, VisualElement hideView) {
-            if (showView != null)
-            {
-                showView.style.display = DisplayStyle.Flex;
-            }
+        public virtual async void ShowAndHide(VisualElement showView, VisualElement hideView) {
             if (hideView != null)
             {
+                //hideView.RemoveFromClassList("show-dialogue");
+                //Debug.Log("remove");
+                hideView.style.display = DisplayStyle.None;
+                //await Task.Delay(1110);
+                //hideView.style.display = DisplayStyle.None;
+            }
+            await Task.Delay(0);
+            if (showView != null)
+            {
+                //Debug.Log("add");
+                //showView.AddToClassList("show-dialogue");
+                //await Task.Delay(1110);
+                showView.style.display = DisplayStyle.Flex;
+            }
+        }
+        private void Hide(VisualElement hideView) {
+            if (hideView != null) {
                 hideView.style.display = DisplayStyle.None;
             }
         }
-
         private void ClickSkipBtn(ClickEvent evt) {
             DialogueEvent.DialogueSkipEvent?.Invoke();
         }
