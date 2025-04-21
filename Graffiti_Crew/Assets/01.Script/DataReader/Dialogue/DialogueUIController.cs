@@ -35,6 +35,9 @@ public class DialogueUIController : MonoBehaviour
     [Header("Dialogue Camera")]
     [SerializeField] private GameObject _defaultCam;
 
+    private SplashController _splashController;
+    private CutSceneController _cutSceneController;
+
     private bool _isBigUIdata => _dialogueUIData == _bigDialogueUIData;
     private bool _isHangoutScene =>
         SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
@@ -55,6 +58,9 @@ public class DialogueUIController : MonoBehaviour
 
     private void Awake()
     {
+        _splashController = GetComponent<SplashController>();
+        _cutSceneController = GetComponent<CutSceneController>();
+
         dialogueDataReader = dialogueDataReader_KR;
     }
 
@@ -227,7 +233,46 @@ public class DialogueUIController : MonoBehaviour
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
         }
 
+        StartCoroutine(SetBGType());
+
         ShowDialogue(_currentDialogueIndex);
+    }
+
+    private IEnumerator SetBGType()
+    {
+        switch (_filteredDialogueList[_currentDialogueIndex].bgType)
+        {
+            case BGType.FadeIn:
+                SplashController.isfinished = false;
+                StartCoroutine(_splashController.FadeIn(false, true));
+                yield return new WaitUntil(() => SplashController.isfinished);
+                break;
+            case BGType.FadeOut:
+                SplashController.isfinished = false; 
+                StartCoroutine(_splashController.FadeOut(false, true)); 
+                yield return new WaitUntil(() => SplashController.isfinished); 
+                break;
+            case BGType.FlashIn: 
+                SplashController.isfinished = false; 
+                StartCoroutine(_splashController.Splash()); 
+                yield return new WaitUntil(() => SplashController.isfinished); 
+                break;
+            case BGType.FlashOut: 
+                SplashController.isfinished = false; 
+                StartCoroutine(_splashController.Splash()); 
+                yield return new WaitUntil(() => SplashController.isfinished); 
+                break;
+            case BGType.ShowCutScene: 
+                CutSceneController.isFinished = false; 
+                StartCoroutine(_cutSceneController.CutSceneRoutine(_filteredDialogueList[_currentDialogueIndex].spriteName, true)); 
+                yield return new WaitUntil(() => CutSceneController.isFinished); 
+                break;
+            case BGType.HideCutScene:
+                CutSceneController.isFinished = false; 
+                StartCoroutine(_cutSceneController.CutSceneRoutine(null, false)); 
+                yield return new WaitUntil(() => CutSceneController.isFinished); 
+                break;
+        }
     }
 
     #region DialogueController
