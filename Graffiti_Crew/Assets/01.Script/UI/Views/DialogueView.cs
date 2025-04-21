@@ -87,9 +87,14 @@ namespace AH.UI.Views {
             Show(_currentDialouge, _preDialouge);
         }
         public virtual void Show(VisualElement showView, VisualElement hideView) {
-            showView.style.display = DisplayStyle.Flex;
-
-            hideView.style.display = DisplayStyle.None;
+            if (showView != null)
+            {
+                showView.style.display = DisplayStyle.Flex;
+            }
+            if (hideView != null)
+            {
+                hideView.style.display = DisplayStyle.None;
+            }
         }
 
         private void ClickSkipBtn(ClickEvent evt) {
