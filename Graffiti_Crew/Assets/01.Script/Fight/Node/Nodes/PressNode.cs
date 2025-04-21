@@ -110,7 +110,7 @@ public class PressNode : Node, INodeAction
         else
         {
             // 노드 실패 (중도 포기 실패)
-            _stageGameRule.NodeFalse(this);
+            _judgement.NodeFalse();
             ResetNode();
 
             // Sound
@@ -124,9 +124,6 @@ public class PressNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
-
-        // Combo
-        _stageGameRule.NodeSuccess(this);
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }

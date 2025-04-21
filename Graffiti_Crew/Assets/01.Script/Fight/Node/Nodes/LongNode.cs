@@ -178,7 +178,7 @@ public class LongNode : Node, INodeAction
             if (_isFollowingPath)
             {
                 // 노드 실패 (중도 포기 실패)
-                _stageGameRule.NodeFalse(this);
+                _judgement.NodeFalse();
 
                 // Sound
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
@@ -222,7 +222,7 @@ public class LongNode : Node, INodeAction
             else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
             {
                 // 노드 실패 (경로 이탈 실패)
-                _stageGameRule.NodeFalse(this);
+                _judgement.NodeFalse();
                 ResetNode();
             }
         }
@@ -253,9 +253,6 @@ public class LongNode : Node, INodeAction
         if (isClearNode == true) return;
         isClearNode = true;
         _isFollowingPath = false;
-
-        // Combo
-        _stageGameRule.NodeSuccess(this);
 
         // Sound
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);

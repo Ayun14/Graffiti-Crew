@@ -35,9 +35,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
                 _finishTimeline.Play();
 
             if (mySubject.GameState == GameState.Result)
-            {
                 _resultTimeline.Play();
-            }
         }
     }
 

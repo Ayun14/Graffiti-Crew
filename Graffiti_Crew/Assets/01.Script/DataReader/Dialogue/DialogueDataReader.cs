@@ -8,6 +8,17 @@ using UnityEngine.Events;
 using UnityEditor;
 #endif
 
+public enum BGType
+{
+    None,
+    FadeIn,
+    FadeOut,
+    FlashIn,
+    FlashOut,
+    ShowCutScene,
+    HideCutScene
+}
+
 [Serializable]
 public struct DialogueData
 {
@@ -17,8 +28,9 @@ public struct DialogueData
     public string spriteName;
     public string soundName;
     public string animName;
+    public BGType bgType;
 
-    public DialogueData(int id, string characterName, string context, string spriteName, string soundName, string animName)
+    public DialogueData(int id, string characterName, string context, string spriteName, string soundName, string animName, BGType bGType)
     {
         this.id = id;
         this.characterName = characterName;
@@ -26,6 +38,7 @@ public struct DialogueData
         this.spriteName = spriteName;
         this.soundName = soundName;
         this.animName = animName;
+        this.bgType = bGType;
     }
 }
 
@@ -44,6 +57,7 @@ public class DialogueDataReader : DataReaderBase
     {
         int id = -1;
         string characterName = null, context = null, spriteName = null, soundName = null, animName = null;
+        BGType bGType = BGType.None;
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -90,7 +104,7 @@ public class DialogueDataReader : DataReaderBase
             }
         }
 
-        DialogueList.Add(new DialogueData(id, characterName, context, spriteName, soundName, animName));
+        DialogueList.Add(new DialogueData(id, characterName, context, spriteName, soundName, animName, bGType));
     }
 }
 
