@@ -7,7 +7,7 @@ namespace AH.UI.Models {
         [SerializeField] private LanguageSO _languageSO;
         [SerializeField] private IntSaveDataSO _languageIndexSO;
         [SerializeField] private IntSaveDataSO _bgmData;
-        [SerializeField] private IntSaveDataSO _vfxData;
+        [SerializeField] private IntSaveDataSO _sfxData;
 
         public LanguageSO GetLanguageSO() {
             return _languageSO;
@@ -21,14 +21,14 @@ namespace AH.UI.Models {
         public void SetBGMValue(int value) {
             _bgmData.data = value;
         }
-        public void SetVFXValue(int value) {
-            _vfxData.data = value;
+        public void SetSFXValue(int value) {
+            _sfxData.data = value;
         }
         public int GetBGMValue() {
             return _bgmData.data;
         }
         public int GetVFXValue() {
-            return _vfxData.data;
+            return _sfxData.data;
         }
     }
 }

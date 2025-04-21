@@ -88,10 +88,11 @@ MonoBehaviour:
   _dialogueBG: {fileID: 0}
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
   _tutorialDialogue: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  dialogueDataReader_KR: {fileID: 11400000, guid: fc855821e94d5584fb0d6e0395c94670, type: 2}
-  dialogueDataReader_EN: {fileID: 11400000, guid: ae75805a9990f53419d55d38a9490cad, type: 2}
+  dialogueDataReader_KR: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
+  dialogueDataReader_EN: {fileID: 11400000, guid: f7edd8ad6232dd64b98ef0882ab241ac, type: 2}
   dialogueDataReader: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
   _typingSpeed: 0.05
+  _defaultCam: {fileID: 0}
 --- !u!1 &4402382206487967521
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,3 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf0927df78bb74409560e50b7645a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
+  _languageIndexSO: {fileID: 11400000, guid: b74400b656663e7418170f68a554ef69, type: 2}
+  _bgmData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
+  _sfxData: {fileID: 11400000, guid: db2774fc806202640b622319fc7ab2b2, type: 2}

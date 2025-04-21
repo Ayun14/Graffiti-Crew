@@ -60,8 +60,8 @@ namespace AH.UI.ViewModels {
         public override void SetBGMValue(int value) {
             _model.SetBGMValue(value);
         }
-        public override void SetVFXValue(int value) {
-            _model.SetVFXValue(value);
+        public override void SetSFXValue(int value) {
+            _model.SetSFXValue(value);
         }
         public override int GetBGMValue() {
             return _model.GetBGMValue();

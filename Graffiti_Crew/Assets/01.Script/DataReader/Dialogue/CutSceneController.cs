@@ -8,12 +8,7 @@ public class CutSceneController : MonoBehaviour
 
     [SerializeField] private SplashController _splashController;
 
-    [SerializeField] private Image img_CutSscene;
-
-    public bool CheckCutScene()
-    {
-        return img_CutSscene.gameObject.activeSelf;
-    }
+    [SerializeField] private Image _cutSsceneImg;
 
     public IEnumerator CutSceneRoutine(string p_CutSceneName, bool p_isShow)
     {
@@ -26,8 +21,8 @@ public class CutSceneController : MonoBehaviour
             Sprite t_sprite = Resources.Load<Sprite>("CutScene/" + p_CutSceneName);
             if (t_sprite != null)
             {
-                img_CutSscene.gameObject.SetActive(true);
-                img_CutSscene.sprite = t_sprite;
+                _cutSsceneImg.gameObject.SetActive(true);
+                _cutSsceneImg.sprite = t_sprite;
 
             }
             else
@@ -37,7 +32,7 @@ public class CutSceneController : MonoBehaviour
         }
         else
         {
-            img_CutSscene.gameObject.SetActive(false);
+            _cutSsceneImg.gameObject.SetActive(false);
         }
 
         SplashController.isfinished = false;

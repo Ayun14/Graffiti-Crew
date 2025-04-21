@@ -66,23 +66,30 @@ public class DialogueUIController : MonoBehaviour
 
     private void Start()
     {
-        LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
-        SaveDataEvents.LoadEndEvent += HandleTutorialDialogue;
-        ChangeDialogueUI += HandleDialogueUIData;
-
         if(_dialogueBG!=null)
             _dialogueBG.SetActive(false);
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
 
-        SetLanguageType();
+        //SetLanguageType();
+    }
+
+    private void OnEnable()
+    {
+        //LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
+        SaveDataEvents.LoadEndEvent += HandleTutorialDialogue;
+
+        ChangeDialogueUI += HandleDialogueUIData;
+        DialogueEvent.DialogueSkipEvent += HandleDialogueSkip;
     }
 
     private void OnDisable()
     {
-        LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
+        //LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
         SaveDataEvents.LoadEndEvent -= HandleTutorialDialogue;
+
         ChangeDialogueUI -= HandleDialogueUIData;
+        DialogueEvent.DialogueSkipEvent -= HandleDialogueSkip;
     }
 
     private void Update()
@@ -113,34 +120,26 @@ public class DialogueUIController : MonoBehaviour
                     }
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-                _currentDialogueIndex = _filteredDialogueList.Count;
-                ShowNextDialogue();
-            }
         }
     }
 
     #region Handle Event
     private void HandleTutorialDialogue()
     {
-        Debug.Log("Start tutorial");
-        if (_tutorialCheckData != null && !_tutorialCheckData.data && _isHangoutScene)
-        {
-            ChangeDialogueUI?.Invoke(false);
-            _computerLight.SetActive(false);
-            _computerCollider.enabled = false;
-            StartDialogue(1, 1);
-        }
+        //Debug.Log("Start tutorial");
+        //if (_tutorialCheckData != null && !_tutorialCheckData.data && _isHangoutScene)
+        //{
+        //    ChangeDialogueUI?.Invoke(false);
+        //    _computerLight.SetActive(false);
+        //    _computerCollider.enabled = false;
+        //    StartDialogue(1, 1);
+        //}
     }
 
     private void HandleDialogueUIData(bool isBig)
     {
         if (isBig)
         {
-            SetLanguageType();
             _dialogueUIData = _bigDialogueUIData;
         }
         else
@@ -150,37 +149,45 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    private void HandleChangeLangauge(LanguageType type)
+    //private void HandleChangeLangauge(LanguageType type)
+    //{
+    //    if (type == LanguageType.English)
+    //    {
+    //        _languageSO.title = "Language";
+    //        _languageSO.languageTypes[0] = "Korea";
+    //        _languageSO.languageTypes[1] = "English";
+    //        dialogueDataReader = dialogueDataReader_EN;
+    //    }
+    //    else
+    //    {
+    //        _languageSO.title = "언어";
+    //        _languageSO.languageTypes[0] = "한글";
+    //        _languageSO.languageTypes[1] = "영어";
+    //        dialogueDataReader = dialogueDataReader_KR;
+    //    }
+    //}
+
+
+    private void HandleDialogueSkip()
     {
-        if (type == LanguageType.English)
-        {
-            _languageSO.title = "Language";
-            _languageSO.languageTypes[0] = "Korea";
-            _languageSO.languageTypes[1] = "English";
-            dialogueDataReader = dialogueDataReader_EN;
-        }
-        else
-        {
-            _languageSO.title = "언어";
-            _languageSO.languageTypes[0] = "한글";
-            _languageSO.languageTypes[1] = "영어";
-            dialogueDataReader = dialogueDataReader_KR;
-        }
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
+        _currentDialogueIndex = _filteredDialogueList.Count;
+        ShowNextDialogue();
     }
 
     #endregion
 
-    private void SetLanguageType()
-    {
-        if (LanguageSystem.GetLanguageType() == LanguageType.English)
-        {
-            dialogueDataReader = dialogueDataReader_EN;
-        }
-        else
-        {
-            dialogueDataReader = dialogueDataReader_KR;
-        }
-    }
+    //private void SetLanguageType()
+    //{
+    //    if (LanguageSystem.GetLanguageType() == LanguageType.English)
+    //    {
+    //        dialogueDataReader = dialogueDataReader_EN;
+    //    }
+    //    else
+    //    {
+    //        dialogueDataReader = dialogueDataReader_KR;
+    //    }
+    //}
 
     public void StartDialogue(int startID, int endID, Action onComplete = null)
     {
@@ -212,19 +219,27 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator DialogueRoutine()
     {
-
         if (_isBigUIdata)
         {
-            if (!_isHangoutScene && _dialogueBG !=null)
+            if (!_isHangoutScene && _dialogueBG != null)
                 _dialogueBG.SetActive(true);
 
             if (_defaultCam != null)
+            {
                 _defaultCam.SetActive(false);
+                yield return new WaitForSeconds(1.5f);
+            }
 
-            yield return new WaitForSeconds(1.5f);
+            yield return null;
+
+            if (_filteredDialogueList[0].characterName == "지아")
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+            else if (_filteredDialogueList[0].characterName == null)
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+            else
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
 
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
-            DialogueEvent.SetCharacterEvent?.Invoke(DialougeCharacter.Jia);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
         else
@@ -281,9 +296,21 @@ public class DialogueUIController : MonoBehaviour
         if (index < 0 || index >= _filteredDialogueList.Count) return;
         DialogueData dialogue = _filteredDialogueList[index];
 
-        if ((_dialogueUIData.characterName == "지아" && dialogue.characterName != "지아")
-            || (_dialogueUIData.characterName != "지아" && dialogue.characterName == "지아"))
-            DialogueEvent.ChangeCharacterEvent?.Invoke();
+        if (dialogue.characterName == "지아")
+        {
+            Debug.Log("jia");
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+        }
+        else if (dialogue.characterName == null)
+        {
+            Debug.Log("null");
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+        }
+        else
+        {
+            Debug.Log("other");
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
+        }
 
         if (_dialogueUIData.characterName == null)
             _dialogueUIData.characterName = "";

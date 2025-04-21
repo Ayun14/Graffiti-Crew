@@ -1,9 +1,7 @@
-using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Linq;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -76,17 +74,17 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
-            Debug.Log("click");
             StageEvent.HideViewEvent?.Invoke();
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
+            GameEvents.BgmChangeEvnet?.Invoke();
             viewModel.SetBGMValue(bgmValue);
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
-            viewModel.SetVFXValue(vfxValue);
+            viewModel.SetSFXValue(vfxValue);
         }
         private void ClickResetSaveData(ClickEvent evt) {
             // 리셋 연결 안함

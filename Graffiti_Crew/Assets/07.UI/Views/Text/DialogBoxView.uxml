@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
-    <engine:VisualElement name="m-container" class="dialog-box-m-container">
+    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <engine:VisualElement name="m-container" class="dialog-box-m-container" style="display: none;">
         <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content" style="flex-direction: row; display: flex;">
             <engine:VisualElement name="profile" style="height: 400px; width: 350px; scale: -1 1;">
                 <Bindings>
@@ -47,6 +47,20 @@
                             <engine:DataBinding property="text" data-source-path="characterName" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" />
                         </Bindings>
                     </engine:Label>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="m-container" class="dialog-box-m-container">
+        <engine:VisualElement name="felling-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: flex;">
+            <engine:VisualElement style="height: 100%; width: 95%; flex-direction: column-reverse;">
+                <engine:VisualElement name="text-box" class="text-box">
+                    <engine:Label text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" class="grow-size-40" style="width: 100%; white-space: normal;">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogSO" binding-mode="ToTarget" data-source-path="dialogue" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Button name="skip-btn" class="skip-btn" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-color: rgba(188, 188, 188, 0);" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
