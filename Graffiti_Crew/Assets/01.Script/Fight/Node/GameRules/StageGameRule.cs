@@ -105,6 +105,8 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public async void AllNodeClear()
     {
+        _nodeSpawner.StopSpawn();
+
         if (mySubject.GameState == GameState.Fight)
         {
             mySubject.SetWhoIsWin(true);

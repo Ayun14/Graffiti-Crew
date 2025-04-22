@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class FightScenePlayerController : Observer<GameStateController>
 {
-    [SerializeField] private GameObject _resultLisht;
-
     private Transform _player;
     private Transform _resultTrm;
 
@@ -42,10 +40,7 @@ public class FightScenePlayerController : Observer<GameStateController>
     public void WinLoseAnimation()
     {
         if (mySubject.IsPlayerWin)
-        {
-            _resultLisht.SetActive(true);
             AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Win);
-        }
         else
             AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Lose);
     }

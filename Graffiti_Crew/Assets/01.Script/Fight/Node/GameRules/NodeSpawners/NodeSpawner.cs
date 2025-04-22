@@ -40,9 +40,5 @@ public abstract class NodeSpawner : MonoBehaviour
         _nodeDatas.Clear();
     }
 
-    public void StopSpawn()
-    {
-        if (_currentNode != null)
-            _currentNode.PushObj();
-    }
+    public abstract void StopSpawn();
 }

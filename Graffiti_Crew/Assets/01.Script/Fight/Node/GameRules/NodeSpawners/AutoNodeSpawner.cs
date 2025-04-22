@@ -49,4 +49,10 @@ public class AutoNodeSpawner : NodeSpawner
         yield return new WaitUntil(() => _spawnedNode.Count != 0);
         NodeSpawn();
     }
+
+    public override void StopSpawn()
+    {
+        foreach (Node node in _spawnedNode)
+            node?.PushObj();
+    }
 }
