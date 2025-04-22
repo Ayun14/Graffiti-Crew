@@ -3,7 +3,6 @@ using UnityEngine;
 public class RivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
-    [SerializeField] private GameObject _resultLisht;
 
     // Graffiti
     private Sprite _graffiti;
@@ -103,10 +102,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         if (mySubject.IsPlayerWin)
             AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Lose);
         else
-        {
-            _resultLisht.SetActive(true);
             AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Win);
-        }
     }
 
 #region Slider

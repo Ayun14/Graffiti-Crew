@@ -19,9 +19,6 @@ public class OneTouchGameRule : StageGameRule
         base.NodeFalse();
 
         if (++falseCount == 5)
-        {
-            _nodeSpawner.StopSpawn();
             AllNodeClear(); // 게임 강제 종료..
-        }
     }
 }

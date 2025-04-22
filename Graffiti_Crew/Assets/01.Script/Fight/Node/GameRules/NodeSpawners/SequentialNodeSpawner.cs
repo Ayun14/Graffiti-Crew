@@ -14,4 +14,10 @@ public class SequentialNodeSpawner : NodeSpawner
 
         DequeueNode();
     }
+
+    public override void StopSpawn()
+    {
+        if (_currentNode != null)
+            _currentNode.PushObj();
+    }
 }
