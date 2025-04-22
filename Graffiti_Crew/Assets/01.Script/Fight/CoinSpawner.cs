@@ -49,6 +49,7 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
 
     private IEnumerator SpawnCoin(Vector3 spawnTrm, int spawnNum)
     {
+        float baseWaitTime = 3f / spawnNum;
         for (int i = 0; i < spawnNum; ++i)
         {
             float randX = Random.Range(spawnTrm.x - _width / 2, spawnTrm.x + _width / 2);
@@ -65,7 +66,7 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
             Vector3 finalDirection = (transform.forward + randomOffset).normalized;
             rigid.AddForce(finalDirection * _forcePower, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.6f));
+            yield return new WaitForSeconds(Random.Range(baseWaitTime - 0.2f, baseWaitTime + 0.1f));
         }
     }
 
