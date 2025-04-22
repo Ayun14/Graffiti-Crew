@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FightScenePlayerController : Observer<GameStateController>
 {
-    // 여기에 플레이어 뭐 애니메이션... 위치.. 등등 구현하기
+    [SerializeField] private GameObject _resultLisht;
+
     private Transform _player;
     private Transform _resultTrm;
 
@@ -31,5 +32,21 @@ public class FightScenePlayerController : Observer<GameStateController>
                 _player.localRotation = _resultTrm.localRotation;
             }
         }
+    }
+
+    public void WaitAnimation()
+    {
+        AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Idle);
+    }
+
+    public void WinLoseAnimation()
+    {
+        if (mySubject.IsPlayerWin)
+        {
+            _resultLisht.SetActive(true);
+            AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Win);
+        }
+        else
+            AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Lose);
     }
 }

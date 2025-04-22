@@ -3,6 +3,7 @@ using UnityEngine;
 public class RivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
+    [SerializeField] private GameObject _resultLisht;
 
     // Graffiti
     private Sprite _graffiti;
@@ -92,43 +93,59 @@ public class RivalController : Observer<GameStateController>, INeedLoding
         _rival.localRotation = _graffitiTrm.localRotation;
     }
 
-    #region Slider
-
-    private void RivalProgressSliderUpdate()
+    public void WaitAnimation()
     {
-        if (!_isFight) return;
+        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+    }
 
-        if (_rivalDrawingTime >= _currentTime)
+    public void WinLoseAnimation()
+    {
+        if (mySubject.IsPlayerWin)
+            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Lose);
+        else
         {
-            _currentTime += Time.deltaTime;
-
-            float percent = _currentTime / _rivalDrawingTime;
-            _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
-
-            RivalCheck();
-            FinishCheck();
+            _resultLisht.SetActive(true);
+            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Win);
         }
     }
 
-    private void RivalCheck()
-    {
-        if (_isCompleteRivalCheck) return;
+#region Slider
 
-        if (_rivalSliderValueSO.Value > _rivalCheckPercent)
-        {
-            _isCompleteRivalCheck = true;
-            mySubject.OnRivalCheckEvent();
-        }
-    }
+private void RivalProgressSliderUpdate()
+{
+    if (!_isFight) return;
 
-    private void FinishCheck()
+    if (_rivalDrawingTime >= _currentTime)
     {
-        if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
-        {
-            mySubject.SetWhoIsWin(false);
-            mySubject.ChangeGameState(GameState.Finish);
-        }
+        _currentTime += Time.deltaTime;
+
+        float percent = _currentTime / _rivalDrawingTime;
+        _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
+
+        RivalCheck();
+        FinishCheck();
     }
+}
+
+private void RivalCheck()
+{
+    if (_isCompleteRivalCheck) return;
+
+    if (_rivalSliderValueSO.Value > _rivalCheckPercent)
+    {
+        _isCompleteRivalCheck = true;
+        mySubject.OnRivalCheckEvent();
+    }
+}
+
+private void FinishCheck()
+{
+    if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
+    {
+        mySubject.SetWhoIsWin(false);
+        mySubject.ChangeGameState(GameState.Finish);
+    }
+}
 
     #endregion
 }
