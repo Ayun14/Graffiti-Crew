@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
-    <engine:VisualElement name="startAnimation" style="position: absolute; width: 100%; height: 100%; display: flex;">
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <engine:VisualElement name="startAnimation" style="position: absolute; width: 100%; height: 100%;">
         <engine:VisualElement name="start-content" class="start-content" />
         <engine:VisualElement name="countdown-content" class="countdown-content">
             <engine:VisualElement name="countdown1" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Countdown/countdown1.png?fileID=2800000&amp;guid=94b3165553391ad4a854cd13bc616fca&amp;type=3#countdown1&quot;);" />
@@ -24,11 +24,17 @@
     </engine:VisualElement>
     <engine:VisualElement name="endAnimation" style="position: absolute; width: 100%; height: 100%; display: none;">
         <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row;">
-            <engine:VisualElement name="rival-screen" class="rival-screen">
-                <engine:VisualElement name="VisualElement" class="blur" style="rotate: 180deg; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/fightAnimation-blur.png?fileID=2800000&amp;guid=20944e5283fe7cd40905ff703d73b36e&amp;type=3#fightAnimation-blur&quot;);" />
-            </engine:VisualElement>
-            <engine:VisualElement name="player-screen" class="player-screen">
-                <engine:VisualElement class="blur" style="rotate: 0; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/fightAnimation-blur.png?fileID=2800000&amp;guid=20944e5283fe7cd40905ff703d73b36e&amp;type=3#fightAnimation-blur&quot;);" />
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <engine:VisualElement name="rival-screen" class="rival">
+                    <engine:VisualElement name="screen" class="rival-screen" style="background-image: url(&quot;project://database/Assets/05.Material/RenderTexture/RivalRT.renderTexture?fileID=8400000&amp;guid=a522e39fa6fdf57408da28c3ab7b759f&amp;type=2#RivalRT&quot;);">
+                        <engine:VisualElement name="VisualElement" class="blur" style="rotate: 180deg; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/fightAnimation-blur.png?fileID=2800000&amp;guid=20944e5283fe7cd40905ff703d73b36e&amp;type=3#fightAnimation-blur&quot;);" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+                <engine:VisualElement name="player-screen" class="jia">
+                    <engine:VisualElement name="screen" class="player-screen">
+                        <engine:VisualElement name="VisualElement" class="blur" style="rotate: 0; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/fightAnimation-blur.png?fileID=2800000&amp;guid=20944e5283fe7cd40905ff703d73b36e&amp;type=3#fightAnimation-blur&quot;);" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement name="vs" style="flex-grow: 1; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Text/VS.png?fileID=21300000&amp;guid=2afaf2643e63e84488175e2c2fb3086c&amp;type=3#VS&quot;); width: 580px; height: 325px; top: 35%; left: 34%;" />
         </engine:VisualElement>
