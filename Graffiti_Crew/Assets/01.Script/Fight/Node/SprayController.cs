@@ -16,6 +16,9 @@ public class SprayController : MonoBehaviour
 
     [Header("Spray")]
     [SerializeField] private float _maxSprayValue;
+    [SerializeField] private GameObject _sprayCanPrefab;
+    [SerializeField] private float _forcePower = 2f;
+    [SerializeField] private float _sprayChangeTime = 2f;
     private float _currentSprayValue = 0;
     public float CurrentSparyValue
     {
@@ -112,8 +115,17 @@ public class SprayController : MonoBehaviour
     private IEnumerator SprayEmpty()
     {
         // 스프레이 통 떨구기
+        Rigidbody rigid = Instantiate(_sprayCanPrefab, transform).GetComponent<Rigidbody>();
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-0.5f, 0.5f),
+            Random.Range(-0.2f, 0.2f),
+            Random.Range(0.1f, 0.3f));
+        Vector3 finalDirection = (transform.forward + randomOffset).normalized;
+        rigid.AddForce(randomOffset * _forcePower, ForceMode.Impulse);
         Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(_sprayChangeTime);
+
         Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
         ResetSpray();
         _stageGameRule.SetSprayEmpty(false);

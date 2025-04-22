@@ -6504,6 +6504,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 630152378}
+  - {fileID: 1068415563}
   - {fileID: 2049196572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6864,6 +6865,58 @@ Transform:
   - {fileID: 2036902194}
   m_Father: {fileID: 558300235}
   m_LocalEulerAnglesHint: {x: 0, y: 20.1, z: 0}
+--- !u!1 &1068415562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068415563}
+  - component: {fileID: 1068415564}
+  m_Layer: 0
+  m_Name: SprayController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068415563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068415562}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.177, z: -1.531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 873186866}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1068415564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068415562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
+  _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
+  _maxSprayValue: 10
+  _sprayCanPrefab: {fileID: 9010543665947581265, guid: 620fad78e4e443a47935e624e8d64723, type: 3}
+  _forcePower: 7
+  _sprayChangeTime: 2
+  _sprayAddAmount: 5
 --- !u!1 &1069321348
 GameObject:
   m_ObjectHideFlags: 0
@@ -16205,10 +16258,9 @@ GameObject:
   - component: {fileID: 2049196575}
   - component: {fileID: 2049196574}
   - component: {fileID: 2049196573}
-  - component: {fileID: 2049196576}
   - component: {fileID: 2049196577}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas | ComboController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16297,23 +16349,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_TargetDisplay: 0
---- !u!114 &2049196576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049196571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
-  _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
-  _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
-  _maxSprayValue: 100
-  _sprayAddAmount: 5
 --- !u!114 &2049196577
 MonoBehaviour:
   m_ObjectHideFlags: 0
