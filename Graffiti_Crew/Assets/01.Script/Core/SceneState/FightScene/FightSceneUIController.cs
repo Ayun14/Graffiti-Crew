@@ -306,7 +306,6 @@ public class FightSceneUIController : Observer<GameStateController>
 
     public void SetResultUI() // 이거 뭔지 물어보기
     {
-        UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         StageEvent.ShowResultViewEvent?.Invoke(true);
     }
 }

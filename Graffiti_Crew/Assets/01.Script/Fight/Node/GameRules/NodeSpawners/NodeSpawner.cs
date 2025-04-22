@@ -26,7 +26,13 @@ public abstract class NodeSpawner : MonoBehaviour
 
     public abstract void NodeSpawn();
 
-    public void DequeueNode() => _nodeDatas.Dequeue();
+    public void DequeueNode()
+    {
+        _nodeDatas.Dequeue();
+
+        if (_nodeDatas.Count == 0) _stageGameRule.AllNodeClear();
+    }
+
     public NodeDataSO PeekNode() => _nodeDatas.Peek();
 
     public void ResetSpawner()
