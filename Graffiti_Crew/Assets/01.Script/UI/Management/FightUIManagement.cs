@@ -58,11 +58,13 @@ namespace AH.UI {
             }
         }
         #region Handle
-        private void ShowResultView(bool active) {
+        private void ShowResultView(bool active, bool winner) {
             if (active) {
+                StageEvent.ShowVictorScreenEvent?.Invoke(true);
                 _resultView.Show();
             }
             else {
+                StageEvent.ShowVictorScreenEvent?.Invoke(false);
                 _resultView.Hide();
             }
         }
