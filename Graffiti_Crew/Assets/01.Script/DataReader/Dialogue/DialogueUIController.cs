@@ -112,7 +112,7 @@ public class DialogueUIController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.K))
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-                currentDialogueIndex = _filteredDialogueList.Count;
+                currentDialogueIndex = filteredDialogueList.Count;
                 ShowNextDialogue();
             }
         }
@@ -187,10 +187,10 @@ public class DialogueUIController : MonoBehaviour
             return;
         }
 
-        _filteredDialogueList = dialogueDataReader.DialogueList.FindAll(dialogue =>
+        filteredDialogueList = dialogueDataReader.DialogueList.FindAll(dialogue =>
             dialogue.id >= startID && dialogue.id <= endID);
 
-        if (_filteredDialogueList.Count == 0)
+        if (filteredDialogueList.Count == 0)
         {
             onComplete?.Invoke();
             return;
@@ -214,10 +214,10 @@ public class DialogueUIController : MonoBehaviour
 
             yield return null;
 
-            if (_filteredDialogueList[0].characterName == "지아") {
+            if (filteredDialogueList[0].characterName == "지아") {
                 DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
             }
-            else if (_filteredDialogueList[0].characterName == null)
+            else if (filteredDialogueList[0].characterName == null)
                 DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
             else
                 DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
@@ -245,9 +245,9 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator ShowDialogue(int index)
     {
-        if (index < 0 || index >= _filteredDialogueList.Count) yield break;
+        if (index < 0 || index >= filteredDialogueList.Count) yield break;
 
-        DialogueData dialogue = _filteredDialogueList[index];
+        DialogueData dialogue = filteredDialogueList[index];
 
         yield return StartCoroutine(_effectController.SetBGType(dialogue));
 
@@ -281,7 +281,7 @@ public class DialogueUIController : MonoBehaviour
     {
         currentDialogueIndex++;
 
-        if (currentDialogueIndex >= _filteredDialogueList.Count)
+        if (currentDialogueIndex >= filteredDialogueList.Count)
         {
             _isDialogue = false;
 
@@ -343,7 +343,7 @@ public class DialogueUIController : MonoBehaviour
         if (_showDialogueCoroutine != null)
             StopCoroutine(_showDialogueCoroutine);
 
-        _dialogueUIData.dialogue = _filteredDialogueList[currentDialogueIndex].context;
+        _dialogueUIData.dialogue = filteredDialogueList[currentDialogueIndex].context;
         _isTyping = false;
     }
     #endregion
