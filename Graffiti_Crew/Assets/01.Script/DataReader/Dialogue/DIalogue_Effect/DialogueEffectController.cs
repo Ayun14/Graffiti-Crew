@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class DialogueEffectController : MonoBehaviour
 {
+    private DialogueUIController _dialogueController;
     private SplashController _splashController;
     private CutSceneController _cutSceneController;
 
     private void Awake()
     {
+        _dialogueController = GetComponent<DialogueUIController>();
         _splashController = GetComponentInChildren<SplashController>();
         _cutSceneController = GetComponentInChildren<CutSceneController>();
     }
@@ -38,7 +40,8 @@ public class DialogueEffectController : MonoBehaviour
                 break;
             case BGType.ShowCutScene:
                 _cutSceneController.isFinished = false;
-                StartCoroutine(_cutSceneController.CutSceneRoutine(_filteredDialogueList[_currentDialogueIndex].animName, true));
+                StartCoroutine(_cutSceneController.CutSceneRoutine
+                    (_dialogueController.filteredDialogueList[_dialogueController.currentDialogueIndex].animName, true));
                 yield return new WaitUntil(() => _cutSceneController.isFinished);
                 break;
             case BGType.HideCutScene:
