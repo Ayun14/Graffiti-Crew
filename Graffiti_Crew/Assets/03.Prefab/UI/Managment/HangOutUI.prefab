@@ -341,8 +341,6 @@ GameObject:
   - component: {fileID: 587552867296874969}
   - component: {fileID: 4736077380214728974}
   - component: {fileID: 5621829251696150413}
-  - component: {fileID: 285846117600112540}
-  - component: {fileID: 4592917995367083555}
   m_Layer: 0
   m_Name: HangOutUI
   m_TagString: Untagged
@@ -412,12 +410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tutorialCheckData: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
-  _computerLight: {fileID: 0}
-  _computerCollider: {fileID: 0}
   _bigDialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
   _miniDialogueUIData: {fileID: 11400000, guid: 1f40270623ad97e488a6d7c93280afeb, type: 2}
-  _dialogueBG: {fileID: 888297019673071155}
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
   _tutorialDialogue: {fileID: 11400000, guid: 117cc1a0f0ef010409f0f8d271df9948, type: 2}
   dialogueDataReader_KR: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
@@ -425,37 +419,6 @@ MonoBehaviour:
   dialogueDataReader: {fileID: 11400000, guid: edabf580315ce22468ee8f2859a4b7e4, type: 2}
   _typingSpeed: 0.05
   _defaultCam: {fileID: 0}
---- !u!114 &285846117600112540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892174263343948809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5eb0b3192976e34dae9fd2d9167beda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _splashImage: {fileID: 1306635325734132470}
-  _colorWhite: {r: 1, g: 1, b: 1, a: 1}
-  _colorBlack: {r: 0, g: 0, b: 0, a: 1}
-  _fadeSpeed: 0.3
-  _fadeSlowSpeed: 0.5
---- !u!114 &4592917995367083555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892174263343948809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bd0b3df1f33544fbf5193e2d6f7441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _splashController: {fileID: 285846117600112540}
-  _cutSsceneImg: {fileID: 0}
 --- !u!1 &7432062056643578100
 GameObject:
   m_ObjectHideFlags: 0
