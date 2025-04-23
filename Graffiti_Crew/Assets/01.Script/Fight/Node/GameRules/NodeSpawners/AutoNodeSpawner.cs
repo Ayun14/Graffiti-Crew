@@ -52,6 +52,8 @@ public class AutoNodeSpawner : NodeSpawner
 
     public override void StopSpawn()
     {
+        if (_spawnRoutine != null) StopCoroutine(_spawnRoutine);
+
         foreach (Node node in _spawnedNode)
             node?.PushObj();
     }
