@@ -96,8 +96,8 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
         _requestDialogueSO = dataController.stageData.storyDialogue;
 
         _dialogueUIController.dialogueDataReader = dataController.stageData.dialogueData_KR;
-        _dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
-        _dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
+        //_dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
+        //_dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
 
         dataController.SuccessGiveData();
     }
