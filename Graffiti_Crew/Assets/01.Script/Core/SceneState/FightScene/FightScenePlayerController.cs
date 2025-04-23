@@ -39,9 +39,15 @@ public class FightScenePlayerController : Observer<GameStateController>
 
     public void WinLoseAnimation()
     {
-        if (mySubject.IsPlayerWin)
+        Color winColor = new Color(241, 255, 76, 255); // yellow
+
+        if (mySubject.IsPlayerWin) {
             AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Win);
-        else
+            UIAnimationEvent.SetPlayerBackgroundColor?.Invoke(winColor);
+        }
+        else {
+            UIAnimationEvent.SetRivalBackgroundColor?.Invoke(winColor);
             AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Lose);
+        }
     }
 }
