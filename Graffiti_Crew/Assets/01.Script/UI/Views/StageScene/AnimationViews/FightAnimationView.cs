@@ -1,5 +1,6 @@
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,14 +23,19 @@ public class FightAnimationView : UIView {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
         UIAnimationEvent.SetActiveEndAnimationEvnet += SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet += RivalCheckAnimation;
+        UIAnimationEvent.SetPlayerBackgroundColor += SetPlayerBackgroundColor;
+        UIAnimationEvent.SetRivalBackgroundColor += SetRivalBackgroundColor;
     }
 
     public override void Dispose() { 
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
         UIAnimationEvent.SetActiveEndAnimationEvnet -= SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
+        UIAnimationEvent.SetPlayerBackgroundColor -= SetPlayerBackgroundColor;
+        UIAnimationEvent.SetRivalBackgroundColor -= SetRivalBackgroundColor;
         base.Dispose();
     }
+
     public override void Initialize() {
         base.Initialize();
     }
@@ -71,7 +77,17 @@ public class FightAnimationView : UIView {
             Hide(_rivalCheckAnimation);
         }
     }
+
+    private void SetPlayerBackgroundColor(Color color) {
+        VisualElement playerScreen = _endAnimation.Q<VisualElement>("player-screen");
+        playerScreen.style.backgroundColor = color;
+    }
+    private void SetRivalBackgroundColor(Color color) {
+        VisualElement rivalcreen = _endAnimation.Q<VisualElement>("rival-screen");
+        rivalcreen.style.backgroundColor = color;
+    }
     #endregion
+
     private async void StartRivalCheck() {
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.RivalCheck);
@@ -98,6 +114,7 @@ public class FightAnimationView : UIView {
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Clock);
     }
+
     private void Show(VisualElement view) {
         view.style.display = DisplayStyle.Flex;
     }
