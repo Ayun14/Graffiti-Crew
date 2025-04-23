@@ -1,10 +1,8 @@
 using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -47,6 +45,11 @@ namespace AH.UI.Views {
             c_retryBtn.UnregisterCallback<ClickEvent>(ClickRetryBtn);
             c_quitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
+
+        public override void Show() {
+            base.Show();
+        }
+
         private void FullScreen(bool result) {
             if (result) {
                 SetStar();
