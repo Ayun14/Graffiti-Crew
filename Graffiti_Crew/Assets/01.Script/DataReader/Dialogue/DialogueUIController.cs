@@ -262,7 +262,7 @@ public class DialogueUIController : MonoBehaviour
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
-    private void CompleteTyping()
+    private void CompleteTyping() //타이핑을 끝내고 싶은 때 호출
     {
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);

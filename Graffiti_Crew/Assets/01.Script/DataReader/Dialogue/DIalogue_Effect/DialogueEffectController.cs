@@ -4,12 +4,15 @@ using UnityEngine;
 public class DialogueEffectController : MonoBehaviour
 {
     private DialogueUIController _dialogueController;
+    private DialogueCameraController _camController;
     private SplashController _splashController;
     private CutSceneController _cutSceneController;
 
     private void Awake()
     {
         _dialogueController = GetComponent<DialogueUIController>();
+        _camController = GetComponent<DialogueCameraController>();
+
         _splashController = GetComponentInChildren<SplashController>();
         _cutSceneController = GetComponentInChildren<CutSceneController>();
     }
@@ -48,6 +51,9 @@ public class DialogueEffectController : MonoBehaviour
                 _cutSceneController.isFinished = false;
                 StartCoroutine(_cutSceneController.CutSceneRoutine(null, false));
                 yield return new WaitUntil(() => _cutSceneController.isFinished);
+                break;
+            case BGType.ShakeCam:
+                _camController.PlayCamEffect();
                 break;
         }
     }
