@@ -43,7 +43,8 @@ namespace AH.UI.Views {
             ComputerEvent.ShowStoreViewEvent?.Invoke();
         }
         private void CllickStageBtn(ClickEvent evt) {
-            ComputerEvent.ShowSelectStageViewEvent?.Invoke();
+            ComputerEvent.ShowSelectChapterViewEvent?.Invoke();
+           // ComputerEvent.ShowSelectStageViewEvent?.Invoke();
         }
         private void CllickExitBtn(ClickEvent evt) {
             //UIEvents.CloseComputerEvnet?.Invoke();

@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 namespace AH.UI {
     public class ComputerUIManagement : UIManagement {
         private ComputerView _computerView;
+        private SelectChapterView _selectChapterView;
         private SelectStageView _selectStageView;
         private StoreView _storeView;
         private StageDescriptionView _stageDescriptionView;
@@ -17,6 +18,7 @@ namespace AH.UI {
 
         protected override void OnEnable() {
             base.OnEnable();
+            ComputerEvent.ShowSelectChapterViewEvent += ShowSelectChapterView;
             ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
@@ -28,6 +30,7 @@ namespace AH.UI {
         }
         protected override void OnDisable() {
             base.OnDisable();
+            ComputerEvent.ShowSelectChapterViewEvent -= ShowSelectChapterView;
             ComputerEvent.ShowSelectStageViewEvent -= ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
@@ -47,6 +50,7 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _viewModel);
+            _selectChapterView = new SelectChapterView(root.Q<VisualElement>("SelectChapterView"), _viewModel);
             _selectStageView = new SelectStageView(root.Q<VisualElement>("SelectStageView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
@@ -61,12 +65,14 @@ namespace AH.UI {
             base.ShowPreviewEvent(evtFunction);
         }
         private void EventFunction() {
-            //UIEvents.CloseComputerEvnet?.Invoke();
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
 
         private void ShowStoreView() {
             ShowView(_storeView);
+        }
+        private void ShowSelectChapterView() {
+            ShowView(_selectChapterView);
         }
         private void ShowSelectStageView() {
             ShowView(_selectStageView);
