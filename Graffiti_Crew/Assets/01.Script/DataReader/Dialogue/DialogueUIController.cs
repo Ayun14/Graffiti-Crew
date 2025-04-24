@@ -17,9 +17,6 @@ public class DialogueUIController : MonoBehaviour
 
     [Header("Dialogue Data")]
     [SerializeField] private LanguageSO _languageSO;
-    public DialogueDataReader dialogueDataReader_KR;
-    public DialogueDataReader dialogueDataReader_EN;
-
     [HideInInspector] public DialogueDataReader dialogueDataReader;
 
     [Header("Typing Effect")]
@@ -41,75 +38,54 @@ public class DialogueUIController : MonoBehaviour
     private bool _isDialogue = false;
     public bool IsDialogue => _isDialogue;
 
-    [HideInInspector] public int currentDialogueIndex = 0;
-
     private Action _onDialogueComplete;
     public Action<bool> ChangeDialogueUI;
 
+    [HideInInspector] public int currentDialogueIndex = 0;
     [HideInInspector] public List<DialogueData> filteredDialogueList;
 
 
     private void Awake()
     {
         _effectController = GetComponent<DialogueEffectController>();
-
-        dialogueDataReader = dialogueDataReader_KR;
     }
 
     private void Start()
     {
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
-
-        //SetLanguageType();
     }
 
     private void OnEnable()
     {
-        //LanguageSystem.LanguageChangedEvent += HandleChangeLangauge;
-
         ChangeDialogueUI += HandleDialogueUIData;
-        DialogueEvent.DialogueSkipEvent += HandleDialogueSkip;
+        DialogueEvent.DialogueSkipEvent += DialogueSkip;
     }
 
     private void OnDisable()
     {
-        //LanguageSystem.LanguageChangedEvent -= HandleChangeLangauge;
-
         ChangeDialogueUI -= HandleDialogueUIData;
-        DialogueEvent.DialogueSkipEvent -= HandleDialogueSkip;
+        DialogueEvent.DialogueSkipEvent -= DialogueSkip;
     }
 
     private void Update()
     {
-        if (!_isBigUIdata && !_isHangoutScene)
-            return;
+        if (!_isBigUIdata && !_isHangoutScene) return;
+        if (!_isDialogue) return;
 
-        if (_isDialogue)
+        if (dialogueDataReader.readMode == ReadMode.Auto)
         {
-            if (dialogueDataReader.readMode == ReadMode.Auto)
+            if (!_isTyping)
+                ShowNextDialogue();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (!_isTyping)
-                    ShowNextDialogue();
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (_isTyping)
-                    {
-                        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-                        CompleteTyping();
-                    }
-                    else
-                    {
-                        AnimationEvent.EndDialogueAnimation?.Invoke();
-                        ShowNextDialogue();
-                    }
-                }
+                DialogueSkip();
             }
 
-            if(Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
                 currentDialogueIndex = filteredDialogueList.Count;
@@ -121,54 +97,12 @@ public class DialogueUIController : MonoBehaviour
     #region Handle Event
     private void HandleDialogueUIData(bool isBig)
     {
-        if (isBig)
-        {
-            _dialogueUIData = _bigDialogueUIData;
-        }
-        else
-        {
-            _dialogueUIData = _miniDialogueUIData;
-        }
+        _dialogueUIData = isBig ? _bigDialogueUIData : _miniDialogueUIData;
     }
 
-    //private void HandleChangeLangauge(LanguageType type)
-    //{
-    //    if (type == LanguageType.English)
-    //    {
-    //        _languageSO.title = "Language";
-    //        _languageSO.languageTypes[0] = "Korea";
-    //        _languageSO.languageTypes[1] = "English";
-    //        dialogueDataReader = dialogueDataReader_EN;
-    //    }
-    //    else
-    //    {
-    //        _languageSO.title = "언어";
-    //        _languageSO.languageTypes[0] = "한글";
-    //        _languageSO.languageTypes[1] = "영어";
-    //        dialogueDataReader = dialogueDataReader_KR;
-    //    }
-    //}
-
-    //private void SetLanguageType()
-    //{
-    //    if (LanguageSystem.GetLanguageType() == LanguageType.English)
-    //    {
-    //        dialogueDataReader = dialogueDataReader_EN;
-    //    }
-    //    else
-    //    {
-    //        dialogueDataReader = dialogueDataReader_KR;
-    //    }
-    //}
-
-    private void HandleDialogueSkip()
+    private void DialogueSkip()
     {
-        if (_isTyping)
-        {
-            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-            CompleteTyping();
-        }
-        else
+        if(!_isTyping)
         {
             AnimationEvent.EndDialogueAnimation?.Invoke();
             ShowNextDialogue();
@@ -204,24 +138,22 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator DialogueRoutine()
     {
+        if (_isBigUIdata && _defaultCam != null)
+        {
+            _defaultCam.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        string name = filteredDialogueList[0].characterName;
+        if (name == "지아")
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+        else if (string.IsNullOrEmpty(name))
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+        else
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
+
         if (_isBigUIdata)
         {
-            if (_defaultCam != null)
-            {
-                _defaultCam.SetActive(false);
-                yield return new WaitForSeconds(1.5f);
-            }
-
-            yield return null;
-
-            if (filteredDialogueList[0].characterName == "지아") {
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-            }
-            else if (filteredDialogueList[0].characterName == null)
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-            else
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
-
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
@@ -251,22 +183,22 @@ public class DialogueUIController : MonoBehaviour
 
         yield return StartCoroutine(_effectController.SetBGType(dialogue));
 
-        if (dialogue.characterName == "지아")
+        string name = dialogue.characterName;
+        if (name == "지아") 
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-        else if (dialogue.characterName == "")
+        else if (string.IsNullOrEmpty(name)) 
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-        else
+        else 
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
 
-        _dialogueUIData.characterName = dialogue.characterName;
+        _dialogueUIData.characterName = name;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");
         if (sprite != null)
             _dialogueUIData.SetProfile(sprite);
 
-        string sound = dialogue.soundName;
-        if (sound != null)
-            GameManager.Instance.SoundSystemCompo.PlaySound(sound);
+        if (!string.IsNullOrEmpty(dialogue.soundName))
+            GameManager.Instance.SoundSystemCompo.PlaySound(dialogue.soundName);
 
         if (dialogue.bgType == BGType.None)
             AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
@@ -284,13 +216,9 @@ public class DialogueUIController : MonoBehaviour
         if (currentDialogueIndex >= filteredDialogueList.Count)
         {
             _isDialogue = false;
-
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-
-            if(_defaultCam != null)
-                _defaultCam.SetActive(true);
+            _defaultCam?.SetActive(true);
             _onDialogueComplete?.Invoke();
-
             return;
         }
 
@@ -303,28 +231,27 @@ public class DialogueUIController : MonoBehaviour
         _isTyping = true;
         _dialogueUIData.dialogue = "";
 
-        bool t_black = false, t_red = false, t_cyan = false;
-        bool t_ignore = false;
+        bool black = false, red = false, cyan = false;
+        bool ignore = false;
 
         foreach (char letter in fullText)
         {
             switch (letter)
             {
-                case 'ⓑ': t_black = true; t_red = false; t_cyan = false; t_ignore = true; break;
-                case 'ⓡ': t_black = false; t_red = true; t_cyan = false; t_ignore = true; break;
-                case 'ⓒ': t_black = false; t_red = false; t_cyan = true; t_ignore = true; break;
+                case 'ⓑ': black = true; red = false; cyan = false; ignore = true; break;
+                case 'ⓡ': black = false; red = true; cyan = false; ignore = true; break;
+                case 'ⓒ': black = false; red = false; cyan = true; ignore = true; break;
 
             }
             string t_letter = letter.ToString();
-            if (!t_ignore)
+            if (!ignore)
             {
-                if (t_black) t_letter = "<color=#000000>" + t_letter + "</color>";
-                else if (t_red) t_letter = "<color=#FF000B>" + t_letter + "</color>";
-                else if (t_cyan) t_letter = "<color=#0038FF>" + t_letter + "</color>";
+                if (black) t_letter = "<color=#000000>" + t_letter + "</color>";
+                else if (red) t_letter = "<color=#FF000B>" + t_letter + "</color>";
+                else if (cyan) t_letter = "<color=#0038FF>" + t_letter + "</color>";
                 _dialogueUIData.dialogue += t_letter;
             }
-            t_ignore = false;
-
+            ignore = false;
             yield return new WaitForSeconds(_typingSpeed);
         }
 
@@ -335,7 +262,7 @@ public class DialogueUIController : MonoBehaviour
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
-    private void CompleteTyping()
+    private void CompleteTyping() //타이핑을 끝내고 싶은 때 호출
     {
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
