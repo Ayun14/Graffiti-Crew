@@ -66,16 +66,7 @@ namespace AH.UI.Views {
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            foreach (var button in _stagePointList) {
-                if (button.canPlay) {
-                    if (button.type == StageType.Stage) {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn);
-                    }
-                    else {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
-                    }
-                }
-            }
+            UnregisterPoints();
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
 
@@ -143,6 +134,19 @@ namespace AH.UI.Views {
                     requestIndex++;
                 }
                 index++;
+            }
+        }
+        private void UnregisterPoints() {
+            Debug.Log("unregister");
+            foreach (var button in _stagePointList) {
+                if (button.canPlay) {
+                    if (button.type == StageType.Stage) {
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn);
+                    }
+                    else {
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
+                    }
+                }
             }
         }
     }

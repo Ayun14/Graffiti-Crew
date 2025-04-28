@@ -17,6 +17,7 @@ namespace AH.UI.Views {
         private Button _exitBtn;
 
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+            Hide();
         }
 
         public override void Initialize() {

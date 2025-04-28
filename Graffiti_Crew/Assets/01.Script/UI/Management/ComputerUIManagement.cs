@@ -2,6 +2,7 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -79,6 +80,7 @@ namespace AH.UI {
         }
         private void ShowStageDescriptionView() {
             ShowView(_stageDescriptionView);
+            //_stageDescriptionView.Hide();
         }
         private void ShowItemCountView(bool active) {
             if (active) {
