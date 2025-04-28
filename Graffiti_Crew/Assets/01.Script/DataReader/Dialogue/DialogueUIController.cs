@@ -181,7 +181,12 @@ public class DialogueUIController : MonoBehaviour
 
         DialogueData dialogue = filteredDialogueList[index];
 
-        yield return StartCoroutine(_effectController.SetBGType(dialogue));
+        if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.ShakeCam)
+        {
+            DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+            yield return StartCoroutine(_effectController.SetBGType(dialogue));
+            DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
+        }
 
         string name = dialogue.characterName;
         if (name == "Áö¾Æ") 
