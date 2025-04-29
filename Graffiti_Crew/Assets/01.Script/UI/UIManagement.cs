@@ -19,7 +19,9 @@ namespace AH.UI {
 
     public class UIManagement : MonoBehaviour {
         protected UIDocument _uiDocument;
+        public UIDocument UIDocument => _uiDocument;
         protected Stack<ViewData> _viewStack = new Stack<ViewData>();
+
 
         private VisualElement _fadeView;
 

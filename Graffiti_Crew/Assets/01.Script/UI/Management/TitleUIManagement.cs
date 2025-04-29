@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -74,19 +75,21 @@ namespace AH.UI {
             _saveSlotField.index = _viewModel.GetSlotIndex();
 
             // 드롭다운 아이템들 스타일 접근
-            //_saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
-            //{
-
-            //    Debug.Log(root);
-            //    var content = root.Q<VisualElement>(className: "unity-base-dropdown__container-outer");
-            //    var test = root.Q<VisualElement>(className: "TitleUI-conteiner");
-            //    Debug.Log(test);
-            //    Debug.Log(content);
-            //    VisualElement hoveredItem = evt.target as VisualElement;
-            //    if (hoveredItem != null) {
-            //        hoveredItem.style.backgroundColor = new Color(1f, 0f, 0f, 1f); // 빨간색
-            //    }
-            //});
+            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
+                EditorApplication.delayCall += () =>
+                {
+                    var content = UIDocument.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
+                    List<VisualElement> list = content.Query<VisualElement>(className : "unity-base-dropdown__item").ToList();
+                    foreach(VisualElement item in list) {
+                        item.RegisterCallback<PointerEnterEvent>(evt => {
+                            item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+                        });
+                        item.RegisterCallback<PointerLeaveEvent>(evt => {
+                            item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
+                        });
+                    }
+                };
+            });
 
             StartCoroutine(Routine());
         }
