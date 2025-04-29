@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class FightSceneDataController : DataController
+public class StageSceneDataController : DataController
 {
     private bool _isFight = false;
     private float _currentDrawingTime = 0;
@@ -15,11 +15,10 @@ public class FightSceneDataController : DataController
     {
         if (mySubject != null)
         {
+            _isFight = mySubject.GameState == GameState.Fight;
+
             if (mySubject.GameState == GameState.Fight)
-            {
                 _currentDrawingTime = 0;
-                _isFight = mySubject.GameState == GameState.Fight;
-            }
 
             if (stageData != null)
             {

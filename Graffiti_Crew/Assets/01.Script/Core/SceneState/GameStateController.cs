@@ -8,6 +8,9 @@ public enum GameState
     // ´ë°á¾À
     Loding, Timeline, Fight, Finish, Result,
 
+    // È°µ¿¾À
+    // Loding -> Timeline -> Graffiti -> Finish -> Result
+
     // ÀÇ·Ú¾À
     // Loding -> Talk -> Graffiti -> Result
     Talk, Graffiti,
