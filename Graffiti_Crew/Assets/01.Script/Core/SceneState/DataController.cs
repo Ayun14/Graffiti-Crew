@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class DataController : Observer<GameStateController>
 {
     [SerializeField] protected LoadStageSO stageSO;
-
     [HideInInspector] public StageDataSO stageData;
 
     private int _lodingCnt = 0;
@@ -57,10 +56,7 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
-        {
-
-            Invoke("FinishGiveData", 1f);
-        }
+            Invoke("FinishGiveData", 0.5f);
     }
             
     protected abstract void FinishGiveData(); // Change GameState...

@@ -1396,8 +1396,11 @@ MonoBehaviour:
   _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
   _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
   _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
-  _maxSprayValue: 100
   _sprayAddAmount: 5
+  _maxSprayValue: 100
+  _sprayCanPrefab: {fileID: 0}
+  _forcePower: 2
+  _sprayChangeTime: 2
 --- !u!114 &323578992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3495,8 +3498,11 @@ MonoBehaviour:
   _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
   _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
   _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
-  _maxSprayValue: 0
   _sprayAddAmount: 0
+  _maxSprayValue: 0
+  _sprayCanPrefab: {fileID: 0}
+  _forcePower: 2
+  _sprayChangeTime: 2
 --- !u!1 &876639328
 GameObject:
   m_ObjectHideFlags: 0
