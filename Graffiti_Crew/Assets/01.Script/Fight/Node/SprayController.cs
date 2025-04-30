@@ -9,6 +9,7 @@ public class SprayController : MonoBehaviour
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
     [SerializeField] private Texture2D _sprayCursor;
     [SerializeField] private Texture2D _shakeSprayCursor;
+    [SerializeField] private float _sprayAddAmount;
     public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
     private bool isSprayCanShaking = false;
     private bool _isShaking = false; 
@@ -26,7 +27,6 @@ public class SprayController : MonoBehaviour
         set { _currentSprayValue = Mathf.Clamp(value, 0, _maxSprayValue); }
     }
     public bool isSprayNone => _currentSprayValue <= 0f;
-    [SerializeField] private float _sprayAddAmount;
 
     protected StageGameRule _stageGameRule;
 

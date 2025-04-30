@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StoryDataController : DataController
 {
-
     protected override void NotifyHandleChild()
     {
     }
