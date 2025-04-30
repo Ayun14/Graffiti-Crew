@@ -54,7 +54,6 @@ public class DialogueUIController : MonoBehaviour
 
     public void SetDialogueUI()
     {
-        Debug.Log("Show UI");
         string name = _dialogueController.filteredDialogueList[0].characterName;
         if (name == "지아")
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
@@ -77,8 +76,6 @@ public class DialogueUIController : MonoBehaviour
 
     public void StartShowDialogue(int index)
     {
-        Debug.Log("Show Dialogue");
-
         if (_showDialogueCoroutine != null)
             StopCoroutine(_showDialogueCoroutine);
 
@@ -161,7 +158,7 @@ public class DialogueUIController : MonoBehaviour
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
-    private void CompleteTyping() //타이핑을 끝내고 싶은 때 호출
+    public void CompleteTyping() //타이핑을 끝내고 싶은 때 호출
     {
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
@@ -170,6 +167,7 @@ public class DialogueUIController : MonoBehaviour
             StopCoroutine(_showDialogueCoroutine);
 
         _dialogueUIData.dialogue = _dialogueController.filteredDialogueList[_dialogueController.currentDialogueIndex].context;
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
         IsTyping = false;
     }
 }

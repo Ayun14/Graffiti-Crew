@@ -9,7 +9,7 @@ public class DialogueController : MonoBehaviour
 {
     [Header("Dialogue Data")]
     [SerializeField] private LanguageSO _languageSO;
-    [HideInInspector] public DialogueDataReader dialogueDataReader;
+    public DialogueDataReader dialogueDataReader;
 
 
     [Header("Dialogue Camera")]
@@ -56,7 +56,10 @@ public class DialogueController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                DialogueSkip();
+                if (!_uiController.IsTyping)
+                    DialogueSkip();
+                else
+                    _uiController.CompleteTyping();
             }
 
             if (Input.GetKeyDown(KeyCode.K))
