@@ -28,6 +28,7 @@ namespace AH.UI.Views {
         private bool _isShowing = false;
         public SelectChapterView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
+
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
             _saveStageData = Resources.LoadAll<StageSaveDataSO>(_saveDataPath).Skip(1).ToArray(); ;
@@ -47,6 +48,9 @@ namespace AH.UI.Views {
             backToMap = topElement.Q<Button>("back-map-btn");
 
             UnlockChapter(_chaptersList[0]);
+            LockChapter(_chaptersList[1]);
+            LockChapter(_chaptersList[2]);
+            LockChapter(_chaptersList[3]);
         }
 
         protected override void RegisterButtonCallbacks() {

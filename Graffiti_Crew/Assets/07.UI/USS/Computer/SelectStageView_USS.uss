@@ -6,30 +6,6 @@
     flex-grow: 1;
 }
 
-.stage-point {
-    width: 130px;
-    height: 130px;
-    position: absolute;
-    transition-duration: 0.15s, 0.8s;
-    border-left-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    justify-content: flex-end;
-    transition-property: scale, opacity;
-    opacity: 1;
-}
-
-.stage-point:hover {
-    position: absolute;
-    scale: 1.15 1.15;
-}
-
-.hide-point {
-    opacity: 0;
-}
-
 .---------------- {
 }
 
@@ -120,6 +96,30 @@
 }
 
 .--------------- {
+}
+
+.stage-point {
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    transition-duration: 0.15s, 0.8s;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    justify-content: flex-end;
+    transition-property: scale, opacity;
+    opacity: 1;
+}
+
+.stage-point:hover {
+    position: absolute;
+    scale: 1.15 1.15;
+}
+
+.hide-point {
+    opacity: 0;
 }
 
 .not-clear {
