@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Linq;
 
-public class RivalController : Observer<GameStateController>, INeedLoding
+public class FightSceneRivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
 
@@ -25,7 +26,7 @@ public class RivalController : Observer<GameStateController>, INeedLoding
     {
         _graffiti = dataController.stageData.rivalGraffiti;
         _rivalDrawingTime = dataController.stageData.rivalClearTime;
-        _rival = Instantiate(dataController.stageData.rivalPrefab.gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
+        _rival = Instantiate(dataController.stageData.rivalPrefabList.First().gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
 
         dataController.SuccessGiveData();
     }

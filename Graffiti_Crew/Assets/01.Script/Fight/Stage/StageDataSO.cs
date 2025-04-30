@@ -10,6 +10,7 @@ public enum StageRuleType
 [CreateAssetMenu(fileName = "StageDataSO", menuName = "SO/Stage/StageDataSO")]
 public class StageDataSO : ScriptableObject
 {
+    [Header("-------All-------")]
     [Header("Stage")]
     public StageType stagetype;
     public StageRuleType stageRuleType;
@@ -17,19 +18,24 @@ public class StageDataSO : ScriptableObject
     public GameObject spawnerPrefab;
     public GameObject mapPrefab;
 
-    [Header("Player Graffiti")]
-    public Sprite startGraffiti;
-    public List<NodeDataSO> nodeDatas;
-
-    [Header("Rival")]
-    public Sprite rivalGraffiti;
-    public int rivalClearTime; // 초 단위
-    public Transform rivalPrefab;
-
+    [Header("-------Story Stage-------")]
     [Header("Dialogue")]
     public DialogueDataReader dialogueData_KR;
     public DialogueDataReader dialogueData_EN;
     public StoryDialogueSO storyDialogue;
+
+    [Header("-------Play Stage-------")]
+    [Header("Player Graffiti")]
+    public Sprite startGraffiti;
+    public List<NodeDataSO> nodeDatas;
+
+    [Header("Rival Prefab")]
+    public List<Transform> rivalPrefabList;
+
+    [Header("-------FightStage-------")]
+    [Header("Rival Graffiti")]
+    public Sprite rivalGraffiti;
+    public int rivalClearTime; // 초 단위
 
     [Header("Stage Star Setting")]
     public StageResultSO stageResult;
