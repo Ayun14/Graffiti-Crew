@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DialogueAnimController : MonoBehaviour
 {
-    [SerializeField] private DialogueUIController _dialogueController;
+    [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private AnimationManager _animManager;
 
     private int _animValue = 0;

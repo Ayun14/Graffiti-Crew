@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniDialougeController : MonoBehaviour
 {
-    [SerializeField] private DialogueUIController _dialogueUIController;
+    [SerializeField] private DialogueController _dialogueUIController;
     [SerializeField] private NodeJudgement _nodeJudgement;
 
     [SerializeField] private int _explainIndex;
@@ -25,7 +25,7 @@ public class MiniDialougeController : MonoBehaviour
 
     private void HandleNodeCheck()
     {
-        _dialogueUIController.ChangeDialogueUI?.Invoke(false);
+        //_dialogueController.ChangeDialogueUI?.Invoke(false);
 
         _dialogueUIController.StartDialogue(_currentIndex, _currentIndex, DialogueEnd);
         _currentIndex++;

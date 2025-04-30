@@ -1,12 +1,7 @@
-using AH.SaveSystem;
 using AH.UI.Events;
-using AH.UI.Views;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -15,38 +10,24 @@ public class DialogueUIController : MonoBehaviour
     [SerializeField] private DialogueSO _miniDialogueUIData;
     private DialogueSO _dialogueUIData;
 
-    [Header("Dialogue Data")]
-    [SerializeField] private LanguageSO _languageSO;
-    [HideInInspector] public DialogueDataReader dialogueDataReader;
-
     [Header("Typing Effect")]
     [SerializeField] private float _typingSpeed = 0.05f;
 
-    [Header("Dialogue Camera")]
-    [SerializeField] private GameObject _defaultCam;
-
+    private DialogueController _dialogueController;
     private DialogueEffectController _effectController;
 
-    private bool _isBigUIdata => _dialogueUIData == _bigDialogueUIData;
-    private bool _isHangoutScene =>
-        SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
+    public bool IsBigUIdata => _dialogueUIData == _bigDialogueUIData;
+    public bool IsTyping = false;
 
-    private Coroutine _showDialogueCoroutine;
     private Coroutine _typingCoroutine;
+    private Coroutine _showDialogueCoroutine;
 
-    private bool _isTyping = false;
-    private bool _isDialogue = false;
-    public bool IsDialogue => _isDialogue;
-
-    private Action _onDialogueComplete;
     public Action<bool> ChangeDialogueUI;
-
-    [HideInInspector] public int currentDialogueIndex = 0;
-    [HideInInspector] public List<DialogueData> filteredDialogueList;
 
 
     private void Awake()
     {
+        _dialogueController = GetComponent<DialogueController>();
         _effectController = GetComponent<DialogueEffectController>();
     }
 
@@ -59,92 +40,22 @@ public class DialogueUIController : MonoBehaviour
     private void OnEnable()
     {
         ChangeDialogueUI += HandleDialogueUIData;
-        DialogueEvent.DialogueSkipEvent += DialogueSkip;
     }
 
     private void OnDisable()
     {
         ChangeDialogueUI -= HandleDialogueUIData;
-        DialogueEvent.DialogueSkipEvent -= DialogueSkip;
     }
 
-    private void Update()
-    {
-        if (!_isBigUIdata && !_isHangoutScene) return;
-        if (!_isDialogue) return;
-
-        if (dialogueDataReader.readMode == ReadMode.Auto)
-        {
-            if (!_isTyping)
-                ShowNextDialogue();
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                DialogueSkip();
-            }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-                currentDialogueIndex = filteredDialogueList.Count;
-                ShowNextDialogue();
-            }
-        }
-    }
-
-    #region Handle Event
     private void HandleDialogueUIData(bool isBig)
     {
         _dialogueUIData = isBig ? _bigDialogueUIData : _miniDialogueUIData;
     }
 
-    private void DialogueSkip()
+    public void SetDialogueUI()
     {
-        if(!_isTyping)
-        {
-            AnimationEvent.EndDialogueAnimation?.Invoke();
-            ShowNextDialogue();
-        }
-    }
-
-    #endregion
-
-    public void StartDialogue(int startID, int endID, Action onComplete = null)
-    {
-        _isDialogue = true;
-
-        if (dialogueDataReader == null || dialogueDataReader.DialogueList.Count == 0)
-        {
-            onComplete?.Invoke();
-            return;
-        }
-
-        filteredDialogueList = dialogueDataReader.DialogueList.FindAll(dialogue =>
-            dialogue.id >= startID && dialogue.id <= endID);
-
-        if (filteredDialogueList.Count == 0)
-        {
-            onComplete?.Invoke();
-            return;
-        }
-
-        currentDialogueIndex = 0;
-        _onDialogueComplete = onComplete;
-
-        StartCoroutine(DialogueRoutine());
-    }
-
-    private IEnumerator DialogueRoutine()
-    {
-        if (_isBigUIdata && _defaultCam != null)
-        {
-            _defaultCam.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
-        }
-
-        string name = filteredDialogueList[0].characterName;
+        Debug.Log("Show UI");
+        string name = _dialogueController.filteredDialogueList[0].characterName;
         if (name == "지아")
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
         else if (string.IsNullOrEmpty(name))
@@ -152,7 +63,7 @@ public class DialogueUIController : MonoBehaviour
         else
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
 
-        if (_isBigUIdata)
+        if (IsBigUIdata)
         {
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
@@ -162,13 +73,12 @@ public class DialogueUIController : MonoBehaviour
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
         }
-
-        StartShowDialogue(currentDialogueIndex);
     }
 
-    #region UIController
     public void StartShowDialogue(int index)
     {
+        Debug.Log("Show Dialogue");
+
         if (_showDialogueCoroutine != null)
             StopCoroutine(_showDialogueCoroutine);
 
@@ -177,9 +87,9 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator ShowDialogue(int index)
     {
-        if (index < 0 || index >= filteredDialogueList.Count) yield break;
+        if (index < 0 || index >= _dialogueController.filteredDialogueList.Count) yield break;
 
-        DialogueData dialogue = filteredDialogueList[index];
+        DialogueData dialogue = _dialogueController.filteredDialogueList[index];
 
         if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.ShakeCam)
         {
@@ -189,11 +99,11 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string name = dialogue.characterName;
-        if (name == "지아") 
+        if (name == "지아")
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-        else if (string.IsNullOrEmpty(name)) 
+        else if (string.IsNullOrEmpty(name))
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-        else 
+        else
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
 
         _dialogueUIData.characterName = name;
@@ -214,26 +124,10 @@ public class DialogueUIController : MonoBehaviour
         _typingCoroutine = StartCoroutine(TypingEffect(dialogue.context));
     }
 
-    private void ShowNextDialogue()
-    {
-        currentDialogueIndex++;
-
-        if (currentDialogueIndex >= filteredDialogueList.Count)
-        {
-            _isDialogue = false;
-            DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-            _defaultCam?.SetActive(true);
-            _onDialogueComplete?.Invoke();
-            return;
-        }
-
-        StartShowDialogue(currentDialogueIndex);
-    }
-
     private IEnumerator TypingEffect(string fullText)
     {
         GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Text_Typing);
-        _isTyping = true;
+        IsTyping = true;
         _dialogueUIData.dialogue = "";
 
         bool black = false, red = false, cyan = false;
@@ -260,10 +154,10 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(_typingSpeed);
         }
 
-        if (dialogueDataReader.readMode == ReadMode.Auto)
+        if (_dialogueController.dialogueDataReader.readMode == ReadMode.Auto)
             yield return new WaitForSeconds(1.5f);
 
-        _isTyping = false;
+        IsTyping = false;
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
@@ -275,8 +169,7 @@ public class DialogueUIController : MonoBehaviour
         if (_showDialogueCoroutine != null)
             StopCoroutine(_showDialogueCoroutine);
 
-        _dialogueUIData.dialogue = filteredDialogueList[currentDialogueIndex].context;
-        _isTyping = false;
+        _dialogueUIData.dialogue = _dialogueController.filteredDialogueList[_dialogueController.currentDialogueIndex].context;
+        IsTyping = false;
     }
-    #endregion
 }

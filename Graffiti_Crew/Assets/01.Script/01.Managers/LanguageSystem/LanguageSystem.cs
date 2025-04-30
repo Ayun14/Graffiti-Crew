@@ -11,10 +11,10 @@ namespace AH.LanguageSystem {
         [SerializeField] private DialogueDataReader _krData;
         [SerializeField] private DialogueDataReader _enData;
 
-        private DialogueUIController _dialogueController;
+        private DialogueController _dialogueController;
 
         private void OnEnable() {
-            _dialogueController = FindAnyObjectByType<DialogueUIController>();
+            _dialogueController = FindAnyObjectByType<DialogueController>();
 
             UIEvents.ChangeLanguageEvnet += ChangeLanguageType;
             SetDialogueLangauage();

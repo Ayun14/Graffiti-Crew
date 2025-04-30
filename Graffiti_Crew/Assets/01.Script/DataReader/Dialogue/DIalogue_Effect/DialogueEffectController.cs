@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class DialogueEffectController : MonoBehaviour
 {
-    private DialogueUIController _dialogueController;
+    private DialogueController _dialogueController;
     private DialogueCameraController _camController;
     private SplashController _splashController;
     private CutSceneController _cutSceneController;
 
     private void Awake()
     {
-        _dialogueController = GetComponent<DialogueUIController>();
+        _dialogueController = GetComponent<DialogueController>();
         _camController = GetComponent<DialogueCameraController>();
 
         _splashController = GetComponentInChildren<SplashController>();
