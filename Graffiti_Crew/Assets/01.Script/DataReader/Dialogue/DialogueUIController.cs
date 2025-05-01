@@ -145,8 +145,10 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string name = filteredDialogueList[0].characterName;
-        if (name == "지아")
+        if (name == "지아") {
+            Debug.Log("지아1");
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+        }
         else if (string.IsNullOrEmpty(name))
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
         else
@@ -189,8 +191,10 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string name = dialogue.characterName;
-        if (name == "지아") 
+        if (name == "지아") {
+            Debug.Log("지아2");
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+        }
         else if (string.IsNullOrEmpty(name)) 
             DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
         else 
