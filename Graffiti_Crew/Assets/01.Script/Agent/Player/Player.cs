@@ -21,6 +21,7 @@ public class Player : Agent
     [Header("Setting Values")]
     public float moveSpeed = 4f;
 
+    public DialogueController dialogueController;
     public DialogueUIController dialogueUIController;
     public HangOutPlayerDataSO playerData;
 

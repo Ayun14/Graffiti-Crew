@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class RequestDialogueController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private DialogueUIController _dialogueUIController;
+    [SerializeField] private DialogueController _dialogueController;
 
     [SerializeField] private StoryDialogueSO _requestDialogueSO;
     private int _dialogueNum = 0;
@@ -49,7 +50,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
                 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 if (_dialogueNum == 0)
-                    _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+                    _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
                 else
                     EndDialogue();
             }
@@ -62,7 +63,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
 
         await Task.Delay(1500);
         PresentationEvents.FadeInOutEvent?.Invoke(false);
-        _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+        _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         await Task.Delay(2100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
     }
@@ -95,7 +96,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
 
         _requestDialogueSO = dataController.stageData.storyDialogue;
 
-        _dialogueUIController.dialogueDataReader = dataController.stageData.dialogueData_KR;
+        _dialogueController.dialogueDataReader = dataController.stageData.dialogueData_KR;
         //_dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
         //_dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
 

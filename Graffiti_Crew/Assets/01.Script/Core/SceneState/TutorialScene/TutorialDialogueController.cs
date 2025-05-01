@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class TutorialDialogueController : Observer<GameStateController>
 {
-    [SerializeField] private DialogueUIController _dialogueUIController;
+    [SerializeField] private DialogueController _dialogueUIController;
+    [SerializeField] private DialogueUIController _dialogueController;
 
-    [SerializeField] private List<NPCSO> _dialogueList;
+    [SerializeField] private StoryDialogueSO _dialogueList;
     private int _dialogueNum = 0;
 
 
@@ -25,11 +26,11 @@ public class TutorialDialogueController : Observer<GameStateController>
     {
         if (mySubject.GameState == GameState.Dialogue)
         {
-            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
+            _dialogueController.ChangeDialogueUI?.Invoke(true);
             StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
-            NPCSO dialogue = _dialogueList[_dialogueNum];
-            _dialogueUIController.ChangeDialogueUI?.Invoke(true);
+            NPCSO dialogue = _dialogueList.storyList[_dialogueNum];
+            _dialogueController.ChangeDialogueUI?.Invoke(true);
             _dialogueUIController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
     }
