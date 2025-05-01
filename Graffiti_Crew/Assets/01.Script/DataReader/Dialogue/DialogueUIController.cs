@@ -54,14 +54,6 @@ public class DialogueUIController : MonoBehaviour
 
     public void SetDialogueUI()
     {
-        string name = _dialogueController.filteredDialogueList[0].characterName;
-        if (name == "Áö¾Æ")
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-        else if (string.IsNullOrEmpty(name))
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-        else
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
-
         if (IsBigUIdata)
         {
             DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
