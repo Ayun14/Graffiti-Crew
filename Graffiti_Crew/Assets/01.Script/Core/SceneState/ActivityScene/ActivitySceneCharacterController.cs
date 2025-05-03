@@ -22,9 +22,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
 
     public void LodingHandle(DataController dataController)
     {
-        Debug.Log(dataController.stageData.rivalPrefabList.Count);
         RivalsSpawn(dataController.stageData.rivalPrefabList);
-
         dataController.SuccessGiveData();
     }
 
@@ -41,20 +39,19 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     private void RivalsSpawn(List<Transform> rivalPrefabList)
     {
         _rivalTrmList?.Clear();
-        foreach(Transform rivalSpawnTrm in _rivalSpawnTrmList)
+        for (int i = 0; i < rivalPrefabList.Count; i++)
         {
-            if (rivalPrefabList.Count == 0) break;
-
-            Debug.Log(rivalSpawnTrm.position);
-            Transform trm = Instantiate(rivalPrefabList.First().gameObject, rivalSpawnTrm.position, rivalSpawnTrm.localRotation, transform).transform;
+            Transform rivalSpawnTrm = _rivalSpawnTrmList[i];
+            Transform rivalPrefab = rivalPrefabList[i];
+            Transform trm = Instantiate(rivalPrefab.gameObject, rivalSpawnTrm.position, rivalSpawnTrm.localRotation, transform).transform;
             _rivalTrmList.Add(trm);
-            rivalPrefabList.Remove(rivalPrefabList.First());
         }
     }
 
     public void RivalsEscape()
     {
-        foreach(Transform rivalTrm in _rivalTrmList)
+        //AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
+        foreach (Transform rivalTrm in _rivalTrmList)
         {
             // 나머지 처리 하기 Animation & Rotation
             rivalTrm.DOMoveX(_escapeTrm.position.x, Random.Range(4f, 6f));

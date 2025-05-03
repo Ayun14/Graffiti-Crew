@@ -15,27 +15,24 @@ public class ClickJudgement : NodeJudgement
         if (Input.GetMouseButtonUp(0))
             isNodeClick = false;
 
-        if (_stageGameRule.IsCanInput())
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))
+                if (hit.transform.parent.TryGetComponent(out Node node))
                 {
-                    if (hit.transform.parent.TryGetComponent(out Node node))
-                    {
-                        isNodeClick = true;
+                    isNodeClick = true;
 
-                        currentNode = node;
-                        NodeClick(currentNode);
-                    }
+                    currentNode = node;
+                    NodeClick(currentNode);
                 }
-                else // HitNode Combo 실패
-                {
-                    if (currentNode != null && currentNode.GetNodeType() == NodeType.HitNode)
-                        _stageGameRule.NodeFalse();
-                }
+            }
+            else // HitNode Combo 실패
+            {
+                if (currentNode != null && currentNode.GetNodeType() == NodeType.HitNode)
+                    _stageGameRule.NodeFalse();
             }
         }
     }

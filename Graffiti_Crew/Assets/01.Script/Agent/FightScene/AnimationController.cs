@@ -11,6 +11,7 @@ public enum AnimationEnum
     Lose,
     People_Idle,
     People_Clap,
+    Run,
 
     // Dialogue
     Talk
