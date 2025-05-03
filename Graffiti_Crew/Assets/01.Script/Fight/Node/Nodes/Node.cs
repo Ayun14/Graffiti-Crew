@@ -54,6 +54,8 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     public abstract void SetAlpha(float endValue, float time = 0, Action callback = null);
 
+    public virtual void NodeFalse() { Debug.Log("NodeFalse"); }
+
     protected void PopGraffitiParticle(Vector3 spawnPos)
     {
         IPoolable poolable = poolManagerSO.Pop(_graffitiParticleTypeSO);

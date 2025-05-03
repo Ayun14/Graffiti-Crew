@@ -31,7 +31,7 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
         if (Input.GetKeyDown(KeyCode.H))
         {
             SpawnCoinToRival();
-        }    
+        }
     }
 
     public void SpawnCoinToPlayer()
@@ -75,6 +75,6 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
         Gizmos.color = Color.green;
 
         Vector3 size = new Vector3(_width, _height, 1);
-        Gizmos.DrawWireCube(transform.position, size);
+        Gizmos.DrawWireCube(transform.position + _playerCoinSpawnPos, size);
     }
 }

@@ -304,8 +304,8 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    public void SetResultUI() // 이거 뭔지 물어보기
+    public void SetResultUI()
     {
-        //StageEvent.ShowResultViewEvent?.Invoke(true);
+        StageEvent.ShowResultViewEvent?.Invoke(true, mySubject.IsPlayerWin);
     }
 }
