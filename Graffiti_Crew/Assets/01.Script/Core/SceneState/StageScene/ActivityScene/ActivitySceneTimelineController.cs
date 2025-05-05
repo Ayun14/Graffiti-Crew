@@ -43,7 +43,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
 
     public void ActivityStartTimelineEnd()
     {
-        mySubject.ChangeGameState(GameState.Graffiti);
+        mySubject.ChangeGameState(GameState.Fight);
     }
 
     public void FinishTimelineEnd()

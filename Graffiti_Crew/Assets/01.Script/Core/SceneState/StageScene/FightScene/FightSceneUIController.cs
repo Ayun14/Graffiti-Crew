@@ -49,6 +49,10 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _finishPanel;
     private Image _finishImage;
 
+    // Transition
+    private Image _transitionPanel;
+    private Material _transitionMat;
+
     private void Awake()
     {
         Attach();
@@ -78,6 +82,10 @@ public class FightSceneUIController : Observer<GameStateController>
         // Finish
         _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
         _finishImage = _finishPanel.transform.Find("Image_Finish").GetComponent<Image>();
+
+        // Transition
+        _transitionPanel = canvas.Find("Panel_Transition").GetComponent<Image>();
+        _transitionMat = _transitionPanel.transform.Find("Image_TransitionShader").GetComponent<Image>().material;
     }
 
     private void OnDestroy()
@@ -300,6 +308,28 @@ public class FightSceneUIController : Observer<GameStateController>
             yield return null;
         }
         _failMat.SetFloat(_failPower, end);
+    }
+
+    #endregion
+
+    #region Transition Shader
+
+    public void StartTransitionRoutine() => StartCoroutine(TransitionRoutine());
+
+    private IEnumerator TransitionRoutine()
+    {
+        _transitionPanel.gameObject.SetActive(true);
+        _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
+        yield return new WaitForSeconds(2f);
+
+        _transitionMat.DOFloat(0f, "_Lerp", 0.3f);
+        yield return new WaitForSeconds(1.2f);
+
+        _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
+        yield return new WaitForSeconds(2f);
+
+        _transitionMat.DOFloat(1f, "_Lerp", 0.3f);
+        yield return new WaitForSeconds(0.8f);
     }
 
     #endregion
