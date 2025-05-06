@@ -41,6 +41,12 @@ public class AnimationController : MonoBehaviour
         AnimationManager.Unregister(ObjectID, this);
     }
 
+    public void SetObjectID(int ID)
+    {
+        ObjectID = ID;
+        AnimationManager.Register(ObjectID, this);
+    }
+
     public void PlayAnimation(AnimationEnum anim)
     {
         ExitAnim();
