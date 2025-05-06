@@ -12,7 +12,6 @@ public enum AnimationEnum
     Run,
     People_Idle,
     People_Clap,
-    Run,
 
     // Dialogue
     Talk
@@ -40,12 +39,6 @@ public class AnimationController : MonoBehaviour
     private void OnDestroy()
     {
         AnimationManager.Unregister(ObjectID, this);
-    }
-
-    public void SetObjectID(int ID)
-    {
-        ObjectID = ID;
-        AnimationManager.Register(ObjectID, this);
     }
 
     public void PlayAnimation(AnimationEnum anim)
