@@ -1,9 +1,7 @@
-using UnityEngine;
-using AH.SaveSystem;
-using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
-using System.Collections;
 using DG.Tweening;
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class Computer : InteractionObject
 {

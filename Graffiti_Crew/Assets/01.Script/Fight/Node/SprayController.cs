@@ -26,7 +26,6 @@ public class SprayController : MonoBehaviour
         get { return _currentSprayValue; }
         set { _currentSprayValue = Mathf.Clamp(value, 0, _maxSprayValue); }
     }
-    public bool isSprayNone => _currentSprayValue <= 0f;
 
     protected StageGameRule _stageGameRule;
 
@@ -105,7 +104,7 @@ public class SprayController : MonoBehaviour
         CurrentSparyValue += value;
 
         // Spray Empty
-        if (CurrentSparyValue <= 0f)
+        if (_stageGameRule.GetSprayEmpty() == false && CurrentSparyValue <= 0f)
         {
             StartCoroutine(SprayEmpty());
             _stageGameRule.SetSprayEmpty(true);
