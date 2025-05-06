@@ -9,6 +9,7 @@ public enum AnimationEnum
     Paint,
     Win,
     Lose,
+    Run,
     People_Idle,
     People_Clap,
 
