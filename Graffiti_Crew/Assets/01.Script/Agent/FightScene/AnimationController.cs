@@ -33,7 +33,8 @@ public class AnimationController : MonoBehaviour
 
     private void Start()
     {
-        AnimationManager.Register(ObjectID, this);
+        if(ObjectID != -1)
+            AnimationManager.Register(ObjectID, this);
     }
 
     private void OnDestroy()
@@ -51,5 +52,11 @@ public class AnimationController : MonoBehaviour
     private void ExitAnim()
     {
         _animator.SetBool(_currentAnim.ToString(), false);
+    }
+
+    public void SetObjectID(int newID)
+    {
+        ObjectID = newID;
+        AnimationManager.Register(ObjectID, this);
     }
 }
