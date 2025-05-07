@@ -59,39 +59,66 @@ namespace AH.UI {
             _viewModel = new TitleViewModel(_model as TitleModel);
             slots = Resources.LoadAll<SlotSO>(slotPath);
         }
-
-        protected override void SetupViews() {
+        protected override void SetupViews()
+        {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
             _saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
             _startBtn = root.Q<Button>("start-btn");
             _exitBtn = root.Q<Button>("exit-btn");
-
             _fadeView = root.Q<VisualElement>("fade-view");
-
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
             _saveSlotField.index = _viewModel.GetSlotIndex();
 
             // 드롭다운 아이템들 스타일 접근
-            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
-                EditorApplication.delayCall += () =>
+            _saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
+            {
+#if UNITY_EDITOR
+                // 에디터에서만 지연 호출 사용
+                UnityEditor.EditorApplication.delayCall += () =>
                 {
-                    var content = UIDocument.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
-                    List<VisualElement> list = content.Query<VisualElement>(className : "unity-base-dropdown__item").ToList();
-                    foreach(VisualElement item in list) {
-                        item.RegisterCallback<PointerEnterEvent>(evt => {
-                            item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-                        });
-                        item.RegisterCallback<PointerLeaveEvent>(evt => {
-                            item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
-                        });
-                    }
+                    StyleDropdownItems();
                 };
+#else
+        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
+        StartCoroutine(StyleDropdownItemsNextFrame());
+#endif
             });
 
             StartCoroutine(Routine());
+        }
+
+        // 드롭다운 아이템 스타일링을 위한 별도 메서드
+        private void StyleDropdownItems()
+        {
+            var content = UIDocument.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
+            if (content != null)
+            {
+                List<VisualElement> list = content.Query<VisualElement>(className: "unity-base-dropdown__item").ToList();
+                foreach (VisualElement item in list)
+                {
+                    item.RegisterCallback<PointerEnterEvent>(evt =>
+                    {
+                        item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+                    });
+                    item.RegisterCallback<PointerLeaveEvent>(evt =>
+                    {
+                        item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
+                    });
+                }
+            }
+        }
+
+        // 빌드 환경에서 다음 프레임에 스타일 적용을 위한 코루틴
+        private IEnumerator StyleDropdownItemsNextFrame()
+        {
+            // 한 프레임 대기
+            yield return null;
+
+            // 스타일 적용
+            StyleDropdownItems();
         }
 
         private IEnumerator Routine() {
