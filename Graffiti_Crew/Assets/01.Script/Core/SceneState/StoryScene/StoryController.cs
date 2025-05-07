@@ -58,8 +58,12 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
         _levelPrefabs[_dialogueNum].SetActive(false);
+
         _dialogueNum++;
-        _levelPrefabs[_dialogueNum].SetActive(true);
+
+        if(_dialogueNum <= _levelPrefabs.Count - 1)
+            _levelPrefabs[_dialogueNum].SetActive(true);
+
 
         if (_dialogueNum == _storyDialogueSO.storyList.Count)
         {
