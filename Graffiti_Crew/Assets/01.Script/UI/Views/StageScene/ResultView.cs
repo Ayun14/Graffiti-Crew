@@ -67,18 +67,10 @@ namespace AH.UI.Views {
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
             StageSaveDataSO currentStageData = null;
             string stageName = ViewModel.GetStageName();
-            StageType stageType = ViewModel.GetStageType();
-            switch (stageType) {
-                case StageType.Stage:
-                    currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Stage/{stageName}");
-                    break;
-                case StageType.Request:
-                    currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Request/{stageName}");
-                    break;
-                case StageType.Story:
-                    currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/Story/{stageName}");
-                    break;
-            }
+            string chapter = ViewModel.GetChapter();
+            Debug.Log(chapter);
+            currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/{chapter}/{stageName}");
+
             for(int i = 0; i < 3 - currentStageData.star; i++) {
                 stars[i].RemoveFromClassList("star");
             }
