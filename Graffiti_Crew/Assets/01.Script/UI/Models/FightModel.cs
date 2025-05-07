@@ -7,6 +7,9 @@ namespace AH.UI.Models {
         [SerializeField] private LoadStageSO _loadStageSO;
         [SerializeField] private SliderValueSO _sprayGauage;
 
+        public string GetChapter() {
+            return _loadStageSO.chapter;
+        }
         public string GetStageName() {
             return _loadStageSO.GetCurrentStageName();
         }
