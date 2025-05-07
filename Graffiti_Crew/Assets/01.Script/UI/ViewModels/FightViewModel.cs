@@ -9,6 +9,9 @@ namespace AH.UI.ViewModels {
             _model = model as FightModel;
         }
 
+        public string GetChapter() {
+            return _model.GetChapter();
+        }
         public string GetStageName() {
             return _model.GetStageName();
         }

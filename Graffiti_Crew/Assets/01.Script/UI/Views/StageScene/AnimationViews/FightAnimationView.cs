@@ -11,6 +11,7 @@ public enum FightUIAnimationType {
 }
 public class FightAnimationView : UIView {
     private VisualElement _startAnimation;
+    private VisualElement _countDownAnimation;
     private VisualElement _endAnimation;
     private VisualElement _rivalCheckAnimation;
 
@@ -21,29 +22,27 @@ public class FightAnimationView : UIView {
     
     public FightAnimationView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
+        UIAnimationEvent.SetActiveCountDownAnimationEvnet += SetActiveCountDownAnimation;
         UIAnimationEvent.SetActiveEndAnimationEvnet += SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet += RivalCheckAnimation;
         UIAnimationEvent.SetPlayerBackgroundColor += SetPlayerBackgroundColor;
         UIAnimationEvent.SetRivalBackgroundColor += SetRivalBackgroundColor;
     }
-
     public override void Dispose() { 
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
+        UIAnimationEvent.SetActiveCountDownAnimationEvnet -= SetActiveCountDownAnimation;
         UIAnimationEvent.SetActiveEndAnimationEvnet -= SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
         UIAnimationEvent.SetPlayerBackgroundColor -= SetPlayerBackgroundColor;
         UIAnimationEvent.SetRivalBackgroundColor -= SetRivalBackgroundColor;
         base.Dispose();
     }
-
-    public override void Initialize() {
-        base.Initialize();
-    }
     protected override void SetVisualElements() {
         base.SetVisualElements();
         _startAnimation = topElement.Q<VisualElement>("startAnimation");
         _endAnimation = topElement.Q<VisualElement>("endAnimation");
         _rivalCheckAnimation = topElement.Q<VisualElement>("rivalCheckAnimation");
+        _countDownAnimation = topElement.Q<VisualElement>("countdownAnimation");
 
         _lineBackground = _rivalCheckAnimation.Q<VisualElement>("line-background");
         _colorBackground = _rivalCheckAnimation.Q<VisualElement>("color-background");
@@ -58,6 +57,14 @@ public class FightAnimationView : UIView {
         }
         else {
             Hide(_startAnimation);
+        }
+    }
+    private void SetActiveCountDownAnimation(bool active) {
+        if (active) {
+            Show(_countDownAnimation);
+        }
+        else {
+            Hide(_countDownAnimation);
         }
     }
     private void SetActiveEndAnimation(bool active) {

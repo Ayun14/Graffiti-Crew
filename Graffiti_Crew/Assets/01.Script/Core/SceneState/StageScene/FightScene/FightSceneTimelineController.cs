@@ -52,6 +52,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
         {
             mySubject.ChangeGameState(GameState.Fight);
             UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
+            UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
         }
     }
 
