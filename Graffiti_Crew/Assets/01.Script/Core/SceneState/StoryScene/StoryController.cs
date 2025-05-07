@@ -1,10 +1,13 @@
 using AH.UI.Events;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StoryController : Observer<GameStateController>, INeedLoding
 {
+    [SerializeField] private List<GameObject> _levelPrefabs;
+
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
 
@@ -53,8 +56,10 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
         DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-        _dialogueNum++;
 
+        _levelPrefabs[_dialogueNum].SetActive(false);
+        _dialogueNum++;
+        _levelPrefabs[_dialogueNum].SetActive(true);
 
         if (_dialogueNum == _storyDialogueSO.storyList.Count)
         {
@@ -77,6 +82,17 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     public void LodingHandle(DataController dataController)
     {
         dataController.stageData.stageSaveData.isClear = true;
+
+        GameObject map = Instantiate(dataController.stageData.mapPrefab, Vector3.zero, Quaternion.identity);
+
+        _levelPrefabs.Clear();
+        Transform parent = map.transform;
+        foreach (Transform child in parent)
+        {
+            _levelPrefabs.Add(child.gameObject);
+            child.gameObject.SetActive(false);
+        }
+        _levelPrefabs[_dialogueNum].SetActive(true);
 
         _storyDialogueSO = dataController.stageData.storyDialogue;
 

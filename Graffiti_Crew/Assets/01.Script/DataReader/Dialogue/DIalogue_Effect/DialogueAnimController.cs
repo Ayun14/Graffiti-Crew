@@ -23,6 +23,7 @@ public class DialogueAnimController : MonoBehaviour
 
     private void HandleDialoguePlay(DialogueData dialogue)
     {
+        _animValue = 0;
 
         switch (dialogue.characterName)
         {
@@ -32,8 +33,8 @@ public class DialogueAnimController : MonoBehaviour
             case "¿¤¶ó":
                 _animValue = 2;
                 break;
-            case "ÀÇ·ÚÀÎ":
-                _animValue = 100;
+            case "":
+                _animValue = 0;
                 break;
         }
 
