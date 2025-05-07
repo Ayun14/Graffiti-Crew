@@ -34,10 +34,13 @@ namespace AH.LanguageSystem {
 
         private void SetDialogueLangauage()
         {
-            if (_currentLanguageType == LanguageType.Korea)
-                _dialogueController.dialogueDataReader = _krData;
-            else if (_currentLanguageType == LanguageType.English)
-                _dialogueController.dialogueDataReader = _enData;
+            if (_dialogueController != null)
+            {
+                if (_currentLanguageType == LanguageType.Korea)
+                    _dialogueController.dialogueDataReader = _krData;
+                else if (_currentLanguageType == LanguageType.English)
+                    _dialogueController.dialogueDataReader = _enData;
+            }
         }
     }
 }

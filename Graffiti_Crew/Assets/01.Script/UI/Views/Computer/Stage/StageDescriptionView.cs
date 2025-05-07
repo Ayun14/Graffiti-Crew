@@ -81,7 +81,7 @@ namespace AH.UI.Views {
                     SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
                 }
                 else {
-                    SaveDataEvents.SaveGameEvent?.Invoke("RequestScene");
+                    SaveDataEvents.SaveGameEvent?.Invoke("ActivityScene");
                 }
             }
             else {

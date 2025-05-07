@@ -24,7 +24,7 @@ public class ScoreSystem : MonoBehaviour {
                 increase = 1;
                 decrease = 2;
                 break;
-            case StageType.Request:
+            case StageType.Activity:
                 increase = 2;
                 decrease = 1;
                 break;

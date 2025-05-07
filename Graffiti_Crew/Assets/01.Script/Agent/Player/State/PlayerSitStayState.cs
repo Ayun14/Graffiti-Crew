@@ -1,11 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSitStayState : PlayerState
 {
     private bool _onRun = false;
 
-    public PlayerSitStayState(Player player, PlayerStateMachine stateMachine, string animBoolName) 
+    public PlayerSitStayState(Player player, PlayerStateMachine stateMachine, string animBoolName)
         : base(player, stateMachine, animBoolName)
     {
     }

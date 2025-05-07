@@ -36,6 +36,12 @@ namespace AH.UI.Views {
             _sprayProgress = topElement.Q<ProgressBar>("spray-total-amount-progress");
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
         }
+
+        public override void Show() {
+            base.Show();
+            _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(Color.white);
+        }
+
         private void UpdateSpray() {
             if (_viewModel.GetSprayData().value <= 0) {
                 if (!_notEnoughSpray) { // 이미하고 있는지 확인
@@ -56,19 +62,6 @@ namespace AH.UI.Views {
             if (_sprayOutLine != null) {
                 _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(healthColor);
             }
-
-            // Update health bar value
-            //m_HealthBar.value = gaugeRatio * 100f;
-            // Update the status label based on percentage health
-            //m_StatusLabel.text = gaugeRatio switch {
-            //    >= 0 and < 1.0f / 3.0f => "Danger",
-            //    >= 1.0f / 3.0f and < 2.0f / 3.0f => "Neutral",
-            //    _ => "Good"
-            //};
-            // Change the color of the status label to interpolated color
-            //m_StatusLabel.style.color = new StyleColor(healthColor);
-            // Update value label
-            //m_ValueLabel.text = m_HealthModelAsset.CurrentHealth.ToString();
         }
         private async void NotEnoughSpray() {
             while (_notEnoughSpray) {

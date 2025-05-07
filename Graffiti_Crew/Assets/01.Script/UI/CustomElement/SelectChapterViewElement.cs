@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 namespace AH.UI.CustomElement {
     public class SelectChapterViewElement : VisualElement {
         public string chapter { get; set; }
+        public bool canPlay;
 
         [System.Obsolete]
         public new class UxmlFactory : UxmlFactory<SelectChapterViewElement, UxmlTraits> { }
@@ -13,13 +14,18 @@ namespace AH.UI.CustomElement {
                 name = "chapter",
                 defaultValue = "1"
             };
+            UxmlBoolAttributeDescription m_canPlay = new UxmlBoolAttributeDescription {
+                name = "canPlay",
+                defaultValue = false
+            };
             // 스테이지 타입 넣을거면 넣기(의뢰인지, 대결인지)
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc) {
                 base.Init(ve, bag, cc);
 
                 var dve = ve as SelectChapterViewElement;
 
-                dve.chapter = m_chapter.GetValueFromBag(bag, cc);   
+                dve.chapter = m_chapter.GetValueFromBag(bag, cc);
+                dve.canPlay = m_canPlay.GetValueFromBag(bag, cc);
             }
         }
     }

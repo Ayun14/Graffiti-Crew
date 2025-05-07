@@ -69,6 +69,7 @@ namespace AH.UI.Views {
             string stageName = ViewModel.GetStageName();
             string chapter = ViewModel.GetChapter();
             Debug.Log(chapter);
+            Debug.Log(stageName);
             currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/{chapter}/{stageName}");
 
             for(int i = 0; i < 3 - currentStageData.star; i++) {

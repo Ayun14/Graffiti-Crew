@@ -9,7 +9,7 @@ public class StoryDataController : DataController
 
     protected override void FindDatas()
     {
-        stageData = Resources.Load("StageData/" + stageSO.GetLoadStoryName()) as StageDataSO;
+        stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
     }
 
     protected async override void FinishGiveData()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum StageType {
     Stage,
-    Request,
+    Activity,
     Story
 }
 namespace AH.SaveSystem {

@@ -13,7 +13,7 @@ public class RequestSceneDataController : DataController
 
     protected override void FindDatas()
     {
-        stageData = Resources.Load("StageData/" + stageSO.GetLoadRequestName()) as StageDataSO;
+        stageData = Resources.Load("StageData/" + stageSO.GetLoadStageName()) as StageDataSO;
     }
 
     protected async override void FinishGiveData()
