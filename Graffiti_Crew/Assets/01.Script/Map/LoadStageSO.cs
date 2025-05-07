@@ -33,7 +33,6 @@ namespace AH.SaveSystem {
         public void SetCurrentStage(string stage, StageType type) {
             _currentStageName = $"{stage}";
             _currentStageType = type;
-            Debug.Log("set");
         }
         public string GetCurrentStageName() {
             return _currentStageName;

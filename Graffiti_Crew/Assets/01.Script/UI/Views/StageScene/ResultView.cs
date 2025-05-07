@@ -68,11 +68,10 @@ namespace AH.UI.Views {
             StageSaveDataSO currentStageData = null;
             string stageName = ViewModel.GetStageName();
             string chapter = ViewModel.GetChapter();
-            Debug.Log(chapter);
-            Debug.Log(stageName);
             currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/{chapter}/{stageName}");
 
             for(int i = 0; i < 3 - currentStageData.star; i++) {
+                Debug.Log("remove");
                 stars[i].RemoveFromClassList("star");
             }
         }

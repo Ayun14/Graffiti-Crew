@@ -2,7 +2,6 @@
     <Style src="project://database/Assets/07.UI/USS/StageScene/StartAnimation.uss?fileID=7433441132597879392&amp;guid=ec5a9f53fea0eae47afc78d94f9bd4de&amp;type=3#StartAnimation" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="startAnimation" style="position: absolute; width: 100%; height: 100%; display: flex;">
-        <engine:VisualElement name="start-content" class="start-content" />
         <engine:VisualElement name="screen-content" style="flex-grow: 1; flex-direction: row;">
             <engine:VisualElement name="rival-screen" class="rival-screen">
                 <engine:VisualElement name="VisualElement" class="blur" style="rotate: 180deg; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Blur/fightAnimation-blur.png?fileID=2800000&amp;guid=20944e5283fe7cd40905ff703d73b36e&amp;type=3#fightAnimation-blur&quot;);" />
@@ -18,6 +17,7 @@
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="countdownAnimation" class="countdown-content">
+        <engine:VisualElement name="start-content" class="start-content" />
         <engine:VisualElement name="countdown1" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Countdown/countdown1.png?fileID=2800000&amp;guid=94b3165553391ad4a854cd13bc616fca&amp;type=3#countdown1&quot;);" />
         <engine:VisualElement name="countdown2" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Countdown/countdown2.png?fileID=2800000&amp;guid=155f6bc513aff4a499e233905dfb42b0&amp;type=3#countdown2&quot;);" />
         <engine:VisualElement name="countdown3" class="countdown" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/Countdown/countdown3.png?fileID=2800000&amp;guid=49f97c0e52b97d94aab996f9e2e658a9&amp;type=3#countdown3&quot;);" />
