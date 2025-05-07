@@ -44,4 +44,5 @@ public enum SoundType
     Fight_Middle,
     Fight_After,
     HangOut,
+    Police
 }
