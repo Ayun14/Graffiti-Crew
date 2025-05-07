@@ -44,14 +44,14 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
-            //_inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
+            _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
         }
 
 
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
-            //_inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
+            _inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
         }
 
         protected override void Init() {

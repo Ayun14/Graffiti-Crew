@@ -62,6 +62,7 @@ namespace AH.UI.Views {
                 btn.RegisterCallback<PointerLeaveEvent, int>(ExitPointer, i);
                 i++;
             }
+            backToMap.RegisterCallback<ClickEvent>(ClickBackBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -92,6 +93,7 @@ namespace AH.UI.Views {
                 _isShowing = true;
             }
 
+            backToMap.UnregisterCallback<ClickEvent>(ClickBackBtn);
             backToMap.RegisterCallback<ClickEvent, string>(ClickBackToMap, className);
         }
         private void ClickBackToMap(ClickEvent evt, string className) {
@@ -101,7 +103,11 @@ namespace AH.UI.Views {
             }
             _isShowing = false;
             backToMap.UnregisterCallback<ClickEvent, string>(ClickBackToMap);
+            backToMap.RegisterCallback<ClickEvent>(ClickBackBtn);
             UnregisterPoints();
+        }
+        private void ClickBackBtn(ClickEvent evt) {
+            ComputerEvent.HideViewEvent?.Invoke();
         }
         private void SetStagePoints(SelectChapterViewElement topElement) {
             _currentPointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
@@ -178,7 +184,7 @@ namespace AH.UI.Views {
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Stage{data.stage}";
-            Debug.Log($"Chapter{data.chapter} | Stage{data.stage}");
+
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
