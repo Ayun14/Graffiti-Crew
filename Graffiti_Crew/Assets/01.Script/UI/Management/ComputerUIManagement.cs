@@ -9,7 +9,6 @@ namespace AH.UI {
     public class ComputerUIManagement : UIManagement {
         private ComputerView _computerView;
         private SelectChapterView _selectChapterView;
-        private SelectStageView _selectStageView;
         private StoreView _storeView;
         private StageDescriptionView _stageDescriptionView;
         private ItemCountView _itemCountView;
@@ -20,7 +19,6 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             ComputerEvent.ShowSelectChapterViewEvent += ShowSelectChapterView;
-            ComputerEvent.ShowSelectStageViewEvent += ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent += ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent += ShowStoreView;
             ComputerEvent.ActiveItemCountViewEvent += ShowItemCountView;
@@ -32,7 +30,6 @@ namespace AH.UI {
         protected override void OnDisable() {
             base.OnDisable();
             ComputerEvent.ShowSelectChapterViewEvent -= ShowSelectChapterView;
-            ComputerEvent.ShowSelectStageViewEvent -= ShowSelectStageView;
             ComputerEvent.ShowStageDescriptionViewEvent -= ShowStageDescriptionView;
             ComputerEvent.ShowStoreViewEvent -= ShowStoreView;
             ComputerEvent.ActiveItemCountViewEvent -= ShowItemCountView;
@@ -52,7 +49,6 @@ namespace AH.UI {
 
             _computerView = new ComputerView(root.Q<VisualElement>("ComputerView"), _viewModel);
             _selectChapterView = new SelectChapterView(root.Q<VisualElement>("SelectChapterView"), _viewModel);
-            _selectStageView = new SelectStageView(root.Q<VisualElement>("SelectStageView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
@@ -74,9 +70,6 @@ namespace AH.UI {
         }
         private void ShowSelectChapterView() {
             ShowView(_selectChapterView);
-        }
-        private void ShowSelectStageView() {
-            ShowView(_selectStageView);
         }
         private void ShowStageDescriptionView() {
             ShowView(_stageDescriptionView);

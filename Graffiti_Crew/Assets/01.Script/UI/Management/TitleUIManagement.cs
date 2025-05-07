@@ -136,8 +136,8 @@ namespace AH.UI {
             ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
-            string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
-            SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
+            //string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
