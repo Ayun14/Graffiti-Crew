@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using static DG.Tweening.DOTweenAnimation;
 
 public class FoodImage : MonoBehaviour
 {

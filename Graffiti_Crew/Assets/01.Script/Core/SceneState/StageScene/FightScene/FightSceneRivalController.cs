@@ -63,6 +63,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         if (mySubject != null)
         {
+            _isFight = mySubject.GameState == GameState.Fight;
             if (mySubject.GameState == GameState.Timeline)
             {
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Ready);
@@ -71,7 +72,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             {
                 RivalPositionToGraffiti();
             }
-            else if (mySubject.GameState == GameState.Fight)
+            else if (_isFight)
             {
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Paint);
             }
