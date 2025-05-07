@@ -17,13 +17,13 @@ namespace AH.UI.Views {
         private VisualElement mainMap;
         private Button backToMap;
         private List<StagePointElement> _currentPointList;
+        private StageSaveDataSO[] _currentStageData;
 
-        private string _saveDataPath = "SaveData/Stage/";
-        private string _requestSaveDataPath = "SaveData/Request/";
-        private string _storySaveDataPath = "SaveData/Story/";
+       
         private StageSaveDataSO[] _saveStageData;
         private StageSaveDataSO[] _saveRequestData;
         private StageSaveDataSO[] _saveStoryData;
+
 
         private bool _isShowing = false;
         public SelectChapterView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
@@ -31,9 +31,7 @@ namespace AH.UI.Views {
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
-            _saveStageData = Resources.LoadAll<StageSaveDataSO>(_saveDataPath).Skip(1).ToArray(); ;
-            _saveRequestData = Resources.LoadAll<StageSaveDataSO>(_requestSaveDataPath);
-            _saveStoryData = Resources.LoadAll<StageSaveDataSO>(_storySaveDataPath);
+           
             base.Initialize();
         }
         public override void Dispose() {
@@ -57,7 +55,7 @@ namespace AH.UI.Views {
             base.RegisterButtonCallbacks();
             int i = 0;
             foreach(SelectChapterViewElement btn in _selectBtnsList) {
-                btn.RegisterCallback<ClickEvent, (SelectChapterViewElement, string) >(SelectChapter, (btn, btn.chapter));
+                btn.RegisterCallback<ClickEvent, (SelectChapterViewElement, string)>(SelectChapter, (btn, btn.chapter));
                 btn.RegisterCallback<PointerEnterEvent, int>(EnterPointer, i);
                 btn.RegisterCallback<PointerLeaveEvent, int>(ExitPointer, i);
                 i++;
@@ -86,6 +84,9 @@ namespace AH.UI.Views {
         }
 
         private void SelectChapter(ClickEvent evt, (SelectChapterViewElement, string) data) {
+            string _saveDataPath = $"SaveData/Chapter{data.Item2}/";
+            _currentStageData = Resources.LoadAll<StageSaveDataSO>(_saveDataPath);
+
             string className = $"look-chapter{data.Item2}";
             mainMap.AddToClassList(className);
             if (!_isShowing) {
@@ -109,6 +110,7 @@ namespace AH.UI.Views {
         private void ClickBackBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();
         }
+
         private void SetStagePoints(SelectChapterViewElement topElement) {
             _currentPointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
             SetSaveDataToStagePoint();
@@ -144,38 +146,14 @@ namespace AH.UI.Views {
         }
         private void SetSaveDataToStagePoint() {
             int index = 0;
-            int stageIndex = 0;
-            int storyIndex = 0;
-            int requestIndex = 0;
 
-            while (index <= _currentPointList.Count - _saveRequestData.Length) {
-                if (_currentPointList[index].type == StageType.Stage) {
-                    if (!_saveStageData[stageIndex].isClear) {
-                        _currentPointList[index].canPlay = true; // 다음 스테이지 보이도록
-                        break;
-                    }
-                    _currentPointList[index].canPlay = _saveStageData[stageIndex].isClear;
-                    _currentPointList[index].starCount = _saveStageData[stageIndex].star;
-                    stageIndex++;
+            while (index < 3) {
+                if (!_currentStageData[index].isClear) {
+                    _currentPointList[index].canPlay = true; // 다음 스테이지 보이도록
+                    break;
                 }
-                else if (_currentPointList[index].type == StageType.Story) {
-                    if (!_saveStoryData[storyIndex].isClear) {
-                        _currentPointList[index].canPlay = true; // 다음 스테이지 보이도록
-                        break;
-                    }
-                    _currentPointList[index].canPlay = _saveStoryData[storyIndex].isClear;
-                    _currentPointList[index].starCount = _saveStoryData[storyIndex].star;
-                    storyIndex++;
-                }
-                else if (_currentPointList[index].type == StageType.Request) {
-                    if (!_saveRequestData[requestIndex].isClear) {
-                        _currentPointList[index].canPlay = true; // 다음 스테이지 보이도록
-                        break;
-                    }
-                    _currentPointList[index].canPlay = _saveRequestData[requestIndex].isClear;
-                    _currentPointList[index].starCount = _saveRequestData[requestIndex].star;
-                    requestIndex++;
-                }
+                _currentPointList[index].canPlay = _currentStageData[index].isClear;
+                _currentPointList[index].starCount = _currentStageData[index].star;
                 index++;
             }
         }
