@@ -5,11 +5,8 @@ public enum GameState
 {
     None,
 
-    // ´ë°á¾À
-    Loding, Timeline, Fight, Finish, Result,
-
-    // È°µ¿¾À
-    // Loding -> Timeline -> Graffiti -> Finish -> Result
+    // ´ë°á¾À, È°µ¿¾À
+    Loding, Timeline, Countdown, Fight, Finish, Result,
 
     // ÀÇ·Ú¾À
     // Loding -> Talk -> Graffiti -> Result
