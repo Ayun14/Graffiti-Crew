@@ -4,6 +4,7 @@ using UnityEngine.Playables;
 public class FightSceneTimelineController : Observer<GameStateController>
 {
     [SerializeField] private PlayableDirector _beforeFightTimeline;
+    [SerializeField] private PlayableDirector _countdownTimeline;
     [SerializeField] private PlayableDirector _endFightTimeline;
     private PlayableDirector _finishTimeline;
     private PlayableDirector _resultTimeline;
@@ -37,6 +38,15 @@ public class FightSceneTimelineController : Observer<GameStateController>
     }
 
     public void BeforeFightTimelineEnd()
+    {
+        if (mySubject != null)
+        {
+            mySubject.ChangeGameState(GameState.Countdown);
+            _countdownTimeline?.Play();
+        }
+    }
+
+    public void CountdownTimelineEnd()
     {
         if (mySubject != null)
         {

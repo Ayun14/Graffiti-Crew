@@ -8149,6 +8149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _beforeFightTimeline: {fileID: 2002932599}
+  _countdownTimeline: {fileID: 2002932594}
   _endFightTimeline: {fileID: 830377625}
 --- !u!1 &1865649584
 GameObject:
@@ -8470,6 +8471,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1858405860}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CountdownTimelineEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FightSceneTimelineController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709747385842995913, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_PlayableAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a295896f22cfbe4599fa570100e436d, type: 2}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 2
@@ -8591,6 +8612,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6865147066262059450, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865147066262059450, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1858405860}
@@ -8615,6 +8640,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+--- !u!320 &2002932594 stripped
+PlayableDirector:
+  m_CorrespondingSourceObject: {fileID: 2709747385842995913, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+  m_PrefabInstance: {fileID: 2002932593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2002932598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 197060448857626340, guid: 693f4718e51417144a2039294c26c33c, type: 3}

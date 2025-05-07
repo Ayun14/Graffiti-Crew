@@ -63,11 +63,13 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         if (mySubject != null)
         {
-            _isFight = mySubject.GameState == GameState.Fight;
-
             if (mySubject.GameState == GameState.Timeline)
             {
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Ready);
+            }
+            else if (mySubject.GameState == GameState.Countdown)
+            {
+                RivalPositionToGraffiti();
             }
             else if (mySubject.GameState == GameState.Fight)
             {
@@ -87,7 +89,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         _graffitiRenderer.sprite = _graffiti;
     }
 
-    public void RivalPositionToGraffiti()
+    private void RivalPositionToGraffiti()
     {
         _rival.position = _graffitiTrm.position;
         _rival.localRotation = _graffitiTrm.localRotation;
