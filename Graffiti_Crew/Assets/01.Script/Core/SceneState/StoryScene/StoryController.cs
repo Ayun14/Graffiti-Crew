@@ -83,12 +83,16 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     {
         dataController.stageData.stageSaveData.isClear = true;
 
+        GameObject map = Instantiate(dataController.stageData.mapPrefab, Vector3.zero, Quaternion.identity);
+
         _levelPrefabs.Clear();
-        Transform parent = dataController.stageData.mapPrefab.transform;
+        Transform parent = map.transform;
         foreach (Transform child in parent)
         {
             _levelPrefabs.Add(child.gameObject);
+            child.gameObject.SetActive(false);
         }
+        _levelPrefabs[_dialogueNum].SetActive(true);
 
         _storyDialogueSO = dataController.stageData.storyDialogue;
 
