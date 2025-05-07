@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -70,6 +71,13 @@ public class BGMController : Observer<GameStateController>
 
     public void PlayPoliceBGM()
     {
-        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Police);
+        StartCoroutine(PoliceBGMRoutine());
+    }
+
+    private IEnumerator PoliceBGMRoutine()
+    {
+        AudioSource source = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Police);
+        yield return new WaitForSeconds(4.5f);
+        source.DOFade(0, 1.8f).OnComplete(() => GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Police));
     }
 }
