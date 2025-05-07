@@ -95,7 +95,7 @@ namespace AH.UI.Views {
             string stage = $"Request{data.stage}";
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetRequestData(chapter, stage);
+            ComputerViewModel.SetActivityData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
 
@@ -124,7 +124,7 @@ namespace AH.UI.Views {
                     _stagePointList[index].starCount = _saveStoryData[storyIndex].star;
                     storyIndex++;
                 }
-                else if (_stagePointList[index].type == StageType.Request) {
+                else if (_stagePointList[index].type == StageType.Activity) {
                     if (!_saveRequestData[requestIndex].isClear) {
                         _stagePointList[index].canPlay = true; // 다음 스테이지 보이도록
                         break;

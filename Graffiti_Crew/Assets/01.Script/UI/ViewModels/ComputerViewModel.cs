@@ -36,8 +36,8 @@ namespace AH.UI.ViewModels {
         public void SetStoryData(string chapter, string stage) {
             _model.SetStoryData(chapter, stage);
         }
-        public void SetRequestData(string chapter, string stage) {
-            _model.SetRequest(chapter, stage);
+        public void SetActivityData(string chapter, string stage) {
+            _model.SetActivity(chapter, stage);
         }
         public string GetCurrentStageName() {
             return _model.GetLoadStage().GetCurrentStageName();

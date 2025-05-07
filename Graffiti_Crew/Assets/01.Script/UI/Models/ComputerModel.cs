@@ -54,15 +54,15 @@ namespace AH.UI.Models
             _loadStageSO.SetCurrentStage(chapter + stage, StageType.Stage);
         }
         public void SetStoryData(string chapter, string stage) {
-            _loadStageSO.stroyChapter = chapter;
-            _loadStageSO.stroyStage = stage;
+            _loadStageSO.chapter = chapter;
+            _loadStageSO.stage = stage;
             _loadStageSO.SetCurrentStage(chapter + stage, StageType.Story);
         }
-        public void SetRequest(string chapter, string stage)
+        public void SetActivity(string chapter, string stage)
         {
-            _loadStageSO.requestChapter = chapter;
-            _loadStageSO.requestStage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Request);
+            _loadStageSO.chapter = chapter;
+            _loadStageSO.stage = stage;
+            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Activity);
         }
     }
 }

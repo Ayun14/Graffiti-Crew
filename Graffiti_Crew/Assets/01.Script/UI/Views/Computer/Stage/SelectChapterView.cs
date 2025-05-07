@@ -67,18 +67,16 @@ namespace AH.UI.Views {
             base.RegisterButtonCallbacks();
             int i = 0;
             foreach(SelectChapterViewElement btn in _selectBtnsList) {
-                if (btn.canPlay) {
-                    Debug.Log("true");
                     btn.RegisterCallback<ClickEvent, (SelectChapterViewElement, string)>(SelectChapter, (btn, btn.chapter));
                     btn.RegisterCallback<PointerEnterEvent, int>(EnterPointer, i);
                     btn.RegisterCallback<PointerLeaveEvent, int>(ExitPointer, i);
-                }
+                //if (btn.canPlay) {
+                //    Debug.Log("true");
+                //}
                 i++;
             }
             backToMap.RegisterCallback<ClickEvent>(ClickBackBtn);
         }
-
-
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (SelectChapterViewElement btn in _selectBtnsList) {
@@ -141,7 +139,7 @@ namespace AH.UI.Views {
                         button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                     }
                     else {
-                        button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn, (button.chapter, button.stage));
+                        button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
                     }
                 }
             }
@@ -156,7 +154,7 @@ namespace AH.UI.Views {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn);
                     }
                     else {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn);
                     }
                 }
             }
@@ -178,7 +176,7 @@ namespace AH.UI.Views {
         private void SetSaveDataToStagePoint() {
             int index = 0;
 
-            while (index < 3) {
+            while (index < 2) {
                 if (!_currentStageData[index].isClear) {
                     _currentPointList[index].canPlay = true; // 다음 스테이지 보이도록
                     break;
@@ -206,12 +204,12 @@ namespace AH.UI.Views {
             ComputerViewModel.SetStoryData(chapter, stage);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
         }
-        private void ClickRequestBtn(ClickEvent evt, (string chapter, string stage) data) {
+        private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
-            string stage = $"Request{data.stage}";
+            string stage = $"Activity{data.stage}";
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetRequestData(chapter, stage);
+            ComputerViewModel.SetActivityData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
         #endregion

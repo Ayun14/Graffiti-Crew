@@ -10,12 +10,6 @@ namespace AH.SaveSystem {
         public string chapter;
         public string stage;
 
-        public string requestChapter;
-        public string requestStage;
-
-        public string stroyChapter;
-        public string stroyStage;
-
         private string _currentStageName;
         private StageType _currentStageType;
         [Space]
@@ -33,14 +27,8 @@ namespace AH.SaveSystem {
         public string GetLoadStageName() {
             return $"{chapter}/{stage}";
         }
-        public string GetLoadRequestName() {
-            return $"{requestChapter}/{requestStage}";
-        }
-        public string GetLoadStoryName() {
-            return $"{stroyChapter}/{stroyStage}";
-        }
         public override string GetData() {
-            return $"{chapter} {stage} {requestChapter} {requestStage}";
+            return $"{chapter} {stage}";
         }
         public void SetCurrentStage(string stage, StageType type) {
             _currentStageName = $"{stage}";
@@ -56,10 +44,6 @@ namespace AH.SaveSystem {
             string[] datas = value.Split(" ");
             chapter = datas[0];
             stage = datas[1];
-            requestChapter = datas[2];
-            requestStage = datas[3];
-            stroyChapter = datas[4];
-            stroyStage = datas[5];
         }
         public override string GetDataType() {
             return dataType.ToString();
@@ -67,11 +51,6 @@ namespace AH.SaveSystem {
         public override void ResetData() {
             chapter = _defaultChapter;
             stage = _defaultStage;
-            requestChapter = _defaultRequestChapter;
-            requestStage = _defaultRequestStage;
-            stroyChapter = _defaultStroyChapter;
-            stroyStage = _defaultStroyStage;
         }
-
     }
 }
