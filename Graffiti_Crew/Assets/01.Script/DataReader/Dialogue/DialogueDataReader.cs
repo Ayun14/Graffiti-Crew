@@ -17,7 +17,8 @@ public enum BGType
     FlashOut,
     ShowCutScene,
     HideCutScene,
-    ShakeCam
+    ShakeCam,
+    CutScene
 }
 
 [Serializable]

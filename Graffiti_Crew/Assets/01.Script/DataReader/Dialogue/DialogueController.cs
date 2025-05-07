@@ -126,7 +126,8 @@ public class DialogueController : MonoBehaviour
         {
             _isDialogue = false;
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-            _defaultCam?.SetActive(true);
+            if(_defaultCam!=null)
+                _defaultCam.SetActive(true);
             _onDialogueComplete?.Invoke();
             return;
         }
