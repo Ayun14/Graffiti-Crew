@@ -73,4 +73,9 @@ public class BGMController : Observer<GameStateController>
     }
 
     #endregion
+
+    public void PlayPoliceBGM()
+    {
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Police);
+    }
 }
