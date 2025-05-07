@@ -142,8 +142,11 @@ public abstract class StageGameRule : Observer<GameStateController>
     {
         if (mySubject.IsSprayEmpty == isEmpty) return;
 
+        _nodeJudgement.CurrentNodeFalse();
         mySubject.SetIsSprayEmpty(isEmpty);
     }
+
+    public bool GetSprayEmpty() => mySubject.IsSprayEmpty;
 
     #endregion
 }

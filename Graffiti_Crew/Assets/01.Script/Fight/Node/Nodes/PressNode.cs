@@ -110,8 +110,7 @@ public class PressNode : Node, INodeAction
         else
         {
             // 노드 실패 (중도 포기 실패)
-            _judgement.NodeFalse();
-            ResetNode();
+            NodeFalse();
 
             // Sound
             _sprayLongSoundObj?.PushObject(true);
@@ -126,6 +125,14 @@ public class PressNode : Node, INodeAction
         isClearNode = true;
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
+    }
+
+    public override void NodeFalse()
+    {
+        base.NodeFalse();
+
+        _judgement.NodeFalse();
+        ResetNode();
     }
 
     private void ResetNode()

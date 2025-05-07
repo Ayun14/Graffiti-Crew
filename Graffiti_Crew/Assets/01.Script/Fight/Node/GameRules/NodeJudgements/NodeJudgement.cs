@@ -23,7 +23,7 @@ public abstract class NodeJudgement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (GameManager.IsPause() == false)
+        if (GameManager.IsPause() == false && _stageGameRule.IsCanInput())
             NodeInput();
     }
 
@@ -57,6 +57,8 @@ public abstract class NodeJudgement : MonoBehaviour
     {
         _stageGameRule.NodeFalse();
     }
+
+    public void CurrentNodeFalse() => currentNode?.NodeFalse();
 
     #endregion
 }
