@@ -10,8 +10,8 @@ namespace AH.SaveSystem {
         public string chapter;
         public string stage;
 
-        private string _currentStageName;
-        private StageType _currentStageType;
+        [SerializeField]private string _currentStageName;
+        [SerializeField] private StageType _currentStageType;
         [Space]
         [SerializeField] private string _defaultChapter;
         [SerializeField] private string _defaultStage;
