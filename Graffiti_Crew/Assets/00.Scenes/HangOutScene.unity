@@ -4665,53 +4665,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1 &1759660902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1759660904}
-  - component: {fileID: 1759660903}
-  m_Layer: 0
-  m_Name: StageDataController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1759660903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759660902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59d52225341e6e4d897860ea95585a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stageData: {fileID: 11400000, guid: 5acfd356bb045764bad1717597be06a7, type: 2}
-  _stageDescriptionSO: {fileID: 11400000, guid: 7208fb9e2d9e64f4981357790ff69f63, type: 2}
-  _sprayData: {fileID: 11400000, guid: c71ae31e93c20a74c9f72b51942b5c2e, type: 2}
---- !u!4 &1759660904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759660902}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1824202745 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2590022377403595173, guid: 65368520d207e16489538c74107f549a, type: 3}
@@ -6987,11 +6940,10 @@ SceneRoots:
   - {fileID: 1030093341}
   - {fileID: 1503807999}
   - {fileID: 555015609}
-  - {fileID: 1759660904}
+  - {fileID: 3865256886572050214}
   - {fileID: 1711786955}
   - {fileID: 852669959}
   - {fileID: 24676939}
   - {fileID: 1593350110}
   - {fileID: 1520889289}
   - {fileID: 1476655619}
-  - {fileID: 3865256886572050214}
