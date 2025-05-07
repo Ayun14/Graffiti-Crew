@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,10 @@ namespace AH.UI.Views {
 
         private VisualElement mainMap;
         private Button backToMap;
-        private List<StagePointElement> _currentPointList;
-        private StageSaveDataSO[] _currentStageData;
 
-       
-        private StageSaveDataSO[] _saveStageData;
-        private StageSaveDataSO[] _saveRequestData;
-        private StageSaveDataSO[] _saveStoryData;
+        private List<StagePointElement> _currentPointList;
+        private List<SelectChapterViewElement> _currentChapterList;
+        private StageSaveDataSO[] _currentStageData;
 
 
         private bool _isShowing = false;
@@ -45,23 +43,42 @@ namespace AH.UI.Views {
             mainMap = topElement.Q<VisualElement>("main-map");
             backToMap = topElement.Q<Button>("back-map-btn");
 
+            _currentChapterList = topElement.Query<SelectChapterViewElement>("select-btn").ToList();
+
+            SetChapter();
+        }
+
+        private void SetChapter() {
+            StageSaveDataSO[] list;
+            for (int i = 1; i <= 4; i++) {
+                string saveDataPath = $"SaveData/Chapter{i}/";
+                list = Resources.LoadAll<StageSaveDataSO>(saveDataPath);
+                for(int j = 0; j <list.Length; j++ ) {
+                    if (!list[j].isClear) {
+                        LockChapter(_chaptersList[i - 1]); // 있으면 잠구기
+                        break;
+                    }
+                }
+            }
             UnlockChapter(_chaptersList[0]);
-            LockChapter(_chaptersList[1]);
-            LockChapter(_chaptersList[2]);
-            LockChapter(_chaptersList[3]);
         }
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             int i = 0;
             foreach(SelectChapterViewElement btn in _selectBtnsList) {
-                btn.RegisterCallback<ClickEvent, (SelectChapterViewElement, string)>(SelectChapter, (btn, btn.chapter));
-                btn.RegisterCallback<PointerEnterEvent, int>(EnterPointer, i);
-                btn.RegisterCallback<PointerLeaveEvent, int>(ExitPointer, i);
+                if (btn.canPlay) {
+                    Debug.Log("true");
+                    btn.RegisterCallback<ClickEvent, (SelectChapterViewElement, string)>(SelectChapter, (btn, btn.chapter));
+                    btn.RegisterCallback<PointerEnterEvent, int>(EnterPointer, i);
+                    btn.RegisterCallback<PointerLeaveEvent, int>(ExitPointer, i);
+                }
                 i++;
             }
             backToMap.RegisterCallback<ClickEvent>(ClickBackBtn);
         }
+
+
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (SelectChapterViewElement btn in _selectBtnsList) {
@@ -105,7 +122,7 @@ namespace AH.UI.Views {
             _isShowing = false;
             backToMap.UnregisterCallback<ClickEvent, string>(ClickBackToMap);
             backToMap.RegisterCallback<ClickEvent>(ClickBackBtn);
-            UnregisterPoints();
+            UnRegisterPoints();
         }
         private void ClickBackBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();
@@ -129,7 +146,7 @@ namespace AH.UI.Views {
                 }
             }
         }
-        private void UnregisterPoints() {
+        private void UnRegisterPoints() {
             foreach (var button in _currentPointList) {
                 if (button.canPlay) {
                     if (button.type == StageType.Stage) {
@@ -140,6 +157,20 @@ namespace AH.UI.Views {
                     }
                     else {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickRequestBtn);
+                    }
+                }
+            }
+        }
+        private void SetSaveDataToChapter() {
+            StageSaveDataSO[] list;
+            for (int i = 1; i <= 4; i++) {
+                string saveDataPath = $"SaveData/Chapter{i}/";
+                list = Resources.LoadAll<StageSaveDataSO>(saveDataPath);
+                _currentChapterList[i - 1].canPlay = true;
+                for (int j = 0; j < list.Length; j++) {
+                    if (!list[j].isClear) {
+                        _currentChapterList[i - 1].canPlay = false;
+                        break;
                     }
                 }
             }

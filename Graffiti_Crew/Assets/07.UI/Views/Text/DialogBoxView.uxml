@@ -7,7 +7,7 @@
     </engine:VisualElement>
     <engine:VisualElement name="m-container" class="dialog-box-m-container">
         <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content show-dialogue" style="flex-direction: row; display: none;">
-            <engine:VisualElement name="profile" style="height: 622px; width: 467px; scale: -1 1; translate: 0 13px;">
+            <engine:VisualElement name="profile" style="height: 400px; width: 320px; scale: -1 1; translate: 0 13px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>
@@ -31,7 +31,7 @@
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content show-dialogue" style="flex-direction: row-reverse; display: none;">
-            <engine:VisualElement name="profile" style="height: 622px; width: 467px; translate: 0 13px;">
+            <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>
