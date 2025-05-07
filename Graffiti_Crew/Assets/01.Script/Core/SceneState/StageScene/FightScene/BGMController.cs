@@ -1,7 +1,4 @@
-using DG.Tweening;
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BGMController : Observer<GameStateController>
@@ -30,8 +27,16 @@ public class BGMController : Observer<GameStateController>
             {
                 GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Before);
             }
-
-            if (mySubject.GameState == GameState.Finish)
+            else if (mySubject.GameState == GameState.Countdown)
+            {
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Before);
+                StartCoroutine(CountDownRoutine());
+            }
+            else if (mySubject.GameState == GameState.Fight)
+            {
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Middle);
+            }
+            else if (mySubject.GameState == GameState.Finish)
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Middle);
                 GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
@@ -51,13 +56,6 @@ public class BGMController : Observer<GameStateController>
         _fightMiddleAudioSource.pitch = 1.1f;
     }
 
-    #region SFX Play
-
-    public void CountDownSound()
-    {
-        StartCoroutine(CountDownRoutine());
-    }
-
     private IEnumerator CountDownRoutine()
     {
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
@@ -68,11 +66,7 @@ public class BGMController : Observer<GameStateController>
         yield return new WaitForSeconds(1f);
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Yeah);
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
-
-        _fightMiddleAudioSource = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Middle);
     }
-
-    #endregion
 
     public void PlayPoliceBGM()
     {
