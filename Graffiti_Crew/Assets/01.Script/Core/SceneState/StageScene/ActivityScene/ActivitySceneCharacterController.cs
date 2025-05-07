@@ -30,7 +30,14 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     {
         if (mySubject != null)
         {
-
+            if (mySubject.GameState == GameState.Finish)
+            {
+                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+            }
+            else if (mySubject.GameState == GameState.Result)
+            {
+                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
+            }
         }
     }
 

@@ -15,8 +15,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
         _startTimeline = transform.Find("ActivityStartTimeline").GetComponent<PlayableDirector>();
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _activityEndTimeline = transform.Find("ActivityEndTimeline").GetComponent<PlayableDirector>();
-
-        UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
     }
 
     private void OnDestroy()
@@ -30,11 +28,15 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
+                UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(false);
+                UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
+                UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
                 _startTimeline.Play();
             }
             else if (mySubject.GameState == GameState.Countdown)
             {
                 _countdownTimeline?.Play();
+                UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);
             }
             else if (mySubject.GameState == GameState.Finish)
             {
@@ -55,6 +57,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
     public void CounddownTimelineEnd()
     {
         mySubject.ChangeGameState(GameState.Fight);
+        UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
     }
 
     public void FinishTimelineEnd()

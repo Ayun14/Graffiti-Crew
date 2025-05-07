@@ -42,6 +42,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
         if (mySubject != null)
         {
             mySubject.ChangeGameState(GameState.Countdown);
+            UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
             _countdownTimeline?.Play();
         }
     }
@@ -51,7 +52,6 @@ public class FightSceneTimelineController : Observer<GameStateController>
         if (mySubject != null)
         {
             mySubject.ChangeGameState(GameState.Fight);
-            UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
             UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
         }
     }
