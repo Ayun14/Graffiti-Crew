@@ -202,30 +202,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
-          m_MethodName: FightBeforeBGMStop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
-          m_MethodName: CountDownSound
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &3136472073327467728
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +364,7 @@ PlayableDirector:
   m_GameObject: {fileID: 8711560502352080399}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 1428fe9b367710b49b387db6d6e507ba, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 0a295896f22cfbe4599fa570100e436d, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -430,32 +406,8 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: RivalController, Assembly-CSharp
-          m_MethodName: RivalPositionToGraffiti
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
-          m_MethodName: FightBeforeBGMStop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
-          m_MethodName: CountDownSound
+          m_TargetAssemblyTypeName: FightSceneTimelineController, Assembly-CSharp
+          m_MethodName: CountdownTimelineEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
