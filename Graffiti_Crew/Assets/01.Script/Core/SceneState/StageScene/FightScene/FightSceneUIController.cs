@@ -1,6 +1,5 @@
 using AH.UI.Events;
 using DG.Tweening;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +23,9 @@ public class FightSceneUIController : Observer<GameStateController>
     private FoodImage _foodImage;
     private Material _blindMat;
     public bool isBlind => mySubject.IsBlind;
+
+    [Header("Interaction")]
+    [SerializeField] private Image _interactionImage;
 
     // StepValue Sin Graph
     private float _frequency = 0.1f; // аж╠Б
@@ -319,6 +321,7 @@ public class FightSceneUIController : Observer<GameStateController>
     private IEnumerator TransitionRoutine()
     {
         _transitionPanel.gameObject.SetActive(true);
+        _transitionMat.SetFloat("_Lerp", 0f);
         _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
         yield return new WaitForSeconds(2f);
 
@@ -330,6 +333,16 @@ public class FightSceneUIController : Observer<GameStateController>
 
         _transitionMat.DOFloat(1f, "_Lerp", 0.3f);
         yield return new WaitForSeconds(0.8f);
+    }
+
+    #endregion
+
+    #region Interaction Icon
+
+    public void InteractionIcon()
+    {
+        _interactionImage.transform.localScale = Vector3.zero;
+        _interactionImage.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBounce);
     }
 
     #endregion
