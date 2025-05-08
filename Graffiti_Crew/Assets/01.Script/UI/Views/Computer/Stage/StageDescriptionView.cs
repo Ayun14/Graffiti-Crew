@@ -77,6 +77,7 @@ namespace AH.UI.Views {
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             if (CheckTicket()) {
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Request);
                 if (ComputerViewModel.GetCurrentStageName().Contains("Stage")) {
                     SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
                 }

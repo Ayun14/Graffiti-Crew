@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1350c2540ce4b740a9861e8d31995bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _languageSO: {fileID: 0}
+  _languageIndexSO: {fileID: 0}
+  _bgmData: {fileID: 0}
+  _sfxData: {fileID: 0}
 --- !u!1 &1983779985657016170
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +59,6 @@ GameObject:
   - component: {fileID: 8668052676722729767}
   - component: {fileID: 6280143053319675812}
   - component: {fileID: 8644028796439441446}
-  - component: {fileID: 6391761247096368836}
   m_Layer: 0
   m_Name: RequestUI
   m_TagString: Untagged
@@ -112,26 +115,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 2430336377861785602}
   _inputReaderSO: {fileID: 11400000, guid: 0ef0000522ef6bc48b728bcef3549823, type: 2}
---- !u!114 &6391761247096368836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983779985657016170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cd79e9fa178d745b1b204c8241d145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tutorialCheckData: {fileID: 0}
-  _computerLight: {fileID: 0}
-  _computerCollider: {fileID: 0}
-  _bigDialogueUIData: {fileID: 11400000, guid: 8d1a7c42de975d34a9579144e98eb7ed, type: 2}
-  _miniDialogueUIData: {fileID: 11400000, guid: 1f40270623ad97e488a6d7c93280afeb, type: 2}
-  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
-  _tutorialDialogue: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  dialogueDataReader_KR: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  dialogueDataReader_EN: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  dialogueDataReader: {fileID: 0}
-  _typingSpeed: 0.05

@@ -3,6 +3,7 @@ using UnityEngine.Playables;
 
 public class ActivitySceneTimelineController : Observer<GameStateController>
 {
+    [Header("Timeline")]
     [SerializeField] private PlayableDirector _countdownTimeline;
     private PlayableDirector _startTimeline;
     private PlayableDirector _finishTimeline;

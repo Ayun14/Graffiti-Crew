@@ -6,9 +6,4 @@ public class ComputerSceneBGM : MonoBehaviour
     {
         GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Request);
     }
-
-    private void OnDisable()
-    {
-        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Request);
-    }
 }
