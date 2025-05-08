@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerSitStayState : PlayerState
 {
-    private bool _onRun = false;
-
     public PlayerSitStayState(Player player, PlayerStateMachine stateMachine, string animBoolName)
         : base(player, stateMachine, animBoolName)
     {
@@ -12,7 +10,6 @@ public class PlayerSitStayState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        _onRun = true;
 
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
 
