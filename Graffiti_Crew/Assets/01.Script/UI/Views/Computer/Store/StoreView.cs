@@ -45,7 +45,6 @@ namespace AH.UI.Views {
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
-            int scrollviewIndex = 0;
             //foreach (var child in _productScrollView.Children()) {
             //    VisualElement checker = child.Q<VisualElement>("click-checker");
             //    Debug.Log(checker);
