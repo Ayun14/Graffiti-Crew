@@ -17,7 +17,7 @@
 .dialog-box-bottom-content {
     align-items: center;
     justify-content: center;
-    height: 45%;
+    height: 35%;
     width: 100%;
     position: relative;
     transition-duration: 0.2s;
@@ -26,20 +26,21 @@
 }
 
 .name-box {
-    width: 380px;
-    height: 110px;
+    width: 322px;
+    height: 90px;
     background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/namebox1.png?fileID=2800000&guid=2d4e7dfd3c2a9704a8018f8b6d856bb1&type=3#namebox1");
     position: absolute;
+    padding-bottom: 2%;
 }
 
 .text-box {
     width: 100%;
     height: 80%;
     background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/textbox1.png?fileID=21300000&guid=3ba7c2793242c38478b8db30493f3375&type=3#textbox1");
-    padding-top: 70px;
-    padding-right: 140px;
-    padding-bottom: 65px;
-    padding-left: 85px;
+    padding-top: 4%;
+    padding-right: 9.5%;
+    padding-bottom: 4%;
+    padding-left: 5.5%;
 }
 
 .conversation-txt {
@@ -64,32 +65,8 @@
 .hide-dialoge {
 }
 
-.profile {
-    width: 960px;
-    overflow: hidden;
-    position: absolute;
-    height: 1200px;
-    opacity: 0;
-    transition-duration: 0.3s;
-    transition-property: opacity;
-    transition-timing-function: ease-in-out-circ;
-}
-
 .fade-profile {
     opacity: 1;
-}
-
-.spray-size-up {
-    scale: 1.2 1.2;
-}
-
-.skip-btn {
-    width: 205px;
-    height: 110px;
-    background-image: url("project://database/Assets/02.Sprite/UI/Dialouge/skip-btn1.png?fileID=21300000&guid=64e0582584c1a5d4a8403bfd7e297111&type=3#skip-btn1");
-    position: absolute;
-    top: 56%;
-    right: 4%;
 }
 
 .show-dialogue {
