@@ -60,7 +60,6 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
         foreach (Transform rivalTrm in _rivalTrmList)
         {
-            // 나머지 처리 하기 Animation & Rotation
             rivalTrm.DORotateQuaternion(_escapeTrm.localRotation, 0.5f);
             rivalTrm.DOMoveX(_escapeTrm.position.x, Random.Range(4f, 6f));
         }
