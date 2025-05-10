@@ -321,7 +321,7 @@ public class FightSceneUIController : Observer<GameStateController>
     private IEnumerator TransitionRoutine()
     {
         _transitionPanel.gameObject.SetActive(true);
-        _transitionMat.SetFloat("_Lerp", 0f);
+        _transitionMat.SetFloat("_Lerp", 1f);
         _transitionMat.DOFloat(0.2f, "_Lerp", 1.5f);
         yield return new WaitForSeconds(2f);
 
