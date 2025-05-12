@@ -26,13 +26,20 @@
         </engine:VisualElement>
         <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">
             <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;" />
-            <engine:VisualElement name="spray-content" style="flex-basis: 20%; flex-direction: row; align-items: flex-end; justify-content: flex-end; padding-bottom: 20px; padding-right: 20px;">
+            <engine:VisualElement name="spray-content" style="flex-basis: 20%; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding-bottom: 20px; padding-right: 20px;">
+                <engine:ProgressBar name="air-progress" value="62.7" low-value="0.02" style="width: 212px; rotate: -90deg; translate: -14% -36%;">
+                    <Bindings>
+                        <engine:DataBinding property="lowValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/AirSliderValueSO.asset?fileID=11400000&amp;guid=f5da67871c66f5f4cb32146c04e7e2d9&amp;type=2#AirSliderValueSO" binding-mode="ToTarget" data-source-path="min" />
+                        <engine:DataBinding property="highValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/AirSliderValueSO.asset?fileID=11400000&amp;guid=f5da67871c66f5f4cb32146c04e7e2d9&amp;type=2#AirSliderValueSO" binding-mode="ToTarget" data-source-path="max" />
+                        <engine:DataBinding property="value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/AirSliderValueSO.asset?fileID=11400000&amp;guid=f5da67871c66f5f4cb32146c04e7e2d9&amp;type=2#AirSliderValueSO" binding-mode="ToTarget" data-source-path="value" />
+                    </Bindings>
+                </engine:ProgressBar>
                 <engine:VisualElement name="spray-outline" class="spray-outline">
-                    <engine:ProgressBar name="spray-total-amount-progress" value="40.6" low-value="0.02" class="spray-progress">
+                    <engine:ProgressBar name="spray-total-progress" value="40.6" low-value="0.02" class="spray-progress" style="width: 270px;">
                         <Bindings>
-                            <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
-                            <engine:DataBinding property="lowValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" data-source-path="min" />
-                            <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/ShakeSliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#ShakeSliderValueSO" binding-mode="ToTarget" />
+                            <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
+                            <engine:DataBinding property="lowValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" data-source-path="min" />
+                            <engine:DataBinding property="value" data-source-path="value" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
                         </Bindings>
                     </engine:ProgressBar>
                 </engine:VisualElement>

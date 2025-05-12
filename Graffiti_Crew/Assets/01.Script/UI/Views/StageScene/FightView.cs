@@ -33,7 +33,7 @@ namespace AH.UI.Views {
             base.SetVisualElements();
             _rivalProgress = topElement.Q<ProgressBar>("rival-progress");
             _playerProgress = topElement.Q<ProgressBar>("player-progress");
-            _sprayProgress = topElement.Q<ProgressBar>("spray-total-amount-progress");
+            _sprayProgress = topElement.Q<ProgressBar>("spray-total-progress");
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
         }
 
