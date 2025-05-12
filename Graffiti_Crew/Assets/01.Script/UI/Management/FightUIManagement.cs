@@ -18,12 +18,12 @@ namespace AH.UI {
         private FightViewModel _viewModel;
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                StageEvent.SetViewEvnet?.Invoke(true);
-            }
-            if (Input.GetKeyDown(KeyCode.W)) {
-                StageEvent.SetViewEvnet?.Invoke(false);
-            }
+            //if (Input.GetKeyDown(KeyCode.Q)) {
+            //    StageEvent.SetViewEvnet?.Invoke(true);
+            //}
+            //if (Input.GetKeyDown(KeyCode.W)) {
+            //    StageEvent.SetViewEvnet?.Invoke(false);
+            //}
         }
         protected override void OnEnable() {
             base.OnEnable();
