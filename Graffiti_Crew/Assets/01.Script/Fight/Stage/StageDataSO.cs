@@ -16,7 +16,15 @@ public class StageDataSO : ScriptableObject
     public StageRuleType stageRuleType;
     public GameObject judgementPrefab;
     public GameObject spawnerPrefab;
+
+    [Header("Environment")]
     public GameObject mapPrefab;
+    public Material skyBoxMat;
+    public GameObject weatherParticle;
+
+    [Header("Next Stage")]
+    public StageType nextStagetype;
+    public string nextChepterStage;
 
     [Header("-------Story Stage-------")]
     [Header("Dialogue")]
