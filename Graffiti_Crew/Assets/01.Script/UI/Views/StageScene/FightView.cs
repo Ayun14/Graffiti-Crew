@@ -9,17 +9,18 @@ namespace AH.UI.Views {
     public class FightView : UIView {
         private FightViewModel _viewModel;
 
-        private ProgressBar _rivalProgress;
-        private ProgressBar _playerProgress;
-        private ProgressBar _sprayProgress;
+        private VisualElement _fRivalborder;
+        private VisualElement _fPlayerborder;
+        private VisualElement _aPlayerborder;
+
         private VisualElement _sprayOutLine;
 
         private bool _notEnoughSpray = false;
 
         public FightView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             StageEvent.ChangeSprayValueEvent += UpdateSpray;
+            StageEvent.SetViewEvnet += SetView;
         }
-
         public override void Initialize() {
             base.Initialize();
             _viewModel = viewModel as FightViewModel;
@@ -27,13 +28,14 @@ namespace AH.UI.Views {
         }
         public override void Dispose() {
             StageEvent.ChangeSprayValueEvent -= UpdateSpray;
+            StageEvent.SetViewEvnet -= SetView;
             base.Dispose();
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _rivalProgress = topElement.Q<ProgressBar>("rival-progress");
-            _playerProgress = topElement.Q<ProgressBar>("player-progress");
-            _sprayProgress = topElement.Q<ProgressBar>("spray-total-amount-progress");
+            _fRivalborder = topElement.Q<VisualElement>("fight-rival-border");
+            _fPlayerborder = topElement.Q<VisualElement>("fight-player-border");
+            _aPlayerborder = topElement.Q<VisualElement>("activity-player-border");
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
         }
 
@@ -68,6 +70,18 @@ namespace AH.UI.Views {
                 _sprayOutLine.ToggleInClassList("spray-size-up");
                 _sprayOutLine.ToggleInClassList("spray-color-change");
                 await Task.Delay(300);
+            }
+        }
+        private void SetView(bool fight) {
+            if (fight) {
+                _fRivalborder.style.display = DisplayStyle.Flex;
+                _fPlayerborder.style.display = DisplayStyle.Flex;
+                _aPlayerborder.style.display = DisplayStyle.None;
+            }
+            else {
+                _fRivalborder.style.display = DisplayStyle.None;
+                _fPlayerborder.style.display = DisplayStyle.None;
+                _aPlayerborder.style.display = DisplayStyle.Flex;
             }
         }
     }

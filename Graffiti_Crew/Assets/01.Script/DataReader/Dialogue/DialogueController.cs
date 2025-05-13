@@ -34,12 +34,12 @@ public class DialogueController : MonoBehaviour
 
     private void OnEnable()
     {
-        DialogueEvent.DialogueSkipEvent += DialogueSkip;
+        //DialogueEvent.DialogueSkipEvent += DialogueSkip;
     }
 
     private void OnDisable()
     {
-        DialogueEvent.DialogueSkipEvent -= DialogueSkip;
+        //DialogueEvent.DialogueSkipEvent -= DialogueSkip;
     }
 
     private void Update()

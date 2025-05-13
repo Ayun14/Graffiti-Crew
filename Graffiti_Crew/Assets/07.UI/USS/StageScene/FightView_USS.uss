@@ -43,7 +43,7 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-#spray-total-amount-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
+#spray-total-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
     background-image: url("project://database/Assets/02.Sprite/UI/Fight/Spray/spray-fill.png?fileID=2800000&guid=22dbe3847c5b4e94787a30f2eb3136ef&type=3#spray-fill");
     background-color: rgba(0, 0, 0, 0);
     -unity-background-image-tint-color: rgb(200, 131, 255);
@@ -54,6 +54,7 @@
 .graffiti-progress {
     height: 70px;
     width: 700px;
+    background-color: rgb(255, 255, 255);
 }
 
 .graffiti-progress > #unity-progress-bar > .unity-progress-bar__background {

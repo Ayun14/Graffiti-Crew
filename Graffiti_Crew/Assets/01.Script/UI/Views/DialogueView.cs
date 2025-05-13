@@ -20,8 +20,6 @@ namespace AH.UI.Views {
         private VisualElement _currentDialouge;
         private VisualElement _preDialouge;
 
-        private List<Button> _skipBtnList;
-
 
         public DialogueView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -44,20 +42,6 @@ namespace AH.UI.Views {
             Hide(_otherDialouge);
             Hide(_jiaDialouge);
             Hide(_fellingDialouge);
-
-            _skipBtnList = topElement.Query<Button>("skip-btn").ToList();
-        }
-        protected override void RegisterButtonCallbacks() {
-            base.RegisterButtonCallbacks();
-            foreach(Button btn in _skipBtnList) {
-                btn.RegisterCallback<ClickEvent>(ClickSkipBtn);
-            }
-        }
-        protected override void UnRegisterButtonCallbacks() {
-            base.UnRegisterButtonCallbacks();
-            foreach (Button btn in _skipBtnList) {
-                btn.UnregisterCallback<ClickEvent>(ClickSkipBtn);
-            }
         }
 
         private void SetCharscter(DialougeCharacter character) {
@@ -99,9 +83,6 @@ namespace AH.UI.Views {
             if (hideView != null) {
                 hideView.style.display = DisplayStyle.None;
             }
-        }
-        private void ClickSkipBtn(ClickEvent evt) {
-            DialogueEvent.DialogueSkipEvent?.Invoke();
         }
     }
 }
