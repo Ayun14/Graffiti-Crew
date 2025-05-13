@@ -24,7 +24,8 @@ public class StageDataSO : ScriptableObject
 
     [Header("Next Stage")]
     public StageType nextStagetype;
-    public string nextChepterStage;
+    public string nextChapter;
+    public string nextStage;
 
     [Header("-------Story Stage-------")]
     [Header("Dialogue")]

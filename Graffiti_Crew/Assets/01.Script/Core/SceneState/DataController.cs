@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class DataController : Observer<GameStateController>
 {
@@ -62,4 +63,28 @@ public abstract class DataController : Observer<GameStateController>
     protected abstract void FinishGiveData(); // Change GameState...
 
     protected abstract void NotifyHandleChild();
+
+    protected void GoNextStage()
+    {
+        if (stageData.nextChapter != string.Empty && stageData.nextStage != string.Empty)
+        {
+            stageSO.chapter = stageData.nextChapter;
+            stageSO.stage = stageData.nextStage;
+        }
+
+        string nextScene = "ComputerScene";
+        switch (stageData.nextStagetype)
+        {
+            case StageType.Stage:
+                nextScene = "FightScene";
+                break;
+            case StageType.Activity:
+                nextScene = "ActivityScene";
+                break;
+            case StageType.Story:
+                nextScene = "StoryScene";
+                break;
+        }
+        SceneManager.LoadScene(nextScene);
+    }
 }
