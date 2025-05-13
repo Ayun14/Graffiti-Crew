@@ -85,7 +85,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
-        dataController.stageData.stageSaveData.isClear = true;
+        dataController.stageData.stageSaveData.stageState = StageState.Clear;
 
         GameObject map = Instantiate(dataController.stageData.mapPrefab, Vector3.zero, Quaternion.identity);
 

@@ -1,28 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
         public StageType type { get; set; } = StageType.Stage;
-        private bool _canPlay;
-        public bool canPlay {
-            get => _canPlay;
+
+        private StageState _state;
+        public StageState state {
+            get => _state;
             set {
-                _canPlay = value;
-                UpdateStagePointDisplay(_canPlay);
+                _state = value;
+                ChangeSetImg();
             }
         }
-        public string chapter { get; set; }
-        public string stage { get; set; }
-        private int _starCount;
 
-        private Sprite[] _stars;
-
-        public int starCount {
-            get => _starCount;
+        private string _chapter { get; set; }
+        public string chapter {
+            get => _chapter;
             set {
-                _starCount = value;
-                UpdateStarDisplay(); 
+                _chapter = value;
+            }
+        }
+
+        private string _stage { get; set; }
+        public string stage {
+            get => _stage;
+            set {
+                _stage = value;
             }
         }
 
@@ -32,12 +37,12 @@ namespace AH.UI.CustomElement {
         [System.Obsolete]
         public new class UxmlTraits : BindableElement.UxmlTraits {
             UxmlEnumAttributeDescription<StageType> m_type = new UxmlEnumAttributeDescription<StageType> {
-                name = "type",
+                name = "stageType",
                 defaultValue = StageType.Stage 
             };
-            UxmlBoolAttributeDescription m_canPlay = new UxmlBoolAttributeDescription {
-                name = "canPlay",
-                defaultValue = false
+            UxmlEnumAttributeDescription<StageState> m_canPlay = new UxmlEnumAttributeDescription<StageState> {
+                name = "stateType",
+                defaultValue = StageState.Lock
             };
             UxmlStringAttributeDescription m_chapter = new UxmlStringAttributeDescription {
                 name = "chapter",
@@ -47,10 +52,6 @@ namespace AH.UI.CustomElement {
                 name = "stage",
                 defaultValue = "1"
             };
-            UxmlIntAttributeDescription m_starCount = new UxmlIntAttributeDescription {
-                name = "starCount",
-                defaultValue = 0
-            };
             // 스테이지 타입 넣을거면 넣기(의뢰인지, 대결인지)
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc) { // �ؽ�Ʈ ������ ������ �о� �ò�
                 base.Init(ve, bag, cc);
@@ -59,65 +60,63 @@ namespace AH.UI.CustomElement {
 
                 dve.chapter = m_chapter.GetValueFromBag(bag, cc);
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
-                dve.starCount = m_starCount.GetValueFromBag(bag, cc);
-                dve.canPlay = m_canPlay.GetValueFromBag(bag, cc);
+                dve.state = m_canPlay.GetValueFromBag(bag, cc);
                 dve.type = m_type.GetValueFromBag(bag, cc);
 
-                VisualElement container = new VisualElement();
-                VisualElement element = new VisualElement();
-                container.Add(element);
+                dve.Setting();
             }
         }
 
-        private VisualElement _starBorder;
-        private VisualElement _star1;
-        private VisualElement _star2;
-        private VisualElement _star3;
-
+        private VisualElement _canPlay;
+        private VisualElement _lock;
         public StagePointElement() {
-            _starBorder = new VisualElement() { name = "star-border",
+            _canPlay = new VisualElement() {
+                name = "can-play",
                 style = {
-                    bottom = Length.Percent(-19),
-                    alignItems =Align.Center,
-                    flexDirection = FlexDirection.Row,
-                    justifyContent = Justify.SpaceAround,
+                    position = Position.Absolute,
                     width = Length.Percent(100),
-                    height = 100
+                    height = Length.Percent(100)
                 }
             };
-            Add(_starBorder);
+            _lock = new VisualElement() {
+                name = "lock",
+                style = {
+                    position = Position.Absolute,
+                    width = Length.Percent(100),
+                    height = Length.Percent(100)
+                }
+            };
 
-            _star1 = new VisualElement() { name = "star1" };
-            _star2 = new VisualElement() { name = "star2"};
-            _star3 = new VisualElement() { name = "star3"};
+            this.Add(_canPlay);
+            this.Add(_lock);
+        }
+        private void Setting() {
+            string lockImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_stage}-lock";
+            string canplayImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_stage}-canplay";
 
-            ApplyStarBorderStyle(_star1);
-            ApplyStarBorderStyle(_star2);
-            ApplyStarBorderStyle(_star3);
+            Sprite lockImg = Resources.Load<Sprite>(lockImgPath);
+            Sprite canplayImg = Resources.Load<Sprite>(canplayImgPath);
 
-            _starBorder.Add(_star1);
-            _starBorder.Add(_star2);
-            _starBorder.Add(_star3);
+            _lock.style.backgroundImage = new StyleBackground(lockImg);
+            _canPlay.style.backgroundImage = new StyleBackground(canplayImg);
+
+            _lock.parent.style.width = lockImg.rect.width;
+            _lock.parent.style.height = lockImg.rect.height;
         }
-        void ApplyStarBorderStyle(VisualElement element) {
-            element.style.width = 100;
-            element.style.height = 100;
-        }
-        private void UpdateStarDisplay() {
-            _stars = Resources.LoadAll<Sprite>("UI/Stage/Stars");
-            StyleBackground star1 = new StyleBackground(_stars[0]);
-            StyleBackground star2 = new StyleBackground(_stars[1]);
-            StyleBackground star3 = new StyleBackground(_stars[2]);
-            _star1.style.backgroundImage = (starCount >= 1) ? star1 : null;
-            _star2.style.backgroundImage = (starCount >= 2) ? star2 : null;
-            _star3.style.backgroundImage = (starCount >= 3) ? star3 : null;
-        }
-        private void UpdateStagePointDisplay(bool isClear) {
-            if (isClear) {
-                this.RemoveFromClassList("not-clear");
-            }
-            else {
-                this.AddToClassList("not-clear");
+        private void ChangeSetImg() {
+            switch (_state) {
+                case StageState.Clear:
+                    _canPlay.style.display = DisplayStyle.None;
+                    _lock.style.display = DisplayStyle.None;
+                    break;
+                case StageState.CanPlay:
+                    _canPlay.style.display = DisplayStyle.Flex;
+                    _lock.style.display = DisplayStyle.None;
+                    break;
+                case StageState.Lock:
+                    _canPlay.style.display = DisplayStyle.Flex;
+                    _lock.style.display = DisplayStyle.Flex;
+                    break;
             }
         }
     }

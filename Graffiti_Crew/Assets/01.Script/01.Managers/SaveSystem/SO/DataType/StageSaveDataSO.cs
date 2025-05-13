@@ -1,21 +1,29 @@
 using AH.SaveSystem;
 using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public enum StageType {
     Stage,
     Activity,
     Story
 }
+public enum StageState {
+    Clear,
+    CanPlay,
+    Lock
+}
 namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "Chapter_Stage_", menuName = "SO/Save/Data/StageSaveDataSO")]
     public class StageSaveDataSO : SaveDataSO {
         [Space]
         public StageType stageType = StageType.Stage;
-        public bool isClear;
+        public StageState stageState;
         public int star;
         [Space]
-        [SerializeField] private bool _defaultIsClearData = false;
+        [SerializeField] private StageState _defaultIsClearData = StageState.Lock;
         [SerializeField] private int _defaultStarData = 0;
 
         private void Awake() {
@@ -25,15 +33,15 @@ namespace AH.SaveSystem {
             return dataType.ToString();
         }
         public override string GetData() {
-            return $"{isClear} {star}";
+            return $"{stageState} {star}";
         }
         public override void SetValueFromString(string value) {
             string[] datas = value.Split(" ");
-            isClear = bool.Parse(datas[0]);
+            stageState = (StageState)Enum.Parse(typeof(StageState), datas[0]);
             star = int.Parse(datas[1]);
         }
         public override void ResetData() {
-            isClear = _defaultIsClearData;
+            stageState = _defaultIsClearData;
             star = _defaultStarData;
         }
     }
