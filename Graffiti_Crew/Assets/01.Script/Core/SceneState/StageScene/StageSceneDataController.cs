@@ -48,7 +48,7 @@ public class StageSceneDataController : DataController
     {
         // Stage Result SO Reset
         stageData.stageResult.Reset();
-        mySubject.ChangeGameState(GameState.Timeline); // ui로드 사라짐
+        mySubject.ChangeGameState(GameState.Timeline);
 
         PresentationEvents.SetFadeEvent?.Invoke(true);
         await Task.Delay(1100);

@@ -6,7 +6,7 @@ public enum GameState
     None,
 
     // ´ë°á¾À, È°µ¿¾À
-    Loding, Timeline, Countdown, Fight, Finish, Result,
+    Loding, Timeline, Countdown, Fight, Finish, Result, NextStage,
 
     // ÀÇ·Ú¾À
     // Loding -> Talk -> Graffiti -> Result
