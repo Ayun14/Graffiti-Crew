@@ -5,6 +5,11 @@ public class StoryDataController : DataController
 {
     protected override void NotifyHandleChild()
     {
+        if (mySubject != null)
+        {
+            if (mySubject.GameState == GameState.NextStage)
+                GoNextStage();
+        }
     }
 
     protected override void FindDatas()
@@ -17,7 +22,6 @@ public class StoryDataController : DataController
         PresentationEvents.SetFadeEvent?.Invoke(true);
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
-
 
         mySubject.ChangeGameState(GameState.Dialogue);
     }

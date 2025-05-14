@@ -71,7 +71,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
             await Task.Delay(1100);
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
 
-            SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
+            mySubject.ChangeGameState(GameState.NextStage);
         }
         else
         {

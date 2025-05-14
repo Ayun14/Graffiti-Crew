@@ -54,12 +54,9 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                if (!_uiController.IsTyping)
-                    DialogueSkip();
-                else
-                    _uiController.CompleteTyping();
+                DialogueSkip();
             }
 
             if (Input.GetKeyDown(KeyCode.K))
@@ -73,11 +70,13 @@ public class DialogueController : MonoBehaviour
 
     private void DialogueSkip()
     {
-        if(!_uiController.IsTyping)
+        if (!_uiController.IsTyping)
         {
             AnimationEvent.EndDialogueAnimation?.Invoke();
             ShowNextDialogue();
         }
+        else
+            _uiController.CompleteTyping();
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete = null)
