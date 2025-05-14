@@ -36,7 +36,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
         {
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
-            if (mySubject.GameState == GameState.Talk)
+            //if (mySubject.GameState == GameState.Talk)
             {
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
@@ -77,7 +77,7 @@ public class RequestDialogueController : Observer<GameStateController>, INeedLod
             await Task.Delay(2100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
 
-            mySubject.ChangeGameState(GameState.Graffiti);
+            //mySubject.ChangeGameState(GameState.Graffiti);
         }
         else if (_dialogueNum == 2)
         {

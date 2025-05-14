@@ -18,7 +18,7 @@ public enum BGType
     ShowCutScene,
     HideCutScene,
     ShakeCam,
-    CutScene
+    Animation
 }
 
 [Serializable]
@@ -77,12 +77,7 @@ public class DialogueDataReader : DataReaderBase
                     break;
                 case "Character Name":
                     if (string.IsNullOrWhiteSpace(list[i].value))
-                    {
-                        //if (DialogueList.Count > 0)
-                        //    characterName = DialogueList[DialogueList.Count - 1].characterName;
-                        //else 
                         characterName = "";
-                    }
                     else
                     {
                         characterName = list[i].value;
@@ -102,6 +97,10 @@ public class DialogueDataReader : DataReaderBase
                         animName = "Idle";
                     else
                         animName = list[i].value;
+                    break;
+                case "BGType":
+                    if (!string.IsNullOrWhiteSpace(list[i].value))
+                        bGType = (BGType)Enum.Parse(typeof(BGType), list[i].value);
                     break;
             }
         }
