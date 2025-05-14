@@ -16,6 +16,8 @@ public class DialogueUIController : MonoBehaviour
     private DialogueController _dialogueController;
     private DialogueEffectController _effectController;
 
+    private string _currentName;
+
     public bool IsBigUIdata => _dialogueUIData == _bigDialogueUIData;
     public bool IsTyping = false;
 
@@ -88,14 +90,18 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string name = dialogue.characterName;
-        if (name == "지아")
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-        else if (string.IsNullOrEmpty(name))
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-        else
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
+        if(_currentName != name)
+        {
+            if (name == "지아")
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+            else if (string.IsNullOrEmpty(name))
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+            else
+                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
 
-        _dialogueUIData.characterName = name;
+            _currentName = name;
+            _dialogueUIData.characterName = name;
+        }
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");
         if (sprite != null)
@@ -104,7 +110,7 @@ public class DialogueUIController : MonoBehaviour
         if (!string.IsNullOrEmpty(dialogue.soundName))
             GameManager.Instance.SoundSystemCompo.PlaySound(dialogue.soundName);
 
-        if (dialogue.bgType == BGType.None)
+        if (dialogue.bgType == BGType.Animation)
             AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
 
         if (_typingCoroutine != null)

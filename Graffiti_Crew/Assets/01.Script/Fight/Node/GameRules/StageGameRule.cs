@@ -42,8 +42,7 @@ public abstract class StageGameRule : Observer<GameStateController>
     {
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return false;
 
-        return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
-            || mySubject.GameState == GameState.Tutorial;
+        return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial;
     }
 
     public void NodeSpawn() => _nodeSpawner.NodeSpawn();
@@ -65,11 +64,10 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public override void NotifyHandle()
     {
-        if (mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Talk)
+        //if (mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Talk)
             _graffitiRenderer.Init(this, _startSprite);
 
-        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Graffiti
-            || mySubject.GameState == GameState.Tutorial)
+        if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial)
         {
             // Init
             _nodeSpawner.Init(this, _nodeJudgement, _nodeDatas);
@@ -112,8 +110,6 @@ public abstract class StageGameRule : Observer<GameStateController>
             mySubject.SetWhoIsWin(true);
             mySubject.ChangeGameState(GameState.Finish);
         }
-        else if (mySubject.GameState == GameState.Graffiti)
-            mySubject.ChangeGameState(GameState.Talk);
         else if (mySubject.GameState == GameState.Tutorial)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);

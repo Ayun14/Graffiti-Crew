@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class StoryController : Observer<GameStateController>, INeedLoding
 {
-    [SerializeField] private List<GameObject> _levelPrefabs;
-
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
+
+    private List<GameObject> _levelPrefabs;
 
     private StoryDialogueSO _storyDialogueSO;
     private int _dialogueNum = 0;
