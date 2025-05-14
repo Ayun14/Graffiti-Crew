@@ -85,7 +85,7 @@ public class DialogueUIController : MonoBehaviour
         if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.ShakeCam)
         {
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-            yield return StartCoroutine(_effectController.SetBGType(dialogue));
+            yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
 

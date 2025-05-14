@@ -16,6 +16,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject _defaultCam;
 
     private DialogueUIController _uiController;
+    private DialogueEffectController _effectController;
 
     private bool _isHangoutScene =>
         SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
@@ -30,16 +31,7 @@ public class DialogueController : MonoBehaviour
     private void Awake()
     {
         _uiController = GetComponent<DialogueUIController>();
-    }
-
-    private void OnEnable()
-    {
-        //DialogueEvent.DialogueSkipEvent += DialogueSkip;
-    }
-
-    private void OnDisable()
-    {
-        //DialogueEvent.DialogueSkipEvent -= DialogueSkip;
+        _effectController = GetComponent<DialogueEffectController>();
     }
 
     private void Update()
@@ -62,6 +54,7 @@ public class DialogueController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K))
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
+
                 currentDialogueIndex = filteredDialogueList.Count;
                 ShowNextDialogue();
             }
@@ -127,6 +120,7 @@ public class DialogueController : MonoBehaviour
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             if(_defaultCam!=null)
                 _defaultCam.SetActive(true);
+            StartCoroutine(_effectController.SetBGType(BGType.HideCutScene));
             _onDialogueComplete?.Invoke();
             return;
         }
