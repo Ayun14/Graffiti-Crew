@@ -31,45 +31,37 @@ namespace AH.UI.Views {
             _exitMap = topElement.Q<Button>("exit-btn");
 
             _pointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
-            SetSaveStageData();
+            LoadSaveData();
 
             SetSaveDataToStagePoint();
         }
 
-        private void SetSaveStageData() {
+        private void LoadSaveData() {
             for (int i = 1; i <= 4; i++) {
                 string saveDataPath = $"SaveData/Chapter{i}/";
                 List<StageSaveDataSO> list = Resources.LoadAll<StageSaveDataSO>(saveDataPath).ToList();
                 _saveStageData.AddRange(list);
-                _pointList[i - 1].state = _saveStageData[i - 1].stageState;
+            }
+            for(int i = 0; i < _saveStageData.Count; i++) {
+                _pointList[i].type = _saveStageData[i].stageType;
+                _pointList[i].state = _saveStageData[i].stageState;
             }
         }
-
-        //private void SetChapter() {
-        //    StageSaveDataSO[] list;
-        //    for (int i = 1; i <= 4; i++) {
-        //        string saveDataPath = $"SaveData/Chapter{i}/";
-        //        list = Resources.LoadAll<StageSaveDataSO>(saveDataPath);
-        //        for(int j = 0; j <list.Length; j++ ) {
-        //            if (!list[j].stageState) {
-        //                break;
-        //            }
-        //        }
-        //    }
-        //}
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             foreach (var button in _pointList) {
                 if (button.state != StageState.Lock) {
-                    if (button.type == StageType.Stage) {
-                        button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
-                    }
-                    else if (button.type == StageType.Story) {
-                        button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
-                    }
-                    else {
-                        button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
+                    switch (button.type) {
+                        case StageType.Stage:
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
+                            break;
+                        case StageType.Activity:
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
+                            break;
+                        case StageType.Story:
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
+                            break;
                     }
                 }
             }
@@ -92,32 +84,20 @@ namespace AH.UI.Views {
             }
             _exitMap.UnregisterCallback<ClickEvent>(ClickBackBtn);
         }
-        //private void SetSaveDataToChapter() {
-        //    StageSaveDataSO[] list;
-        //    for (int i = 1; i <= 4; i++) {
-        //        string saveDataPath = $"SaveData/Chapter{i}/";
-        //        list = Resources.LoadAll<StageSaveDataSO>(saveDataPath);
-        //        _currentChapterList[i - 1].canPlay = true;
-        //        for (int j = 0; j < list.Length; j++) {
-        //            if (!list[j].stageState) {
-        //                _currentChapterList[i - 1].canPlay = false;
-        //                break;
-        //            }
-        //        }
-        //    }
-        //}
+
         private void SetSaveDataToStagePoint() {
             int index = 0;
             int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
             while (index < length) {
-                Debug.Log(index);
+                if(_saveStageData[index].stageState == StageState.CanPlay) {
+                    break;
+                }
                 if (_saveStageData[index].stageState == StageState.Lock) {// 다음 스테이지 보이도록
                     _pointList[index].state = StageState.CanPlay; 
-                    Debug.Log("break");
                     break;
                 }
                 _pointList[index].state = _saveStageData[index].stageState;
-                //_currentPointList[index].starCount = _currentStageData[index].star;
+                //_pointList[index].starCount = _saveStageData[index].star;
                 index++;
             }
         }
