@@ -33,7 +33,7 @@ public class StageSceneDataController : DataController
                 {
                     // 스테이지 클리어
                     stageData.isClearStage = true;
-                    stageData.stageSaveData.isClear = true;
+                    stageData.stageSaveData.stageState =StageState.Clear;
                 }
             }
         }

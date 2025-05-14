@@ -41,7 +41,7 @@ public class NPC : InteractionObject
         if (_npcSO.lastStageDataSO != null && CheckHangOutScene())
         {
             _lastStageDataSO = _npcSO.lastStageDataSO;
-            if (!_lastStageDataSO.isClear)
+            if (_lastStageDataSO.stageState != StageState.Clear)
             {
                 _col.enabled = false;
                 _visual.SetActive(false);
