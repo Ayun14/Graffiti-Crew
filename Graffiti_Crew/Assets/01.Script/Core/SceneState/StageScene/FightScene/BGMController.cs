@@ -31,7 +31,6 @@ public class BGMController : Observer<GameStateController>
             else if (mySubject.GameState == GameState.Countdown)
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Before);
-                StartCoroutine(CountDownRoutine());
             }
             else if (mySubject.GameState == GameState.Fight)
             {
@@ -56,6 +55,8 @@ public class BGMController : Observer<GameStateController>
         if (_fightMiddleAudioSource == null) return;
         _fightMiddleAudioSource.pitch = 1.1f;
     }
+
+    public void StartCountdownSound() => StartCoroutine(CountDownRoutine());
 
     private IEnumerator CountDownRoutine()
     {

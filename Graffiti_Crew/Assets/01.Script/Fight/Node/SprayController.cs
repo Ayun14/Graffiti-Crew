@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class SprayController : MonoBehaviour
 {
+    [Header("Cursor")]
+    [SerializeField] private Texture2D _sprayCursor;
+    [SerializeField] private Texture2D _noneSprayCursor;
+
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
-    [SerializeField] private Texture2D _sprayCursor;
-    [SerializeField] private Texture2D _shakeSprayCursor;
     [SerializeField] private float _sprayAddAmount;
     public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
     private bool isSprayCanShaking = false;
@@ -16,16 +18,12 @@ public class SprayController : MonoBehaviour
     private Tween _shakeValueChangeTween;
 
     [Header("Spray")]
+    [SerializeField] private SliderValueSO _spraySliderValueSO;
     [SerializeField] private float _maxSprayValue;
     [SerializeField] private GameObject _sprayCanPrefab;
     [SerializeField] private float _forcePower = 2f;
     [SerializeField] private float _sprayChangeTime = 2f;
-    private float _currentSprayValue = 0;
-    public float CurrentSparyValue
-    {
-        get { return _currentSprayValue; }
-        set { _currentSprayValue = Mathf.Clamp(value, 0, _maxSprayValue); }
-    }
+    private Tween _sprayValueChangeTween;
 
     protected StageGameRule _stageGameRule;
 
@@ -34,7 +32,7 @@ public class SprayController : MonoBehaviour
         _stageGameRule = stageGameRule;
 
         // Spray
-        CurrentSparyValue = _maxSprayValue;
+        _spraySliderValueSO.Value = _spraySliderValueSO.max;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
@@ -86,12 +84,12 @@ public class SprayController : MonoBehaviour
         if (targetValue <= 0f)
         {
             isSprayCanShaking = true;
-            Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
+            SetCursor();
         }
         else if (targetValue >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
-            Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
+            SetCursor();
         }
     }
 
@@ -101,13 +99,21 @@ public class SprayController : MonoBehaviour
 
     public void AddSprayAmount(float value)
     {
-        CurrentSparyValue += value;
+        if (_spraySliderValueSO == null) return;
+        if (_sprayValueChangeTween != null && _sprayValueChangeTween.IsActive())
+            _sprayValueChangeTween.Complete();
+
+        float targetValue = _spraySliderValueSO.Value + value;
+        _sprayValueChangeTween = DOTween.To(() => _spraySliderValueSO.Value,
+            x => _spraySliderValueSO.Value = x, targetValue, 0.1f);
+        StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Spray Empty
-        if (_stageGameRule.GetSprayEmpty() == false && CurrentSparyValue <= 0f)
+        if (_stageGameRule.GetSprayEmpty() == false && _spraySliderValueSO.Value <= 0f)
         {
             StartCoroutine(SprayEmpty());
             _stageGameRule.SetSprayEmpty(true);
+            SetCursor();
         }
     }
 
@@ -121,11 +127,11 @@ public class SprayController : MonoBehaviour
             Random.Range(0.1f, 0.3f));
         Vector3 finalDirection = (transform.forward + randomOffset).normalized;
         rigid.AddForce(randomOffset * _forcePower, ForceMode.Impulse);
-        Cursor.SetCursor(_shakeSprayCursor, new Vector2(0, 0), CursorMode.Auto);
+        SetCursor();
 
         yield return new WaitForSeconds(_sprayChangeTime);
 
-        Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
+        SetCursor();
         ResetSpray();
         _stageGameRule.SetSprayEmpty(false);
     }
@@ -137,4 +143,12 @@ public class SprayController : MonoBehaviour
     }
 
     #endregion
+
+    private void SetCursor()
+    {
+        if (_spraySliderValueSO.Value > 0 && _shakeSliderValueSO.Value > 0)
+            Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
+        else
+            Cursor.SetCursor(_noneSprayCursor, new Vector2(0, 0), CursorMode.Auto);
+    }
 }

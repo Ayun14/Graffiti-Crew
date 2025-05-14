@@ -12,12 +12,7 @@ namespace AH.UI.Views {
         private VisualElement _cResultPanel;
         private VisualElement _lResultPanel;
 
-        private Button c_retryBtn;
-        private Button c_nextBtn;
-        private Button c_quitBtn;
-
-        private Button l_retryBtn;
-        private Button l_quitBtn;
+        private Button[] _nextBtns;
 
         public ResultView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel = viewModel as FightViewModel;
@@ -35,33 +30,35 @@ namespace AH.UI.Views {
             base.SetVisualElements();
             _cResultPanel = topElement.Q<VisualElement>("clear-result-container");
             _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
+
+            _nextBtns = topElement.Query<Button>("next-btn").ToList().ToArray();
         }
+        public override void Show() {
+            base.Show();
+        }
+
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
-
+            for(int i = 0; i < _nextBtns.Length; i++) {
+                _nextBtns[i].RegisterCallback<ClickEvent>(ClickNextBtn);
+            }
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
-            c_retryBtn.UnregisterCallback<ClickEvent>(ClickRetryBtn);
-            c_quitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
-        }
-
-        public override void Show() {
-            base.Show();
+            for (int i = 0; i < _nextBtns.Length; i++) {
+                _nextBtns[i].UnregisterCallback<ClickEvent>(ClickNextBtn);
+            }
         }
 
         private void FullScreen(bool result) {
             if (result) {
                 SetStar();
                 _cResultPanel.AddToClassList("result-in");
-                SetPlayerResultView();
             }
             else {
                 _lResultPanel.AddToClassList("result-in");
-                SetRivalResultView();
             }
         }
-
         private void SetStar()
         {
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
@@ -71,37 +68,11 @@ namespace AH.UI.Views {
             currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/{chapter}/{stageName}");
 
             for(int i = 0; i < 3 - currentStageData.star; i++) {
-                Debug.Log("remove");
                 stars[i].RemoveFromClassList("star");
             }
         }
-
-        private void SetPlayerResultView() {
-            c_nextBtn = _cResultPanel.Q<Button>("next-btn");
-            c_retryBtn = _cResultPanel.Q<Button>("retry-btn");
-            c_quitBtn = _cResultPanel.Q<Button>("quit-btn");
-
-            c_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
-            c_nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
-            c_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-        }
-        private void SetRivalResultView() {
-            l_retryBtn = _lResultPanel.Q<Button>("retry-btn");
-            l_quitBtn = _lResultPanel.Q<Button>("quit-btn");
-
-            l_retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
-            l_quitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-        }
-        private void ClickRetryBtn(ClickEvent evt) {
-            SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
-        }
         private void ClickNextBtn(ClickEvent evt) {
-            Debug.Log("¿¬°á ¾ÈµÊ");
-            //GameEvents.SaveGameEvent?.Invoke();
-            //SceneManager.LoadScene("FightScene");
-        }
-        private void ClickExitBtn(ClickEvent evt) {
-            SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
+            StageEvent.ClickNectBtnEvent?.Invoke();
         }
     }
 }
