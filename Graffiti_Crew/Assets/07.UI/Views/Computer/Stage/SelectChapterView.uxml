@@ -1,25 +1,26 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="StageDescription" src="project://database/Assets/07.UI/Views/Computer/Stage/StageDescription.uxml?fileID=9197481963319205126&amp;guid=0a1507fa7f634e644b28706e143c227f&amp;type=3#StageDescription" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement name="main-map" class="base-chapter">
         <engine:VisualElement style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-deco.png?fileID=21300000&amp;guid=6d886411eaaf296409f141798101bb6d&amp;type=3#map-deco&quot;); width: 100%; height: 100%;">
             <engine:VisualElement name="map" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-all.png?fileID=21300000&amp;guid=b3f0d1b0badd35b48b7a9d2fa7664c34&amp;type=3#map-all&quot;); flex-grow: 1;" />
             <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" class="stage-point" style="top: 54.5%; left: 59.2%;" />
             <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" stateType="Lock" class="stage-point" style="top: 74.2%; left: 48.4%;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" class="stage-point" style="top: 641px; left: 905px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="2" class="stage-point" style="top: 598px; left: 741px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="2" class="stage-point" style="top: 489px; left: 497px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="2" class="stage-point" style="top: 491px; left: 437px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="3" class="stage-point" style="top: 175px; left: 1352px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="3" class="stage-point" style="top: 146px; left: 1126px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="3" class="stage-point" style="top: 104px; left: 1012px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="4" class="stage-point" style="top: 273px; left: 814px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="4" class="stage-point" style="top: 123px; left: 830px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="4" class="stage-point" style="top: 113px; left: 600px;" />
-            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="4" type="Story" chapter="4" class="stage-point" style="top: 132px; left: 510px;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" class="stage-point" style="top: 59.3%; left: 47.1%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="2" class="stage-point" style="top: 55.4%; left: 38.6%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="2" class="stage-point" style="top: 45.2%; left: 25.9%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="2" class="stage-point" style="top: 45.3%; left: 22.8%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="3" stateType="Lock" class="stage-point" style="top: 16.3%; left: 70.4%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="3" stateType="Lock" class="stage-point" style="top: 25.1%; left: 58.84%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="3" stateType="Lock" class="stage-point" style="top: 13.4%; left: 58.65%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="4" type="Story" chapter="3" class="stage-point" style="top: 9.6%; left: 52.7%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="1" type="Story" chapter="4" class="stage-point" style="top: 25.2%; left: 42.4%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="2" type="Story" chapter="4" class="stage-point" style="top: 11.4%; left: 43.25%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="3" type="Story" chapter="4" class="stage-point" style="top: 10.5%; left: 31.3%;" />
+            <AH.UI.CustomElement.StagePointElement name="stage-point" stage="4" type="Story" chapter="4" class="stage-point" style="top: 12.23%; left: 26.63%;" />
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-line.png?fileID=21300000&amp;guid=3d5eda5179d9d65458e66dfdd06e9b0b&amp;type=3#map-line&quot;);" />
+    <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-line.png?fileID=21300000&amp;guid=98987f68e0728144a9483f8715720d9d&amp;type=3#map-line&quot;);" />
     <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 3%; left: 94%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
     <engine:Instance template="StageDescription" name="StageDescriptionView" style="position: absolute; width: 100%; height: 100%; display: none;" />
 </engine:UXML>

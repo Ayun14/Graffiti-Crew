@@ -100,8 +100,17 @@ namespace AH.UI.CustomElement {
             _lock.style.backgroundImage = new StyleBackground(lockImg);
             _canPlay.style.backgroundImage = new StyleBackground(canplayImg);
 
-            _lock.parent.style.width = lockImg.rect.width;
-            _lock.parent.style.height = lockImg.rect.height;
+            float imgWidth = lockImg.rect.width;
+            float imgHeight = lockImg.rect.height;
+
+            float percentX = (imgWidth / 1920f) * 100f;
+            float roundedPercentX = (float)Math.Round(percentX, 2); 
+
+            float percentY = (imgHeight / 1080f) * 100f;
+            float roundedPercentY = (float)Math.Round(percentY, 2);
+
+            _lock.parent.style.width = Length.Percent(roundedPercentX);
+            _lock.parent.style.height = Length.Percent(roundedPercentY);
         }
         private void ChangeSetImg() {
             switch (_state) {
