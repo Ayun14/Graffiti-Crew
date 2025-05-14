@@ -1869,7 +1869,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0
+    m_Strength: 0.9
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -3993,14 +3993,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _shakeSliderValueSO: {fileID: 11400000, guid: f5da67871c66f5f4cb32146c04e7e2d9, type: 2}
   _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
   _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
   _sprayAddAmount: 5
+  _spraySliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
   _maxSprayValue: 100
   _sprayCanPrefab: {fileID: 9010543665947581265, guid: 620fad78e4e443a47935e624e8d64723, type: 3}
   _forcePower: 7
-  _sprayChangeTime: 2
+  _sprayChangeTime: 1.5
 --- !u!1001 &1104966948
 PrefabInstance:
   m_ObjectHideFlags: 0

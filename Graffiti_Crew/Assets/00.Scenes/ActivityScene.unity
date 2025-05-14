@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 43
+    m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -2679,7 +2679,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2705,8 +2705,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851547233}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.059928, y: 0.45451152, z: -0.030666707, w: 0.88819337}
-  m_LocalPosition: {x: -14.91, y: 2.49, z: -4.66}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5070,14 +5070,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeSliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _shakeSliderValueSO: {fileID: 11400000, guid: f5da67871c66f5f4cb32146c04e7e2d9, type: 2}
   _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
   _shakeSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
   _sprayAddAmount: 5
+  _spraySliderValueSO: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
   _maxSprayValue: 100
   _sprayCanPrefab: {fileID: 9010543665947581265, guid: 620fad78e4e443a47935e624e8d64723, type: 3}
   _forcePower: 7
-  _sprayChangeTime: 2
+  _sprayChangeTime: 1.5
 --- !u!1 &1670867812
 GameObject:
   m_ObjectHideFlags: 0
@@ -6803,12 +6804,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1506212665}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 66085857}
     - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartCountdownSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CounddownTimelineEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BGMController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
