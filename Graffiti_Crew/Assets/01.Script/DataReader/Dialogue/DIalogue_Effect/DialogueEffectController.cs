@@ -17,9 +17,9 @@ public class DialogueEffectController : MonoBehaviour
         _cutSceneController = GetComponentInChildren<CutSceneController>();
     }
 
-    public IEnumerator SetBGType(DialogueData dialogueData)
+    public IEnumerator SetBGType(BGType bgType)
     {
-        switch (dialogueData.bgType)
+        switch (bgType)
         {
             case BGType.FadeIn:
                 _splashController.isFinished = false;

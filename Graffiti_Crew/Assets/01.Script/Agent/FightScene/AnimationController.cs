@@ -14,7 +14,8 @@ public enum AnimationEnum
     People_Clap,
 
     // Dialogue
-    Talk
+    Talk,
+    Sit
 }
 
 public class AnimationController : MonoBehaviour

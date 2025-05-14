@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class TutorialDialogueController : Observer<GameStateController>
 {
-    [SerializeField] private List<GameObject> _levelPrefabs;
+    [SerializeField] private GameObject _level;
+    [SerializeField] private GameObject _hangout;
 
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
+    [SerializeField] private StoryDialogueSO _tutorialDialogueSO;
 
-    private StoryDialogueSO _storyDialogueSO;
     private int _dialogueNum = 0;
 
     private Image _loadingPanel;
@@ -44,7 +45,7 @@ public class TutorialDialogueController : Observer<GameStateController>
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
-                NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
+                NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
             }
@@ -57,28 +58,37 @@ public class TutorialDialogueController : Observer<GameStateController>
         await Task.Delay(1100);
         DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
-        _levelPrefabs[_dialogueNum].SetActive(false);
-
         _dialogueNum++;
 
-        if (_dialogueNum <= _levelPrefabs.Count - 1)
-            _levelPrefabs[_dialogueNum].SetActive(true);
-
-
-        if (_dialogueNum == _storyDialogueSO.storyList.Count)
+        if (_dialogueNum == 1)
         {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(1100);
-            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
+            await Task.Delay(2100);
+            _level.SetActive(true);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }
-        else
+        else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
         {
-            NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
+
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
+
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
+        else
+        {
+            NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
+
+            await Task.Delay(1100);
+            _level.SetActive(false);
+            _hangout.SetActive(true);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
+
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
+
     }
 }

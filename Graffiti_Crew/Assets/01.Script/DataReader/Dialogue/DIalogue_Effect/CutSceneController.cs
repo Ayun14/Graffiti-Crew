@@ -12,6 +12,7 @@ public class CutSceneController : MonoBehaviour
 
     public IEnumerator CutSceneRoutine(string cutSceneName, bool isShow)
     {
+        Debug.Log(cutSceneName);
         _splashController.isFinished = false;
         yield return StartCoroutine(_splashController.FadeOut(false, true));
 
