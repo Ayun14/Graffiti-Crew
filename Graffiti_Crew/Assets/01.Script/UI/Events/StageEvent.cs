@@ -9,6 +9,8 @@ namespace AH.UI.Events {
         public static Action<bool> SetViewEvnet; // true : fight, false : activity
         public static Action ChangeSprayValueEvent;
 
+        public static Action ClickNectBtnEvent;
+
         public static Action HideViewEvent;
     }
 }
