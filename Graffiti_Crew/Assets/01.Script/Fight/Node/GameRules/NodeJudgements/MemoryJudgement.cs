@@ -22,6 +22,15 @@ public class MemoryJudgement : NodeJudgement
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _whatIsNode))
             {
+                #region 스프레이 안나옴 처리
+                if (_stageGameRule.IsCanInput() == false)
+                {
+                    // 스프레이 안나오는 소리 나오기
+                    GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss);
+                    return;
+                }
+                #endregion
+
                 if (hit.transform.parent.TryGetComponent(out Node node))
                 {
                     // node 가 지금 가장 앞에 있는 노드 라면?
