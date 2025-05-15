@@ -8,6 +8,7 @@ public class TutorialDialogueController : Observer<GameStateController>
 {
     [SerializeField] private GameObject _level;
     [SerializeField] private GameObject _hangout;
+    [SerializeField] private GameObject _mainCam;
 
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
@@ -80,11 +81,12 @@ public class TutorialDialogueController : Observer<GameStateController>
         }
         else
         {
+            _mainCam.SetActive(false);
             NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
 
-            await Task.Delay(1100);
             _level.SetActive(false);
             _hangout.SetActive(true);
+            await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
