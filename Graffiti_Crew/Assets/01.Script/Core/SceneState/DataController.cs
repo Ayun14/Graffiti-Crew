@@ -1,4 +1,5 @@
 using AH.SaveSystem;
+using AH.UI.Events;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,10 +16,12 @@ public abstract class DataController : Observer<GameStateController>
     private void Awake()
     {
         Attach();
+        StageEvent.ClickNectBtnEvent += GoNextStage;
     }
 
     private void OnDestroy()
     {
+        StageEvent.ClickNectBtnEvent -= GoNextStage;
         Detach();
     }
 
