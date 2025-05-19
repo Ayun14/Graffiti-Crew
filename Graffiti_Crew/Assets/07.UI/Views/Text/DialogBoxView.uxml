@@ -1,12 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Animation" src="project://database/Assets/07.UI/Views/Animation/Animation.uxml?fileID=9197481963319205126&amp;guid=e666f9c0a8d1b174a9ce9411f61d4258&amp;type=3#Animation" />
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
-    <engine:VisualElement style="width: 100%; height: 100%; justify-content: space-between; position: absolute;">
-        <engine:VisualElement name="top-border" class="hide-border" style="background-color: rgb(0, 0, 0); height: 100px;" />
-        <engine:VisualElement name="bottom-border" class="hide-border" style="background-color: rgb(0, 0, 0); height: 100px;" />
-    </engine:VisualElement>
-    <engine:VisualElement name="m-container" class="dialog-box-m-container">
-        <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content show-dialogue" style="flex-direction: row; display: none; translate: 0 60px;">
+    <engine:Instance template="Animation" name="Animation" style="position: absolute; width: 100%; height: 100%;" />
+    <engine:VisualElement name="m-container" class="dialog-box-m-container" style="display: flex;">
+        <engine:VisualElement name="left-dialouge" class="dialog-box-bottom-content" style="flex-direction: row; display: flex; translate: 0 60px;">
             <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="profile" />
@@ -29,7 +27,7 @@
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content show-dialogue" style="flex-direction: row-reverse; display: none; translate: 0 60px;">
+        <engine:VisualElement name="right-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: flex; translate: 0 60px;">
             <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="profile" />
@@ -54,7 +52,7 @@
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="m-container" class="dialog-box-m-container" style="display: flex; top: 0; left: 3px;">
-        <engine:VisualElement name="felling-dialouge" class="dialog-box-bottom-content show-dialogue" style="flex-direction: row-reverse; display: flex; translate: 0 63px; -unity-background-image-tint-color: rgb(255, 255, 255);">
+        <engine:VisualElement name="felling-dialouge" class="dialog-box-bottom-content" style="flex-direction: row-reverse; display: none; translate: 0 63px; -unity-background-image-tint-color: rgb(255, 255, 255);">
             <engine:VisualElement style="height: 103%; width: 95%; flex-direction: column-reverse; -unity-background-image-tint-color: rgb(255, 255, 255);">
                 <engine:VisualElement name="text-box" class="text-box" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0.3);">
                     <engine:Label text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" class="grow-size-50" style="width: 90%; white-space: normal; translate: 50px 0;">
