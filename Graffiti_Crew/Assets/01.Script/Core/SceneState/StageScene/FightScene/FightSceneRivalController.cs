@@ -1,12 +1,13 @@
-using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class FightSceneRivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
 
     // Graffiti
-    private Sprite _graffiti;
+    private List<Sprite> _graffitis = new();
     private SpriteRenderer _graffitiRenderer;
 
     // Game Object
@@ -24,7 +25,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
 
     public void LodingHandle(DataController dataController)
     {
-        _graffiti = dataController.stageData.rivalGraffiti;
+        _graffitis = dataController.stageData.rivalGraffiti;
         _rivalDrawingTime = dataController.stageData.rivalClearTime;
         _rival = Instantiate(dataController.stageData.rivalPrefabList.First().gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
 
@@ -78,16 +79,17 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             }
             else if (mySubject.GameState == GameState.Finish)
             {
-                SetGraffiti(null);
                 _rival.position = _resultTrm.position;
                 _rival.localRotation = _resultTrm.localRotation;
             }
         }
     }
 
-    private void SetGraffiti(Sprite sprite)
+    private void SetGraffiti()
     {
-        _graffitiRenderer.sprite = _graffiti;
+        int idx = (int)(_currentTime / (_rivalDrawingTime / 3));
+        if (idx < _graffitis.Count)
+            _graffitiRenderer.sprite = _graffitis[idx];
     }
 
     private void RivalPositionToGraffiti()
@@ -109,43 +111,44 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Win);
     }
 
-#region Slider
+    #region Slider
 
-private void RivalProgressSliderUpdate()
-{
-    if (!_isFight) return;
-
-    if (_rivalDrawingTime >= _currentTime)
+    private void RivalProgressSliderUpdate()
     {
-        _currentTime += Time.deltaTime;
+        if (!_isFight) return;
 
-        float percent = _currentTime / _rivalDrawingTime;
-        _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
+        if (_rivalDrawingTime >= _currentTime)
+        {
+            _currentTime += Time.deltaTime;
 
-        RivalCheck();
-        FinishCheck();
+            float percent = _currentTime / _rivalDrawingTime;
+            _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
+
+            RivalCheck();
+            FinishCheck();
+        }
     }
-}
 
-private void RivalCheck()
-{
-    if (_isCompleteRivalCheck) return;
-
-    if (_rivalSliderValueSO.Value > _rivalCheckPercent)
+    private void RivalCheck()
     {
-        _isCompleteRivalCheck = true;
-        mySubject.OnRivalCheckEvent();
-    }
-}
+        if (_isCompleteRivalCheck) return;
 
-private void FinishCheck()
-{
-    if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
-    {
-        mySubject.SetWhoIsWin(false);
-        mySubject.ChangeGameState(GameState.Finish);
+        if (_rivalSliderValueSO.Value > _rivalCheckPercent)
+        {
+            _isCompleteRivalCheck = true;
+            mySubject.OnRivalCheckEvent();
+        }
     }
-}
+
+    private void FinishCheck()
+    {
+        if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
+        {
+            SetGraffiti();
+            mySubject.SetWhoIsWin(false);
+            mySubject.ChangeGameState(GameState.Finish);
+        }
+    }
 
     #endregion
 }
