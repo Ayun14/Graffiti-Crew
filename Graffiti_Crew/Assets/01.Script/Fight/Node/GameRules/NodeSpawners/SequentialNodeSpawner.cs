@@ -5,7 +5,11 @@ public class SequentialNodeSpawner : NodeSpawner
     public override void NodeSpawn()
     {
         if (_nodeDatas == null) return;
-        if (_nodeDatas.Count <= 0) _stageGameRule.AllNodeClear();
+        if (_nodeDatas.Count <= 0)
+        {
+            _stageGameRule.AllNodeClear();
+            return;
+        }
 
         NodeDataSO nodeData = _nodeDatas.Peek();
         PoolTypeSO poolType = _poolTypes.Find(type => type.name == nodeData.nodeType.ToString());

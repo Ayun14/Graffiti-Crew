@@ -29,9 +29,14 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
         {
             if (mySubject.GameState == GameState.Timeline)
             {
+                // Film UI
+                //UIAnimationEvent.SetFilmDirectingEvent(true);
+
+                // Other UI
                 UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(false);
                 UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(false);
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
+
                 _startTimeline.Play();
             }
             else if (mySubject.GameState == GameState.Countdown)
@@ -52,6 +57,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
 
     public void ActivityStartTimelineEnd()
     {
+        //UIAnimationEvent.SetFilmDirectingEvent(false);
         mySubject.ChangeGameState(GameState.Countdown);
     }
 
