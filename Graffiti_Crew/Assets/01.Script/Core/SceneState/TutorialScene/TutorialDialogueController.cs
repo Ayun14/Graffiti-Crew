@@ -41,7 +41,10 @@ public class TutorialDialogueController : Observer<GameStateController>
 
             if (mySubject.GameState == GameState.Dialogue)
             {
-                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
+                if(_dialogueNum == 0)
+                    GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Rain);
+                else
+                    GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Tutorial);
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
@@ -75,7 +78,7 @@ public class TutorialDialogueController : Observer<GameStateController>
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
 
-            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
 
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
