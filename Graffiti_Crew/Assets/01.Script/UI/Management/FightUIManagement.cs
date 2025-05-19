@@ -4,7 +4,6 @@ using AH.UI.ViewModels;
 using AH.UI.Views;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.ExecuteEvents;
 
 namespace AH.UI {
     public class FightUIManagement : UIManagement {
@@ -18,12 +17,12 @@ namespace AH.UI {
         private FightViewModel _viewModel;
 
         private void Update() {
-            //if (Input.GetKeyDown(KeyCode.Q)) {
-            //    StageEvent.SetViewEvnet?.Invoke(true);
-            //}
-            //if (Input.GetKeyDown(KeyCode.W)) {
-            //    StageEvent.SetViewEvnet?.Invoke(false);
-            //}
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                UIAnimationEvent.SetFilmDirectingEvent?.Invoke(true);
+            }
+            if (Input.GetKeyDown(KeyCode.W)) {
+                UIAnimationEvent.SetFilmDirectingEvent?.Invoke(false);
+            }
         }
         protected override void OnEnable() {
             base.OnEnable();
@@ -48,9 +47,8 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _fightView = new FightView(root.Q<VisualElement>("FightView"), _viewModel);
-            _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _resultView = new ResultView(root.Q<VisualElement>("ResultView"), _viewModel);
-            _fightAnimationView = new FightAnimationView(root.Q<VisualElement>("StartAnimation"), _viewModel);
+            _fightAnimationView = new FightAnimationView(root.Q<VisualElement>("Animation"), _viewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
             _fightAnimationView.Show();

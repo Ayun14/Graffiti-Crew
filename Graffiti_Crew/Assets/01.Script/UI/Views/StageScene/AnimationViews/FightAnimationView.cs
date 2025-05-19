@@ -19,7 +19,11 @@ public class FightAnimationView : UIView {
     private VisualElement _colorBackground;
     private VisualElement _blueLine;
     private VisualElement _rivalFace;
-    
+
+
+    private VisualElement _movieTopBorder;
+    private VisualElement _movieBottomBorder;
+
     public FightAnimationView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
         UIAnimationEvent.SetActiveCountDownAnimationEvnet += SetActiveCountDownAnimation;
@@ -27,16 +31,18 @@ public class FightAnimationView : UIView {
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet += RivalCheckAnimation;
         UIAnimationEvent.SetPlayerBackgroundColor += SetPlayerBackgroundColor;
         UIAnimationEvent.SetRivalBackgroundColor += SetRivalBackgroundColor;
+        UIAnimationEvent.SetFilmDirectingEvent += SetFilmDirecting;
     }
-    public override void Dispose() { 
+    public override void Dispose() {
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
         UIAnimationEvent.SetActiveCountDownAnimationEvnet -= SetActiveCountDownAnimation;
         UIAnimationEvent.SetActiveEndAnimationEvnet -= SetActiveEndAnimation;
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
         UIAnimationEvent.SetPlayerBackgroundColor -= SetPlayerBackgroundColor;
-        UIAnimationEvent.SetRivalBackgroundColor -= SetRivalBackgroundColor;
+        UIAnimationEvent.SetFilmDirectingEvent -= SetFilmDirecting;
         base.Dispose();
     }
+
     protected override void SetVisualElements() {
         base.SetVisualElements();
         _startAnimation = topElement.Q<VisualElement>("startAnimation");
@@ -48,9 +54,22 @@ public class FightAnimationView : UIView {
         _colorBackground = _rivalCheckAnimation.Q<VisualElement>("color-background");
         _blueLine = _rivalCheckAnimation.Q<VisualElement>("blue-line");
         _rivalFace = _rivalCheckAnimation.Q<VisualElement>("rival-face");
+
+        _movieTopBorder = topElement.Q<VisualElement>("movie-top-border");
+        _movieBottomBorder = topElement.Q<VisualElement>("movie-bottom-border");
     }
 
     #region Handles
+    private void SetFilmDirecting(bool active) {
+        if (active) {
+            _movieTopBorder.AddToClassList("movie-top-center");
+            _movieBottomBorder.AddToClassList("movie-bottom-center");
+        }
+        else {
+            _movieTopBorder.RemoveFromClassList("movie-top-center");
+            _movieBottomBorder.RemoveFromClassList("movie-bottom-center");
+        }
+    }
     private void SetActiveStartAnimation(bool active) {
         if (active) {
             Show(_startAnimation);
