@@ -43,8 +43,6 @@ public class TutorialDialogueController : Observer<GameStateController>
             {
                 if(_dialogueNum == 0)
                     GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Rain);
-                else
-                    GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Tutorial);
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
@@ -66,6 +64,17 @@ public class TutorialDialogueController : Observer<GameStateController>
 
         if (_dialogueNum == 1)
         {
+            NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
+
+            await Task.Delay(1100);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Rain);
+            GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Tutorial);
+
+            _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+        }
+        else if (_dialogueNum == 2)
+        {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(2100);
             _level.SetActive(true);
@@ -73,16 +82,7 @@ public class TutorialDialogueController : Observer<GameStateController>
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }
-        else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
-        {
-            await Task.Delay(1100);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
-
-            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
-
-            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
-        }
-        else
+        else if (_dialogueNum == 3)
         {
             _mainCam.SetActive(false);
             NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
@@ -94,6 +94,15 @@ public class TutorialDialogueController : Observer<GameStateController>
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
+        else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
+        {
+            await Task.Delay(1100);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
 
+            GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
+
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
+        
     }
 }
