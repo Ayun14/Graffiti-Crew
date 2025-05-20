@@ -30,7 +30,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
             if (mySubject.GameState == GameState.Timeline)
             {
                 // Film UI
-                //UIAnimationEvent.SetFilmDirectingEvent(true);
+                UIAnimationEvent.SetFilmDirectingEvent(true);
 
                 // Other UI
                 UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(false);
@@ -50,6 +50,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
             }
             else if (mySubject.GameState == GameState.Result)
             {
+                UIAnimationEvent.SetFilmDirectingEvent(true);
                 _activityEndTimeline.Play();
             }
         }
@@ -57,11 +58,11 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
 
     public void ActivityStartTimelineEnd()
     {
-        //UIAnimationEvent.SetFilmDirectingEvent(false);
+        UIAnimationEvent.SetFilmDirectingEvent(false);
         mySubject.ChangeGameState(GameState.Countdown);
     }
 
-    public void CounddownTimelineEnd()
+    public void CountdownTimelineEnd()
     {
         mySubject.ChangeGameState(GameState.Fight);
         UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(false);
@@ -70,5 +71,10 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
     public void FinishTimelineEnd()
     {
         mySubject.ChangeGameState(GameState.Result);
+    }
+
+    public void ResultTimelineEnd()
+    {
+        UIAnimationEvent.SetFilmDirectingEvent(false);
     }
 }
