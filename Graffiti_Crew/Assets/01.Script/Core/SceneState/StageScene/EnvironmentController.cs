@@ -14,7 +14,7 @@ public class EnvironmentController : MonoBehaviour, INeedLoding
 
         // 날씨 파티클 생성
         if (dataController.stageData.weatherParticle != null)
-            Instantiate(dataController.stageData.weatherParticle, new Vector3(0, 10, 0), Quaternion.identity, transform);
+            Instantiate(dataController.stageData.weatherParticle, new Vector3(-4.12f, 0, -1.89f), Quaternion.identity, transform);
 
         dataController.SuccessGiveData();
     }
