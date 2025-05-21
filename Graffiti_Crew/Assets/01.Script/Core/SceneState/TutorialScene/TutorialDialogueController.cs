@@ -56,6 +56,10 @@ public class TutorialDialogueController : Observer<GameStateController>
 
     private async void DialogueEnd()
     {
+
+        if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
+            _hangout.SetActive(false);
+
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
         DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
@@ -98,7 +102,6 @@ public class TutorialDialogueController : Observer<GameStateController>
         {
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
-
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
 
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
