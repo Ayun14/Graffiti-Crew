@@ -36,6 +36,16 @@ public enum SoundType
     Buy,
     Star,
 
+    // Dialogue
+    OpenDoor,
+    Wow,
+    Shock,
+    Knock,
+    Running,
+    Sniff,
+    Twinkle,
+    Rain,
+
     [Header("BGM")]
     Title_Front,
     Title_Back,
@@ -44,5 +54,6 @@ public enum SoundType
     Fight_Middle,
     Fight_After,
     HangOut,
-    Police
+    Police,
+    Tutorial
 }

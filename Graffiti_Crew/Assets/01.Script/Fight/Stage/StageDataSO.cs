@@ -43,7 +43,7 @@ public class StageDataSO : ScriptableObject
 
     [Header("-------FightStage-------")]
     [Header("Rival Graffiti")]
-    public Sprite rivalGraffiti;
+    public List<Sprite> rivalGraffiti;
     public int rivalClearTime; // √  ¥‹¿ß
 
     [Header("Stage Star Setting")]

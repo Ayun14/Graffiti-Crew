@@ -82,7 +82,7 @@ public class DialogueUIController : MonoBehaviour
 
         DialogueData dialogue = _dialogueController.filteredDialogueList[index];
 
-        if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.ShakeCam)
+        if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.Animation)
         {
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));

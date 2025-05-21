@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SprayController : MonoBehaviour
@@ -8,6 +9,7 @@ public class SprayController : MonoBehaviour
     [Header("Cursor")]
     [SerializeField] private Texture2D _sprayCursor;
     [SerializeField] private Texture2D _noneSprayCursor;
+    [SerializeField] private List<Texture2D> _lodingCursors = new();
 
     [Header("Shake")]
     [SerializeField] private SliderValueSO _shakeSliderValueSO;
@@ -81,15 +83,15 @@ public class SprayController : MonoBehaviour
         StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Shaking
-        if (targetValue <= 0f)
+        if (targetValue <= _shakeSliderValueSO.min)
         {
             isSprayCanShaking = true;
-            SetCursor();
+            SetCursor(_spraySliderValueSO.Value, targetValue);
         }
         else if (targetValue >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
-            SetCursor();
+            SetCursor(_spraySliderValueSO.Value, targetValue);
         }
     }
 
@@ -109,11 +111,11 @@ public class SprayController : MonoBehaviour
         StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Spray Empty
-        if (_stageGameRule.GetSprayEmpty() == false && _spraySliderValueSO.Value <= 0f)
+        if (_stageGameRule.GetSprayEmpty() == false && targetValue <= _spraySliderValueSO.min)
         {
             StartCoroutine(SprayEmpty());
             _stageGameRule.SetSprayEmpty(true);
-            SetCursor();
+            SetCursor(targetValue, _shakeSliderValueSO.Value);
         }
     }
 
@@ -127,28 +129,40 @@ public class SprayController : MonoBehaviour
             Random.Range(0.1f, 0.3f));
         Vector3 finalDirection = (transform.forward + randomOffset).normalized;
         rigid.AddForce(randomOffset * _forcePower, ForceMode.Impulse);
-        SetCursor();
 
-        yield return new WaitForSeconds(_sprayChangeTime);
+        // Loding Cursor
+        for (int i = 0; i < 8; ++i)
+        {
+            SetCursor(_lodingCursors[i % 4]);
+            yield return new WaitForSeconds(_sprayChangeTime / 8f);
+        }
 
-        SetCursor();
         ResetSpray();
+        SetCursor(_sprayCursor);
         _stageGameRule.SetSprayEmpty(false);
     }
 
+
+
     private void ResetSpray()
     {
-        AddSprayAmount(_maxSprayValue);
+        AddSprayAmount(_spraySliderValueSO.max);
         AddShakeAmount(_shakeSliderValueSO.max);
     }
 
     #endregion
 
-    private void SetCursor()
+    private void SetCursor(float sprayValue, float shakeValue)
     {
-        if (_spraySliderValueSO.Value > 0 && _shakeSliderValueSO.Value > 0)
+        if (sprayValue > 0 && shakeValue > 0)
             Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
         else
             Cursor.SetCursor(_noneSprayCursor, new Vector2(0, 0), CursorMode.Auto);
+    }
+
+    private void SetCursor(Texture2D cursor)
+    {
+        if (cursor != null)
+            Cursor.SetCursor(cursor, new Vector2(0, 0), CursorMode.Auto);
     }
 }
