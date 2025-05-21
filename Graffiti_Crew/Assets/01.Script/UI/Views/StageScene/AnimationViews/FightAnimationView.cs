@@ -73,9 +73,11 @@ public class FightAnimationView : UIView {
     private void SetActiveStartAnimation(bool active) {
         if (active) {
             Show(_startAnimation);
+            Debug.Log("start true");
         }
         else {
             Hide(_startAnimation);
+            Debug.Log("start false");
         }
     }
     private void SetActiveCountDownAnimation(bool active) {
@@ -89,9 +91,11 @@ public class FightAnimationView : UIView {
     private void SetActiveEndAnimation(bool active) {
         if (active) {
             Show(_endAnimation);
+            Debug.Log("end true");
         }
         else {
             Hide(_endAnimation);
+            Debug.Log("end false");
         }
     }
     private void RivalCheckAnimation(bool active) {

@@ -17,12 +17,12 @@ namespace AH.UI {
         private FightViewModel _viewModel;
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                UIAnimationEvent.SetFilmDirectingEvent?.Invoke(true);
-            }
-            if (Input.GetKeyDown(KeyCode.W)) {
-                UIAnimationEvent.SetFilmDirectingEvent?.Invoke(false);
-            }
+            //if (Input.GetKeyDown(KeyCode.Q)) {
+            //    UIAnimationEvent.SetFilmDirectingEvent?.Invoke(true);
+            //}
+            //if (Input.GetKeyDown(KeyCode.W)) {
+            //    UIAnimationEvent.SetFilmDirectingEvent?.Invoke(false);
+            //}
         }
         protected override void OnEnable() {
             base.OnEnable();
@@ -52,7 +52,6 @@ namespace AH.UI {
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
             _fightAnimationView.Show();
-            UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;
