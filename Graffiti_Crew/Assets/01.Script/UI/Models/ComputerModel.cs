@@ -51,7 +51,7 @@ namespace AH.UI.Models
         {
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Stage);
+            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Battle);
         }
         public void SetStoryData(string chapter, string stage) {
             _loadStageSO.chapter = chapter;

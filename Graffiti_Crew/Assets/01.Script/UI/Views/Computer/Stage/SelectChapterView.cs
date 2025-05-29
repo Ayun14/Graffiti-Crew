@@ -53,7 +53,7 @@ namespace AH.UI.Views {
             foreach (var button in _pointList) {
                 if (button.state != StageState.Lock) {
                     switch (button.type) {
-                        case StageType.Stage:
+                        case StageType.Battle:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Activity:
@@ -71,7 +71,7 @@ namespace AH.UI.Views {
             base.UnRegisterButtonCallbacks();
             foreach (var button in _pointList) {
                 if (button.state != StageState.Lock) {
-                    if (button.type == StageType.Stage) {
+                    if (button.type == StageType.Battle) {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn);
                     }
                     else if (button.type == StageType.Story) {
@@ -108,7 +108,7 @@ namespace AH.UI.Views {
         #region ClickStages
         private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
-            string stage = $"Stage{data.stage}";
+            string stage = $"Battle{data.stage}";
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);

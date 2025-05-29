@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public enum StageType {
-    Stage,
+    Battle,
     Activity,
     Story
 }
@@ -19,7 +19,7 @@ namespace AH.SaveSystem {
     [CreateAssetMenu(fileName = "Chapter_Stage_", menuName = "SO/Save/Data/StageSaveDataSO")]
     public class StageSaveDataSO : SaveDataSO {
         [Space]
-        public StageType stageType = StageType.Stage;
+        public StageType stageType = StageType.Battle;
         public StageState stageState;
         public int star;
         [Space]

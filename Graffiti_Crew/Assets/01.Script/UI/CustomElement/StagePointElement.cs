@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
-        public StageType type { get; set; } = StageType.Stage;
+        public StageType type { get; set; } = StageType.Battle;
 
         private StageState _state;
         public StageState state {
@@ -38,7 +38,7 @@ namespace AH.UI.CustomElement {
         public new class UxmlTraits : BindableElement.UxmlTraits {
             UxmlEnumAttributeDescription<StageType> m_type = new UxmlEnumAttributeDescription<StageType> {
                 name = "stageType",
-                defaultValue = StageType.Stage 
+                defaultValue = StageType.Battle 
             };
             UxmlEnumAttributeDescription<StageState> m_canPlay = new UxmlEnumAttributeDescription<StageState> {
                 name = "stateType",
