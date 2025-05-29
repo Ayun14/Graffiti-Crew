@@ -4386,7 +4386,7 @@ Transform:
   m_GameObject: {fileID: 1347223077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: -4.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5346,7 +5346,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670613128851072208, guid: 335b00c425d37674ebfacba5a018cfc4, type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Bip001'\n\tTransform 'Bip001 L UpperArm'\n\tTransform
+        'Bip001 L Finger1'\n\tTransform 'Bip001 R Finger21'\n\tTransform 'Bip001
+        L Finger21'\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 R UpperArm'\n\tTransform
+        'Bip001 R Finger3'\n\tTransform 'Bip001 R Finger2'\n\tTransform 'Bip001 R
+        Finger01'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5502,7 +5508,7 @@ Transform:
   m_GameObject: {fileID: 1895008745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
