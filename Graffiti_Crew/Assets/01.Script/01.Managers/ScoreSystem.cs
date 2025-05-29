@@ -20,7 +20,7 @@ public class ScoreSystem : MonoBehaviour {
         int decrease = 1; // ±âº»°ª
 
         switch (stageData.stagetype) {
-            case StageType.Stage:
+            case StageType.Battle:
                 increase = 1;
                 decrease = 2;
                 break;

@@ -78,7 +78,7 @@ public abstract class DataController : Observer<GameStateController>
         string nextScene = "ComputerScene";
         switch (stageData.nextStagetype)
         {
-            case StageType.Stage:
+            case StageType.Battle:
                 nextScene = "FightScene";
                 break;
             case StageType.Activity:
