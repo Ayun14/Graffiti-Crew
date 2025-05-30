@@ -30,7 +30,8 @@ Material:
   m_ValidKeywords:
   - N_F_EAL_ON
   - N_F_ESSAO_ON
-  - N_F_NM_ON
+  - N_F_MC_ON
+  - N_F_NFD_ON
   - N_F_O_ON
   - N_F_RDC_ON
   - N_F_SS_ON
@@ -71,7 +72,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -343,7 +344,7 @@ Material:
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
-    - _MinFadDistance: 0
+    - _MinFadDistance: -5
     - _MixMainTexToOutline: 0
     - _Mode: 0
     - _N_F_AL: 1
@@ -366,11 +367,11 @@ Material:
     - _N_F_HDLS: 0
     - _N_F_HPSAS: 0
     - _N_F_HPSS: 0
-    - _N_F_MC: 0
+    - _N_F_MC: 1
     - _N_F_MSSOLTFO: 0
-    - _N_F_NFD: 0
+    - _N_F_NFD: 1
     - _N_F_NLASOBF: 0
-    - _N_F_NM: 1
+    - _N_F_NM: 0
     - _N_F_O: 1
     - _N_F_OFLMB: 0
     - _N_F_O_NM: 0
@@ -445,7 +446,7 @@ Material:
     - _SSRefGBu: 10
     - _SSRefMoVe: 40
     - _STIL: 0
-    - _Saturation: 1
+    - _Saturation: 0
     - _SelfLitHighContrast: 1
     - _SelfLitIntensity: 0
     - _SelfLitPower: 50
@@ -537,14 +538,14 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 2, g: 2, b: 2, a: 1}
+    - _HighlightColor: {r: 2, g: 2, b: 2, a: 0.5764706}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
     - _ObjectForward: {r: 0, g: 0, b: 0, a: 0}
     - _ObjectRight: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0.96862745}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
     - _OverallShadowColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
