@@ -115,7 +115,6 @@ public class SprayController : MonoBehaviour
         {
             StartCoroutine(SprayEmpty());
             _stageGameRule.SetSprayEmpty(true);
-            SetCursor(targetValue, _shakeSliderValueSO.Value);
         }
     }
 

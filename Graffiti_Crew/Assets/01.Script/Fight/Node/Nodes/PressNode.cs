@@ -11,15 +11,20 @@ public class PressNode : Node, INodeAction
     private float _currentTime = 0;
     private float _pressTime;
 
-    private bool _isPressing;
+    private bool _isPressing = false;
 
     private PressNodeDataSO _pressNodeData;
     private SpriteRenderer _renderer;
+
+    // Particle
+    private float _currentParticleSpawnTime = 0;
+    private float _particleSpawnTime = 0.2f;
 
     // Ring
     private SpriteRenderer _ringRenderer;
     private Vector3 _orginRingScale;
     private Vector3 _targetRingScale = new Vector3(0.1f, 0.1f, 1f);
+    private Coroutine _ringColorCoroutine;
 
     // Sound
     private SoundObject _sprayLongSoundObj;
@@ -40,7 +45,8 @@ public class PressNode : Node, INodeAction
         transform.position = _pressNodeData.pos;
 
         _pressTime = _pressNodeData.pressTime;
-        _currentTime = 0;
+
+        ResetNode();
     }
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
@@ -71,8 +77,8 @@ public class PressNode : Node, INodeAction
 
         // Ring
         SetRingScale(_targetRingScale, _pressTime);
-        StopCoroutine(RingColorRoutine());
-        StartCoroutine(RingColorRoutine());
+        if (_ringColorCoroutine != null) StopCoroutine(_ringColorCoroutine);
+        _ringColorCoroutine = StartCoroutine(RingColorRoutine());
 
         // Sound
         _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long)
@@ -83,19 +89,20 @@ public class PressNode : Node, INodeAction
     {
         if (Input.GetMouseButtonUp(0))
         {
-            if (_isPressing)
-            {
-                // 노드 성공
-                CheckNodeClear();
-            }
+            if (_isPressing) CheckNodeClear();
         }
 
         if (_isPressing)
         {
-            // Particle
-            PopGraffitiParticle(transform.position);
-
             _currentTime += Time.deltaTime;
+
+            // Particle
+            _currentParticleSpawnTime += Time.deltaTime;
+            if(_currentParticleSpawnTime >= _particleSpawnTime)
+            {
+                PopGraffitiParticle(transform.position);
+                _currentParticleSpawnTime = 0;
+            }
         }
     }
 
@@ -138,8 +145,14 @@ public class PressNode : Node, INodeAction
     private void ResetNode()
     {
         _isPressing = false;
+        _currentTime = 0;
+        _currentParticleSpawnTime = 0;
         SetRingScale(_orginRingScale, 0);
-        _currentTime = 0; 
+        if (_ringColorCoroutine != null)
+        {
+            StopCoroutine(_ringColorCoroutine);
+            _ringColorCoroutine = null;
+        }
 
         // Sound
         _sprayLongSoundObj?.PushObject(true);

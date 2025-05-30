@@ -1,4 +1,5 @@
 using DG.Tweening;
+using NUnit.Framework;
 using UnityEngine;
 
 public class GraffitiRenderer : MonoBehaviour
@@ -8,6 +9,8 @@ public class GraffitiRenderer : MonoBehaviour
     private SpriteRenderer _renderer;
     protected StageGameRule _stageGameRule;
 
+    private int _currentLayer = 0;
+
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -16,6 +19,9 @@ public class GraffitiRenderer : MonoBehaviour
     public void Init(StageGameRule stageGameRule, Sprite startSprite)
     {
         _stageGameRule = stageGameRule;
+
+        _currentLayer = -stageGameRule.NodeCnt;
+        _renderer.sortingOrder = _currentLayer;
 
         if (_renderer == null) return;
         _renderer.sprite = startSprite;
@@ -29,6 +35,7 @@ public class GraffitiRenderer : MonoBehaviour
             .GetComponent<SpriteRenderer>();
 
         renderer.sprite = sprite;
+        renderer.sortingOrder = ++_currentLayer;
 
         // Fade
         Color color = renderer.color;
