@@ -13,4 +13,5 @@ public class NodeDataSO : ScriptableObject
     public Sprite graffitiSprite;
     public float sprayUseAmount;
     public float visibleTime;
+    public Color particleColor;
 }

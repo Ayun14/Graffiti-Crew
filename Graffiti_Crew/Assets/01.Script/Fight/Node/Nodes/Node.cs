@@ -61,7 +61,7 @@ public abstract class Node : MonoBehaviour, IPoolable
         IPoolable poolable = poolManagerSO.Pop(_graffitiParticleTypeSO);
         poolable.GameObject.transform.position = spawnPos;
         if (poolable.GameObject.transform.TryGetComponent(out GraffitiParticle graffitiParticle))
-            graffitiParticle.ParticlePlay();
+            graffitiParticle.ParticlePlay(GetNodeDataSO().particleColor);
     }
 
     public void StartVisibleRoutine(Action onComplete = null)

@@ -6,7 +6,8 @@ public class GraffitiParticle : MonoBehaviour, IPoolable
     [SerializeField] private PoolTypeSO _poolTypeSO;
     private Pool _pool;
 
-    private ParticleSystem _particleSystem;
+    private ParticleSystem _mainParticleSystem;
+    private ParticleSystem _sideParticleSystem;
 
     public PoolTypeSO PoolType => _poolTypeSO;
     public GameObject GameObject => gameObject;
@@ -20,12 +21,16 @@ public class GraffitiParticle : MonoBehaviour, IPoolable
 
     private void Awake()
     {
-        _particleSystem = GetComponent<ParticleSystem>();
+        _mainParticleSystem = GetComponent<ParticleSystem>();
+        _sideParticleSystem = transform.Find("Smoke").GetComponent<ParticleSystem>();
     }
 
-    public void ParticlePlay()
+    public void ParticlePlay(Color color)
     {
-        _particleSystem.Play();
+        ParticleSystem.MainModule main = _sideParticleSystem.main;
+        main.startColor = color;
+
+        _mainParticleSystem.Play();
         StartCoroutine(ParticleEndRoutine());
     }
 
