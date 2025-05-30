@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
-        public StageType type { get; set; } = StageType.Battle;
+        public StageType type { get; set; }
 
         private StageState _state;
         public StageState state {
@@ -30,6 +30,7 @@ namespace AH.UI.CustomElement {
                 _stage = value;
             }
         }
+        private string _imageNumber { get; set; }
 
         [System.Obsolete]
         public new class UxmlFactory : UxmlFactory<StagePointElement, UxmlTraits> { }
@@ -52,6 +53,10 @@ namespace AH.UI.CustomElement {
                 name = "stage",
                 defaultValue = "1"
             };
+            UxmlStringAttributeDescription m_imageNumber = new UxmlStringAttributeDescription {
+                name = "imageNumber",
+                defaultValue = "1"
+            };
             // 스테이지 타입 넣을거면 넣기(의뢰인지, 대결인지)
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc) { // �ؽ�Ʈ ������ ������ �о� �ò�
                 base.Init(ve, bag, cc);
@@ -62,6 +67,7 @@ namespace AH.UI.CustomElement {
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
                 dve.state = m_canPlay.GetValueFromBag(bag, cc);
                 dve.type = m_type.GetValueFromBag(bag, cc);
+                dve._imageNumber = m_imageNumber.GetValueFromBag(bag, cc);
 
                 dve.Setting();
             }
@@ -91,11 +97,15 @@ namespace AH.UI.CustomElement {
             this.Add(_lock);
         }
         private void Setting() {
-            string lockImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_stage}-lock";
-            string canplayImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_stage}-canplay";
+            string lockImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_imageNumber}-lock";
+            string canplayImgPath = $"UI/Stage/Map/Chapter{_chapter}/{_chapter}-{_imageNumber}-canplay";
 
             Sprite lockImg = Resources.Load<Sprite>(lockImgPath);
             Sprite canplayImg = Resources.Load<Sprite>(canplayImgPath);
+
+            if(lockImg==null && canplayImg== null) {
+                return;
+            }
 
             _lock.style.backgroundImage = new StyleBackground(lockImg);
             _canPlay.style.backgroundImage = new StyleBackground(canplayImg);

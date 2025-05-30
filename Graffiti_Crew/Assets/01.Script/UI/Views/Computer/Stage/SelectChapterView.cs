@@ -54,7 +54,7 @@ namespace AH.UI.Views {
                 if (button.state != StageState.Lock) {
                     switch (button.type) {
                         case StageType.Battle:
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn, (button.chapter, button.stage));
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Activity:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
@@ -72,7 +72,7 @@ namespace AH.UI.Views {
             foreach (var button in _pointList) {
                 if (button.state != StageState.Lock) {
                     if (button.type == StageType.Battle) {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStageBtn);
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn);
                     }
                     else if (button.type == StageType.Story) {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn);
@@ -106,7 +106,7 @@ namespace AH.UI.Views {
             ComputerEvent.HideViewEvent?.Invoke();
         }
         #region ClickStages
-        private void ClickStageBtn(ClickEvent evt, (string chapter, string stage) data) {
+        private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Battle{data.stage}";
 
