@@ -6,13 +6,13 @@ public class SliderValueSO : ScriptableObject
 {
     public float min = 0;
     public float max = 100;
-    public float value;
+    [SerializeField] private float _value;
 
     public float Value
     {
-        get { return value; }
+        get { return _value; }
         set { 
-            this.value = Mathf.Clamp(value, min, max);
+            this._value = Mathf.Clamp(value, min, max);
         }
     }
 }

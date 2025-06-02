@@ -80,7 +80,6 @@ public class SprayController : MonoBehaviour
         float targetValue = _shakeSliderValueSO.Value + value;
         _shakeValueChangeTween = DOTween.To(() => _shakeSliderValueSO.Value,
             x => _shakeSliderValueSO.Value = x, targetValue, 0.1f);
-        StageEvent.ChangeSprayValueEvent?.Invoke();
 
         // Shaking
         if (targetValue <= _shakeSliderValueSO.min)

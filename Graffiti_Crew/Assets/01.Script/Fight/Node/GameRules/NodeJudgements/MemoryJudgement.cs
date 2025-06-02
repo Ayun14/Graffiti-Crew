@@ -8,7 +8,7 @@ public class MemoryJudgement : NodeJudgement
 
     private void Awake()
     {
-        _playerSliderValueSO.value = _playerSliderValueSO.max;
+        _playerSliderValueSO.Value = _playerSliderValueSO.max;
     }
 
     protected override void NodeInput()

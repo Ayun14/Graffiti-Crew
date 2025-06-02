@@ -1,9 +1,12 @@
+using DG.Tweening;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ClickJudgement : NodeJudgement
 {
     [Header("Player")]
     [SerializeField] private SliderValueSO _playerSliderValueSO;
+    private Tween _playerProgressValueChangeTween;
 
     private void Awake()
     {
@@ -52,11 +55,16 @@ public class ClickJudgement : NodeJudgement
 
         if (node == currentNode)
         {
-            // Player Slider Update
-            float percent = ++_clearNodeCnt / (float)_stageGameRule.NodeCnt;
-            _playerSliderValueSO.Value = _playerSliderValueSO.max * percent;
-        }
+            if (_playerSliderValueSO == null) return;
+            if (_playerProgressValueChangeTween != null && _playerProgressValueChangeTween.IsActive())
+                _playerProgressValueChangeTween.Complete();
 
+            float percent = ++_clearNodeCnt / (float)_stageGameRule.NodeCnt;
+            float targetValue = _playerSliderValueSO.max * percent;
+
+            _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
+                x => _playerSliderValueSO.Value = x, targetValue, 0.1f);
+        }
         base.NodeClear(node);
     }
 }

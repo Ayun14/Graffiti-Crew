@@ -45,7 +45,7 @@ namespace AH.UI.Views {
         }
 
         private void UpdateSpray() {
-            if (_viewModel.GetSprayData().value <= 0) {
+            if (_viewModel.GetSprayData().Value <= 0) {
                 if (!_notEnoughSpray) { // 이미하고 있는지 확인
                     _notEnoughSpray = true;
                     NotEnoughSpray();
@@ -55,7 +55,7 @@ namespace AH.UI.Views {
                 _notEnoughSpray = false;
             }
 
-            float gaugeRatio = _viewModel.GetSprayData().value / _viewModel.GetSprayData().max;
+            float gaugeRatio = _viewModel.GetSprayData().Value / _viewModel.GetSprayData().max;
 
             // change color
             Color healthColor = Color.Lerp(Color.red, Color.white, gaugeRatio);

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class FightSceneRivalController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
-
+    private Tween _rivalProgressValueChangeTween;
     // Graffiti
     private List<Sprite> _graffitis = new();
     private SpriteRenderer _graffitiRenderer;
@@ -121,8 +122,15 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         {
             _currentTime += Time.deltaTime;
 
+            if (_rivalSliderValueSO == null) return;
+            if (_rivalProgressValueChangeTween != null && _rivalProgressValueChangeTween.IsActive())
+                _rivalProgressValueChangeTween.Complete();
+
             float percent = _currentTime / _rivalDrawingTime;
-            _rivalSliderValueSO.Value = _rivalSliderValueSO.max * percent;
+            float targetValue = _rivalSliderValueSO.Value + percent;
+
+            _rivalProgressValueChangeTween = DOTween.To(() => _rivalSliderValueSO.Value,
+                x => _rivalSliderValueSO.Value = x, targetValue, 0.1f);
 
             RivalCheck();
             FinishCheck();
