@@ -53,7 +53,7 @@ public abstract class StageGameRule : Observer<GameStateController>
     public void Loding(DataController dataController)
     {
         stageResult = dataController.stageData.stageResult;
-        _startSprite = dataController.stageData.startGraffiti;
+        _startSprite = dataController.stageData.memberGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
 
         // Judgement And Spawner
@@ -86,6 +86,12 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public virtual void NodeClear()
     {
+        if (30 <= Random.Range(0, 100))
+        {
+            // 호응 사운드 넣기
+            //GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Short);
+        }
+
         // Combo
         _comboController.SuccessCombo();
     }
