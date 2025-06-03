@@ -1,14 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinController : MonoBehaviour, IPoolable
 {
     [Header("Coin")]
-    private Material _coinMat;
-
-    private void Awake()
-    {
-        _coinMat = transform.Find("Visual").GetComponent<Material>();
-    }
+    [SerializeField] private List<GameObject> _coins = new();
 
     #region Pool
     [Header("Pool")]
@@ -18,7 +14,12 @@ public class CoinController : MonoBehaviour, IPoolable
     public PoolTypeSO PoolType => _poolType;
     public GameObject GameObject => gameObject;
 
-    public void ResetItem() { }
+    public void ResetItem() 
+    {
+        int index = Random.Range(0, _coins.Count);
+        for (int i = 0; i < _coins.Count; ++i)
+            _coins[i].SetActive(i == index);
+    }
 
     public void SetUpPool(Pool pool) => _pool = pool;
     #endregion

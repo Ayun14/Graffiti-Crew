@@ -5,6 +5,7 @@ public enum AnimationEnum
 {
     // Fight
     Idle,
+    Walk,
     Ready,
     Paint,
     Win,

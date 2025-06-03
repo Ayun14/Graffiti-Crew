@@ -35,7 +35,7 @@ public class StageDataSO : ScriptableObject
 
     [Header("-------Play Stage-------")]
     [Header("Player Graffiti")]
-    public Sprite startGraffiti;
+    public Sprite memberGraffiti;
     public List<NodeDataSO> nodeDatas;
 
     [Header("Rival Prefab")]
