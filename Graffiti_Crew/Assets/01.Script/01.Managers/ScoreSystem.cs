@@ -40,8 +40,9 @@ public class ScoreSystem : MonoBehaviour {
 
     private void CalStar(StageDataSO stageData) {
         int star = 0; 
-        star = stageData.stageResult.CalculationStar
-            (stageData.minStandard, stageData.middleStandard, stageData.maxStandard);
+        stageData.stageResult.CalculationCoin
+            (stageData.minStandard, stageData.middleStandard, stageData.maxStandard, stageData.stageRuleType);
+        star = stageData.stageResult.CalculationStar();
 
         Debug.Log("star : " + star);
         if (star > stageData.stageSaveData.star)
