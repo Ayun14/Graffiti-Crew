@@ -47,22 +47,10 @@ namespace AH.UI.Models
             _descriptionSO.price = 0;
             _descriptionSO.image = null;
         }
-        public void SetStage(string chapter, string stage)
-        {
+        public void SetStage(string chapter, string stage, StageType stageType) {
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Battle);
-        }
-        public void SetStoryData(string chapter, string stage) {
-            _loadStageSO.chapter = chapter;
-            _loadStageSO.stage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Story);
-        }
-        public void SetActivity(string chapter, string stage)
-        {
-            _loadStageSO.chapter = chapter;
-            _loadStageSO.stage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, StageType.Activity);
+            _loadStageSO.SetCurrentStage(chapter + stage, stageType);
         }
     }
 }
