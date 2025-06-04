@@ -65,7 +65,6 @@ namespace AH.UI.Views {
             if (hideView != null)
             {
                 hideView.RemoveFromClassList("show-dialogue");
-                Debug.Log("remove");
                 hideView.style.display = DisplayStyle.None;
                 //await Task.Delay(1110);
                 //hideView.style.display = DisplayStyle.None;
@@ -73,7 +72,6 @@ namespace AH.UI.Views {
             await Task.Delay(500);
             if (showView != null)
             {
-                Debug.Log("add");
                 showView.AddToClassList("show-dialogue");
                 //await Task.Delay(1110);
                 showView.style.display = DisplayStyle.Flex;

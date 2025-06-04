@@ -72,8 +72,8 @@ namespace AH.UI.Views {
                 path = $"SaveData/{chapter}/{name}";
             }
             currentStageData = Resources.Load<StageSaveDataSO>(path);
-
             if (currentStageData == null) {
+                Debug.LogError(path);
                 Debug.LogError("야 박아름 해결해");
             }
             for(int i = 0; i < 3 - currentStageData.star; i++) {

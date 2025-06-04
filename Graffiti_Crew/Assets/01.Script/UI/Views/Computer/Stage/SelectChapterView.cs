@@ -43,16 +43,16 @@ namespace AH.UI.Views {
                 _saveStageData.AddRange(list);
             }
             for(int i = 0; i < _saveStageData.Count; i++) {
-                _pointList[i].type = _saveStageData[i].stageType;
-                _pointList[i].state = _saveStageData[i].stageState;
+                //_pointList[i].StageType = _saveStageData[i].stageType;
+                _pointList[i].StageState = _saveStageData[i].stageState;
             }
         }
 
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             foreach (var button in _pointList) {
-                if (button.state != StageState.Lock) {
-                    switch (button.type) {
+                if (button.StageState != StageState.Lock) {
+                    switch (button.StageType) {
                         case StageType.Battle:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn, (button.chapter, button.stage));
                             break;
@@ -70,11 +70,11 @@ namespace AH.UI.Views {
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (var button in _pointList) {
-                if (button.state != StageState.Lock) {
-                    if (button.type == StageType.Battle) {
+                if (button.StageState != StageState.Lock) {
+                    if (button.StageType == StageType.Battle) {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn);
                     }
-                    else if (button.type == StageType.Story) {
+                    else if (button.StageType == StageType.Story) {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn);
                     }
                     else {
@@ -93,10 +93,10 @@ namespace AH.UI.Views {
                     break;
                 }
                 if (_saveStageData[index].stageState == StageState.Lock) {// 다음 스테이지 보이도록
-                    _pointList[index].state = StageState.CanPlay; 
+                    _pointList[index].StageState = StageState.CanPlay; 
                     break;
                 }
-                _pointList[index].state = _saveStageData[index].stageState;
+                _pointList[index].StageState = _saveStageData[index].stageState;
                 //_pointList[index].starCount = _saveStageData[index].star;
                 index++;
             }
@@ -109,6 +109,7 @@ namespace AH.UI.Views {
         private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Battle{data.stage}";
+            Debug.Log(stage);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage);
@@ -117,7 +118,7 @@ namespace AH.UI.Views {
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
-
+            Debug.Log(stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStoryData(chapter, stage);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
@@ -126,6 +127,7 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Activity{data.stage}";
 
+            Debug.Log(stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetActivityData(chapter, stage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();

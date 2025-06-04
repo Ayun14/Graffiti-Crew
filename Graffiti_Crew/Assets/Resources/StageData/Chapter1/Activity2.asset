@@ -10,33 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 020801cc592d9bb42b066e7df8b74c6a, type: 3}
-  m_Name: Battle1
+  m_Name: Activity2
   m_EditorClassIdentifier: 
-  stagetype: 1
+  stagetype: 0
   stageRuleType: 0
   judgementPrefab: {fileID: 3252528206632989019, guid: 65478b6cd5eed9a47b6a02bf6adb53c5, type: 3}
   spawnerPrefab: {fileID: 6228036361481256436, guid: 67393eec3581da34587c9e0d810fa86b, type: 3}
-  mapPrefab: {fileID: 2325873339341937386, guid: c07c69ecbb663a244b65343ead41fc39, type: 3}
+  mapPrefab: {fileID: 2531013594984035176, guid: 6de86cc6ef37ab048a2c5655adef3506, type: 3}
   skyBoxMat: {fileID: 2100000, guid: 54fe2f000ad8f424fb63cc3ea0ae2bb2, type: 2}
   weatherParticle: {fileID: 2707952879601834932, guid: 03afab48d3571df4d85198d598868eb4, type: 3}
   nextStagetype: 2
-  nextChapter: Chapter1
-  nextStage: Story1-2
-  dialogueData_KR: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  dialogueData_EN: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
-  storyDialogue: {fileID: 11400000, guid: fa8e7156fb87f6c46a8ccbe7b8fdd1d5, type: 2}
+  nextChapter: 
+  nextStage: 
+  dialogueData_KR: {fileID: 0}
+  dialogueData_EN: {fileID: 0}
+  storyDialogue: {fileID: 0}
   memberGraffiti: {fileID: 0}
   nodeDatas:
-  - {fileID: 11400000, guid: 2686ae74c98077b4980a27e10f7b6436, type: 2}
+  - {fileID: 11400000, guid: 492506d0bf874dc489ab6b37ed28a24c, type: 2}
   rivalPrefabList:
   - {fileID: 2936752445123576273, guid: af4755509644d664ba33d9f12a57f709, type: 3}
-  rivalGraffiti:
-  - {fileID: 21300000, guid: af3afe7babd42fd45b58d718bb5b49b1, type: 3}
-  - {fileID: 21300000, guid: 111bbc67887774f40ab5917c1422deac, type: 3}
-  - {fileID: 21300000, guid: 73272d417e311ae419963bf0d00552ec, type: 3}
-  rivalClearTime: 500
-  stageResult: {fileID: 11400000, guid: 3be36dbfff9d766458def5b2d26efe4f, type: 2}
-  stageSaveData: {fileID: 11400000, guid: 32f76fd36caace44b8ce8fd9a4d9dc1e, type: 2}
+  rivalGraffiti: []
+  rivalClearTime: 999999
+  stageResult: {fileID: 11400000, guid: 10ec50aaf1710384a9aac7f74f071993, type: 2}
+  stageSaveData: {fileID: 11400000, guid: 3b61c083df02e954985c1d8d1ecf6067, type: 2}
   minStandard: 30
   middleStandard: 60
   maxStandard: 90

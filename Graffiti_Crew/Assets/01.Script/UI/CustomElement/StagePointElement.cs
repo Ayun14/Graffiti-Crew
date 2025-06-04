@@ -4,13 +4,17 @@ using UnityEngine.UIElements;
 
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
-        public StageType type { get; set; }
+        private StageType _stageType;
 
-        private StageState _state;
-        public StageState state {
-            get => _state;
+        public StageType StageType {
+            get => _stageType;
+            set => _stageType = value;
+        }
+        private StageState _stageState;
+        public StageState StageState {
+            get => _stageState;
             set {
-                _state = value;
+                _stageState = value;
                 ChangeSetImg();
             }
         }
@@ -37,12 +41,12 @@ namespace AH.UI.CustomElement {
 
         [System.Obsolete]
         public new class UxmlTraits : BindableElement.UxmlTraits {
-            UxmlEnumAttributeDescription<StageType> m_type = new UxmlEnumAttributeDescription<StageType> {
+            UxmlEnumAttributeDescription<StageType> m_stageType = new UxmlEnumAttributeDescription<StageType> {
                 name = "stageType",
-                defaultValue = StageType.Battle 
+                defaultValue = StageType.Battle
             };
-            UxmlEnumAttributeDescription<StageState> m_canPlay = new UxmlEnumAttributeDescription<StageState> {
-                name = "stateType",
+            UxmlEnumAttributeDescription<StageState> m_stageState = new UxmlEnumAttributeDescription<StageState> {
+                name = "stageState",
                 defaultValue = StageState.Lock
             };
             UxmlStringAttributeDescription m_chapter = new UxmlStringAttributeDescription {
@@ -65,10 +69,9 @@ namespace AH.UI.CustomElement {
 
                 dve.chapter = m_chapter.GetValueFromBag(bag, cc);
                 dve.stage = m_stage.GetValueFromBag(bag, cc);
-                dve.state = m_canPlay.GetValueFromBag(bag, cc);
-                dve.type = m_type.GetValueFromBag(bag, cc);
+                dve.StageState = m_stageState.GetValueFromBag(bag, cc);
+                dve.StageType = m_stageType.GetValueFromBag(bag, cc);
                 dve._imageNumber = m_imageNumber.GetValueFromBag(bag, cc);
-
                 dve.Setting();
             }
         }
@@ -123,7 +126,7 @@ namespace AH.UI.CustomElement {
             _lock.parent.style.height = Length.Percent(roundedPercentY);
         }
         private void ChangeSetImg() {
-            switch (_state) {
+            switch (_stageState) {
                 case StageState.Clear:
                     _canPlay.style.display = DisplayStyle.None;
                     _lock.style.display = DisplayStyle.None;
