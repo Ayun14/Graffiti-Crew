@@ -8,17 +8,20 @@ public class AudienceNPCController : Observer<GameStateController>
 {
     [SerializeField] private GameObject _maleNCPPrefab;
     [SerializeField] private GameObject _femaleNCPPrefab;
-    [Range(0, 11)][SerializeField] private int _minSpawnNum;
-    [Range(0, 11)][SerializeField] private int _maxSpawnNum;
+    [Range(0, 14)][SerializeField] private int _minSpawnNum;
+    [Range(0, 15)][SerializeField] private int _maxSpawnNum;
 
-    private List<Transform> _spawnPos = new();
+    private List<Transform> _spawnPosList = new();
+    private CoinSpawner _coinSpawner;
 
     private void Awake()
     {
         Attach();
 
-        _spawnPos = transform.Find("SpawnPos").GetComponentsInChildren<Transform>().ToList();
-        _spawnPos.RemoveAt(0);
+        _spawnPosList = transform.Find("SpawnPos").GetComponentsInChildren<Transform>().ToList();
+        _spawnPosList.RemoveAt(0);
+
+        _coinSpawner = GetComponent<CoinSpawner>();
     }
 
     private void OnDestroy()
@@ -46,11 +49,14 @@ public class AudienceNPCController : Observer<GameStateController>
     private void AudienceNPCSpawn()
     {
         int spawnNum = Random.Range(_minSpawnNum, _maxSpawnNum + 1);
+        List<Transform> spawnPosList = new();
         for (int i = 0; i < spawnNum; ++i)
         {
             GameObject spawnGO = Random.Range(0, 2) == 0 ? _maleNCPPrefab : _femaleNCPPrefab;
-            Spawn(spawnGO, _spawnPos[i]);
+            Spawn(spawnGO, _spawnPosList[i]);
+            spawnPosList.Add(_spawnPosList[i]);
         }
+        _coinSpawner.Init(spawnPosList);
     }
 
     private void Spawn(GameObject prefab, Transform spawnTrm)

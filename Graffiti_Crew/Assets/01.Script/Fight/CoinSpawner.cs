@@ -1,13 +1,19 @@
 using AH.SaveSystem;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour, INeedLoding
 {
-    [SerializeField] private GameObject _coinPrefab;
-    [SerializeField] private float _width, _height;
-    [Range(1, 10)][SerializeField] private float _forcePower;
+    [Header("Pool")]
+    [SerializeField] private PoolManagerSO _poolManager;
+    [SerializeField] private PoolTypeSO _coinPoolType;
 
+    [Header("Coin")]
+    [SerializeField] private float _width, _height;
+    [SerializeField] private float _forcePower;
+
+    private List<Transform> _spawnPosList = new();
     private Vector3 _playerCoinSpawnPos;
     private Vector3 _rivalCoinSpawnPos;
 
@@ -20,6 +26,11 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
         dataController.SuccessGiveData();
     }
 
+    public void Init(List<Transform> spawnPosList)
+    {
+        _spawnPosList = spawnPosList;
+    }
+
     private void Awake()
     {
         _playerCoinSpawnPos = transform.Find("PlayerCoinSpawnPos").GetComponent<Transform>().position;
@@ -28,9 +39,13 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             SpawnCoinToRival();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            SpawnCoinToPlayer();
         }
     }
 
@@ -52,29 +67,21 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
         float baseWaitTime = 3f / spawnNum;
         for (int i = 0; i < spawnNum; ++i)
         {
-            float randX = Random.Range(spawnTrm.x - _width / 2, spawnTrm.x + _width / 2);
-            float randY = Random.Range(spawnTrm.y - _height / 2, spawnTrm.y + _height / 2);
-            Vector3 spawnPos = new Vector3(randX, randY, spawnTrm.z);
-            GameObject coinObj = Instantiate(_coinPrefab, spawnPos, Quaternion.identity, transform);
+            GameObject coinObj = _poolManager.Pop(_coinPoolType).GameObject;
+            coinObj.transform.parent = transform;
+            coinObj.transform.position = _spawnPosList[Random.Range(0, _spawnPosList.Count)].localPosition;
+
+            float offsetX = Random.Range(-_width / 2f, _width / 2f);
+            float offsetY = Random.Range(0f, _height); // 위쪽으로만 튀는 경우
+            float offsetZ = Random.Range(-0.3f, 0.3f);
+            Vector3 randomTarget = spawnTrm + new Vector3(offsetX, offsetY, offsetZ);
+
+            Vector3 shootDir = (randomTarget - coinObj.transform.position).normalized;
 
             Rigidbody rigid = coinObj.GetComponent<Rigidbody>();
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-0.3f, 0.3f),
-                Random.Range(0f, 0.3f),
-                Random.Range(-0.3f, 0.3f)
-            );
-            Vector3 finalDirection = (transform.forward + randomOffset).normalized;
-            rigid.AddForce(finalDirection * _forcePower, ForceMode.Impulse);
+            rigid.AddForce(shootDir * _forcePower, ForceMode.Impulse);
 
             yield return new WaitForSeconds(Random.Range(baseWaitTime - 0.2f, baseWaitTime + 0.1f));
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-
-        Vector3 size = new Vector3(_width, _height, 1);
-        Gizmos.DrawWireCube(transform.position + _playerCoinSpawnPos, size);
     }
 }

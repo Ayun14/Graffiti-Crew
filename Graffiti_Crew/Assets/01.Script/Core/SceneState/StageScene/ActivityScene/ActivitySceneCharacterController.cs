@@ -64,7 +64,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
 
                 _playerTrm.position = _characterSpawnTrmList[0].localPosition;
                 _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
-                for (int i = 0; i < _rivalTrmList.Count + 1; i++)
+                for (int i = 0; i < _rivalTrmList.Count; i++)
                 {
                     _rivalTrmList[i].position = _characterSpawnTrmList[i + 1].localPosition;
                     _rivalTrmList[i].rotation = _characterSpawnTrmList[i + 1].localRotation;
@@ -128,11 +128,11 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
 
     public void RivalStartGraffiti()
     {
-        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
+        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
         foreach (Transform rivalTrm in _rivalTrmList)
         {
             rivalTrm.DORotate(Vector3.zero, 0.3f);
-            rivalTrm.DOMoveZ(-1f, Random.Range(2f, 3f)).OnComplete(() =>
+            rivalTrm.DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
             {
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
             });

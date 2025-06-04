@@ -1,19 +1,23 @@
 using DG.Tweening;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 
 public class GraffitiRenderer : MonoBehaviour
 {
     [SerializeField] private GameObject _graffitiRender;
 
-    private SpriteRenderer _renderer;
     protected StageGameRule _stageGameRule;
+    private SpriteRenderer _memberGraffitiRenderer;
+    private Material _memberGraffitiMat;
 
     private int _currentLayer = 0;
 
     private void Awake()
     {
-        _renderer = GetComponent<SpriteRenderer>();
+        _memberGraffitiRenderer = GetComponent<SpriteRenderer>();
+        _memberGraffitiMat = _memberGraffitiRenderer.material;
+        SetMemberGraffitiMat(0f);
     }
 
     public void Init(StageGameRule stageGameRule, Sprite startSprite)
@@ -21,10 +25,10 @@ public class GraffitiRenderer : MonoBehaviour
         _stageGameRule = stageGameRule;
 
         _currentLayer = -stageGameRule.NodeCnt;
-        _renderer.sortingOrder = _currentLayer;
+        _memberGraffitiRenderer.sortingOrder = _currentLayer;
 
-        if (_renderer == null) return;
-        _renderer.sprite = startSprite;
+        if (_memberGraffitiRenderer == null) return;
+        _memberGraffitiRenderer.sprite = startSprite;
     }
 
     public void SetSprite(Sprite sprite)
@@ -42,5 +46,31 @@ public class GraffitiRenderer : MonoBehaviour
         color.a = 0;
         renderer.color = color;
         renderer.DOFade(1, 0.6f);
+    }
+
+    public void ShowMemberGraffti()
+    {
+        SetMemberGraffitiMat(1, 6f);
+    }
+
+    private void SetMemberGraffitiMat(float target, float time = 0)
+    {
+        if (time == 0) 
+            _memberGraffitiMat.SetFloat("_RevealAmount", target);
+        else 
+            StartCoroutine(SetMemberGraffitiRoutine(target, time));
+    }
+
+    private IEnumerator SetMemberGraffitiRoutine(float target, float time)
+    {
+        float currentValue = target == 0f ? 1f : 0f;
+        while (currentValue < target)
+        {
+            currentValue += Time.deltaTime;
+            float t = Mathf.Clamp01(currentValue / target);
+            _memberGraffitiMat.SetFloat("_RevealAmount", t);
+            yield return null;
+        }
+        _memberGraffitiMat.SetFloat("_RevealAmount", target);
     }
 }
