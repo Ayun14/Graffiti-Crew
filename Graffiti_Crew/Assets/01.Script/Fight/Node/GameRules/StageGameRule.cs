@@ -86,12 +86,6 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public virtual void NodeClear()
     {
-        if (30 <= Random.Range(0, 100))
-        {
-            // 호응 사운드 넣기
-            //GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Short);
-        }
-
         // Combo
         _comboController.SuccessCombo();
     }

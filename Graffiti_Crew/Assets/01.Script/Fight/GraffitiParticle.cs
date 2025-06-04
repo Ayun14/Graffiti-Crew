@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GraffitiParticle : MonoBehaviour, IPoolable
@@ -8,6 +9,7 @@ public class GraffitiParticle : MonoBehaviour, IPoolable
 
     private ParticleSystem _mainParticleSystem;
     private ParticleSystem _sideParticleSystem;
+    private bool isReturning = false;
 
     public PoolTypeSO PoolType => _poolTypeSO;
     public GameObject GameObject => gameObject;
@@ -31,12 +33,19 @@ public class GraffitiParticle : MonoBehaviour, IPoolable
         main.startColor = color;
 
         _mainParticleSystem.Play();
-        StartCoroutine(ParticleEndRoutine());
+
+        isReturning = false;
+        StartCoroutine(WaitForParticleEnd());
     }
 
-    private IEnumerator ParticleEndRoutine()
+    private IEnumerator WaitForParticleEnd()
     {
-        yield return new WaitForSeconds(0.7f);
-        _pool.Push(this);
+        yield return new WaitUntil(() => !_sideParticleSystem.IsAlive(true));
+
+        if (!isReturning)
+        {
+            isReturning = true;
+            _pool.Push(this);
+        }
     }
 }
