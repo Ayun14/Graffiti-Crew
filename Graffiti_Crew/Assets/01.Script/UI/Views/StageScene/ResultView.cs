@@ -34,10 +34,6 @@ namespace AH.UI.Views {
 
             _nextBtns = topElement.Query<Button>("next-btn").ToList().ToArray();
         }
-        public override void Show() {
-            base.Show();
-        }
-
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             for(int i = 0; i < _nextBtns.Length; i++) {
