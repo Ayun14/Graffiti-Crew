@@ -16,7 +16,11 @@ public enum AnimationEnum
 
     // Dialogue
     Talk,
-    Sit
+    Sit,
+    Happy,
+    Sad,
+    Surprised,
+    Thinking
 }
 
 public class AnimationController : MonoBehaviour
