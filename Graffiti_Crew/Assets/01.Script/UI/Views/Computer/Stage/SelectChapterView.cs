@@ -55,14 +55,11 @@ namespace AH.UI.Views {
                     switch (button.StageType) {
                         case StageType.Battle:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn, (button.chapter, button.stage));
-                            Debug.Log("배틀");
                             break;
                         case StageType.Activity:
-                            Debug.Log("엑티비티");
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Story:
-                            Debug.Log("스토리");
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                             break;
                     }

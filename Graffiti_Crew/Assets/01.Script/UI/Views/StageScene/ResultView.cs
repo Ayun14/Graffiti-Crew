@@ -58,7 +58,6 @@ namespace AH.UI.Views {
         }
         private void SetStar()
         {
-            Debug.Log("set star");
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
             StageSaveDataSO currentStageData = null;
             string path = "";
@@ -73,8 +72,8 @@ namespace AH.UI.Views {
                 path = $"SaveData/{chapter}/{name}";
             }
             currentStageData = Resources.Load<StageSaveDataSO>(path);
-            Debug.Log(path);
             if (currentStageData == null) {
+                Debug.LogError(path);
                 Debug.LogError("야 박아름 해결해");
             }
             for(int i = 0; i < 3 - currentStageData.star; i++) {
