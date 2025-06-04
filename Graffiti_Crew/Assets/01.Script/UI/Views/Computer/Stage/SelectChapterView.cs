@@ -112,7 +112,7 @@ namespace AH.UI.Views {
             Debug.Log(stage);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetStageData(chapter, stage);
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Battle);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data) {
@@ -120,7 +120,7 @@ namespace AH.UI.Views {
             string stage = $"Story{data.stage}";
             Debug.Log(stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetStoryData(chapter, stage);
+            ComputerViewModel.SetStoryData(chapter, stage, StageType.Story);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
         }
         private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data) {
@@ -129,7 +129,7 @@ namespace AH.UI.Views {
 
             Debug.Log(stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetActivityData(chapter, stage);
+            ComputerViewModel.SetActivityData(chapter, stage, StageType.Activity);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
         #endregion

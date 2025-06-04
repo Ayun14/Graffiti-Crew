@@ -30,14 +30,14 @@ namespace AH.UI.ViewModels {
         public void ClearSelectProductData() {
             _model.ClearSelectProductData();
         }
-        public void SetStageData(string chapter, string stage) {
-            _model.SetStage(chapter, stage);
+        public void SetStageData(string chapter, string stage, StageType stageType) {
+            _model.SetStage(chapter, stage, stageType);
         }
-        public void SetStoryData(string chapter, string stage) {
-            _model.SetStoryData(chapter, stage);
+        public void SetStoryData(string chapter, string stage, StageType stageType) {
+            _model.SetStage(chapter, stage, stageType);
         }
-        public void SetActivityData(string chapter, string stage) {
-            _model.SetActivity(chapter, stage);
+        public void SetActivityData(string chapter, string stage, StageType stageType) {
+            _model.SetStage(chapter, stage, stageType);
         }
         public string GetCurrentStageName() {
             return _model.GetLoadStage().GetCurrentStageName();
