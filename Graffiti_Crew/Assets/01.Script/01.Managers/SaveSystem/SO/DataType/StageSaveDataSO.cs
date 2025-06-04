@@ -8,7 +8,8 @@ using UnityEngine.Rendering;
 public enum StageType {
     Battle,
     Activity,
-    Story
+    Story,
+    None
 }
 public enum StageState {
     Clear,
