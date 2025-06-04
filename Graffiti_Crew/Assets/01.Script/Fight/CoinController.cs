@@ -6,6 +6,10 @@ public class CoinController : MonoBehaviour, IPoolable
     [Header("Coin")]
     [SerializeField] private List<GameObject> _coins = new();
 
+    [Header("Pool")]
+    [SerializeField] private PoolTypeSO _sparksEffect;
+    [SerializeField] private PoolManagerSO _poolManager;
+
     #region Pool
     [Header("Pool")]
     [SerializeField] private PoolTypeSO _poolType;
@@ -23,4 +27,11 @@ public class CoinController : MonoBehaviour, IPoolable
 
     public void SetUpPool(Pool pool) => _pool = pool;
     #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Coin, 1f, true);
+        GameObject effect = _poolManager.Pop(_sparksEffect).GameObject;
+        effect.transform.position = collision.contacts[0].point;
+    }
 }

@@ -59,7 +59,7 @@ public class SoundManager : MonoBehaviour
         return audioSource;
     }
 
-    public AudioSource PlaySFX(SoundType sound, float pitch = 1)
+    public AudioSource PlaySFX(SoundType sound, float pitch = 1, bool is3DSound = false)
     {
         SoundList soundList = _soundsSO.sounds[(int)sound];
         AudioClip[] clips = soundList.sounds;
@@ -77,6 +77,9 @@ public class SoundManager : MonoBehaviour
 
             // Pitch
             audioSource.pitch = pitch;
+
+            // 3D
+            audioSource.spatialBlend = is3DSound? 1f : 0f;
 
             audioSource.loop = false;
             audioSource.Play();
