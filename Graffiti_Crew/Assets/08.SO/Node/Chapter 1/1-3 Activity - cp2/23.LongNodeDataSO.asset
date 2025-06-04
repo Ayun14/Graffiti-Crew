@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: 23.LongNodeDataSO
   m_EditorClassIdentifier: 
   nodeType: 2
-  graffitiSprite: {fileID: 1379724776, guid: fd324ef4c807961449a25cd35981a883, type: 3}
-  sprayUseAmount: 3
+  graffitiSprite: {fileID: 0}
+  sprayUseAmount: 6
+  visibleTime: 2.5
+  particleColor: {r: 0.0627451, g: 0.6509804, b: 0.2784314, a: 1}
   longNodeType: 1
   lineRendererMat: {fileID: 2100000, guid: 7c830b0eccea3d74d8bbe14e3c551c4a, type: 2}
-  points: 40
+  points: 30
   pointList:
-  - {x: -0.056, y: 1.155, z: 0}
-  - {x: 0.311, y: 0.415, z: 0}
-  - {x: -0.418, y: 0.811, z: 0}
+  - {x: -5.499, y: 1.705, z: 0}
+  - {x: -5.433, y: 1.335, z: 0}
+  - {x: -5.089, y: 1.89, z: 0}
   startNodeSprite: {fileID: 21300000, guid: 4c0d70f04c2e6f344b99b7b64d2d0aed, type: 3}
   endNodeSprite: {fileID: 21300000, guid: 593c77133f5996a4f9afe023e2cf1b2c, type: 3}
-  amplitude: -0.55
+  amplitude: 0.2
   followThreshold: 0.1
   failThreshold: 0.35
   startThreshold: 0.5
