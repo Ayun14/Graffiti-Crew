@@ -9,7 +9,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
 
-    private List<GameObject> _levelPrefabs;
+    private List<GameObject> _levelPrefabs = new List<GameObject>();
 
     private StoryDialogueSO _storyDialogueSO;
     private int _dialogueNum = 0;
@@ -85,11 +85,10 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
-        dataController.stageData.stageSaveData.stageState = StageState.Clear;
+        //dataController.stageData.stageSaveData.stageState = StageState.Clear;
 
         GameObject map = Instantiate(dataController.stageData.mapPrefab, Vector3.zero, Quaternion.identity);
 
-        _levelPrefabs.Clear();
         Transform parent = map.transform;
         foreach (Transform child in parent)
         {
