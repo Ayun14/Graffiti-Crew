@@ -6,6 +6,8 @@ public enum SoundType
     //FightScene
     Spray_Short,
     Spray_Long,
+    Spray_NoneGas,
+    Spray_Change,
     Spray_Miss,
     Spray_Shake,
     Throw_Egg,
