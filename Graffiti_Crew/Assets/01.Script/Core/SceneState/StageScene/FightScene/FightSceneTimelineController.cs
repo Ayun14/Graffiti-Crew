@@ -31,8 +31,9 @@ public class FightSceneTimelineController : Observer<GameStateController>
                 _beforeFightTimeline.Play();
             }
 
-            if (mySubject.GameState == GameState.Finish)
+            if (mySubject.GameState == GameState.Finish) {
                 _finishTimeline.Play();
+            }
 
             if (mySubject.GameState == GameState.Result)
                 _resultTimeline.Play();
@@ -69,6 +70,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
     public void ResultTimelineEnd()
     {
+        UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         _endFightTimeline?.Play();
     }
 }

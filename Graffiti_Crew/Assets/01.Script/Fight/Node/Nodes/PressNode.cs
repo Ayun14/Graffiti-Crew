@@ -26,9 +26,6 @@ public class PressNode : Node, INodeAction
     private Vector3 _targetRingScale = new Vector3(0.1f, 0.1f, 1f);
     private Coroutine _ringColorCoroutine;
 
-    // Sound
-    private SoundObject _sprayLongSoundObj;
-
     private void Awake()
     {
         _renderer = transform.Find("Visual").GetComponent<SpriteRenderer>();
@@ -81,8 +78,7 @@ public class PressNode : Node, INodeAction
         _ringColorCoroutine = StartCoroutine(RingColorRoutine());
 
         // Sound
-        _sprayLongSoundObj = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long)
-            .GetComponent<SoundObject>();
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long);
     }
 
     private void Update()
@@ -118,9 +114,6 @@ public class PressNode : Node, INodeAction
         {
             // 노드 실패 (중도 포기 실패)
             NodeFalse();
-
-            // Sound
-            _sprayLongSoundObj?.PushObject(true);
         }
     }
 
@@ -130,6 +123,7 @@ public class PressNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
+        ResetNode();
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
@@ -155,7 +149,7 @@ public class PressNode : Node, INodeAction
         }
 
         // Sound
-        _sprayLongSoundObj?.PushObject(true);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
     }
 
     #endregion
