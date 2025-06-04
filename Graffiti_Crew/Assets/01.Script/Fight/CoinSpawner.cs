@@ -1,4 +1,3 @@
-using AH.SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +16,11 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
     private Vector3 _playerCoinSpawnPos;
     private Vector3 _rivalCoinSpawnPos;
 
-    private StageSaveDataSO _stageSaveDataSO;
+    private StageDataSO _stageDataSO;
 
     public void LodingHandle(DataController dataController)
     {
-        _stageSaveDataSO = dataController.stageData.stageSaveData;
+        _stageDataSO = dataController.stageData;
 
         dataController.SuccessGiveData();
     }
@@ -51,10 +50,7 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
 
     public void SpawnCoinToPlayer()
     {
-        int star = _stageSaveDataSO.star;
-        int coin = 0;
-        if (0 < star) coin = 10 + (7 * star);
-        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, coin));
+        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, _stageDataSO.stageResult.coin));
     }
 
     public void SpawnCoinToRival()

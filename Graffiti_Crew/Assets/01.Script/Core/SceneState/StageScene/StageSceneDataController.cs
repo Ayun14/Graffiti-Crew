@@ -8,7 +8,7 @@ public class StageSceneDataController : DataController
 
     private void Update()
     {
-        if (_isFight) _currentDrawingTime += Time.deltaTime;
+        if (stageData.stageRuleType == StageRuleType.SpeedRule && _isFight) _currentDrawingTime += Time.deltaTime;
     }
 
     protected override void NotifyHandleChild()
@@ -17,7 +17,7 @@ public class StageSceneDataController : DataController
         {
             _isFight = mySubject.GameState == GameState.Fight;
 
-            if (mySubject.GameState == GameState.Fight)
+            if (stageData.stageRuleType == StageRuleType.SpeedRule && mySubject.GameState == GameState.Fight)
                 _currentDrawingTime = 0;
 
             if (stageData != null)
