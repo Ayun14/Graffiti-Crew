@@ -128,6 +128,9 @@ public class SprayController : MonoBehaviour
         Vector3 finalDirection = (transform.forward + randomOffset).normalized;
         rigid.AddForce(randomOffset * _forcePower, ForceMode.Impulse);
 
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Change);
+
         // Loding Cursor
         for (int i = 0; i < 8; ++i)
         {

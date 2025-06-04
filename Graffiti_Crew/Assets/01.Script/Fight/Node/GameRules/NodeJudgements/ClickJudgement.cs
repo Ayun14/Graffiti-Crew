@@ -28,7 +28,7 @@ public class ClickJudgement : NodeJudgement
                 if (_stageGameRule.IsCanInput() == false)
                 {
                     // 스프레이 안나오는 소리 나오기
-                    GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss);
+                    GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_NoneGas);
                     return;
                 }
                 #endregion

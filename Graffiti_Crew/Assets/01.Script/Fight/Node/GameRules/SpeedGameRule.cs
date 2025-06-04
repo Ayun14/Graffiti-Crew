@@ -9,7 +9,7 @@ public class SpeedGameRule : StageGameRule
         NodeSpawn();
 
         if (_graffitiRenderer != null && _nodeJudgement.currentNode != null)
-            _graffitiRenderer.SetSprite(_nodeJudgement.currentNode.GetNodeDataSO().graffitiSprite);
+            _graffitiRenderer.SetSprite(_nodeJudgement.currentNode.GetNodeDataSO());
     }
 
     public override void NodeFalse()
