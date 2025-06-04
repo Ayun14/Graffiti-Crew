@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -63,10 +64,22 @@ namespace AH.UI.Views {
         {
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
             StageSaveDataSO currentStageData = null;
+            string path = "";
             string stageName = ViewModel.GetStageName();
-            string chapter = ViewModel.GetChapter();
-            currentStageData = Resources.Load<StageSaveDataSO>($"SaveData/{chapter}/{stageName}");
+            string pattern = @"^(Chapter\d+)(Activity\d+|Battle\d+)$";
+            Match match = Regex.Match(stageName, pattern);
 
+            if (match.Success) {
+                string chapter = match.Groups[1].Value;  // 예: Chapter123
+                string name = match.Groups[2].Value;  // 예: Battle456 또는 Activity2
+
+                path = $"SaveData/{chapter}/{name}";
+            }
+            currentStageData = Resources.Load<StageSaveDataSO>(path);
+
+            if (currentStageData == null) {
+                Debug.LogError("야 박아름 해결해");
+            }
             for(int i = 0; i < 3 - currentStageData.star; i++) {
                 stars[i].RemoveFromClassList("star");
             }
