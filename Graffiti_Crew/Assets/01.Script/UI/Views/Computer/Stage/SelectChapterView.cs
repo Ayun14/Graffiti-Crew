@@ -90,12 +90,15 @@ namespace AH.UI.Views {
             int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
             while (index < length) {
                 if(_saveStageData[index].stageState == StageState.CanPlay) {
+                    Debug.Log("canplay");
                     break;
                 }
                 if (_saveStageData[index].stageState == StageState.Lock) {// 다음 스테이지 보이도록
-                    _pointList[index].StageState = StageState.CanPlay; 
+                    _pointList[index].StageState = StageState.CanPlay;
+                    Debug.Log("lock");
                     break;
                 }
+                Debug.Log(index);
                 _pointList[index].StageState = _saveStageData[index].stageState;
                 //_pointList[index].starCount = _saveStageData[index].star;
                 index++;
