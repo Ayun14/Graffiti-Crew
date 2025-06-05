@@ -112,8 +112,8 @@ public class SoundManager : MonoBehaviour
     {
         if (_loopingSounds.TryGetValue(sound, out SoundObject soundObj))
         {
-            soundObj.AudioSource.Stop();
-            soundObj.PushObject(true);
+            soundObj?.AudioSource.Stop();
+            soundObj?.PushObject(true);
 
             _loopingSounds.Remove(sound);
         }

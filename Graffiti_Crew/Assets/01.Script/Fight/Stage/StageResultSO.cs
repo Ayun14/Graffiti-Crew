@@ -6,11 +6,11 @@ using UnityEngine;
 public class StageResultSO : ScriptableObject
 {
     public int value;
-    [HideInInspector] public int coin = 0;
+    public int coin = 0;
 
-    [HideInInspector] public int minCost = 10;
-    [HideInInspector] public int middleCost = 20;
-    [HideInInspector] public int maxCost = 30;
+    public int minCost = 10;
+    public int middleCost = 20;
+    public int maxCost = 30;
 
     public void Reset()
     {
