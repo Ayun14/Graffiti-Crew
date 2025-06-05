@@ -1,6 +1,6 @@
 using AH.SaveSystem;
 using AH.UI.Data;
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AH.UI.Models
@@ -9,6 +9,7 @@ namespace AH.UI.Models
     {
         [Header("Stage")]
         [SerializeField] private StageDescriptionSO _stageDescription;
+        [SerializeField] private List<StageSaveDataSO> _saveStageDatas;
 
         [Header("Store")]
         [SerializeField] private CategoryListSO _categorySO;
@@ -17,6 +18,9 @@ namespace AH.UI.Models
         [Header("Map")]
         [SerializeField] private LoadStageSO _loadStageSO;
 
+        public List<StageSaveDataSO> GetSaveStageDatas() {
+            return _saveStageDatas;
+        }
         public StageDescriptionSO GetStageDescription()
         {
             return _stageDescription;

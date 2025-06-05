@@ -89,6 +89,7 @@ public abstract class DataController : Observer<GameStateController>
                 nextScene = "StoryScene";
                 break;
         }
-        SceneManager.LoadScene(nextScene);
+        SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
+
     }
 }
