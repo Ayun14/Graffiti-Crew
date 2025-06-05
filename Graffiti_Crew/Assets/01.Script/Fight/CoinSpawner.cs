@@ -55,7 +55,7 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
 
     public void SpawnCoinToRival()
     {
-        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, Random.Range(15, 25)));
+        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, Random.Range(5, 15)));
     }
 
     private IEnumerator SpawnCoin(Vector3 spawnTrm, int spawnNum)

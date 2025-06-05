@@ -32,14 +32,14 @@ public class StageResultSO : ScriptableObject
     {
         if (stageRuleType == StageRuleType.PerfectRule) // 커야 좋음
         {
-            if (minStandard <= value) coin += 10;
-            if (middleStandard <= value) coin += 10;
+            if (minStandard <= value) coin += 5;
+            if (middleStandard <= value) coin += 5;
             if (maxStandard <= value) coin += 10;
         }
         else // 작아야 좋음
         {
-            if (value <= minStandard) coin += 10;
-            if (value <= middleStandard) coin += 10;
+            if (value <= minStandard) coin += 5;
+            if (value <= middleStandard) coin += 5;
             if (value <= maxStandard) coin += 10;
         }
         return coin;

@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -95,7 +94,7 @@ public class GraffitiRenderer : MonoBehaviour
 
     public void ShowMemberGraffti()
     {
-        SetMemberGraffitiMat(1, 6f);
+        SetMemberGraffitiMat(1, 8f);
     }
 
     private void SetMemberGraffitiMat(float target, float time = 0)
