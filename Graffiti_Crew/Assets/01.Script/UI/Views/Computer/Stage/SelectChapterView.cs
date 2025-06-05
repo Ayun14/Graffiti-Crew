@@ -31,20 +31,22 @@ namespace AH.UI.Views {
             _exitMap = topElement.Q<Button>("exit-btn");
 
             _pointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
+            _saveStageData = ComputerViewModel.GetSaveStageDatas();
             LoadSaveData();
 
             SetSaveDataToStagePoint();
         }
 
         private void LoadSaveData() {
-            for (int i = 1; i <= 4; i++) {
-                string saveDataPath = $"SaveData/Chapter{i}/";
-                List<StageSaveDataSO> list = Resources.LoadAll<StageSaveDataSO>(saveDataPath).ToList();
-                _saveStageData.AddRange(list);
-            }
-            for(int i = 0; i < _saveStageData.Count; i++) {
+            //for (int i = 1; i <= 4; i++) {
+            //    string saveDataPath = $"SaveData/Chapter{i}/";
+            //    List<StageSaveDataSO> list = Resources.LoadAll<StageSaveDataSO>(saveDataPath).ToList();
+            //    _saveStageData.AddRange(list);
+            //}
+            for(int i = 0; i < 3; i++) {
                 //_pointList[i].StageType = _saveStageData[i].stageType;
                 _pointList[i].StageState = _saveStageData[i].stageState;
+                Debug.Log($"{_pointList[i].name} : {_saveStageData[i].stageState}");
             }
         }
 
@@ -89,16 +91,10 @@ namespace AH.UI.Views {
             int index = 0;
             int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
             while (index < length) {
-                if(_saveStageData[index].stageState == StageState.CanPlay) {
-                    Debug.Log("canplay");
-                    break;
-                }
-                if (_saveStageData[index].stageState == StageState.Lock) {// 다음 스테이지 보이도록
+                if(_saveStageData[index].stageState == StageState.CanPlay || _saveStageData[index].stageState == StageState.Lock) { // 다음 스테이지 보이기
                     _pointList[index].StageState = StageState.CanPlay;
-                    Debug.Log("lock");
                     break;
                 }
-                Debug.Log(index);
                 _pointList[index].StageState = _saveStageData[index].stageState;
                 //_pointList[index].starCount = _saveStageData[index].star;
                 index++;

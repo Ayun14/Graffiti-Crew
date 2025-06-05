@@ -56,6 +56,7 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
 #endif
 
         if (_targetScene != null) {
+            SaveDataEvents.SaveGameEvent?.Invoke("");
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_targetScene);
             asyncOperation.completed += OnSceneLoaded;
 

@@ -1,6 +1,8 @@
+using AH.SaveSystem;
 using AH.UI.Data;
 using AH.UI.Models;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AH.UI.ViewModels {
@@ -13,6 +15,9 @@ namespace AH.UI.ViewModels {
         }
 
         #region GetData
+        public List<StageSaveDataSO> GetSaveStageDatas() {
+            return _model.GetSaveStageDatas();
+        }
         public StageDescriptionSO GetStageDescription() {
             return _model.GetStageDescription();
         }
