@@ -38,15 +38,9 @@ namespace AH.UI.Views {
         }
 
         private void LoadSaveData() {
-            //for (int i = 1; i <= 4; i++) {
-            //    string saveDataPath = $"SaveData/Chapter{i}/";
-            //    List<StageSaveDataSO> list = Resources.LoadAll<StageSaveDataSO>(saveDataPath).ToList();
-            //    _saveStageData.AddRange(list);
-            //}
             for(int i = 0; i < 3; i++) {
                 //_pointList[i].StageType = _saveStageData[i].stageType;
                 _pointList[i].StageState = _saveStageData[i].stageState;
-                Debug.Log($"{_pointList[i].name} : {_saveStageData[i].stageState}");
             }
         }
 

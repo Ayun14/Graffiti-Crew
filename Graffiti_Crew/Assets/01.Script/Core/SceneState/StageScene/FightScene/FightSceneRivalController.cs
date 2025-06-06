@@ -130,7 +130,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             float targetValue = _rivalSliderValueSO.Value + percent;
 
             _rivalProgressValueChangeTween = DOTween.To(() => _rivalSliderValueSO.Value,
-                x => _rivalSliderValueSO.Value = x, targetValue, 0.1f);
+                x => _rivalSliderValueSO.Value = x, targetValue, 0.2f);
 
             RivalCheck();
             FinishCheck();

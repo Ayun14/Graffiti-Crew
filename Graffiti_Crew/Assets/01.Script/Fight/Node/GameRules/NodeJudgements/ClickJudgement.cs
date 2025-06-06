@@ -63,7 +63,7 @@ public class ClickJudgement : NodeJudgement
             float targetValue = _playerSliderValueSO.max * percent;
 
             _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
-                x => _playerSliderValueSO.Value = x, targetValue, 0.1f);
+                x => _playerSliderValueSO.Value = x, targetValue, 0.2f);
         }
         base.NodeClear(node);
     }
