@@ -100,8 +100,8 @@ namespace AH.UI {
             }
         }
 
-        protected virtual void FadeInOut(bool active) { // 여기서 함수 받고 실행 할 수 있도록 // 밝아지는게 이상함
-            _fadeView.RemoveFromClassList("fade-set");
+        protected virtual void FadeInOut(bool active) { 
+            _fadeView.RemoveFromClassList("fade-set"); 
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");
             }
@@ -110,7 +110,7 @@ namespace AH.UI {
             }
         }
         protected virtual void SetFade(bool startBlack) {
-            _fadeView.AddToClassList("fade-set"); // 없으면 추가 있으면 삭제
+            _fadeView.AddToClassList("fade-set"); // 바로 set할 수 있도록 재생시간 0초로 변경
             if (startBlack) {
                 _fadeView.AddToClassList("fade-out");
             }

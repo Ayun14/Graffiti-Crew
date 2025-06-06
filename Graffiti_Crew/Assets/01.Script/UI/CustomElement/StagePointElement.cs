@@ -5,11 +5,14 @@ using UnityEngine.UIElements;
 namespace AH.UI.CustomElement {
     public class StagePointElement : VisualElement {
         private StageType _stageType;
-
         public StageType StageType {
             get => _stageType;
-            set => _stageType = value;
+            set {
+                _stageType = value;
+                SetName();
+            }
         }
+
         private StageState _stageState;
         public StageState StageState {
             get => _stageState;
@@ -24,6 +27,7 @@ namespace AH.UI.CustomElement {
             get => _chapter;
             set {
                 _chapter = value;
+                SetName();
             }
         }
 
@@ -32,6 +36,7 @@ namespace AH.UI.CustomElement {
             get => _stage;
             set {
                 _stage = value;
+                SetName();
             }
         }
         private string _imageNumber { get; set; }
@@ -72,7 +77,9 @@ namespace AH.UI.CustomElement {
                 dve.StageState = m_stageState.GetValueFromBag(bag, cc);
                 dve.StageType = m_stageType.GetValueFromBag(bag, cc);
                 dve._imageNumber = m_imageNumber.GetValueFromBag(bag, cc);
+
                 dve.Setting();
+                dve.SetName();
             }
         }
 
@@ -124,6 +131,9 @@ namespace AH.UI.CustomElement {
 
             _lock.parent.style.width = Length.Percent(roundedPercentX);
             _lock.parent.style.height = Length.Percent(roundedPercentY);
+        }
+        private void SetName() {
+            name = $"Chapter{_chapter}-{_stageType}{_stage}";
         }
         private void ChangeSetImg() {
             switch (_stageState) {

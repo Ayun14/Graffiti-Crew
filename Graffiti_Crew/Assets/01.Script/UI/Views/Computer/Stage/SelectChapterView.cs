@@ -22,6 +22,7 @@ namespace AH.UI.Views {
 
         public override void Initialize() {
             ComputerViewModel = viewModel as ComputerViewModel;
+            hideOnAwake = false;
            
             base.Initialize();
         }
@@ -102,7 +103,6 @@ namespace AH.UI.Views {
         private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Battle{data.stage}";
-            Debug.Log(stage);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Battle);
@@ -111,7 +111,7 @@ namespace AH.UI.Views {
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
-            Debug.Log(stage);
+
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStoryData(chapter, stage, StageType.Story);
             SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
@@ -120,7 +120,6 @@ namespace AH.UI.Views {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Activity{data.stage}";
 
-            Debug.Log(stage);
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetActivityData(chapter, stage, StageType.Activity);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();

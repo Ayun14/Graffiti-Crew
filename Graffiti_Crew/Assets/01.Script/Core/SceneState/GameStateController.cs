@@ -10,7 +10,9 @@ public enum GameState
 
     // Æ©Åä¸®¾ó
     // Dialogue -> Tutorial -> Dialogue
-    Dialogue, Tutorial
+    Dialogue, Tutorial,
+
+    Computer
 }
 
 public class GameStateController : Subject

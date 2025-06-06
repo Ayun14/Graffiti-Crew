@@ -2,6 +2,8 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -54,14 +56,24 @@ namespace AH.UI {
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
             _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);
 
+            //Fade();
             _computerView.Show();
+        }
+
+        private async void Fade() {
+            PresentationEvents.SetFadeEvent?.Invoke(true);
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(2200);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
         }
 
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;
             base.ShowPreviewEvent(evtFunction);
         }
-        private void EventFunction() {
+        private async void EventFunction() {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
 
