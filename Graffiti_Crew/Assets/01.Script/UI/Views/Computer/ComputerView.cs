@@ -1,5 +1,6 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -45,7 +46,9 @@ namespace AH.UI.Views {
             ComputerEvent.ShowSelectChapterViewEvent?.Invoke();
            // ComputerEvent.ShowSelectStageViewEvent?.Invoke();
         }
-        private void CllickExitBtn(ClickEvent evt) {
+        private async void CllickExitBtn(ClickEvent evt) {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
     }

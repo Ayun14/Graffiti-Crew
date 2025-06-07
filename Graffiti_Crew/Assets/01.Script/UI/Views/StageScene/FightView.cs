@@ -14,7 +14,6 @@ namespace AH.UI.Views {
         private VisualElement _aPlayerborder;
 
         private VisualElement _sprayOutLine;
-
         private bool _notEnoughSpray = false;
 
         public FightView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
@@ -24,7 +23,6 @@ namespace AH.UI.Views {
         public override void Initialize() {
             base.Initialize();
             _viewModel = viewModel as FightViewModel;
-            UpdateSpray();
         }
         public override void Dispose() {
             StageEvent.ChangeSprayValueEvent -= UpdateSpray;
@@ -45,7 +43,7 @@ namespace AH.UI.Views {
         }
 
         private void UpdateSpray() {
-            if (_viewModel.GetSprayData().Value <= 0) {
+            if (_viewModel.GetSprayData().Value <= Mathf.Epsilon) {
                 if (!_notEnoughSpray) { // 이미하고 있는지 확인
                     _notEnoughSpray = true;
                     NotEnoughSpray();

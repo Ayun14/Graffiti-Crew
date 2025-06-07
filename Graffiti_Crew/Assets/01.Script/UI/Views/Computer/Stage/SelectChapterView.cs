@@ -5,6 +5,7 @@ using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -62,7 +63,7 @@ namespace AH.UI.Views {
                     }
                 }
             }
-            _exitMap.RegisterCallback<ClickEvent>(ClickBackBtn);
+            _exitMap.RegisterCallback<ClickEvent>(CllickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -79,7 +80,7 @@ namespace AH.UI.Views {
                     }
                 }
             }
-            _exitMap.UnregisterCallback<ClickEvent>(ClickBackBtn);
+            _exitMap.UnregisterCallback<ClickEvent>(CllickExitBtn);
         }
 
         private void SetSaveDataToStagePoint() {
@@ -95,7 +96,11 @@ namespace AH.UI.Views {
                 index++;
             }
         }
-
+        private async void CllickExitBtn(ClickEvent evt) {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
         private void ClickBackBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();
         }

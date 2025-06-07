@@ -106,8 +106,10 @@ public class SprayController : MonoBehaviour
 
         float targetValue = _spraySliderValueSO.Value + value;
         _sprayValueChangeTween = DOTween.To(() => _spraySliderValueSO.Value,
-            x => _spraySliderValueSO.Value = x, targetValue, 0.1f);
-        StageEvent.ChangeSprayValueEvent?.Invoke();
+            x => _spraySliderValueSO.Value = x, targetValue, 0.1f)
+            .OnComplete(() => {
+                StageEvent.ChangeSprayValueEvent?.Invoke();
+            });
 
         // Spray Empty
         if (_stageGameRule.GetSprayEmpty() == false && targetValue <= _spraySliderValueSO.min)
