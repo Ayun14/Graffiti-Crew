@@ -4,7 +4,6 @@ using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -50,14 +49,24 @@ namespace AH.UI.Views {
             base.RegisterButtonCallbacks();
             foreach (var button in _pointList) {
                 if (button.StageState != StageState.Lock) {
+                    button.RegisterCallback<MouseEnterEvent>(evt =>
+                    {
+                        button.AddToClassList("unlock");
+                    });
+                    button.RegisterCallback<MouseLeaveEvent>(evt =>
+                    {
+                        button.RemoveFromClassList("unlock");
+                    });
                     switch (button.StageType) {
                         case StageType.Battle:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Activity:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Story:
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                             break;
                     }
