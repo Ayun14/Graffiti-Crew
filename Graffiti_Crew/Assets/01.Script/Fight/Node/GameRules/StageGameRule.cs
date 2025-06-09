@@ -64,12 +64,10 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public override void NotifyHandle()
     {
-        //if (mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Talk)
-            _graffitiRenderer.Init(this, _startSprite);
-
         if (mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial)
         {
             // Init
+            _graffitiRenderer.Init(this, _startSprite);
             _nodeSpawner.Init(this, _nodeJudgement, _nodeDatas);
             _sprayController.Init(this);
             _comboController.Init(this);

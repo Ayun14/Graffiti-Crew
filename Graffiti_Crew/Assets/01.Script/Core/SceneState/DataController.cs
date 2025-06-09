@@ -3,12 +3,16 @@ using AH.UI.Events;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public abstract class DataController : Observer<GameStateController>
 {
     [SerializeField] protected LoadStageSO stageSO;
     [HideInInspector] public StageDataSO stageData;
+
+    [Header("Loding UI")]
+    [SerializeField] private GameObject _lodingPanel;
+    private Slider _lodingSlider;
 
     private int _lodingCnt = 0;
     private List<GameObject> _needLodingObjs;
@@ -17,6 +21,9 @@ public abstract class DataController : Observer<GameStateController>
     {
         Attach();
         StageEvent.ClickNectBtnEvent += GoNextStage;
+
+        _lodingSlider = _lodingPanel.GetComponentInChildren<Slider>();
+        _lodingSlider.value = 0;
     }
 
     private void OnDestroy()
@@ -61,6 +68,13 @@ public abstract class DataController : Observer<GameStateController>
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
             Invoke("FinishGiveData", 0.5f);
+
+        SliderUpdate(_lodingCnt / _needLodingObjs.Count);
+    }
+
+    private void SliderUpdate(float value)
+    {
+        _lodingSlider.value = value;
     }
             
     protected abstract void FinishGiveData(); // Change GameState...
@@ -90,6 +104,5 @@ public abstract class DataController : Observer<GameStateController>
                 break;
         }
         SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
-
     }
 }
