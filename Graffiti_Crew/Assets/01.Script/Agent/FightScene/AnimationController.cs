@@ -57,7 +57,7 @@ public class AnimationController : MonoBehaviour
 
     private void ExitAnim()
     {
-        _animator.SetBool(_currentAnim.ToString(), false);
+        _animator?.SetBool(_currentAnim.ToString(), false);
     }
 
     public void SetObjectID(int newID)
