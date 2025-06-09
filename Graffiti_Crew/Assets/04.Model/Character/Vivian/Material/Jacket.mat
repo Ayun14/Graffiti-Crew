@@ -23,7 +23,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skin2
+  m_Name: Jacket
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -31,9 +31,9 @@ Material:
   - N_F_EAL_ON
   - N_F_ESSAO_ON
   - N_F_NFD_ON
+  - N_F_NM_ON
   - N_F_O_ON
   - N_F_RDC_ON
-  - N_F_RELGI_ON
   - N_F_SS_ON
   - N_F_TRANSAFFSHA_ON
   - _NORMALMAP
@@ -52,6 +52,7 @@ Material:
   - _LIGHTAFFECTRIMLIGHTCOLOR_OFF
   - _LIGHTAFFECTSHADOW_OFF
   - _LIGHTFALLOFFAFFECTSHADOWT_OFF
+  - _LIGIGNOYNORDIR_OFF
   - _MCIALO_OFF
   - _MIXMAINTEXTOOUTLINE_OFF
   - _MVCOL_OFF
@@ -66,13 +67,13 @@ Material:
   - _TEXTUREPATTERNSTYLE_OFF
   - _USESECONDARYCUTOUT_OFF
   - _VERTEXCOLORBLUEAFFECTOUTLINEWITDH_OFF
-  - _VERTEXCOLORGREENCONTROLSELFSHADOWTHRESHOLD_OFF
   - _VERTEXCOLORREDCONTROLSMOOTHOBJECTNORMAL_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2225
-  stringTagMap: {}
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -140,7 +141,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3bc4879ec82035b4fa78769ad660b926, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7d4875752a4ba824f8a0832b92961244, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
@@ -160,7 +161,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTransparency:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: aed829a1520075e4cb8469a95677018e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -295,7 +296,7 @@ Material:
     - _EnableTextureTransparent: 0
     - _EnergyConservingSpecularColor: 1
     - _EnvironmentalLightingIntensity: 1
-    - _FarDistanceMaxWidth: 0
+    - _FarDistanceMaxWidth: 0.07
     - _GBuWriMas: 14
     - _GIFlatShade: 0
     - _GIShadeThreshold: 1
@@ -324,7 +325,7 @@ Material:
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
-    - _LigIgnoYNorDir: 1
+    - _LigIgnoYNorDir: 0
     - _LightAffectOutlineColor: 0
     - _LightAffectRimLightColor: 0
     - _LightAffectShadow: 0
@@ -369,7 +370,7 @@ Material:
     - _N_F_MSSOLTFO: 0
     - _N_F_NFD: 1
     - _N_F_NLASOBF: 0
-    - _N_F_NM: 0
+    - _N_F_NM: 1
     - _N_F_O: 1
     - _N_F_OFLMB: 0
     - _N_F_O_NM: 0
@@ -400,14 +401,14 @@ Material:
     - _NormalThreshold: 1.3
     - _ONormMapInt: 1
     - _OcclusionStrength: 1
-    - _Opacity: 1
+    - _Opacity: 0
     - _OpaqueCullMode: 2
     - _Oper: 0
     - _OutlineExtrudeMethod: 0
     - _OutlineWidth: 0.25
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0.19
-    - _OverallShadowColorPower: 1.57
+    - _OutlineZPostionInCamera: 0.001
+    - _OverallShadowColorPower: 1
     - _PADist: 0
     - _PASize: 0.5
     - _PASmooTrans: 1
@@ -419,9 +420,9 @@ Material:
     - _PSGLOTEX: 0
     - _PTexturePower: 1
     - _Parallax: 0.02
-    - _PointSpotlightIntensity: 0.75
+    - _PointSpotlightIntensity: 0
     - _PresAdju: 1
-    - _RELG: 1
+    - _RELG: 0
     - _RTGIShaFallo: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
@@ -449,13 +450,13 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 50
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 0.896
-    - _SelfShadowRealTimeShadowColorPower: 0.88
-    - _SelfShadowRealtimeShadowIntensity: 0.921
+    - _SelfShadowHardness: 0
+    - _SelfShadowRealTimeShadowColorPower: 1
+    - _SelfShadowRealtimeShadowIntensity: 0.433
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.884
+    - _SelfShadowThreshold: 0
     - _ShadowColorTexturePower: 0
-    - _ShadowHardness: 1
+    - _ShadowHardness: 0
     - _ShadowTColorPower: 1
     - _ShadowTHardness: 1
     - _ShadowTIntensity: 1
@@ -517,7 +518,7 @@ Material:
     - _UseShadowThreshold: 0
     - _UseTLB: 0
     - _VertexColorBlueAffectOutlineWitdh: 0
-    - _VertexColorGreenControlSelfShadowThreshold: 0
+    - _VertexColorGreenControlSelfShadowThreshold: 1
     - _VertexColorRedControlSmoothObjectNormal: 0
     - _ZTeForLiOpa: 3
     - _ZTestDepthEqualForOpaque: 3
@@ -536,22 +537,22 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 3.325101, g: 3.325101, b: 3.325101, a: 1}
+    - _HighlightColor: {r: 2, g: 2, b: 2, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _MainColor: {r: 1, g: 0.8914961, b: 0.8207547, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
     - _ObjectForward: {r: 0, g: 0, b: 0, a: 0}
     - _ObjectRight: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 1, g: 0.81534773, b: 0.7783019, a: 1}
+    - _OverallShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SSAOColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+    - _SSAOColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfShadowRealTimeShadowColor: {r: 1, g: 0.7913017, b: 0.7122642, a: 1}
+    - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}

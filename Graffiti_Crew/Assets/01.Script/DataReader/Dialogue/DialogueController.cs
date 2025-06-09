@@ -65,11 +65,14 @@ public class DialogueController : MonoBehaviour
     {
         if (!_uiController.IsTyping)
         {
-            AnimationEvent.EndDialogueAnimation?.Invoke();
+            //AnimationEvent.EndDialogueAnimation?.Invoke();
             ShowNextDialogue();
         }
         else
-            _uiController.CompleteTyping();
+        {
+            //_uiController.CompleteTyping();
+            _uiController.ChangeTypingSpeed(0.01f);
+        }
     }
 
     public void StartDialogue(int startID, int endID, Action onComplete = null)
@@ -112,16 +115,22 @@ public class DialogueController : MonoBehaviour
 
     private void ShowNextDialogue()
     {
+        _uiController.ChangeTypingSpeed(0.1f);
+
         currentDialogueIndex++;
 
         if (currentDialogueIndex >= filteredDialogueList.Count)
         {
             _isDialogue = false;
+
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+
             if(_defaultCam!=null)
                 _defaultCam.SetActive(true);
+
             StartCoroutine(_effectController.SetBGType(BGType.HideCutScene));
             _onDialogueComplete?.Invoke();
+
             return;
         }
 

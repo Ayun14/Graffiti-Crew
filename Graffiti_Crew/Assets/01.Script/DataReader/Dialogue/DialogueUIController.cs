@@ -16,8 +16,6 @@ public class DialogueUIController : MonoBehaviour
     private DialogueController _dialogueController;
     private DialogueEffectController _effectController;
 
-    private string _currentName;
-
     public bool IsBigUIdata => _dialogueUIData == _bigDialogueUIData;
     public bool IsTyping = false;
 
@@ -90,18 +88,13 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string name = dialogue.characterName;
-        if(_currentName != name)
-        {
-            if (name == "지아")
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-            else if (string.IsNullOrEmpty(name))
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-            else
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
-
-            _currentName = name;
-            _dialogueUIData.characterName = name;
-        }
+        if (name == "지아")
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+        else if (string.IsNullOrEmpty(name))
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+        else
+            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
+        _dialogueUIData.characterName = name;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");
         if (sprite != null)
@@ -167,5 +160,10 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData.dialogue = _dialogueController.filteredDialogueList[_dialogueController.currentDialogueIndex].context;
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
         IsTyping = false;
+    }
+
+    public void ChangeTypingSpeed(float typingSpeed)
+    {
+        _typingSpeed = typingSpeed;
     }
 }
