@@ -24,6 +24,8 @@ public class DialogueUIController : MonoBehaviour
 
     public Action<bool> ChangeDialogueUI;
 
+    private DialougeCharacter _curCharacter;
+    private DialougeCharacter _preCharacter;
 
     private void Awake()
     {
@@ -80,8 +82,9 @@ public class DialogueUIController : MonoBehaviour
 
         DialogueData dialogue = _dialogueController.filteredDialogueList[index];
 
-        if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.Animation)
+        if (dialogue.bgType != BGType.None && dialogue.bgType != BGType.Animation)
         {
+            Debug.Log("SetBG");
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
@@ -89,11 +92,16 @@ public class DialogueUIController : MonoBehaviour
 
         string name = dialogue.characterName;
         if (name == "Áö¾Æ")
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
+            _preCharacter = DialougeCharacter.Jia;
         else if (string.IsNullOrEmpty(name))
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+            _preCharacter = DialougeCharacter.Felling;
         else
-            DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
+            _preCharacter = DialougeCharacter.Other;
+        if(_curCharacter != _preCharacter)
+        {
+            _curCharacter = _preCharacter;
+            DialogueEvent.SetDialogueEvent?.Invoke(_curCharacter);
+        }
         _dialogueUIData.characterName = name;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");

@@ -61,19 +61,13 @@ namespace AH.UI.Views {
             }
             ShowAndHide(_currentDialouge, _preDialouge);
         }
-        public virtual async void ShowAndHide(VisualElement showView, VisualElement hideView) {
+        public virtual void ShowAndHide(VisualElement showView, VisualElement hideView) {
             if (hideView != null)
             {
-                hideView.RemoveFromClassList("show-dialogue");
                 hideView.style.display = DisplayStyle.None;
-                //await Task.Delay(1110);
-                //hideView.style.display = DisplayStyle.None;
             }
-            await Task.Delay(500);
             if (showView != null)
             {
-                showView.AddToClassList("show-dialogue");
-                //await Task.Delay(1110);
                 showView.style.display = DisplayStyle.Flex;
             }
         }
