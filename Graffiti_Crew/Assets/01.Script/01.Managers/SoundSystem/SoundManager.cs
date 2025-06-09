@@ -18,9 +18,12 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable() {
         GameEvents.BgmChangeEvnet += ChangedBGMVolume;
+        SaveDataEvents.SaveGameEvent += AllBGMStop;
     }
+
     private void OnDisable() {
         GameEvents.BgmChangeEvnet -= ChangedBGMVolume;
+        SaveDataEvents.SaveGameEvent -= AllBGMStop;
     }
 
     private Dictionary<SoundType, SoundObject> _loopingSounds = new();
@@ -112,11 +115,22 @@ public class SoundManager : MonoBehaviour
     {
         if (_loopingSounds.TryGetValue(sound, out SoundObject soundObj))
         {
-            soundObj?.AudioSource.Stop();
-            soundObj?.PushObject(true);
+            soundObj.AudioSource.Stop();
+            soundObj.PushObject(true);
 
             _loopingSounds.Remove(sound);
         }
+    }
+
+    private void AllBGMStop(string sceneName)
+    {
+        foreach (var sound in _loopingSounds)
+        {
+            sound.Value.AudioSource.Stop();
+            sound.Value.PushObject(true);
+        }
+
+        _loopingSounds.Clear();
     }
 
     public void ChangedBGMVolume()

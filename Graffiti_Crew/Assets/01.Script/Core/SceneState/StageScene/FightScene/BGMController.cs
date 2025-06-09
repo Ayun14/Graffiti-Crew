@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BGMController : Observer<GameStateController>
 {
@@ -16,7 +15,6 @@ public class BGMController : Observer<GameStateController>
 
     private void OnDisable()
     {
-        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
         Detach();
     }
 
