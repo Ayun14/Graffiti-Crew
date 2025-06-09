@@ -15,6 +15,8 @@ public class BGMController : Observer<GameStateController>
 
     private void OnDisable()
     {
+        mySubject.OnRivalCheckEvent -= HandleRivalCheckEvent;
+
         Detach();
     }
 
@@ -37,7 +39,7 @@ public class BGMController : Observer<GameStateController>
             else if (mySubject.GameState == GameState.Finish)
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Middle);
-                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
+                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Result);
                 GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
             }
         }
@@ -66,6 +68,15 @@ public class BGMController : Observer<GameStateController>
         yield return new WaitForSeconds(1f);
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Yeah);
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
+    }
+
+    public void PlayResultSound()
+    {
+        SoundType soundType = mySubject.IsPlayerWin ? SoundType.Win : SoundType.Lose;
+        GameManager.Instance.SoundSystemCompo.PlaySFX(soundType);
+
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Result);
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
     }
 
     public void PlayPoliceBGM()

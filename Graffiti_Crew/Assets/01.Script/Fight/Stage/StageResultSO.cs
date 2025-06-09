@@ -8,9 +8,9 @@ public class StageResultSO : ScriptableObject
     public int value;
     public int coin = 0;
 
-    public int minCost = 10;
-    public int middleCost = 20;
-    public int maxCost = 30;
+    public int minCost = 5;
+    public int middleCost = 10;
+    public int maxCost = 20;
 
     public void Reset()
     {

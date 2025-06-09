@@ -7,9 +7,10 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
 {
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
     private Tween _rivalProgressValueChangeTween;
+
     // Graffiti
     private List<Sprite> _graffitis = new();
-    private SpriteRenderer _graffitiRenderer;
+    private List<SpriteRenderer> _graffitiRendererList;
 
     // Game Object
     private Transform _rival;
@@ -40,8 +41,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         _graffitiTrm = transform.Find("GraffitiPos").GetComponent<Transform>();
         _resultTrm = transform.Find("ResultPos").GetComponent<Transform>();
 
-        _graffitiRenderer = GetComponentInChildren<SpriteRenderer>();
-        _graffitiRenderer.sprite = null;
+        _graffitiRendererList = transform.Find("GraffitiRenderers").GetComponentsInChildren<SpriteRenderer>().ToList();
 
         _rivalSliderValueSO.Value = _rivalSliderValueSO.min;
 
@@ -88,9 +88,14 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
 
     private void SetGraffiti()
     {
-        int idx = (int)(_currentTime / (_rivalDrawingTime / 3));
-        if (idx < _graffitis.Count)
-            _graffitiRenderer.sprite = _graffitis[idx];
+        int value = (int)_rivalSliderValueSO.Value;
+        int idx = 0;
+
+        if (value >= 70) idx = 2;
+        else if (value >= 40) idx = 1;
+        else idx = 0;
+
+        _graffitiRendererList[idx].sprite = _graffitis[idx];
     }
 
     private void RivalPositionToGraffiti()
@@ -127,14 +132,15 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
                 _rivalProgressValueChangeTween.Complete();
 
             float percent = _currentTime / _rivalDrawingTime;
-            float targetValue = _rivalSliderValueSO.Value + percent;
+            float targetValue = percent * 100f;
 
             _rivalProgressValueChangeTween = DOTween.To(() => _rivalSliderValueSO.Value,
                 x => _rivalSliderValueSO.Value = x, targetValue, 0.2f);
 
+            SetGraffiti();
             RivalCheck();
-            FinishCheck();
         }
+        FinishCheck();
     }
 
     private void RivalCheck()
@@ -152,6 +158,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
         {
+            Debug.Log("∂Û¿Ãπ˙¿Ã ¿Ã∞Â¥Ÿ∞Ì");
             SetGraffiti();
             mySubject.SetWhoIsWin(false);
             mySubject.ChangeGameState(GameState.Finish);
