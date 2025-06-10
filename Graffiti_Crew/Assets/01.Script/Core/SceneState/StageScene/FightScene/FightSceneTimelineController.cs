@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -15,6 +16,11 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
+    }
+
+    private void Start()
+    {
+        StageEvent.SetViewEvnet(true);
     }
 
     private void OnDestroy()
