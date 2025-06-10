@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BGMController : Observer<GameStateController>
 {
+    [SerializeField] private bool _isFightScene = false;
+
     private AudioSource _fightMiddleAudioSource;
 
     private void Awake()
@@ -39,7 +41,8 @@ public class BGMController : Observer<GameStateController>
             else if (mySubject.GameState == GameState.Finish)
             {
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Middle);
-                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_Result);
+                SoundType type = _isFightScene ? SoundType.Fight_Result : SoundType.Fight_After;
+                GameManager.Instance.SoundSystemCompo.PlayBGM(type);
                 GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.DJ_Sound);
             }
         }
