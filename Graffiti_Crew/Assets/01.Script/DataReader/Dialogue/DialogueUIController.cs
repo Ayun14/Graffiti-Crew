@@ -84,7 +84,6 @@ public class DialogueUIController : MonoBehaviour
 
         if (dialogue.bgType != BGType.None && dialogue.bgType != BGType.Animation)
         {
-            Debug.Log("SetBG");
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
@@ -109,7 +108,10 @@ public class DialogueUIController : MonoBehaviour
             _dialogueUIData.SetProfile(sprite);
 
         if (!string.IsNullOrEmpty(dialogue.soundName))
+        {
             GameManager.Instance.SoundSystemCompo.PlaySound(dialogue.soundName);
+
+        }
 
         if (dialogue.bgType == BGType.Animation)
             AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
