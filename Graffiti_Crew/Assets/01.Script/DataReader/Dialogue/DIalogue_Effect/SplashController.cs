@@ -12,6 +12,8 @@ public class SplashController : MonoBehaviour
     [SerializeField] private float _fadeSpeed;
     [SerializeField] private float _fadeSlowSpeed;
 
+    private bool _isFadeBlack = false;
+
     public bool isFinished = false;
 
     public IEnumerator Splash()
@@ -24,6 +26,8 @@ public class SplashController : MonoBehaviour
 
     public IEnumerator FadeOut(bool isWhite, bool isSlow)
     {
+        if (_isFadeBlack) yield return null;
+
         Color color = isWhite ? _colorWhite : _colorBlack;
         color.a = 0;
         _splashImage.color = color;
@@ -54,5 +58,11 @@ public class SplashController : MonoBehaviour
         }
 
         isFinished = true;
+    }
+
+    public void SetFade()
+    {
+        _isFadeBlack = true;
+        _splashImage.color = _colorBlack;
     }
 }

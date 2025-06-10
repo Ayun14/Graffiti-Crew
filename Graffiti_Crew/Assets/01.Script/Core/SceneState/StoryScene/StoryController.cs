@@ -34,7 +34,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     {
         if(mySubject != null)
         {
-
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
             if (mySubject.GameState == GameState.Dialogue)

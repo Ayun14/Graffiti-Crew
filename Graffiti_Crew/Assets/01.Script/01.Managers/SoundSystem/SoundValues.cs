@@ -56,6 +56,7 @@ public enum SoundType
     Fight_Before,
     Fight_Middle,
     Fight_After,
+    Fight_Result,
     HangOut,
     Police,
     Tutorial

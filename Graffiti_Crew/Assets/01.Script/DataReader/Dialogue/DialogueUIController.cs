@@ -16,8 +16,6 @@ public class DialogueUIController : MonoBehaviour
     private DialogueController _dialogueController;
     private DialogueEffectController _effectController;
 
-    private string _currentName;
-
     public bool IsBigUIdata => _dialogueUIData == _bigDialogueUIData;
     public bool IsTyping = false;
 
@@ -26,6 +24,8 @@ public class DialogueUIController : MonoBehaviour
 
     public Action<bool> ChangeDialogueUI;
 
+    private DialougeCharacter _curCharacter;
+    private DialougeCharacter _preCharacter;
 
     private void Awake()
     {
@@ -82,26 +82,27 @@ public class DialogueUIController : MonoBehaviour
 
         DialogueData dialogue = _dialogueController.filteredDialogueList[index];
 
-        if (dialogue.bgType != BGType.None || dialogue.bgType != BGType.Animation)
+        if (dialogue.bgType != BGType.None && dialogue.bgType != BGType.Animation)
         {
+            Debug.Log("SetBG");
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
             yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
 
         string name = dialogue.characterName;
-        if(_currentName != name)
+        if (name == "지아")
+            _preCharacter = DialougeCharacter.Jia;
+        else if (string.IsNullOrEmpty(name))
+            _preCharacter = DialougeCharacter.Felling;
+        else
+            _preCharacter = DialougeCharacter.Other;
+        if(_curCharacter != _preCharacter)
         {
-            if (name == "지아")
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Jia);
-            else if (string.IsNullOrEmpty(name))
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
-            else
-                DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Other);
-
-            _currentName = name;
-            _dialogueUIData.characterName = name;
+            _curCharacter = _preCharacter;
+            DialogueEvent.SetDialogueEvent?.Invoke(_curCharacter);
         }
+        _dialogueUIData.characterName = name;
 
         Sprite sprite = Resources.Load<Sprite>($"Sprite/Character/{dialogue.spriteName}");
         if (sprite != null)
@@ -167,5 +168,10 @@ public class DialogueUIController : MonoBehaviour
         _dialogueUIData.dialogue = _dialogueController.filteredDialogueList[_dialogueController.currentDialogueIndex].context;
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
         IsTyping = false;
+    }
+
+    public void ChangeTypingSpeed(float typingSpeed)
+    {
+        _typingSpeed = typingSpeed;
     }
 }
