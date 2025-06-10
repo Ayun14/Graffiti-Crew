@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5433068077178837613}
   - component: {fileID: 6390700879944267150}
+  - component: {fileID: 2955451907995308879}
+  - component: {fileID: 8186187014134220101}
+  - component: {fileID: 2713460406063960013}
   m_Layer: 0
   m_Name: AnimationManager
   m_TagString: Untagged
@@ -42,5 +45,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c051bc50730e38f4d90ba3475701b4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2955451907995308879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741945656893773457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89926648d743cc4fa5cd800ad7ca9d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueController: {fileID: 0}
+--- !u!114 &8186187014134220101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741945656893773457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5ef3f15210e9f40bc69408e941b51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speechBubblePrefab: {fileID: 4853109351183306631, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
+  offset: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2713460406063960013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741945656893773457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc2eceb30d575f45aa33830c744c935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

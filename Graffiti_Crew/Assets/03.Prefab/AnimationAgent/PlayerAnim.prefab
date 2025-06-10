@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103979086376125871}
+  - component: {fileID: 3546813881535319233}
   m_Layer: 3
   m_Name: PlayerAnim
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 5111284645260149748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3546813881535319233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411229754909670373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb41982184320f4d8baeaf66bbf8b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: "\uC9C0\uC544"
 --- !u!1001 &4711986976559899679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,5 +413,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988a974c2ae07a24cb62c48504450cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defalutAnimation: 0
+  _defaultAnimation: 0
   ObjectID: 1
