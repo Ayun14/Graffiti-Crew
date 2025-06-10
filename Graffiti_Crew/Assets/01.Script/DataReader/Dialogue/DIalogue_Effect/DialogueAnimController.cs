@@ -33,6 +33,9 @@ public class DialogueAnimController : MonoBehaviour
             case "¿¤¶ó":
                 _animValue = 2;
                 break;
+            case "ºñºñ¾È":
+                _animValue = 3;
+                break;
             case "":
                 _animValue = 0;
                 break;

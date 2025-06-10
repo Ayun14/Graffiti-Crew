@@ -13,7 +13,8 @@ public class CutSceneController : MonoBehaviour
     public IEnumerator CutSceneRoutine(string cutSceneName, bool isShow)
     {
         _splashController.isFinished = false;
-        yield return StartCoroutine(_splashController.FadeOut(false, true));
+        if (_cutSceneImg.sprite != null)
+            yield return StartCoroutine(_splashController.FadeOut(false, true));
 
         if (isShow)
         {
@@ -28,11 +29,16 @@ public class CutSceneController : MonoBehaviour
         }
         else
         {
-            _cutSceneImg.gameObject.SetActive(false);
+            if(_cutSceneImg.sprite != null)
+            {
+                _cutSceneImg.sprite = null;
+                _cutSceneImg.gameObject.SetActive(false);
+            }
         }
 
         _splashController.isFinished = false;
-        yield return StartCoroutine(_splashController.FadeIn(false, true));
+        if (_cutSceneImg.sprite != null)
+            yield return StartCoroutine(_splashController.FadeIn(false, true));
 
         yield return new WaitForSeconds(0.5f);
 

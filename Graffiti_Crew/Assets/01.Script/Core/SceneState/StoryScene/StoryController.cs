@@ -52,9 +52,9 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     private async void DialogueEnd()
     {
+        Debug.Log("Start Fade");
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
-        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
         _levelPrefabs[_dialogueNum].SetActive(false);
 
@@ -66,8 +66,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
         if (_dialogueNum == _storyDialogueSO.storyList.Count)
         {
-            PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(1100);
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
 
             mySubject.ChangeGameState(GameState.NextStage);
@@ -75,8 +73,11 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         else
         {
             NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
+
+            Debug.Log("End Fade");
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
+
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
 

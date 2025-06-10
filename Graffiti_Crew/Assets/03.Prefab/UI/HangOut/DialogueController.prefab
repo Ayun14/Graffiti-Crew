@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
-  dialogueDataReader: {fileID: 0}
+  dialogueDataReader: {fileID: 11400000, guid: 443703015df13054a8476658354e4d1e, type: 2}
   _defaultCam: {fileID: 0}
   currentDialogueIndex: 0
   filteredDialogueList: []
@@ -509,5 +509,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFinished: 0
+  _fadeSpeed: 0
   _splashController: {fileID: 3388721292115872099}
   _cutSceneImg: {fileID: 9187314645416371373}
