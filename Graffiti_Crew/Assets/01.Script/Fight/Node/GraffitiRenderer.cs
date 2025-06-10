@@ -12,9 +12,15 @@ public class GraffitiRenderer : MonoBehaviour
     [Header("Renderer")]
     [SerializeField] private GameObject _graffitiRender;
 
-    protected StageGameRule _stageGameRule;
+    // Member Graffiti
+    [SerializeField] private float _memberGraffitiTimeDuration = 4f;
     private SpriteRenderer _memberGraffitiRenderer;
     private Material _memberGraffitiMat;
+    private ParticleSystem _memberGraffitiPS;
+    private Vector3 _startPos;
+    private Vector3 _endPos;
+
+    protected StageGameRule _stageGameRule;
 
     private int _currentLayer = 0;
 
@@ -22,6 +28,8 @@ public class GraffitiRenderer : MonoBehaviour
     {
         _memberGraffitiRenderer = GetComponent<SpriteRenderer>();
         _memberGraffitiMat = _memberGraffitiRenderer.material;
+        _memberGraffitiPS = GetComponentInChildren<ParticleSystem>();
+
         SetMemberGraffitiMat(0f);
     }
 
@@ -34,6 +42,10 @@ public class GraffitiRenderer : MonoBehaviour
 
         if (_memberGraffitiRenderer == null) return;
         _memberGraffitiRenderer.sprite = startSprite;
+
+        Bounds bounds = _memberGraffitiRenderer.bounds;
+        _startPos = new Vector3(bounds.min.x, bounds.center.y, -0.2f);
+        _endPos = new Vector3(bounds.max.x, bounds.center.y, -0.2f);
     }
 
     public void SetSprite(NodeDataSO nodeData)
@@ -94,27 +106,36 @@ public class GraffitiRenderer : MonoBehaviour
 
     public void ShowMemberGraffti()
     {
-        SetMemberGraffitiMat(1, 8f);
+        SetMemberGraffitiMat(1, _memberGraffitiTimeDuration);
     }
 
     private void SetMemberGraffitiMat(float target, float time = 0)
     {
-        if (time == 0) 
+        if (time == 0)
             _memberGraffitiMat.SetFloat("_RevealAmount", target);
-        else 
+        else
             StartCoroutine(SetMemberGraffitiRoutine(target, time));
     }
 
     private IEnumerator SetMemberGraffitiRoutine(float target, float time)
     {
-        float currentValue = target == 0f ? 1f : 0f;
-        while (currentValue < target)
+        _memberGraffitiMat.SetFloat("_RevealAmount", target == 0f ? 1f : 0f);
+        _memberGraffitiPS.transform.position = _startPos;
+        _memberGraffitiPS.Play();
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Spray_Long);
+
+        float currentTime = 0;
+        while (currentTime < time)
         {
-            currentValue += Time.deltaTime;
-            float t = Mathf.Clamp01(currentValue / target);
+            currentTime += Time.deltaTime;
+            float t = Mathf.Clamp01(currentTime / time);
             _memberGraffitiMat.SetFloat("_RevealAmount", t);
+            _memberGraffitiPS.transform.position = Vector3.Lerp(_startPos, _endPos, t);
             yield return null;
         }
+
         _memberGraffitiMat.SetFloat("_RevealAmount", target);
+        _memberGraffitiPS.Stop();
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
     }
 }

@@ -867,6 +867,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6201106113589660536, guid: fc3fe5ea50cfd0840a9bbfa1a293d5ff, type: 3}
   m_PrefabInstance: {fileID: 282956763}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &304398833
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1895008746}
+    m_Modifications:
+    - target: {fileID: 7721549017980156091, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_Name
+      value: MemberGraffitiShow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0959997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.20599997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+--- !u!4 &304398834 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8914190041990979352, guid: 2584c3ba634049d4b96a7836db7db045, type: 3}
+  m_PrefabInstance: {fileID: 304398833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346448006
 GameObject:
   m_ObjectHideFlags: 0
@@ -5107,6 +5169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d83f5ed555a964ebf4a520438b9dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFightScene: 0
 --- !u!1 &1514866978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5993,7 +6056,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 304398834}
   m_Father: {fileID: 1347223079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1895008747
@@ -6011,6 +6075,7 @@ MonoBehaviour:
   _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
   _graffitiSuccessEffect: {fileID: 11400000, guid: 9c8220c926678bc4097db3f9e6c4f2ac, type: 2}
   _graffitiRender: {fileID: 5464881457255795382, guid: 9a5d23c06bb11004ba67a52a14d053ef, type: 3}
+  _memberGraffitiTimeDuration: 4
 --- !u!212 &1895008748
 SpriteRenderer:
   m_ObjectHideFlags: 0

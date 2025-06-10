@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -16,6 +17,11 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
         _startTimeline = transform.Find("ActivityStartTimeline").GetComponent<PlayableDirector>();
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _activityEndTimeline = transform.Find("ActivityEndTimeline").GetComponent<PlayableDirector>();
+    }
+
+    private void Start()
+    {
+        StageEvent.SetViewEvnet(false);
     }
 
     private void OnDestroy()
