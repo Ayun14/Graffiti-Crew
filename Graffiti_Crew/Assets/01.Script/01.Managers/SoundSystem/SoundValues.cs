@@ -48,6 +48,8 @@ public enum SoundType
     Sniff,
     Twinkle,
     Rain,
+    Call,
+    EndCall,
 
     [Header("BGM")]
     Title_Front,

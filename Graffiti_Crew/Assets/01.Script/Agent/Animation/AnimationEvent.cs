@@ -7,4 +7,5 @@ public static class AnimationEvent
 
     public static Action<DialogueData> SetDialogueAnimation;
     public static Action EndDialogueAnimation;
+    public static Action SetBubble;
 }

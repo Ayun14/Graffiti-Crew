@@ -88,8 +88,16 @@ public class DialogueUIController : MonoBehaviour
             yield return StartCoroutine(_effectController.SetBGType(dialogue.bgType));
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
+        else if(dialogue.bgType == BGType.Animation)
+        {
+            AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
+        }
+        else if(dialogue.bgType != BGType.Animation)
+        {
+            AnimationEvent.SetBubble?.Invoke();
+        }
 
-        string name = dialogue.characterName;
+            string name = dialogue.characterName;
         if (name == "Áö¾Æ")
             _preCharacter = DialougeCharacter.Jia;
         else if (string.IsNullOrEmpty(name))
@@ -112,9 +120,6 @@ public class DialogueUIController : MonoBehaviour
             GameManager.Instance.SoundSystemCompo.PlaySound(dialogue.soundName);
 
         }
-
-        if (dialogue.bgType == BGType.Animation)
-            AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
 
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);

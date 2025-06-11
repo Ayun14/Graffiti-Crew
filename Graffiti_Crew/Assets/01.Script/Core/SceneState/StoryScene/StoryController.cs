@@ -52,7 +52,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     private async void DialogueEnd()
     {
-        Debug.Log("Start Fade");
         PresentationEvents.FadeInOutEvent?.Invoke(false);
         await Task.Delay(1100);
 
@@ -74,7 +73,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         {
             NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
 
-            Debug.Log("End Fade");
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
 
