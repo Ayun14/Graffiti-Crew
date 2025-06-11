@@ -12,7 +12,6 @@ namespace AH.UI.Views {
     public class SelectChapterView : UIView {
         private ComputerViewModel ComputerViewModel;
 
-        private Button _exitMap;
 
         private List<StagePointElement> _pointList;
         private List<StageSaveDataSO> _saveStageData = new List<StageSaveDataSO>();
@@ -29,15 +28,12 @@ namespace AH.UI.Views {
 
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _exitMap = topElement.Q<Button>("exit-btn");
-
             _pointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
             _saveStageData = ComputerViewModel.GetSaveStageDatas();
             LoadSaveData();
 
             SetSaveDataToStagePoint();
         }
-
         private void LoadSaveData() {
             for(int i = 0; i < 3; i++) {
                 //_pointList[i].StageType = _saveStageData[i].stageType;
@@ -72,12 +68,17 @@ namespace AH.UI.Views {
                     }
                 }
             }
-            _exitMap.RegisterCallback<ClickEvent>(CllickExitBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             foreach (var button in _pointList) {
                 if (button.StageState != StageState.Lock) {
+                    button.UnregisterCallback<MouseEnterEvent>(evt => {
+                        button.AddToClassList("unlock");
+                    });
+                    button.UnregisterCallback<MouseLeaveEvent>(evt => {
+                        button.RemoveFromClassList("unlock");
+                    });
                     if (button.StageType == StageType.Battle) {
                         button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn);
                     }
@@ -89,7 +90,6 @@ namespace AH.UI.Views {
                     }
                 }
             }
-            _exitMap.UnregisterCallback<ClickEvent>(CllickExitBtn);
         }
 
         private void SetSaveDataToStagePoint() {
@@ -104,11 +104,6 @@ namespace AH.UI.Views {
                 //_pointList[index].starCount = _saveStageData[index].star;
                 index++;
             }
-        }
-        private async void CllickExitBtn(ClickEvent evt) {
-            PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(1100);
-            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
         private void ClickBackBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();

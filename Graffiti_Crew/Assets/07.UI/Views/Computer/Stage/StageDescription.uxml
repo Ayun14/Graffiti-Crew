@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: center;">
-        <engine:VisualElement name="stage-description" style="width: 42%; height: 85%; background-color: rgb(0, 0, 0); padding-top: 30px; padding-right: 70px; padding-bottom: 30px; padding-left: 70px; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-main.png?fileID=21300000&amp;guid=df524ec6316c8db4fa6fbfe8a8f649a1&amp;type=3#selectStage-main&quot;); border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; margin-left: 4%;">
+        <engine:VisualElement name="stage-description" style="width: 42%; height: 85%; background-color: rgba(0, 0, 0, 0); padding-top: 30px; padding-right: 70px; padding-bottom: 30px; padding-left: 70px; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-main.png?fileID=2800000&amp;guid=40649ff050fce9e4e9271290f95b2656&amp;type=3#selectStage-main&quot;); margin-left: 4%;">
             <engine:VisualElement style="flex-basis: 24%;">
                 <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-130" style="flex-grow: 0; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); margin-top: 10px;">
                     <Bindings>
@@ -12,7 +12,7 @@
             </engine:VisualElement>
             <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
                 <engine:VisualElement style="flex-grow: 1;">
-                    <engine:VisualElement style="flex-grow: 1; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px;">
+                    <engine:VisualElement style="flex-grow: 1; padding-top: 50px; padding-right: 60px; padding-bottom: 50px; padding-left: 60px;">
                         <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-40" style="white-space: normal; height: 100%; width: 100%;">
                             <Bindings>
                                 <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
@@ -21,17 +21,17 @@
                     </engine:VisualElement>
                     <engine:VisualElement style="flex-basis: 24%; flex-direction: row; align-items: center;">
                         <engine:VisualElement style="flex-grow: 1; height: 100%; align-items: center; justify-content: space-around; flex-direction: row;">
-                            <engine:VisualElement name="coin" style="width: 100px; height: 100px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/gold.png?fileID=21300000&amp;guid=0c91fc1564a4bef41b0105e03ce80318&amp;type=3#gold&quot;);" />
-                            <engine:VisualElement name="coin" style="width: 100px; height: 100px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/silver.png?fileID=21300000&amp;guid=1034c4b5d41862242a8b122096d94664&amp;type=3#silver&quot;);" />
-                            <engine:VisualElement name="coin" style="width: 100px; height: 100px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/ResultView/bronze.png?fileID=21300000&amp;guid=4bc9b5bd1e10f6a47bae17a061758dfb&amp;type=3#bronze&quot;);" />
+                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-gold.png?fileID=2800000&amp;guid=b40911866b272ae499210018fa0a7790&amp;type=3#selectStage-gold&quot;);" />
+                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=silver.png?fileID=2800000&amp;guid=f933d55a2332f16429556b5ec57456be&amp;type=3#selectStage=silver&quot;);" />
+                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=bronze.png?fileID=2800000&amp;guid=4016970f5ea53f84e93c5bfd863c7c81&amp;type=3#selectStage=bronze&quot;);" />
                         </engine:VisualElement>
-                        <engine:VisualElement name="start-btn" style="align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-start-button.png?fileID=1338489928&amp;guid=f676c7474b861fc47b5af64d931306fb&amp;type=3#button_0&quot;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); flex-direction: row; width: 255px; height: 100px;">
-                            <engine:VisualElement style="width: 139px; height: 77px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-start.png?fileID=21300000&amp;guid=fa285c0af266bf04a8364e1b15f0ceb2&amp;type=3#selectStage-start&quot;);" />
+                        <engine:VisualElement name="start-btn" class="start-btn">
+                            <engine:VisualElement class="img" />
                         </engine:VisualElement>
                     </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 11.5%; left: 6%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+    <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 11.5%; left: 6%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&amp;guid=96fb7a4cfe08a314680e3994dd1165e1&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
 </engine:UXML>

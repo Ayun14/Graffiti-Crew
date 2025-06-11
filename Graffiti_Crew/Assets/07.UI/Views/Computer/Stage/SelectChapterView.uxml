@@ -6,7 +6,7 @@
             <engine:VisualElement name="map" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-all.png?fileID=21300000&amp;guid=b3f0d1b0badd35b48b7a9d2fa7664c34&amp;type=3#map-all&quot;); flex-grow: 1;" />
             <AH.UI.CustomElement.StagePointElement stageType="Story" imageNumber="1" name="chapter1-battle1" stageState="CanPlay" class="stage-point" style="top: 53.9%; left: 59%;" />
             <AH.UI.CustomElement.StagePointElement name="chapter1-activity1" stage="2" type="Story" stateType="Lock" stageType="Story" imageNumber="2" class="stage-point" style="top: 74.2%; left: 48.2%;" />
-            <AH.UI.CustomElement.StagePointElement name="chapter1-activity2" stage="2" type="Story" stateType="Lock" stageType="Activity" imageNumber="3" class="stage-point" style="top: 59.2%; left: 46.95%;" />
+            <AH.UI.CustomElement.StagePointElement name="chapter1-activity2" stage="3" type="Story" stateType="Lock" stageType="Story" imageNumber="3" class="stage-point" style="top: 59.2%; left: 46.95%;" />
             <AH.UI.CustomElement.StagePointElement name="chapter2-battle1" stage="1" type="Story" chapter="2" stateType="Lock" imageNumber="1" stageState="Lock" class="stage-point" style="top: 55.4%; left: 38.35%;" />
             <AH.UI.CustomElement.StagePointElement name="chapter2-activity1" stage="1" type="Story" chapter="2" stateType="Lock" stageType="Activity" imageNumber="2" class="stage-point" style="top: 45.2%; left: 25.65%;" />
             <AH.UI.CustomElement.StagePointElement name="chapter2-activity2" stage="2" type="Story" chapter="2" stateType="Lock" stageType="Activity" imageNumber="3" class="stage-point" style="top: 45.3%; left: 22.7%;" />
@@ -21,6 +21,5 @@
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Map/00.Map/map-line.png?fileID=21300000&amp;guid=98987f68e0728144a9483f8715720d9d&amp;type=3#map-line&quot;);" />
-    <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 3%; left: 94%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-exit.png?fileID=21300000&amp;guid=98a6513889d631d4bb91858abaf1f564&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
     <engine:Instance template="StageDescription" name="StageDescriptionView" style="position: absolute; width: 100%; height: 100%; display: none;" />
 </engine:UXML>
