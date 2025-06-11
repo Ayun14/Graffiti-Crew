@@ -99,11 +99,11 @@ public class DialogueUIController : MonoBehaviour
 
         string name = dialogue.characterName;
         if (name == "Áö¾Æ")
-            _preCharacter = DialougeCharacter.Jia;
+            _preCharacter = DialougeCharacter.Text;
         else if (string.IsNullOrEmpty(name))
             _preCharacter = DialougeCharacter.Felling;
         else
-            _preCharacter = DialougeCharacter.Other;
+            _preCharacter = DialougeCharacter.Text;
         if(_curCharacter != _preCharacter)
         {
             _curCharacter = _preCharacter;
