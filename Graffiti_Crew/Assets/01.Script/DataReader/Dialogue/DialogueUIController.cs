@@ -97,7 +97,7 @@ public class DialogueUIController : MonoBehaviour
             AnimationEvent.SetBubble?.Invoke();
         }
 
-            string name = dialogue.characterName;
+        string name = dialogue.characterName;
         if (name == "Áö¾Æ")
             _preCharacter = DialougeCharacter.Jia;
         else if (string.IsNullOrEmpty(name))
@@ -117,8 +117,18 @@ public class DialogueUIController : MonoBehaviour
 
         if (!string.IsNullOrEmpty(dialogue.soundName))
         {
-            GameManager.Instance.SoundSystemCompo.PlaySound(dialogue.soundName);
-
+            if (Enum.TryParse(dialogue.soundName, true, out SoundType soundType))
+            {
+                if (soundType >= SoundType.Title_Front && soundType <= SoundType.Tutorial)
+                {
+                    GameManager.Instance.SoundSystemCompo.AllBGMStop(null);
+                    GameManager.Instance.SoundSystemCompo.PlayBGM(soundType);
+                }
+                else
+                {
+                    GameManager.Instance.SoundSystemCompo.PlaySFX(soundType);
+                }
+            }
         }
 
         if (_typingCoroutine != null)

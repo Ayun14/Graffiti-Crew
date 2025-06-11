@@ -122,7 +122,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void AllBGMStop(string sceneName)
+    public void AllBGMStop(string sceneName)
     {
         foreach (var sound in _loopingSounds)
         {
