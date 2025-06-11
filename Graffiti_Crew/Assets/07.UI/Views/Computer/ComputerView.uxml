@@ -1,21 +1,26 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="StoreView" src="project://database/Assets/07.UI/Views/Computer/Store/StoreView.uxml?fileID=9197481963319205126&amp;guid=5a4f1874a13d7244394ffa2d957d7fd0&amp;type=3#StoreView" />
     <engine:Template name="SelectChapterView" src="project://database/Assets/07.UI/Views/Computer/Stage/SelectChapterView.uxml?fileID=9197481963319205126&amp;guid=d542f5577774e584a9edcf6262ec6c83&amp;type=3#SelectChapterView" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView_USs" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <engine:VisualElement name="m-container" class="conputer-m-container">
         <engine:VisualElement name="computer-screen" class="computer-screen">
             <engine:VisualElement name="VisualElement" style="width: 160px; height: 180px; top: 33%; left: 4%; position: absolute;">
-                <engine:Button name="store-btn" class="grow-size-40 computer-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=2acfef3b1a3422c4ba264a192b17dc87&amp;type=3#shop_icon&quot;);" />
+                <engine:Button name="store-btn" class="grow-size-40 computer-btn" style="background-image: url(&apos;project://database/Assets/02.Sprite/UI/Computer/Desktop/shop_icon.png?fileID=21300000&amp;guid=2acfef3b1a3422c4ba264a192b17dc87&amp;type=3#shop_icon&apos;);" />
                 <engine:Label text="상점" class="grow-size-40" style="flex-grow: 0; color: rgb(243, 243, 243); -unity-text-align: upper-center;" />
             </engine:VisualElement>
             <engine:VisualElement name="VisualElement" style="width: 160px; height: 180px; top: 8%; left: 4%; position: absolute;">
-                <engine:Button name="stage-btn" class="grow-size-40 computer-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage_icon.png?fileID=21300000&amp;guid=4f73c8ca316210e458c00a9e27ddf03b&amp;type=3#stage_icon&quot;);" />
+                <engine:Button name="stage-btn" class="grow-size-40 computer-btn" style="background-image: url(&apos;project://database/Assets/02.Sprite/UI/Computer/Desktop/stage_icon.png?fileID=21300000&amp;guid=4f73c8ca316210e458c00a9e27ddf03b&amp;type=3#stage_icon&apos;);" />
                 <engine:Label text="스테이지" class="grow-size-40" style="flex-grow: 0; color: rgb(243, 243, 243); -unity-text-align: upper-center;" />
             </engine:VisualElement>
-            <engine:Button text="나가기" name="exit-btn" class="test" />
-            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: flex;" />
-            <engine:Instance template="SelectChapterView" name="SelectChapterView" style="position: absolute; width: 100%; height: 100%;" />
+            <engine:Instance template="StoreView" name="StoreView" style="height: 100%; display: none;" />
+            <engine:Instance template="SelectChapterView" name="SelectChapterView" style="position: absolute; width: 100%; height: 100%; display: flex;" />
         </engine:VisualElement>
+        <engine:VisualElement style="flex-basis: 49px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/bar.png?fileID=2800000&amp;guid=577e8721f3e6a2f4cad4dcdb0eace3c6&amp;type=3#bar&quot;); align-items: flex-end;">
+            <engine:VisualElement style="flex-grow: 1; min-width: 10%; padding-left: 7px;">
+                <engine:Label text="AM 06:32" name="time-txt" class="grow-size-30" style="color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button name="power-btn" style="position: absolute; height: 35px; width: 35px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/power.png?fileID=21300000&amp;guid=dda258b9be96aee4ea5fe7a0ff2a4015&amp;type=3#power&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); bottom: 0.5%; left: 1%;" />
     </engine:VisualElement>
 </engine:UXML>

@@ -18,6 +18,9 @@ namespace AH.UI {
 
         private ComputerViewModel _viewModel;
 
+        private Button _exitBtn;
+        private Label _timeLabel;
+
         protected override void OnEnable() {
             base.OnEnable();
             ComputerEvent.ShowSelectChapterViewEvent += ShowSelectChapterView;
@@ -56,16 +59,62 @@ namespace AH.UI {
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
             _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);
 
+            _exitBtn = root.Q<Button>("power-btn");
+            _timeLabel = root.Q<Label>("time-txt");
+
+            UpdateTime();
+            InvokeRepeating(nameof(UpdateTime), 60f, 60f); // 60초마다 갱신
+
             Fade();
             _computerView.Show();
         }
+        protected override void Register() {
+            base.Register();
+            _exitBtn.RegisterCallback<ClickEvent>(CllickExitBtn);
+        }
+        protected override void Unregister() {
+            base.Unregister();
+            _exitBtn.UnregisterCallback<ClickEvent>(CllickExitBtn);
+        }
 
+        void UpdateTime() {
+            DateTime time = DateTime.Now;
+            int hour = time.Hour;
+            int minute = time.Minute;
+
+            string period;
+            int displayHour;
+
+            if (hour == 0) {
+                period = "AM";
+                displayHour = 12;
+            }
+            else if (hour < 12) {
+                period = "AM";
+                displayHour = hour;
+            }
+            else if (hour == 12) {
+                period = "PM";
+                displayHour = 12;
+            }
+            else {
+                period = "PM";
+                displayHour = hour - 12;
+            }
+
+            string text = $"{period} {displayHour:D2}:{minute:D2}";
+            _timeLabel.text = text;
+        }
         private async void Fade() {
             PresentationEvents.SetFadeEvent?.Invoke(true);
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
         }
-
+        private async void CllickExitBtn(ClickEvent evt) {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;
             base.ShowPreviewEvent(evtFunction);
@@ -76,6 +125,7 @@ namespace AH.UI {
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
 
+        #region ShowView
         private void ShowStoreView() {
             ShowView(_storeView);
         }
@@ -99,5 +149,6 @@ namespace AH.UI {
         private void ShowNotEnoughView() {
             ShowView(_notEnoughView);
         }
+        #endregion
     }
 }

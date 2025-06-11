@@ -9,66 +9,34 @@
 .---------------- {
 }
 
-.selectStage-description-top-container {
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    flex-basis: 50%;
-    height: 100%;
+.coin {
+    width: 150px;
+    height: 150px;
 }
 
-.selectStage-description-bottom-container {
-    flex-grow: 1;
-    flex-direction: column;
+.start-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-startBtn.png?fileID=21300000&guid=bdb034dfa5acb9b4a8e76e2a7664b468&type=3#selectStage-startBtn");
+    width: 255px;
+    height: 100px;
     align-items: center;
     justify-content: center;
 }
 
-.selectStage-description-TLeft-content {
-    align-items: center;
-    justify-content: center;
-    background-image: url('project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-content1.png?fileID=21300000&guid=82449281e71a24a46b65194e5b4369a2&type=3#selectStage-content1');
-    flex-grow: 1;
+.img {
+    width: 171px;
+    height: 87px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-startImg.png?fileID=2800000&guid=ea63d5ea46cf34242b70bbcee8182463&type=3#selectStage-startImg");
+    transition-duration: 0.2s;
 }
 
-.selectStage-description-TRight-content {
-    flex-grow: 1;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+.img:hover {
+    width: 171px;
+    height: 87px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-startImg.png?fileID=2800000&guid=ea63d5ea46cf34242b70bbcee8182463&type=3#selectStage-startImg");
+    -unity-background-image-tint-color: rgb(209, 21, 16);
 }
 
-.selectStage-description-BLeft-content {
-    align-items: flex-end;
-    background-image: url('project://database/Assets/02.Sprite/UI/Computer/Desktop/Stage/selectStage-content2.png?fileID=21300000&guid=a7e6baa8562dbf44badfd4bb52efc1b9&type=3#selectStage-content2');
-    width: 100%;
-    flex-grow: 1;
-    padding-top: 15px;
-    padding-right: 30px;
-    padding-bottom: 25px;
-    padding-left: 25px;
-}
-
-.selectStage-description-BRight-content {
-    justify-content: flex-end;
-    flex-direction: row;
-    width: 100%;
-    flex-basis: 34%;
-}
-
-.graffti-img {
-    background-image: url("project://database/Assets/02.Sprite/Graffiti/99.NotUse/Food/hamburger2.png?fileID=1515322954&guid=995da855eb8965d419a0bf3b7f8b2a77&type=3#hamburger3_0");
-    width: 500px;
-    height: 500px;
-}
-
-#unity-content-container {
-    flex-direction: column;
-}
-
-.--------------- {
+.---------------- {
 }
 
 .stage-point {
@@ -92,7 +60,7 @@
     border-right-color: rgba(149, 149, 149, 0);
     border-top-color: rgba(149, 149, 149, 0);
     border-bottom-color: rgba(149, 149, 149, 0);
-    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Desktop/Shop/Product/shop-product-buy.png?fileID=21300000&guid=b4d06ff60d030d94382c66c4d0789a6a&type=3#shop-product-buy");
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-buy.png?fileID=21300000&guid=b4d06ff60d030d94382c66c4d0789a6a&type=3#shop-product-buy");
     min-width: 150px;
     min-height: 110px;
 }

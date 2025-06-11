@@ -4,19 +4,7 @@
 
 .fight-profile {
     width: 160px;
-    height: 160px;
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
+    height: 200px;
     visibility: visible;
     display: flex;
 }
@@ -52,33 +40,65 @@
 }
 
 .graffiti-progress {
-    height: 70px;
+    height: 55px;
     width: 700px;
     background-color: rgb(255, 255, 255);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 
 .graffiti-progress > #unity-progress-bar > .unity-progress-bar__background {
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Progress/game-progress-background.png?fileID=21300000&guid=196618b8d42a2c04bac877613ba3201d&type=3#game-progress-background");
-    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    background-color: rgb(255, 255, 255);
     justify-content: center;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
 }
 
 #rival-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    height: 86%;
-    top: 4%;
-    margin-left: 0.8%;
-    margin-right: 4px;
     background-image: url("project://database/Assets/02.Sprite/UI/Fight/Progress/game-progress-fill.png?fileID=21300000&guid=b4c0489072a30e04ea72f2a8aca95ea8&type=3#game-progress-fill");
-    -unity-background-image-tint-color: rgb(255, 240, 100);
+    -unity-background-image-tint-color: rgb(255, 237, 95);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 #player-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
-    height: 86%;
     background-image: url("project://database/Assets/02.Sprite/UI/Fight/Progress/game-progress-fill.png?fileID=21300000&guid=b4c0489072a30e04ea72f2a8aca95ea8&type=3#game-progress-fill");
     -unity-background-image-tint-color: rgb(137, 70, 217);
-    margin-right: 5px;
-    top: 4%;
-    margin-left: 4px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+#m-container > #bottom-container > #spray-content > #air-progress > #unity-progress-bar > .unity-progress-bar__background {
+    background-color: rgb(255, 255, 255);
+}
+
+#m-container > #bottom-container > #spray-content > #air-progress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
+    background-color: rgb(223, 243, 255);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 .rival-move-screen {
@@ -107,8 +127,4 @@
 
 .spray-size-up {
     scale: 1.1 1.1;
-}
-
-.spray-color-change {
-    -unity-background-image-tint-color: rgb(255, 0, 0);
 }
