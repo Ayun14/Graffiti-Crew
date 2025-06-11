@@ -56,14 +56,13 @@ namespace AH.UI {
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
             _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);
 
-            //Fade();
+            Fade();
             _computerView.Show();
         }
 
         private async void Fade() {
             PresentationEvents.SetFadeEvent?.Invoke(true);
-            PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(2200);
+            await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
         }
 
