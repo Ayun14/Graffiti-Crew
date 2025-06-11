@@ -8,7 +8,7 @@ public class DialogueCharacter : MonoBehaviour
     {
         if (DialogueCharacterController.Instance != null)
         {
-            DialogueCharacterController.Instance.RegisterCharacter(characterName, transform);
+            DialogueCharacterController.Instance.RegisterCharacter(characterName, gameObject);
         }
     }
 

@@ -54,14 +54,14 @@ public class DialogueAnimController : MonoBehaviour
         {
             AnimationEvent.SetAnimation?.Invoke(_animValue, (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName));
 
-            if (DialogueCharacterController.Instance != null)
-            {
-                Transform targetTrm = DialogueCharacterController.Instance.GetCharacterTransform(dialogue.characterName);
-                if (targetTrm != null && _bubbleManager != null)
-                {
-                    _bubbleManager.ShowSpeechBubble(targetTrm);
-                }
-            }
+            //if (DialogueCharacterController.Instance != null)
+            //{
+            //    Transform targetTrm = DialogueCharacterController.Instance.GetCharacterTransform(dialogue.characterName);
+            //    if (targetTrm != null && _bubbleManager != null)
+            //    {
+            //        _bubbleManager.ShowSpeechBubble(targetTrm);
+            //    }
+            //}
         }
     }
 
@@ -69,10 +69,10 @@ public class DialogueAnimController : MonoBehaviour
     {
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
 
-        if (_bubbleManager != null)
-        {
-            _bubbleManager.HideSpeechBubble();
-        }
+        //if (_bubbleManager != null)
+        //{
+        //    _bubbleManager.HideSpeechBubble();
+        //}
     }
 
     private void HideBubble()

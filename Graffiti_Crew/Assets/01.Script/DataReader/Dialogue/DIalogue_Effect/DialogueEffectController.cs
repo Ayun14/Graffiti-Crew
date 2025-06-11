@@ -5,14 +5,19 @@ public class DialogueEffectController : MonoBehaviour
 {
     private DialogueController _dialogueController;
     private DialogueCameraController _camController;
+
+    private DialogueActionController _actionController;
     private SplashController _splashController;
     private CutSceneController _cutSceneController;
+
+    private Coroutine _curRoutine;
 
     private void Awake()
     {
         _dialogueController = GetComponent<DialogueController>();
         _camController = GetComponent<DialogueCameraController>();
 
+        _actionController = GetComponent<DialogueActionController>();
         _splashController = GetComponentInChildren<SplashController>();
         _cutSceneController = GetComponentInChildren<CutSceneController>();
     }
@@ -54,6 +59,19 @@ public class DialogueEffectController : MonoBehaviour
                 break;
             case BGType.ShakeCam:
                 _camController.PlayCamEffect();
+                break;
+        }
+    }
+
+    public void SetActionType(ActionType actionType)
+    {
+        switch (actionType)
+        {
+            case ActionType.JiaMove:
+                _actionController.StartAutoMove();
+                break;
+            case ActionType.JiaStop:
+                _actionController.EndAutoMove();
                 break;
         }
     }

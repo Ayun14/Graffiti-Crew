@@ -92,9 +92,14 @@ public class DialogueUIController : MonoBehaviour
         {
             AnimationEvent.SetDialogueAnimation?.Invoke(dialogue);
         }
-        else if(dialogue.bgType != BGType.Animation)
+        //else if(dialogue.bgType != BGType.Animation)
+        //{
+        //    AnimationEvent.SetBubble?.Invoke();
+        //}
+
+        if(dialogue.actionType != ActionType.None)
         {
-            AnimationEvent.SetBubble?.Invoke();
+            _effectController.SetActionType(dialogue.actionType);
         }
 
         string name = dialogue.characterName;
@@ -143,24 +148,28 @@ public class DialogueUIController : MonoBehaviour
         IsTyping = true;
         _dialogueUIData.dialogue = "";
 
-        bool black = false, red = false, cyan = false;
+        bool black = false, red = false, cyan = false, green = false, yellow = false;
         bool ignore = false;
 
         foreach (char letter in fullText)
         {
             switch (letter)
             {
-                case '¨Î': black = true; red = false; cyan = false; ignore = true; break;
-                case '¨Þ': black = false; red = true; cyan = false; ignore = true; break;
-                case '¨Ï': black = false; red = false; cyan = true; ignore = true; break;
+                case '¨Î': black = true; red = false; cyan = false; green = false; yellow = false; ignore = true; break;
+                case '¨Þ': black = false; red = true; cyan = false; green = false; yellow = false; ignore = true; break;
+                case '¨Ï': black = false; red = false; cyan = true; green = false; yellow = false; ignore = true; break;
+                case '¨Ó': black = false; red = false; cyan = false; green = true; yellow = false; ignore = true; break;
+                case '¨å': black = false; red = false; cyan = false; green = false; yellow = true; ignore = true; break;
 
             }
             string t_letter = letter.ToString();
             if (!ignore)
             {
                 if (black) t_letter = "<color=#000000>" + t_letter + "</color>";
-                else if (red) t_letter = "<color=#FF000B>" + t_letter + "</color>";
-                else if (cyan) t_letter = "<color=#0038FF>" + t_letter + "</color>";
+                else if (red) t_letter = "<color=#FF5C63>" + t_letter + "</color>";
+                else if (cyan) t_letter = "<color=#5C88FF>" + t_letter + "</color>"; 
+                else if (green) t_letter = "<color=#5EFF5C>" + t_letter + "</color>";
+                else if (yellow) t_letter = "<color=#FFFA5C>" + t_letter + "</color>";
                 _dialogueUIData.dialogue += t_letter;
             }
             ignore = false;
