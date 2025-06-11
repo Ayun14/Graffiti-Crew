@@ -21,7 +21,8 @@ public enum AnimationEnum
     Happy,
     Sad,
     Surprised,
-    Thinking
+    Thinking,
+    Call
 }
 
 public class AnimationController : MonoBehaviour

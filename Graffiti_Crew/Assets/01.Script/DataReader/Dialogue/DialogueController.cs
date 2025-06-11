@@ -115,7 +115,7 @@ public class DialogueController : MonoBehaviour
 
     private void ShowNextDialogue()
     {
-        _uiController.ChangeTypingSpeed(0.1f);
+        _uiController.ChangeTypingSpeed(0.05f);
 
         currentDialogueIndex++;
 

@@ -31,14 +31,17 @@ public class CutSceneController : MonoBehaviour
         {
             if(_cutSceneImg.sprite != null)
             {
-                _cutSceneImg.sprite = null;
                 _cutSceneImg.gameObject.SetActive(false);
             }
         }
 
         _splashController.isFinished = false;
         if (_cutSceneImg.sprite != null)
+        {
             yield return StartCoroutine(_splashController.FadeIn(false, true));
+            if(!isShow)
+                _cutSceneImg.sprite = null;
+        }
 
         yield return new WaitForSeconds(0.5f);
 

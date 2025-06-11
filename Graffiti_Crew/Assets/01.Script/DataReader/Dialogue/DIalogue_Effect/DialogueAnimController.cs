@@ -4,14 +4,12 @@ using UnityEngine;
 public class DialogueAnimController : MonoBehaviour
 {
     [SerializeField] private DialogueController _dialogueController;
-    private AnimationManager _animManager;
     private BubbleController _bubbleManager; 
 
     private int _animValue = 0;
 
     private void Awake()
     {
-        _animManager = GetComponent<AnimationManager>();
         _bubbleManager = GetComponent<BubbleController>();
     }
 
@@ -19,12 +17,17 @@ public class DialogueAnimController : MonoBehaviour
     {
         AnimationEvent.SetDialogueAnimation += HandleDialoguePlay;
         AnimationEvent.EndDialogueAnimation += HandleDialogueEnd;
+
+        AnimationEvent.SetBubble += HideBubble;
     }
+
 
     private void OnDisable()
     {
         AnimationEvent.SetDialogueAnimation -= HandleDialoguePlay;
         AnimationEvent.EndDialogueAnimation -= HandleDialogueEnd;
+
+        AnimationEvent.SetBubble -= HideBubble;
     }
 
     private void HandleDialoguePlay(DialogueData dialogue)
@@ -66,6 +69,14 @@ public class DialogueAnimController : MonoBehaviour
     {
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
 
+        if (_bubbleManager != null)
+        {
+            _bubbleManager.HideSpeechBubble();
+        }
+    }
+
+    private void HideBubble()
+    {
         if (_bubbleManager != null)
         {
             _bubbleManager.HideSpeechBubble();
