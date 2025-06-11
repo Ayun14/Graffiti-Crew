@@ -174,14 +174,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4589318968533758515, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 39898282}
   m_SourcePrefab: {fileID: 100100000, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
 --- !u!114 &39898279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 497037619384067233, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
   m_PrefabInstance: {fileID: 39898278}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 39898281}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83c407c2673e73f48b1e8627e6e90134, type: 3}
@@ -192,10 +195,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 969340240596508027, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
   m_PrefabInstance: {fileID: 39898278}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 39898281}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 337bf53fbf3caa144a6924fd2bf59030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &39898281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4589318968533758515, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
+  m_PrefabInstance: {fileID: 39898278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &39898282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39898281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25e316ea6a53004395afaa96c6fee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &57702880
@@ -2090,8 +2110,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708313656}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.034248702, y: 0.96568674, z: -0.17626761, w: -0.18763241}
-  m_LocalPosition: {x: 3.5491338, y: 2.6490002, z: 6.060638}
+  m_LocalRotation: {x: -0.029168287, y: 0.96695596, z: -0.12962602, w: -0.21758322}
+  m_LocalPosition: {x: 5.4177437, y: 1.1021477, z: 5.2800636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2290,6 +2310,10 @@ PrefabInstance:
     - target: {fileID: 3286375687565987947, guid: 9c3a63618f06d464285e8b2611a423a1, type: 3}
       propertyPath: m_Name
       value: StoryUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286375687565987947, guid: 9c3a63618f06d464285e8b2611a423a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5701096751270698093, guid: 9c3a63618f06d464285e8b2611a423a1, type: 3}
       propertyPath: m_LocalPosition.x
