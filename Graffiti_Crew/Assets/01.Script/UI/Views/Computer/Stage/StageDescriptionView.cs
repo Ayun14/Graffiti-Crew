@@ -47,7 +47,7 @@ namespace AH.UI.Views {
         }
 
         public override void Show() {
-            SetAdmissionTicket();
+            //SetAdmissionTicket();
             base.Show();
         }
 
