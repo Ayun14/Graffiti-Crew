@@ -6,16 +6,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public enum DialougeCharacter {
-    Jia,
-    Other,
+    Text,
     Felling
 }
 namespace AH.UI.Views {
     public class DialogueView : UIView {
         private DialogViewModel ViewModel;
 
-        private VisualElement _jiaDialouge;
-        private VisualElement _otherDialouge;
+        private VisualElement _textDialouge;
         private VisualElement _fellingDialouge;
         private VisualElement _currentDialouge;
         private VisualElement _preDialouge;
@@ -36,23 +34,17 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
 
-            _jiaDialouge = topElement.Q<VisualElement>("right-dialouge");
-            _otherDialouge = topElement.Q<VisualElement>("left-dialouge");
-            _fellingDialouge = topElement.Q<VisualElement>("felling-dialouge");
-            Hide(_otherDialouge);
-            Hide(_jiaDialouge);
+            _textDialouge = topElement.Q<VisualElement>("text-dialog");
+            _fellingDialouge = topElement.Q<VisualElement>("feeling-dialog");
+            Hide(_textDialouge);
             Hide(_fellingDialouge);
         }
 
         private void SetCharscter(DialougeCharacter character) {
             switch (character) {
-                case DialougeCharacter.Jia:
+                case DialougeCharacter.Text:
                     _preDialouge = _currentDialouge;
-                    _currentDialouge = _jiaDialouge;
-                    break;
-                case DialougeCharacter.Other:
-                    _preDialouge = _currentDialouge;
-                    _currentDialouge = _otherDialouge;
+                    _currentDialouge = _textDialouge;
                     break;
                 case DialougeCharacter.Felling:
                     _preDialouge = _currentDialouge;
