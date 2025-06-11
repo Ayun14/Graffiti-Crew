@@ -76,6 +76,9 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
     public void ResultTimelineEnd()
     {
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Result);
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Drum_Roll);
+
         UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         _endFightTimeline?.Play();
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class FightSceneRivalController : Observer<GameStateController>, INeedLoding
 {
+    [SerializeField] private ParticleSystem _resultParticle;
+
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
     private Tween _rivalProgressValueChangeTween;
 
@@ -114,7 +116,10 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         if (mySubject.IsPlayerWin)
             AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Lose);
         else
+        {
             AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Win);
+            _resultParticle.Play();
+        }
     }
 
     #region Slider
