@@ -78,7 +78,7 @@ public class BGMController : Observer<GameStateController>
         SoundType soundType = mySubject.IsPlayerWin ? SoundType.Win : SoundType.Lose;
         GameManager.Instance.SoundSystemCompo.PlaySFX(soundType);
 
-        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Result);
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Drum_Roll);
         GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
     }
 

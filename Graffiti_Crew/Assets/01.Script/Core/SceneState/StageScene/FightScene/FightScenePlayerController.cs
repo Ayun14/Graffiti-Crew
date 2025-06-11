@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FightScenePlayerController : Observer<GameStateController>
 {
+    [SerializeField] private ParticleSystem _resultParticle;
+
     private Transform _player;
     private Transform _resultTrm;
 
@@ -43,6 +45,7 @@ public class FightScenePlayerController : Observer<GameStateController>
 
         if (mySubject.IsPlayerWin) {
             AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Win);
+            _resultParticle.Play();
             UIAnimationEvent.SetPlayerBackgroundColor?.Invoke(winColor);
         }
         else {
