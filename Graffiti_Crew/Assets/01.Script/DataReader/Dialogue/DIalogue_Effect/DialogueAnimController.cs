@@ -4,9 +4,16 @@ using UnityEngine;
 public class DialogueAnimController : MonoBehaviour
 {
     [SerializeField] private DialogueController _dialogueController;
-    [SerializeField] private AnimationManager _animManager;
+    private AnimationManager _animManager;
+    private BubbleController _bubbleManager; 
 
     private int _animValue = 0;
+
+    private void Awake()
+    {
+        _animManager = GetComponent<AnimationManager>();
+        _bubbleManager = GetComponent<BubbleController>();
+    }
 
     private void Start()
     {
@@ -18,7 +25,6 @@ public class DialogueAnimController : MonoBehaviour
     {
         AnimationEvent.SetDialogueAnimation -= HandleDialoguePlay;
         AnimationEvent.EndDialogueAnimation -= HandleDialogueEnd;
-
     }
 
     private void HandleDialoguePlay(DialogueData dialogue)
@@ -43,15 +49,26 @@ public class DialogueAnimController : MonoBehaviour
 
         if (_animValue != 0)
         {
-            AnimationEvent.SetAnimation?.Invoke(_animValue,
-                (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName));
+            AnimationEvent.SetAnimation?.Invoke(_animValue, (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName));
+
+            if (DialogueCharacterController.Instance != null)
+            {
+                Transform targetTrm = DialogueCharacterController.Instance.GetCharacterTransform(dialogue.characterName);
+                if (targetTrm != null && _bubbleManager != null)
+                {
+                    _bubbleManager.ShowSpeechBubble(targetTrm);
+                }
+            }
         }
     }
-
 
     private void HandleDialogueEnd()
     {
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
-    }
 
+        if (_bubbleManager != null)
+        {
+            _bubbleManager.HideSpeechBubble();
+        }
+    }
 }

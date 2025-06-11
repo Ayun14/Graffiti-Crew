@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2949532139887880732}
+  - component: {fileID: 5255194235285625658}
   m_Layer: 0
   m_Name: VIvianAnim
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 1911055080819371224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5255194235285625658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035252377270595183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb41982184320f4d8baeaf66bbf8b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: "\uBE44\uBE44\uC548"
 --- !u!1001 &2094128772399549235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,13 +151,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Bip001'\n\tTransform 'Bip001 L UpperArm'\n\tTransform
-    'Bip001 L Finger1'\n\tTransform 'Bip001 R Finger21'\n\tTransform 'Bip001 L Finger21'\n\tTransform
-    'Bip001 Spine1'\n\tTransform 'Bip001 R UpperArm'\n\tTransform 'Bip001 R Finger3'\n\tTransform
-    'Bip001 R Finger2'\n\tTransform 'Bip001 R Finger01'\n\tand more ...\n\tFrom animation
-    clip 'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

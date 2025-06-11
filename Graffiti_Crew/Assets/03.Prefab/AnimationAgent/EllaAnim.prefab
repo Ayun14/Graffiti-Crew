@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2936752445123576273}
+  - component: {fileID: 6324217441680501845}
   m_Layer: 3
   m_Name: EllaAnim
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 1999967738149985399}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6324217441680501845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761523417231102066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb41982184320f4d8baeaf66bbf8b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: "\uC5D8\uB77C"
 --- !u!1001 &2038979935306431388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -290,13 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2410fcf2c6ffa6e4aaa94bd9292ac54a, type: 2}
     - target: {fileID: 5866666021909216657, guid: e3839f99d0a66754fa0787a8650142e2, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Bip001'\n\tTransform 'Bip001 L UpperArm'\n\tTransform
-        'Bip001 L Finger1'\n\tTransform 'Bip001 R Finger21'\n\tTransform 'Bip001
-        L Finger21'\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 R UpperArm'\n\tTransform
-        'Bip001 R Finger3'\n\tTransform 'Bip001 R Finger2'\n\tTransform 'Bip001 R
-        Finger01'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5967251144504501634, guid: e3839f99d0a66754fa0787a8650142e2, type: 3}
       propertyPath: m_Layer
@@ -359,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988a974c2ae07a24cb62c48504450cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defalutAnimation: 0
+  _defaultAnimation: 0
   ObjectID: 2
 --- !u!4 &1999967738149985399 stripped
 Transform:
