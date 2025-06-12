@@ -8,6 +8,6 @@ public static class UIAnimationEvent {
     public static Action<bool> SetActiveCountDownAnimationEvnet; // 카운트 다운
     public static Action<bool> SetFilmDirectingEvent; // 영화 연출
 
-    public static Action<Color> SetPlayerBackgroundColor;
-    public static Action<Color> SetRivalBackgroundColor;
+    public static Action SetPlayerBackgroundColor;
+    public static Action SetRivalBackgroundColor;
 }
