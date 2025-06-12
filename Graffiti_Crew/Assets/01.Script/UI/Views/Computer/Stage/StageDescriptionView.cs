@@ -65,6 +65,7 @@ namespace AH.UI.Views {
         }
         private void ClickExitBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();
+            ComputerEvent.CloseDescriptionEvent?.Invoke();
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             StageType stageType = ComputerViewModel.GetLoadStageSO().GetCurrentStageType();
