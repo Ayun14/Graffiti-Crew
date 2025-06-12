@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialDialogueController : Observer<GameStateController>
+public class TutorialController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private GameObject _level;
     [SerializeField] private GameObject _hangout;
@@ -15,6 +15,9 @@ public class TutorialDialogueController : Observer<GameStateController>
     [SerializeField] private StoryDialogueSO _tutorialDialogueSO;
 
     private int _dialogueNum = 0;
+    private int _clearNode = 0;
+
+    private int _tutorialStartIndex = 75;
 
     private Image _loadingPanel;
 
@@ -50,6 +53,15 @@ public class TutorialDialogueController : Observer<GameStateController>
                 NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+            }
+
+            if(mySubject.GameState == GameState.Tutorial)
+            {
+                _dialogueUIController.ChangeDialogueUI?.Invoke(false);
+                DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+                _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, DialogueEnd);
+
+                //SetMiniDialogue();
             }
         }
     }
@@ -106,6 +118,28 @@ public class TutorialDialogueController : Observer<GameStateController>
 
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
-        
+    }
+
+    public void CheckClearNode()
+    {
+        _clearNode++;
+
+        SetMiniDialogue();
+    }
+
+    private void SetMiniDialogue()
+    {
+        _dialogueController.DialogueSkip();
+    }
+
+    public void LodingHandle(DataController dataController)
+    {
+        //dataController.stageData.stageSaveData.stageState = StageState.Clear;
+
+        _dialogueController.dialogueDataReader = dataController.stageData.dialogueData_KR;
+        //_dialogueUIController.dialogueDataReader_KR = dataController.stageData.dialogueData_KR;
+        //_dialogueUIController.dialogueDataReader_EN = dataController.stageData.dialogueData_EN;
+
+        dataController.SuccessGiveData();
     }
 }

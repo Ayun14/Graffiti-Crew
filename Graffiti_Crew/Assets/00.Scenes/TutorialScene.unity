@@ -260,53 +260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogueController: {fileID: 1890331577}
---- !u!1 &122685297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 122685299}
-  - component: {fileID: 122685298}
-  m_Layer: 0
-  m_Name: MiniDialogueController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &122685298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122685297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05725df46b847594eb467f2af21f90e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueUIController: {fileID: 1890331577}
-  _nodeJudgement: {fileID: 0}
-  _explainIndex: 46
---- !u!4 &122685299
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122685297}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151289591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,6 +2392,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f882f3c29162040a15f7675c00525d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnSprayNone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAirNone:
+    m_PersistentCalls:
+      m_Calls: []
   _sprayCursor: {fileID: 2800000, guid: c6ed6030097bf654f82296e43debacd9, type: 3}
   _noneSprayCursor: {fileID: 2800000, guid: 95ce2879f76807d4989dee4065858538, type: 3}
   _lodingCursors: []
@@ -3134,6 +3105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1567194884}
   - component: {fileID: 1567194885}
+  - component: {fileID: 1567194886}
   m_Layer: 0
   m_Name: GameRuleSystem
   m_TagString: NeedLoding
@@ -3171,6 +3143,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6cedc9883b18c46ba15ccccd0d2692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1567194886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567194883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54711f32eb546334ea12814cd157e0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnNodeClear:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710980658}
+        m_TargetAssemblyTypeName: TutorialDialogueController, Assembly-CSharp
+        m_MethodName: CheckClearNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1585714330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,7 +4292,6 @@ SceneRoots:
   - {fileID: 2122694932}
   - {fileID: 69701688}
   - {fileID: 710980657}
-  - {fileID: 122685299}
   - {fileID: 844099495}
   - {fileID: 478279174}
   - {fileID: 547860261}

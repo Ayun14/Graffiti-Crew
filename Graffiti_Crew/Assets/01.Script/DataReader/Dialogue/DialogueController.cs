@@ -61,7 +61,7 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    private void DialogueSkip()
+    public void DialogueSkip()
     {
         if (!_uiController.IsTyping)
         {
