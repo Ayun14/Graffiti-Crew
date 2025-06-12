@@ -27,6 +27,9 @@ namespace AH.UI.ViewModels {
         public CategoryListSO GetCategory() {
             return _model.GetCategory();
         }
+        public LoadStageSO GetLoadStageSO() {
+            return _model.GetLoadStage();
+        }
         #endregion
 
         public void SetSelectProduct(int categoryIndex, int index) {
@@ -36,12 +39,6 @@ namespace AH.UI.ViewModels {
             _model.ClearSelectProductData();
         }
         public void SetStageData(string chapter, string stage, StageType stageType) {
-            _model.SetStage(chapter, stage, stageType);
-        }
-        public void SetStoryData(string chapter, string stage, StageType stageType) {
-            _model.SetStage(chapter, stage, stageType);
-        }
-        public void SetActivityData(string chapter, string stage, StageType stageType) {
             _model.SetStage(chapter, stage, stageType);
         }
         public string GetCurrentStageName() {
