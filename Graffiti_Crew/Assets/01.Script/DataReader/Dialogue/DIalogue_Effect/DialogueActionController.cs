@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueActionController : MonoBehaviour
 {
     private float _moveRange = 3f;
-    private float _moveDuration = 7.2f;
+    private float _moveDuration = 7.0f;
 
     private Vector3 _initialPos = Vector3.zero;
     private GameObject jia;
