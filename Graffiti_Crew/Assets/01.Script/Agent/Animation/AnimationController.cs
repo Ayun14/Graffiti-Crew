@@ -40,6 +40,11 @@ public class AnimationController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _currentAnim = _defaultAnimation;
 
+        if (_animator == null)
+        {
+            Debug.LogWarning($"AnimationController on {gameObject.name} has no Animator component.", this);
+        }
+
         if (_animationHashes.Count == 0)
         {
             foreach (AnimationEnum anim in Enum.GetValues(typeof(AnimationEnum)))
@@ -63,6 +68,11 @@ public class AnimationController : MonoBehaviour
 
     public void PlayAnimation(AnimationEnum anim)
     {
+        if (_animator == null || !_animator.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         ExitAnim();
         _animator.SetBool(_animationHashes[anim], true);
         _currentAnim = anim;
@@ -70,7 +80,15 @@ public class AnimationController : MonoBehaviour
 
     private void ExitAnim()
     {
-        _animator.SetBool(_animationHashes[_currentAnim], false);
+        if (_animator == null || !_animator.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
+        if (_animationHashes.ContainsKey(_currentAnim))
+        {
+            _animator.SetBool(_animationHashes[_currentAnim], false);
+        }
     }
 
     public void SetObjectID(int newID)

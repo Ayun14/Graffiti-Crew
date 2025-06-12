@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DialogueAnimController : MonoBehaviour
 {
-    [SerializeField] private DialogueController _dialogueController;
     private BubbleController _bubbleManager; 
 
     private int _animValue = 0;
@@ -55,15 +54,6 @@ public class DialogueAnimController : MonoBehaviour
         {
             _curAnim = (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName);
             AnimationEvent.SetAnimation?.Invoke(_animValue, _curAnim);
-
-            //if (DialogueCharacterController.Instance != null)
-            //{
-            //    Transform targetTrm = DialogueCharacterController.Instance.GetCharacterTransform(dialogue.characterName);
-            //    if (targetTrm != null && _bubbleManager != null)
-            //    {
-            //        _bubbleManager.ShowSpeechBubble(targetTrm);
-            //    }
-            //}
         }
     }
 
@@ -73,11 +63,6 @@ public class DialogueAnimController : MonoBehaviour
             return;
 
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
-
-        //if (_bubbleManager != null)
-        //{
-        //    _bubbleManager.HideSpeechBubble();
-        //}
     }
 
     private void HideBubble()
