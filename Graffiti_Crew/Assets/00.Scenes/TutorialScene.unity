@@ -3149,7 +3149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567194883}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4247,9 +4247,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3804939428526285489, guid: 62032600d443f67419bc2b6030f267d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4171256725895924288, guid: 62032600d443f67419bc2b6030f267d7, type: 3}
       propertyPath: m_Name
       value: Levels
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171256725895924288, guid: 62032600d443f67419bc2b6030f267d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737637812513253780, guid: 62032600d443f67419bc2b6030f267d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4277,11 +4289,11 @@ SceneRoots:
   - {fileID: 1448206204}
   - {fileID: 619231616}
   - {fileID: 1585714331}
+  - {fileID: 1567194884}
   - {fileID: 2122694932}
   - {fileID: 69701688}
   - {fileID: 710980657}
   - {fileID: 122685299}
-  - {fileID: 1567194884}
   - {fileID: 844099495}
   - {fileID: 478279174}
   - {fileID: 547860261}
