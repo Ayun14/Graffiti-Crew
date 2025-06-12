@@ -3,9 +3,13 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SprayController : MonoBehaviour
 {
+    public UnityEvent OnSprayNone;
+    public UnityEvent OnAirNone;
+
     [Header("Cursor")]
     [SerializeField] private Texture2D _sprayCursor;
     [SerializeField] private Texture2D _noneSprayCursor;
@@ -85,6 +89,7 @@ public class SprayController : MonoBehaviour
         if (targetValue <= _shakeSliderValueSO.min)
         {
             isSprayCanShaking = true;
+            OnAirNone?.Invoke();
             SetCursor(_spraySliderValueSO.Value, targetValue);
         }
         else if (targetValue >= _shakeSliderValueSO.max)
@@ -114,6 +119,7 @@ public class SprayController : MonoBehaviour
         // Spray Empty
         if (_stageGameRule.GetSprayEmpty() == false && targetValue <= _spraySliderValueSO.min)
         {
+            OnSprayNone?.Invoke();
             StartCoroutine(SprayEmpty());
             _stageGameRule.SetSprayEmpty(true);
         }
