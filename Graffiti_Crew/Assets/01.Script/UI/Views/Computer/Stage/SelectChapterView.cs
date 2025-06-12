@@ -3,6 +3,7 @@ using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,9 @@ namespace AH.UI.Views {
         private List<StagePointElement> _pointList;
         private List<StageSaveDataSO> _saveStageData = new List<StageSaveDataSO>();
 
+        private VisualElement _map;
+        private string _selectStageName;
+
         public SelectChapterView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
 
@@ -21,9 +25,15 @@ namespace AH.UI.Views {
             hideOnAwake = false;
            
             base.Initialize();
+            ComputerEvent.CloseDescriptionEvent += UnforceSelectStage;
+        }
+        public override void Dispose() {
+            ComputerEvent.CloseDescriptionEvent -= UnforceSelectStage;
+            base.Dispose();
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
+            _map = topElement.Q<VisualElement>("main-map");
             _pointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
             _saveStageData = ComputerViewModel.GetSaveStageDatas();
             LoadSaveData();
@@ -129,7 +139,15 @@ namespace AH.UI.Views {
         private void SetDescription(StageDataSO stageData) {
             ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            ForceSelectStage(stageData);
         }
         #endregion
+        private void ForceSelectStage(StageDataSO stageData) {
+            _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
+            _map.AddToClassList(_selectStageName);
+        }
+        private void UnforceSelectStage() {
+            _map.RemoveFromClassList(_selectStageName);
+        }
     }
 }
