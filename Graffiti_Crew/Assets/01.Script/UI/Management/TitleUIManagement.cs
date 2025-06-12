@@ -46,8 +46,6 @@ namespace AH.UI {
             PresentationEvents.FadeInOutEvent += FadeInOut;
             _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
         }
-
-
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
@@ -63,29 +61,31 @@ namespace AH.UI {
         {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
-            _saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
+            //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
             _startBtn = root.Q<Button>("start-btn");
             _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-            _saveSlotField.index = _viewModel.GetSlotIndex();
+
+
+            //_saveSlotField.index = _viewModel.GetSlotIndex();
 
             // 드롭다운 아이템들 스타일 접근
-            _saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
-            {
-#if UNITY_EDITOR
-                // 에디터에서만 지연 호출 사용
-                UnityEditor.EditorApplication.delayCall += () =>
-                {
-                    StyleDropdownItems();
-                };
-#else
-        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
-        StartCoroutine(StyleDropdownItemsNextFrame());
-#endif
-            });
+//            _saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
+//            {
+//#if UNITY_EDITOR
+//                // 에디터에서만 지연 호출 사용
+//                UnityEditor.EditorApplication.delayCall += () =>
+//                {
+//                    StyleDropdownItems();
+//                };
+//#else
+//        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
+//        StartCoroutine(StyleDropdownItemsNextFrame());
+//#endif
+//            });
 
             StartCoroutine(Routine());
         }
@@ -120,7 +120,12 @@ namespace AH.UI {
             // 스타일 적용
             StyleDropdownItems();
         }
-
+        private async void Fade() {
+            PresentationEvents.FadeInOutEvent?.Invoke(false);
+            await Task.Delay(1100);
+            string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
+            SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
+        }
         private IEnumerator Routine() {
             float delayTime = 0.73f;
             
@@ -136,8 +141,7 @@ namespace AH.UI {
             ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
-            //string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
-            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+            Fade();
         }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
