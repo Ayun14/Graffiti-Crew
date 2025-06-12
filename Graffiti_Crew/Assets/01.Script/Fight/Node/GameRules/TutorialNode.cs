@@ -1,16 +1,21 @@
-using UnityEngine;
 using UnityEngine.Events;
 
-public class TutorialNode : MonoBehaviour
+public class TutorialNode : Observer<GameStateController>
 {
     public UnityEvent OnNodeClear;
 
     private StageGameRule _stageGameRule;
 
-    private void Start()
+    public override void NotifyHandle()
     {
-        _stageGameRule = GetComponent<StageGameRule>();
-        _stageGameRule.OnNodeClear += HandleOnNodeClear;
+        if (mySubject != null)
+        {
+            if (mySubject.GameState == GameState.Tutorial)
+            {
+                _stageGameRule = GetComponent<StageGameRule>();
+                _stageGameRule.OnNodeClear += HandleOnNodeClear;
+            }
+        }
     }
 
     private void OnDisable()
@@ -21,5 +26,10 @@ public class TutorialNode : MonoBehaviour
     private void HandleOnNodeClear()
     {
         OnNodeClear?.Invoke();
+    }
+
+    private void SetInput(bool isCanInput)
+    {
+        _stageGameRule.isTurotial = !isCanInput;
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 
 public abstract class StageGameRule : Observer<GameStateController>
 {
+    // Tutorial
     public event Action OnNodeClear;
+    [HideInInspector] public bool isTurotial = false; // Input
 
     public StageRuleType stageRule;
 
@@ -43,6 +45,7 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public bool IsCanInput()
     {
+        if (isTurotial) return false;
         if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return false;
 
         return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial;
