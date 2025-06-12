@@ -7,6 +7,7 @@ public class DialogueAnimController : MonoBehaviour
     private BubbleController _bubbleManager; 
 
     private int _animValue = 0;
+    private AnimationEnum _curAnim;
 
     private void Awake()
     {
@@ -52,7 +53,8 @@ public class DialogueAnimController : MonoBehaviour
 
         if (_animValue != 0)
         {
-            AnimationEvent.SetAnimation?.Invoke(_animValue, (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName));
+            _curAnim = (AnimationEnum)Enum.Parse(typeof(AnimationEnum), dialogue.animName);
+            AnimationEvent.SetAnimation?.Invoke(_animValue, _curAnim);
 
             //if (DialogueCharacterController.Instance != null)
             //{
@@ -67,6 +69,9 @@ public class DialogueAnimController : MonoBehaviour
 
     private void HandleDialogueEnd()
     {
+        if (_curAnim == AnimationEnum.Walk)
+            return;
+
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
 
         //if (_bubbleManager != null)

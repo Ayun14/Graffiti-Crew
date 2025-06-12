@@ -65,7 +65,7 @@ public class DialogueController : MonoBehaviour
     {
         if (!_uiController.IsTyping)
         {
-            //AnimationEvent.EndDialogueAnimation?.Invoke();
+            AnimationEvent.EndDialogueAnimation?.Invoke();
             ShowNextDialogue();
         }
         else
