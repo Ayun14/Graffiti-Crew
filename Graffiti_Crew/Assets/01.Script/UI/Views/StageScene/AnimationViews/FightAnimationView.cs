@@ -104,13 +104,13 @@ public class FightAnimationView : UIView {
         }
     }
 
-    private void SetPlayerBackgroundColor(Color color) {
+    private void SetPlayerBackgroundColor() {
         VisualElement playerScreen = _endAnimation.Q<VisualElement>("player-screen");
-        playerScreen.style.backgroundColor = color;
+        playerScreen.AddToClassList("winner");
     }
-    private void SetRivalBackgroundColor(Color color) {
+    private void SetRivalBackgroundColor() {
         VisualElement rivalcreen = _endAnimation.Q<VisualElement>("rival-screen");
-        rivalcreen.style.backgroundColor = color;
+        rivalcreen.AddToClassList("winner");
     }
     #endregion
 

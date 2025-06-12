@@ -1,35 +1,47 @@
+using AH.SaveSystem;
+using AH.UI.CustomElement;
 using AH.UI.Events;
-using AH.UI.Models;
 using AH.UI.ViewModels;
-using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static System.Collections.Specialized.BitVector32;
 
 namespace AH.UI.Views {
     public class StageDescriptionView : UIView {
         private ComputerViewModel ComputerViewModel;
 
+        private VisualElement _stageDescription;
+
+        private List<VisualElement> _coinList;
         private VisualElement _startBtn;
-
-        private AdmissionTicket[] tickets;
-        private VisualTreeAsset _ticketAsset;
-
         private Button _exitBtn;
 
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
-            Hide();
         }
 
         public override void Initialize() {
+            hideOnAwake = false;
             ComputerViewModel = viewModel as ComputerViewModel;
-            _ticketAsset = Resources.Load<VisualTreeAsset>("UI/Stage/Ticket");
             base.Initialize();
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-
+            _coinList = topElement.Query<VisualElement>(className: "coin").ToList();
+            _stageDescription = topElement.Q<VisualElement>("stage-description");
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _exitBtn = topElement.Q<Button>("exit-btn");
+        }
+        public override void Show() {
+            base.Show();
+            SetCoin();
+            _stageDescription.AddToClassList("stage-description-in");
+        }
+        public async override void Hide() {
+            _stageDescription.RemoveFromClassList("stage-description-in");
+            await Task.Delay(350);
+            base.Hide();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -42,52 +54,32 @@ namespace AH.UI.Views {
             _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
         }
 
+        private void SetCoin() {
+            string path = $"StageData/{ComputerViewModel.GetLoadStageSO().GetLoadStageName()}";
+            StageDataSO stageData = Resources.Load<StageDataSO>(path);
+            string newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
+            StageSaveDataSO saveData = Resources.Load<StageSaveDataSO>(newPath);
+            for(int i = 0; i < 3 - saveData.star; i++) {
+                _coinList[i].RemoveFromClassList("coin");
+            }
+        }
         private void ClickExitBtn(ClickEvent evt) {
             ComputerEvent.HideViewEvent?.Invoke();
         }
-
-        public override void Show() {
-            //SetAdmissionTicket();
-            base.Show();
-        }
-
-        private void SetAdmissionTicket() {
-            var content = topElement.Q<VisualElement>("ticket-content");
-            content.Clear();
-            content.style.flexGrow = 0;
-            tickets = ComputerViewModel.GetStageDescription().ticket;
-
-            if (tickets.Length > 0) {
-                content.style.flexGrow = 1;
-            }
-            foreach (var data in tickets) {
-                var asset = _ticketAsset.Instantiate();
-                if (data.ticketItem) {
-                    asset.Q<VisualElement>("spray-img").style.backgroundImage = new StyleBackground(data.ticketItem.image);
-                    asset.Q<Label>("count-txt").text = data.count.ToString();
-                    content.Add(asset);
-                }
-            }
-        }
-        private bool CheckTicket() {
-            if (tickets == null) { // 티겟이 없는 스테이지임
-                return true;
-            }
-            return ItemSystem.CheckTicket(tickets);
-        }
         private void ClickStartGameBtn(ClickEvent evt) {
-            if (CheckTicket()) {
-                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Request);
-                if (ComputerViewModel.GetCurrentStageName().Contains("Stage")) {
+            StageType stageType = ComputerViewModel.GetLoadStageSO().GetCurrentStageType();
+            switch (stageType) {
+                case StageType.Battle:
                     SaveDataEvents.SaveGameEvent?.Invoke("FightScene");
-                }
-                else {
+                    break;
+                case StageType.Activity:
                     SaveDataEvents.SaveGameEvent?.Invoke("ActivityScene");
-                }
-            }
-            else {
-                // 경고창 or 붉을색으로 못 누르게 변경 해야함
-                Debug.Log("입장권이 부족합니다");
+                    break;
+                case StageType.Story:
+                    SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
+                    break;
+                case StageType.None:
+                    break;
             }
         }
     }

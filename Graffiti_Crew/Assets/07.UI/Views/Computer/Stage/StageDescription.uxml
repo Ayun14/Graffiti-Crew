@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: center;">
-        <engine:VisualElement name="stage-description" style="width: 42%; height: 85%; background-color: rgba(0, 0, 0, 0); padding-top: 30px; padding-right: 70px; padding-bottom: 30px; padding-left: 70px; position: absolute; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-main.png?fileID=2800000&amp;guid=40649ff050fce9e4e9271290f95b2656&amp;type=3#selectStage-main&quot;); margin-left: 4%;">
+        <engine:VisualElement name="stage-description" class="stage-description">
             <engine:VisualElement style="flex-basis: 24%;">
                 <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-130" style="flex-grow: 0; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;); margin-top: 10px; bottom: 32px;">
                     <Bindings>
@@ -31,7 +31,7 @@
                     </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>
+            <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 4%; left: 4%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&amp;guid=96fb7a4cfe08a314680e3994dd1165e1&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:Button name="exit-btn" class="grow-size-40" style="position: absolute; width: 80px; height: 80px; top: 11.5%; left: 6%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&amp;guid=96fb7a4cfe08a314680e3994dd1165e1&amp;type=3#selectStage-exit&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
 </engine:UXML>

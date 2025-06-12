@@ -2,16 +2,13 @@ using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
     public class SelectChapterView : UIView {
         private ComputerViewModel ComputerViewModel;
-
 
         private List<StagePointElement> _pointList;
         private List<StageSaveDataSO> _saveStageData = new List<StageSaveDataSO>();
@@ -25,7 +22,6 @@ namespace AH.UI.Views {
            
             base.Initialize();
         }
-
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _pointList = topElement.Query<StagePointElement>(className: "stage-point").ToList();
@@ -33,6 +29,20 @@ namespace AH.UI.Views {
             LoadSaveData();
 
             SetSaveDataToStagePoint();
+        }
+
+        private void SetSaveDataToStagePoint() {
+            int index = 0;
+            int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
+            while (index < length) {
+                if(_saveStageData[index].stageState == StageState.CanPlay || _saveStageData[index].stageState == StageState.Lock) { // 다음 스테이지 보이기
+                    _pointList[index].StageState = StageState.CanPlay;
+                    break;
+                }
+                _pointList[index].StageState = _saveStageData[index].stageState;
+                //_pointList[index].starCount = _saveStageData[index].star;
+                index++;
+            }
         }
         private void LoadSaveData() {
             for(int i = 0; i < 3; i++) {
@@ -59,10 +69,8 @@ namespace AH.UI.Views {
                             break;
                         case StageType.Activity:
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
                             break;
                         case StageType.Story:
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                             button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
                             break;
                     }
@@ -92,22 +100,6 @@ namespace AH.UI.Views {
             }
         }
 
-        private void SetSaveDataToStagePoint() {
-            int index = 0;
-            int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
-            while (index < length) {
-                if(_saveStageData[index].stageState == StageState.CanPlay || _saveStageData[index].stageState == StageState.Lock) { // 다음 스테이지 보이기
-                    _pointList[index].StageState = StageState.CanPlay;
-                    break;
-                }
-                _pointList[index].StageState = _saveStageData[index].stageState;
-                //_pointList[index].starCount = _saveStageData[index].star;
-                index++;
-            }
-        }
-        private void ClickBackBtn(ClickEvent evt) {
-            ComputerEvent.HideViewEvent?.Invoke();
-        }
         #region ClickStages
         private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
@@ -120,17 +112,22 @@ namespace AH.UI.Views {
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
+            string path = $"StageData/{chapter}/{stage}";
+            StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
-            ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetStoryData(chapter, stage, StageType.Story);
-            SaveDataEvents.SaveGameEvent?.Invoke("StoryScene");
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Story);
+            SetDescription(stageData);
         }
         private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data) {
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Activity{data.stage}";
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetActivityData(chapter, stage, StageType.Activity);
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Activity);
+            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+        }
+        private void SetDescription(StageDataSO stageData) {
+            ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
         }
         #endregion

@@ -66,7 +66,7 @@ namespace AH.UI.CustomElement {
                 name = "imageNumber",
                 defaultValue = "1"
             };
-            // 스테이지 타입 넣을거면 넣기(의뢰인지, 대결인지)
+
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc) { // �ؽ�Ʈ ������ ������ �о� �ò�
                 base.Init(ve, bag, cc);
 
