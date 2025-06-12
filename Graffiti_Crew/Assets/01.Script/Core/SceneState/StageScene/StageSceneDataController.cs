@@ -26,6 +26,7 @@ public class StageSceneDataController : DataController
                 {
                     if (stageData.stageRuleType == StageRuleType.SpeedRule)
                         stageData.stageResult.value = (int)_currentDrawingTime;
+
                     GameEvents.SendFightGameResultEvent?.Invoke(stageData);
                 }
 
