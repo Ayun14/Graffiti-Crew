@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,9 +7,9 @@ public class StageResultSO : ScriptableObject
     public int value;
     public int coin = 0;
 
-    public int minCost = 5;
-    public int middleCost = 10;
-    public int maxCost = 20;
+    private int minCost = 5;
+    private int middleCost = 10;
+    private int maxCost = 20;
 
     public void Reset()
     {
@@ -21,9 +20,12 @@ public class StageResultSO : ScriptableObject
     public int CalculationStar() // 돈에 따른 금은동
     {
         int star = 0;
-        if (minCost <= coin) ++star;
-        if (middleCost <= coin) ++star;
-        if (maxCost <= coin) ++star;
+        if (minCost <= coin)
+            ++star;
+        if (middleCost <= coin)
+            ++star;
+        if (maxCost <= coin)
+            ++star;
         return star;
     }
 
