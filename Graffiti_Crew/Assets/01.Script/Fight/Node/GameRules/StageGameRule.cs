@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class StageGameRule : Observer<GameStateController>
 {
+    public event Action OnNodeClear;
+
     public StageRuleType stageRule;
 
     // Children
@@ -85,7 +88,9 @@ public abstract class StageGameRule : Observer<GameStateController>
     public virtual void NodeClear()
     {
         // Combo
-        _comboController.SuccessCombo();
+        //_comboController.SuccessCombo();
+
+        OnNodeClear?.Invoke();
     }
 
     public virtual void NodeFalse()
@@ -94,7 +99,7 @@ public abstract class StageGameRule : Observer<GameStateController>
             stageResult.value++;
 
         // Sound
-        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, Random.Range(0.8f, 1.2f));
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, UnityEngine.Random.Range(0.8f, 1.2f));
         mySubject.InvokeNodeFailEvent();
         _comboController.FailCombo();
     }
