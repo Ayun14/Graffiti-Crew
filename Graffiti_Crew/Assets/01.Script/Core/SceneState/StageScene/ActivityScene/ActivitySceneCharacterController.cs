@@ -1,8 +1,8 @@
+using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using DG.Tweening;
-using System.Collections;
 
 public class ActivitySceneCharacterController : Observer<GameStateController>, INeedLoding
 {
@@ -15,6 +15,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     private List<Transform> _rivalTrmList = new();
 
     private Transform _escapeTrm;
+    private Transform _ellaGraffitiTrm;
     private List<Transform> _characterSpawnTrmList;
 
     private void Awake()
@@ -22,7 +23,8 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         Attach();
 
         _playerTrm = transform.Find("PlayerAnim").GetComponent<Transform>();
-        _escapeTrm = transform.Find("EscapePos").GetComponent<Transform>(); 
+        _escapeTrm = transform.Find("EscapePos").GetComponent<Transform>();
+        _ellaGraffitiTrm = transform.Find("EllaGraffitiPos").GetComponent<Transform>();
         _characterSpawnTrmList = transform.Find("CharacterSpawnPos").GetComponentsInChildren<Transform>().Skip(1).ToList();
     }
 
@@ -61,23 +63,35 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
             {
                 CharacterFadeOut();
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
-
-                _playerTrm.position = _characterSpawnTrmList[0].localPosition;
-                _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
-                for (int i = 0; i < _rivalTrmList.Count; i++)
-                {
-                    _rivalTrmList[i].position = _characterSpawnTrmList[i + 1].localPosition;
-                    _rivalTrmList[i].rotation = _characterSpawnTrmList[i + 1].localRotation;
-                }
+                SettingFinishPos();
             }
             else if (mySubject.GameState == GameState.Result)
             {
                 _playerTrm.DOMoveY(0f, 1f);
-                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
+                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Paint);
             }
         }
     }
     #endregion
+
+    private void SettingFinishPos()
+    {
+        // Player
+        _playerTrm.position = _characterSpawnTrmList[0].localPosition;
+        _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
+
+        // Ella
+        _rivalTrmList[0].position = _ellaGraffitiTrm.localPosition;
+        _rivalTrmList[0].rotation = _ellaGraffitiTrm.localRotation;
+
+        // Others
+        for (int i = 1; i < _rivalTrmList.Count; i++)
+        {
+            Transform trm = _characterSpawnTrmList[i + 1];
+            _rivalTrmList[i].position = trm.localPosition;
+            _rivalTrmList[i].rotation = trm.localRotation;
+        }
+    }
 
     #region Fade
 
@@ -129,14 +143,40 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     public void RivalStartGraffiti()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
-        foreach (Transform rivalTrm in _rivalTrmList)
+
+        // Ella
+        _rivalTrmList[0].DORotate(new Vector3(0, 30f, 0), 0.3f);
+        _rivalTrmList[0].DOMove(_ellaGraffitiTrm.localPosition, Random.Range(1.5f, 2f)).OnComplete(() =>
         {
-            rivalTrm.DORotate(Vector3.zero, 0.3f);
-            rivalTrm.DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
+            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+        });
+
+        // Others
+        for (int i = 1; i < _rivalTrmList.Count; ++i)
+        {
+            _rivalTrmList[i].DORotate(Vector3.zero, 0.3f);
+            _rivalTrmList[i].DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
             {
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
             });
         }
+    }
+
+    public void EllaGoBack()
+    {
+        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
+
+        Transform ella = _rivalTrmList[0];
+        ella.DORotate(new Vector3(0, -136, 0), 0.6f)
+            .OnComplete(() =>
+            {
+                ella.DOMove(_characterSpawnTrmList[1].localPosition, 2f)
+                .OnComplete(() =>
+                {
+                    ella.DORotateQuaternion(_characterSpawnTrmList[1].localRotation, 0.7f);
+                    AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+                });
+            });
     }
 
     public void RivalsEscape()
