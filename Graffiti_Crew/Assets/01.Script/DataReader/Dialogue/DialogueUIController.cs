@@ -23,6 +23,7 @@ public class DialogueUIController : MonoBehaviour
     private Coroutine _showDialogueCoroutine;
 
     public Action<bool> ChangeDialogueUI;
+    public Action<bool> OnEndTyping;
 
     private DialougeCharacter _curCharacter;
     private DialougeCharacter _preCharacter;
@@ -181,6 +182,8 @@ public class DialogueUIController : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
         IsTyping = false;
+        if(!IsBigUIdata)
+            OnEndTyping?.Invoke(true);
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 

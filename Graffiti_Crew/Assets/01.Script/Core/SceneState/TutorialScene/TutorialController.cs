@@ -59,7 +59,10 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
             {
                 _dialogueUIController.ChangeDialogueUI?.Invoke(false);
                 DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-                _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, DialogueEnd);
+
+                //_dialogueUIController.OnEndTyping?.Invoke(false);
+
+                _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
 
                 //SetMiniDialogue();
             }
@@ -120,16 +123,18 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         }
     }
 
-    public void CheckClearNode()
+    public async void CheckClearNode()
     {
         _clearNode++;
 
-        SetMiniDialogue();
-    }
+        if(_clearNode == 9)
+        {
+            await Task.Delay(1100);
+            PresentationEvents.FadeInOutEvent?.Invoke(true);
+        }
 
-    private void SetMiniDialogue()
-    {
         _dialogueController.DialogueSkip();
+        _dialogueUIController.OnEndTyping(false);
     }
 
     public void LodingHandle(DataController dataController)
