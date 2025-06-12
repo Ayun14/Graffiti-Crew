@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public abstract class DataController : Observer<GameStateController>
 {
@@ -67,14 +68,21 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
-            Invoke("FinishGiveData", 0.5f);
-
-        SliderUpdate(_lodingCnt / _needLodingObjs.Count);
+            StartCoroutine(SliderUpdateRoutine(1f, 0.5f));
     }
 
-    private void SliderUpdate(float value)
+    private IEnumerator SliderUpdateRoutine(float value, float time)
     {
+        float currentTime = 0;
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+            float t = currentTime / time;
+            _lodingSlider.value = Mathf.Lerp(0, value, t);
+            yield return null;
+        }
         _lodingSlider.value = value;
+        FinishGiveData();
     }
             
     protected abstract void FinishGiveData(); // Change GameState...
