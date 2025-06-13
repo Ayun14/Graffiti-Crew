@@ -3,12 +3,14 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoSingleton<SceneLoader> {
+public class SceneLoader : MonoSingleton<SceneLoader>
+{
     [SerializeField] private new Camera camera;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float transitionTime = 0.5f;
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
 
         canvasGroup.alpha = 0;
@@ -16,7 +18,8 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Load() {
+    private void Load()
+    {
         SetRandomTip();
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
@@ -24,29 +27,35 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
         LoadSceneAsync().Forget();
     }
 
-    private void OnSceneUnloaded(Scene scene) {
+    private void OnSceneUnloaded(Scene scene)
+    {
         camera.gameObject.SetActive(Camera.main == null);
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    private void SetRandomTip() {
+    private void SetRandomTip()
+    {
         // tipText.text = gameTip.GameTips[Random.Range(0, gameTip.GameTips.Count)];
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         camera.gameObject.SetActive(Camera.main == null);
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private async UniTask ShowLoadingScreenAsync() {
+    private async UniTask ShowLoadingScreenAsync()
+    {
         await canvasGroup.DOFade(1, transitionTime);
     }
 
-    private async UniTask HideLoadingScreenAsync() {
+    private async UniTask HideLoadingScreenAsync()
+    {
         await canvasGroup.DOFade(0, transitionTime);
     }
 
-    private async UniTask LoadSceneAsync() {
+    private async UniTask LoadSceneAsync()
+    {
         await ShowLoadingScreenAsync();
 
         //await SceneManager.UnloadSceneAsync(_currentScene);
@@ -55,14 +64,16 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
         await UniTask.WaitForSeconds(3f, true);
 #endif
 
-        if (_targetScene != null) {
+        if (_targetScene != null)
+        {
             SaveDataEvents.SaveGameEvent?.Invoke("");
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_targetScene);
             asyncOperation.completed += OnSceneLoaded;
 
             float timer = 0.0f;
 
-            while (!asyncOperation.isDone) {
+            while (!asyncOperation.isDone)
+            {
                 await UniTask.Yield();
 
                 timer += Time.deltaTime;
@@ -79,7 +90,8 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
         _targetScene = null;
     }
 
-    private void OnSceneLoaded(AsyncOperation operation) {
+    private void OnSceneLoaded(AsyncOperation operation)
+    {
         IsDone = true;
     }
 
@@ -91,7 +103,8 @@ public class SceneLoader : MonoSingleton<SceneLoader> {
 
     private string _targetScene;
 
-    public void LoadScene(string scene) {
+    public void LoadScene(string scene)
+    {
         _targetScene = scene;
         Load();
     }
