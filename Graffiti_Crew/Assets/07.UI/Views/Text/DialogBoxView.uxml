@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:Instance template="Animation" name="Animation" style="position: absolute; width: 100%; height: 100%;" />
-    <engine:VisualElement name="text-dialog" class="dialog-box-m-container" style="display: flex;">
+    <engine:VisualElement name="text-dialog" class="dialog-box-m-container" style="display: none; background-color: rgba(121, 255, 96, 0.51);">
         <engine:VisualElement style="height: 32%; width: 75%; flex-direction: row; translate: -11px 20px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/textbox-line.png?fileID=21300000&amp;guid=7492df78b02fb9c4fbfc0520ea35f629&amp;type=3#textbox-line&quot;); align-items: flex-end; overflow: hidden; display: flex;">
             <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px; bottom: -24px; visibility: hidden;">
                 <Bindings>
@@ -31,7 +31,7 @@
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement name="feeling-dialog" class="dialog-box-m-container" style="display: none;">
+    <engine:VisualElement name="feeling-dialog" class="dialog-box-m-container" style="display: flex; background-color: rgba(132, 174, 255, 0.57);">
         <engine:VisualElement style="height: 32%; width: 75%; flex-direction: row; translate: -11px 20px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/textbox-noline.png?fileID=21300000&amp;guid=e136a554a72c387468f109d8c4168ee1&amp;type=3#textbox-noline&quot;); align-items: flex-end; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px;">
             <engine:Label text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" class="grow-size-40" style="white-space: normal; text-shadow: 0 0 0 rgba(79, 79, 79, 0); color: rgb(255, 255, 255); flex-grow: 1; height: 100%;">
                 <Bindings>
@@ -40,4 +40,5 @@
             </engine:Label>
         </engine:VisualElement>
     </engine:VisualElement>
+    <engine:Label text="Label" name="test-txt" style="font-size: 139px; color: rgb(255, 42, 231);" />
 </engine:UXML>
