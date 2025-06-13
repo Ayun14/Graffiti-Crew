@@ -19,20 +19,15 @@ namespace AH.UI.Views {
         private VisualElement _currentDialouge;
         private VisualElement _preDialouge;
 
-        private Label _testText;
-
-
         public DialogueView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
         public override void Initialize() {
             base.Initialize();
             ViewModel = viewModel as DialogViewModel;
             DialogueEvent.SetDialogueEvent += SetCharscter;
-            _testText.text = "connteced";
         }
         public override void Dispose() {
             DialogueEvent.SetDialogueEvent -= SetCharscter;
-            _testText.text = "dispose";
             base.Dispose();
         }
 
@@ -41,14 +36,12 @@ namespace AH.UI.Views {
 
             _textDialouge = topElement.Q<VisualElement>("text-dialog");
             _fellingDialouge = topElement.Q<VisualElement>("feeling-dialog");
-            _testText = topElement.Q<Label>("test-txt");
 
             Hide(_textDialouge);
             Hide(_fellingDialouge);
         }
 
         private void SetCharscter(DialougeCharacter character) {
-            _testText.text = character.ToString();
             switch (character) {
                 case DialougeCharacter.Text:
                     _preDialouge = _currentDialouge;
