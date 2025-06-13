@@ -144,13 +144,6 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
 
-        // Ella
-        _rivalTrmList[0].DORotate(new Vector3(0, 30f, 0), 0.3f);
-        _rivalTrmList[0].DOMove(_ellaGraffitiTrm.localPosition, Random.Range(1.5f, 2f)).OnComplete(() =>
-        {
-            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
-        });
-
         // Others
         for (int i = 1; i < _rivalTrmList.Count; ++i)
         {
@@ -160,6 +153,13 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
                 AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
             });
         }
+
+        // Ella
+        _rivalTrmList[0].DORotate(new Vector3(0, 30f, 0), 0.3f);
+        _rivalTrmList[0].DOMove(_ellaGraffitiTrm.localPosition, Random.Range(2f, 2.5f)).OnComplete(() =>
+        {
+            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+        });
     }
 
     public void EllaGoBack()

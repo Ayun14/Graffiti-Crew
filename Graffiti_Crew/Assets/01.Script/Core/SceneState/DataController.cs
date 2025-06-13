@@ -68,7 +68,7 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
-            StartCoroutine(SliderUpdateRoutine(1f, 0.5f));
+            StartCoroutine(SliderUpdateRoutine(1f, Random.Range(0.4f, 0.8f)));
     }
 
     private IEnumerator SliderUpdateRoutine(float value, float time)
