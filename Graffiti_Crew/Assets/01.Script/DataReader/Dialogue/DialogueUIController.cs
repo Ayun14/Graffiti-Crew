@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour
@@ -28,6 +29,8 @@ public class DialogueUIController : MonoBehaviour
     private DialougeCharacter _curCharacter;
     private DialougeCharacter _preCharacter;
 
+    [SerializeField] private TextMeshProUGUI _debugText;
+
     private void Awake()
     {
         _dialogueController = GetComponent<DialogueController>();
@@ -38,6 +41,7 @@ public class DialogueUIController : MonoBehaviour
     {
         _curCharacter = DialougeCharacter.Felling;
         DialogueEvent.SetDialogueEvent?.Invoke(DialougeCharacter.Felling);
+        _debugText.text = "DialogueStart";
 
         _dialogueUIData = _bigDialogueUIData;
         _dialogueUIData.ResetData();
@@ -111,8 +115,9 @@ public class DialogueUIController : MonoBehaviour
             _preCharacter = DialougeCharacter.Felling;
         else
             _preCharacter = DialougeCharacter.Text;
-        if(_curCharacter != _preCharacter)
+        //if(_curCharacter != _preCharacter)
         {
+            _debugText.text = "Dialogue Set";
             _curCharacter = _preCharacter;
             DialogueEvent.SetDialogueEvent?.Invoke(_curCharacter);
         }
