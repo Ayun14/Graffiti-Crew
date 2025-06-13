@@ -31,13 +31,13 @@ namespace AH.UI {
         {
             base.Start();
 
-            PlayerBGM();
+            StartCoroutine(PlayerBGM());
         }
 
-        private async void PlayerBGM()
+        private IEnumerator PlayerBGM()
         {
-            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Title_Front);
-            await Task.Delay(4304);
+            AudioSource source = GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Title_Front);
+            yield return new WaitForSeconds(source.clip.length - 0.85f);
             GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Title_Back);
         }
 
