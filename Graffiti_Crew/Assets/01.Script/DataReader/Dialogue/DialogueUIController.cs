@@ -146,6 +146,7 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator TypingEffect(string fullText)
     {
+        _dialogueController.IsDialogue = true;
         GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Text_Typing);
         IsTyping = true;
         _dialogueUIData.dialogue = "";

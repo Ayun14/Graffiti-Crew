@@ -20,8 +20,8 @@ public class DialogueController : MonoBehaviour
 
     private bool _isHangoutScene =>
         SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
-    private bool _isDialogue = false;
-    public bool IsDialogue => _isDialogue;
+
+    public bool IsDialogue = false;
 
     private Action _onDialogueComplete;
 
@@ -37,7 +37,7 @@ public class DialogueController : MonoBehaviour
     private void Update()
     {
         if (!_uiController.IsBigUIdata && !_isHangoutScene) return;
-        if (!_isDialogue) return;
+        if (!IsDialogue) return;
 
         if (dialogueDataReader.readMode == ReadMode.Auto)
         {
@@ -66,6 +66,7 @@ public class DialogueController : MonoBehaviour
         if (!_uiController.IsTyping)
         {
             AnimationEvent.EndDialogueAnimation?.Invoke();
+            IsDialogue = false;
             ShowNextDialogue();
         }
         else
@@ -77,8 +78,6 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogue(int startID, int endID, Action onComplete = null)
     {
-        _isDialogue = true;
-
         if (dialogueDataReader == null || dialogueDataReader.DialogueList.Count == 0)
         {
             onComplete?.Invoke();
@@ -121,7 +120,7 @@ public class DialogueController : MonoBehaviour
 
         if (currentDialogueIndex >= filteredDialogueList.Count)
         {
-            _isDialogue = false;
+            IsDialogue = false;
 
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
