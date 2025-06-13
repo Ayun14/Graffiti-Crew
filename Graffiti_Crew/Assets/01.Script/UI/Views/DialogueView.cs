@@ -3,6 +3,7 @@ using AH.UI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public enum DialougeCharacter {
@@ -17,7 +18,6 @@ namespace AH.UI.Views {
         private VisualElement _fellingDialouge;
         private VisualElement _currentDialouge;
         private VisualElement _preDialouge;
-
 
         public DialogueView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -36,6 +36,7 @@ namespace AH.UI.Views {
 
             _textDialouge = topElement.Q<VisualElement>("text-dialog");
             _fellingDialouge = topElement.Q<VisualElement>("feeling-dialog");
+
             Hide(_textDialouge);
             Hide(_fellingDialouge);
         }

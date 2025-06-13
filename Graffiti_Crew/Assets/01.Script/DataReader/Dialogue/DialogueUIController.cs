@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour
@@ -111,7 +112,7 @@ public class DialogueUIController : MonoBehaviour
             _preCharacter = DialougeCharacter.Felling;
         else
             _preCharacter = DialougeCharacter.Text;
-        if(_curCharacter != _preCharacter)
+        //if(_curCharacter != _preCharacter)
         {
             _curCharacter = _preCharacter;
             DialogueEvent.SetDialogueEvent?.Invoke(_curCharacter);

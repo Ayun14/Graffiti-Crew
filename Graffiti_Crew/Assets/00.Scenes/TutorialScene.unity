@@ -1285,6 +1285,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 497037619384067233, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
+      propertyPath: _debugText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 640083069090837977, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 969340240596508027, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
       propertyPath: _defaultCam
       value: 
@@ -1382,12 +1390,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2430336377861785602, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
+      propertyPath: _bgmData
+      value: 
+      objectReference: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
+    - target: {fileID: 2430336377861785602, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
+      propertyPath: _sfxData
+      value: 
+      objectReference: {fileID: 11400000, guid: db2774fc806202640b622319fc7ab2b2, type: 2}
+    - target: {fileID: 2430336377861785602, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
+      propertyPath: _languageSO
+      value: 
+      objectReference: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
+    - target: {fileID: 2430336377861785602, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
+      propertyPath: _languageIndexSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 550c69bd881da074c8d5a37c3e26d200, type: 2}
     - target: {fileID: 6391761247096368836, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
       propertyPath: _DialogueBG
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6391761247096368836, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
       propertyPath: _dialogueBG
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644028796439441446, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
+      propertyPath: DebugText
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8644028796439441446, guid: d0173bb867fdc1c41a4342d3286e2d6e, type: 3}
@@ -1744,7 +1772,7 @@ GameObject:
   - component: {fileID: 710980657}
   - component: {fileID: 710980658}
   m_Layer: 0
-  m_Name: TutorialDialogueController
+  m_Name: TutorialController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
