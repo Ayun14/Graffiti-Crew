@@ -1,3 +1,9 @@
+.grow-size-60 {
+    flex-grow: 1;
+    font-size: 60px;
+    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Paperlogy-4Regular.ttf?fileID=12800000&guid=39338fa6e5ae84f4b803037fc040b227&type=3#Paperlogy-4Regular");
+}
+
 .start-btn {
     background-image: url("project://database/Assets/02.Sprite/UI/Title/title-start.png?fileID=21300000&guid=fbf06f54ed58b3f4fa9847d7dfe2b8c1&type=3#title-start");
     width: 460px;
@@ -11,18 +17,27 @@
     opacity: 1;
 }
 
+.setting-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=21300000&guid=98f05b29f01c4ea4aa0b652c919fac1f&type=3#money-content");
+    height: 105px;
+    width: 460px;
+    transition-duration: 0.2s;
+}
+
+.setting-btn:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 64);
+}
+
 .exit-btn {
     background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=21300000&guid=98f05b29f01c4ea4aa0b652c919fac1f&type=3#money-content");
     height: 105px;
     width: 460px;
+    transition-duration: 0.2s;
 }
 
 .exit-btn:hover {
     background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/money-content.png?fileID=21300000&guid=98f05b29f01c4ea4aa0b652c919fac1f&type=3#money-content");
-    width: 460px;
-    height: 105px;
     background-color: rgba(188, 188, 188, 0);
-    flex-grow: 0;
     border-left-color: rgba(149, 149, 149, 0);
     border-right-color: rgba(149, 149, 149, 0);
     border-top-color: rgba(149, 149, 149, 0);
