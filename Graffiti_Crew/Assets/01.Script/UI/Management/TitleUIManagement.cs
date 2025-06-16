@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI {
@@ -19,7 +18,8 @@ namespace AH.UI {
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
         private DropdownField _saveSlotField;
-        private Button _startBtn;
+        private VisualElement _startBtn;
+        private VisualElement _startBtnImg;
         private Button _exitBtn;
         
         private string slotPath = "UI/Setting/Slots/";
@@ -62,11 +62,13 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
             //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
-            _startBtn = root.Q<Button>("start-btn");
+            _startBtn = root.Q<VisualElement>("start-btn-clicker");
+            _startBtnImg = root.Q<VisualElement>("start-btn-img");
             _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
-            _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
-            _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
+
+            //_saveSlotField.RegisterValueChangedCallback(ChangeSlot);
+            //_startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
 
@@ -131,11 +133,12 @@ namespace AH.UI {
             
             while(true){
                 yield return new WaitForSeconds(delayTime);
-                _startBtn.ToggleInClassList("show-btn");
+                _startBtnImg.ToggleInClassList("show-start-btn");
             }
         }
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();
+            Debug.Log("³ª°¡±â");
         }
         private void PressAnyKey(AfterExecution execution) {
             ClickStartBtn(null);
