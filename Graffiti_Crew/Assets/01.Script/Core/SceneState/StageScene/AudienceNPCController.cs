@@ -41,7 +41,7 @@ public class AudienceNPCController : Observer<GameStateController>
             {
                 AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.People_Clap);
                 AnimationEvent.SetAnimation?.Invoke(11, AnimationEnum.People_Clap);
-                AnimationEvent.SetAnimation?.Invoke(12, AnimationEnum.Idle);
+                AnimationEvent.SetAnimation?.Invoke(12, AnimationEnum.People_Idle);
             }
         }
     }
