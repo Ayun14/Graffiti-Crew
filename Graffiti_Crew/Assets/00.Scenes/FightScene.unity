@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: fe4e130f9947345a2b213cb5038851a2, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3a6db933fef1d4c759bf21220420505f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1363,7 +1363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -1632,6 +1632,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &514012230
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2259137263126210815, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_Name
+      value: NoTree_Battle_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215828234173592644, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 28ea26be54015da4f90901a56633c637, type: 3}
 --- !u!1 &528791726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,8 +4271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4020b4b229d9ebe4e9e76859e38e78d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataList:
-  - {fileID: 11400000, guid: 8de463dd07fd85240ac004727e83709e, type: 2}
+  _currentSceneLoadDataList: []
 --- !u!1 &1487191972
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,7 +6174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2091430866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6793,6 +6849,7 @@ SceneRoots:
   - {fileID: 1807320120}
   - {fileID: 405571813}
   - {fileID: 45490016}
+  - {fileID: 514012230}
   - {fileID: 1678951448}
   - {fileID: 466866086}
   - {fileID: 55859129}
