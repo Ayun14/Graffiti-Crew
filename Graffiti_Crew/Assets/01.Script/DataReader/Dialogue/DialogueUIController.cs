@@ -125,7 +125,11 @@ public class DialogueUIController : MonoBehaviour
 
         if (!string.IsNullOrEmpty(dialogue.soundName))
         {
-            if (Enum.TryParse(dialogue.soundName, true, out SoundType soundType))
+            if(dialogue.soundName == "None")
+            {
+                GameManager.Instance.SoundSystemCompo.AllBGMStop(null);
+            }
+            else if (Enum.TryParse(dialogue.soundName, true, out SoundType soundType))
             {
                 if (soundType >= SoundType.Title_Front && soundType <= SoundType.Tutorial)
                 {
