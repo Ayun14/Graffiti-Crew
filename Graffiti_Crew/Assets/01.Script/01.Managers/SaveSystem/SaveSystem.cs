@@ -122,7 +122,6 @@ namespace AH.SaveSystem {
                 saveData.ResetDatas();
             }
             if(sceneName != "") {
-                Debug.Log("load scene");
                 SceneManager.LoadScene(sceneName);
             }
         }
