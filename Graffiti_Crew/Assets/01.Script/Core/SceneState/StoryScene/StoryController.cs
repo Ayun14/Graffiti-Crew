@@ -38,8 +38,6 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
             if (mySubject.GameState == GameState.Dialogue)
             {
-                GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Fight_After);
-
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 

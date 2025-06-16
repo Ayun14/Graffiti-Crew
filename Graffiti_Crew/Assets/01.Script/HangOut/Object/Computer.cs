@@ -15,6 +15,8 @@ public class Computer : InteractionObject
 
     protected override async void Start()
     {
+        base.Start();
+
         _transitionCanvas.SetActive(false);
         _transitionMat.SetFloat("_Lerp", 1);
 

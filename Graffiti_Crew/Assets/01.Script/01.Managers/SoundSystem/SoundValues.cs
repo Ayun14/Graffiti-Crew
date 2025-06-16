@@ -51,6 +51,7 @@ public enum SoundType
     Rain,
     Call,
     EndCall,
+    Find,
 
     [Header("BGM")]
     Title_Front,
@@ -62,5 +63,7 @@ public enum SoundType
     Fight_Result,
     HangOut,
     Police,
-    Tutorial
+    Tutorial,
+    Serious,
+    Serious2
 }
