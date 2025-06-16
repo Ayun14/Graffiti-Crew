@@ -25,9 +25,6 @@ public class NPC : InteractionObject
 
     protected override void Start()
     {
-        startIndex = _npcSO.startIndex;
-        endIndex = _npcSO.endIndex;
-
         SaveDataEvents.LoadEndEvent += CheckStageData;
     }
 
@@ -50,6 +47,17 @@ public class NPC : InteractionObject
             {
                 _col.enabled = true;
                 _visual.SetActive(true);
+            }
+
+            if (tutorialCheck.data) // Æ©Åä ÈÄ
+            {
+                startIndex = _npcSO.startIndex;
+                endIndex = 2;
+            }
+            else // Æ©Åä Àü
+            {
+                startIndex = 3;
+                endIndex = _npcSO.endIndex;
             }
         }
     }

@@ -3175,6 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376f68258ce123b4081ca2a55833b970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
   stateEnum: 8
   interactionImg: {fileID: 651997965}
 --- !u!1 &1193205154
@@ -3994,6 +3995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa1a1c1b777e6b43bb3b46dd1748b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
   stateEnum: 4
   interactionImg: {fileID: 449245387}
   _npcSO: {fileID: 11400000, guid: b9bd8d7b53304664bb237ef306854c4e, type: 2}
@@ -4574,6 +4576,63 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1001 &1752334302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2703502913512232993, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946105090134529821, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 012be16fcb0c1164294a8014f6a7f721, type: 3}
 --- !u!224 &1824202745 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2590022377403595173, guid: 65368520d207e16489538c74107f549a, type: 3}
@@ -4785,6 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376f68258ce123b4081ca2a55833b970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
   stateEnum: 7
   interactionImg: {fileID: 2047327238}
 --- !u!1 &1898409673
@@ -6646,6 +6706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376f68258ce123b4081ca2a55833b970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
   stateEnum: 5
   interactionImg: {fileID: 1493947009}
 --- !u!1 &8395605314881364263 stripped
@@ -6818,6 +6879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aad64e0882f7864fbaf6adc7e3856f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
   stateEnum: 3
   interactionImg: {fileID: 519900640}
   _transitionCanvas: {fileID: 1039672297}
@@ -6859,3 +6921,4 @@ SceneRoots:
   - {fileID: 24676939}
   - {fileID: 1520889289}
   - {fileID: 1476655619}
+  - {fileID: 1752334302}
