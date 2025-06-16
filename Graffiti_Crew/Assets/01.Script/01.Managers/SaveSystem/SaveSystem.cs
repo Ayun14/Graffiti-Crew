@@ -75,36 +75,16 @@ namespace AH.SaveSystem {
                 }
             }
         }
-        private void SetData(SlotSO slot, SaveDataListSO saveData) {
-            Debug.Log(saveData.name);
-            FileSystem.CheckToSlotFolder(slot.slotName); // 폴더가 없으면 생성
-            if (!FileSystem.CheckToSaveFile(slot.slotName, saveData.saveFileName)) {
-                foreach (IResetData data in saveData.saveDataSOList) {
-                    data.ResetData();
-                }
-                string jsonFile = saveData.ToJson();
-                FileSystem.WriteToFile(slot.slotName, saveData.saveFileName, jsonFile);
-            }
-        }
-
         // file값을 바탕으로 so에 넣기
         private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
             foreach (var saveData in saveList) { // 데이터 load하기
                 if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
+                    Debug.Log(saveData.saveFileName);
                     saveData.LoadJson(jsonString);
                 }
             }
             SaveDataEvents.LoadEndEvent?.Invoke();
         }
-        private void LoadData(SlotSO slot, SaveDataListSO saveData) {
-            if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
-                Debug.Log($"LOAD : {saveData.saveFileName}");
-                Debug.Log(jsonString);
-                saveData.LoadJson(jsonString);
-            }
-            SaveDataEvents.LoadEndEvent?.Invoke();
-        }
-
         public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
@@ -122,7 +102,6 @@ namespace AH.SaveSystem {
                 saveData.ResetDatas();
             }
             if(sceneName != "") {
-                Debug.Log("load scene");
                 SceneManager.LoadScene(sceneName);
             }
         }
