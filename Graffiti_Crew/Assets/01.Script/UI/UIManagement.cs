@@ -34,7 +34,6 @@ namespace AH.UI {
             SetupViews();
             Register();
         }
-
         #region Base
         protected virtual void OnEnable() {
             _inputReaderSO.OnCancleEvent += ShowPreviewEvent;
@@ -60,9 +59,10 @@ namespace AH.UI {
         }
         protected virtual void Unregister() {
 
-        } 
+        }
         #endregion
 
+        #region Events
         protected virtual void ShowPreviewEvent(AfterExecution evtFunction = null) {
             if (_viewStack.Count > 0) {
                 var viewData = _viewStack.Peek();
@@ -77,7 +77,7 @@ namespace AH.UI {
                 if (evtFunction != null) {
                     evtFunction();
                 }
-                
+
             }
         }
         protected virtual void ShowView(UIView newView, bool offPreview = false, bool hide = false) { // hide : esc·Î ¾È²¨Áü
@@ -100,8 +100,8 @@ namespace AH.UI {
             }
         }
 
-        protected virtual void FadeInOut(bool active) { 
-            _fadeView.RemoveFromClassList("fade-set"); 
+        protected virtual void FadeInOut(bool active) {
+            _fadeView.RemoveFromClassList("fade-set");
             if (active) {
                 _fadeView.RemoveFromClassList("fade-out");
             }
@@ -117,6 +117,7 @@ namespace AH.UI {
             else {
                 _fadeView.RemoveFromClassList("fade-out");
             }
-        }
+        } 
+        #endregion
     }
 }

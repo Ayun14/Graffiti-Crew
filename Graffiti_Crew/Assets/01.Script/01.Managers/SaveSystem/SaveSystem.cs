@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 namespace AH.SaveSystem {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
-        [SerializeField] private List<SaveDataListSO> _dataList;
+        [SerializeField] private List<SaveDataListSO> _currentSceneLoadDataList;
         private List<SaveDataListSO> _shareDataList;
-        private SaveDataListSO slotGameData;
+        private List<SaveDataListSO> slotGameDataList;
 
         private SlotSO _shareSlot;
         public SlotSO currentSlot {
@@ -24,7 +24,7 @@ namespace AH.SaveSystem {
         private void Awake() {
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
             _shareDataList = Resources.LoadAll<SaveDataListSO>("DataList/Share").ToList();
-            slotGameData = Resources.Load<SaveDataListSO>("DataList/Slot/SaveGameListSO");
+            slotGameDataList = Resources.LoadAll<SaveDataListSO>("DataList/Slot").ToList();
         }
         private void Start() {
             CreateAndLoadData();
@@ -53,13 +53,13 @@ namespace AH.SaveSystem {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
             GameManager.SetSlot(); // 슬롯 세팅
-            
             // 슬롯 별 전체 데이터 뿌리고
-            SetData(currentSlot, slotGameData);
-            LoadData(currentSlot, slotGameData);
-            // 개인 데이터
-            SetData(currentSlot, _dataList);
-            LoadData(currentSlot, _dataList);
+            SetData(currentSlot, slotGameDataList);
+            LoadData(currentSlot, slotGameDataList);
+
+            // 각 씬 별 데이터
+            SetData(currentSlot, _currentSceneLoadDataList);
+            LoadData(currentSlot, _currentSceneLoadDataList);
         }
 
         // 초기 파일 생성
@@ -76,6 +76,7 @@ namespace AH.SaveSystem {
             }
         }
         private void SetData(SlotSO slot, SaveDataListSO saveData) {
+            Debug.Log(saveData.name);
             FileSystem.CheckToSlotFolder(slot.slotName); // 폴더가 없으면 생성
             if (!FileSystem.CheckToSaveFile(slot.slotName, saveData.saveFileName)) {
                 foreach (IResetData data in saveData.saveDataSOList) {
@@ -90,6 +91,8 @@ namespace AH.SaveSystem {
         private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
             foreach (var saveData in saveList) { // 데이터 load하기
                 if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
+                    Debug.Log($"LOAD : {saveData.saveFileName}");
+                    Debug.Log(jsonString);
                     saveData.LoadJson(jsonString);
                 }
             }
@@ -97,24 +100,31 @@ namespace AH.SaveSystem {
         }
         private void LoadData(SlotSO slot, SaveDataListSO saveData) {
             if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
+                Debug.Log($"LOAD : {saveData.saveFileName}");
+                Debug.Log(jsonString);
                 saveData.LoadJson(jsonString);
             }
             SaveDataEvents.LoadEndEvent?.Invoke();
         }
 
         public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
-            slotGameData.ResetDatas();
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
                 saveData.ResetDatas();
             }
-            foreach (var saveData in _dataList) { // 개별 파일 저장
+            foreach (var saveData in slotGameDataList) { // 개별인데 항상로드 되는 데이터
+                string jsonFile = saveData.ToJson();
+                FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
+                saveData.ResetDatas();
+            }
+            foreach (var saveData in _currentSceneLoadDataList) { // 개별 파일 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(currentSlot.slotName, saveData.saveFileName, jsonFile);
                 saveData.ResetDatas();
             }
             if(sceneName != "") {
+                Debug.Log("load scene");
                 SceneManager.LoadScene(sceneName);
             }
         }

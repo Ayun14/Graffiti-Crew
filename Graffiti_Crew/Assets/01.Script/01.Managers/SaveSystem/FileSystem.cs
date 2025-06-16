@@ -6,9 +6,11 @@ namespace AH.SaveSystem {
     public class FileSystem : MonoBehaviour {
         public static bool WriteToFile(string saveSlotName, string fileName, string fileContents) {
             var folderPath = Path.Combine(Application.persistentDataPath, saveSlotName);
+            Debug.Log("WRITE : " + fileName);
             var fullPath = Path.Combine(folderPath, fileName); // Combine 두 문자열 연결\
             try {
                 File.WriteAllText(fullPath, fileContents); // 파일 써주고
+                Debug.Log(fileContents);
                 return true;
             }
             catch (Exception e) {

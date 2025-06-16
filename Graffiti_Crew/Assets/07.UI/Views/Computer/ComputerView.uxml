@@ -1,8 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="StoreView" src="project://database/Assets/07.UI/Views/Computer/Store/StoreView.uxml?fileID=9197481963319205126&amp;guid=5a4f1874a13d7244394ffa2d957d7fd0&amp;type=3#StoreView" />
     <engine:Template name="SelectChapterView" src="project://database/Assets/07.UI/Views/Computer/Stage/SelectChapterView.uxml?fileID=9197481963319205126&amp;guid=d542f5577774e584a9edcf6262ec6c83&amp;type=3#SelectChapterView" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView_USs" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" class="conputer-m-container">
         <engine:VisualElement name="computer-screen" class="computer-screen">
             <engine:VisualElement name="VisualElement" style="width: 160px; height: 180px; top: 33%; left: 4%; position: absolute;">
@@ -21,6 +21,6 @@
                 <engine:Label text="AM 06:32" name="time-txt" class="grow-size-30" style="color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:Button name="power-btn" style="position: absolute; height: 35px; width: 35px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/power.png?fileID=21300000&amp;guid=dda258b9be96aee4ea5fe7a0ff2a4015&amp;type=3#power&quot;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); bottom: 0.5%; left: 1%;" />
+        <engine:Button name="power-btn" class="power-btn" />
     </engine:VisualElement>
 </engine:UXML>

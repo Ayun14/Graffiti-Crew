@@ -6,7 +6,9 @@
     <engine:VisualElement name="start-btn-clicker" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&amp;guid=fac23f87a6d7ffc4a898735ffa124167&amp;type=3#title-background&quot;); justify-content: flex-end;">
         <engine:VisualElement name="bottom-container" style="align-items: center; justify-content: center; flex-direction: column; flex-basis: 50%;">
             <engine:VisualElement name="start-btn-img" class="start-btn" />
-            <engine:Button name="exit-btn" text="나가기" class="exit-btn grow-size-80" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); -unity-text-align: middle-center;" />
+            <engine:VisualElement name="exit-btn" class="exit-btn">
+                <engine:Label text="나가기" class="grow-size-80" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); padding-top: 29px;" />
+            </engine:VisualElement>
             <engine:DropdownField name="saveSlot-dropdownField" index="0" choices="슬롯1,슬롯2,슬롯3" class="btn grow-size-60" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=2800000&amp;guid=3511ea8880556434293e3b1898a40791&amp;type=3#dropdown&quot;); -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); color: rgb(255, 255, 255); display: none;" />
         </engine:VisualElement>
     </engine:VisualElement>
