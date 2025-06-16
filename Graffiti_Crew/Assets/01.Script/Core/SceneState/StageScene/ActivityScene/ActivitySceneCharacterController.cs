@@ -31,16 +31,16 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     // Test Code
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _minValue);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _maxValue);
-        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    foreach (Material mat in _characterMatList)
+        //        mat.SetFloat("_MinFadDistance", _minValue);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    foreach (Material mat in _characterMatList)
+        //        mat.SetFloat("_MinFadDistance", _maxValue);
+        //}
     }
 
     private void OnDestroy()

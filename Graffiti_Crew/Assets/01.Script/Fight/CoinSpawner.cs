@@ -36,18 +36,6 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
         _rivalCoinSpawnPos = transform.Find("RivalCoinSpawnPos").GetComponent<Transform>().position;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SpawnCoinToRival();
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SpawnCoinToPlayer();
-        }
-    }
-
     public void SpawnCoinToPlayer()
     {
         StartCoroutine(SpawnCoin(_playerCoinSpawnPos, _stageDataSO.stageResult.coin));
