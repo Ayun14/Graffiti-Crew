@@ -46,16 +46,24 @@
 }
 
 .power-btn:hover {
+    scale: 1.1 1.1;
+}
+
+.sound-btn {
     position: absolute;
-    height: 35px;
+    left: 88%;
     width: 35px;
-    background-image: url("project://database/Assets/02.Sprite/UI/Computer/power.png?fileID=21300000&guid=dda258b9be96aee4ea5fe7a0ff2a4015&type=3#power");
+    height: 35px;
+    bottom: 0.5%;
     background-color: rgba(188, 188, 188, 0);
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/sound.png?fileID=21300000&guid=c033e749964456e4aab10086bc4941df&type=3#sound");
     border-left-color: rgba(149, 149, 149, 0);
     border-right-color: rgba(149, 149, 149, 0);
     border-top-color: rgba(149, 149, 149, 0);
     border-bottom-color: rgba(149, 149, 149, 0);
-    bottom: 0.5%;
-    left: 1%;
+    transition-duration: 0.2s;
+}
+
+.sound-btn:hover {
     scale: 1.1 1.1;
 }

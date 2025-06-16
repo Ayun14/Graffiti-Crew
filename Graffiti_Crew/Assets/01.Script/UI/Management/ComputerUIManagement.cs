@@ -13,11 +13,14 @@ namespace AH.UI {
         private SelectChapterView _selectChapterView;
         private StoreView _storeView;
         private StageDescriptionView _stageDescriptionView;
+        private SettingView _settingView;
+
         private ItemCountView _itemCountView;
         private NotEnoughView _notEnoughView;
 
         private ComputerViewModel _viewModel;
 
+        private Button _soundBtn;
         private Button _exitBtn;
         private Label _timeLabel;
 
@@ -29,7 +32,7 @@ namespace AH.UI {
             ComputerEvent.ActiveItemCountViewEvent += ShowItemCountView;
             ComputerEvent.ShowNotEnoughViewEvent += ShowNotEnoughView;
 
-            ComputerEvent.HideViewEvent += HideView;
+            StageEvent.HideViewEvent += HideView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
         }
         protected override void OnDisable() {
@@ -40,7 +43,7 @@ namespace AH.UI {
             ComputerEvent.ActiveItemCountViewEvent -= ShowItemCountView;
             ComputerEvent.ShowNotEnoughViewEvent -= ShowNotEnoughView;
 
-            ComputerEvent.HideViewEvent -= HideView;
+            StageEvent.HideViewEvent -= HideView;
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
 
@@ -56,9 +59,12 @@ namespace AH.UI {
             _selectChapterView = new SelectChapterView(root.Q<VisualElement>("SelectChapterView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
             _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);
-
+            
+            _soundBtn = root.Q<Button>("sound-btn");
             _exitBtn = root.Q<Button>("power-btn");
             _timeLabel = root.Q<Label>("time-txt");
 
@@ -70,10 +76,12 @@ namespace AH.UI {
         }
         protected override void Register() {
             base.Register();
+            _soundBtn.RegisterCallback<ClickEvent>(CllickSoundBtn);
             _exitBtn.RegisterCallback<ClickEvent>(CllickExitBtn);
         }
         protected override void Unregister() {
             base.Unregister();
+            _soundBtn.UnregisterCallback<ClickEvent>(CllickSoundBtn);
             _exitBtn.UnregisterCallback<ClickEvent>(CllickExitBtn);
         }
 
@@ -109,6 +117,9 @@ namespace AH.UI {
             PresentationEvents.SetFadeEvent?.Invoke(true);
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
+        }
+        private void CllickSoundBtn(ClickEvent evt) {
+            ShowView(_settingView);
         }
         private async void CllickExitBtn(ClickEvent evt) {
             PresentationEvents.FadeInOutEvent?.Invoke(false);

@@ -79,7 +79,6 @@ namespace AH.SaveSystem {
         private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
             foreach (var saveData in saveList) { // 데이터 load하기
                 if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
-                    Debug.Log(saveData.saveFileName);
                     saveData.LoadJson(jsonString);
                 }
             }
