@@ -131,7 +131,7 @@ public class DialogueUIController : MonoBehaviour
             }
             else if (Enum.TryParse(dialogue.soundName, true, out SoundType soundType))
             {
-                if (soundType >= SoundType.Title_Front && soundType <= SoundType.Tutorial)
+                if (soundType >= SoundType.Title_Front && soundType <= SoundType.Serious2)
                 {
                     GameManager.Instance.SoundSystemCompo.AllBGMStop(null);
                     GameManager.Instance.SoundSystemCompo.PlayBGM(soundType);
