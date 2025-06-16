@@ -2,6 +2,8 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
+using AH.UI.Views;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,10 +15,15 @@ namespace AH.UI {
     public class TitleUIManagement : UIManagement {
         private TitleViewModel _viewModel;
 
+        private SettingView _settingView;
+
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
         private DropdownField _saveSlotField;
         private VisualElement _startBtnImg;
+
+        private VisualElement _startBtn;
+        private VisualElement _settingBtn;
         private VisualElement _exitBtn;
         
         private string slotPath = "UI/Setting/Slots/";
@@ -42,11 +49,13 @@ namespace AH.UI {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
             _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
+            StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
             _inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
+            StageEvent.HideViewEvent -= HideView;
         }
 
         protected override void Init() {
@@ -58,12 +67,18 @@ namespace AH.UI {
         {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+
             //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
             _startBtnImg = root.Q<VisualElement>("start-btn-img");
+            _startBtn = root.Q<VisualElement>("start-btn-clicker");
+            _settingBtn = root.Q<VisualElement>("setting-btn");
             _exitBtn = root.Q<VisualElement>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
 
             //_saveSlotField.RegisterValueChangedCallback(ChangeSlot);
+            _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
+            _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
 
@@ -133,16 +148,20 @@ namespace AH.UI {
         }
 
         #region Handle
-        private void ClickExitBtn(ClickEvent evt) {
-            Application.Quit();
-            Debug.Log("³ª°¡±â");
-        }
         private void PressAnyKey(AfterExecution execution) {
             ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
             Fade();
-        } 
+        }
+        private void ClickSettingBtn(ClickEvent evt) {
+            ShowView(_settingView);
+            evt.StopPropagation();
+        }
+        private void ClickExitBtn(ClickEvent evt) {
+            Application.Quit();
+            evt.StopPropagation();
+        }
         #endregion
     }
 }

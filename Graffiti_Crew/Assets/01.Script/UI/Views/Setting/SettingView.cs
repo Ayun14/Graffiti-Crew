@@ -1,8 +1,11 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
+using Debug = UnityEngine.Debug;
 
 namespace AH.UI.Views {
     public enum LanguageType {
@@ -74,6 +77,7 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
+            Debug.Log("close btn");
             StageEvent.HideViewEvent?.Invoke();
         }
 

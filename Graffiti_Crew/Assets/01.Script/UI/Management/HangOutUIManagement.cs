@@ -18,13 +18,13 @@ namespace AH.UI {
             base.OnEnable();
             DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
-            HangOutEvent.HideViewEvent += HideView;
+            StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialogueEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
-            HangOutEvent.HideViewEvent -= HideView;
+            StageEvent.HideViewEvent -= HideView;
         }
 
         protected override void Init() {
