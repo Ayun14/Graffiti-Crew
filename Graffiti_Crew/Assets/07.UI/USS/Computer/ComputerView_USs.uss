@@ -30,16 +30,32 @@
     scale: 1.2 1.2;
 }
 
-.test {
+.power-btn {
     position: absolute;
-    top: 85%;
-    left: 4%;
-    height: 81px;
-    width: 80px;
-    background-color: rgb(255, 40, 40);
-    transition-duration: 0.5s;
+    height: 35px;
+    width: 35px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/power.png?fileID=21300000&guid=dda258b9be96aee4ea5fe7a0ff2a4015&type=3#power");
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    bottom: 0.5%;
+    left: 1%;
+    transition-duration: 0.2s;
 }
 
-.test:hover {
-    scale: 1.5 1.5;
+.power-btn:hover {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/power.png?fileID=21300000&guid=dda258b9be96aee4ea5fe7a0ff2a4015&type=3#power");
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    bottom: 0.5%;
+    left: 1%;
+    scale: 1.1 1.1;
 }
