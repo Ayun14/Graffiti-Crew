@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using AH.SaveSystem;
 
 public class InteractionObject : MonoBehaviour
 {
+    public BoolSaveDataSO tutorialCheck;
+    private bool _checkTutorial = false;
+
     public PlayerStateEnum stateEnum;
     public Image interactionImg;
 
@@ -22,12 +26,22 @@ public class InteractionObject : MonoBehaviour
     protected virtual void Start()
     {
         interactionImg.enabled = false;
+        if (!tutorialCheck.data)
+            _col.enabled = false;
     }
 
     protected virtual void Update()
     {
         if (!CheckMousePos())
             interactionImg.enabled = false;
+
+        if (_checkTutorial) return;
+
+        if (tutorialCheck.data)
+        {
+            _checkTutorial = true;
+            _col.enabled = true;
+        }
     }
 
     private bool CheckMousePos()

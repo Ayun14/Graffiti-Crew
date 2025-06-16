@@ -7,7 +7,6 @@ public class Computer : InteractionObject
 {
     [SerializeField] private GameObject _transitionCanvas;
     [SerializeField] private Material _transitionMat;
-    private AudioSource _hangoutBGM;
 
     protected override void Awake()
     {
@@ -23,7 +22,7 @@ public class Computer : InteractionObject
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
 
-        _hangoutBGM = GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.HangOut);
+        GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.HangOut);
     }
 
     public void ComputerEvent()

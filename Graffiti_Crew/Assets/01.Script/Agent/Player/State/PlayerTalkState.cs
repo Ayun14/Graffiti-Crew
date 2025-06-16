@@ -35,5 +35,6 @@ public class PlayerTalkState : PlayerState
     private void OnDialogueComplete()
     {
         _isDialogueFinished = true;
+        _player.GetNPC().tutorialCheck.data = true;
     }
 }
