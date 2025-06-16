@@ -2,11 +2,9 @@ using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -89,36 +87,36 @@ namespace AH.UI {
             StartCoroutine(Routine());
         }
 
-        // 드롭다운 아이템 스타일링을 위한 별도 메서드
-        private void StyleDropdownItems()
-        {
+        #region DropDown
+        private void StyleDropdownItems() {
             var content = UIDocument.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
-            if (content != null)
-            {
+            if (content != null) {
                 List<VisualElement> list = content.Query<VisualElement>(className: "unity-base-dropdown__item").ToList();
-                foreach (VisualElement item in list)
-                {
-                    item.RegisterCallback<PointerEnterEvent>(evt =>
-                    {
+                foreach (VisualElement item in list) {
+                    item.RegisterCallback<PointerEnterEvent>(evt => {
                         item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
                     });
-                    item.RegisterCallback<PointerLeaveEvent>(evt =>
-                    {
+                    item.RegisterCallback<PointerLeaveEvent>(evt => {
                         item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
                     });
                 }
             }
         }
-
-        // 빌드 환경에서 다음 프레임에 스타일 적용을 위한 코루틴
-        private IEnumerator StyleDropdownItemsNextFrame()
-        {
+        private IEnumerator StyleDropdownItemsNextFrame() {
             // 한 프레임 대기
             yield return null;
 
             // 스타일 적용
             StyleDropdownItems();
         }
+        private void ChangeSlot(ChangeEvent<string> evt) {
+            int index = _saveSlotField.index;
+            _viewModel.SetSlotIndex(index);
+            SlotSO selectSlot = slots[index];
+            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
+        } 
+        #endregion
+
         private async void Fade() {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await Task.Delay(1100);
@@ -133,6 +131,8 @@ namespace AH.UI {
                 _startBtnImg.ToggleInClassList("show-start-btn");
             }
         }
+
+        #region Handle
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();
             Debug.Log("나가기");
@@ -142,12 +142,7 @@ namespace AH.UI {
         }
         private void ClickStartBtn(ClickEvent evt) {
             Fade();
-        }
-        private void ChangeSlot(ChangeEvent<string> evt) {
-            int index = _saveSlotField.index;
-            _viewModel.SetSlotIndex(index);
-            SlotSO selectSlot = slots[index];
-            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
-        }
+        } 
+        #endregion
     }
 }
