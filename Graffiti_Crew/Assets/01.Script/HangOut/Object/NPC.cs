@@ -16,16 +16,15 @@ public class NPC : InteractionObject
     {
         base.Awake();
 
-        if(CheckHangOutScene())
-        {
-            _col = GetComponent<Collider>();
-            _visual = transform.Find("Visual").gameObject;
-        }
+        SaveDataEvents.LoadEndEvent += CheckStageData;
+        _visual = transform.Find("Visual").gameObject;
     }
 
     protected override void Start()
     {
-        SaveDataEvents.LoadEndEvent += CheckStageData;
+        base.Start();
+
+        _col.enabled = true;
     }
 
     private void OnDisable()
@@ -35,7 +34,7 @@ public class NPC : InteractionObject
 
     private void CheckStageData()
     {
-        if (_npcSO.lastStageDataSO != null && CheckHangOutScene())
+        if (_npcSO.lastStageDataSO != null)
         {
             _lastStageDataSO = _npcSO.lastStageDataSO;
             if (_lastStageDataSO.stageState != StageState.Clear)
@@ -48,25 +47,17 @@ public class NPC : InteractionObject
                 _col.enabled = true;
                 _visual.SetActive(true);
             }
-
-            if (tutorialCheck.data) // Æ©Åä ÈÄ
-            {
-                startIndex = _npcSO.startIndex;
-                endIndex = 5;
-            }
-            else // Æ©Åä Àü
-            {
-                startIndex = 6;
-                endIndex = _npcSO.endIndex;
-            }
         }
-    }
 
-    private bool CheckHangOutScene()
-    {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("HangOutScene"))
-            return true;
-        else
-            return false;
+        if (tutorialCheck.data) // Æ©Åä ÈÄ
+        {
+            startIndex = 6;
+            endIndex = _npcSO.endIndex;
+        }
+        else // Æ©Åä Àü
+        {
+            startIndex = _npcSO.startIndex;
+            endIndex = 5;
+        }
     }
 }

@@ -19,6 +19,9 @@ public class PlayerTalkState : PlayerState
 
         if (_player.dialogueUIController != null)
         {
+            Debug.Log(_player.GetNPC().startIndex);
+            Debug.Log(_player.GetNPC().endIndex);
+
             _player.dialogueUIController.ChangeDialogueUI?.Invoke(true);
             _player.dialogueController.StartDialogue(_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
         }
