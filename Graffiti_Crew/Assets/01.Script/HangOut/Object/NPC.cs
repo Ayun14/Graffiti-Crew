@@ -52,11 +52,11 @@ public class NPC : InteractionObject
             if (tutorialCheck.data) // Æ©Åä ÈÄ
             {
                 startIndex = _npcSO.startIndex;
-                endIndex = 2;
+                endIndex = 5;
             }
             else // Æ©Åä Àü
             {
-                startIndex = 3;
+                startIndex = 6;
                 endIndex = _npcSO.endIndex;
             }
         }
