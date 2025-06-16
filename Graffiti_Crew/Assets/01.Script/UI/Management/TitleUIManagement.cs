@@ -18,9 +18,8 @@ namespace AH.UI {
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
         private DropdownField _saveSlotField;
-        private VisualElement _startBtn;
         private VisualElement _startBtnImg;
-        private Button _exitBtn;
+        private VisualElement _exitBtn;
         
         private string slotPath = "UI/Setting/Slots/";
         private SlotSO[] slots;
@@ -62,13 +61,11 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
             //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
-            _startBtn = root.Q<VisualElement>("start-btn-clicker");
             _startBtnImg = root.Q<VisualElement>("start-btn-img");
-            _exitBtn = root.Q<Button>("exit-btn");
+            _exitBtn = root.Q<VisualElement>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
 
             //_saveSlotField.RegisterValueChangedCallback(ChangeSlot);
-            //_startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
 
