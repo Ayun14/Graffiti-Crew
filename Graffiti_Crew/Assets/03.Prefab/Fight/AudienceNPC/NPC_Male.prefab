@@ -103,10 +103,11 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 27921e896cab3774cbbde91ea4ae3581, type: 2}
+      objectReference: {fileID: 9100000, guid: fd4762ffb15f76e4eae46d083bf9a217, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 316141075289941665, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
+    - {fileID: 3840370910395404540, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
@@ -127,9 +128,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7956104667989521852, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1946752939795401062}
-    - targetCorrespondingSourceObject: {fileID: 3840370910395404540, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7975093510508994902}
   m_SourcePrefab: {fileID: 100100000, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
 --- !u!4 &245043237831226128 stripped
 Transform:
@@ -236,26 +234,6 @@ MonoBehaviour:
   _materialList:
   - {fileID: 2100000, guid: 5963fbe969574294f85106375b7619a8, type: 2}
   - {fileID: 2100000, guid: 779d029683e059f4bb8bca312c909b47, type: 2}
---- !u!1 &3577991179656709127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3840370910395404540, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}
-  m_PrefabInstance: {fileID: 354703532231218427}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7975093510508994902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577991179656709127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5ceb25eaf03bc4ab436dbc8c00be53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _materialList:
-  - {fileID: 2100000, guid: 6121602c5de9fa947b0126806ac0f43c, type: 2}
-  - {fileID: 2100000, guid: 1674db2ce099a814f97568b599b04af2, type: 2}
 --- !u!1 &5598883836417451808 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3936405744431041573, guid: 656629ef5ae02fb4cbf2963aa5e6152e, type: 3}

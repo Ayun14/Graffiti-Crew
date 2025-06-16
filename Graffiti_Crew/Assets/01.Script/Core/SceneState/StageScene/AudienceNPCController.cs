@@ -89,7 +89,7 @@ public class AudienceNPCController : Observer<GameStateController>
 
         if (matchingObjects.Count > 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, matchingObjects.Count);
+            int randomIndex = Random.Range(0, matchingObjects.Count);
             matchingObjects[randomIndex].SetActive(true);
         }
     }
