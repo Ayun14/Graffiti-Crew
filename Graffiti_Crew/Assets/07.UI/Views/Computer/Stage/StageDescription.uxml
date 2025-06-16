@@ -13,7 +13,7 @@
             <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
                 <engine:VisualElement style="flex-grow: 1;">
                     <engine:VisualElement style="flex-grow: 1; padding-top: 50px; padding-right: 60px; padding-bottom: 50px; padding-left: 60px;">
-                        <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-40" style="white-space: normal; height: 100%; width: 100%;">
+                        <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-40" style="white-space: normal; height: 100%; width: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Paperlogy-6SemiBold.ttf?fileID=12800000&amp;guid=9586c967f0177ad4fb2fac662d76fd78&amp;type=3#Paperlogy-6SemiBold&quot;);">
                             <Bindings>
                                 <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
                             </Bindings>

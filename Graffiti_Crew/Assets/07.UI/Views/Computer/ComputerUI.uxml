@@ -1,8 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="ComputerView" src="project://database/Assets/07.UI/Views/Computer/ComputerView.uxml?fileID=9197481963319205126&amp;guid=f35aae524a066ac40a5c65eb67406737&amp;type=3#ComputerView" />
+    <engine:Template name="SettingView" src="project://database/Assets/07.UI/Views/SettingView.uxml?fileID=9197481963319205126&amp;guid=8cbadba254f05f943b11f50b2aeaf6ff&amp;type=3#SettingView" />
     <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3#Presentation_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/ComputerView_USs.uss?fileID=7433441132597879392&amp;guid=f78f6026f399f0848901dbe6ca87da74&amp;type=3#ComputerView_USs" />
     <Style src="project://database/Assets/07.UI/USS/Computer/StoreView_USS.uss?fileID=7433441132597879392&amp;guid=aaaaf49c06eaa3241a2532c2e5b03f6c&amp;type=3#StoreView_USS" />
     <engine:Instance template="ComputerView" name="ComputerView" style="flex-grow: 1; display: flex;" />
+    <engine:Instance template="SettingView" name="SettingView" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: none;" />
     <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>
