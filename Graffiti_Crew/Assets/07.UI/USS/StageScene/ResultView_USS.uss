@@ -1,7 +1,7 @@
 .result-container {
     width: 50%;
     height: 100%;
-    background-image: url("project://database/Assets/02.Sprite/UI/Computer/ResultView/result-background.png?fileID=21300000&guid=8800f77fd17b8db4db6c2c0b39ee6808&type=3#result-background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/ResultView/result-background.png?fileID=21300000&guid=8800f77fd17b8db4db6c2c0b39ee6808&type=3#result-background");
     opacity: 0;
     transition-property: top, opacity, right;
     transition-duration: 0.7s, 0.5s, 0.7s;
@@ -10,7 +10,7 @@
     top: 25%;
 }
 
-.btn {
+.next-btn {
     border-left-color: rgba(149, 149, 149, 0);
     border-right-color: rgba(149, 149, 149, 0);
     border-top-color: rgba(149, 149, 149, 0);
@@ -20,6 +20,11 @@
     margin-top: 25px;
     margin-bottom: 25px;
     background-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.2s;
+}
+
+.next-btn:hover {
+    scale: 1.1 1.1;
 }
 
 .star {
