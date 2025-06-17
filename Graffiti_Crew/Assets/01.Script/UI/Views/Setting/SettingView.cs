@@ -46,8 +46,8 @@ namespace AH.UI.Views {
             _vfxSlider = topElement.Q<Slider>("vfx-slider");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
             _closeBtn = topElement.Q<Button>("close-btn");
-            goToSceneBtn = topElement.Q<VisualElement>("goToScene-btn");
-            SetLanguageItems(false);
+            //goToSceneBtn = topElement.Q<VisualElement>("goToScene-btn");
+            //SetLanguageItems(false);
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -55,7 +55,7 @@ namespace AH.UI.Views {
             _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
-            goToSceneBtn.RegisterCallback<ClickEvent>(ClickGoToOtherScene);
+            //goToSceneBtn.RegisterCallback<ClickEvent>(ClickGoToOtherScene);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -63,7 +63,7 @@ namespace AH.UI.Views {
             _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
-            goToSceneBtn.UnregisterCallback<ClickEvent>(ClickGoToOtherScene);
+            //goToSceneBtn.UnregisterCallback<ClickEvent>(ClickGoToOtherScene);
         }
         public override void Show() {
             HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
@@ -115,7 +115,7 @@ namespace AH.UI.Views {
             _lauguageType = inputValue;
 
             UIEvents.ChangeLanguageEvnet?.Invoke(_lauguageType);
-            SetLanguageItems(true);
+            //SetLanguageItems(true);
         }
         private void SetLanguageItems(bool active) {
             if (active) {
