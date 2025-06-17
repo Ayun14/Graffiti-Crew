@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static System.Collections.Specialized.BitVector32;
 
 namespace AH.UI.Views {
     public class StageDescriptionView : UIView {
@@ -16,7 +15,7 @@ namespace AH.UI.Views {
 
         private List<VisualElement> _coinList;
         private VisualElement _startBtn;
-        private Button _exitBtn;
+        private Button _closeBtn;
 
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
@@ -31,7 +30,7 @@ namespace AH.UI.Views {
             _coinList = topElement.Query<VisualElement>(className: "coin").ToList();
             _stageDescription = topElement.Q<VisualElement>("stage-description");
             _startBtn = topElement.Q<VisualElement>("start-btn");
-            _exitBtn = topElement.Q<Button>("exit-btn");
+            _closeBtn = topElement.Q<Button>("exit-btn");
         }
         public override void Show() {
             base.Show();
@@ -46,12 +45,12 @@ namespace AH.UI.Views {
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
             _startBtn.RegisterCallback<ClickEvent>(ClickStartGameBtn);
-            _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
+            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
             _startBtn.UnregisterCallback<ClickEvent>(ClickStartGameBtn);
-            _exitBtn.UnregisterCallback<ClickEvent>(ClickExitBtn);
+            _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
         private void SetCoin() {
@@ -63,8 +62,9 @@ namespace AH.UI.Views {
                 _coinList[i].RemoveFromClassList("coin");
             }
         }
-        private void ClickExitBtn(ClickEvent evt) {
-            ComputerEvent.HideViewEvent?.Invoke();
+        private void ClickCloseBtn(ClickEvent evt) {
+            //Debug.Log("exit");
+            //ComputerEvent.HideViewEvent?.Invoke();
             ComputerEvent.CloseDescriptionEvent?.Invoke();
         }
         private void ClickStartGameBtn(ClickEvent evt) {

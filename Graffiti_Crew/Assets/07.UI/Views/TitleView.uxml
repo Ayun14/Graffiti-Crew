@@ -6,7 +6,9 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="start-btn-clicker" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&amp;guid=fac23f87a6d7ffc4a898735ffa124167&amp;type=3#title-background&quot;); justify-content: flex-end;">
         <engine:VisualElement name="bottom-container" style="align-items: center; justify-content: flex-end; flex-direction: column; flex-basis: 50%; padding-bottom: 5%;">
-            <engine:VisualElement name="start-btn-img" class="start-btn" />
+            <engine:VisualElement name="start-btn" class="setting-btn">
+                <engine:Label text="시작" class="grow-size-60" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;);" />
+            </engine:VisualElement>
             <engine:VisualElement name="setting-btn" class="setting-btn">
                 <engine:Label text="설정" class="grow-size-60" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;);" />
             </engine:VisualElement>
