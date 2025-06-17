@@ -21,7 +21,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
 
     private void Start()
     {
-        StageEvent.SetViewEvnet(false);
+        StageEvent.SetViewEvnet?.Invoke(false);
     }
 
     private void OnDestroy()
