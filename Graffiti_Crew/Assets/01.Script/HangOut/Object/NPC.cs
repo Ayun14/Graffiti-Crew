@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class NPC : InteractionObject
 {
     [SerializeField] private NPCSO _npcSO;
+    [SerializeField] private GameObject _tutorialPanel;
 
     private GameObject _visual;
     private StageSaveDataSO _lastStageDataSO;
@@ -51,13 +52,21 @@ public class NPC : InteractionObject
 
         if (tutorialCheck.data) // Æ©Åä ÈÄ
         {
+            CloseTutorialPanel();
             startIndex = 6;
             endIndex = _npcSO.endIndex;
         }
         else // Æ©Åä Àü
         {
+            _tutorialPanel.SetActive(true);
+
             startIndex = _npcSO.startIndex;
             endIndex = 5;
         }
+    }
+
+    public void CloseTutorialPanel()
+    {
+        _tutorialPanel.SetActive(false);
     }
 }
