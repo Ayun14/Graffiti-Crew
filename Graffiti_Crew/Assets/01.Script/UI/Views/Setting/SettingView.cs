@@ -82,8 +82,8 @@ namespace AH.UI.Views {
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
-            GameEvents.BgmChangeEvnet?.Invoke();
             viewModel.SetBGMValue(bgmValue);
+            GameEvents.BgmChangeEvnet?.Invoke();
         }
         private void ChangeVfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
