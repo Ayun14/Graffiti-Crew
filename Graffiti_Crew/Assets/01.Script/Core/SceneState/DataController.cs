@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 public abstract class DataController : Observer<GameStateController>
 {
@@ -96,21 +98,21 @@ public abstract class DataController : Observer<GameStateController>
             stageSO.chapter = stageData.nextChapter;
             stageSO.stage = stageData.nextStage;
             stageSO.SetCurrentStage(stageData.nextChapter + stageData.nextStage, stageData.nextStagetype);
-        }
 
-        string nextScene = "ComputerScene";
-        switch (stageData.nextStagetype)    
-        {
-            case StageType.Battle:
-                nextScene = "FightScene";
-                break;
-            case StageType.Activity:
-                nextScene = "ActivityScene";
-                break;
-            case StageType.Story:
-                nextScene = "StoryScene";
-                break;
+            string nextScene = "ComputerScene";
+            switch (stageData.nextStagetype)
+            {
+                case StageType.Battle:
+                    nextScene = "FightScene";
+                    break;
+                case StageType.Activity:
+                    nextScene = "ActivityScene";
+                    break;
+                case StageType.Story:
+                    nextScene = "StoryScene";
+                    break;
+            }
+            SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
         }
-        SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
     }
 }
