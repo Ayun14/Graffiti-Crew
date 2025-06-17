@@ -1,5 +1,4 @@
 using AH.SaveSystem;
-using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System.Collections.Generic;
@@ -18,6 +17,7 @@ namespace AH.UI.Views {
         private Button _closeBtn;
 
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+            hideOnAwake = false;
         }
 
         public override void Initialize() {
@@ -33,14 +33,14 @@ namespace AH.UI.Views {
             _closeBtn = topElement.Q<Button>("exit-btn");
         }
         public override void Show() {
-            base.Show();
+            //base.Show();
             SetCoin();
             _stageDescription.AddToClassList("stage-description-in");
         }
         public async override void Hide() {
             _stageDescription.RemoveFromClassList("stage-description-in");
             await Task.Delay(350);
-            base.Hide();
+            //base.Hide();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -63,9 +63,7 @@ namespace AH.UI.Views {
             }
         }
         private void ClickCloseBtn(ClickEvent evt) {
-            //Debug.Log("exit");
-            //ComputerEvent.HideViewEvent?.Invoke();
-            ComputerEvent.CloseDescriptionEvent?.Invoke();
+            ComputerEvent.HideViewEvent?.Invoke();
         }
         private void ClickStartGameBtn(ClickEvent evt) {
             StageType stageType = ComputerViewModel.GetLoadStageSO().GetCurrentStageType();

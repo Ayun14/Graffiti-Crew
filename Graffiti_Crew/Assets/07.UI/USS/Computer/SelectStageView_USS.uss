@@ -115,10 +115,12 @@
     margin-left: 4%;
     left: -50%;
     transition-duration: 0.3s;
+    transition-property: left;
+    top: 8%;
 }
 
 .stage-description-in {
-    left: 0;
+    left: 1%;
 }
 
 .--------------- {
@@ -137,4 +139,8 @@
 .Chapter1Activity2 {
     scale: 3 3;
     translate: 5% -58%;
+}
+
+.stage-description-in {
+    left: 0;
 }

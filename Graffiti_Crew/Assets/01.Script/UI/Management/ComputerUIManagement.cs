@@ -32,6 +32,7 @@ namespace AH.UI {
             ComputerEvent.ActiveItemCountViewEvent += ShowItemCountView;
             ComputerEvent.ShowNotEnoughViewEvent += ShowNotEnoughView;
 
+            ComputerEvent.HideViewEvent += HideView;
             StageEvent.HideViewEvent += HideView;
             PresentationEvents.FadeInOutEvent += FadeInOut;
         }
@@ -43,7 +44,8 @@ namespace AH.UI {
             ComputerEvent.ActiveItemCountViewEvent -= ShowItemCountView;
             ComputerEvent.ShowNotEnoughViewEvent -= ShowNotEnoughView;
 
-            StageEvent.HideViewEvent -= HideView;
+            ComputerEvent.HideViewEvent -= HideView;
+            StageEvent.HideViewEvent -= HideView; // ¼³Á¤
             PresentationEvents.FadeInOutEvent -= FadeInOut;
         }
 
@@ -127,6 +129,7 @@ namespace AH.UI {
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
+            ComputerEvent.CloseDescriptionEvent?.Invoke();
             evtFunction += EventFunction;
             base.ShowPreviewEvent(evtFunction);
         }

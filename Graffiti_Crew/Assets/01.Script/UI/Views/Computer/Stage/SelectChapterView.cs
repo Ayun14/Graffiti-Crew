@@ -29,10 +29,12 @@ namespace AH.UI.Views
 
             base.Initialize();
             ComputerEvent.CloseDescriptionEvent += UnforceSelectStage;
+            ComputerEvent.HideViewEvent += UnforceSelectStage;
         }
         public override void Dispose()
         {
             ComputerEvent.CloseDescriptionEvent -= UnforceSelectStage;
+            ComputerEvent.HideViewEvent -= UnforceSelectStage;
             base.Dispose();
         }
         protected override void SetVisualElements()

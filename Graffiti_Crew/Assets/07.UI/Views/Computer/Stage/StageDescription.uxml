@@ -1,37 +1,35 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: center;">
-        <engine:VisualElement name="stage-description" class="stage-description">
-            <engine:VisualElement style="flex-basis: 24%;">
-                <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-130" style="flex-grow: 0; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;); margin-top: 10px; bottom: 32px;">
-                    <Bindings>
-                        <engine:DataBinding property="text" data-source-path="title" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
-                    </Bindings>
-                </engine:Label>
-            </engine:VisualElement>
-            <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
-                <engine:VisualElement style="flex-grow: 1;">
-                    <engine:VisualElement style="flex-grow: 1; padding-top: 50px; padding-right: 60px; padding-bottom: 50px; padding-left: 60px;">
-                        <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-40" style="white-space: normal; height: 100%; width: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Paperlogy-6SemiBold.ttf?fileID=12800000&amp;guid=9586c967f0177ad4fb2fac662d76fd78&amp;type=3#Paperlogy-6SemiBold&quot;);">
-                            <Bindings>
-                                <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
-                            </Bindings>
-                        </engine:Label>
+    <engine:VisualElement name="stage-description" class="stage-description">
+        <engine:VisualElement style="flex-basis: 24%;">
+            <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-130" style="flex-grow: 0; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;); margin-top: 10px; bottom: 32px;">
+                <Bindings>
+                    <engine:DataBinding property="text" data-source-path="title" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
+                </Bindings>
+            </engine:Label>
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement style="flex-grow: 1;">
+                <engine:VisualElement style="flex-grow: 1; padding-top: 50px; padding-right: 60px; padding-bottom: 50px; padding-left: 60px;">
+                    <engine:Label text="설명설명설명" name="stage-description-txt" class="grow-size-40" style="white-space: normal; height: 100%; width: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Paperlogy-6SemiBold.ttf?fileID=12800000&amp;guid=9586c967f0177ad4fb2fac662d76fd78&amp;type=3#Paperlogy-6SemiBold&quot;);">
+                        <Bindings>
+                            <engine:DataBinding property="text" data-source-path="description" data-source="project://database/Assets/08.SO/UI/Computer/Stage/StageDescriptionSO.asset?fileID=11400000&amp;guid=7208fb9e2d9e64f4981357790ff69f63&amp;type=2#StageDescriptionSO" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-basis: 24%; flex-direction: row; align-items: center;">
+                    <engine:VisualElement style="flex-grow: 1; height: 100%; align-items: center; justify-content: space-around; flex-direction: row;">
+                        <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-gold.png?fileID=2800000&amp;guid=b40911866b272ae499210018fa0a7790&amp;type=3#selectStage-gold&quot;);" />
+                        <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=silver.png?fileID=2800000&amp;guid=f933d55a2332f16429556b5ec57456be&amp;type=3#selectStage=silver&quot;);" />
+                        <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=bronze.png?fileID=2800000&amp;guid=4016970f5ea53f84e93c5bfd863c7c81&amp;type=3#selectStage=bronze&quot;);" />
                     </engine:VisualElement>
-                    <engine:VisualElement style="flex-basis: 24%; flex-direction: row; align-items: center;">
-                        <engine:VisualElement style="flex-grow: 1; height: 100%; align-items: center; justify-content: space-around; flex-direction: row;">
-                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-gold.png?fileID=2800000&amp;guid=b40911866b272ae499210018fa0a7790&amp;type=3#selectStage-gold&quot;);" />
-                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=silver.png?fileID=2800000&amp;guid=f933d55a2332f16429556b5ec57456be&amp;type=3#selectStage=silver&quot;);" />
-                            <engine:VisualElement name="coin" class="coin" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage=bronze.png?fileID=2800000&amp;guid=4016970f5ea53f84e93c5bfd863c7c81&amp;type=3#selectStage=bronze&quot;);" />
-                        </engine:VisualElement>
-                        <engine:VisualElement name="start-btn" class="start-btn">
-                            <engine:VisualElement class="img" />
-                        </engine:VisualElement>
+                    <engine:VisualElement name="start-btn" class="start-btn">
+                        <engine:VisualElement class="img" />
                     </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>
-            <engine:Button name="exit-btn" class="grow-size-40 stage-description-btn" />
         </engine:VisualElement>
+        <engine:Button name="exit-btn" class="grow-size-40 stage-description-btn" />
     </engine:VisualElement>
 </engine:UXML>
