@@ -18,11 +18,6 @@ public class FightSceneTimelineController : Observer<GameStateController>
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
     }
 
-    private void Start()
-    {
-        StageEvent.SetViewEvnet?.Invoke(true);
-    }
-
     private void OnDestroy()
     {
         Detach();
@@ -35,6 +30,10 @@ public class FightSceneTimelineController : Observer<GameStateController>
             if (mySubject.GameState == GameState.Timeline) {
                 UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(true);
                 _beforeFightTimeline.Play();
+            }
+
+            if (mySubject.GameState == GameState.Countdown) {
+                StageEvent.SetViewEvnet?.Invoke(true);
             }
 
             if (mySubject.GameState == GameState.Finish) {
