@@ -20,7 +20,6 @@ namespace AH.UI {
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
         private DropdownField _saveSlotField;
-        private VisualElement _startBtnImg;
 
         private VisualElement _startBtn;
         private VisualElement _settingBtn;
@@ -48,13 +47,13 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
-            _inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
+            //_inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
             StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
-            _inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
+            //_inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
             StageEvent.HideViewEvent -= HideView;
         }
 
@@ -70,8 +69,7 @@ namespace AH.UI {
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
             //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
-            _startBtnImg = root.Q<VisualElement>("start-btn-img");
-            _startBtn = root.Q<VisualElement>("start-btn-clicker");
+            _startBtn = root.Q<VisualElement>("start-btn");
             _settingBtn = root.Q<VisualElement>("setting-btn");
             _exitBtn = root.Q<VisualElement>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
@@ -99,7 +97,7 @@ namespace AH.UI {
 //#endif
 //            });
 
-            StartCoroutine(Routine());
+            //StartCoroutine(Routine());
         }
 
         #region DropDown
@@ -143,7 +141,7 @@ namespace AH.UI {
             
             while(true){
                 yield return new WaitForSeconds(delayTime);
-                _startBtnImg.ToggleInClassList("show-start-btn");
+                //_startBtnImg.ToggleInClassList("show-start-btn");
             }
         }
 

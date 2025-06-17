@@ -6,7 +6,7 @@
             <engine:VisualElement style="flex-grow: 1; width: 55%;">
                 <engine:VisualElement style="justify-content: flex-start; align-items: center; height: 30%;" />
                 <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: space-between;">
-                    <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 73%; height: 31%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/lose-txt.png?fileID=21300000&amp;guid=15506e06c00b9be488b71fe171adfcb2&amp;type=3#lose-txt&quot;); top: 15%;" />
+                    <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 73%; height: 31%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/lose-txt.png?fileID=21300000&amp;guid=15506e06c00b9be488b71fe171adfcb2&amp;type=3#lose-txt&quot;); top: 15%; rotate: 6deg;" />
                     <engine:VisualElement style="align-items: flex-end; justify-content: flex-start; width: 100%; flex-direction: row; padding-bottom: 20px; padding-right: 20px; padding-left: 20px;">
                         <engine:Button name="next-btn" class="btn next-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/next-btn.png?fileID=21300000&amp;guid=d8d02e520295de54bbb0d0a7523a5d51&amp;type=3#next-btn&quot;);" />
                     </engine:VisualElement>
@@ -14,7 +14,7 @@
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement name="clear-result-container" class="result-container" style="display: flex;">
+    <engine:VisualElement name="clear-result-container" class="result-container result-in" style="display: flex;">
         <engine:VisualElement name="result-content" style="flex-grow: 1;">
             <engine:VisualElement style="flex-grow: 1; width: 55%;">
                 <engine:VisualElement style="height: 30%; justify-content: center;">
@@ -25,7 +25,7 @@
                     </engine:VisualElement>
                 </engine:VisualElement>
                 <engine:VisualElement style="align-items: center; justify-content: space-evenly; flex-grow: 1;">
-                    <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 91%; height: 59%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/clear-txt.png?fileID=21300000&amp;guid=ade102dd1b8e552469f2b41bbf947da9&amp;type=3#clear-txt&quot;);" />
+                    <engine:VisualElement name="result-txt" style="flex-grow: 0; width: 91%; height: 59%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/clear-txt.png?fileID=21300000&amp;guid=ade102dd1b8e552469f2b41bbf947da9&amp;type=3#clear-txt&quot;); rotate: 6deg;" />
                     <engine:VisualElement style="flex-grow: 1; align-items: flex-end; justify-content: flex-start; width: 100%; flex-direction: row; padding-bottom: 20px; padding-right: 20px; padding-left: 30px;">
                         <engine:Button name="next-btn" class="btn next-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/next-btn.png?fileID=21300000&amp;guid=d8d02e520295de54bbb0d0a7523a5d51&amp;type=3#next-btn&quot;);" />
                     </engine:VisualElement>
