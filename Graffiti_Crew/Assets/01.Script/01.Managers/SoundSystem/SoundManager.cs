@@ -136,7 +136,9 @@ public class SoundManager : MonoBehaviour
     public void ChangedBGMVolume()
     {
         foreach (KeyValuePair<SoundType, SoundObject> sound in _loopingSounds)
+        {
             sound.Value.AudioSource.volume = bgmVolume;
+        }
     }
 }
 
