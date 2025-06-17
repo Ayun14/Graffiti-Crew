@@ -20,7 +20,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
     private void Start()
     {
-        StageEvent.SetViewEvnet(true);
+        StageEvent.SetViewEvnet?.Invoke(true);
     }
 
     private void OnDestroy()

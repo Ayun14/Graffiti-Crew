@@ -1,15 +1,23 @@
 using AH.LanguageSystem;
 using AH.SaveSystem;
 using AH.UI.Events;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoSingleton<GameManager> {
+public class GameManager : MonoSingleton<GameManager>
+{
     public static SlotSO currentSlot;
     private static bool _isPause = false;
 
     private string slotPath = "UI/Setting/Slots/";
     private SlotSO[] slots;
     public IntSaveDataSO slotIndex;
+
+    // 해상도 설정
+    private int width = 1920;
+    private int height = 1080;
 
     #region Systems
 
@@ -18,35 +26,55 @@ public class GameManager : MonoSingleton<GameManager> {
 
     #endregion
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
 
         SoundSystemCompo = GetComponent<SoundManager>();
         LanguageSystemCompo = GetComponent<LanguageSystem>();
     }
-    private void OnEnable() {
+
+    private void OnEnable()
+    {
         UIEvents.ChangeSlotEvent += ChangeSlot;
+        SceneManager.sceneLoaded += SetResolution;
     }
-    private void OnDisable() {
+
+    private void OnDisable()
+    {
         UIEvents.ChangeSlotEvent -= ChangeSlot;
+        SceneManager.sceneLoaded -= SetResolution;
     }
-    public static void SetPause(bool pause) { // true : stop
+
+    private void SetResolution(Scene arg0, LoadSceneMode arg1)
+    {
+        Screen.SetResolution(width, height, true);
+    }
+
+    public static void SetPause(bool pause)
+    { // true : stop
         _isPause = pause;
-        if (pause) {
+        if (pause)
+        {
             Time.timeScale = 0f;
         }
-        else {
+        else
+        {
             Time.timeScale = 1f;
         }
     }
-    public static bool IsPause() {
+
+    public static bool IsPause()
+    {
         return _isPause;
     }
-    public static void SetSlot() {
+    public static void SetSlot()
+    {
         Instance.slots = Resources.LoadAll<SlotSO>(Instance.slotPath);
         currentSlot = Instance.slots[Instance.slotIndex.data];
     }
-    private void ChangeSlot(SlotSO slot) {
+    private void ChangeSlot(SlotSO slot)
+    {
         currentSlot = slot;
     }
 }
