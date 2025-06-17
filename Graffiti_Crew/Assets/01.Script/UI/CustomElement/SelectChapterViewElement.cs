@@ -1,5 +1,8 @@
 ﻿using UnityEngine.UIElements;
 
+public enum OtherSceneType {
+
+}
 namespace AH.UI.CustomElement
 {
     public class SelectChapterViewElement : VisualElement

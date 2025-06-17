@@ -78,3 +78,23 @@
 .dropdownField > VisualElement > .unity-base-popup-field__arrow {
     display: none;
 }
+
+.goToTitle-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&guid=3511ea8880556434293e3b1898a40791&type=3#dropdown_0");
+    width: 45%;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    padding-top: 10px;
+    transition-duration: 0.2s;
+}
+
+.goToTitle-btn:hover {
+    background-image: url("project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&guid=3511ea8880556434293e3b1898a40791&type=3#dropdown_0");
+    width: 45%;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    padding-top: 10px;
+    -unity-background-image-tint-color: rgb(47, 255, 255);
+}

@@ -1,11 +1,9 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Debug = UnityEngine.Debug;
 
 namespace AH.UI.Views {
     public enum LanguageType {
@@ -20,18 +18,19 @@ namespace AH.UI.Views {
 
         private LanguageType _lauguageType;
         private Button _closeBtn;
+        private VisualElement goToSceneBtn;
 
         private int bgmValue;
         private int vfxValue;
 
         private bool isLanguageChangeing;
         private LanguageType[] _enumValues;
+
         private int _selectedIndex => viewModel.GetLanguageIndex();
         private LanguageSO _lauguageSO;
         private string[] _lauguageTypes;
 
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
-            //_viewModel.GetBGMValue();
         }
 
         public override void Initialize() {
@@ -47,6 +46,7 @@ namespace AH.UI.Views {
             _vfxSlider = topElement.Q<Slider>("vfx-slider");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
             _closeBtn = topElement.Q<Button>("close-btn");
+            goToSceneBtn = topElement.Q<VisualElement>("goToScene-btn");
             SetLanguageItems(false);
         }
         protected override void RegisterButtonCallbacks() {
@@ -55,6 +55,7 @@ namespace AH.UI.Views {
             _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+            goToSceneBtn.RegisterCallback<ClickEvent>(ClickGoToOtherScene);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
@@ -62,22 +63,25 @@ namespace AH.UI.Views {
             _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
+            goToSceneBtn.UnregisterCallback<ClickEvent>(ClickGoToOtherScene);
         }
-
         public override void Show() {
-            SetSound();
             HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
             GameManager.SetPause(true);
+            SetSound();
             base.Show();
         }
         public override void Hide() {
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
             base.Hide();
             GameManager.SetPause(false);
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
             StageEvent.HideViewEvent?.Invoke();
+        }
+        private void ClickGoToOtherScene(ClickEvent evt) {
+
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {
