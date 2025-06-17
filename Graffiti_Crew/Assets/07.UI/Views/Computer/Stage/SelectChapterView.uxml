@@ -24,5 +24,5 @@
         <engine:Label text="To be continued" class="grow-size-50 grow-size-80" style="position: absolute; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Italic.ttf?fileID=12800000&amp;guid=31a84c9dad9a1cd438ba1f6b22cb7abd&amp;type=3#Opsilon-Italic&quot;); top: 21%; left: 37%;" />
         <engine:Label text="To be continued" class="grow-size-50" style="position: absolute; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Italic.ttf?fileID=12800000&amp;guid=31a84c9dad9a1cd438ba1f6b22cb7abd&amp;type=3#Opsilon-Italic&quot;); top: 60%; left: 27%;" />
     </engine:VisualElement>
-    <engine:Instance template="StageDescription" name="StageDescriptionView" style="position: absolute; width: 100%; height: 100%; display: none;" />
+    <engine:Instance template="StageDescription" name="StageDescriptionView" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: flex;" />
 </engine:UXML>
