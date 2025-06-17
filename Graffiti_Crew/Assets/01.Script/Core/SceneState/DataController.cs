@@ -98,21 +98,21 @@ public abstract class DataController : Observer<GameStateController>
             stageSO.chapter = stageData.nextChapter;
             stageSO.stage = stageData.nextStage;
             stageSO.SetCurrentStage(stageData.nextChapter + stageData.nextStage, stageData.nextStagetype);
-
-            string nextScene = "ComputerScene";
-            switch (stageData.nextStagetype)
-            {
-                case StageType.Battle:
-                    nextScene = "FightScene";
-                    break;
-                case StageType.Activity:
-                    nextScene = "ActivityScene";
-                    break;
-                case StageType.Story:
-                    nextScene = "StoryScene";
-                    break;
-            }
-            SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
         }
+
+        string nextScene = "ComputerScene";
+        switch (stageData.nextStagetype)
+        {
+            case StageType.Battle:
+                nextScene = "FightScene";
+                break;
+            case StageType.Activity:
+                nextScene = "ActivityScene";
+                break;
+            case StageType.Story:
+                nextScene = "StoryScene";
+                break;
+        }
+        SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
     }
 }

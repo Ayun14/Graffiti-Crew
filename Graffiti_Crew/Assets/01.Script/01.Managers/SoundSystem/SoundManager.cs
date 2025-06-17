@@ -52,8 +52,8 @@ public class SoundManager : MonoBehaviour
 
             // Volume
             audioSource.volume = 0;
-            audioSource.DOFade(soundList.volume, 0.2f)
-                .OnComplete(() => audioSource.volume = soundList.volume);
+            audioSource.DOFade(soundList.volume * bgmVolume, 0.2f)
+                .OnComplete(() => audioSource.volume = soundList.volume * bgmVolume);
 
             StopBGM(sound);
             _loopingSounds[sound] = soundObj;
