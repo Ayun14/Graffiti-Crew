@@ -55,7 +55,7 @@ public class StageDataSO : ScriptableObject
     public int maxStandard;
 
     [Header("Bool")]
-    public bool isClearStage = false;
+    public bool isPlayerWin = false;
 
 #if UNITY_EDITOR
     private void OnValidate()

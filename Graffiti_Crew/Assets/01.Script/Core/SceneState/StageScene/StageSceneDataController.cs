@@ -32,9 +32,8 @@ public class StageSceneDataController : DataController
 
                 if (mySubject.GameState == GameState.Result)
                 {
-                    // 스테이지 클리어
-                    stageData.isClearStage = true;
-                    stageData.stageSaveData.stageState =StageState.Clear;
+                    stageData.isPlayerWin = mySubject.IsPlayerWin;
+                    stageData.stageSaveData.stageState = mySubject.IsPlayerWin ? StageState.Clear : StageState.CanPlay;
                 }
             }
         }
@@ -49,6 +48,7 @@ public class StageSceneDataController : DataController
     {
         // Stage Result SO Reset
         stageData.stageResult.Reset();
+        stageData.isPlayerWin = false;
         mySubject.ChangeGameState(GameState.Timeline);
 
         PresentationEvents.SetFadeEvent?.Invoke(true);

@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using static System.Net.Mime.MediaTypeNames;
 
 public abstract class DataController : Observer<GameStateController>
 {
@@ -20,7 +19,7 @@ public abstract class DataController : Observer<GameStateController>
     private int _lodingCnt = 0;
     private List<GameObject> _needLodingObjs;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Attach();
         StageEvent.ClickNectBtnEvent += GoNextStage;
@@ -93,6 +92,8 @@ public abstract class DataController : Observer<GameStateController>
 
     protected void GoNextStage()
     {
+        // 클리어 여부
+
         if (stageData.nextChapter != string.Empty && stageData.nextStage != string.Empty)
         {
             stageSO.chapter = stageData.nextChapter;
@@ -101,17 +102,20 @@ public abstract class DataController : Observer<GameStateController>
         }
 
         string nextScene = "ComputerScene";
-        switch (stageData.nextStagetype)
+        if (stageData.stagetype == StageType.Story || stageData.isPlayerWin)
         {
-            case StageType.Battle:
-                nextScene = "FightScene";
-                break;
-            case StageType.Activity:
-                nextScene = "ActivityScene";
-                break;
-            case StageType.Story:
-                nextScene = "StoryScene";
-                break;
+            switch (stageData.nextStagetype)
+            {
+                case StageType.Battle:
+                    nextScene = "FightScene";
+                    break;
+                case StageType.Activity:
+                    nextScene = "ActivityScene";
+                    break;
+                case StageType.Story:
+                    nextScene = "StoryScene";
+                    break;
+            }
         }
         SaveDataEvents.SaveGameEvent?.Invoke(nextScene);
     }
