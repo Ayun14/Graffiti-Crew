@@ -24,6 +24,7 @@ namespace AH.UI {
         private VisualElement _startBtn;
         private VisualElement _settingBtn;
         private VisualElement _exitBtn;
+        private VisualElement _deleteSaveBtn;
         
         private string slotPath = "UI/Setting/Slots/";
         private SlotSO[] slots;
@@ -72,11 +73,13 @@ namespace AH.UI {
             _startBtn = root.Q<VisualElement>("start-btn");
             _settingBtn = root.Q<VisualElement>("setting-btn");
             _exitBtn = root.Q<VisualElement>("exit-btn");
+            _deleteSaveBtn = root.Q<VisualElement>("delete-data-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
 
             //_saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
+            _deleteSaveBtn.RegisterCallback<ClickEvent>(ClickDeleteSaveDataBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
 
@@ -99,6 +102,7 @@ namespace AH.UI {
 
             //StartCoroutine(Routine());
         }
+
 
         #region DropDown
         private void StyleDropdownItems() {
@@ -155,6 +159,9 @@ namespace AH.UI {
         private void ClickSettingBtn(ClickEvent evt) {
             ShowView(_settingView);
             evt.StopPropagation();
+        }
+        private void ClickDeleteSaveDataBtn(ClickEvent evt) {
+            SaveDataEvents.DeleteSaveDataEvent?.Invoke();
         }
         private void ClickExitBtn(ClickEvent evt) {
             Application.Quit();

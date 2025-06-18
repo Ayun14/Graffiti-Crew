@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,9 +30,12 @@ namespace AH.SaveSystem {
         }
         void OnEnable() {
             SaveDataEvents.SaveGameEvent += SaveGameData;
+            SaveDataEvents.DeleteSaveDataEvent += DeleteSaveData;
         }
+
         void OnDisable() {
             SaveDataEvents.SaveGameEvent -= SaveGameData;
+            SaveDataEvents.DeleteSaveDataEvent -= DeleteSaveData;
         }
         void OnApplicationQuit() {
             SaveGameData();
@@ -101,6 +105,10 @@ namespace AH.SaveSystem {
             if(sceneName != "") {
                 SceneManager.LoadScene(sceneName);
             }
+        }
+        private void DeleteSaveData() {
+            FileSystem.DeleteFolder(currentSlot.slotName);
+            CreateAndLoadData();
         }
     }
 }
