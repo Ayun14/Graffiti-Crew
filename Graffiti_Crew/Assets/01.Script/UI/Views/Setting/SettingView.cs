@@ -46,7 +46,7 @@ namespace AH.UI.Views {
             _vfxSlider = topElement.Q<Slider>("vfx-slider");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
             _closeBtn = topElement.Q<Button>("close-btn");
-            //goToSceneBtn = topElement.Q<VisualElement>("goToScene-btn");
+            //goToSceneBtn = topElement.Q<VisualElement>("goTo-otherScene-btn");
             //SetLanguageItems(false);
         }
         protected override void RegisterButtonCallbacks() {
@@ -78,10 +78,14 @@ namespace AH.UI.Views {
         }
 
         private void ClickCloseBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             StageEvent.HideViewEvent?.Invoke();
         }
         private void ClickGoToOtherScene(ClickEvent evt) {
-
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
         }
 
         private void ChangeBgmValue(ChangeEvent<float> evt) {

@@ -137,6 +137,9 @@ namespace AH.UI.Views
         #region ClickStages
         private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data)
         {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Battle{data.stage}";
 
@@ -146,6 +149,9 @@ namespace AH.UI.Views
         }
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data)
         {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
             string path = $"StageData/{chapter}/{stage}";
@@ -156,6 +162,9 @@ namespace AH.UI.Views
         }
         private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data)
         {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Activity{data.stage}";
 

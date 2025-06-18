@@ -63,9 +63,15 @@ namespace AH.UI.Views {
             }
         }
         private void ClickCloseBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             ComputerEvent.HideViewEvent?.Invoke();
         }
         private void ClickStartGameBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             StageType stageType = ComputerViewModel.GetLoadStageSO().GetCurrentStageType();
             switch (stageType) {
                 case StageType.Battle:
