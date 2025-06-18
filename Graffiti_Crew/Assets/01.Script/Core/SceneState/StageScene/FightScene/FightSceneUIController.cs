@@ -126,8 +126,12 @@ public class FightSceneUIController : Observer<GameStateController>
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
             // Fight
-            StageEvent.SetActiveFightViewEvent?.Invoke(isFight);
             _failFeedbackPanel.gameObject.SetActive(isFight);
+
+            if (isFight) {
+                // Fight UI
+                StageEvent.SetActiveFightViewEvent?.Invoke(true);
+            }
 
             if (isFinish && isBlind)
             {
@@ -137,8 +141,10 @@ public class FightSceneUIController : Observer<GameStateController>
             else _blindPanel.gameObject.SetActive(isFight);
 
             // Finish
-            if (isFinish)
-            {
+            if (isFinish) {
+                // Fight UI
+                StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
                 StartCoroutine(FinishRoutine());
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Clock);
             }

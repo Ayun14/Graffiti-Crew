@@ -19,11 +19,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
         _activityEndTimeline = transform.Find("ActivityEndTimeline").GetComponent<PlayableDirector>();
     }
 
-    private void Start()
-    {
-        StageEvent.SetViewEvnet?.Invoke(false);
-    }
-
     private void OnDestroy()
     {
         Detach();
@@ -47,6 +42,8 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
             }
             else if (mySubject.GameState == GameState.Countdown)
             {
+                StageEvent.SetViewEvnet?.Invoke(false);
+
                 _countdownTimeline?.Play();
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);
             }
