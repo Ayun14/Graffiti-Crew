@@ -59,7 +59,7 @@ public class DialogueAnimController : MonoBehaviour
 
     private void HandleDialogueEnd()
     {
-        if (_curAnim == AnimationEnum.Walk)
+        if (_curAnim == AnimationEnum.Call)
             return;
 
         AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
