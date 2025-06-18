@@ -34,14 +34,7 @@ namespace AH.UI {
         {
             base.Start();
 
-            StartCoroutine(PlayerBGM());
-        }
-
-        private IEnumerator PlayerBGM()
-        {
-            AudioSource source = GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Title_Front);
-            yield return new WaitForSeconds(source.clip.length - 0.85f);
-            GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Title_Back);
+            GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Title);
         }
 
         protected override void OnEnable() {

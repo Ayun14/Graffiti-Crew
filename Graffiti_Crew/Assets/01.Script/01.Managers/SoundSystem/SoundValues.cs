@@ -54,8 +54,7 @@ public enum SoundType
     Find,
 
     [Header("BGM")]
-    Title_Front,
-    Title_Back,
+    Title,
     Request,
     Fight_Before,
     Fight_Middle,
