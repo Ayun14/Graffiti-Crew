@@ -21,7 +21,19 @@ namespace AH.SaveSystem {
     public class StageSaveDataSO : SaveDataSO {
         [Space]
         public StageType stageType = StageType.Battle;
-        public StageState stageState;
+        [SerializeField] private StageState _stageState;
+        public StageState stageState
+        {
+            get
+            {
+                return _stageState;
+            }
+            set
+            {
+                if(_stageState == StageState.Clear) return;
+                _stageState = value;
+            }
+        }
         public int star;
         [Space]
         [SerializeField] private StageState _defaultIsClearData = StageState.Lock;
@@ -34,15 +46,15 @@ namespace AH.SaveSystem {
             return dataType.ToString();
         }
         public override string GetData() {
-            return $"{stageState} {star}";
+            return $"{_stageState} {star}";
         }
         public override void SetValueFromString(string value) {
             string[] datas = value.Split(" ");
-            stageState = (StageState)Enum.Parse(typeof(StageState), datas[0]);
+            _stageState = (StageState)Enum.Parse(typeof(StageState), datas[0]);
             star = int.Parse(datas[1]);
         }
         public override void ResetData() {
-            stageState = _defaultIsClearData;
+            _stageState = _defaultIsClearData;
             star = _defaultStarData;
         }
     }
