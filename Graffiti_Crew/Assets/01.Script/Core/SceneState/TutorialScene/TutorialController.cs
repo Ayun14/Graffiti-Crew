@@ -53,6 +53,9 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+
+                // Cursor
+                GameManager.Instance.SetCursor(false);
             }
 
             if(mySubject.GameState == GameState.Tutorial)
@@ -65,6 +68,9 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
 
                 //SetMiniDialogue();
+
+                // Cursor
+                GameManager.Instance.SetCursor(true);
             }
         }
     }

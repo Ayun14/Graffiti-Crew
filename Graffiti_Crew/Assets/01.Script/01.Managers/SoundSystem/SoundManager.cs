@@ -44,19 +44,17 @@ public class SoundManager : MonoBehaviour
             audioSource.outputAudioMixerGroup = soundList.mixer;
             audioSource.clip = randomClip;
 
-            // Pitch
             audioSource.pitch = pitch;
-
             audioSource.loop = true;
+
+            StopBGM(sound);
+            _loopingSounds[sound] = soundObj;
             audioSource.Play();
 
             // Volume
             audioSource.volume = 0;
             audioSource.DOFade(soundList.volume * bgmVolume, 0.2f)
                 .OnComplete(() => audioSource.volume = soundList.volume * bgmVolume);
-
-            StopBGM(sound);
-            _loopingSounds[sound] = soundObj;
         }
 
         return audioSource;

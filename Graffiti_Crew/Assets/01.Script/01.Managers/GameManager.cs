@@ -1,8 +1,6 @@
 using AH.LanguageSystem;
 using AH.SaveSystem;
 using AH.UI.Events;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +12,10 @@ public class GameManager : MonoSingleton<GameManager>
     private string slotPath = "UI/Setting/Slots/";
     private SlotSO[] slots;
     public IntSaveDataSO slotIndex;
+
+    [Header("Cursor")]
+    [SerializeField] private Texture2D _normalCursor;
+    [SerializeField] private Texture2D _sprayCursor;
 
     // 해상도 설정
     private int width = 1920;
@@ -49,6 +51,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void SetResolution(Scene arg0, LoadSceneMode arg1)
     {
         Screen.SetResolution(width, height, true);
+        SetCursor(false);
     }
 
     public static void SetPause(bool pause)
@@ -77,4 +80,14 @@ public class GameManager : MonoSingleton<GameManager>
     {
         currentSlot = slot;
     }
+
+    #region Cursor
+
+    public void SetCursor(bool isSprayCursor)
+    {
+        Texture2D cursor = isSprayCursor ? _sprayCursor : _normalCursor;
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    #endregion
 }

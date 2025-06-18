@@ -7,9 +7,6 @@ using Random = UnityEngine.Random;
 
 public class FightSceneUIController : Observer<GameStateController>
 {
-    [Header("Cursor")]
-    [SerializeField] private Texture2D _cursorTex;
-
     [Header("Blind")]
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
@@ -59,9 +56,6 @@ public class FightSceneUIController : Observer<GameStateController>
         mySubject.OnBlindEvent += BlindEventHandle;
         mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
         mySubject.OnNodeFailEvent += NodeFailEventHandle;
-
-        // Cursor
-        Cursor.SetCursor(_cursorTex, Vector2.zero, CursorMode.Auto);
 
         Transform canvas = transform.Find("Canvas");
 
@@ -131,6 +125,9 @@ public class FightSceneUIController : Observer<GameStateController>
             if (isFight) {
                 // Fight UI
                 StageEvent.SetActiveFightViewEvent?.Invoke(true);
+
+                // Cursor
+                GameManager.Instance.SetCursor(true);
             }
 
             if (isFinish && isBlind)
@@ -145,8 +142,13 @@ public class FightSceneUIController : Observer<GameStateController>
                 // Fight UI
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
+                // Cursor
+                GameManager.Instance.SetCursor(false);
+
                 StartCoroutine(FinishRoutine());
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Clock);
+                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_Mouse);
+                GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
             }
             _finishPanel.gameObject.SetActive(isFinish);
         }
