@@ -3,7 +3,6 @@ using GoogleSheetsToUnity;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
-using AH.UI.Data;
 
 
 #if UNITY_EDITOR
@@ -28,6 +27,7 @@ public class TMIDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]
     [SerializeField] public List<TMIData> SprayList = new List<TMIData>();
+
     internal void UpdateStats(List<GSTU_Cell> list)
     {
         string id = null, tmi = null;
