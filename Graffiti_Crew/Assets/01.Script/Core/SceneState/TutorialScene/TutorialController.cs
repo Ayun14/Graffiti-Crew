@@ -19,15 +19,10 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
     private int _tutorialStartIndex = 81;
 
-    private Image _loadingPanel;
-
 
     private void Awake()
     {
         Attach();
-
-        Transform canvas = transform.Find("Canvas");
-        _loadingPanel = canvas.Find("Panel_Loading").GetComponent<Image>();
     }
 
     private void OnDestroy()
@@ -39,9 +34,6 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     {
         if (mySubject != null)
         {
-
-            _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
-
             if (mySubject.GameState == GameState.Dialogue)
             {
                 if(_dialogueNum == 0)

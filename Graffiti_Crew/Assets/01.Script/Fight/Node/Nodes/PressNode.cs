@@ -43,7 +43,7 @@ public class PressNode : Node, INodeAction
 
         _pressTime = _pressNodeData.pressTime;
 
-        ResetNode();
+        NodeReset();
     }
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
@@ -123,7 +123,7 @@ public class PressNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
-        ResetNode();
+        NodeReset();
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
     }
@@ -133,11 +133,13 @@ public class PressNode : Node, INodeAction
         base.NodeFalse();
 
         _judgement.NodeFalse();
-        ResetNode();
+        NodeReset();
     }
 
-    private void ResetNode()
+    public override void NodeReset()
     {
+        base.NodeReset();
+
         _isPressing = false;
         _currentTime = 0;
         _currentParticleSpawnTime = 0;

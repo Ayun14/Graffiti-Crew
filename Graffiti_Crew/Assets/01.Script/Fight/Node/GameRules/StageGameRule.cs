@@ -10,6 +10,7 @@ public abstract class StageGameRule : Observer<GameStateController>
     [HideInInspector] public bool isTurotial = false; // Input
 
     public StageRuleType stageRule;
+    protected StageType _stageType;
 
     // Children
     protected NodeJudgement _nodeJudgement;
@@ -61,6 +62,7 @@ public abstract class StageGameRule : Observer<GameStateController>
         stageResult = dataController.stageData.stageResult;
         _startSprite = dataController.stageData.memberGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
+        _stageType = dataController.stageData.stagetype;
 
         // Judgement And Spawner
         _nodeSpawner = Instantiate(dataController.stageData.spawnerPrefab, transform).GetComponentInChildren<NodeSpawner>();
@@ -101,10 +103,26 @@ public abstract class StageGameRule : Observer<GameStateController>
         if (stageResult != null && stageRule == StageRuleType.OneTouchRule)
             stageResult.value++;
 
+        // Spray
+        if (_stageType == StageType.Activity)
+            _sprayController.AddSprayAmount(-30f);
+
+        // Combo
+        //_comboController.FailCombo();
+
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, UnityEngine.Random.Range(0.8f, 1.2f));
+
         mySubject.InvokeNodeFailEvent();
-        _comboController.FailCombo();
+    }
+
+    public void PlayerLoseCheck()
+    {
+        if (_stageType == StageType.Activity)
+        {
+            mySubject.SetWhoIsWin(false);
+            mySubject.ChangeGameState(GameState.Finish);
+        }
     }
 
     public async void AllNodeClear()
@@ -144,7 +162,7 @@ public abstract class StageGameRule : Observer<GameStateController>
     {
         if (mySubject.IsSprayEmpty == isEmpty) return;
 
-        _nodeJudgement.CurrentNodeFalse();
+        _nodeJudgement.CurrentNodeReset();
         mySubject.SetIsSprayEmpty(isEmpty);
     }
 
