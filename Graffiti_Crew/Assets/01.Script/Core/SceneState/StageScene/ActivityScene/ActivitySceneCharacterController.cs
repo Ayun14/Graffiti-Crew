@@ -140,6 +140,8 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         }
     }
 
+    #region Timeline
+
     public void RivalStartGraffiti()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
@@ -189,8 +191,16 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         }
     }
 
-    public void SetRivalAnimation(AnimationEnum animation)
+    public void RivalsGone()
     {
-        AnimationEvent.SetAnimation(2, animation);
+        foreach (Transform rivalTrm in _rivalTrmList)
+            rivalTrm.position = _escapeTrm.position;
     }
+
+    public void RivalsTalk()
+    {
+        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
+    }
+
+    #endregion
 }
