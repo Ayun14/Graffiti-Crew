@@ -3,9 +3,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -19,15 +16,10 @@ namespace AH.UI {
 
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
 
-        private DropdownField _saveSlotField;
-
         private Button _startBtn;
         private Button _settingBtn;
         private Button _exitBtn;
         
-        private string slotPath = "UI/Setting/Slots/";
-        private SlotSO[] slots;
-
         private VisualElement _fadeView;
 
         protected override void Start()
@@ -53,72 +45,22 @@ namespace AH.UI {
         protected override void Init() {
             base.Init();
             _viewModel = new TitleViewModel(_model as TitleModel);
-            slots = Resources.LoadAll<SlotSO>(slotPath);
         }
         protected override void SetupViews()
         {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
 
-            _saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
             _startBtn = root.Q<Button>("start-btn");
             _settingBtn = root.Q<Button>("setting-save-btn");
             _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
 
-            _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-
-
-            _saveSlotField.index = _viewModel.GetSlotIndex();
-
-            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
-#if UNITY_EDITOR
-                // 에디터에서만 지연 호출 사용
-                UnityEditor.EditorApplication.delayCall += () => {
-                    StyleDropdownItems();
-                };
-#else
-        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
-        StartCoroutine(StyleDropdownItemsNextFrame());
-#endif
-            });
-
         }
-
-
-        #region DropDown
-        private void StyleDropdownItems() {
-            var content = UIDocument.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
-            if (content != null) {
-                List<VisualElement> list = content.Query<VisualElement>(className: "unity-base-dropdown__item").ToList();
-                foreach (VisualElement item in list) {
-                    item.RegisterCallback<PointerEnterEvent>(evt => {
-                        item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-                    });
-                    item.RegisterCallback<PointerLeaveEvent>(evt => {
-                        item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
-                    });
-                }
-            }
-        }
-        private IEnumerator StyleDropdownItemsNextFrame() {
-            // 한 프레임 대기
-            yield return null;
-
-            // 스타일 적용
-            StyleDropdownItems();
-        }
-        private void ChangeSlot(ChangeEvent<string> evt) {
-            int index = _saveSlotField.index;
-            _viewModel.SetSlotIndex(index);
-            SlotSO selectSlot = slots[index];
-            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
-        } 
-        #endregion
 
         private async void Fade() {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
@@ -126,15 +68,6 @@ namespace AH.UI {
             string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
             SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
         }
-        private IEnumerator Routine() {
-            float delayTime = 0.73f;
-            
-            while(true){
-                yield return new WaitForSeconds(delayTime);
-                //_startBtnImg.ToggleInClassList("show-start-btn");
-            }
-        }
-
         #region Handle
         private void PressAnyKey(AfterExecution execution) {
             ClickStartBtn(null);

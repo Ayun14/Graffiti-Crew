@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7043149567133893278}
   - component: {fileID: 867232236196213010}
+  - component: {fileID: 870815199134002710}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -246,12 +247,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff36c4fbcd6fead4eb7ba2b3e9eb0f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadStageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
+  _sprayGauage: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+--- !u!114 &870815199134002710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136472073327467728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44388d47746401e4a8ce790837927ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
   _languageIndexSO: {fileID: 11400000, guid: b74400b656663e7418170f68a554ef69, type: 2}
   _bgmData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
-  _sfxData: {fileID: 11400000, guid: db2774fc806202640b622319fc7ab2b2, type: 2}
-  _loadStageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
-  _sprayGauage: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _sfxData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
+  _saveDataSlotIndex: {fileID: 11400000, guid: 550c69bd881da074c8d5a37c3e26d200, type: 2}
 --- !u!1 &8216011376782922131
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 867232236196213010}
+  _settingModel: {fileID: 870815199134002710}
   _inputReaderSO: {fileID: 11400000, guid: 0ef0000522ef6bc48b728bcef3549823, type: 2}
 --- !u!1 &8711560502352080399
 GameObject:

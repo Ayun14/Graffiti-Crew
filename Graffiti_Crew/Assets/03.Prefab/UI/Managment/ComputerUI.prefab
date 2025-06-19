@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502161316141730209}
   - component: {fileID: 807827977466493873}
+  - component: {fileID: 1370267967720155842}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -44,10 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67c0e21862de9c449944786295bbf5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
-  _languageIndexSO: {fileID: 11400000, guid: b74400b656663e7418170f68a554ef69, type: 2}
-  _bgmData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
-  _sfxData: {fileID: 11400000, guid: db2774fc806202640b622319fc7ab2b2, type: 2}
   _stageDescription: {fileID: 11400000, guid: 7208fb9e2d9e64f4981357790ff69f63, type: 2}
   _saveStageDatas:
   - {fileID: 11400000, guid: 32f76fd36caace44b8ce8fd9a4d9dc1e, type: 2}
@@ -56,6 +53,23 @@ MonoBehaviour:
   _categorySO: {fileID: 11400000, guid: e9086ee150646934bb632f506192d379, type: 2}
   _descriptionSO: {fileID: 11400000, guid: 8ac528e931fbede4ca6a0eb447c6af80, type: 2}
   _loadStageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
+--- !u!114 &1370267967720155842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116335066550466700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44388d47746401e4a8ce790837927ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
+  _languageIndexSO: {fileID: 11400000, guid: b74400b656663e7418170f68a554ef69, type: 2}
+  _bgmData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
+  _sfxData: {fileID: 11400000, guid: e57a86c2f993cfe45afe7350ada7135b, type: 2}
+  _saveDataSlotIndex: {fileID: 11400000, guid: 550c69bd881da074c8d5a37c3e26d200, type: 2}
 --- !u!1 &7911590351653272263
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,4 +136,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 807827977466493873}
+  _settingModel: {fileID: 1370267967720155842}
   _inputReaderSO: {fileID: 11400000, guid: 0ef0000522ef6bc48b728bcef3549823, type: 2}

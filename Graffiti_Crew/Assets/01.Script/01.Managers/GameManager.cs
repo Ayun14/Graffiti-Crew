@@ -79,6 +79,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void ChangeSlot(SlotSO slot)
     {
         currentSlot = slot;
+        SaveDataEvents.ChangeSlotEvent?.Invoke();
     }
 
     #region Cursor
