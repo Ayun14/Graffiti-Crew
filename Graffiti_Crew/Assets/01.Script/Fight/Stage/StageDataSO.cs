@@ -41,7 +41,10 @@ public class StageDataSO : ScriptableObject
     [Header("Rival Prefab")]
     public List<Transform> rivalPrefabList;
 
-    [Header("-------FightStage-------")]
+    [Header("-------Activity Stage-------")]
+    public bool isOnPolice;
+
+    [Header("-------Fight Stage-------")]
     [Header("Rival Graffiti")]
     public List<Sprite> rivalGraffiti;
     public int rivalClearTime; // √  ¥‹¿ß

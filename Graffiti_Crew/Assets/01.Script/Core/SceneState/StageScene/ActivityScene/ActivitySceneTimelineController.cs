@@ -2,13 +2,16 @@ using AH.UI.Events;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class ActivitySceneTimelineController : Observer<GameStateController>
+public class ActivitySceneTimelineController : Observer<GameStateController>, INeedLoding
 {
     [Header("Timeline")]
     [SerializeField] private PlayableDirector _countdownTimeline;
     private PlayableDirector _startTimeline;
     private PlayableDirector _finishTimeline;
-    private PlayableDirector _activityEndTimeline;
+    private PlayableDirector _activityEndTimelinePolice;
+    private PlayableDirector _activityEndTimelineNormal;
+
+    private bool _isOnPolice;
 
     private void Awake()
     {
@@ -16,12 +19,20 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
 
         _startTimeline = transform.Find("ActivityStartTimeline").GetComponent<PlayableDirector>();
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
-        _activityEndTimeline = transform.Find("ActivityEndTimeline").GetComponent<PlayableDirector>();
+        _activityEndTimelineNormal = transform.Find("ActivityEndTimeline_Normal").GetComponent<PlayableDirector>();
+        _activityEndTimelinePolice = transform.Find("ActivityEndTimeline_Police").GetComponent<PlayableDirector>();
     }
 
     private void OnDestroy()
     {
         Detach();
+    }
+
+    public void LodingHandle(DataController dataController)
+    {
+        _isOnPolice = dataController.stageData.isOnPolice;
+
+        dataController.SuccessGiveData();
     }
 
     public override void NotifyHandle()
@@ -54,7 +65,9 @@ public class ActivitySceneTimelineController : Observer<GameStateController>
             else if (mySubject.GameState == GameState.Result)
             {
                 UIAnimationEvent.SetFilmDirectingEvent(true);
-                _activityEndTimeline.Play();
+
+                PlayableDirector playable = _isOnPolice ? _activityEndTimelinePolice : _activityEndTimelineNormal;
+                playable.Play();
             }
         }
     }

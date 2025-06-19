@@ -204,7 +204,7 @@ public class FightSceneUIController : Observer<GameStateController>
         _blindMat.SetFloat(_lengthPower, Random.Range(3.5f, 5f));
 
         // Color
-        string blindColorString = isEgg ? "#ECE9E2" : "#E14722";
+        string blindColorString = isEgg ? "#FFEAAD" : "#E14722";
         if (ColorUtility.TryParseHtmlString(blindColorString, out Color blindColor))
             _blindMat.SetColor(_blindColor, blindColor);
 
