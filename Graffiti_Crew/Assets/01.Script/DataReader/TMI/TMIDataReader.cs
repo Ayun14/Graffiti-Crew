@@ -11,28 +11,26 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public struct SprayData
+public struct TMIData
 {
     public string id;
-    public string root;
-    public string num;
+    public string tmi;
 
-    public SprayData(string id, string root, string num)
+    public TMIData(string id, string tmi)
     {
         this.id = id;
-        this.root = root;
-        this.num = num;
+        this.tmi = tmi;
     }
 }
 
-[CreateAssetMenu(fileName = "SprayReader", menuName = "SO/DataReader/SprayDataReader", order = int.MaxValue)]
-public class SprayDataReader : DataReaderBase
+[CreateAssetMenu(fileName = "TMIReader", menuName = "SO/DataReader/TMIDataReader", order = int.MaxValue)]
+public class TMIDataReader : DataReaderBase
 {
     [Header("스프레드 시트에서 불러온 데이터")]
-    [SerializeField] public List<SprayData> SprayList = new List<SprayData>();
+    [SerializeField] public List<TMIData> SprayList = new List<TMIData>();
     internal void UpdateStats(List<GSTU_Cell> list)
     {
-        string id = null, root = null, num = null;
+        string id = null, tmi = null;
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -41,40 +39,25 @@ public class SprayDataReader : DataReaderBase
                 case "ID":
                     id = list[i].value;
                     break;
-                case "Root":
-                    root = list[i].value;
-                    break;
-                case "Num":
-                    num = list[i].value;
+                case "TMI":
+                    tmi = list[i].value;
                     break;
             }
         }
 
-        SprayList.Add(new SprayData(id, root, num));
-    }
-
-    public AdmissionTicket[] ConversionSprayData(int i) 
-    {
-        List<AdmissionTicket> array = new List<AdmissionTicket>();
-        AdmissionTicket ticket = new AdmissionTicket();
-        ticket.ticketItem = Resources.Load(SprayList[i].root) as ProductSO;
-        if (SprayList[i].num != string.Empty) {
-            ticket.count = int.Parse(SprayList[i].num);
-            array.Add(ticket);
-        }
-        return array.ToArray();
+        SprayList.Add(new TMIData(id, tmi));
     }
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(SprayDataReader))]
+[CustomEditor(typeof(TMIDataReader))]
 public class SprayDataReaderEditor : Editor
 {
-    SprayDataReader data;
+    TMIDataReader data;
 
     void OnEnable()
     {
-        data = (SprayDataReader)target;
+        data = (TMIDataReader)target;
     }
 
     public override void OnInspectorGUI()

@@ -1,11 +1,10 @@
 using AH.SaveSystem;
 using AH.UI.Events;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections;
 
 public abstract class DataController : Observer<GameStateController>
 {
@@ -13,6 +12,7 @@ public abstract class DataController : Observer<GameStateController>
     [HideInInspector] public StageDataSO stageData;
 
     [Header("Loding UI")]
+    [SerializeField] private DataReaderBase _tmiDataReader;
     [SerializeField] private GameObject _lodingPanel;
     private Slider _lodingSlider;
 
@@ -69,11 +69,14 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
-            StartCoroutine(SliderUpdateRoutine(1f, Random.Range(0.4f, 0.8f)));
+            StartCoroutine(LodingRoutine(1f, Random.Range(0.4f, 0.8f)));
     }
 
-    private IEnumerator SliderUpdateRoutine(float value, float time)
+    private IEnumerator LodingRoutine(float value, float time)
     {
+        // TODO: Set TMI
+
+        // Slider Update
         float currentTime = 0;
         while (currentTime < time)
         {
