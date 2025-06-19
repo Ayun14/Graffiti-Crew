@@ -1,86 +1,20 @@
-.start-btn {
-    background-image: url("project://database/Assets/02.Sprite/UI/Title/title-start.png?fileID=21300000&guid=fbf06f54ed58b3f4fa9847d7dfe2b8c1&type=3#title-start");
-    width: 460px;
+.title-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/button-hover.png?fileID=411891051&guid=f36afc027b22fed4c8ddbeca218ef984&type=3#button-hover");
     height: 105px;
-    margin-bottom: 20px;
-    opacity: 0;
-    transition-duration: 0.7s;
-}
-
-.show-start-btn {
-    opacity: 1;
-}
-
-.setting-btn {
-    background-image: url("project://database/Assets/02.Sprite/UI/Title/Untitled-1.png?fileID=411891051&guid=f36afc027b22fed4c8ddbeca218ef984&type=3#Untitled-1_0");
-    height: 105px;
-    width: 400px;
+    width: 600px;
     transition-duration: 0.2s;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgb(223, 223, 223);
 }
 
-.setting-btn:hover {
+.title-btn:hover {
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.5);
     color: rgb(255, 255, 255);
     background-color: rgba(141, 141, 141, 0);
-}
-
-.exit-btn {
-    background-image: url("project://database/Assets/02.Sprite/UI/Title/Untitled-1.png?fileID=411891051&guid=f36afc027b22fed4c8ddbeca218ef984&type=3#Untitled-1_0");
-    height: 105px;
-    width: 400px;
-    transition-duration: 0.2s;
-    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
-}
-
-.exit-btn:hover {
-    border-left-color: rgba(149, 149, 149, 0);
-    border-right-color: rgba(149, 149, 149, 0);
-    border-top-color: rgba(149, 149, 149, 0);
-    border-bottom-color: rgba(149, 149, 149, 0);
-    -unity-background-image-tint-color: rgba(255, 45, 45, 0.5);
-    color: rgb(224, 224, 224);
-}
-
-#saveSlot-dropdownField > VisualElement {
-    margin-left: 0;
-    background-color: rgba(0, 0, 0, 0);
-    border-left-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-}
-
-#saveSlot-dropdownField > .unity-base-field__input > PopupTextElement {
-    -unity-text-align: middle-center;
-    margin-right: 0;
-    height: 90%;
-}
-
-.unity-base-field > .unity-base-field__input > VisualElement {
-    background-image: none;
-    width: 0;
-    height: 0;
-}
-
-.unity-base-dropdown__container-inner {
-    background-color: rgba(0, 0, 0, 0);
-    border-left-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-}
-
-.unity-base-dropdown__item-content {
-    width: 100%;
-}
-
-.unity-base-dropdown__label {
-    width: 100%;
-    -unity-text-align: middle-center;
-}
-
-.unity-base-dropdown__item-content:hover {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0);
 }

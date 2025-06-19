@@ -1,17 +1,39 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/SettingView_USS.uss?fileID=7433441132597879392&amp;guid=30ddbd43ef509f64fb111766fe63b09c&amp;type=3#SettingView_USS" />
-    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-        <AH.UI.CustomElement.SettingViewElement class="setting-container">
-            <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
-                <engine:Label text="BGM" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;);" />
-                <engine:Slider high-value="100" name="bgm-slider" value="100" class="slider grow-size-40" />
-            </engine:VisualElement>
-            <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
-                <engine:Label text="SFX" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Italic.ttf?fileID=12800000&amp;guid=31a84c9dad9a1cd438ba1f6b22cb7abd&amp;type=3#Opsilon-Italic&quot;);" />
-                <engine:Slider value="100" high-value="100" name="vfx-slider" class="slider grow-size-40" />
-            </engine:VisualElement>
-        </AH.UI.CustomElement.SettingViewElement>
+    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5); flex-direction: row;">
+        <engine:VisualElement name="category-btn-content" style="height: 100%; flex-basis: 20%; min-width: 350px; justify-content: flex-end; padding-top: 15px; padding-bottom: 15px;">
+            <engine:Button text="오디오" name="audio-btn" class="grow-size-35 setting-category-btn" />
+            <engine:Button text="저장된 데이터" name="save-btn" class="grow-size-35 setting-category-btn" />
+            <engine:Button text="언어" name="language-btn" class="grow-size-35 setting-category-btn" />
+        </engine:VisualElement>
+        <engine:VisualElement name="catgory-content" style="flex-grow: 1; height: 100%; padding-top: 200px; padding-right: 80px; padding-bottom: 0; padding-left: 80px;">
+            <engine:ScrollView horizontal-scroller-visibility="Hidden" style="flex-grow: 1;">
+                <engine:VisualElement name="audio-content" style="flex-grow: 1; display: none;">
+                    <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
+                        <engine:Label text="BGM" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;);" />
+                        <engine:Slider high-value="100" name="bgm-slider" value="100" class="slider grow-size-40" />
+                    </engine:VisualElement>
+                    <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
+                        <engine:Label text="SFX" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Italic.ttf?fileID=12800000&amp;guid=31a84c9dad9a1cd438ba1f6b22cb7abd&amp;type=3#Opsilon-Italic&quot;);" />
+                        <engine:Slider value="100" high-value="100" name="vfx-slider" class="slider grow-size-40" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+                <engine:VisualElement name="save-content" style="flex-grow: 1;">
+                    <engine:DropdownField name="saveSlot-dropdownField" index="0" choices="슬롯1,슬롯2,슬롯3" class="btn grow-size-60" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=2800000&amp;guid=3511ea8880556434293e3b1898a40791&amp;type=3#dropdown&quot;); -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/HYShortSamul-Medium.ttf?fileID=12800000&amp;guid=af8ccb50890847043b97c53b7b118f72&amp;type=3#HYShortSamul-Medium&quot;); color: rgb(255, 255, 255); display: flex; width: 564px;" />
+                </engine:VisualElement>
+                <engine:VisualElement name="language-content" style="flex-grow: 1; display: none;">
+                    <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
+                        <engine:Label text="BGM" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;);" />
+                        <engine:Slider high-value="100" name="bgm-slider" value="100" class="slider grow-size-40" />
+                    </engine:VisualElement>
+                    <engine:VisualElement style="align-items: flex-start; width: 70%; height: 30%; margin-bottom: 50px;">
+                        <engine:Label text="SFX" class="grow-size-60" style="-unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Italic.ttf?fileID=12800000&amp;guid=31a84c9dad9a1cd438ba1f6b22cb7abd&amp;type=3#Opsilon-Italic&quot;);" />
+                        <engine:Slider value="100" high-value="100" name="vfx-slider" class="slider grow-size-40" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:ScrollView>
+        </engine:VisualElement>
     </engine:VisualElement>
-    <engine:Button name="close-btn" style="position: absolute; width: 60px; height: 60px; top: 17%; left: 83%; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&amp;guid=96fb7a4cfe08a314680e3994dd1165e1&amp;type=3#selectStage-exit&quot;);" />
+    <engine:Button name="close-btn" style="position: absolute; width: 60px; height: 60px; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&amp;guid=96fb7a4cfe08a314680e3994dd1165e1&amp;type=3#selectStage-exit&quot;); right: 1%; top: 1.5%;" />
 </engine:UXML>
