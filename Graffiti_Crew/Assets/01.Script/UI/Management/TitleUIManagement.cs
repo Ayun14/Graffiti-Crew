@@ -21,10 +21,9 @@ namespace AH.UI {
 
         private DropdownField _saveSlotField;
 
-        private VisualElement _startBtn;
-        private VisualElement _settingBtn;
-        private VisualElement _exitBtn;
-        private VisualElement _deleteSaveBtn;
+        private Button _startBtn;
+        private Button _settingBtn;
+        private Button _exitBtn;
         
         private string slotPath = "UI/Setting/Slots/";
         private SlotSO[] slots;
@@ -62,38 +61,32 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
 
-            //_saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
-            _startBtn = root.Q<VisualElement>("start-btn");
-            _settingBtn = root.Q<VisualElement>("setting-btn");
-            _exitBtn = root.Q<VisualElement>("exit-btn");
-            _deleteSaveBtn = root.Q<VisualElement>("delete-data-btn");
+            _saveSlotField = root.Q<DropdownField>("saveSlot-dropdownField");
+            _startBtn = root.Q<Button>("start-btn");
+            _settingBtn = root.Q<Button>("setting-save-btn");
+            _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
 
-            //_saveSlotField.RegisterValueChangedCallback(ChangeSlot);
+            _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
-            _deleteSaveBtn.RegisterCallback<ClickEvent>(ClickDeleteSaveDataBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
 
 
-            //_saveSlotField.index = _viewModel.GetSlotIndex();
+            _saveSlotField.index = _viewModel.GetSlotIndex();
 
-            // 드롭다운 아이템들 스타일 접근
-//            _saveSlotField.RegisterCallback<PointerDownEvent>(evt =>
-//            {
-//#if UNITY_EDITOR
-//                // 에디터에서만 지연 호출 사용
-//                UnityEditor.EditorApplication.delayCall += () =>
-//                {
-//                    StyleDropdownItems();
-//                };
-//#else
-//        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
-//        StartCoroutine(StyleDropdownItemsNextFrame());
-//#endif
-//            });
+            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
+#if UNITY_EDITOR
+                // 에디터에서만 지연 호출 사용
+                UnityEditor.EditorApplication.delayCall += () => {
+                    StyleDropdownItems();
+                };
+#else
+        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
+        StartCoroutine(StyleDropdownItemsNextFrame());
+#endif
+            });
 
-            //StartCoroutine(Routine());
         }
 
 
