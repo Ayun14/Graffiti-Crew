@@ -39,7 +39,7 @@ namespace AH.UI {
 
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
             _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _hangoutViewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;

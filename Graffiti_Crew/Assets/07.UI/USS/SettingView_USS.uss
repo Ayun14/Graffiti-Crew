@@ -1,29 +1,16 @@
-.setting-container {
-    width: 75%;
-    height: 70%;
-    background-color: rgba(255, 255, 255, 0);
-    background-image: url("project://database/Assets/02.Sprite/UI/Setting/setting-background.png?fileID=21300000&guid=a8614ea9e23e6af4593a792ddf37c572&type=3#setting-background");
-    border-left-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-    padding-top: 6%;
-    padding-right: 2%;
-    padding-left: 2%;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 4%;
+.slider {
+    height: 90px;
+    flex-grow: 0;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.unity-slider > .unity-slider__label {
-    color: rgb(255, 255, 255);
-}
-
-.unity-slider > .unity-slider__input > .unity-base-slider__drag-container {
+.slider > .unity-slider__input > .unity-base-slider__drag-container {
     height: 100%;
 }
 
-.unity-slider > .unity-slider__input > .unity-base-slider__drag-container > .unity-base-slider__tracker {
+.slider > .unity-slider__input > .unity-base-slider__drag-container > .unity-base-slider__tracker {
     height: 26px;
     top: 43%;
     background-color: rgb(0, 0, 0);
@@ -33,7 +20,7 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.unity-slider > .unity-slider__input > .unity-base-slider__drag-container > .unity-base-slider__dragger {
+.slider > .unity-slider__input > .unity-base-slider__drag-container > .unity-base-slider__dragger {
     height: 75px;
     width: 40px;
     top: 20%;
@@ -45,19 +32,48 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.slider {
-    height: 90px;
-    flex-grow: 0;
+.--------------------- {
+}
+
+#saveSlot-dropdownField > VisualElement {
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#saveSlot-dropdownField > .unity-base-field__input > PopupTextElement {
+    -unity-text-align: middle-center;
+    margin-right: 0;
+    height: 90%;
+}
+
+.unity-base-dropdown__container-inner {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.unity-base-dropdown__item-content {
     width: 100%;
-    margin-top: 15px;
-    margin-bottom: 15px;
+}
+
+.unity-base-dropdown__label {
+    width: 100%;
+    -unity-text-align: middle-center;
+}
+
+.unity-base-dropdown__item-content:hover {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .unity-popup-field > .unity-label {
     flex-basis: 250px;
-}
-
-.unity-base-dropdown__container {
 }
 
 .dropdownField {
@@ -96,22 +112,21 @@
     display: none;
 }
 
-.goToTitle-btn {
-    background-image: url("project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&guid=3511ea8880556434293e3b1898a40791&type=3#dropdown_0");
-    width: 45%;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    padding-top: 10px;
-    transition-duration: 0.2s;
+.--------------------- {
 }
 
-.goToTitle-btn:hover {
-    background-image: url("project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&guid=3511ea8880556434293e3b1898a40791&type=3#dropdown_0");
-    width: 45%;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    padding-top: 10px;
-    -unity-background-image-tint-color: rgb(47, 255, 255);
+.setting-category-btn {
+    transition-duration: 0.2s;
+    height: 60px;
+    flex-grow: 0;
+    margin-top: 5px;
+    margin-right: 0;
+    margin-bottom: 5px;
+    margin-left: 0;
+}
+
+.setting-category-btn:hover {
+}
+
+.--------------------- {
 }

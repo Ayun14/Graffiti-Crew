@@ -32,7 +32,7 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
             _dialougeView.Show();
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {

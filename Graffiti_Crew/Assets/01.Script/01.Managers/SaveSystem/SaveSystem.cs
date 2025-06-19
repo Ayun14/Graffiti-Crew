@@ -30,11 +30,13 @@ namespace AH.SaveSystem {
         }
         void OnEnable() {
             SaveDataEvents.SaveGameEvent += SaveGameData;
+            SaveDataEvents.ChangeSlotEvent += CreateSlotData;
             SaveDataEvents.DeleteSaveDataEvent += DeleteSaveData;
         }
 
         void OnDisable() {
             SaveDataEvents.SaveGameEvent -= SaveGameData;
+            SaveDataEvents.ChangeSlotEvent -= CreateSlotData;
             SaveDataEvents.DeleteSaveDataEvent -= DeleteSaveData;
         }
         void OnApplicationQuit() {
@@ -55,6 +57,9 @@ namespace AH.SaveSystem {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
             GameManager.SetSlot(); // ΩΩ∑‘ ºº∆√
+            CreateSlotData();
+        }
+        private void CreateSlotData() {
             // ΩΩ∑‘ ∫∞ ¿¸√º µ•¿Ã≈Õ ª—∏Æ∞Ì
             SetData(currentSlot, slotGameDataList);
             LoadData(currentSlot, slotGameDataList);

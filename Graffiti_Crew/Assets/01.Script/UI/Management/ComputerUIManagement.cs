@@ -61,7 +61,7 @@ namespace AH.UI {
             _selectChapterView = new SelectChapterView(root.Q<VisualElement>("SelectChapterView"), _viewModel);
             _storeView = new StoreView(root.Q<VisualElement>("StoreView"), _viewModel);
             _stageDescriptionView = new StageDescriptionView(root.Q<VisualElement>("StageDescriptionView"), _viewModel);
-            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _viewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
 
             _itemCountView = new ItemCountView(root.Q<VisualElement>("ItemCountView"), _viewModel);
             _notEnoughView = new NotEnoughView(root.Q<VisualElement>("not-enough-view"), _viewModel);

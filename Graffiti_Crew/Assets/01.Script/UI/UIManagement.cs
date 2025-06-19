@@ -3,6 +3,7 @@ using AH.UI.Views;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
+using AH.UI.ViewModels;
 
 namespace AH.UI {
     public class ViewData {
@@ -22,10 +23,12 @@ namespace AH.UI {
         public UIDocument UIDocument => _uiDocument;
         protected Stack<ViewData> _viewStack = new Stack<ViewData>();
 
-
         private VisualElement _fadeView;
+        protected SettingViewModel _settingViewModel;
 
         [SerializeField] protected Model _model;
+        [SerializeField] protected SettingModel _settingModel;
+
         [SerializeField] protected InputReaderSO _inputReaderSO;
 
         protected virtual void Start() {
@@ -50,6 +53,8 @@ namespace AH.UI {
         }
         protected virtual void Init() {
             _uiDocument = GetComponent<UIDocument>();
+
+            _settingViewModel = new SettingViewModel(_settingModel);
         }
         protected virtual void SetupViews() {
             _fadeView = _uiDocument.rootVisualElement.Q<VisualElement>("fade-view");

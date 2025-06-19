@@ -1,12 +1,22 @@
 .result-container {
-    width: 100%;
+    width: 25%;
     height: 100%;
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/ResultView/result-background.png?fileID=21300000&guid=5a39e53bca4bb9942b3c12ad1e367b0f&type=3#result-background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/ResultView/result-background.png?fileID=1063969515&guid=268cfa4f76fbe7b41b50fadb7453c4b4&type=3#result-background");
     opacity: 0;
-    transition-property: top, opacity, right;
-    transition-duration: 0.7s, 0.5s, 0.7s;
+    transition-property: opacity, right;
+    transition-duration: 0.5s, 0.5s;
     position: absolute;
-    right: 100%;
+    right: -40%;
+    align-items: flex-end;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
+.result-in {
+    opacity: 1;
+    position: absolute;
+    right: 0;
 }
 
 .next-btn {
@@ -26,13 +36,49 @@
     scale: 1.1 1.1;
 }
 
-.star {
-    width: 280px;
-    height: 280px;
-}
-
 .result-in {
     opacity: 1;
     position: absolute;
     right: 0;
+}
+
+.star {
+    width: 215px;
+    height: 215px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.small-btn {
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    width: 171px;
+    height: 58px;
+    left: 7%;
+    transition-duration: 0.2s;
+}
+
+.small-btn:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(90, 178, 255);
+}
+
+.big-btn {
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    width: 264px;
+    height: 102px;
+    right: -44%;
+    transition-duration: 0.2s;
+}
+
+.big-btn:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(255, 54, 54);
 }
