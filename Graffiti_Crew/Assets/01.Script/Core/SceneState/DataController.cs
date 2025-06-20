@@ -3,6 +3,7 @@ using AH.UI.Events;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,9 @@ public abstract class DataController : Observer<GameStateController>
     [HideInInspector] public StageDataSO stageData;
 
     [Header("Loding UI")]
-    [SerializeField] private DataReaderBase _tmiDataReader;
+    [SerializeField] private TMIDataReader _tmiDataReader;
     [SerializeField] private GameObject _lodingPanel;
+    private TextMeshProUGUI _tmiText;
     private Slider _lodingSlider;
 
     private int _lodingCnt = 0;
@@ -24,6 +26,7 @@ public abstract class DataController : Observer<GameStateController>
         Attach();
         StageEvent.ClickNectBtnEvent += GoNextStage;
 
+        _tmiText = _lodingPanel.transform.Find("TMI").transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _lodingSlider = _lodingPanel.GetComponentInChildren<Slider>();
         _lodingSlider.value = 0;
     }
@@ -75,17 +78,23 @@ public abstract class DataController : Observer<GameStateController>
     private IEnumerator LodingRoutine(float value, float time)
     {
         // TODO: Set TMI
+        int randIndex = Random.Range(0, _tmiDataReader.SprayList.Count);
+        if (_tmiText != null)
+            _tmiText.text = _tmiDataReader.SprayList[randIndex].tmi;
 
-        // Slider Update
-        float currentTime = 0;
-        while (currentTime < time)
+        if (_lodingSlider != null)
         {
-            currentTime += Time.deltaTime;
-            float t = currentTime / time;
-            _lodingSlider.value = Mathf.Lerp(0, value, t);
-            yield return null;
+            // Slider Update
+            float currentTime = 0;
+            while (currentTime < time)
+            {
+                currentTime += Time.deltaTime;
+                float t = currentTime / time;
+                _lodingSlider.value = Mathf.Lerp(0, value, t);
+                yield return null;
+            }
+            _lodingSlider.value = value;
         }
-        _lodingSlider.value = value;
         FinishGiveData();
     }
             
@@ -95,8 +104,6 @@ public abstract class DataController : Observer<GameStateController>
 
     protected void GoNextStage()
     {
-        // 클리어 여부
-
         if (stageData.nextChapter != string.Empty && stageData.nextStage != string.Empty)
         {
             stageSO.chapter = stageData.nextChapter;

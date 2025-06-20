@@ -163,7 +163,6 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         if (_rivalSliderValueSO.Value >= _rivalSliderValueSO.max)
         {
-            Debug.Log("∂Û¿Ãπ˙¿Ã ¿Ã∞Â¥Ÿ∞Ì");
             SetGraffiti();
             mySubject.SetWhoIsWin(false);
             mySubject.ChangeGameState(GameState.Finish);
