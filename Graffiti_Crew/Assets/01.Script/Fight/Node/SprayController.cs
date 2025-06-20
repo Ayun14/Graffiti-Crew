@@ -25,6 +25,7 @@ public class SprayController : MonoBehaviour
 
     [Header("Spray")]
     [SerializeField] private SliderValueSO _spraySliderValueSO;
+    [SerializeField] private SliderValueSO _sprayCanValueSO;
     [SerializeField] private float _maxSprayValue;
     [SerializeField] private GameObject _sprayCanPrefab;
     [SerializeField] private float _forcePower = 2f;
@@ -127,6 +128,10 @@ public class SprayController : MonoBehaviour
 
     private IEnumerator SprayEmpty()
     {
+        // Spray Can
+        if (--_sprayCanValueSO.Value == _sprayCanValueSO.min)
+            _stageGameRule.PlayerLoseCheck();
+
         // 스프레이 통 떨구기
         Rigidbody rigid = Instantiate(_sprayCanPrefab, transform).GetComponent<Rigidbody>();
         Vector3 randomOffset = new Vector3(
@@ -150,8 +155,6 @@ public class SprayController : MonoBehaviour
         SetCursor(_sprayCursor);
         _stageGameRule.SetSprayEmpty(false);
     }
-
-
 
     private void ResetSpray()
     {

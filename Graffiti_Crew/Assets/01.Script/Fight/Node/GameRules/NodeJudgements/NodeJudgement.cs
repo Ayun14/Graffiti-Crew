@@ -58,7 +58,7 @@ public abstract class NodeJudgement : MonoBehaviour
         _stageGameRule.NodeFalse();
     }
 
-    public void CurrentNodeFalse() => currentNode?.NodeFalse();
+    public void CurrentNodeReset() => currentNode?.NodeReset();
 
     #endregion
 }

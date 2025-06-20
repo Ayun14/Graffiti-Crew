@@ -1,7 +1,9 @@
 using AH.SaveSystem;
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,8 +14,6 @@ namespace AH.UI.Views {
 
         private VisualElement _cResultPanel;
         private VisualElement _lResultPanel;
-
-        private Button[] _nextBtns;
 
         public ResultView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel = viewModel as FightViewModel;
@@ -32,27 +32,14 @@ namespace AH.UI.Views {
             _cResultPanel = topElement.Q<VisualElement>("clear-result-container");
             _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
 
-            _nextBtns = topElement.Query<Button>("next-btn").ToList().ToArray();
         }
-        protected override void RegisterButtonCallbacks() {
-            base.RegisterButtonCallbacks();
-            for(int i = 0; i < _nextBtns.Length; i++) {
-                _nextBtns[i].RegisterCallback<ClickEvent>(ClickNextBtn);
-            }
-        }
-        protected override void UnRegisterButtonCallbacks() {
-            base.UnRegisterButtonCallbacks();
-            for (int i = 0; i < _nextBtns.Length; i++) {
-                _nextBtns[i].UnregisterCallback<ClickEvent>(ClickNextBtn);
-            }
-        }
-
         private void FullScreen(bool result) {
             if (result) {
-                SetStar();
+                ClearPanel();
                 _cResultPanel.AddToClassList("result-in");
             }
             else {
+                FailPanel();
                 _lResultPanel.AddToClassList("result-in");
             }
         }
@@ -80,8 +67,32 @@ namespace AH.UI.Views {
                 stars[i].RemoveFromClassList("star");
             }
         }
+
+        private void ClearPanel() {
+            SetStar();
+            Button homeBtn = _cResultPanel.Q<Button>("clear-btn");
+            Button nextBtn = _cResultPanel.Q<Button>("next-btn");
+
+            homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
+            nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
+        }
+        private void FailPanel() {
+            Button retryBtn = _cResultPanel.Q<Button>("retry-btn");
+            Button homeBtn = _cResultPanel.Q<Button>("clear-btn");
+
+            homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
+            retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
+        }
+
         private void ClickNextBtn(ClickEvent evt) {
             StageEvent.ClickNectBtnEvent?.Invoke();
+        }
+        private void ClickHomeBtn(ClickEvent evt) {
+            SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
+        }
+        private void ClickRetryBtn(ClickEvent evt) {
+            Debug.Log("이거 연결해야해");
+            //SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
     }
 }

@@ -37,7 +37,7 @@ public class LongNode : Node, INodeAction
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
 
-        ResetNode();
+        NodeReset();
         ConnectLine();
     }
 
@@ -184,7 +184,7 @@ public class LongNode : Node, INodeAction
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Spray_Long);
             }
 
-            ResetNode();
+            NodeReset();
         }
 
         CheckFollowingPath();
@@ -232,11 +232,13 @@ public class LongNode : Node, INodeAction
         base.NodeFalse();
 
         _judgement.NodeFalse();
-        ResetNode();
+        NodeReset();
     }
 
-    public void ResetNode()
+    public override void NodeReset()
     {
+        base.NodeReset();
+
         _isFollowingPath = false;
         _followLineRenderer.enabled = false;
         _currentTargetIndex = 0;
