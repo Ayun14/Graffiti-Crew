@@ -56,7 +56,7 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _categoryBtnList = topElement.Query<Button>(className : "setting-category-btn").ToList();
+            _categoryBtnList = topElement.Query<Button>(className: "setting-category-btn").ToList();
             var categoryContent = topElement.Q<VisualElement>("catgory-content");
             _categoryContentList = categoryContent.Children().ToList();
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
@@ -74,19 +74,6 @@ namespace AH.UI.Views {
 
             _saveSlotField.index = _settingViewModel.GetSlotIndex();
             //SetLanguageItems(false);
-
-
-            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
-#if UNITY_EDITOR
-                // 에디터에서만 지연 호출 사용
-                UnityEditor.EditorApplication.delayCall += () => {
-                    //StyleDropdownItems();
-                };
-#else
-        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
-        StartCoroutine(StyleDropdownItemsNextFrame());
-#endif
-            });
             ShowCategory(0);
         }
         protected override void RegisterButtonCallbacks() {
