@@ -23,6 +23,18 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         _activityEndTimelinePolice = transform.Find("ActivityEndTimeline_Police").GetComponent<PlayableDirector>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (mySubject.GameState == GameState.Timeline && _startTimeline.state == PlayState.Playing)
+            {
+                _startTimeline.Stop();
+                mySubject.ChangeGameState(GameState.Countdown);
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         Detach();
