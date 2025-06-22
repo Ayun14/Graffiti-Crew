@@ -149,27 +149,6 @@ namespace AH.UI.Views {
         #endregion
 
         #region DropDown
-        private void StyleDropdownItems() {
-            //var content = topElement.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
-            //if (content != null) {
-            //    List<VisualElement> list = content.Query<VisualElement>(className: "unity-base-dropdown__item").ToList();
-            //    foreach (VisualElement item in list) {
-            //        item.RegisterCallback<PointerEnterEvent>(evt => {
-            //            item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-            //        });
-            //        item.RegisterCallback<PointerLeaveEvent>(evt => {
-            //            item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
-            //        });
-            //    }
-            //}
-        }
-        private IEnumerator StyleDropdownItemsNextFrame() {
-            // 한 프레임 대기
-            yield return null;
-
-            // 스타일 적용
-            StyleDropdownItems();
-        }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
             _settingViewModel.SetSlotIndex(index);
