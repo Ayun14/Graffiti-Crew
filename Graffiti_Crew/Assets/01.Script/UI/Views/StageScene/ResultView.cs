@@ -70,7 +70,7 @@ namespace AH.UI.Views {
 
         private void ClearPanel() {
             SetStar();
-            Button homeBtn = _cResultPanel.Q<Button>("clear-btn");
+            Button homeBtn = _cResultPanel.Q<Button>("home-btn");
             Button nextBtn = _cResultPanel.Q<Button>("next-btn");
 
             homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
