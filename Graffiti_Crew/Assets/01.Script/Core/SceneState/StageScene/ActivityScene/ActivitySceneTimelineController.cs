@@ -65,7 +65,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             }
             else if (mySubject.GameState == GameState.Countdown)
             {
-                StageEvent.SetViewEvnet?.Invoke(false);
+                StageEvent.SetProgressEvnet?.Invoke(false);
 
                 _countdownTimeline?.Play();
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);

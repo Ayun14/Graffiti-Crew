@@ -45,7 +45,7 @@ public class FightSceneTimelineController : Observer<GameStateController>
             }
 
             if (mySubject.GameState == GameState.Countdown) {
-                StageEvent.SetViewEvnet?.Invoke(true);
+                StageEvent.SetProgressEvnet?.Invoke(true);
             }
 
             if (mySubject.GameState == GameState.Finish) {
