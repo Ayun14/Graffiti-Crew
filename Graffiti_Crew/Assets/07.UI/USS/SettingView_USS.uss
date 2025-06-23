@@ -32,19 +32,6 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.grow-size-50 {
-    flex-grow: 1;
-    font-size: 50px;
-    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=90f203b1904dc0547a8fc028e6a84c14&type=3#NotInter-Regular");
-    -unity-font-style: bold;
-}
-
-.grow-size-45 {
-    flex-grow: 1;
-    font-size: 45px;
-    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Paperlogy-4Regular.ttf?fileID=12800000&guid=39338fa6e5ae84f4b803037fc040b227&type=3#Paperlogy-4Regular");
-}
-
 .--------------------- {
 }
 
@@ -127,37 +114,52 @@
 
 .--------------------- {
 }
-
 .setting-category-btn {
     transition-duration: 0.2s;
-    height: 150px;
+    height: 100px;
     flex-grow: 0;
     margin-top: 5px;
     margin-right: 30px;
     margin-bottom: 5px;
     margin-left: 30px;
     -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Next%20Bravo.ttf?fileID=12800000&guid=7420d50e61d15a84682f87319d01f4fe&type=3#Next Bravo");
-    width: 330px;
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgb(30, 30, 30);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(240, 240, 239);
 }
-
 .setting-category-btn:hover {
-    -unity-background-image-tint-color: rgb(49, 48, 41);
+    color: rgb(240, 240, 239);
     scale: 1.05 1.05;
-    background-color: rgba(55, 65, 63, 0);
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgb(30, 30, 30);
 }
 
 .--------------------- {
 }
 
-.slider {
-    height: 90px;
+.quit-content-btn {
     flex-grow: 0;
-    width: 100%;
+    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&guid=6e2cf7f5846a18842a69b52f15b56fe5&type=3#Opsilon-Regular");
+    background-color: rgb(240, 240, 239);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 700px;
+    -unity-text-align: middle-center;
+    height: 160px;
     margin-top: 15px;
     margin-bottom: 15px;
+    transition-duration: 0.2s;
 }
+
+.quit-content-btn:hover {
+    background-color: rgb(255, 44, 44);
+    color: rgb(240, 240, 239);
+}
+

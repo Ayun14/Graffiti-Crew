@@ -38,6 +38,7 @@ namespace AH.UI.Views {
 
         private Button _goToTitleBtn;
         private Button _goToHangOutBtn;
+        private Button _exitGameBtn;
 
         private Button _closeBtn;
 
@@ -69,6 +70,7 @@ namespace AH.UI.Views {
 
             _goToTitleBtn = topElement.Q<Button>("title-btn");
             _goToHangOutBtn = topElement.Q<Button>("hangOut-btn");
+            _exitGameBtn = topElement.Q<Button>("exitGame-btn");
 
             _closeBtn = topElement.Q<Button>("close-btn");
 
@@ -88,6 +90,7 @@ namespace AH.UI.Views {
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.RegisterCallback<ClickEvent>(ClickGoToTitleBtn);
             _goToHangOutBtn.RegisterCallback<ClickEvent>(ClickGoToHangOutBtn);
+            _exitGameBtn.RegisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
@@ -101,6 +104,7 @@ namespace AH.UI.Views {
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.UnregisterCallback<ClickEvent>(ClickGoToTitleBtn);
             _goToHangOutBtn.UnregisterCallback<ClickEvent>(ClickGoToHangOutBtn);
+            _exitGameBtn.UnregisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
@@ -190,6 +194,9 @@ namespace AH.UI.Views {
         }
         private void ClickGoToHangOutBtn(ClickEvent evt) {
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
+        private void ClickExitGameBtn(ClickEvent evt) {
+            Application.Quit();
         }
     }
 }
