@@ -6,15 +6,19 @@ public class CutSceneController : MonoBehaviour
 {
     public bool isFinished = false;
 
-    [SerializeField] private SplashController _splashController;
+    private SplashController _splashController;
 
     [SerializeField] private Image _cutSceneImg;
 
+    private void Awake()
+    {
+        _splashController = GetComponent<SplashController>();
+    }
+
     public IEnumerator CutSceneRoutine(string cutSceneName, bool isShow)
     {
-        _splashController.isFinished = false;
         if (_cutSceneImg.sprite != null)
-            yield return StartCoroutine(_splashController.FadeOut(false, true));
+            yield return StartCoroutine(Fade(false));
 
         if (isShow)
         {
@@ -35,16 +39,23 @@ public class CutSceneController : MonoBehaviour
             }
         }
 
-        _splashController.isFinished = false;
         if (_cutSceneImg.sprite != null)
         {
-            yield return StartCoroutine(_splashController.FadeIn(false, true));
+            yield return StartCoroutine(Fade(true));
             if(!isShow)
                 _cutSceneImg.sprite = null;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
         isFinished = true;
+    }
+
+    private IEnumerator Fade(bool isFadeIn)
+    {
+        _splashController.isFinished = false;
+
+        if (isFadeIn)
+            yield return _splashController.FadeIn(false, true);
+        else
+            yield return _splashController.FadeOut(false, true);
     }
 }

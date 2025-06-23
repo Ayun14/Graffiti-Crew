@@ -70,11 +70,16 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
     private void DialogueEnd()
     {
+        StartCoroutine(HandleDialogueTransition());
+    }
+
+    private IEnumerator HandleDialogueTransition()
+    {
 
         if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
             _hangout.SetActive(false);
 
-        StartCoroutine(Fade(false));
+        yield return StartCoroutine(Fade(false));
 
         _dialogueNum++;
 
@@ -82,7 +87,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         {
             NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
 
-            StartCoroutine(Fade(true));
+            yield return StartCoroutine(Fade(true));
 
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Rain);
             GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Tutorial);
@@ -91,9 +96,9 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         }
         else if (_dialogueNum == 2)
         {
-            StartCoroutine(Fade(false));
+            yield return StartCoroutine(Fade(false));
             _level.SetActive(true);
-            StartCoroutine(Fade(true));
+            yield return StartCoroutine(Fade(true));
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }
@@ -105,36 +110,27 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
             _level.SetActive(false);
             _hangout.SetActive(true);
 
-            StartCoroutine(Fade(true));
+            yield return StartCoroutine(Fade(true));
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
         {
-            StartCoroutine(Fade(true));
+            _splashController.SetFade();
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
 
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
         }
     }
 
-
-    private IEnumerator Fade(bool _isFadeIn)
+    private IEnumerator Fade(bool isFadeIn)
     {
-        if (_splashController.IsFading) yield break;
+        _splashController.isFinished = false;
 
-        if (!_isFadeIn)
-        {
-            _splashController.isFinished = false;
-            StartCoroutine(_splashController.FadeIn(false, true));
-            yield return new WaitUntil(() => _splashController.isFinished);
-        }
+        if (isFadeIn)
+            yield return _splashController.FadeIn(false, true);
         else
-        {
-            _splashController.isFinished = false;
-            StartCoroutine(_splashController.FadeOut(false, true));
-            yield return new WaitUntil(() => _splashController.isFinished);
-        }
+            yield return _splashController.FadeOut(false, true);
     }
 
     public async void CheckClearNode()

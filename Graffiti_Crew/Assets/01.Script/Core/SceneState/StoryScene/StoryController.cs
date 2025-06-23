@@ -52,7 +52,14 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     private void DialogueEnd()
     {
-        StartCoroutine(Fade(false));
+        StartCoroutine(HandleDialogueTransition());
+    }
+
+    private IEnumerator HandleDialogueTransition()
+    {
+        yield return StartCoroutine(Fade(false));
+
+        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
         _levelPrefabs[_dialogueNum].SetActive(false);
 
@@ -61,42 +68,33 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         if (_dialogueNum <= _levelPrefabs.Count - 1)
             _levelPrefabs[_dialogueNum].SetActive(true);
 
-
         if (_dialogueNum == _storyDialogueSO.storyList.Count)
         {
+            yield return StartCoroutine(Fade(false));
+
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_After);
-
             mySubject.ChangeGameState(GameState.NextStage);
-        }
-        else
-        {
-            NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
-
-            StartCoroutine(Fade(true));
-
-            _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
+            yield break;
         }
 
+        NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
+
+        yield return StartCoroutine(Fade(true));
+
+        _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
     }
 
-    private IEnumerator Fade(bool _isFadeIn)
+
+    private IEnumerator Fade(bool isFadeIn)
     {
-        if (_splashController.IsFading) yield break;
-        Debug.Log("Fade");
+        _splashController.isFinished = false;
 
-        if (!_isFadeIn)
-        {
-            _splashController.isFinished = false;
-            StartCoroutine(_splashController.FadeIn(false, true));
-            yield return new WaitUntil(() => _splashController.isFinished);
-        }
+        if (isFadeIn)
+            yield return _splashController.FadeIn(false, true);
         else
-        {
-            _splashController.isFinished = false;
-            StartCoroutine(_splashController.FadeOut(false, true));
-            yield return new WaitUntil(() => _splashController.isFinished);
-        }
+            yield return _splashController.FadeOut(false, true);
     }
+
 
     public void LodingHandle(DataController dataController)
     {

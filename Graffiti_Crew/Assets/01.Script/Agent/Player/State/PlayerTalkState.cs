@@ -1,4 +1,6 @@
 using AH.UI.Events;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerTalkState : PlayerState
@@ -34,7 +36,14 @@ public class PlayerTalkState : PlayerState
 
     private void OnDialogueComplete()
     {
-        _isDialogueFinished = true;
+        CheckCam();
         _player.GetNPC().tutorialCheck.data = true;
+        
+    }
+
+    private async void CheckCam()
+    {
+        await Task.Delay(1500);
+        _isDialogueFinished = true;
     }
 }
