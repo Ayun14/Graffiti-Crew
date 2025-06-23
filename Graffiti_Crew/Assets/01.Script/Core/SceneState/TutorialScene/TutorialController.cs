@@ -1,8 +1,7 @@
 using AH.UI.Events;
-using System.Collections.Generic;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TutorialController : Observer<GameStateController>, INeedLoding
 {
@@ -13,6 +12,8 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
     [SerializeField] private StoryDialogueSO _tutorialDialogueSO;
+
+    [SerializeField] private SplashController _splashController;
 
     private int _dialogueNum = 0;
     private int _clearNode = 0;
@@ -67,15 +68,13 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         }
     }
 
-    private async void DialogueEnd()
+    private void DialogueEnd()
     {
 
         if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
             _hangout.SetActive(false);
 
-        PresentationEvents.FadeInOutEvent?.Invoke(false);
-        await Task.Delay(1100);
-        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+        StartCoroutine(Fade(false));
 
         _dialogueNum++;
 
@@ -83,8 +82,8 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         {
             NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
 
-            await Task.Delay(1100);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
+            StartCoroutine(Fade(true));
+
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Rain);
             GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Tutorial);
 
@@ -92,10 +91,9 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         }
         else if (_dialogueNum == 2)
         {
-            PresentationEvents.FadeInOutEvent?.Invoke(false);
-            await Task.Delay(2100);
+            StartCoroutine(Fade(false));
             _level.SetActive(true);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
+            StartCoroutine(Fade(true));
 
             mySubject.ChangeGameState(GameState.Tutorial);
         }
@@ -106,18 +104,36 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
             _level.SetActive(false);
             _hangout.SetActive(true);
-            await Task.Delay(1100);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
+
+            StartCoroutine(Fade(true));
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
         else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
         {
-            await Task.Delay(1100);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
+            StartCoroutine(Fade(true));
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
 
             SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
+    }
+
+
+    private IEnumerator Fade(bool _isFadeIn)
+    {
+        if (_splashController.IsFading) yield break;
+
+        if (!_isFadeIn)
+        {
+            _splashController.isFinished = false;
+            StartCoroutine(_splashController.FadeIn(false, true));
+            yield return new WaitUntil(() => _splashController.isFinished);
+        }
+        else
+        {
+            _splashController.isFinished = false;
+            StartCoroutine(_splashController.FadeOut(false, true));
+            yield return new WaitUntil(() => _splashController.isFinished);
         }
     }
 
