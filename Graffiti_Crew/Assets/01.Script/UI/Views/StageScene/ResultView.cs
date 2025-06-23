@@ -51,18 +51,18 @@ namespace AH.UI.Views {
         private void SetCurrentStar(int count) {
             _currentStageStarCount = count;
         }
-        private void SetStar()
+        private void SetStar(int star)
         {
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
 
-            for(int i = 0; i < 3 - _currentStageStarCount; i++) {
+            for(int i = 0; i < 3 - star; i++) {
                 Debug.Log(i);
                 stars[i].style.unityBackgroundImageTintColor = new Color(1f, 1f, 1f, 0f);
             }
         }
 
         private void ClearPanel() {
-            SetStar();
+            SetStar(_currentStageStarCount);
             Button homeBtn = _cResultPanel.Q<Button>("home-btn");
             Button nextBtn = _cResultPanel.Q<Button>("next-btn");
 
@@ -70,11 +70,11 @@ namespace AH.UI.Views {
             nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
         }
         private void FailPanel() {
-            Button retryBtn = _cResultPanel.Q<Button>("retry-btn");
-            Button homeBtn = _cResultPanel.Q<Button>("clear-btn");
+            Button retryBtn = _lResultPanel.Q<Button>("retry-btn");
+            Button homeBtn = _lResultPanel.Q<Button>("home-btn");
 
-            homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
             retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
+            homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
         }
 
         private void ClickNextBtn(ClickEvent evt) {
