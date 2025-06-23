@@ -6,6 +6,13 @@
     margin-bottom: 15px;
 }
 
+.slot-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&guid=af4c83d722e80d343a58d81a6c7e93d3&type=3#shop-product-background");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .slider > .unity-slider__input > .unity-base-slider__drag-container {
     height: 100%;
 }
@@ -114,6 +121,7 @@
 
 .--------------------- {
 }
+
 .setting-category-btn {
     transition-duration: 0.2s;
     height: 100px;
@@ -132,6 +140,7 @@
     -unity-text-outline-width: 2px;
     -unity-text-outline-color: rgb(240, 240, 239);
 }
+
 .setting-category-btn:hover {
     color: rgb(240, 240, 239);
     scale: 1.05 1.05;
@@ -162,4 +171,3 @@
     background-color: rgb(255, 44, 44);
     color: rgb(240, 240, 239);
 }
-

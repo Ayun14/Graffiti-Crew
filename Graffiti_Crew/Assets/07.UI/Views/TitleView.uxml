@@ -6,11 +6,20 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3#Presentation_USS" />
     <engine:VisualElement name="start-btn-clicker" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&amp;guid=295732e0041d5b64286b75f6f6c7a295&amp;type=3#title-background&quot;); justify-content: flex-end;">
         <engine:VisualElement name="bottom-container" style="align-items: center; justify-content: flex-end; flex-direction: column; flex-basis: 50%; padding-bottom: 3%;">
-            <engine:Button text="Start" name="start-btn" class="title-btn grow-size-50" />
-            <engine:Button text="Options" name="setting-save-btn" class="title-btn grow-size-50" />
-            <engine:Button text="Exit Game" name="exit-btn" class="title-btn grow-size-50" />
+            <engine:Button text="Start" name="start-btn" class="title-btn grow-size-45" />
+            <engine:Button text="Options" name="setting-save-btn" class="title-btn grow-size-45" />
+            <engine:Button text="Save Slot" name="saveSlot-btn" class="title-btn grow-size-45" />
+            <engine:Button text="Exit Game" name="exit-btn" class="title-btn grow-size-45" />
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:Instance template="SettingView" name="SettingView" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: none;" />
+    <engine:VisualElement name="slot-content" style="position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; display: flex;">
+        <engine:VisualElement style="width: 50%; height: 60%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Setting/setting-background.png?fileID=21300000&amp;guid=5102b17b4f7f7d5478f587cfa4e7a217&amp;type=3#setting-background&quot;); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-items: center; justify-content: center;">
+            <engine:Button text="Slot1" name="slot1-btn" class="title-btn grow-size-50 slot-btn" />
+            <engine:Button text="Slot2" name="slot2-btn" class="title-btn grow-size-50 slot-btn" />
+            <engine:Button text="Slot3" name="slot3-btn" class="title-btn grow-size-50 slot-btn" />
+        </engine:VisualElement>
+        <engine:Button name="slot-close-btn" class="grow-size-40 stage-description-btn" />
+    </engine:VisualElement>
     <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" />
 </engine:UXML>

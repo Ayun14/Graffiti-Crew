@@ -23,10 +23,6 @@ namespace AH.UI.Views {
         private Slider _sfxSlider;
         private int bgmValue;
         private int vfxValue;
-        
-        private DropdownField _saveSlotField;
-        private SlotSO[] slots;
-        private string slotPath = "UI/Setting/Slots/";
 
         private DropdownField _languageField;
         private LanguageType _lauguageType;
@@ -49,7 +45,6 @@ namespace AH.UI.Views {
         public override void Initialize() {
             _settingViewModel = viewModel as SettingViewModel;
 
-            slots = Resources.LoadAll<SlotSO>(slotPath);
             _lauguageSO = _settingViewModel.GetLanguageSO();
             _lauguageTypes = _lauguageSO.languageTypes;
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
@@ -65,16 +60,14 @@ namespace AH.UI.Views {
             _bgmSlider = topElement.Q<Slider>("bgm-slider");
             _sfxSlider = topElement.Q<Slider>("sfx-slider");
 
-            _saveSlotField = topElement.Q<DropdownField>("saveSlot-dropdownField");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
 
             _goToTitleBtn = topElement.Q<Button>("title-btn");
-            _goToHangOutBtn = topElement.Q<Button>("hangOut-btn");
-            _exitGameBtn = topElement.Q<Button>("exitGame-btn");
+            //_goToHangOutBtn = topElement.Q<Button>("hangOut-btn");
+            //_exitGameBtn = topElement.Q<Button>("exitGame-btn");
 
             _closeBtn = topElement.Q<Button>("close-btn");
 
-            _saveSlotField.index = _settingViewModel.GetSlotIndex();
             //SetLanguageItems(false);
             ShowCategory(0);
         }
@@ -86,11 +79,10 @@ namespace AH.UI.Views {
             }
             _bgmSlider.RegisterValueChangedCallback(ChangeBgmValue);
             _sfxSlider.RegisterValueChangedCallback(ChangeSfxValue);
-            _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.RegisterCallback<ClickEvent>(ClickGoToTitleBtn);
-            _goToHangOutBtn.RegisterCallback<ClickEvent>(ClickGoToHangOutBtn);
-            _exitGameBtn.RegisterCallback<ClickEvent>(ClickExitGameBtn);
+            //_goToHangOutBtn.RegisterCallback<ClickEvent>(ClickGoToHangOutBtn);
+            //_exitGameBtn.RegisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
@@ -100,11 +92,10 @@ namespace AH.UI.Views {
             }
             _bgmSlider.UnregisterValueChangedCallback(ChangeBgmValue);
             _sfxSlider.UnregisterValueChangedCallback(ChangeSfxValue);
-            _saveSlotField.UnregisterValueChangedCallback(ChangeSlot);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.UnregisterCallback<ClickEvent>(ClickGoToTitleBtn);
-            _goToHangOutBtn.UnregisterCallback<ClickEvent>(ClickGoToHangOutBtn);
-            _exitGameBtn.UnregisterCallback<ClickEvent>(ClickExitGameBtn);
+            //_goToHangOutBtn.UnregisterCallback<ClickEvent>(ClickGoToHangOutBtn);
+            //_exitGameBtn.UnregisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
@@ -152,14 +143,7 @@ namespace AH.UI.Views {
         }
         #endregion
 
-        #region DropDown
-        private void ChangeSlot(ChangeEvent<string> evt) {
-            int index = _saveSlotField.index;
-            _settingViewModel.SetSlotIndex(index);
-            SlotSO selectSlot = slots[index];
-            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
-        }
-        #endregion
+        
 
         #region Language
         private void ChangeLanguage(ChangeEvent<string> evt) {
