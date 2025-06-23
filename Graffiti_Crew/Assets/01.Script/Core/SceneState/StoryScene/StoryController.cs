@@ -1,6 +1,6 @@
 using AH.UI.Events;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +8,8 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
+
+    [SerializeField] private SplashController _splashController;
 
     private List<GameObject> _levelPrefabs = new List<GameObject>();
 
@@ -32,7 +34,7 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public override void NotifyHandle()
     {
-        if(mySubject != null)
+        if (mySubject != null)
         {
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
 
@@ -48,16 +50,15 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         }
     }
 
-    private async void DialogueEnd()
+    private void DialogueEnd()
     {
-        PresentationEvents.FadeInOutEvent?.Invoke(false);
-        await Task.Delay(1100);
+        StartCoroutine(Fade(false));
 
         _levelPrefabs[_dialogueNum].SetActive(false);
 
         _dialogueNum++;
 
-        if(_dialogueNum <= _levelPrefabs.Count - 1)
+        if (_dialogueNum <= _levelPrefabs.Count - 1)
             _levelPrefabs[_dialogueNum].SetActive(true);
 
 
@@ -71,12 +72,30 @@ public class StoryController : Observer<GameStateController>, INeedLoding
         {
             NPCSO dialogue = _storyDialogueSO.storyList[_dialogueNum];
 
-            await Task.Delay(1100);
-            PresentationEvents.FadeInOutEvent?.Invoke(true);
+            StartCoroutine(Fade(true));
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
 
+    }
+
+    private IEnumerator Fade(bool _isFadeIn)
+    {
+        if (_splashController.IsFading) yield break;
+        Debug.Log("Fade");
+
+        if (!_isFadeIn)
+        {
+            _splashController.isFinished = false;
+            StartCoroutine(_splashController.FadeIn(false, true));
+            yield return new WaitUntil(() => _splashController.isFinished);
+        }
+        else
+        {
+            _splashController.isFinished = false;
+            StartCoroutine(_splashController.FadeOut(false, true));
+            yield return new WaitUntil(() => _splashController.isFinished);
+        }
     }
 
     public void LodingHandle(DataController dataController)
