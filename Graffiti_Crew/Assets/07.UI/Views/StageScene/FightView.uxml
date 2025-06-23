@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/StageScene/FightView_USS.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/StageScene/FightView_USS.uss?fileID=7433441132597879392&amp;guid=beb70118dd772b74286659fbf2e299ed&amp;type=3#FightView_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" picking-mode="Ignore" class="fight-m-container">
         <engine:VisualElement name="top-container" style="flex-basis: 22%; flex-direction: row;">
             <engine:VisualElement name="fight-rival-border" style="flex-grow: 1; flex-direction: row-reverse; align-items: center; justify-content: flex-end; padding-left: 30px; display: flex;">
@@ -46,6 +46,14 @@
                 </engine:ProgressBar>
                 <engine:VisualElement name="spray-outline" class="spray-outline">
                     <engine:ProgressBar name="spray-total-progress" value="40.6" low-value="0.02" class="spray-progress" style="width: 270px;">
+                        <engine:VisualElement name="sprayCount-content" style="rotate: 90deg; width: 23%; height: 89%; position: absolute; align-items: center; justify-content: center; flex-direction: row; translate: 127% 9%; display: none;">
+                            <engine:Label text="X" class="grow-size-35" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: lower-center; -unity-font-style: bold;" />
+                            <engine:Label text="Label" class="grow-size-35" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left; -unity-font-style: bold;">
+                                <Bindings>
+                                    <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SprayCanValueSO.asset?fileID=11400000&amp;guid=2b3ceeae0152bca449ac2b5a1a513e5b&amp;type=2#SprayCanValueSO" binding-mode="ToTarget" data-source-path="max" />
+                                </Bindings>
+                            </engine:Label>
+                        </engine:VisualElement>
                         <Bindings>
                             <engine:DataBinding property="highValue" data-source-path="max" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" />
                             <engine:DataBinding property="lowValue" data-source="project://database/Assets/08.SO/UI/FightScene/Slider/SpraySliderValueSO.asset?fileID=11400000&amp;guid=b6e85151e6f7af34bba240efe1322a66&amp;type=2#SpraySliderValueSO" binding-mode="ToTarget" data-source-path="min" />

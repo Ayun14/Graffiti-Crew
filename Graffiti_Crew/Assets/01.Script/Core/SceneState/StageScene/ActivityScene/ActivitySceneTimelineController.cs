@@ -11,6 +11,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     private PlayableDirector _activityEndTimelinePolice;
     private PlayableDirector _activityEndTimelineNormal;
 
+    private StageType _stageType;
     private bool _isOnPolice;
 
     private void Awake()
@@ -23,18 +24,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         _activityEndTimelinePolice = transform.Find("ActivityEndTimeline_Police").GetComponent<PlayableDirector>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (mySubject.GameState == GameState.Timeline && _startTimeline.state == PlayState.Playing)
-            {
-                _startTimeline.Stop();
-                mySubject.ChangeGameState(GameState.Countdown);
-            }
-        }
-    }
-
     private void OnDestroy()
     {
         Detach();
@@ -43,6 +32,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     public void LodingHandle(DataController dataController)
     {
         _isOnPolice = dataController.stageData.isOnPolice;
+        _stageType = dataController.stageData.stagetype;
 
         dataController.SuccessGiveData();
     }
@@ -65,14 +55,24 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             }
             else if (mySubject.GameState == GameState.Countdown)
             {
-                StageEvent.SetViewEvnet?.Invoke(false);
+                StageEvent.SetProgressEvnet?.Invoke(false);
 
                 _countdownTimeline?.Play();
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);
             }
+            else if (mySubject.GameState == GameState.Fight)
+            {
+                if (_stageType == StageType.Activity)
+                {
+                    StageEvent.SetsprayCountEvnet?.Invoke(true);
+                    Debug.Log("Œ ´Ù");
+                }
+            }
             else if (mySubject.GameState == GameState.Finish)
             {
                 _finishTimeline.Play();
+                if (_stageType == StageType.Activity)
+                    StageEvent.SetsprayCountEvnet?.Invoke(false);
             }
             else if (mySubject.GameState == GameState.Result)
             {

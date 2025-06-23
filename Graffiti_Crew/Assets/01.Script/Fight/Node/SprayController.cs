@@ -40,6 +40,7 @@ public class SprayController : MonoBehaviour
 
         // Spray
         _spraySliderValueSO.Value = _spraySliderValueSO.max;
+        _sprayCanValueSO.Value = _sprayCanValueSO.max;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
