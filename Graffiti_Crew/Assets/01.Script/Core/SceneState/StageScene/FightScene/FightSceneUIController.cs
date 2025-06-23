@@ -1,6 +1,8 @@
 using AH.UI.Events;
 using DG.Tweening;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -8,6 +10,10 @@ using Random = UnityEngine.Random;
 public class FightSceneUIController : Observer<GameStateController>
 {
     [Header("Blind")]
+    [SerializeField] private List<Sprite> _inkSprites = new();
+    private Image _inkImage1;
+    private Image _inkImage2;
+
     [SerializeField] private Sprite _eggSprite;
     [SerializeField] private Sprite _tomatoSprite;
     [SerializeField] private float _blindTime;
@@ -61,9 +67,14 @@ public class FightSceneUIController : Observer<GameStateController>
 
         // Blind Shader
         _blindPanel = canvas.Find("Panel_Blind").GetComponent<Image>();
-        _foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
-        _blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
-        _blindMat.SetFloat(_stepValue, 0f);
+        _inkImage1 = _blindPanel.transform.Find("Image_Ink1").GetComponent<Image>();
+        _inkImage1.sprite = null;
+        _inkImage2 = _blindPanel.transform.Find("Image_Ink2").GetComponent<Image>();
+        _inkImage2.sprite = null;
+
+        //_foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
+        //_blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
+        //_blindMat.SetFloat(_stepValue, 0f);
 
         // Fail Shader
         _failFeedbackPanel = canvas.Find("Panel_FailFeedback").GetComponent<Image>();
@@ -92,7 +103,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
     private void Update()
     {
-        ChangeBlindStepValue();
+        //ChangeBlindStepValue();
     }
 
     private void ChangeBlindStepValue()
@@ -133,7 +144,8 @@ public class FightSceneUIController : Observer<GameStateController>
             if (isFinish && isBlind)
             {
                 StopAllCoroutines();
-                StartCoroutine(OffBlindRoutine());
+                //StartCoroutine(OffBlindRoutine());
+                SetBlindAlpha(0, 0.3f, new List<Image> { _inkImage1, _inkImage2 }, () => mySubject.SetIsBlind(false));
             }
             else _blindPanel.gameObject.SetActive(isFight);
 
@@ -171,11 +183,12 @@ public class FightSceneUIController : Observer<GameStateController>
 
     #endregion
 
-    #region Blind Shader
+    #region Blind
 
     private void BlindEventHandle()
     {
-        StartCoroutine(OnBlindRoutine());
+        //StartCoroutine(OnBlindRoutine());
+        StartCoroutine(StartBlindRoutine());
     }
 
     public void BlindFastEvent()
@@ -191,6 +204,42 @@ public class FightSceneUIController : Observer<GameStateController>
         _foodImage.SetCurrentTime(targetTime);
     }
 
+    private IEnumerator StartBlindRoutine()
+    {
+        mySubject.SetIsBlind(true);
+
+        SetInkImage(_inkImage1);
+        yield return new WaitForSeconds(0.3f);
+        SetInkImage(_inkImage2);
+
+        yield return new WaitForSeconds(_blindTime);
+
+        SetBlindAlpha(0, 0.3f, new List<Image> { _inkImage1, _inkImage2 });
+
+        mySubject.SetIsBlind(false);
+    }
+
+    private void SetInkImage(Image image)
+    {
+        image.sprite = _inkSprites[Random.Range(0, _inkSprites.Count)];
+        SetBlindAlpha(1f, 0.2f, image);
+
+        // Sound
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Short);
+    }
+
+    private void SetBlindAlpha(float alpha, float time, Image image, Action callback = null)
+    {
+        image.DOFade(alpha, time).OnComplete(()=> callback?.Invoke());
+    }
+
+    private void SetBlindAlpha(float alpha, float time, List<Image> images, Action callback = null)
+    {
+        foreach (Image image in images)
+            image.DOFade(alpha, time).OnComplete(() => callback?.Invoke());
+    }
+
+    /*
     private IEnumerator OnBlindRoutine()
     {
         mySubject.SetIsBlind(true);
@@ -256,7 +305,6 @@ public class FightSceneUIController : Observer<GameStateController>
         StartCoroutine(OffBlindRoutine());
     }
 
-
     private IEnumerator OffBlindRoutine()
     {
         if (mySubject.GameState == GameState.Finish)
@@ -285,7 +333,7 @@ public class FightSceneUIController : Observer<GameStateController>
 
         mySubject.SetIsBlind(false);
     }
-
+    */
     #endregion
 
     #region Fail Shader
