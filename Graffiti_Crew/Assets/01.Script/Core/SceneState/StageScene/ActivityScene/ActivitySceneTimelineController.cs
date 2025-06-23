@@ -62,11 +62,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             }
             else if (mySubject.GameState == GameState.Fight)
             {
-                if (_stageType == StageType.Activity)
-                {
-                    StageEvent.SetsprayCountEvnet?.Invoke(true);
-                    Debug.Log("Œ ´Ù");
-                }
+                StageEvent.SetsprayCountEvnet?.Invoke(_stageType == StageType.Battle);
             }
             else if (mySubject.GameState == GameState.Finish)
             {
