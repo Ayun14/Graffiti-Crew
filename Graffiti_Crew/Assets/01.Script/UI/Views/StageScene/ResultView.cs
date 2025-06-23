@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace AH.UI.Views {
@@ -38,6 +39,7 @@ namespace AH.UI.Views {
             Debug.Log("set");
         }
         private void FullScreen(bool result) {
+            Debug.Log(result);
             if (result) {
                 ClearPanel();
                 Debug.Log("clear");
@@ -46,6 +48,7 @@ namespace AH.UI.Views {
             else {
                 FailPanel();
                 _lResultPanel.AddToClassList("result-in");
+                Debug.Log("fail set");
             }
         }
         private void SetCurrentStar(int count) {
@@ -70,9 +73,10 @@ namespace AH.UI.Views {
             nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
         }
         private void FailPanel() {
+            Debug.Log("show fail panel");
             Button retryBtn = _lResultPanel.Q<Button>("retry-btn");
             Button homeBtn = _lResultPanel.Q<Button>("home-btn");
-
+            Debug.Log(retryBtn);
             retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
         }
@@ -84,8 +88,9 @@ namespace AH.UI.Views {
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
         private void ClickRetryBtn(ClickEvent evt) {
-            Debug.Log("이거 연결해야해");
-            //SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
+            Debug.Log("Retry");
+            Debug.Log(SceneManager.GetActiveScene().name);
+            SaveDataEvents.SaveGameEvent?.Invoke(SceneManager.GetActiveScene().name);
         }
     }
 }
