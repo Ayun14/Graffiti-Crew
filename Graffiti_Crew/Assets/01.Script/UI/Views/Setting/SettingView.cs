@@ -53,7 +53,7 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _categoryBtnList = topElement.Query<Button>(className: "setting-category-btn").ToList();
-            var categoryContent = topElement.Q<VisualElement>("catgory-content");
+            var categoryContent = topElement.Q<VisualElement>("category-top-content");
             _categoryContentList = categoryContent.Children().ToList();
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
 
