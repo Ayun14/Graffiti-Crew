@@ -18,7 +18,6 @@ namespace AH.UI.Models {
         }
         public void SetSlotIndex(int index) {
             _saveDataSlotIndex.data = index;
-            Debug.Log(_saveDataSlotIndex.data);
         }
         #endregion
 

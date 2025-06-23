@@ -1,9 +1,5 @@
 using AH.UI.Events;
 using AH.UI.ViewModels;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public enum DialougeCharacter {

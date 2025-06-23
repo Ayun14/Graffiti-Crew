@@ -3,6 +3,7 @@ using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,15 +16,17 @@ namespace AH.UI.Views {
     public class SettingView : UIView {
         private  SettingViewModel _settingViewModel;
 
+        private List<Button> _categoryBtnList = new List<Button>();
+        private List<VisualElement> _categoryContentList = new List<VisualElement>();
+
         private Slider _bgmSlider;
-        private Slider _vfxSlider;
+        private Slider _sfxSlider;
         private int bgmValue;
         private int vfxValue;
         
         private DropdownField _saveSlotField;
         private SlotSO[] slots;
         private string slotPath = "UI/Setting/Slots/";
-
 
         private DropdownField _languageField;
         private LanguageType _lauguageType;
@@ -32,6 +35,9 @@ namespace AH.UI.Views {
         private int _selectedIndex => _settingViewModel.GetLanguageIndex();
         private LanguageSO _lauguageSO;
         private string[] _lauguageTypes;
+
+        private Button _goToTitleBtn;
+        private Button _goToHangOutBtn;
 
         private Button _closeBtn;
 
@@ -50,45 +56,54 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
+            _categoryBtnList = topElement.Query<Button>(className: "setting-category-btn").ToList();
+            var categoryContent = topElement.Q<VisualElement>("catgory-content");
+            _categoryContentList = categoryContent.Children().ToList();
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
+
             _bgmSlider = topElement.Q<Slider>("bgm-slider");
-            _vfxSlider = topElement.Q<Slider>("vfx-slider");
+            _sfxSlider = topElement.Q<Slider>("sfx-slider");
+
             _saveSlotField = topElement.Q<DropdownField>("saveSlot-dropdownField");
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
+
+            _goToTitleBtn = topElement.Q<Button>("title-btn");
+            _goToHangOutBtn = topElement.Q<Button>("hangOut-btn");
+
             _closeBtn = topElement.Q<Button>("close-btn");
 
             _saveSlotField.index = _settingViewModel.GetSlotIndex();
             //SetLanguageItems(false);
-
-
-            _saveSlotField.RegisterCallback<PointerDownEvent>(evt => {
-#if UNITY_EDITOR
-                // 에디터에서만 지연 호출 사용
-                UnityEditor.EditorApplication.delayCall += () => {
-                    //StyleDropdownItems();
-                };
-#else
-        // 빌드 환경에서는 다음 프레임에서 실행하기 위해 코루틴 사용
-        StartCoroutine(StyleDropdownItemsNextFrame());
-#endif
-            });
+            ShowCategory(0);
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
+            int categoryBtnIndex = 0;
+            foreach (var button in _categoryBtnList) {
+                button.RegisterCallback<ClickEvent, int>(ClickCategory, categoryBtnIndex++);
+            }
             _bgmSlider.RegisterValueChangedCallback(ChangeBgmValue);
-            _vfxSlider.RegisterValueChangedCallback(ChangeVfxValue);
+            _sfxSlider.RegisterValueChangedCallback(ChangeSfxValue);
             _saveSlotField.RegisterValueChangedCallback(ChangeSlot);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
+            _goToTitleBtn.RegisterCallback<ClickEvent>(ClickGoToTitleBtn);
+            _goToHangOutBtn.RegisterCallback<ClickEvent>(ClickGoToHangOutBtn);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
             base.UnRegisterButtonCallbacks();
+            foreach (var button in _categoryBtnList) {
+                button.UnregisterCallback<ClickEvent, int>(ClickCategory);
+            }
             _bgmSlider.UnregisterValueChangedCallback(ChangeBgmValue);
-            _vfxSlider.UnregisterValueChangedCallback(ChangeVfxValue);
+            _sfxSlider.UnregisterValueChangedCallback(ChangeSfxValue);
             _saveSlotField.UnregisterValueChangedCallback(ChangeSlot);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
+            _goToTitleBtn.UnregisterCallback<ClickEvent>(ClickGoToTitleBtn);
+            _goToHangOutBtn.UnregisterCallback<ClickEvent>(ClickGoToHangOutBtn);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
+
         public override void Show() {
             HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
             GameManager.SetPause(true);
@@ -107,44 +122,33 @@ namespace AH.UI.Views {
             StageEvent.HideViewEvent?.Invoke();
         }
 
+        private void ClickCategory(ClickEvent evt, int index) {
+            ShowCategory(index);
+        }
+        private void ShowCategory(int index) {
+            foreach(VisualElement content in _categoryContentList) {
+                content.style.display = DisplayStyle.None;
+            }
+            _categoryContentList[index].style.display = DisplayStyle.Flex;
+        }
+
         #region Audio
         private void SetSound() {
             _bgmSlider.value = _settingViewModel.GetBGMValue();
-            _vfxSlider.value = _settingViewModel.GetVFXValue();
+            _sfxSlider.value = _settingViewModel.GetVFXValue();
         }
         private void ChangeBgmValue(ChangeEvent<float> evt) {
             bgmValue = (int)evt.newValue;
             _settingViewModel.SetBGMValue(bgmValue);
             GameEvents.BgmChangeEvnet?.Invoke();
         }
-        private void ChangeVfxValue(ChangeEvent<float> evt) {
+        private void ChangeSfxValue(ChangeEvent<float> evt) {
             vfxValue = (int)evt.newValue;
             _settingViewModel.SetSFXValue(vfxValue);
         }
         #endregion
 
         #region DropDown
-        private void StyleDropdownItems() {
-            //var content = topElement.rootVisualElement.parent.panel.visualTree.Q<VisualElement>(className: "unity-base-dropdown");
-            //if (content != null) {
-            //    List<VisualElement> list = content.Query<VisualElement>(className: "unity-base-dropdown__item").ToList();
-            //    foreach (VisualElement item in list) {
-            //        item.RegisterCallback<PointerEnterEvent>(evt => {
-            //            item.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-            //        });
-            //        item.RegisterCallback<PointerLeaveEvent>(evt => {
-            //            item.style.backgroundColor = new Color(0f, 0f, 0f, 1f);
-            //        });
-            //    }
-            //}
-        }
-        private IEnumerator StyleDropdownItemsNextFrame() {
-            // 한 프레임 대기
-            yield return null;
-
-            // 스타일 적용
-            StyleDropdownItems();
-        }
         private void ChangeSlot(ChangeEvent<string> evt) {
             int index = _saveSlotField.index;
             _settingViewModel.SetSlotIndex(index);
@@ -178,7 +182,14 @@ namespace AH.UI.Views {
             _languageField.label = _lauguageSO.title;
             _languageField.choices.Clear();
             _languageField.choices = _lauguageTypes.ToList();
-        } 
+        }
         #endregion
+
+        private void ClickGoToTitleBtn(ClickEvent evt) {
+            SaveDataEvents.SaveGameEvent?.Invoke("TitleScene");
+        }
+        private void ClickGoToHangOutBtn(ClickEvent evt) {
+            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
+        }
     }
 }

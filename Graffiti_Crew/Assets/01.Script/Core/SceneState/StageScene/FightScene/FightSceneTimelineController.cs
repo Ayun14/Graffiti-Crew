@@ -93,4 +93,9 @@ public class FightSceneTimelineController : Observer<GameStateController>
         UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         _endFightTimeline?.Play();
     }
+    public void LoopResultTimeLine() {
+        _endFightTimeline.time = 6.8f;
+        _endFightTimeline.Evaluate(); // 바로 상태 반영
+        _endFightTimeline.Play();     // 다시 재생
+    }
 }

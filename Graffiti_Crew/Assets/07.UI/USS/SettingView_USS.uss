@@ -24,12 +24,25 @@
     height: 75px;
     width: 40px;
     top: 20%;
-    background-image: url("project://database/Assets/02.Sprite/UI/Setting/setting-slider-dragger.png?fileID=21300000&guid=dd4d5109380f3a1419002ad7f3f48347&type=3#setting-slider-dragger");
+    background-image: url("project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&guid=3511ea8880556434293e3b1898a40791&type=3#dropdown_0");
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.grow-size-50 {
+    flex-grow: 1;
+    font-size: 50px;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=90f203b1904dc0547a8fc028e6a84c14&type=3#NotInter-Regular");
+    -unity-font-style: bold;
+}
+
+.grow-size-45 {
+    flex-grow: 1;
+    font-size: 45px;
+    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Paperlogy-4Regular.ttf?fileID=12800000&guid=39338fa6e5ae84f4b803037fc040b227&type=3#Paperlogy-4Regular");
 }
 
 .--------------------- {
@@ -117,16 +130,34 @@
 
 .setting-category-btn {
     transition-duration: 0.2s;
-    height: 60px;
+    height: 150px;
     flex-grow: 0;
     margin-top: 5px;
-    margin-right: 0;
+    margin-right: 30px;
     margin-bottom: 5px;
-    margin-left: 0;
+    margin-left: 30px;
+    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Next%20Bravo.ttf?fileID=12800000&guid=7420d50e61d15a84682f87319d01f4fe&type=3#Next Bravo");
+    width: 330px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .setting-category-btn:hover {
+    -unity-background-image-tint-color: rgb(49, 48, 41);
+    scale: 1.05 1.05;
+    background-color: rgba(55, 65, 63, 0);
 }
 
 .--------------------- {
+}
+
+.slider {
+    height: 90px;
+    flex-grow: 0;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

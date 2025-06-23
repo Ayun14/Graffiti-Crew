@@ -14,7 +14,6 @@ namespace AH.UI.ViewModels {
             return _settingModel.GetSlotIndex();
         }
         public void SetSlotIndex(int index) {
-            Debug.Log(index);
             _settingModel.SetSlotIndex(index);
         }
         #endregion

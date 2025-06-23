@@ -17,16 +17,17 @@
     transition-duration: 1s;
     opacity: 1;
     background-image: url("project://database/Assets/05.Material/RenderTexture/RivalRT.renderTexture?fileID=8400000&guid=a522e39fa6fdf57408da28c3ab7b759f&type=2#RivalRT");
+    width: 960px;
     align-items: flex-end;
 }
 
 .player-screen {
-    flex-grow: 1;
     transition-duration: 1s;
     opacity: 1;
     background-image: url("project://database/Assets/05.Material/RenderTexture/PlayerRT.renderTexture?fileID=8400000&guid=686881fb950474f4a9f001a49b0da894&type=2#PlayerRT");
-    align-items: flex-start;
     right: 0;
+    flex-grow: 1;
+    width: 960px;
 }
 
 .move-right {
@@ -163,14 +164,29 @@
     background-color: rgb(140, 140, 140);
     width: 50%;
     height: 100%;
+    align-items: center;
+    transition-duration: 0.2s;
 }
 
 .rival {
     flex-grow: 1;
     flex-basis: 50%;
     background-color: rgb(140, 140, 140);
+    align-items: center;
+    transition-duration: 0.2s;
 }
 
 .winner {
     background-color: rgb(255, 248, 186);
+}
+
+.force-player {
+    width: 100%;
+    transition-duration: 0.5s;
+}
+
+.unforce-rival {
+    width: 0;
+    flex-basis: 0;
+    transition-duration: 0.5s;
 }
