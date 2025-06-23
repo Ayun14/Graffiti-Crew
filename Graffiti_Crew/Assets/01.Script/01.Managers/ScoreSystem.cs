@@ -45,6 +45,7 @@ public class ScoreSystem : MonoBehaviour {
         star = stageData.stageResult.CalculationStar();
 
         Debug.Log("star : " + star);
+        GameEvents.SendCurrentStarCountEvent?.Invoke(star);
         if (star > stageData.stageSaveData.star)
             stageData.stageSaveData.star = star;
     }
