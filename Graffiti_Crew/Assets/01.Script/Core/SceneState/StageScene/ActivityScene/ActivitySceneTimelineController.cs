@@ -11,6 +11,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     private PlayableDirector _activityEndTimelinePolice;
     private PlayableDirector _activityEndTimelineNormal;
 
+    private StageType _stageType;
     private bool _isOnPolice;
 
     private void Awake()
@@ -31,6 +32,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     public void LodingHandle(DataController dataController)
     {
         _isOnPolice = dataController.stageData.isOnPolice;
+        _stageType = dataController.stageData.stagetype;
 
         dataController.SuccessGiveData();
     }
@@ -58,9 +60,19 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
                 _countdownTimeline?.Play();
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);
             }
+            else if (mySubject.GameState == GameState.Fight)
+            {
+                if (_stageType == StageType.Activity)
+                {
+                    StageEvent.SetsprayCountEvnet?.Invoke(true);
+                    Debug.Log("Œ ´Ù");
+                }
+            }
             else if (mySubject.GameState == GameState.Finish)
             {
                 _finishTimeline.Play();
+                if (_stageType == StageType.Activity)
+                    StageEvent.SetsprayCountEvnet?.Invoke(false);
             }
             else if (mySubject.GameState == GameState.Result)
             {
