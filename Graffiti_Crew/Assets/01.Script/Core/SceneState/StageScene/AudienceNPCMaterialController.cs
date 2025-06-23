@@ -15,6 +15,13 @@ public class AudienceNPCMaterialController : MonoBehaviour
 
     private void SetMaterial()
     {
-        _renderer.material = _materialList[Random.Range(0, _materialList.Count)];
+        Material randMat = _materialList[Random.Range(0, _materialList.Count)];
+        if (1 < _renderer.materials.Length)
+        {
+            for (int i = 0; i < _renderer.materials.Length; ++i)
+                _renderer.materials[i] = randMat;
+        }
+        else
+            _renderer.material = randMat;
     }
 }
