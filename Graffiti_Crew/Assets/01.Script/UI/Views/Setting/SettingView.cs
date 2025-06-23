@@ -52,8 +52,10 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _categoryBtnList = topElement.Query<Button>(className: "setting-category-btn").ToList();
-            var categoryContent = topElement.Q<VisualElement>("category-top-content");
+            var categoryBtnContent = topElement.Q<VisualElement>("category-top-content");
+            _categoryBtnList = categoryBtnContent.Query<Button>(className: "setting-category-btn").ToList();
+
+            var categoryContent = topElement.Q<VisualElement>("catgory-content");
             _categoryContentList = categoryContent.Children().ToList();
             _enumValues = (LanguageType[])Enum.GetValues(typeof(LanguageType));
 
@@ -63,8 +65,6 @@ namespace AH.UI.Views {
             _languageField = topElement.Q<DropdownField>("language-dropdownField");
 
             _goToTitleBtn = topElement.Q<Button>("title-btn");
-            //_goToHangOutBtn = topElement.Q<Button>("hangOut-btn");
-            //_exitGameBtn = topElement.Q<Button>("exitGame-btn");
 
             _closeBtn = topElement.Q<Button>("close-btn");
 
@@ -174,6 +174,7 @@ namespace AH.UI.Views {
         #endregion
 
         private void ClickGoToTitleBtn(ClickEvent evt) {
+            Debug.Log("title"); 
             SaveDataEvents.SaveGameEvent?.Invoke("TitleScene");
         }
         private void ClickGoToHangOutBtn(ClickEvent evt) {
