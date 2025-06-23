@@ -1,6 +1,6 @@
 .title-btn {
     background-image: url("project://database/Assets/02.Sprite/UI/Title/button-hover.png?fileID=411891051&guid=f36afc027b22fed4c8ddbeca218ef984&type=3#button-hover");
-    height: 112px;
+    height: 95px;
     width: 600px;
     transition-duration: 0.2s;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
@@ -11,7 +11,9 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     color: rgb(223, 223, 223);
-    -unity-font-style: bold;
+    -unity-font-style: normal;
+    -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Next%20Bravo.ttf?fileID=12800000&guid=7420d50e61d15a84682f87319d01f4fe&type=3#Next Bravo");
+    -unity-text-outline-color: rgb(0, 0, 0);
 }
 
 .title-btn:hover {

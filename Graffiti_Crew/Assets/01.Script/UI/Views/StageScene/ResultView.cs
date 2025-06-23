@@ -3,7 +3,6 @@ using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,27 +14,33 @@ namespace AH.UI.Views {
         private VisualElement _cResultPanel;
         private VisualElement _lResultPanel;
 
+        private int _currentStageStarCount = 0;
+
         public ResultView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             ViewModel = viewModel as FightViewModel;
         }
         public override void Initialize() {
             base.Initialize();
             StageEvent.ShowVictorScreenEvent += FullScreen;
+            GameEvents.SendCurrentStarCountEvent += SetCurrentStar;
+            Debug.Log("init");
         }
         public override void Dispose() {
             base.Dispose();
             StageEvent.ShowVictorScreenEvent -= FullScreen;
+            GameEvents.SendCurrentStarCountEvent -= SetCurrentStar;
         }
 
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _cResultPanel = topElement.Q<VisualElement>("clear-result-container");
             _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
-
+            Debug.Log("set");
         }
         private void FullScreen(bool result) {
             if (result) {
                 ClearPanel();
+                Debug.Log("clear");
                 _cResultPanel.AddToClassList("result-in");
             }
             else {
@@ -43,28 +48,16 @@ namespace AH.UI.Views {
                 _lResultPanel.AddToClassList("result-in");
             }
         }
+        private void SetCurrentStar(int count) {
+            _currentStageStarCount = count;
+        }
         private void SetStar()
         {
             List<VisualElement> stars = topElement.Query<VisualElement>(className : "star").ToList();
-            StageSaveDataSO currentStageData = null;
-            string path = "";
-            string stageName = ViewModel.GetStageName();
-            string pattern = @"^(Chapter\d+)(Activity\d+|Battle\d+)$";
-            Match match = Regex.Match(stageName, pattern);
 
-            if (match.Success) {
-                string chapter = match.Groups[1].Value;  // 예: Chapter123
-                string name = match.Groups[2].Value;  // 예: Battle456 또는 Activity2
-
-                path = $"SaveData/{chapter}/{name}";
-            }
-            currentStageData = Resources.Load<StageSaveDataSO>(path);
-            if (currentStageData == null) {
-                Debug.LogError(path);
-                Debug.LogError("야 박아름 해결해");
-            }
-            for(int i = 0; i < 3 - currentStageData.star; i++) {
-                stars[i].RemoveFromClassList("star");
+            for(int i = 0; i < 3 - _currentStageStarCount; i++) {
+                Debug.Log(i);
+                stars[i].style.unityBackgroundImageTintColor = new Color(1f, 1f, 1f, 0f);
             }
         }
 
