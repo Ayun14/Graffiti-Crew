@@ -37,7 +37,7 @@ public abstract class Node : MonoBehaviour, IPoolable
 
         if (stageGameRule.stageRule != StageRuleType.PerfectRule)
             SetAlpha(1f, fadeTime);
-            
+
     }
 
     public virtual void NodeClear()
@@ -54,12 +54,9 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     public abstract void SetAlpha(float endValue, float time = 0, Action callback = null);
 
-    public virtual void NodeFalse() { Debug.Log("NodeFalse"); }
+    public virtual void NodeFalse() { }
 
-    public virtual void NodeReset()
-    {
-
-    }
+    public virtual void NodeReset() { }
 
     protected void PopGraffitiParticle(Vector3 spawnPos)
     {
@@ -71,7 +68,7 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     public void StartVisibleRoutine(Action onComplete = null)
     {
-        if (_visibleRoutine != null)  StopCoroutine(_visibleRoutine);
+        if (_visibleRoutine != null) StopCoroutine(_visibleRoutine);
         _visibleRoutine = StartCoroutine(VisibleRoutine(onComplete));
     }
 

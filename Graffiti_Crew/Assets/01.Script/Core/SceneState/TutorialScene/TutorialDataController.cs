@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class TutorialDataController : DataController
         PresentationEvents.SetFadeEvent?.Invoke(true);
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);
+
+        StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
         mySubject.ChangeGameState(GameState.Dialogue);
     }

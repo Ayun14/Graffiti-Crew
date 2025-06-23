@@ -174,7 +174,6 @@ namespace AH.UI.Views {
         #endregion
 
         private void ClickGoToTitleBtn(ClickEvent evt) {
-            Debug.Log("title"); 
             SaveDataEvents.SaveGameEvent?.Invoke("TitleScene");
         }
         private void ClickGoToHangOutBtn(ClickEvent evt) {
