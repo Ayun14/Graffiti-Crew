@@ -17,6 +17,7 @@ namespace AH.UI {
         private SettingView _settingView;
 
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
+        [SerializeField] private LoadStageSO _loadStageSO;
 
         private Button _startBtn;
         private Button _settingBtn;
@@ -101,6 +102,11 @@ namespace AH.UI {
         private async void Fade() {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await System.Threading.Tasks.Task.Delay(1100);
+
+            _loadStageSO.SetCurrentStage("Chapter1Activity0", StageType.Activity);
+            _loadStageSO.chapter = "Chapter1";
+            _loadStageSO.stage = "Activity0";
+
             string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
             SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
         }
