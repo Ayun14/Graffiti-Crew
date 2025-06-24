@@ -73,7 +73,6 @@ namespace AH.UI.Views {
             nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
         }
         private void FailPanel() {
-            Debug.Log("show fail panel");
             Button retryBtn = _lResultPanel.Q<Button>("retry-btn");
             Button homeBtn = _lResultPanel.Q<Button>("home-btn");
             Debug.Log(retryBtn);
@@ -82,13 +81,21 @@ namespace AH.UI.Views {
         }
 
         private void ClickNextBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             StageEvent.ClickNectBtnEvent?.Invoke();
         }
         private void ClickHomeBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             SaveDataEvents.SaveGameEvent?.Invoke("ComputerScene");
         }
         private void ClickRetryBtn(ClickEvent evt) {
-            Debug.Log("Retry");
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             Debug.Log(SceneManager.GetActiveScene().name);
             SaveDataEvents.SaveGameEvent?.Invoke(SceneManager.GetActiveScene().name);
         }
