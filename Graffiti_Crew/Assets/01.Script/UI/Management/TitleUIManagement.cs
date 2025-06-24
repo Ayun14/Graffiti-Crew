@@ -91,6 +91,9 @@ namespace AH.UI {
             }
         }
         private void ClickActiveSaveSlotView(ClickEvent evt, bool active) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             if (active) {
                 _slotView.style.display = DisplayStyle.Flex;
             }
@@ -113,6 +116,9 @@ namespace AH.UI {
 
         #region DropDown
         private void ChangeSlot(ClickEvent evt, int index) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             _settingViewModel.SetSlotIndex(index);
             SlotSO selectSlot = slots[index];
             UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
@@ -124,9 +130,15 @@ namespace AH.UI {
             ClickStartBtn(null);
         }
         private void ClickStartBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             Fade();
         }
         private void ClickSettingBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             ShowView(_settingView);
             evt.StopPropagation();
         }
@@ -134,6 +146,9 @@ namespace AH.UI {
             SaveDataEvents.DeleteSaveDataEvent?.Invoke();
         }
         private void ClickExitBtn(ClickEvent evt) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
             Application.Quit();
             evt.StopPropagation();
         }
