@@ -136,6 +136,7 @@ public class FightSceneUIController : Observer<GameStateController>
             if (isFight) {
                 // Fight UI
                 StageEvent.SetActiveFightViewEvent?.Invoke(true);
+                StageEvent.SetsprayCountEvnet?.Invoke(false);
 
                 // Cursor
                 GameManager.Instance.SetCursor(true);

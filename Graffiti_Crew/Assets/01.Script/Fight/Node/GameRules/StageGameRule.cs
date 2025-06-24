@@ -10,7 +10,6 @@ public abstract class StageGameRule : Observer<GameStateController>
     [HideInInspector] public bool isTurotial = false; // Input
 
     public StageRuleType stageRule;
-    protected StageType _stageType;
 
     // Children
     protected NodeJudgement _nodeJudgement;
@@ -62,7 +61,6 @@ public abstract class StageGameRule : Observer<GameStateController>
         stageResult = dataController.stageData.stageResult;
         _startSprite = dataController.stageData.memberGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
-        _stageType = dataController.stageData.stagetype;
 
         // Judgement And Spawner
         _nodeSpawner = Instantiate(dataController.stageData.spawnerPrefab, transform).GetComponentInChildren<NodeSpawner>();
@@ -104,8 +102,7 @@ public abstract class StageGameRule : Observer<GameStateController>
             stageResult.value++;
 
         // Spray
-        if (_stageType == StageType.Activity)
-            _sprayController.AddSprayAmount(-30f);
+        _sprayController.AddSprayAmount(-30f);
 
         // Combo
         //_comboController.FailCombo();
@@ -118,11 +115,8 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public void PlayerLoseCheck()
     {
-        if (_stageType == StageType.Activity)
-        {
-            mySubject.SetWhoIsWin(false);
-            mySubject.ChangeGameState(GameState.Finish);
-        }
+        mySubject.SetWhoIsWin(false);
+        mySubject.ChangeGameState(GameState.Finish);
     }
 
     public async void AllNodeClear()

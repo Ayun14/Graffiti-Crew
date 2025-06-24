@@ -60,10 +60,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
                 _countdownTimeline?.Play();
                 UIAnimationEvent.SetActiveCountDownAnimationEvnet?.Invoke(true);
             }
-            else if (mySubject.GameState == GameState.Fight)
-            {
-                StageEvent.SetsprayCountEvnet?.Invoke(_stageType == StageType.Battle);
-            }
             else if (mySubject.GameState == GameState.Finish)
             {
                 _finishTimeline.Play();
