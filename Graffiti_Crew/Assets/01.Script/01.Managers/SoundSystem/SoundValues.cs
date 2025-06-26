@@ -64,5 +64,7 @@ public enum SoundType
     Police,
     Tutorial,
     Serious,
-    Serious2
+    Serious2,
+    Serious3,
+    GuitarBGM,
 }
