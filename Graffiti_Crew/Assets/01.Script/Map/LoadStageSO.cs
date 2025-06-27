@@ -15,10 +15,6 @@ namespace AH.SaveSystem {
         [Space]
         [SerializeField] private string _defaultChapter;
         [SerializeField] private string _defaultStage;
-        [SerializeField] private string _defaultRequestChapter;
-        [SerializeField] private string _defaultRequestStage;
-        [SerializeField] private string _defaultStroyChapter;
-        [SerializeField] private string _defaultStroyStage;
 
         private void Awake() {
             dataType = DataType.Ect;

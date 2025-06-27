@@ -24,7 +24,6 @@ namespace AH.UI.Views {
             base.Initialize();
             StageEvent.ShowVictorScreenEvent += FullScreen;
             GameEvents.SendCurrentStarCountEvent += SetCurrentStar;
-            Debug.Log("init");
         }
         public override void Dispose() {
             base.Dispose();
@@ -36,19 +35,16 @@ namespace AH.UI.Views {
             base.SetVisualElements();
             _cResultPanel = topElement.Q<VisualElement>("clear-result-container");
             _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
-            Debug.Log("set");
         }
         private void FullScreen(bool result) {
             Debug.Log(result);
             if (result) {
                 ClearPanel();
-                Debug.Log("clear");
                 _cResultPanel.AddToClassList("result-in");
             }
             else {
                 FailPanel();
                 _lResultPanel.AddToClassList("result-in");
-                Debug.Log("fail set");
             }
         }
         private void SetCurrentStar(int count) {
