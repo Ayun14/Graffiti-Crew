@@ -69,4 +69,8 @@ public class SingleNode : Node, INodeAction
     {
         NodeClear();
     }
+
+    public override void NodeFalse() { }
+
+    public override void NodeReset() { }
 }

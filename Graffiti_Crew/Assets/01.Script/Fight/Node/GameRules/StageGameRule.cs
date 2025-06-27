@@ -9,7 +9,8 @@ public abstract class StageGameRule : Observer<GameStateController>
     public event Action OnNodeClear;
     [HideInInspector] public bool isTurotial = false; // Input
 
-    public StageRuleType stageRule;
+    [HideInInspector] public StageType stageType;
+    [HideInInspector] public StageRuleType stageRuleType;
 
     // Children
     protected NodeJudgement _nodeJudgement;
@@ -46,7 +47,8 @@ public abstract class StageGameRule : Observer<GameStateController>
     public bool IsCanInput()
     {
         if (isTurotial) return false;
-        if (mySubject.IsSprayEmpty || _sprayController.isMustShakeSpray) return false;
+        if (mySubject.IsSprayEmpty) return false;
+        if (_sprayController == null || _sprayController.isMustShakeSpray) return false;
 
         return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial;
     }
@@ -61,6 +63,9 @@ public abstract class StageGameRule : Observer<GameStateController>
         stageResult = dataController.stageData.stageResult;
         _startSprite = dataController.stageData.memberGraffiti;
         _nodeDatas = dataController.stageData.nodeDatas;
+
+        stageType = dataController.stageData.stageType;
+        stageRuleType = dataController.stageData.stageRuleType;
 
         // Judgement And Spawner
         _nodeSpawner = Instantiate(dataController.stageData.spawnerPrefab, transform).GetComponentInChildren<NodeSpawner>();
@@ -98,7 +103,7 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     public virtual void NodeFalse()
     {
-        if (stageResult != null && stageRule == StageRuleType.OneTouchRule)
+        if (stageResult != null && stageRuleType == StageRuleType.OneTouchRule)
             stageResult.value++;
 
         // Spray

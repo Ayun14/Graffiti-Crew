@@ -49,8 +49,9 @@ public class MemoryJudgement : NodeJudgement
             }
             else
             {
-                // HitNode Combo 실패
-                if (currentNode != null && currentNode.GetNodeType() == NodeType.HitNode)
+                if (currentNode != null)
+                    currentNode.NodeFalse();
+                else
                     NodeFalse();
 
                 // 클릭 못한 노드 부터 보여야함
