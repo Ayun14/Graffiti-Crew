@@ -1,16 +1,28 @@
 using DG.Tweening;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ClickJudgement : NodeJudgement
 {
     [Header("Player")]
     [SerializeField] private SliderValueSO _playerSliderValueSO;
+    [SerializeField] private SliderValueSO _rivalSliderValueSO;
     private Tween _playerProgressValueChangeTween;
+
+    private bool _isBattle = false;
 
     private void Awake()
     {
         _playerSliderValueSO.Value = _playerSliderValueSO.min;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (_stageGameRule.stageType == StageType.Battle)
+        {
+            UpdateSliderValue(true);
+        }
     }
 
     protected override void NodeInput()
@@ -41,10 +53,12 @@ public class ClickJudgement : NodeJudgement
                     NodeClick(currentNode);
                 }
             }
-            else // HitNode Combo 실패
+            else
             {
-                if (currentNode != null && currentNode.GetNodeType() == NodeType.HitNode)
-                    _stageGameRule.NodeFalse();
+                if (currentNode != null)
+                    currentNode.NodeFalse();
+                else
+                    NodeFalse();
             }
         }
     }
@@ -53,18 +67,35 @@ public class ClickJudgement : NodeJudgement
     {
         if (node == null || currentNode == null) return;
 
+        UpdateSliderValue(false);
+
         if (node == currentNode)
         {
-            if (_playerSliderValueSO == null) return;
-            if (_playerProgressValueChangeTween != null && _playerProgressValueChangeTween.IsActive())
-                _playerProgressValueChangeTween.Complete();
-
-            float percent = ++_clearNodeCnt / (float)_stageGameRule.NodeCnt;
-            float targetValue = _playerSliderValueSO.max * percent;
-
-            _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
-                x => _playerSliderValueSO.Value = x, targetValue, 0.2f);
+            ++_clearNodeCnt;
+            if (_stageGameRule.stageType == StageType.Activity)
+                UpdateSliderValue(false);
         }
         base.NodeClear(node);
+    }
+
+    private void UpdateSliderValue(bool isBattle)
+    {
+        if (_playerSliderValueSO == null) return;
+        if (_playerProgressValueChangeTween != null && _playerProgressValueChangeTween.IsActive())
+            _playerProgressValueChangeTween.Complete();
+
+        float playerValue = _clearNodeCnt / (float)_stageGameRule.NodeCnt * _playerSliderValueSO.max;
+        float targetValue = playerValue;
+        if (isBattle)
+        {
+            // 플레이어와 라이벌의 차이
+            float rivalValue = _rivalSliderValueSO.Value;
+            float addValue = playerValue - rivalValue;
+            targetValue = (_playerSliderValueSO.max / 2) + addValue;
+
+        }
+
+        _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
+            x => _playerSliderValueSO.Value = x, targetValue, 0.2f);
     }
 }

@@ -19,7 +19,7 @@ public class ScoreSystem : MonoBehaviour {
         int increase = 1; // 기본값
         int decrease = 1; // 기본값
 
-        switch (stageData.stagetype) {
+        switch (stageData.stageType) {
             case StageType.Battle:
                 increase = 1;
                 decrease = 2;

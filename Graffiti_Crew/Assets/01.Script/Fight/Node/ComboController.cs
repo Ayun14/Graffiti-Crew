@@ -84,7 +84,7 @@ public class ComboController : MonoBehaviour
             StartCoroutine(ComboEffectRoutine());
         }
 
-        if (_stageGameRule.stageRule == StageRuleType.PerfectRule && _currentCombo > _stageResult.value)
+        if (_stageGameRule.stageRuleType == StageRuleType.PerfectRule && _currentCombo > _stageResult.value)
             _stageResult.value = _currentCombo;
     }
 
