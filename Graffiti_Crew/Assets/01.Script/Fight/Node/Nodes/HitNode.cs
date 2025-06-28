@@ -24,6 +24,7 @@ public class HitNode : Node, INodeAction
         _hitNodeData = nodeData as HitNodeDataSO;
         _renderer.sprite = _hitNodeData.sprite;
         transform.position = _hitNodeData.pos;
+        lastNodePos = transform.position;
 
         NodeReset();
     }

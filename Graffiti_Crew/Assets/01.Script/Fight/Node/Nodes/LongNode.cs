@@ -36,6 +36,7 @@ public class LongNode : Node, INodeAction
 
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
+        lastNodePos = _longNodeData.pointList[_longNodeData.pointList.Count - 1];
 
         NodeReset();
         ConnectLine();
