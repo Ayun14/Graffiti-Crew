@@ -32,7 +32,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     public void LodingHandle(DataController dataController)
     {
         _isOnPolice = dataController.stageData.isOnPolice;
-        _stageType = dataController.stageData.stagetype;
+        _stageType = dataController.stageData.stageType;
 
         dataController.SuccessGiveData();
     }
