@@ -48,7 +48,7 @@ public abstract class NodeJudgement : MonoBehaviour
         if (node == currentNode)
         {
             // Stage Game Rule
-            _stageGameRule.NodeClear();
+            _stageGameRule.NodeClear(node.lastNodePos);
             currentNode = null;
         }
     }

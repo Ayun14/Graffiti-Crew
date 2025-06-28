@@ -93,10 +93,10 @@ public abstract class StageGameRule : Observer<GameStateController>
 
     #region Node Clear Check
 
-    public virtual void NodeClear()
+    public virtual void NodeClear(Vector3 nodePos)
     {
         // Combo
-        //_comboController.SuccessCombo();
+        _comboController.SuccessCombo(nodePos);
 
         OnNodeClear?.Invoke();
     }
@@ -110,7 +110,7 @@ public abstract class StageGameRule : Observer<GameStateController>
         _sprayController.AddSprayAmount(-30f);
 
         // Combo
-        //_comboController.FailCombo();
+        _comboController.FailCombo();
 
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Miss, UnityEngine.Random.Range(0.8f, 1.2f));

@@ -24,6 +24,8 @@ public abstract class Node : MonoBehaviour, IPoolable
     [HideInInspector] public float visibleTime;
     private Coroutine _visibleRoutine;
 
+    [HideInInspector] public Vector3 lastNodePos;
+
     public virtual void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
         if (_judgement == null)

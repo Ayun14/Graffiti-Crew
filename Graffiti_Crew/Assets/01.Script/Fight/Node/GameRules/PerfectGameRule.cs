@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PerfectGameRule : StageGameRule
 {
-    public override void NodeClear()
+    public override void NodeClear(Vector3 nodePos)
     {
-        base.NodeClear();
+        base.NodeClear(nodePos);
 
         _nodeSpawner.DequeueNode();
 

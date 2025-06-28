@@ -40,6 +40,7 @@ public class PressNode : Node, INodeAction
         _pressNodeData = nodeData as PressNodeDataSO;
         _renderer.sprite = _pressNodeData.sprite;
         transform.position = _pressNodeData.pos;
+        lastNodePos = transform.position;
 
         NodeReset();
     }
