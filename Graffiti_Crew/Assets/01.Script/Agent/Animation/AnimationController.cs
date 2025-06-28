@@ -22,7 +22,10 @@ public enum AnimationEnum
     Sad,
     Surprised,
     Thinking,
-    Call
+    Call,
+
+    // Activity
+    SprayNone,
 }
 
 public class AnimationController : MonoBehaviour

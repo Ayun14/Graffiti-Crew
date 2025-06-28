@@ -93,4 +93,9 @@ public class BGMController : Observer<GameStateController>
         yield return new WaitForSeconds(4.5f);
         source.DOFade(0, 1.8f).OnComplete(() => GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Police));
     }
+
+    public void PlaySpraySFX()
+    {
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_NoneGas);
+    }
 }

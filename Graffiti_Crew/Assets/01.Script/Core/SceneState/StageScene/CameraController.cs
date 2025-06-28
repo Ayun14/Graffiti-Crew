@@ -11,6 +11,9 @@ public class CameraController : Observer<GameStateController>
     private CinemachineCamera _graffitiCamera;
     private CinemachineImpulseSource _impulseSource;
 
+    // Activity
+    private CinemachineCamera _sprayNoneCamera;
+
     private void Awake()
     {
         Attach();
@@ -19,6 +22,8 @@ public class CameraController : Observer<GameStateController>
 
         _graffitiCamera = transform.Find("Camera_PlayerGraffiti").GetComponent<CinemachineCamera>();
         _impulseSource = _graffitiCamera.GetComponent<CinemachineImpulseSource>();
+
+        _sprayNoneCamera = transform.Find("Camera_SprayNone")?.GetComponent<CinemachineCamera>();
     }
 
     private void OnDestroy()
@@ -35,6 +40,12 @@ public class CameraController : Observer<GameStateController>
             // Fight
             bool isGraffitiCameraOff = mySubject.GameState == GameState.Result;
             _graffitiCamera.Priority.Value = isGraffitiCameraOff ? 0 : 2;
+
+            if (isGraffitiCameraOff && mySubject.IsPlayerWin == false)
+            {
+                if (_sprayNoneCamera != null)
+                    _sprayNoneCamera.Priority.Value = 5;
+            }
         }
     }
 
