@@ -1,5 +1,6 @@
 using AH.UI.Models;
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace AH.UI.ViewModels {
@@ -19,6 +20,10 @@ namespace AH.UI.ViewModels {
         }
         public SliderValueSO GetSprayData() {
             return _model.GetSprayData();
+        }
+
+        public SliderValueSO GetGameProgressSO() {
+            return _model.GetGameProgressSO();
         }
     }
 }

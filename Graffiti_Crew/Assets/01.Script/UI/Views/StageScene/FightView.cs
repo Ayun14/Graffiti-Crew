@@ -1,3 +1,4 @@
+using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
@@ -9,9 +10,10 @@ namespace AH.UI.Views {
     public class FightView : UIView {
         private FightViewModel _viewModel;
 
-        private VisualElement _fRivalborder;
-        private VisualElement _fPlayerborder;
-        private VisualElement _aPlayerborder;
+        private VisualElement _fightBorder;
+        private VisualElement _activitBorder;
+        private GameProgressElement _fGameProgress;
+        private GameProgressElement _aGameProgress;
 
         private VisualElement _sprayCountContent;
         private VisualElement _sprayOutLine;
@@ -19,33 +21,49 @@ namespace AH.UI.Views {
 
         public FightView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             StageEvent.ChangeSprayValueEvent += UpdateSpray;
+            StageEvent.ChangeGameProgressValueEvent += UpdateGameProgress;
             StageEvent.SetProgressEvnet += SetProgress;
             StageEvent.SetsprayCountEvnet += SetSprayCount;
         }
-        public override void Initialize() {
-            base.Initialize();
-            _viewModel = viewModel as FightViewModel;
-        }
         public override void Dispose() {
             StageEvent.ChangeSprayValueEvent -= UpdateSpray;
+            StageEvent.ChangeGameProgressValueEvent -= UpdateGameProgress;
             StageEvent.SetProgressEvnet -= SetProgress;
             StageEvent.SetsprayCountEvnet -= SetSprayCount;
+            Debug.Log("dispose");
             base.Dispose();
+        }
+        public override void Initialize() {
+            _viewModel = viewModel as FightViewModel;
+            base.Initialize();
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
-            _fRivalborder = topElement.Q<VisualElement>("fight-rival-border");
-            _fPlayerborder = topElement.Q<VisualElement>("fight-player-border");
-            _aPlayerborder = topElement.Q<VisualElement>("activity-player-border");
+
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
             _sprayCountContent = topElement.Q<VisualElement>("sprayCount-content");
-        }
 
+            _fightBorder = topElement.Q<VisualElement>("fight-progress-border");
+            _activitBorder = topElement.Q<VisualElement>("activity-progress-border");
+            _fGameProgress = _fightBorder.Q<GameProgressElement>("game-progress");
+            _aGameProgress = _activitBorder.Q<GameProgressElement>("game-progress");
+
+            _fGameProgress.Min = _viewModel.GetGameProgressSO().min;
+            _fGameProgress.Max = _viewModel.GetGameProgressSO().max;
+            _aGameProgress.Min = _viewModel.GetGameProgressSO().min;
+            _aGameProgress.Max = _viewModel.GetGameProgressSO().max;
+            UpdateGameProgress();
+        }
         public override void Show() {
             base.Show();
             _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(Color.white);
         }
 
+        private void UpdateGameProgress() {
+            //Debug.Log(_viewModel.GetGameProgressSO().Value);
+            _fGameProgress.Value = _viewModel.GetGameProgressSO().Value;
+            _aGameProgress.Value = _viewModel.GetGameProgressSO().Value;
+        }
         private void UpdateSpray() {
             if (_viewModel.GetSprayData().Value <= Mathf.Epsilon) {
                 if (!_notEnoughSpray) { // 이미하고 있는지 확인
@@ -76,14 +94,12 @@ namespace AH.UI.Views {
         }
         private void SetProgress(bool fight) {
             if (fight) {
-                _fRivalborder.style.display = DisplayStyle.Flex;
-                _fPlayerborder.style.display = DisplayStyle.Flex;
-                _aPlayerborder.style.display = DisplayStyle.None;
+                _fightBorder.style.display = DisplayStyle.Flex;
+                _activitBorder.style.display = DisplayStyle.None;
             }
             else {
-                _fRivalborder.style.display = DisplayStyle.None;
-                _fPlayerborder.style.display = DisplayStyle.None;
-                _aPlayerborder.style.display = DisplayStyle.Flex;
+                _fightBorder.style.display = DisplayStyle.None;
+                _activitBorder.style.display = DisplayStyle.Flex;
             }
         }
         private void SetSprayCount(bool fight) {

@@ -66,6 +66,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 88506dd224d6c5f4cbc4bd15a2a52612, type: 2}
     - {fileID: 11400000, guid: cd1297f8bd86789498290ca6182b7231, type: 2}
+    - {fileID: 11400000, guid: b7bed372095ddc744bc09c38fe86c73f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -98,6 +99,32 @@ MonoBehaviour:
         - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: RivalController, Assembly-CSharp
           m_MethodName: WinLoseAnimation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
+          m_MethodName: PlayResultSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: FightSceneTimelineController, Assembly-CSharp
+          m_MethodName: LoopResultTimeLine
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -249,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadStageSO: {fileID: 11400000, guid: 6872eb58a5d8c974d84bf284ca3c6625, type: 2}
   _sprayGauage: {fileID: 11400000, guid: b6e85151e6f7af34bba240efe1322a66, type: 2}
+  _gameProgressGauage: {fileID: 11400000, guid: d58bdf07d45f4934fb995998a082f09f, type: 2}
 --- !u!114 &870815199134002710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,8 +435,8 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: FightSceneTimelineController, Assembly-CSharp
-          m_MethodName: BeforeFightTimelineEnd
+          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
+          m_MethodName: StartCountdownSound
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
