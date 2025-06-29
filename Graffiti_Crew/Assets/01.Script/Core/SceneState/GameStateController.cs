@@ -9,7 +9,7 @@ public enum GameState
     Loding, Timeline, Countdown, Fight, Finish, Result, NextStage,
 
     // Æ©Åä¸®¾ó
-    // Dialogue -> Tutorial -> Dialogue
+    // Dialogue -> Countdown -> Tutorial -> Dialogue
     Dialogue, Tutorial,
 
     Computer

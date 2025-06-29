@@ -47,6 +47,8 @@ public class TutorialNode : Observer<GameStateController>
 
     private void SetInput(bool isCanInput)
     {
+        if (_stageGameRule == null) return;
+
         _stageGameRule.isTurotial = !isCanInput;
     }
 }

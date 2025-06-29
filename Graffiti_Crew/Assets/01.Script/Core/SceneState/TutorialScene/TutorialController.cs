@@ -15,6 +15,8 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
     [SerializeField] private SplashController _splashController;
 
+    [SerializeField] private GameObject _explainImg;
+
     private int _dialogueNum = 0;
     private int _clearNode = 0;
 
@@ -51,21 +53,33 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 GameManager.Instance.SetCursor(false);
             }
 
-            if(mySubject.GameState == GameState.Tutorial)
+            if(mySubject.GameState == GameState.Countdown)
             {
                 _dialogueUIController.ChangeDialogueUI?.Invoke(false);
                 DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
-                //_dialogueUIController.OnEndTyping?.Invoke(false);
+                StageEvent.SetActiveFightViewEvent?.Invoke(true);
 
+                _explainImg.SetActive(true);
+
+                _dialogueController.StartDialogue(_tutorialStartIndex + 9, _tutorialStartIndex + 12, ExplainEnd);
+            }
+
+            if (mySubject.GameState == GameState.Tutorial)
+            {
+                _dialogueController.CanSkip = false;
                 _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
-
-                //SetMiniDialogue();
 
                 // Cursor
                 GameManager.Instance.SetCursor(true);
             }
         }
+    }
+
+    private void ExplainEnd()
+    {
+        _explainImg.SetActive(false);
+        mySubject.ChangeGameState(GameState.Tutorial);
     }
 
     private void DialogueEnd()
@@ -100,10 +114,12 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
             _level.SetActive(true);
             yield return StartCoroutine(Fade(true));
 
-            mySubject.ChangeGameState(GameState.Tutorial);
+            mySubject.ChangeGameState(GameState.Countdown);
         }
         else if (_dialogueNum == 3)
         {
+            _dialogueController.CanSkip = true;
+
             _mainCam.SetActive(false);
             NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
 
