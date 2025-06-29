@@ -70,8 +70,10 @@ public class MemoryJudgement : NodeJudgement
 
         float targetValue = _playerSliderValueSO.Value - 10;
         _playerSliderValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
-            x => _playerSliderValueSO.Value = x, targetValue, 0.1f);
-        StageEvent.ChangeGameProgressValueEvent?.Invoke();
+            x => _playerSliderValueSO.Value = x, targetValue, 0.1f).OnComplete(() => {
+                StageEvent.ChangeGameProgressValueEvent?.Invoke();
+            });
+
         if (targetValue <= 0)
             _stageGameRule.AllNodeClear(); // 그냥 끝내버리기..
     }

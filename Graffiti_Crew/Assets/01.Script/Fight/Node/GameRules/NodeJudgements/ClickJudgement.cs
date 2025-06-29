@@ -1,3 +1,4 @@
+using AH.UI.Events;
 using DG.Tweening;
 using UnityEngine;
 
@@ -96,6 +97,9 @@ public class ClickJudgement : NodeJudgement
         }
 
         _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
-            x => _playerSliderValueSO.Value = x, targetValue, 0.2f);
+            x => _playerSliderValueSO.Value = x, targetValue, 0.2f).OnComplete(() =>
+            {
+                StageEvent.ChangeGameProgressValueEvent?.Invoke();
+            });
     }
 }
