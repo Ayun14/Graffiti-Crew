@@ -1,6 +1,6 @@
+using AH.SaveSystem;
 using AH.UI.Models;
 using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace AH.UI.ViewModels {
@@ -24,6 +24,18 @@ namespace AH.UI.ViewModels {
 
         public SliderValueSO GetGameProgressSO() {
             return _model.GetGameProgressSO();
+        }
+
+        public Sprite GetJiaImg() {
+            Sprite[] sprites = _model.GetProgressSprites();
+            return sprites[0];
+        }
+        public Sprite GetRivalImg() {
+            Sprite[] sprites = _model.GetProgressSprites();
+            LoadStageSO stageSO = _model.GetLoadStageSO();
+            string chapterStr = stageSO.chapter.Replace("Chapter", ""); // "3"
+            int chapterNum = int.Parse(chapterStr); // 3
+            return sprites[chapterNum];
         }
     }
 }

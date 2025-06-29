@@ -48,19 +48,24 @@ namespace AH.UI.Views {
             _fGameProgress = _fightBorder.Q<GameProgressElement>("game-progress");
             _aGameProgress = _activitBorder.Q<GameProgressElement>("game-progress");
 
+            SetGameProgress();
+        }
+
+        private void SetGameProgress() {
+            _fGameProgress.SetImage(_viewModel.GetJiaImg(), _viewModel.GetRivalImg());
             _fGameProgress.Min = _viewModel.GetGameProgressSO().min;
             _fGameProgress.Max = _viewModel.GetGameProgressSO().max;
             _aGameProgress.Min = _viewModel.GetGameProgressSO().min;
             _aGameProgress.Max = _viewModel.GetGameProgressSO().max;
             UpdateGameProgress();
         }
+
         public override void Show() {
             base.Show();
             _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(Color.white);
         }
 
         private void UpdateGameProgress() {
-            //Debug.Log(_viewModel.GetGameProgressSO().Value);
             _fGameProgress.Value = _viewModel.GetGameProgressSO().Value;
             _aGameProgress.Value = _viewModel.GetGameProgressSO().Value;
         }

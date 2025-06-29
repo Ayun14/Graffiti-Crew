@@ -30,7 +30,7 @@ public class GraffitiRenderer : MonoBehaviour
         _memberGraffitiMat = _memberGraffitiRenderer.material;
         _memberGraffitiPS = GetComponentInChildren<ParticleSystem>();
 
-        SetMemberGraffitiMat(0f);
+        //SetMemberGraffitiMat(0f);
     }
 
     public void Init(StageGameRule stageGameRule, Sprite startSprite)
