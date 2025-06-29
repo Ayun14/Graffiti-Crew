@@ -78,7 +78,17 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
     private void ExplainEnd()
     {
+        StartCoroutine(ExplainEndRoutine());
+    }
+
+    private IEnumerator ExplainEndRoutine()
+    {
+        StageEvent.SetActiveFightViewEvent?.Invoke(false);
+
+        yield return StartCoroutine(Fade(false));
         _explainImg.SetActive(false);
+        yield return StartCoroutine(Fade(true));
+
         mySubject.ChangeGameState(GameState.Tutorial);
     }
 
