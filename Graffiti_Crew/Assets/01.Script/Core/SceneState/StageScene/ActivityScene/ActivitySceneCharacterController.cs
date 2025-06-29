@@ -31,21 +31,6 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         _characterSpawnTrmList = transform.Find("CharacterSpawnPos").GetComponentsInChildren<Transform>().Skip(1).ToList();
     }
 
-    // Test Code
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _minValue);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _maxValue);
-        }
-    }
-
     private void OnDestroy()
     {
         Detach();
@@ -99,41 +84,6 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         }
     }
 
-    #region Fade
-
-    public void CharacterFadeIn()
-    {
-        StartCoroutine(CharacterFadeRoutine(true, 1f));
-    }
-
-    public void CharacterFadeOut()
-    {
-        StartCoroutine(CharacterFadeRoutine(false, 1f));
-    }
-
-    private IEnumerator CharacterFadeRoutine(bool isFadeIn, float duration)
-    {
-        float elapsed = 0;
-        float startValue = _characterMatList[0].GetFloat("_MinFadDistance");
-        float targetValue = isFadeIn ? _maxValue : _minValue;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-            float value = Mathf.Lerp(startValue, targetValue, t);
-
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", value);
-
-            yield return null;
-        }
-
-        foreach (Material mat in _characterMatList)
-            mat.SetFloat("_MinFadDistance", targetValue);
-    }
-    #endregion
-
     private void RivalsSpawn(List<Transform> rivalPrefabList)
     {
         _rivalTrmList?.Clear();
@@ -147,6 +97,16 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     }
 
     #region Timeline
+
+    public void CharacterFadeIn()
+    {
+        GameManager.Instance.CharacterFade(1f, 1f);
+    }
+
+    public void CharacterFadeOut()
+    {
+        GameManager.Instance.CharacterFade(0f, 1f);
+    }
 
     public void RivalStartGraffiti()
     {
