@@ -1,6 +1,8 @@
 using AH.LanguageSystem;
 using AH.SaveSystem;
 using AH.UI.Events;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +18,10 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Cursor")]
     [SerializeField] private Texture2D _normalCursor;
     [SerializeField] private Texture2D _sprayCursor;
+
+    [Header("Character Material")]
+    [SerializeField] private List<Material> _characterMatList = new();
+    [SerializeField] private float _minValue = -2f, _maxValue = 2f;
 
     // 해상도 설정
     private int width = 1920;
@@ -34,6 +40,21 @@ public class GameManager : MonoSingleton<GameManager>
 
         SoundSystemCompo = GetComponent<SoundManager>();
         LanguageSystemCompo = GetComponent<LanguageSystem>();
+    }
+
+    // Test Code
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            foreach (Material mat in _characterMatList)
+                mat.SetFloat("_MinFadDistance", _minValue);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            foreach (Material mat in _characterMatList)
+                mat.SetFloat("_MinFadDistance", _maxValue);
+        }
     }
 
     private void OnEnable()
@@ -88,6 +109,38 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Texture2D cursor = isSprayCursor ? _sprayCursor : _normalCursor;
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    #endregion
+
+    #region Character Fade
+
+    public void CharacterFade(float targetValue, float duration)
+    {
+        bool isFadeIn = targetValue == 1f ? true : false;
+        StartCoroutine(CharacterFadeRoutine(isFadeIn, duration));
+    }
+
+    private IEnumerator CharacterFadeRoutine(bool isFadeIn, float duration)
+    {
+        float elapsed = 0;
+        float startValue = _characterMatList[0].GetFloat("_MinFadDistance");
+        float targetValue = isFadeIn ? _maxValue : _minValue;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            float value = Mathf.Lerp(startValue, targetValue, t);
+
+            foreach (Material mat in _characterMatList)
+                mat.SetFloat("_MinFadDistance", value);
+
+            yield return null;
+        }
+
+        foreach (Material mat in _characterMatList)
+            mat.SetFloat("_MinFadDistance", targetValue);
     }
 
     #endregion
