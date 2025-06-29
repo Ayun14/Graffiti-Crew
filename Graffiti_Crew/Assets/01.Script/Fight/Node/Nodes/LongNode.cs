@@ -36,6 +36,7 @@ public class LongNode : Node, INodeAction
 
         _startPointRenderer.sprite = _longNodeData.startNodeSprite;
         _endPointRenderer.sprite = _longNodeData.endNodeSprite;
+        lastNodePos = _longNodeData.pointList[_longNodeData.pointList.Count - 1];
 
         NodeReset();
         ConnectLine();
@@ -206,7 +207,7 @@ public class LongNode : Node, INodeAction
             if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
             {
                 // Particle
-                PopGraffitiParticle(mouseWorldPosition);
+                PopGraffitiParticle(mouseWorldPosition + new Vector3(0f, 0f, -0.1f));
 
                 // Spray
                 _stageGameRule.AddShakeSliderAmount(-_longNodeData.sprayUseAmount / _pathPoints.Count);
@@ -229,16 +230,12 @@ public class LongNode : Node, INodeAction
 
     public override void NodeFalse()
     {
-        base.NodeFalse();
-
         _judgement.NodeFalse();
         NodeReset();
     }
 
     public override void NodeReset()
     {
-        base.NodeReset();
-
         _isFollowingPath = false;
         _followLineRenderer.enabled = false;
         _currentTargetIndex = 0;

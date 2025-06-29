@@ -7,9 +7,9 @@ public class PressNode : Node, INodeAction
 {
     [Header("PressNode")]
     [SerializeField] private Color _fitColor;
-
+    [SerializeField] private float _pressTime;
+    [SerializeField] private float _possibleRange;
     private float _currentTime = 0;
-    private float _pressTime;
 
     private bool _isPressing = false;
 
@@ -23,7 +23,7 @@ public class PressNode : Node, INodeAction
     // Ring
     private SpriteRenderer _ringRenderer;
     private Vector3 _orginRingScale;
-    private Vector3 _targetRingScale = new Vector3(0.1f, 0.1f, 1f);
+    private Vector3 _targetRingScale = new Vector3(0.085f, 0.085f, 1f);
     private Coroutine _ringColorCoroutine;
 
     private void Awake()
@@ -40,8 +40,7 @@ public class PressNode : Node, INodeAction
         _pressNodeData = nodeData as PressNodeDataSO;
         _renderer.sprite = _pressNodeData.sprite;
         transform.position = _pressNodeData.pos;
-
-        _pressTime = _pressNodeData.pressTime;
+        lastNodePos = transform.position;
 
         NodeReset();
     }
@@ -106,7 +105,7 @@ public class PressNode : Node, INodeAction
 
     private void CheckNodeClear()
     {
-        if (Mathf.Abs(_pressTime - _currentTime) <= _pressNodeData.possibleRange)
+        if (Mathf.Abs(_pressTime - _currentTime) <= _possibleRange)
         {
             NodeClear();
         }
@@ -130,16 +129,12 @@ public class PressNode : Node, INodeAction
 
     public override void NodeFalse()
     {
-        base.NodeFalse();
-
         _judgement.NodeFalse();
         NodeReset();
     }
 
     public override void NodeReset()
     {
-        base.NodeReset();
-
         _isPressing = false;
         _currentTime = 0;
         _currentParticleSpawnTime = 0;
@@ -167,9 +162,9 @@ public class PressNode : Node, INodeAction
     private IEnumerator RingColorRoutine()
     {
         Color originColor = _ringRenderer.color;
-        yield return new WaitForSeconds(_pressTime - _pressNodeData.possibleRange);
+        yield return new WaitForSeconds(_pressTime - _possibleRange);
         _ringRenderer.color = _fitColor;
-        yield return new WaitForSeconds(_pressNodeData.possibleRange * 2);
+        yield return new WaitForSeconds(_possibleRange * 2);
         _ringRenderer.color = originColor;
     }
 

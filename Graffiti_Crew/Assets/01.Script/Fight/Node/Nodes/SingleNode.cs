@@ -19,6 +19,7 @@ public class SingleNode : Node, INodeAction
         _singleNodeData = nodeData as SingleNodeDataSO;
         _renderer.sprite = _singleNodeData.sprite;
         transform.position = _singleNodeData.pos;
+        lastNodePos = transform.position;
     }
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
@@ -69,4 +70,8 @@ public class SingleNode : Node, INodeAction
     {
         NodeClear();
     }
+
+    public override void NodeFalse() { }
+
+    public override void NodeReset() { }
 }

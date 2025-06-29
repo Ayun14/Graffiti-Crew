@@ -13,50 +13,49 @@ MonoBehaviour:
   m_Name: 2.StoryStage3
   m_EditorClassIdentifier: 
   associatedSheet: 1A8IMx8Dlo1DZQmNTORVR1PWMP5DKjLtpviljQIihSyg
-  associatedWorksheet: Stage1
+  associatedWorksheet: Stage3
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 17
   readMode: 0
   DialogueList:
   - id: 1
     characterName: "\uC5D8\uB77C"
-    context: "\uC9C0\uC544\uC57C, \uC6B0\uB9AC \uC774\uC81C \uD06C\uB8E8\uC6D0\uC744
-      \uCC3E\uC544\uBD10\uC57C\uD558\uC9C0 \uC54A\uC744\uAE4C?"
+    context: "\uD6C4\uC6B0... \uACA8\uC6B0 \uB3C4\uB9DD\uCCE4\uB124."
     spriteName: Ella
-    soundName: Request
-    animName: Talk
+    soundName: GuitarBGM
+    animName: Sad
     bgType: 8
     actionType: 0
   - id: 2
     characterName: "\uC5D8\uB77C"
-    context: "\uADF8\uB54C \uBE44\uBE44\uC548\uC528\uC640\uC758 \uC57D\uC18D\uD588\uC796\uC544.
-      \uC6B0\uB9AC\uAC00 \uD560 \uC218 \uC788\uB294 \uB9CC\uD07C \uD574\uBCF4\uACA0\uB2E4\uACE0."
+    context: "\uC694\uC998 \uB4E4\uC5B4 \uACBD\uCC30\uC774 \uBE68\uB9AC \uC624\uB294\uAC70
+      \uAC19\uC544."
     spriteName: Ella
     soundName: 
-    animName: Talk
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 3
     characterName: "\uC9C0\uC544"
-    context: "\uD558\uC9C0\uB9CC... \uB3C4\uC800\uD788 \uB204\uAD6C\uB97C \uC601\uC785\uD574\uC57C
-      \uD560\uC9C0 \uBAA8\uB974\uACA0\uB294\uAC78..."
+    context: "\uD558\uC544... \uD655\uC2E4\uD788..."
     spriteName: Jia
     soundName: 
     animName: Sad
     bgType: 8
     actionType: 0
   - id: 4
-    characterName: "\uC5D8\uB77C"
-    context: "\uADF8\uB7FC \uC77C\uB2E8 \uBC16\uC73C\uB85C \uB098\uAC00\uBCFC\uAE4C?"
-    spriteName: Ella
+    characterName: "\uB8E8\uB514"
+    context: " \u2026\uADF8\uB7F0\uAC00."
+    spriteName: Rudy
     soundName: 
-    animName: Talk
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 5
     characterName: "\uC5D8\uB77C"
-    context: "\uC544\uC9C0\uD2B8\uC5D0 \uC788\uC5B4\uBD24\uC790, \uB204\uAC00 \uCC3E\uC544\uC624\uC9C4
-      \uC54A\uC744 \uD14C\uB2C8\uAE4C."
+    context: "\uB8E8\uB514\uB294 \uC798 \uBAA8\uB97C \uC218\uB3C4 \uC788\uACA0\uB124.
+      \uC804\uC5D0\uB294 \uC774\uB807\uAC8C \uAE09\uBC15\uD558\uAC8C \uCAD3\uAE34\uC801\uC774
+      \uB9CE\uC774 \uC5C6\uAC70\uB4E0."
     spriteName: Ella
     soundName: 
     animName: Talk
@@ -64,97 +63,92 @@ MonoBehaviour:
     actionType: 0
   - id: 6
     characterName: "\uC9C0\uC544"
-    context: "...\uC54C\uACA0\uC5B4."
+    context: "\uB9DE\uC544, \uADF8\uB9AC\uACE0 \uC6B0\uB9B4 \uCC3E\uAE30\uBCF4\uB2E4\uB294
+      \uC815\uD655\uD55C \uC704\uCE58\uB97C \uC54C\uACE0 \uC624\uB294\uAC70 \uAC19\uC544..."
     spriteName: Jia
-    soundName: Sigh
-    animName: Sad
+    soundName: 
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 7
-    characterName: 
-    context: "<\uC544\uC9C0\uD2B8 \uADFC\uCC98\uC758 \uACE8\uBAA9\uAE38>"
-    spriteName: Clear
+    characterName: "\uC9C0\uC544"
+    context: "\uC124\uB9C8..."
+    spriteName: Jia
     soundName: 
-    animName: 
-    bgType: 0
+    animName: Surprised
+    bgType: 8
     actionType: 0
   - id: 8
+    characterName: "\uB8E8\uB514"
+    context: ...?
+    spriteName: Rudy
+    soundName: 
+    animName: Idle
+    bgType: 8
+    actionType: 0
+  - id: 9
     characterName: "\uC5D8\uB77C"
-    context: "\uD760, \uC774\uC81C \uC5EC\uAE30\uB294 \uB354 \uC774\uC0C1 \uADF8\uB798\uD53C\uD2F0\uB97C
-      \uADF8\uB9B4 \uACF3\uC774 \uC5C6\uB124."
+    context: "\uC124\uB9C8...?"
     spriteName: Ella
     soundName: 
     animName: Thinking
     bgType: 8
     actionType: 0
-  - id: 9
+  - id: 10
     characterName: "\uC9C0\uC544"
-    context: "\uADF8\uB7EC\uAC8C... \uC694\uC998 \uCC3E\uC544\uC624\uB294 \uC0AC\uB78C\uB4E4\uC774
-      \uB9CE\uC544\uC9C4 \uAC70 \uAC19\uC544...!"
+    context: "\uC6B0\uB9AC\uD55C\uD14C \uC704\uCE58 \uCD94\uC801\uAE30\uAC00 \uBD99\uC5B4\uC788\uB098...?"
     spriteName: Jia
     soundName: 
-    animName: Happy
+    animName: Thinking
     bgType: 8
     actionType: 0
-  - id: 10
+  - id: 11
     characterName: "\uC5D8\uB77C"
-    context: "\uC751, \uC6B0\uB9AC \uD65C\uB3D9\uC774 \uC810\uC810 \uC8FC\uBAA9\uBC1B\uACE0
-      \uC788\uB2E4\uB294 \uC99D\uAC70\uC77C\uAC70\uC57C."
+    context: "\uAE00\uC384, \uC815\uB9D0 \uADF8\uB7F0 \uAC70\uB77C\uBA74 \uC544\uC9C0\uD2B8\uB3C4
+      \uC774\uBBF8 \uB4E4\uCF30\uC744 \uAC70\uC57C."
     spriteName: Ella
     soundName: 
     animName: Talk
     bgType: 8
     actionType: 0
-  - id: 11
+  - id: 12
     characterName: "\uC9C0\uC544"
-    context: "\uADF8\uB807\uACA0\uC9C0...? \uC6B0\uB9AC\uAC00 \uC798\uD558\uACE0
-      \uC788\uB294 \uAC74\uC9C0 \uC544\uC9C1\uC740 \uC798 \uBAA8\uB974\uACA0\uC5B4..."
+    context: "\uADF8\uB807\uB124..."
     spriteName: Jia
     soundName: 
     animName: Sad
     bgType: 8
     actionType: 0
-  - id: 12
-    characterName: "\uC5D8\uB77C"
-    context: "\uC798\uD558\uACE0 \uC788\uC5B4! \uADF8\uB7EC\uB2C8\uAE4C \uC790\uC2E0
-      \uAC00\uC838\uB3C4 \uB3FC."
-    spriteName: Ella
-    soundName: 
-    animName: Talk
-    bgType: 8
-    actionType: 0
   - id: 13
     characterName: "\uC5D8\uB77C"
-    context: "\uC6B0\uC120 \uC6B0\uB9AC \uD06C\uB8E8\uC5D0 \uC5B4\uC6B8\uB9B4 \uC0AC\uB78C\uC740
-      \uCC3E\uC544\uBCF4\uC790."
+    context: "\uD06C\uAC8C \uAC71\uC815\uD558\uC9C0 \uC54A\uC544\uB3C4 \uB420\uAC70\uC57C. "
     spriteName: Ella
     soundName: 
     animName: Talk
     bgType: 8
     actionType: 0
   - id: 14
-    characterName: ??
-    context: "\uC544, \uB0B4 \uC2A4\uD504\uB808\uC774\uAC00."
-    spriteName: Rudy
-    soundName: Spray_Change
-    animName: 
-    bgType: 0
+    characterName: "\uC5D8\uB77C"
+    context: "\uC544\uB9C8 \uB2E4\uB978 \uACF3\uC740 \uC774\uBBF8 \uADF8\uB798\uD53C\uD2F0\uB97C
+      \uADF8\uB838\uC73C\uB2C8\uAE4C \uCC3E\uAE30 \uC26C\uC6E0\uACA0\uC9C0."
+    spriteName: Ella
+    soundName: 
+    animName: Talk
+    bgType: 8
     actionType: 0
   - id: 15
-    characterName: 
-    context: "\u300E\uC9C0\uC544\uC640 \uC5D8\uB77C\uAC00 \uC18C\uB9AC\uAC00 \uB09C
-      \uBC29\uD5A5\uC744 \uBC14\uB77C\uBCF8\uB2E4.\u300F"
-    spriteName: Clear
+    characterName: "\uC9C0\uC544"
+    context: "\uADF8\uB807\uACA0\uC9C0...?"
+    spriteName: Jia
     soundName: 
-    animName: 
-    bgType: 0
+    animName: Sad
+    bgType: 8
     actionType: 0
   - id: 16
-    characterName: 
-    context: "\u300E\uC5D8\uB77C\uAC00 \uC790\uC2E0\uC758 \uBC1C\uAE4C\uC9C0 \uC628
-      \uC2A4\uD504\uB808\uC774 \uCE94\uC744 \uC90D\uB294\uB2E4.\u300F"
-    spriteName: Clear
+    characterName: "\uB8E8\uB514"
+    context: "\uC751, \uADF8\uB7F4\uAC70\uC57C."
+    spriteName: Rudy
     soundName: 
-    animName: Chapter2_01
-    bgType: 5
+    animName: Talk
+    bgType: 8
     actionType: 0

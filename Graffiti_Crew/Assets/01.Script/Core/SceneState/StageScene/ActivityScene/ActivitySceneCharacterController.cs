@@ -11,6 +11,9 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     [Range(-5f, 5f)]
     [SerializeField] private float _minValue = -2f, _maxValue = 2f;
 
+    [Header("Player")]
+    [SerializeField] private GameObject _sprayCan;
+
     private Transform _playerTrm;
     private List<Transform> _rivalTrmList = new();
 
@@ -31,16 +34,16 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     // Test Code
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    foreach (Material mat in _characterMatList)
-        //        mat.SetFloat("_MinFadDistance", _minValue);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    foreach (Material mat in _characterMatList)
-        //        mat.SetFloat("_MinFadDistance", _maxValue);
-        //}
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            foreach (Material mat in _characterMatList)
+                mat.SetFloat("_MinFadDistance", _minValue);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            foreach (Material mat in _characterMatList)
+                mat.SetFloat("_MinFadDistance", _maxValue);
+        }
     }
 
     private void OnDestroy()
@@ -77,8 +80,11 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     private void SettingFinishPos()
     {
         // Player
-        _playerTrm.position = _characterSpawnTrmList[0].localPosition;
-        _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
+        if (mySubject.IsPlayerWin)
+        {
+            _playerTrm.position = _characterSpawnTrmList[0].localPosition;
+            _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
+        }
 
         // Ella
         _rivalTrmList[0].position = _ellaGraffitiTrm.localPosition;
@@ -200,6 +206,12 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     public void RivalsTalk()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
+    }
+
+    public void PlayerSprayNone()
+    {
+        AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.SprayNone);
+        if (_sprayCan != null) _sprayCan.SetActive(true);
     }
 
     #endregion

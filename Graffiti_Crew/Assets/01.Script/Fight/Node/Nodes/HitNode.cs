@@ -24,9 +24,9 @@ public class HitNode : Node, INodeAction
         _hitNodeData = nodeData as HitNodeDataSO;
         _renderer.sprite = _hitNodeData.sprite;
         transform.position = _hitNodeData.pos;
+        lastNodePos = transform.position;
 
-        _currentHitCount = _hitNodeData.hitNum;
-        _hitCountText.text = _currentHitCount.ToString();
+        NodeReset();
     }
 
     public override void SetAlpha(float endValue, float time = 0, Action callback = null)
@@ -82,6 +82,20 @@ public class HitNode : Node, INodeAction
         isClearNode = true;
 
         SetAlpha(0f, fadeTime, () => pool.Push(this));
+    }
+
+    public override void NodeFalse()
+    {
+        _judgement.NodeFalse();
+        NodeReset();
+    }
+
+    public override void NodeReset()
+    {
+        _currentHitCount = _hitNodeData.hitNum;
+        _hitCountText.text = _currentHitCount.ToString();
+
+        Debug.Log("HitNode False | currentHitcount : " + _currentHitCount);
     }
 
     public override NodeType GetNodeType() => _hitNodeData.nodeType;

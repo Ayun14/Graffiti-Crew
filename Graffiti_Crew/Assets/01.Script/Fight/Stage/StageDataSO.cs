@@ -12,7 +12,7 @@ public class StageDataSO : ScriptableObject
 {
     [Header("-------All-------")]
     [Header("Stage")]
-    public StageType stagetype;
+    public StageType stageType;
     public StageRuleType stageRuleType;
     public GameObject judgementPrefab;
     public GameObject spawnerPrefab;

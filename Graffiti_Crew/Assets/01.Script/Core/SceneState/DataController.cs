@@ -112,7 +112,7 @@ public abstract class DataController : Observer<GameStateController>
         }
 
         string nextScene = "ComputerScene";
-        if (stageData.stagetype == StageType.Story || stageData.isPlayerWin)
+        if (stageData.stageType == StageType.Story || stageData.isPlayerWin)
         {
             switch (stageData.nextStagetype)
             {

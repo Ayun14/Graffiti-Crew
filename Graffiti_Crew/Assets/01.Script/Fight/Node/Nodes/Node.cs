@@ -24,6 +24,8 @@ public abstract class Node : MonoBehaviour, IPoolable
     [HideInInspector] public float visibleTime;
     private Coroutine _visibleRoutine;
 
+    [HideInInspector] public Vector3 lastNodePos;
+
     public virtual void Init(StageGameRule stageGameRule, NodeJudgement judgement, NodeDataSO nodeData)
     {
         if (_judgement == null)
@@ -35,7 +37,7 @@ public abstract class Node : MonoBehaviour, IPoolable
         isClearNode = false;
         visibleTime = nodeData.visibleTime;
 
-        if (stageGameRule.stageRule != StageRuleType.PerfectRule)
+        if (stageGameRule.stageRuleType != StageRuleType.PerfectRule)
             SetAlpha(1f, fadeTime);
 
     }
@@ -54,9 +56,9 @@ public abstract class Node : MonoBehaviour, IPoolable
 
     public abstract void SetAlpha(float endValue, float time = 0, Action callback = null);
 
-    public virtual void NodeFalse() { }
+    public abstract void NodeFalse();
 
-    public virtual void NodeReset() { }
+    public abstract void NodeReset();
 
     protected void PopGraffitiParticle(Vector3 spawnPos)
     {

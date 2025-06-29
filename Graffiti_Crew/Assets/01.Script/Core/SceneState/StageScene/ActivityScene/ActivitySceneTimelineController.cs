@@ -10,6 +10,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     private PlayableDirector _finishTimeline;
     private PlayableDirector _activityEndTimelinePolice;
     private PlayableDirector _activityEndTimelineNormal;
+    private PlayableDirector _sprayEmptyTimeline;
 
     private StageType _stageType;
     private bool _isOnPolice;
@@ -22,6 +23,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         _finishTimeline = transform.Find("FinishTimeline").GetComponent<PlayableDirector>();
         _activityEndTimelineNormal = transform.Find("ActivityEndTimeline_Normal").GetComponent<PlayableDirector>();
         _activityEndTimelinePolice = transform.Find("ActivityEndTimeline_Police").GetComponent<PlayableDirector>();
+        _sprayEmptyTimeline = transform.Find("SprayEmptyTimeline").GetComponent<PlayableDirector>();
     }
 
     private void OnDestroy()
@@ -32,7 +34,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     public void LodingHandle(DataController dataController)
     {
         _isOnPolice = dataController.stageData.isOnPolice;
-        _stageType = dataController.stageData.stagetype;
+        _stageType = dataController.stageData.stageType;
 
         dataController.SuccessGiveData();
     }
@@ -71,6 +73,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
                 UIAnimationEvent.SetFilmDirectingEvent(true);
 
                 PlayableDirector playable = _isOnPolice ? _activityEndTimelinePolice : _activityEndTimelineNormal;
+                playable = mySubject.IsPlayerWin ? playable : _sprayEmptyTimeline;
                 playable.Play();
             }
         }

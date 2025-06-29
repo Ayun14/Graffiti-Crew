@@ -4,9 +4,9 @@ public class OneTouchGameRule : StageGameRule
 {
     private int falseCount = 0;
 
-    public override void NodeClear()
+    public override void NodeClear(Vector3 nodePos)
     {
-        base.NodeClear();
+        base.NodeClear(nodePos);
 
         NodeSpawn();
 
