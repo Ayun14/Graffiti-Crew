@@ -33,8 +33,6 @@ namespace AH.UI.Views {
         private string[] _lauguageTypes;
 
         private Button _goToTitleBtn;
-        private Button _goToHangOutBtn;
-        private Button _exitGameBtn;
 
         private Button _closeBtn;
 
@@ -81,8 +79,6 @@ namespace AH.UI.Views {
             _sfxSlider.RegisterValueChangedCallback(ChangeSfxValue);
             _languageField.RegisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.RegisterCallback<ClickEvent>(ClickGoToTitleBtn);
-            //_goToHangOutBtn.RegisterCallback<ClickEvent>(ClickGoToHangOutBtn);
-            //_exitGameBtn.RegisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
         protected override void UnRegisterButtonCallbacks() {
@@ -94,8 +90,6 @@ namespace AH.UI.Views {
             _sfxSlider.UnregisterValueChangedCallback(ChangeSfxValue);
             _languageField.UnregisterValueChangedCallback(ChangeLanguage);
             _goToTitleBtn.UnregisterCallback<ClickEvent>(ClickGoToTitleBtn);
-            //_goToHangOutBtn.UnregisterCallback<ClickEvent>(ClickGoToHangOutBtn);
-            //_exitGameBtn.UnregisterCallback<ClickEvent>(ClickExitGameBtn);
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
@@ -174,13 +168,8 @@ namespace AH.UI.Views {
         #endregion
 
         private void ClickGoToTitleBtn(ClickEvent evt) {
+            GameManager.Instance.CharacterFade(1, 0);
             SaveDataEvents.SaveGameEvent?.Invoke("TitleScene");
-        }
-        private void ClickGoToHangOutBtn(ClickEvent evt) {
-            SaveDataEvents.SaveGameEvent?.Invoke("HangOutScene");
-        }
-        private void ClickExitGameBtn(ClickEvent evt) {
-            Application.Quit();
         }
     }
 }
