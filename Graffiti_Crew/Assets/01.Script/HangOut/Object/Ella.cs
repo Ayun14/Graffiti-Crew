@@ -25,6 +25,7 @@ public class Ella : NPC
             }
             else // Æ©Åä Àü
             {
+                Debug.Log("Tutorial before");
                 HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
                 _tutorialPanel.SetActive(true);
 
@@ -37,6 +38,7 @@ public class Ella : NPC
     public void CloseTutorialPanel()
     {
         if (_tutorialPanel == null) return;
+        Debug.Log("Close");
 
         _tutorialPanel.SetActive(false);
         HangOutEvent.SetPlayerMovementEvent?.Invoke(true);

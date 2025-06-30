@@ -21,12 +21,14 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         if (_playerInputEnabled == false) return;
+        //Debug.Log(_playerInputEnabled);
 
         CheckMoveInput();
     }
 
     public void SetPlayerInput(bool enabled)
     {
+        Debug.Log(enabled);
         _playerInputEnabled = enabled;
     }
 

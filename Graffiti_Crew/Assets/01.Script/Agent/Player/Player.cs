@@ -76,6 +76,7 @@ public class Player : Agent
 
     private void HandlePlayerMove(bool isMove)
     {
+        Debug.Log("Move : " + isMove);
         PlayerInput.SetPlayerInput(isMove);
     }
 
