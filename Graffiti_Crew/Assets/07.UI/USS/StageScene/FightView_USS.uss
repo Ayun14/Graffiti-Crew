@@ -72,6 +72,13 @@
     scale: 1.1 1.1;
 }
 
+.top-border {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
 .game-progress-element {
     width: 60%;
     border-left-color: rgb(0, 0, 0);
@@ -101,9 +108,7 @@
 }
 
 .progress-handle {
-    width: 122px;
     background-color: rgba(255, 255, 255, 0);
-    height: 50px;
     position: absolute;
     flex-direction: row;
     justify-content: center;
@@ -111,8 +116,19 @@
 }
 
 .progress-img {
-    width: 61px;
-    height: 61px;
+    width: 81px;
+    height: 81px;
     flex-direction: row;
-    background-image: url("project://database/Assets/02.Sprite/UI/Fight/Progress/game-progress-ella.png?fileID=21300000&guid=529a04faa0bf2034291b4bdf2a5a8bb0&type=3#game-progress-ella");
+}
+
+.top-border > #game-progress > .progress-handle > #jia {
+    left: 7%;
+}
+
+.top-border > #game-progress > .progress-handle > #ella {
+    right: 7%;
+}
+
+#m-container > #top-container > #activity-progress-border > #game-progress {
+    background-color: rgb(205, 205, 205);
 }

@@ -47,5 +47,10 @@
         <engine:VisualElement name="blue-line" class="default-blueline" />
         <engine:VisualElement name="rival-face" class="default-face" />
     </engine:VisualElement>
+    <engine:VisualElement name="sprayWarningAnimation" style="position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center;">
+        <engine:VisualElement name="warning-content" class="warning-content">
+            <engine:Label text="스프레이 1개 남음" name="warnging-text" class="grow-size-35 warning-text" />
+        </engine:VisualElement>
+    </engine:VisualElement>
     <engine:Instance template="FilmDirecting" name="FilmDirecing" style="width: 100%; height: 100%;" />
 </engine:UXML>
