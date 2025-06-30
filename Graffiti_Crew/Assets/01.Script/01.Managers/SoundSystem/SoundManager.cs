@@ -1,6 +1,7 @@
 using AH.SaveSystem;
 using DG.Tweening;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -53,8 +54,7 @@ public class SoundManager : MonoBehaviour
 
             // Volume
             audioSource.volume = 0;
-            audioSource.DOFade(soundList.volume * bgmVolume, 0.2f)
-                .OnComplete(() => audioSource.volume = soundList.volume * bgmVolume);
+            VolumeChange(audioSource, soundList.volume * bgmVolume);
         }
 
         return audioSource;
@@ -87,8 +87,7 @@ public class SoundManager : MonoBehaviour
 
             // Volume
             audioSource.volume = 0;
-            audioSource.DOFade(soundList.volume * sfxVolume, 0.2f)
-                .OnComplete(() => audioSource.volume = soundList.volume * sfxVolume);
+            VolumeChange(audioSource, soundList.volume * sfxVolume);
 
             soundObj.PushObject(false);
         }
@@ -125,10 +124,34 @@ public class SoundManager : MonoBehaviour
         foreach (var sound in _loopingSounds)
         {
             sound.Value.AudioSource.Stop();
-            sound.Value.PushObject(true);
+            sound.Value.PushObject(true, 0f);
         }
 
         _loopingSounds.Clear();
+    }
+
+    private void VolumeChange(AudioSource audioSource, float targetValue, Action callback = null)
+    {
+        StartCoroutine(VolumeChangeRoutine(audioSource, targetValue, callback));
+    }
+
+    private IEnumerator VolumeChangeRoutine(AudioSource audioSource, float targetValue, Action callback)
+    {
+        float currentTime = 0;
+        float duration = 0.2f;
+        while (currentTime <= duration)
+        {
+            currentTime += Time.deltaTime;
+            float t = currentTime / duration;
+
+            if (audioSource != null)
+                audioSource.volume = targetValue * t;
+
+            yield return null;
+        }
+        if (audioSource != null)
+            audioSource.volume = targetValue;
+        callback?.Invoke();
     }
 
     public void ChangedBGMVolume()

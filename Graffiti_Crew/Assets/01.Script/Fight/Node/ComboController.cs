@@ -44,6 +44,6 @@ public class ComboController : MonoBehaviour
         PoolTypeSO poolType = _textParticles[index];
 
         GameObject textParticle = _poolManager.Pop(poolType).GameObject;
-        textParticle.transform.position = particleSpawnPos;
+        textParticle.transform.position = particleSpawnPos + new Vector3(0f, 0f, 0.3f);
     }
 }

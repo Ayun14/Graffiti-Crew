@@ -22,6 +22,7 @@ public class DialogueController : MonoBehaviour
         SceneManager.GetSceneByName("HangOutScene") == SceneManager.GetActiveScene();
 
     public bool IsDialogue = false;
+    public bool CanSkip = true;
 
     private Action _onDialogueComplete;
 
@@ -36,7 +37,7 @@ public class DialogueController : MonoBehaviour
 
     private void Update()
     {
-        if (!_uiController.IsBigUIdata && !_isHangoutScene) return;
+        if (!_uiController.IsBigUIdata && !_isHangoutScene && !CanSkip) return;
         if (!IsDialogue) return;
 
         if (dialogueDataReader.readMode == ReadMode.Auto)
