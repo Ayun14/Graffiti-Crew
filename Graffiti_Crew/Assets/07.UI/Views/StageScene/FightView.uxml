@@ -3,11 +3,11 @@
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement name="m-container" picking-mode="Ignore" class="fight-m-container">
         <engine:VisualElement name="top-container" style="flex-basis: 15%; flex-direction: row;">
-            <engine:VisualElement name="fight-progress-border" style="flex-grow: 1; align-items: center; justify-content: center;">
+            <engine:VisualElement name="fight-progress-border" class="top-border" style="display: none;">
                 <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="50" />
             </engine:VisualElement>
-            <engine:VisualElement name="activity-progress-border" style="flex-grow: 1; align-items: center; justify-content: center; display: none;">
-                <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="50" />
+            <engine:VisualElement name="activity-progress-border" class="top-border" style="display: flex;">
+                <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="50" style="scale: 1 1;" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">

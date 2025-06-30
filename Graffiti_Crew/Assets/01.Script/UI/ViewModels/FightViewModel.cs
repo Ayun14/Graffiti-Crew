@@ -35,7 +35,14 @@ namespace AH.UI.ViewModels {
             LoadStageSO stageSO = _model.GetLoadStageSO();
             string chapterStr = stageSO.chapter.Replace("Chapter", ""); // "3"
             int chapterNum = int.Parse(chapterStr); // 3
+            if (stageSO.stage.Contains("Activity")) {
+                return null;
+            }
             return sprites[chapterNum];
+        }
+
+        public LoadStageSO GetLoadStageSO() {
+            return _model.GetLoadStageSO();
         }
     }
 }
