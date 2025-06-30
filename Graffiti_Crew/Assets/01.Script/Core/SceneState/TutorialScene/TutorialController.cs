@@ -46,7 +46,6 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
                 NPCSO dialogue = _tutorialDialogueSO.storyList[_dialogueNum];
-                _dialogueUIController.ChangeDialogueUI?.Invoke(true);
                 _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
 
                 // Cursor
@@ -84,6 +83,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     private IEnumerator ExplainEndRoutine()
     {
         StageEvent.SetActiveFightViewEvent?.Invoke(false);
+        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
         yield return StartCoroutine(Fade(false));
         _explainImg.SetActive(false);
