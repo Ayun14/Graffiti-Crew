@@ -24,13 +24,11 @@ namespace AH.UI.Views {
             StageEvent.ChangeSprayValueEvent += UpdateSpray;
             StageEvent.ChangeGameProgressValueEvent += UpdateGameProgress;
             StageEvent.SetProgressEvnet += SetProgress;
-            StageEvent.SetsprayCountEvnet += SetSprayCount;
         }
         public override void Dispose() {
             StageEvent.ChangeSprayValueEvent -= UpdateSpray;
             StageEvent.ChangeGameProgressValueEvent -= UpdateGameProgress;
             StageEvent.SetProgressEvnet -= SetProgress;
-            StageEvent.SetsprayCountEvnet -= SetSprayCount;
             base.Dispose();
         }
         public override void Initialize() {
@@ -118,14 +116,6 @@ namespace AH.UI.Views {
             else {
                 _fightBorder.style.display = DisplayStyle.None;
                 _activitBorder.style.display = DisplayStyle.Flex;
-            }
-        }
-        private void SetSprayCount(bool fight) {
-            if (fight) {
-                _sprayCountContent.style.display = DisplayStyle.None;
-            }
-            else {
-                _sprayCountContent.style.display = DisplayStyle.Flex;
             }
         }
     }
