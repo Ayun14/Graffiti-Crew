@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 497037619384067233}
   - component: {fileID: 3382057999796331294}
   - component: {fileID: 2048844306830077532}
+  - component: {fileID: 4760561762980505858}
   - component: {fileID: 7049491060587521522}
   m_Layer: 0
   m_Name: DialogueController
@@ -277,6 +278,8 @@ MonoBehaviour:
   _languageSO: {fileID: 11400000, guid: d4f2450041366704da3b244c4941e3ac, type: 2}
   dialogueDataReader: {fileID: 11400000, guid: 443703015df13054a8476658354e4d1e, type: 2}
   _defaultCam: {fileID: 0}
+  IsDialogue: 0
+  CanSkip: 1
   currentDialogueIndex: 0
   filteredDialogueList: []
 --- !u!114 &497037619384067233
@@ -317,6 +320,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c497738b850675a4b924f78621003ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4760561762980505858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589318968533758515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25e316ea6a53004395afaa96c6fee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7049491060587521522
@@ -493,8 +508,6 @@ MonoBehaviour:
   _splashImage: {fileID: 5862501950337960081}
   _colorWhite: {r: 1, g: 1, b: 1, a: 1}
   _colorBlack: {r: 0, g: 0, b: 0, a: 1}
-  _fadeSpeed: 20
-  _fadeSlowSpeed: 2
   isFinished: 0
 --- !u!114 &7507442382170613773
 MonoBehaviour:
@@ -509,5 +522,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFinished: 0
-  _splashController: {fileID: 3388721292115872099}
   _cutSceneImg: {fileID: 9187314645416371373}

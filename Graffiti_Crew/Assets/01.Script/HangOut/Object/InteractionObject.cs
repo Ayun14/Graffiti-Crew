@@ -26,7 +26,7 @@ public class InteractionObject : MonoBehaviour
     protected virtual void Start()
     {
         interactionImg.enabled = false;
-        if (!tutorialCheck.data)
+        if (!tutorialCheck.data && tutorialCheck != null)
             _col.enabled = false;
     }
 
@@ -35,7 +35,7 @@ public class InteractionObject : MonoBehaviour
         if (!CheckMousePos())
             interactionImg.enabled = false;
 
-        if (_checkTutorial) return;
+        if (_checkTutorial && tutorialCheck == null) return;
 
         if (tutorialCheck.data)
         {
