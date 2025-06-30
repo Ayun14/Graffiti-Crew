@@ -4418,6 +4418,7 @@ MonoBehaviour:
   - {fileID: 1882516934}
   - {fileID: 8339696379055856410}
   - {fileID: 1174808284}
+  - {fileID: 1764484841}
   _cam: {fileID: 917054984}
 --- !u!4 &1520889289
 Transform:
@@ -4460,7 +4461,7 @@ Transform:
   m_GameObject: {fileID: 1560214080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.504}
+  m_LocalPosition: {x: -0, y: 0, z: 0.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6635,7 +6636,7 @@ NavMeshObstacle:
   m_Extents: {x: 0.04, y: 0.16, z: 0.085}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 1
+  m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!136 &1764484840
@@ -6657,10 +6658,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17509025
+  m_Radius: 0.30947176
   m_Height: 1.8473604
   m_Direction: 1
-  m_Center: {x: 0.011007473, y: 0.8600737, z: -4.5403322e-17}
+  m_Center: {x: 0.012812793, y: 0.8600737, z: 3.996381e-17}
 --- !u!114 &1764484841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6674,7 +6675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
-  stateEnum: 0
+  stateEnum: 4
   interactionImg: {fileID: 1889839598}
   _npcSO: {fileID: 11400000, guid: 451036cda4831a844ac17540b7977f14, type: 2}
   _tutorialPanel: {fileID: 0}
@@ -6904,7 +6905,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}
       propertyPath: m_RaycastTarget
@@ -7026,7 +7027,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1889839596}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -7799,7 +7800,7 @@ GameObject:
   - component: {fileID: 1764484840}
   - component: {fileID: 1764484841}
   - component: {fileID: 6602915285141116176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rudy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7827,7 +7828,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6976c298ed7212f479303f566b302016, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

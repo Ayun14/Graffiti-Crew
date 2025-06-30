@@ -25,6 +25,8 @@ public class NPC : InteractionObject
     {
         base.Start();
 
+        startIndex = _npcSO.startIndex;
+        endIndex = _npcSO.endIndex;
         _col.enabled = true;
     }
 
@@ -50,7 +52,9 @@ public class NPC : InteractionObject
             }
         }
 
-        if(tutorialCheck != null && _tutorialPanel != null)
+        if (_tutorialPanel == null) return;
+
+        if (tutorialCheck != null)
         {
             if (tutorialCheck.data) // Æ©Åä ÈÄ
             {
@@ -70,6 +74,8 @@ public class NPC : InteractionObject
 
     public void CloseTutorialPanel()
     {
+        if (_tutorialPanel == null) return;
+
         _tutorialPanel.SetActive(false);
     }
 }
