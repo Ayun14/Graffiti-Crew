@@ -18,6 +18,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     private Transform _rival;
     private Transform _graffitiTrm;
     private Transform _resultTrm;
+    private int _animationID;
 
     private bool _isFight = false;
     private bool _isCompleteRivalCheck = false;
@@ -32,6 +33,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         _graffitis = dataController.stageData.rivalGraffiti;
         _rivalDrawingTime = dataController.stageData.rivalClearTime;
         _rival = Instantiate(dataController.stageData.rivalPrefabList.First().gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
+        _animationID = _rival.GetComponentInChildren<AnimationController>().ObjectID;
 
         dataController.SuccessGiveData();
     }
@@ -70,7 +72,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             _isFight = mySubject.GameState == GameState.Fight;
             if (mySubject.GameState == GameState.Timeline)
             {
-                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Ready);
+                AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Ready);
             }
             else if (mySubject.GameState == GameState.Countdown)
             {
@@ -78,7 +80,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             }
             else if (_isFight)
             {
-                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Paint);
+                AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Paint);
             }
             else if (mySubject.GameState == GameState.Finish)
             {
@@ -108,16 +110,16 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
 
     public void WaitAnimation()
     {
-        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+        AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Idle);
     }
 
     public void WinLoseAnimation()
     {
         if (mySubject.IsPlayerWin)
-            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Lose);
+            AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Lose);
         else
         {
-            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Win);
+            AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Win);
             _resultParticle.Play();
         }
     }
