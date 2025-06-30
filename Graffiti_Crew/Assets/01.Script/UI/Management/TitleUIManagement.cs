@@ -21,7 +21,6 @@ namespace AH.UI {
 
         private Button _startBtn;
         private Button _settingBtn;
-        private Button _saveSlotBtn;
         private Button _exitBtn;
 
         private VisualElement _slotView;
@@ -66,7 +65,6 @@ namespace AH.UI {
 
             _startBtn = root.Q<Button>("start-btn");
             _settingBtn = root.Q<Button>("setting-save-btn");
-            _saveSlotBtn = root.Q<Button>("saveSlot-btn");
             _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
             _closeBtn = root.Q<Button>("slot-close-btn");
@@ -75,12 +73,10 @@ namespace AH.UI {
 
             _slotView.style.display = DisplayStyle.None;
         }
-
         protected override void Register() {
             base.Register();
-            _startBtn.RegisterCallback<ClickEvent>(ClickStartBtn);
+            _startBtn.RegisterCallback<ClickEvent, bool>(ClickActiveSaveSlotView, true);
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
-            _saveSlotBtn.RegisterCallback<ClickEvent, bool>(ClickActiveSaveSlotView, true);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
             _closeBtn.RegisterCallback<ClickEvent, bool>(ClickActiveSaveSlotView, false);
 
@@ -90,18 +86,6 @@ namespace AH.UI {
                 index++;
             }
         }
-        private void ClickActiveSaveSlotView(ClickEvent evt, bool active) {
-            //Sound
-            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
-
-            if (active) {
-                _slotView.style.display = DisplayStyle.Flex;
-            }
-            else {
-                _slotView.style.display = DisplayStyle.None;
-            }
-        }
-
         private async void Fade() {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await System.Threading.Tasks.Task.Delay(1100);
@@ -114,7 +98,6 @@ namespace AH.UI {
             SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
         }
 
-        #region DropDown
         private void ChangeSlot(ClickEvent evt, int index) {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
@@ -124,16 +107,17 @@ namespace AH.UI {
             UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
             Fade();
         }
-        #endregion
         #region Handle
-        private void PressAnyKey(AfterExecution execution) {
-            ClickStartBtn(null);
-        }
-        private void ClickStartBtn(ClickEvent evt) {
+        private void ClickActiveSaveSlotView(ClickEvent evt, bool active) {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
 
-            Fade();
+            if (active) {
+                _slotView.style.display = DisplayStyle.Flex;
+            }
+            else {
+                _slotView.style.display = DisplayStyle.None;
+            }
         }
         private void ClickSettingBtn(ClickEvent evt) {
             //Sound
@@ -142,15 +126,15 @@ namespace AH.UI {
             ShowView(_settingView);
             evt.StopPropagation();
         }
-        private void ClickDeleteSaveDataBtn(ClickEvent evt) {
-            SaveDataEvents.DeleteSaveDataEvent?.Invoke();
-        }
         private void ClickExitBtn(ClickEvent evt) {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
 
             Application.Quit();
             evt.StopPropagation();
+        }
+        private void ClickDeleteSaveDataBtn(ClickEvent evt) {
+            SaveDataEvents.DeleteSaveDataEvent?.Invoke();
         }
         #endregion
     }
