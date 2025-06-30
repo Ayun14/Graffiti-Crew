@@ -130,8 +130,8 @@ public class SprayController : MonoBehaviour
     private IEnumerator SprayEmpty()
     {
         // Spray Can
-        if (--_sprayCanValueSO.Value == _sprayCanValueSO.min)
-            _stageGameRule.PlayerLoseCheck();
+        if (--_sprayCanValueSO.Value == _sprayCanValueSO.min) _stageGameRule.PlayerLoseCheck();
+        if (_sprayCanValueSO.Value == 1) UIAnimationEvent.SetSprayWarningEvent?.Invoke(true);
 
         // 스프레이 통 떨구기
         Rigidbody rigid = Instantiate(_sprayCanPrefab, transform).GetComponent<Rigidbody>();
