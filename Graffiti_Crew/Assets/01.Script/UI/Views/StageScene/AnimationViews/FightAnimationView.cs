@@ -14,15 +14,18 @@ public class FightAnimationView : UIView {
     private VisualElement _countDownAnimation;
     private VisualElement _endAnimation;
     private VisualElement _rivalCheckAnimation;
+    private VisualElement _sprayWarningAnimation;
 
     private VisualElement _lineBackground;
     private VisualElement _colorBackground;
     private VisualElement _blueLine;
     private VisualElement _rivalFace;
 
-
     private VisualElement _movieTopBorder;
     private VisualElement _movieBottomBorder;
+
+    private VisualElement _warningBackground;
+    private Label _warningText;
 
     public FightAnimationView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         UIAnimationEvent.SetActiveStartAnimationEvnet += SetActiveStartAnimation;
@@ -32,7 +35,9 @@ public class FightAnimationView : UIView {
         UIAnimationEvent.SetPlayerBackgroundColor += SetPlayerBackgroundColor;
         UIAnimationEvent.SetRivalBackgroundColor += SetRivalBackgroundColor;
         UIAnimationEvent.SetFilmDirectingEvent += SetFilmDirecting;
+        UIAnimationEvent.SetSprayWarningEvent += SetSprayWatning;
     }
+
     public override void Dispose() {
         UIAnimationEvent.SetActiveStartAnimationEvnet -= SetActiveStartAnimation;
         UIAnimationEvent.SetActiveCountDownAnimationEvnet -= SetActiveCountDownAnimation;
@@ -40,6 +45,7 @@ public class FightAnimationView : UIView {
         UIAnimationEvent.SetActiveRivalCheckAnimationEvnet -= RivalCheckAnimation;
         UIAnimationEvent.SetPlayerBackgroundColor -= SetPlayerBackgroundColor;
         UIAnimationEvent.SetFilmDirectingEvent -= SetFilmDirecting;
+        UIAnimationEvent.SetSprayWarningEvent -= SetSprayWatning;
         base.Dispose();
     }
 
@@ -49,6 +55,7 @@ public class FightAnimationView : UIView {
         _endAnimation = topElement.Q<VisualElement>("endAnimation");
         _rivalCheckAnimation = topElement.Q<VisualElement>("rivalCheckAnimation");
         _countDownAnimation = topElement.Q<VisualElement>("countdownAnimation");
+        _sprayWarningAnimation = topElement.Q<VisualElement>("sprayWarningAnimation");
 
         _lineBackground = _rivalCheckAnimation.Q<VisualElement>("line-background");
         _colorBackground = _rivalCheckAnimation.Q<VisualElement>("color-background");
@@ -57,6 +64,9 @@ public class FightAnimationView : UIView {
 
         _movieTopBorder = topElement.Q<VisualElement>("movie-top-border");
         _movieBottomBorder = topElement.Q<VisualElement>("movie-bottom-border");
+
+        _warningBackground = _sprayWarningAnimation.Q<VisualElement>("warning-content");
+        _warningText = _sprayWarningAnimation.Q<Label>("warnging-text");
     }
 
     #region Handles
@@ -103,7 +113,15 @@ public class FightAnimationView : UIView {
             Hide(_rivalCheckAnimation);
         }
     }
-
+    private void SetSprayWatning(bool active) {
+        if (active) {
+            Show(_sprayWarningAnimation);
+            StartSprayWarning();
+        }
+        else {
+            Hide(_sprayWarningAnimation);
+        }
+    }
     private void SetPlayerBackgroundColor() {
         VisualElement playerScreen = _endAnimation.Q<VisualElement>("player-screen");
         playerScreen.AddToClassList("winner");
@@ -139,6 +157,16 @@ public class FightAnimationView : UIView {
 
         // Sound
         GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Clock);
+    }
+    private async void StartSprayWarning() {
+        _warningBackground.AddToClassList("warning-show");
+        await Task.Delay(100);
+        _warningText.AddToClassList("warning-text-show");
+
+        await Task.Delay(3000);
+
+        _warningText.RemoveFromClassList("warning-text-show");
+        _warningBackground.RemoveFromClassList("warning-show");
     }
 
     private void Show(VisualElement view) {

@@ -7,6 +7,7 @@ public static class UIAnimationEvent {
     public static Action<bool> SetActiveRivalCheckAnimationEvnet; // 긴장감 연출
     public static Action<bool> SetActiveCountDownAnimationEvnet; // 카운트 다운
     public static Action<bool> SetFilmDirectingEvent; // 영화 연출
+    public static Action<bool> SetSprayWarningEvent; // 영화 연출
 
     public static Action SetPlayerBackgroundColor;
     public static Action SetRivalBackgroundColor;
