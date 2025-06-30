@@ -22,7 +22,7 @@ public class PlayerTalkState : PlayerState
         if (_player.dialogueUIController != null)
         {
             _player.dialogueUIController.ChangeDialogueUI?.Invoke(true);
-            _player.dialogueController.StartDialogue(_player.GetNPC().startIndex, _player.GetNPC().endIndex, OnDialogueComplete);
+            _player.dialogueController.StartDialogue(_player.GetNPC().StartIndex, _player.GetNPC().EndIndex, OnDialogueComplete);
         }
     }
 

@@ -4,14 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class NPC : InteractionObject
 {
-    [SerializeField] private NPCSO _npcSO;
-    [SerializeField] private GameObject _tutorialPanel;
+    [SerializeField] protected NPCSO _npcSO;
 
     private GameObject _visual;
     private StageSaveDataSO _lastStageDataSO;
 
-    [HideInInspector] public int startIndex;
-    [HideInInspector] public int endIndex;
+    public int StartIndex => _startIndex;
+    public int EndIndex => _endIndex;
+
+    protected int _startIndex;
+    protected int _endIndex;
 
     protected override void Awake()
     {
@@ -23,11 +25,10 @@ public class NPC : InteractionObject
 
     protected override void Start()
     {
-        base.Start();
+        interactionImg.enabled = false;
 
-        startIndex = _npcSO.startIndex;
-        endIndex = _npcSO.endIndex;
-        _col.enabled = true;
+        _startIndex = _npcSO.startIndex;
+        _endIndex = _npcSO.endIndex;
     }
 
     private void OnDisable()
@@ -35,7 +36,7 @@ public class NPC : InteractionObject
         SaveDataEvents.LoadEndEvent -= CheckStageData;
     }
 
-    private void CheckStageData()
+    protected virtual void CheckStageData()
     {
         if (_npcSO.lastStageDataSO != null)
         {
@@ -51,31 +52,5 @@ public class NPC : InteractionObject
                 _visual.SetActive(true);
             }
         }
-
-        if (_tutorialPanel == null) return;
-
-        if (tutorialCheck != null)
-        {
-            if (tutorialCheck.data) // Æ©Åä ÈÄ
-            {
-                CloseTutorialPanel();
-                startIndex = 6;
-                endIndex = _npcSO.endIndex;
-            }
-            else // Æ©Åä Àü
-            {
-                _tutorialPanel.SetActive(true);
-
-                startIndex = _npcSO.startIndex;
-                endIndex = 5;
-            }
-        }    
-    }
-
-    public void CloseTutorialPanel()
-    {
-        if (_tutorialPanel == null) return;
-
-        _tutorialPanel.SetActive(false);
     }
 }

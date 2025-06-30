@@ -350,8 +350,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1608467578}
-        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+      - m_Target: {fileID: 1608467583}
+        m_TargetAssemblyTypeName: Ella, Assembly-CSharp
         m_MethodName: CloseTutorialPanel
         m_Mode: 1
         m_Arguments:
@@ -4413,7 +4413,7 @@ MonoBehaviour:
   _canvasRect: {fileID: 1090651077}
   _interactionIndicator: {fileID: 1824202745}
   _interactionObjects:
-  - {fileID: 1608467578}
+  - {fileID: 1608467583}
   - {fileID: 9101089168978235140}
   - {fileID: 1882516934}
   - {fileID: 8339696379055856410}
@@ -4477,7 +4477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608467573}
   - component: {fileID: 1608467581}
-  - component: {fileID: 1608467578}
+  - component: {fileID: 1608467583}
   - component: {fileID: 1608467582}
   m_Layer: 7
   m_Name: Ella
@@ -4504,25 +4504,6 @@ Transform:
   - {fileID: 1196081562}
   m_Father: {fileID: 1130777455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1608467578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608467572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa1a1c1b777e6b43bb3b46dd1748b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
-  stateEnum: 4
-  interactionImg: {fileID: 449245387}
-  _npcSO: {fileID: 11400000, guid: b9bd8d7b53304664bb237ef306854c4e, type: 2}
-  _tutorialPanel: {fileID: 1699341044}
-  startIndex: 1
-  endIndex: 2
 --- !u!136 &1608467581
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4559,6 +4540,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: "\uC5D8\uB77C"
+--- !u!114 &1608467583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608467572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cceeddf071c1cbb438794f2fe0eda939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialCheck: {fileID: 11400000, guid: d9cf8b5cf89c48546865de366b967ab8, type: 2}
+  stateEnum: 4
+  interactionImg: {fileID: 449245387}
+  _npcSO: {fileID: 11400000, guid: b9bd8d7b53304664bb237ef306854c4e, type: 2}
+  startIndex: 0
+  endIndex: 0
+  _tutorialPanel: {fileID: 1699341044}
 --- !u!1 &1653905522
 GameObject:
   m_ObjectHideFlags: 0
@@ -6656,7 +6656,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.30947176
   m_Height: 1.8473604
@@ -6678,7 +6678,6 @@ MonoBehaviour:
   stateEnum: 4
   interactionImg: {fileID: 1889839598}
   _npcSO: {fileID: 11400000, guid: 451036cda4831a844ac17540b7977f14, type: 2}
-  _tutorialPanel: {fileID: 0}
   startIndex: 0
   endIndex: 0
 --- !u!224 &1824202745 stripped
@@ -9357,7 +9356,7 @@ SceneRoots:
   - {fileID: 555015609}
   - {fileID: 3865256886572050214}
   - {fileID: 454049066}
+  - {fileID: 1520889289}
   - {fileID: 1711786955}
   - {fileID: 852669959}
   - {fileID: 24676939}
-  - {fileID: 1520889289}

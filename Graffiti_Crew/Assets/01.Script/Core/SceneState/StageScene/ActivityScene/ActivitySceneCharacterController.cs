@@ -151,6 +151,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     public void RivalsEscape()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
+        AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Run);
         foreach (Transform rivalTrm in _rivalTrmList)
         {
             rivalTrm.DORotateQuaternion(_escapeTrm.localRotation, 0.5f);
