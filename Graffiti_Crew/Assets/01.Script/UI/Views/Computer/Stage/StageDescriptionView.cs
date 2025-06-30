@@ -31,16 +31,16 @@ namespace AH.UI.Views {
             _stageDescription = topElement.Q<VisualElement>("stage-description");
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _closeBtn = topElement.Q<Button>("exit-btn");
+            Hide();
         }
         public override void Show() {
-            //base.Show();
+            Debug.Log("show");
             SetCoin();
             _stageDescription.AddToClassList("stage-description-in");
         }
         public async override void Hide() {
             _stageDescription.RemoveFromClassList("stage-description-in");
             await Task.Delay(350);
-            //base.Hide();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
