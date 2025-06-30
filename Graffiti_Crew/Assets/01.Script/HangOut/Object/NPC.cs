@@ -50,19 +50,22 @@ public class NPC : InteractionObject
             }
         }
 
-        if (tutorialCheck.data) // Æ©Åä ÈÄ
+        if(tutorialCheck != null && _tutorialPanel != null)
         {
-            CloseTutorialPanel();
-            startIndex = 6;
-            endIndex = _npcSO.endIndex;
-        }
-        else // Æ©Åä Àü
-        {
-            _tutorialPanel.SetActive(true);
+            if (tutorialCheck.data) // Æ©Åä ÈÄ
+            {
+                CloseTutorialPanel();
+                startIndex = 6;
+                endIndex = _npcSO.endIndex;
+            }
+            else // Æ©Åä Àü
+            {
+                _tutorialPanel.SetActive(true);
 
-            startIndex = _npcSO.startIndex;
-            endIndex = 5;
-        }
+                startIndex = _npcSO.startIndex;
+                endIndex = 5;
+            }
+        }    
     }
 
     public void CloseTutorialPanel()
