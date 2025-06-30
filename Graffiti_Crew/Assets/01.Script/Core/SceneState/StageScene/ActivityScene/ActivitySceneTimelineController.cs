@@ -65,8 +65,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             else if (mySubject.GameState == GameState.Finish)
             {
                 _finishTimeline.Play();
-                if (_stageType == StageType.Activity)
-                    StageEvent.SetsprayCountEvnet?.Invoke(false);
             }
             else if (mySubject.GameState == GameState.Result)
             {
