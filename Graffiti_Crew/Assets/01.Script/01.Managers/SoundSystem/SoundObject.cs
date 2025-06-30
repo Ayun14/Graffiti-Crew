@@ -25,20 +25,25 @@ public class SoundObject : MonoBehaviour, IPoolable
         _pool = pool;
     }
 
-    public void PushObject(bool isLoop)
+    public void PushObject(bool isLoop, float fadeTime = 0.2f)
     {
         if (!gameObject.activeSelf) return;
 
-        StartCoroutine(PushObjectRoutine(isLoop));
+        StartCoroutine(PushObjectRoutine(isLoop, fadeTime));
     }
 
-    private IEnumerator PushObjectRoutine(bool isLoop)
+    private IEnumerator PushObjectRoutine(bool isLoop, float fadeTime)
     {
         if (!isLoop)
             yield return new WaitForSeconds(_audioSource.clip.length + 0.2f);
 
-        _audioSource.DOFade(0, 0.2f)
-            .OnComplete(() => _pool.Push(this));
+        if (fadeTime == 0f)
+            _pool.Push(this);
+        else
+        {
+            _audioSource.DOFade(0, fadeTime)
+                .OnComplete(() => _pool.Push(this));
+        }
     }
 }
 
