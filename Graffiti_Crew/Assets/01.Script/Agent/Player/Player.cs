@@ -35,7 +35,10 @@ public class Player : Agent
 
     protected override void Awake()
     {
+        HangOutEvent.SetPlayerMovementEvent += HandlePlayerMove;
+
         base.Awake();
+
         PlayerInput = GetComponent<PlayerInput>();
         MovementCompo = GetComponent<INavigationable>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -60,8 +63,6 @@ public class Player : Agent
 
     protected void Start()
     {
-        HangOutEvent.SetPlayerMovementEvent += HandlePlayerMove;
-
         transform.position = playerData.playerPosition;
         transform.rotation = playerData.playerRotation;
 
@@ -76,7 +77,6 @@ public class Player : Agent
 
     private void HandlePlayerMove(bool isMove)
     {
-        Debug.Log("Move : " + isMove);
         PlayerInput.SetPlayerInput(isMove);
     }
 

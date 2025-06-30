@@ -28,7 +28,6 @@ public class PlayerInput : MonoBehaviour
 
     public void SetPlayerInput(bool enabled)
     {
-        Debug.Log(enabled);
         _playerInputEnabled = enabled;
     }
 
