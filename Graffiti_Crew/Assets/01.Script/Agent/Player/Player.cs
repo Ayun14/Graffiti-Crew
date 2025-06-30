@@ -69,7 +69,7 @@ public class Player : Agent
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         HangOutEvent.SetPlayerMovementEvent -= HandlePlayerMove;
     }

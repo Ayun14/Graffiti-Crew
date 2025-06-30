@@ -6,7 +6,6 @@ using AH.SaveSystem;
 public class InteractionObject : MonoBehaviour
 {
     public BoolSaveDataSO tutorialCheck;
-    private bool _checkTutorial = false;
 
     public PlayerStateEnum stateEnum;
     public Image interactionImg;
@@ -35,11 +34,8 @@ public class InteractionObject : MonoBehaviour
         if (!CheckMousePos())
             interactionImg.enabled = false;
 
-        if (_checkTutorial && tutorialCheck == null) return;
-
-        if (tutorialCheck.data)
+        if (tutorialCheck.data && GetComponent<NPC>() == null)
         {
-            _checkTutorial = true;
             _col.enabled = true;
         }
     }

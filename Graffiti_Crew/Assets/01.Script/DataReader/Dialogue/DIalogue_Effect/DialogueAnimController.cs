@@ -32,7 +32,6 @@ public class DialogueAnimController : MonoBehaviour
 
     private void HandleDialoguePlay(DialogueData dialogue)
     {
-        Debug.Log("Play Anim");
         _animValue = 0;
 
         switch (dialogue.characterName)

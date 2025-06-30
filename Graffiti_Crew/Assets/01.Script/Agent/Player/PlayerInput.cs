@@ -11,13 +11,7 @@ public class PlayerInput : MonoBehaviour
     public event Action<InteractionObject> InteractionEvent;
     public Vector3 MousePosition { get; private set; }
 
-    private Player _player;
     private bool _playerInputEnabled = true;
-
-    private void Awake()
-    {
-        _player = GetComponent<Player>();
-    }
 
     private void Start()
     {
