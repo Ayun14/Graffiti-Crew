@@ -34,7 +34,6 @@ namespace AH.UI.Views {
             Hide();
         }
         public override void Show() {
-            Debug.Log("show");
             SetCoin();
             _stageDescription.AddToClassList("stage-description-in");
         }
