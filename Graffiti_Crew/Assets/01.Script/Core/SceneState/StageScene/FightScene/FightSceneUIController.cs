@@ -139,7 +139,7 @@ public class FightSceneUIController : Observer<GameStateController>
                 StageEvent.SetsprayCountEvnet?.Invoke(false);
 
                 // Cursor
-                GameManager.Instance.SetCursor(true);
+                GameManager.Instance.SetCursor(CursorType.Spray);
             }
 
             if (isFinish && isBlind)
@@ -156,7 +156,7 @@ public class FightSceneUIController : Observer<GameStateController>
                 StageEvent.SetActiveFightViewEvent?.Invoke(false);
 
                 // Cursor
-                GameManager.Instance.SetCursor(false);
+                GameManager.Instance.SetCursor(CursorType.Normal);
 
                 StartCoroutine(FinishRoutine());
                 GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Clock);

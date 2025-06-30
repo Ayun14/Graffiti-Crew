@@ -50,7 +50,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
 
                 // Cursor
-                GameManager.Instance.SetCursor(false);
+                GameManager.Instance.SetCursor(CursorType.Normal);
             }
 
             if(mySubject.GameState == GameState.Countdown)
@@ -71,7 +71,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
 
                 // Cursor
-                GameManager.Instance.SetCursor(true);
+                GameManager.Instance.SetCursor(CursorType.Spray);
             }
         }
     }

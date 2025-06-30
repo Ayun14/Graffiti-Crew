@@ -6,6 +6,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum CursorType
+{
+    Normal,
+    Spray,
+    RMB, LMB
+}
+
 public class GameManager : MonoSingleton<GameManager>
 {
     public static SlotSO currentSlot;
@@ -16,8 +23,7 @@ public class GameManager : MonoSingleton<GameManager>
     public IntSaveDataSO slotIndex;
 
     [Header("Cursor")]
-    [SerializeField] private Texture2D _normalCursor;
-    [SerializeField] private Texture2D _sprayCursor;
+    [SerializeField] List<Texture2D> _cursorList;
 
     [Header("Character Material")]
     [SerializeField] private List<Material> _characterMatList = new();
@@ -72,7 +78,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void SetResolution(Scene arg0, LoadSceneMode arg1)
     {
         Screen.SetResolution(width, height, true);
-        SetCursor(false);
+        SetCursor(CursorType.Normal);
     }
 
     public static void SetPause(bool pause)
@@ -105,10 +111,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Cursor
 
-    public void SetCursor(bool isSprayCursor)
+    public void SetCursor(CursorType cursorType)
     {
-        Texture2D cursor = isSprayCursor ? _sprayCursor : _normalCursor;
-        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        int index = (int)cursorType;
+        Cursor.SetCursor(_cursorList[index], Vector2.zero, CursorMode.Auto);
     }
 
     #endregion
