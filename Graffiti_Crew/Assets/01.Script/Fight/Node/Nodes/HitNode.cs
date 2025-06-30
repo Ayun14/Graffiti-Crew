@@ -94,8 +94,6 @@ public class HitNode : Node, INodeAction
     {
         _currentHitCount = _hitNodeData.hitNum;
         _hitCountText.text = _currentHitCount.ToString();
-
-        Debug.Log("HitNode False | currentHitcount : " + _currentHitCount);
     }
 
     public override NodeType GetNodeType() => _hitNodeData.nodeType;

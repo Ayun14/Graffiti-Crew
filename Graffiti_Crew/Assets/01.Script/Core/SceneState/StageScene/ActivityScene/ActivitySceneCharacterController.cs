@@ -111,6 +111,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     public void RivalStartGraffiti()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
+        AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Walk);
 
         // Others
         for (int i = 1; i < _rivalTrmList.Count; ++i)
@@ -118,7 +119,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
             _rivalTrmList[i].DORotate(Vector3.zero, 0.3f);
             _rivalTrmList[i].DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
             {
-                AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+                AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Idle);
             });
         }
 
