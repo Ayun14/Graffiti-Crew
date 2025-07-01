@@ -11,8 +11,6 @@ public class SprayController : MonoBehaviour
     public UnityEvent OnAirNone;
 
     [Header("Cursor")]
-    [SerializeField] private Texture2D _sprayCursor;
-    [SerializeField] private Texture2D _noneSprayCursor;
     [SerializeField] private List<Texture2D> _lodingCursors = new();
 
     [Header("Shake")]
@@ -20,7 +18,7 @@ public class SprayController : MonoBehaviour
     [SerializeField] private float _sprayAddAmount;
     public bool isMustShakeSpray => isSprayCanShaking; //_shakeSliderValueSO.Value <= 0f;
     private bool isSprayCanShaking = false;
-    private bool _isShaking = false; 
+    private bool _isShaking = false;
     private Tween _shakeValueChangeTween;
 
     [Header("Spray")]
@@ -56,20 +54,20 @@ public class SprayController : MonoBehaviour
 
     private void ShakeSpray()
     {
-        //if (_judgement.isNodeClick) return;
-
         if (_isShaking == false && Input.GetMouseButtonDown(0))
         {
             _isShaking = true;
+            GameManager.Instance.SetCursor(CursorType.RMB);
             AddShakeAmount(_sprayAddAmount);
 
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Spray_Shake);
         }
-        
+
         if (_isShaking == true && Input.GetMouseButtonDown(1))
         {
             _isShaking = false;
+            GameManager.Instance.SetCursor(CursorType.LMB);
             AddShakeAmount(_sprayAddAmount);
 
             //Sound
@@ -92,12 +90,13 @@ public class SprayController : MonoBehaviour
         {
             isSprayCanShaking = true;
             OnAirNone?.Invoke();
-            SetCursor(_spraySliderValueSO.Value, targetValue);
+            //SetCursor(_spraySliderValueSO.Value, targetValue);
+            GameManager.Instance.SetCursor(CursorType.LMB);
         }
         else if (targetValue >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
-            SetCursor(_spraySliderValueSO.Value, targetValue);
+            GameManager.Instance.SetCursor(CursorType.Spray);
         }
     }
 
@@ -114,7 +113,8 @@ public class SprayController : MonoBehaviour
         float targetValue = _spraySliderValueSO.Value + value;
         _sprayValueChangeTween = DOTween.To(() => _spraySliderValueSO.Value,
             x => _spraySliderValueSO.Value = x, targetValue, 0.1f)
-            .OnComplete(() => {
+            .OnComplete(() =>
+            {
                 StageEvent.ChangeSprayValueEvent?.Invoke();
             });
 
@@ -148,12 +148,12 @@ public class SprayController : MonoBehaviour
         // Loding Cursor
         for (int i = 0; i < 8; ++i)
         {
-            SetCursor(_lodingCursors[i % 4]);
+            Cursor.SetCursor(_lodingCursors[i % 4], new Vector2(0, 0), CursorMode.Auto);
             yield return new WaitForSeconds(_sprayChangeTime / 8f);
         }
 
         ResetSpray();
-        SetCursor(_sprayCursor);
+        GameManager.Instance.SetCursor(CursorType.Spray);
         _stageGameRule.SetSprayEmpty(false);
     }
 
@@ -164,18 +164,4 @@ public class SprayController : MonoBehaviour
     }
 
     #endregion
-
-    private void SetCursor(float sprayValue, float shakeValue)
-    {
-        if (sprayValue > 0 && shakeValue > 0)
-            Cursor.SetCursor(_sprayCursor, new Vector2(0, 0), CursorMode.Auto);
-        else
-            Cursor.SetCursor(_noneSprayCursor, new Vector2(0, 0), CursorMode.Auto);
-    }
-
-    private void SetCursor(Texture2D cursor)
-    {
-        if (cursor != null)
-            Cursor.SetCursor(cursor, new Vector2(0, 0), CursorMode.Auto);
-    }
 }
