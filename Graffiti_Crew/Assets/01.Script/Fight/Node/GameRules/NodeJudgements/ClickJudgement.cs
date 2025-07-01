@@ -7,13 +7,14 @@ public class ClickJudgement : NodeJudgement
     [Header("Player")]
     [SerializeField] private SliderValueSO _playerSliderValueSO;
     [SerializeField] private SliderValueSO _rivalSliderValueSO;
-    private Tween _playerProgressValueChangeTween;
 
-    private bool _isBattle = false;
+    private float _valueChangeDration = 0.1f;
+    private float _currentTime = 0;
 
     private void Awake()
     {
         _playerSliderValueSO.Value = _playerSliderValueSO.min;
+        _currentTime = 0;
     }
 
     protected override void Update()
@@ -22,7 +23,12 @@ public class ClickJudgement : NodeJudgement
 
         if (_stageGameRule.stageType == StageType.Battle)
         {
-            UpdateSliderValue(true);
+            _currentTime += Time.deltaTime;
+            if (_valueChangeDration <= _currentTime)
+            {
+                UpdateSliderValue(true);
+                _currentTime = 0;
+            }
         }
     }
 
@@ -68,8 +74,6 @@ public class ClickJudgement : NodeJudgement
     {
         if (node == null || currentNode == null) return;
 
-        UpdateSliderValue(false);
-
         if (node == currentNode)
         {
             ++_clearNodeCnt;
@@ -82,8 +86,6 @@ public class ClickJudgement : NodeJudgement
     private void UpdateSliderValue(bool isBattle)
     {
         if (_playerSliderValueSO == null) return;
-        if (_playerProgressValueChangeTween != null && _playerProgressValueChangeTween.IsActive())
-            _playerProgressValueChangeTween.Complete();
 
         float playerValue = _clearNodeCnt / (float)_stageGameRule.NodeCnt * _playerSliderValueSO.max;
         float targetValue = playerValue;
@@ -93,13 +95,9 @@ public class ClickJudgement : NodeJudgement
             float rivalValue = _rivalSliderValueSO.Value;
             float addValue = playerValue - rivalValue;
             targetValue = (_playerSliderValueSO.max / 2) + addValue;
-
         }
 
-        _playerProgressValueChangeTween = DOTween.To(() => _playerSliderValueSO.Value,
-            x => _playerSliderValueSO.Value = x, targetValue, 0.2f).OnComplete(() =>
-            {
-                StageEvent.ChangeGameProgressValueEvent?.Invoke();
-            });
+        _playerSliderValueSO.Value = targetValue;
+        StageEvent.ChangeGameProgressValueEvent?.Invoke();
     }
 }
