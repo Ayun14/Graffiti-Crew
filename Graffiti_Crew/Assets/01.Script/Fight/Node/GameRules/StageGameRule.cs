@@ -50,6 +50,11 @@ public abstract class StageGameRule : Observer<GameStateController>
         if (mySubject.IsSprayEmpty) return false;
         if (_sprayController == null || _sprayController.isMustShakeSpray) return false;
 
+        return IsFightState();
+    }
+
+    public bool IsFightState()
+    {
         return mySubject.GameState == GameState.Fight || mySubject.GameState == GameState.Tutorial;
     }
 

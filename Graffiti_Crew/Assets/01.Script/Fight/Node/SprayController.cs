@@ -47,7 +47,7 @@ public class SprayController : MonoBehaviour
     private void Update()
     {
         // shake 게이지 다 달았을 때만 흔들어야 한다고 표시
-        if (isSprayCanShaking) ShakeSpray();
+        if (isSprayCanShaking && _stageGameRule.IsFightState()) ShakeSpray();
     }
 
     #region Shake
@@ -67,7 +67,7 @@ public class SprayController : MonoBehaviour
         if (_isShaking == true && Input.GetMouseButtonDown(1))
         {
             _isShaking = false;
-            GameManager.Instance.SetCursor(CursorType.LMB);
+            SetCursor(CursorType.LMB);
             AddShakeAmount(_sprayAddAmount);
 
             //Sound
@@ -90,13 +90,12 @@ public class SprayController : MonoBehaviour
         {
             isSprayCanShaking = true;
             OnAirNone?.Invoke();
-            //SetCursor(_spraySliderValueSO.Value, targetValue);
-            GameManager.Instance.SetCursor(CursorType.LMB);
+            SetCursor(CursorType.LMB);
         }
         else if (targetValue >= _shakeSliderValueSO.max)
         {
             isSprayCanShaking = false;
-            GameManager.Instance.SetCursor(CursorType.Spray);
+            SetCursor(CursorType.Spray);
         }
     }
 
@@ -153,7 +152,7 @@ public class SprayController : MonoBehaviour
         }
 
         ResetSpray();
-        GameManager.Instance.SetCursor(CursorType.Spray);
+        SetCursor(CursorType.Spray);
         _stageGameRule.SetSprayEmpty(false);
     }
 
@@ -164,4 +163,10 @@ public class SprayController : MonoBehaviour
     }
 
     #endregion
+
+    private void SetCursor(CursorType newCursor)
+    {
+        CursorType cursor = _stageGameRule.IsFightState() ? newCursor : CursorType.Normal;
+        GameManager.Instance.SetCursor(cursor);
+    }
 }
