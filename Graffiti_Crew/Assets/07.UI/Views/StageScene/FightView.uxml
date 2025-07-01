@@ -7,7 +7,7 @@
                 <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="50" />
             </engine:VisualElement>
             <engine:VisualElement name="activity-progress-border" class="top-border" style="display: flex;">
-                <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="50" style="scale: 1 1;" />
+                <AH.UI.CustomElement.GameProgressElement name="game-progress" max="100" value="0" style="scale: 1 1; -unity-background-image-tint-color: rgb(205, 205, 205);" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="bottom-container" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row;">

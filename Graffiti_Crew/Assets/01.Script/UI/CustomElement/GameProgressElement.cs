@@ -26,10 +26,7 @@ namespace AH.UI.CustomElement {
         private VisualElement _jiaImg;
         private VisualElement _rivalImg;
 
-        const float HANDLE_WIDTH = 162f;
-        public string minBindingPath { get; set; }
-        public string maxBindingPath { get; set; }
-        public string valueBindingPath { get; set; }
+        private bool _layoutReady = false;
 
         private float min = 0;
         private float max = 1;
@@ -85,9 +82,16 @@ namespace AH.UI.CustomElement {
             _handle.Add(_jiaImg);
 
             _rivalImg = new VisualElement();
-            _rivalImg.name = "ella";
+            _rivalImg.name = "rival";
             _rivalImg.AddToClassList("progress-img");
             _handle.Add(_rivalImg);
+
+            RegisterCallback<GeometryChangedEvent>(evt => {
+                if (!_layoutReady) {
+                    _layoutReady = true;
+                    UpdateProgress(); // layout 완료 후 정확한 위치 계산
+                }
+            });
         }
  
         public void SetImage(Sprite jia, Sprite rival = null) {
@@ -103,19 +107,23 @@ namespace AH.UI.CustomElement {
         }
         private void UpdateProgress() {
             float percent = Mathf.InverseLerp(min, max, value);
-            float clampedPercent = Mathf.Clamp(percent * 100f, 0f, 100f);
-            _progressFill.style.width = Length.Percent(clampedPercent);
+            float clampedPercent = Mathf.Clamp01(percent);
+            _progressFill.style.width = Length.Percent(clampedPercent * 100f);
 
+            // handle 배치는 resolvedStyle이 보장될 때만
             schedule.Execute(() => {
-                float fillWidth = _progressFill.resolvedStyle.width;
                 float handleWidth = _handle.resolvedStyle.width;
                 float parentWidth = resolvedStyle.width;
 
-                if (fillWidth > 0 && handleWidth > 0 && parentWidth > 0) {
-                    float handleLeft = fillWidth - (handleWidth * 0.5f);
-                    handleLeft = Mathf.Clamp(handleLeft, -handleWidth * 0.5f, parentWidth - handleWidth * 0.5f);
-                    _handle.style.left = handleLeft;
+                if (handleWidth <= 0 || parentWidth <= 0) {
+                    Debug.LogWarning("Delayed layout. Skipping handle position.");
+                    return;
                 }
+
+                float handleLeft = clampedPercent * parentWidth - (handleWidth * 0.5f);
+                handleLeft = Mathf.Clamp(handleLeft, 0f - handleWidth * 0.5f, parentWidth - handleWidth * 0.5f);
+
+                _handle.style.left = handleLeft;
             }).ExecuteLater(0);
         }
     }
