@@ -111,17 +111,10 @@ namespace AH.UI.CustomElement {
                 float handleWidth = _handle.resolvedStyle.width;
                 float parentWidth = resolvedStyle.width;
 
-                //Debug.Log($"[UpdateProgress] fillWidth: {fillWidth}, handleWidth: {handleWidth}, parentWidth: {parentWidth}");
-
                 if (fillWidth > 0 && handleWidth > 0 && parentWidth > 0) {
                     float handleLeft = fillWidth - (handleWidth * 0.5f);
                     handleLeft = Mathf.Clamp(handleLeft, -handleWidth * 0.5f, parentWidth - handleWidth * 0.5f);
                     _handle.style.left = handleLeft;
-
-                   // Debug.Log($"[UpdateProgress] handleLeft: {handleLeft}");
-                }
-                else {
-                   // Debug.LogWarning("[UpdateProgress] Layout not ready");
                 }
             }).ExecuteLater(0);
         }
