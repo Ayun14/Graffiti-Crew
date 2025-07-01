@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.CustomElement;
 using AH.UI.Events;
 using AH.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -52,15 +53,18 @@ namespace AH.UI.Views
         {
             int index = 0;
             int length = Mathf.Min(_saveStageData.Count, _pointList.Count);
-            while (index < length)
+
+            for (int i = 0; i < length; i++) { // 일단 다 끄고
+                _pointList[i].StageState = StageState.Lock;
+            }
+
+            while (index < length) // 플레이 가능 스테이지만 열기
             {
-                if (_saveStageData[index].stageState == StageState.CanPlay || _saveStageData[index].stageState == StageState.Lock)
-                { // 다음 스테이지 보이기
+                if (_saveStageData[index].stageState == StageState.CanPlay || _saveStageData[index].stageState == StageState.Lock) { 
                     _pointList[index].StageState = StageState.CanPlay;
                     break;
                 }
                 _pointList[index].StageState = _saveStageData[index].stageState;
-                //_pointList[index].starCount = _saveStageData[index].star;
                 index++;
             }
         }
