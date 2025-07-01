@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6520436353736122367}
   - component: {fileID: 622850290351729471}
   m_Layer: 0
-  m_Name: TextZapParticle
+  m_Name: 0.Text_MissParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4847,7 +4847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa058855033c664ab7889296dd90202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolType: {fileID: 11400000, guid: f0169ba4f5861094aa900729ce800f1f, type: 2}
+  _poolType: {fileID: 11400000, guid: 0e2a0de8f3167224a99141f94a73d69e, type: 2}
 --- !u!1 &6520436353885962540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4876,7 +4876,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6520436353736122352}
@@ -5071,7 +5071,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9740,7 +9740,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9555964518146db42bdcc837e75847bd, type: 2}
+  - {fileID: 2100000, guid: 3f6f1c7203ac6094d87456c7cbac154a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
