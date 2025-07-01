@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class TutorialController : Observer<GameStateController>, INeedLoding
 {
+    [Header("Levels")]
     [SerializeField] private GameObject _level;
     [SerializeField] private GameObject _hangout;
     [SerializeField] private GameObject _mainCam;
 
+    [Header("Dialogue")]
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private DialogueUIController _dialogueUIController;
     [SerializeField] private StoryDialogueSO _tutorialDialogueSO;
-
     [SerializeField] private SplashController _splashController;
 
+    [Header("UI")]
     [SerializeField] private GameObject _explainImg;
 
     private int _dialogueNum = 0;
@@ -61,11 +63,14 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
                 _explainImg.SetActive(true);
 
+                _dialogueUIController.OnEndTyping(false);
                 _dialogueController.StartDialogue(_tutorialStartIndex + 9, _tutorialStartIndex + 12, ExplainEnd);
             }
 
             if (mySubject.GameState == GameState.Tutorial)
             {
+                DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
+
                 _dialogueController.CanSkip = false;
                 _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
 
@@ -83,7 +88,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     private IEnumerator ExplainEndRoutine()
     {
         StageEvent.SetActiveFightViewEvent?.Invoke(false);
-        DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
+        DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
 
         yield return StartCoroutine(Fade(false));
         _explainImg.SetActive(false);
