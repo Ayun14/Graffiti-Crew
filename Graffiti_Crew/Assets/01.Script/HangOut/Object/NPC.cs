@@ -7,7 +7,6 @@ public class NPC : InteractionObject
     [SerializeField] protected NPCSO _npcSO;
 
     private GameObject _visual;
-    private StageSaveDataSO _lastStageDataSO;
 
     public int StartIndex => _startIndex;
     public int EndIndex => _endIndex;
@@ -40,14 +39,17 @@ public class NPC : InteractionObject
     {
         if (_npcSO.lastStageDataSO != null)
         {
-            _lastStageDataSO = _npcSO.lastStageDataSO;
-            if (_lastStageDataSO.stageState != StageState.Clear)
+            Debug.Log(_npcSO.lastStageDataSO);
+            Debug.Log(_npcSO.lastStageDataSO.stageState);
+            if (_npcSO.lastStageDataSO.stageState != StageState.Clear)
             {
+                Debug.Log("No");
                 _col.enabled = false;
                 _visual.SetActive(false);
             }
             else
             {
+                Debug.Log("Clear");
                 _col.enabled = true;
                 _visual.SetActive(true);
             }
