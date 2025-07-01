@@ -10,14 +10,12 @@ public class ComboController : MonoBehaviour
     private int _currentCombo = 0;
 
     protected StageGameRule _stageGameRule;
-    private StageResultSO _stageResult;
 
     private bool _isCombo = false;
 
     public void Init(StageGameRule stageGameRule)
     {
         _stageGameRule = stageGameRule;
-        _stageResult = stageGameRule.stageResult;
         _currentCombo = 0;
     }
 
@@ -27,20 +25,25 @@ public class ComboController : MonoBehaviour
 
         ++_currentCombo;
         TextParticleSpawn(particleSpawnPos);
-
-        //if (_stageGameRule.stageRuleType == StageRuleType.PerfectRule && _currentCombo > _stageResult.value)
-        //    _stageResult.value = _currentCombo;
     }
 
     public void FailCombo()
     {
         _isCombo = false;
         _currentCombo = 0;
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 3f;
+
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        worldPos.z = 0f;
+
+        TextParticleSpawn(worldPos);
     }
 
     private void TextParticleSpawn(Vector3 particleSpawnPos)
     {
-        int index = Mathf.Clamp(_currentCombo - 1, 0, _textParticles.Count - 1);
+        int index = Mathf.Clamp(_currentCombo, 0, _textParticles.Count - 1);
         PoolTypeSO poolType = _textParticles[index];
 
         GameObject textParticle = _poolManager.Pop(poolType).GameObject;
