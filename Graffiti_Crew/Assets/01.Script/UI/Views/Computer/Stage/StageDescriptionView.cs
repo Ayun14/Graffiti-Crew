@@ -53,13 +53,22 @@ namespace AH.UI.Views {
         }
 
         private void SetCoin() {
-            string path = $"StageData/{ComputerViewModel.GetLoadStageSO().GetLoadStageName()}";
-            StageDataSO stageData = Resources.Load<StageDataSO>(path);
-            string newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
-            StageSaveDataSO saveData = Resources.Load<StageSaveDataSO>(newPath);
-            for(int i = 0; i < 3 - saveData.star; i++) {
-                _coinList[i].RemoveFromClassList("coin");
+            string dataPath = ComputerViewModel.GetLoadStageSO().GetLoadStageName();
+            StageSaveDataSO saveData = null;
+
+            if (dataPath.Contains("Story")) {
+                string path = $"StageData/{dataPath}";
+                StageDataSO stageData = Resources.Load<StageDataSO>(path);
+                string newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
+                saveData = Resources.Load<StageSaveDataSO>(newPath);
             }
+            else {
+                string newPath = $"SaveData/{dataPath}";
+                saveData = Resources.Load<StageSaveDataSO>(newPath); ;
+            }
+                for (int i = 0; i < 3 - saveData.star; i++) {
+                    _coinList[i].RemoveFromClassList("coin");
+                }
         }
         private void ClickCloseBtn(ClickEvent evt) {
             //Sound

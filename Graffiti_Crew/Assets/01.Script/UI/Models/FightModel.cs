@@ -10,6 +10,7 @@ namespace AH.UI.Models {
         [SerializeField] private SliderValueSO _gameProgressGauage;
         [Space]
         [SerializeField] private Sprite[] _progressSprites;
+        [SerializeField] private Sprite[] _rivalCheckSprites;
         public LoadStageSO GetLoadStageSO() {
             return _loadStageSO;
         }
@@ -25,6 +26,9 @@ namespace AH.UI.Models {
 
         public Sprite[] GetProgressSprites() {
             return _progressSprites;
+        }
+        public Sprite[] GetRivalCheckSprites() {
+            return _rivalCheckSprites;
         }
         public SliderValueSO GetGameProgressSO() {
             return _gameProgressGauage;

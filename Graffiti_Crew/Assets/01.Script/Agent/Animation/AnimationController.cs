@@ -14,6 +14,9 @@ public enum AnimationEnum
     Run,
     People_Idle,
     People_Clap,
+    People_Pointing,
+    People_Reaction,
+    People_Talk,
 
     // Dialogue
     Talk,

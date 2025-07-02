@@ -10,8 +10,17 @@
 }
 
 .coin {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
+    top: 9%;
+    position: absolute;
+}
+
+.shadow {
+    width: 130px;
+    height: 130px;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.3);
+    background-image: url("project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/coin-shadow.png?fileID=21300000&guid=38cce1d504fc32149931e22fcb882dc3&type=3#coin-shadow");
 }
 
 .start-btn {
@@ -58,6 +67,12 @@
 .---------------- {
 }
 
+.result-in {
+    opacity: 1;
+    position: absolute;
+    right: 0;
+}
+
 .stage-point {
     width: 100%;
     height: 100%;
@@ -92,7 +107,7 @@
 }
 
 .base-chapter {
-    background-image: url("project://database/Assets/02.Sprite/UI/Map/00.Map/map-background.png?fileID=21300000&guid=98dc32b478c9c294b9b7275daf2bd86b&type=3#map-background");
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Map/00.Map/map-background.png?fileID=21300000&guid=98dc32b478c9c294b9b7275daf2bd86b&type=3#map-background");
     transition-duration: 1s;
     transition-timing-function: ease;
     width: 100%;
