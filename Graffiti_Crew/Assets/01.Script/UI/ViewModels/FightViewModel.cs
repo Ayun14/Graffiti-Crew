@@ -2,6 +2,7 @@ using AH.SaveSystem;
 using AH.UI.Models;
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AH.UI.ViewModels {
     public class FightViewModel : ViewModel {
@@ -43,6 +44,14 @@ namespace AH.UI.ViewModels {
 
         public LoadStageSO GetLoadStageSO() {
             return _model.GetLoadStageSO();
+        }
+
+        public Sprite GetRivalCheckImg() {
+            Sprite[] sprites = _model.GetRivalCheckSprites();
+            LoadStageSO stageSO = _model.GetLoadStageSO();
+            string chapterStr = stageSO.chapter.Replace("Chapter", ""); // "3"
+            int chapterNum = int.Parse(chapterStr); // 3
+            return sprites[chapterNum - 1];
         }
     }
 }

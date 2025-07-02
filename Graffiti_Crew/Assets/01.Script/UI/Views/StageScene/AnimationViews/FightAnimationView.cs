@@ -10,6 +10,8 @@ public enum FightUIAnimationType {
     Tension
 }
 public class FightAnimationView : UIView {
+    private FightViewModel _viewModel;
+
     private VisualElement _startAnimation;
     private VisualElement _countDownAnimation;
     private VisualElement _endAnimation;
@@ -36,6 +38,11 @@ public class FightAnimationView : UIView {
         UIAnimationEvent.SetRivalBackgroundColor += SetRivalBackgroundColor;
         UIAnimationEvent.SetFilmDirectingEvent += SetFilmDirecting;
         UIAnimationEvent.SetSprayWarningEvent += SetSprayWatning;
+    }
+
+    public override void Initialize() {
+        _viewModel = viewModel as FightViewModel;
+        base.Initialize();
     }
 
     public override void Dispose() {
@@ -67,8 +74,13 @@ public class FightAnimationView : UIView {
 
         _warningBackground = _sprayWarningAnimation.Q<VisualElement>("warning-content");
         _warningText = _sprayWarningAnimation.Q<Label>("warnging-text");
+
+        SetRivalCheckAnimation();
     }
 
+    private void SetRivalCheckAnimation() {
+        _rivalFace.style.backgroundImage = new StyleBackground(_viewModel.GetRivalCheckImg());
+    }
     #region Handles
     private void SetFilmDirecting(bool active) {
         if (active) {
