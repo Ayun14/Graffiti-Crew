@@ -9,14 +9,7 @@ namespace AH.UI.ViewModels {
         public SettingViewModel(SettingModel settingModel) {
             _settingModel = settingModel;
         }
-        #region SaveData
-        public int GetSlotIndex() {
-            return _settingModel.GetSlotIndex();
-        }
-        public void SetSlotIndex(int index) {
-            _settingModel.SetSlotIndex(index);
-        }
-        #endregion
+
         #region Lenguage
         public LanguageSO GetLanguageSO() {
             return _settingModel.GetLanguageSO();

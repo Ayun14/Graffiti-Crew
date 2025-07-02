@@ -1,0 +1,72 @@
+using AH.SaveSystem;
+using AH.UI.Events;
+using AH.UI.Models;
+using AH.UI.ViewModels;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace AH.UI.Views {
+    public class SaveSlotView : UIView {
+        private TitleViewModel _titleViewModel;
+
+        private List<VisualElement> _slotList;
+        private List<Button> _resetBtns;
+        private Button _closeBtn;
+        private SlotSO[] _slotsBtns;
+        private string _slotPath = "UI/Setting/Slots/";
+
+        public SaveSlotView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
+        }
+
+        public override void Initialize() {
+            _slotsBtns = Resources.LoadAll<SlotSO>(_slotPath);
+            _titleViewModel = viewModel as TitleViewModel;
+            base.Initialize();
+        }
+        protected override void SetVisualElements() {
+            base.SetVisualElements();
+
+            _closeBtn = topElement.Q<Button>("slot-close-btn");
+            _slotList = topElement.Query<VisualElement>(className: "slot-btn").ToList();
+            _resetBtns = topElement.Query<Button>(className: "reset-btn").ToList();
+        }
+        protected override void RegisterButtonCallbacks() {
+            base.RegisterButtonCallbacks();
+            _closeBtn.RegisterCallback<ClickEvent>(ClickCloseView);
+
+            for(int i = 0; i < _slotList.Count; i++) {
+                _slotList[i].RegisterCallback<ClickEvent, int>(ChangeSlot, i);
+                _resetBtns[i].RegisterCallback<ClickEvent, int>(ResetSlot, i);
+            }
+        }
+        protected override void UnRegisterButtonCallbacks() {
+            base.UnRegisterButtonCallbacks();
+            _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseView);
+
+            for (int i = 0; i < _slotList.Count; i++) {
+                _slotList[i].UnregisterCallback<ClickEvent, int>(ChangeSlot);
+                _resetBtns[i].UnregisterCallback<ClickEvent, int>(ResetSlot);
+            }
+        }
+
+        private void ChangeSlot(ClickEvent evt, int index) {
+            //Sound
+            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
+
+            _titleViewModel.SetSlotIndex(index);
+            SlotSO selectSlot = _slotsBtns[index];
+            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
+
+            TitleEvent.StartGameEvent?.Invoke();
+        }
+        private void ResetSlot(ClickEvent evt, int index) {
+            SaveDataEvents.DeleteSaveDataEvent?.Invoke(index);
+            evt.StopPropagation();
+        }
+        private void ClickCloseView(ClickEvent evt) {
+            StageEvent.HideViewEvent?.Invoke();
+        }
+    }
+}

@@ -27,20 +27,27 @@
 .slot-btn {
     background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&guid=af4c83d722e80d343a58d81a6c7e93d3&type=3#shop-product-background");
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 80%;
+    height: 25%;
+    transition-duration: 0.2s;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 
 .slot-btn:hover {
     -unity-background-image-tint-color: rgb(172, 172, 172);
 }
 
-.stage-description-btn {
+.close-slotview-btn {
     position: absolute;
-    width: 70px;
-    height: 70px;
-    top: 22.5%;
-    left: 70%;
+    width: 50px;
+    height: 50px;
+    top: 22%;
+    left: 71%;
     background-image: url("project://database/Assets/02.Sprite/UI/Computer/Stage/selectStage-exit.png?fileID=21300000&guid=96fb7a4cfe08a314680e3994dd1165e1&type=3#selectStage-exit");
     background-color: rgba(188, 188, 188, 0);
     border-left-color: rgba(149, 149, 149, 0);
@@ -50,6 +57,25 @@
     transition-duration: 0.2s;
 }
 
-.stage-description-btn:hover {
+.close-slotview-btn:hover {
     scale: 1.2 1.2;
+}
+
+.reset-btn {
+    width: 40px;
+    height: 40px;
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/trash%20bin.png?fileID=-1757507500&guid=a6bbf7359bc3298429c1684b8c65eb35&type=3#trash bin_0");
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+    bottom: 26%;
+    transition-duration: 0.2s;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.reset-btn:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(192, 5, 0);
 }

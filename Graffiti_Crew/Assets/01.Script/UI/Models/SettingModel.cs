@@ -9,18 +9,7 @@ namespace AH.UI.Models {
         [Header("Audio")]
         [SerializeField] private IntSaveDataSO _bgmData;
         [SerializeField] private IntSaveDataSO _sfxData;
-        [Header("SaveData")]
-        [SerializeField] private IntSaveDataSO _saveDataSlotIndex;
-
-        #region SaveData
-        public int GetSlotIndex() {
-            return _saveDataSlotIndex.data;
-        }
-        public void SetSlotIndex(int index) {
-            _saveDataSlotIndex.data = index;
-        }
-        #endregion
-
+ 
         #region Language
         public LanguageSO GetLanguageSO() {
             return _languageSO;

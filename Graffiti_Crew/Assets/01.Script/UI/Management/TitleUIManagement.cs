@@ -3,9 +3,6 @@ using AH.UI.Events;
 using AH.UI.Models;
 using AH.UI.ViewModels;
 using AH.UI.Views;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,6 +11,7 @@ namespace AH.UI {
     public class TitleUIManagement : UIManagement {
         private TitleViewModel _viewModel;
 
+        private SaveSlotView _slotView;
         private SettingView _settingView;
 
         [SerializeField] private BoolSaveDataSO _checkFirstLoad;
@@ -22,12 +20,6 @@ namespace AH.UI {
         private Button _startBtn;
         private Button _settingBtn;
         private Button _exitBtn;
-
-        private VisualElement _slotView;
-        private List<Button> _slotList;
-        private Button _closeBtn;
-        private SlotSO[] slots;
-        private string slotPath = "UI/Setting/Slots/";
 
         private VisualElement _fadeView;
 
@@ -41,19 +33,18 @@ namespace AH.UI {
         protected override void OnEnable() {
             base.OnEnable();
             PresentationEvents.FadeInOutEvent += FadeInOut;
-            //_inputReaderSO.OnPressAnyKeyEvent += PressAnyKey;
             StageEvent.HideViewEvent += HideView;
+            TitleEvent.StartGameEvent += StartGame;
         }
         protected override void OnDisable() {
             base.OnDisable();
             PresentationEvents.FadeInOutEvent -= FadeInOut;
-            //_inputReaderSO.OnPressAnyKeyEvent -= PressAnyKey;
             StageEvent.HideViewEvent -= HideView;
+            TitleEvent.StartGameEvent -= StartGame;
         }
 
         protected override void Init() {
             base.Init();
-            slots = Resources.LoadAll<SlotSO>(slotPath);
 
             _viewModel = new TitleViewModel(_model as TitleModel);
         }
@@ -61,32 +52,21 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
-            _slotView = root.Q<VisualElement>("slot-content");
+            _slotView = new SaveSlotView(root.Q<VisualElement>("SaveSlotView"), _viewModel);
 
-            _startBtn = root.Q<Button>("start-btn");
+            _startBtn = root.Q<Button>("open-slot-btn");
             _settingBtn = root.Q<Button>("setting-save-btn");
             _exitBtn = root.Q<Button>("exit-btn");
             _fadeView = root.Q<VisualElement>("fade-view");
-            _closeBtn = root.Q<Button>("slot-close-btn");
-
-            _slotList = root.Query<Button>(className: "slot-btn").ToList();
-
-            _slotView.style.display = DisplayStyle.None;
         }
         protected override void Register() {
             base.Register();
-            _startBtn.RegisterCallback<ClickEvent, bool>(ClickActiveSaveSlotView, true);
+            _startBtn.RegisterCallback<ClickEvent>(ShowSlotView);
             _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
             _exitBtn.RegisterCallback<ClickEvent>(ClickExitBtn);
-            _closeBtn.RegisterCallback<ClickEvent, bool>(ClickActiveSaveSlotView, false);
-
-            int index = 0;
-            foreach(Button btn in _slotList) {
-                btn.RegisterCallback<ClickEvent, int>(ChangeSlot, index);
-                index++;
-            }
+            
         }
-        private async void Fade() {
+        private async void StartGame() {
             PresentationEvents.FadeInOutEvent?.Invoke(false);
             await System.Threading.Tasks.Task.Delay(1100);
 
@@ -97,27 +77,12 @@ namespace AH.UI {
             string sceneName = _checkFirstLoad.data ? "HangOutScene" : "TutorialScene";
             SaveDataEvents.SaveGameEvent?.Invoke(sceneName);
         }
-
-        private void ChangeSlot(ClickEvent evt, int index) {
-            //Sound
-            GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
-
-            _settingViewModel.SetSlotIndex(index);
-            SlotSO selectSlot = slots[index];
-            UIEvents.ChangeSlotEvent?.Invoke(selectSlot);
-            Fade();
-        }
         #region Handle
-        private void ClickActiveSaveSlotView(ClickEvent evt, bool active) {
+        private void ShowSlotView(ClickEvent evt) {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
 
-            if (active) {
-                _slotView.style.display = DisplayStyle.Flex;
-            }
-            else {
-                _slotView.style.display = DisplayStyle.None;
-            }
+            ShowView(_slotView);
         }
         private void ClickSettingBtn(ClickEvent evt) {
             //Sound
@@ -132,9 +97,6 @@ namespace AH.UI {
 
             Application.Quit();
             evt.StopPropagation();
-        }
-        private void ClickDeleteSaveDataBtn(ClickEvent evt) {
-            SaveDataEvents.DeleteSaveDataEvent?.Invoke();
         }
         #endregion
     }

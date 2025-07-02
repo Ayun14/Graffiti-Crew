@@ -10,8 +10,11 @@ namespace AH.SaveSystem {
         [SerializeField] private List<SaveDataListSO> _currentSceneLoadDataList;
         private List<SaveDataListSO> _shareDataList;
         private List<SaveDataListSO> slotGameDataList;
+        private SlotSO[] slotsBtns;
+        private string _slotPath = "UI/Setting/Slots/";
 
         private SlotSO _shareSlot;
+
         public SlotSO currentSlot {
             get => GameManager.currentSlot;
 
@@ -21,6 +24,7 @@ namespace AH.SaveSystem {
         }
 
         private void Awake() {
+            slotsBtns = Resources.LoadAll<SlotSO>(_slotPath);
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
             _shareDataList = Resources.LoadAll<SaveDataListSO>("DataList/Share").ToList();
             slotGameDataList = Resources.LoadAll<SaveDataListSO>("DataList/Slot").ToList();
@@ -111,8 +115,8 @@ namespace AH.SaveSystem {
                 SceneManager.LoadScene(sceneName);
             }
         }
-        private void DeleteSaveData() {
-            FileSystem.DeleteFolder(currentSlot.slotName);
+        private void DeleteSaveData(int index) {
+            FileSystem.DeleteFolder(slotsBtns[index].slotName);
             CreateAndLoadData();
         }
     }

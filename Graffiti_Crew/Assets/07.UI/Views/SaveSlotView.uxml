@@ -1,0 +1,53 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/07.UI/USS/TitleView_USS.uss?fileID=7433441132597879392&amp;guid=b550c22250dae5749acd66418dd49568&amp;type=3#TitleView_USS" />
+    <engine:VisualElement name="slot-content" style="position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; display: flex;">
+        <engine:VisualElement style="width: 50%; height: 60%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Setting/setting-background.png?fileID=21300000&amp;guid=5102b17b4f7f7d5478f587cfa4e7a217&amp;type=3#setting-background&quot;); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-items: center; justify-content: center;">
+            <engine:VisualElement name="slot1-btn" class="slot-btn" style="flex-direction: row; align-items: center; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&amp;guid=af4c83d722e80d343a58d81a6c7e93d3&amp;type=3#shop-product-background&quot;);">
+                <engine:VisualElement style="align-items: flex-start; justify-content: center; flex-grow: 1;">
+                    <engine:Label text="2025/07/02" name="play-time-txt" class="grow-size-40" style="margin-left: 16px; flex-grow: 0; -unity-font-style: bold;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Label text="챕터2 활동1" name="current-chapter-txt" class="grow-size-35" style="margin-left: 16px; flex-grow: 0;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+                <engine:Button class="reset-btn" />
+            </engine:VisualElement>
+            <engine:VisualElement name="slot2-btn" class="slot-btn" style="flex-direction: row; align-items: center; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&amp;guid=af4c83d722e80d343a58d81a6c7e93d3&amp;type=3#shop-product-background&quot;);">
+                <engine:VisualElement style="align-items: flex-start; justify-content: center; flex-grow: 1;">
+                    <engine:Label text="2025/07/02" name="play-time-txt" class="grow-size-40" style="margin-left: 16px; flex-grow: 0; -unity-font-style: bold;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Label text="챕터2 활동1" name="current-chapter-txt" class="grow-size-35" style="margin-left: 16px; flex-grow: 0;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+                <engine:Button class="reset-btn" />
+            </engine:VisualElement>
+            <engine:VisualElement name="slot3-btn" class="slot-btn" style="flex-direction: row; align-items: center; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Computer/Shop/Product/shop-product-background.png?fileID=21300000&amp;guid=af4c83d722e80d343a58d81a6c7e93d3&amp;type=3#shop-product-background&quot;);">
+                <engine:VisualElement style="align-items: flex-start; justify-content: center; flex-grow: 1;">
+                    <engine:Label text="2025/07/02" name="play-time-txt" class="grow-size-40" style="margin-left: 16px; flex-grow: 0; -unity-font-style: bold;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                    <engine:Label text="챕터2 활동1" name="current-chapter-txt" class="grow-size-35" style="margin-left: 16px; flex-grow: 0;">
+                        <Bindings>
+                            <engine:DataBinding property="text" binding-mode="ToTarget" data-source-path="name" />
+                        </Bindings>
+                    </engine:Label>
+                </engine:VisualElement>
+                <engine:Button class="reset-btn" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button name="slot-close-btn" class="grow-size-40 close-slotview-btn" />
+    </engine:VisualElement>
+</engine:UXML>
