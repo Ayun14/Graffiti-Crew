@@ -39,9 +39,11 @@ public class AudienceNPCController : Observer<GameStateController>
             }
             else if (mySubject.GameState == GameState.Finish)
             {
-                AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.People_Clap);
+                AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.People_Idle);
                 AnimationEvent.SetAnimation?.Invoke(11, AnimationEnum.People_Clap);
-                AnimationEvent.SetAnimation?.Invoke(12, AnimationEnum.People_Idle);
+                AnimationEvent.SetAnimation?.Invoke(12, AnimationEnum.People_Pointing);
+                AnimationEvent.SetAnimation?.Invoke(13, AnimationEnum.People_Reaction);
+                AnimationEvent.SetAnimation?.Invoke(14, AnimationEnum.People_Talk);
             }
         }
     }
@@ -63,7 +65,7 @@ public class AudienceNPCController : Observer<GameStateController>
     {
         GameObject go = Instantiate(prefab, spawnTrm);
         AnimationController animationController = go.GetComponentInChildren<AnimationController>();
-        animationController.SetObjectID(Random.Range(10, 13));
+        animationController.SetObjectID(Random.Range(10, 14));
 
         Transform visualTrm = go.transform.Find("Visual");
         if (visualTrm != null)

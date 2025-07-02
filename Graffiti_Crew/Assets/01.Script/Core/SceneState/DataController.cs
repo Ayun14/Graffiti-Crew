@@ -72,7 +72,7 @@ public abstract class DataController : Observer<GameStateController>
     public void SuccessGiveData()
     {
         if (++_lodingCnt >= _needLodingObjs.Count)
-            StartCoroutine(LodingRoutine(1f, Random.Range(0.4f, 0.8f)));
+            StartCoroutine(LodingRoutine(1f, Random.Range(1f, 1.2f)));
     }
 
     private IEnumerator LodingRoutine(float value, float time)
