@@ -1,14 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/StageScene/ResultView_USS.uss?fileID=7433441132597879392&amp;guid=b7852daa1a1680149b1350d7f3245dcc&amp;type=3#ResultView_USS" />
-    <engine:VisualElement name="clear-result-container" class="result-container">
+    <engine:VisualElement name="clear-result-container" class="result-container result-in">
         <engine:VisualElement style="flex-basis: 18%;">
             <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-clear.png?fileID=21300000&amp;guid=239c5e92956a6774e9b2efd2e831627e&amp;type=3#result-clear&quot;); top: 4%; right: 22%; width: 527px;" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; left: 6%; rotate: 6deg; width: 100%; top: -2%;">
-            <engine:VisualElement name="star1" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/gold.png?fileID=1392551182&amp;guid=0c91fc1564a4bef41b0105e03ce80318&amp;type=3#gold&quot;);" />
-            <engine:VisualElement name="star2" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/silver.png?fileID=-238962025&amp;guid=1034c4b5d41862242a8b122096d94664&amp;type=3#silver&quot;);" />
-            <engine:VisualElement name="star3" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/bronze.png?fileID=-914874249&amp;guid=4bc9b5bd1e10f6a47bae17a061758dfb&amp;type=3#bronze&quot;);" />
+            <engine:VisualElement name="star1" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/gold.png?fileID=21300000&amp;guid=fd19d745b01e7ab4a9e56d225a1ffbb4&amp;type=3#gold&quot;);" />
+            <engine:VisualElement name="star2" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/sliver.png?fileID=21300000&amp;guid=8936fa7afa53c8147a580063130c65d1&amp;type=3#sliver&quot;);" />
+            <engine:VisualElement name="star3" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/bronze.png?fileID=21300000&amp;guid=040654e6d16b3e94688eeba8d644ea3e&amp;type=3#bronze&quot;);" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-basis: 16%; justify-content: space-between; width: 100%;">
             <engine:Button name="home-btn" class="small-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-home-btn.png?fileID=21300000&amp;guid=a733308da1972484cbd54d07fb312959&amp;type=3#result-home-btn&quot;);" />
