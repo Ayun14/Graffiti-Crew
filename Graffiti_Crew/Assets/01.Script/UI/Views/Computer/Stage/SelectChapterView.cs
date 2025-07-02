@@ -154,7 +154,6 @@ namespace AH.UI.Views
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Battle);
-            //ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             SetDescription(stageData, data);
         }
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data)
@@ -183,7 +182,6 @@ namespace AH.UI.Views
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Activity);
-            //ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             SetDescription(stageData, data);
         }
         private void SetDescription(StageDataSO stageData, (string chapter, string stage) data)
@@ -199,9 +197,8 @@ namespace AH.UI.Views
                 _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
             }
             else {
-                _selectStageName = $"Chapter{data.chapter}Battle{data.stage}";
+                _selectStageName = $"Chapter{data.chapter}Activity{data.stage}";
             }
-                Debug.Log(_selectStageName);
             _map.AddToClassList(_selectStageName);
         }
         private void UnforceSelectStage()
