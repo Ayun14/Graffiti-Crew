@@ -39,17 +39,13 @@ public class NPC : InteractionObject
     {
         if (_npcSO.lastStageDataSO != null)
         {
-            Debug.Log(_npcSO.lastStageDataSO);
-            Debug.Log(_npcSO.lastStageDataSO.stageState);
             if (_npcSO.lastStageDataSO.stageState != StageState.Clear)
             {
-                Debug.Log("No");
                 _col.enabled = false;
                 _visual.SetActive(false);
             }
             else
             {
-                Debug.Log("Clear");
                 _col.enabled = true;
                 _visual.SetActive(true);
             }
