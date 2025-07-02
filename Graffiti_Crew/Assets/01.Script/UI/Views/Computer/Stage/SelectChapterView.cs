@@ -4,6 +4,7 @@ using AH.UI.Events;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -64,6 +65,7 @@ namespace AH.UI.Views
                     _pointList[index].StageState = StageState.CanPlay;
                     break;
                 }
+                _pointList[index].StageState = StageState.Clear;
                 _pointList[index].StageState = _saveStageData[index].stageState;
                 index++;
             }
@@ -146,10 +148,14 @@ namespace AH.UI.Views
 
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Battle{data.stage}";
+            string path = $"StageData/{chapter}/{stage}";
+
+            StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Battle);
-            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            //ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            SetDescription(stageData, data);
         }
         private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data)
         {
@@ -159,10 +165,10 @@ namespace AH.UI.Views
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Story{data.stage}";
             string path = $"StageData/{chapter}/{stage}";
-            StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
+            StageDataSO stageData = Resources.Load<StageDataSO>(path);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Story);
-            SetDescription(stageData);
+            SetDescription(stageData, data);
         }
         private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data)
         {
@@ -171,21 +177,31 @@ namespace AH.UI.Views
 
             string chapter = $"Chapter{data.chapter}";
             string stage = $"Activity{data.stage}";
+            string path = $"StageData/{chapter}/{stage}";
+
+            StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
             ComputerViewModel.SetStageData(chapter, stage, StageType.Activity);
-            ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            //ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
+            SetDescription(stageData, data);
         }
-        private void SetDescription(StageDataSO stageData)
+        private void SetDescription(StageDataSO stageData, (string chapter, string stage) data)
         {
             ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
-            ForceSelectStage(stageData);
+            ForceSelectStage(stageData, data);
         }
         #endregion
-        private void ForceSelectStage(StageDataSO stageData)
+        private void ForceSelectStage(StageDataSO stageData, (string chapter, string stage) data)
         {
-            _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
+            if(stageData.stageType == StageType.Story) {
+                _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
+            }
+            else {
+                _selectStageName = $"Chapter{data.chapter}Battle{data.stage}";
+            }
+                Debug.Log(_selectStageName);
             _map.AddToClassList(_selectStageName);
         }
         private void UnforceSelectStage()
