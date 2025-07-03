@@ -4,17 +4,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace AH.SaveSystem {
+namespace AH.Save {
     public class SaveSystem : MonoBehaviour {
         [Header("SaveDataLists")]
         [SerializeField] private List<SaveDataListSO> _currentSceneLoadDataList;
         private List<SaveDataListSO> _shareDataList;
         private List<SaveDataListSO> slotGameDataList;
-        private SlotSO[] slotsBtns;
+
+        [SerializeField] private StringSaveDataSO _lastPlayTimeSO;
+
+        private SlotSO[] _slots;
         private string _slotPath = "UI/Setting/Slots/";
 
         private SlotSO _shareSlot;
-
         public SlotSO currentSlot {
             get => GameManager.currentSlot;
 
@@ -24,7 +26,7 @@ namespace AH.SaveSystem {
         }
 
         private void Awake() {
-            slotsBtns = Resources.LoadAll<SlotSO>(_slotPath);
+            _slots = Resources.LoadAll<SlotSO>(_slotPath);
             _shareSlot = Resources.Load<SlotSO>("UI/Setting/ShareData");
             _shareDataList = Resources.LoadAll<SaveDataListSO>("DataList/Share").ToList();
             slotGameDataList = Resources.LoadAll<SaveDataListSO>("DataList/Slot").ToList();
@@ -37,7 +39,6 @@ namespace AH.SaveSystem {
             SaveDataEvents.ChangeSlotEvent += CreateSlotData;
             SaveDataEvents.DeleteSaveDataEvent += DeleteSaveData;
         }
-
         void OnDisable() {
             SaveDataEvents.SaveGameEvent -= SaveGameData;
             SaveDataEvents.ChangeSlotEvent -= CreateSlotData;
@@ -46,6 +47,7 @@ namespace AH.SaveSystem {
         void OnApplicationQuit() {
             SaveGameData();
         }
+
         public void Init() {
             GameObject root = GameObject.Find("SaveManager");
             if (root == null) {
@@ -96,6 +98,8 @@ namespace AH.SaveSystem {
             SaveDataEvents.LoadEndEvent?.Invoke();
         }
         public void SaveGameData(string sceneName = "") { // 모든 데이터를 저장
+            SetLastPlayTime();
+
             foreach (var saveData in _shareDataList) { // 공용 저장
                 string jsonFile = saveData.ToJson();
                 FileSystem.WriteToFile(_shareSlot.slotName, saveData.saveFileName, jsonFile);
@@ -115,9 +119,45 @@ namespace AH.SaveSystem {
                 SceneManager.LoadScene(sceneName);
             }
         }
+        public string[] FindAllDataValue(string dataName, string fileName) {
+            string[] values = new string[_slots.Length];
+
+            for (int i = 0; i < _slots.Length; i++) {
+                string slotName = _slots[i].slotName;
+                string value = FileSystem.FindDataValue(slotName, fileName, dataName);
+                values[i] = value;
+            }
+
+            return values;
+        }
+        private void SetLastPlayTime() {
+            DateTime now = DateTime.Now;
+
+            string formattedDateTime = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            int year = now.Year;
+            int month = now.Month;
+            int day = now.Day;
+            int hour = now.Hour;
+            int minute = now.Minute;
+
+            _lastPlayTimeSO.data = $"{year}/{month}/{day}  {hour}시/{minute}분";
+            Debug.Log("LAST PLAY TIME : " + _lastPlayTimeSO.data);
+        }
         private void DeleteSaveData(int index) {
-            FileSystem.DeleteFolder(slotsBtns[index].slotName);
+            FileSystem.DeleteFolder(_slots[index].slotName);
             CreateAndLoadData();
+        }
+
+        public static class SaveHelperSystem {
+            private static SaveSystem _saveSystem;
+
+            public static void SetSaveSystem(SaveSystem saveSystem) {
+                _saveSystem = saveSystem;
+            }
+            public static string[] FindAllDataValue(string dataName, string fileName) {
+                return _saveSystem.FindAllDataValue(dataName, fileName);
+            }
         }
     }
 }

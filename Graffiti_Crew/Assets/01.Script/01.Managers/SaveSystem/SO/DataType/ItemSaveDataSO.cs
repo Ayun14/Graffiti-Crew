@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AH.SaveSystem {
+namespace AH.Save {
     [CreateAssetMenu(fileName = "ItemSaveDataSO", menuName = "SO/Save/Data/ItemSaveDataSO")]
     public class ItemSaveDataSO : SaveDataSO {
         [Space]

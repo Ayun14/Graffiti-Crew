@@ -2,7 +2,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 
-namespace AH.SaveSystem {
+namespace AH.Save {
     [CreateAssetMenu(fileName = "SaveDataSO", menuName = "SO/Save/Data/TextureSaveDataSO")]
     public class TextureSaveDataSO : SaveDataSO {
         [Space]

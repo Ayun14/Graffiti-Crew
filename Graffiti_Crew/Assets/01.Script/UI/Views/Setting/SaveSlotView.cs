@@ -1,11 +1,11 @@
-using AH.SaveSystem;
+using AH.Save;
 using AH.UI.Events;
-using AH.UI.Models;
 using AH.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static AH.Save.SaveSystem;
 
 namespace AH.UI.Views {
     public class SaveSlotView : UIView {
@@ -31,6 +31,28 @@ namespace AH.UI.Views {
             _closeBtn = topElement.Q<Button>("slot-close-btn");
             _slotList = topElement.Query<VisualElement>(className: "slot-btn").ToList();
             _resetBtns = topElement.Query<Button>(className: "reset-btn").ToList();
+            SetupSlotBtn();
+        }
+        private void SetupSlotBtn() {
+            string[] timeDatas = SaveHelperSystem.FindAllDataValue("LastPlayTime", "SaveGameDataFile.txt");
+            string[] ProgressrDatas = SaveHelperSystem.FindAllDataValue("LastProgress", "SaveGameDataFile.txt");
+            Label lastPlayTimeLabel = null;
+            Label lastChapterLabel = null;
+
+            for(int i = 0; i < _slotList.Count; i++) {
+                lastPlayTimeLabel = _slotList[i].Q<Label>("play-time-txt");
+                lastChapterLabel = _slotList[i].Q<Label>("game-progress-txt");
+
+                if(timeDatas[i] == "") {
+                    Debug.Log("fill is null");
+                    lastPlayTimeLabel.text = "»õ ÆÄÀÏ";
+                    lastChapterLabel.text = "";
+                }
+                else {
+                    lastPlayTimeLabel.text = timeDatas[i];
+                    lastChapterLabel.text = ProgressrDatas[i];
+                }
+            }
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();

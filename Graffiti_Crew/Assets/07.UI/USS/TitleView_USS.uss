@@ -1,11 +1,8 @@
 .title-btn {
-    background-image: url("project://database/Assets/02.Sprite/UI/Title/button-hover.png?fileID=411891051&guid=f36afc027b22fed4c8ddbeca218ef984&type=3#button-hover");
-    height: 95px;
-    width: 600px;
+    height: 200px;
+    width: 200px;
     transition-duration: 0.2s;
-    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
     flex-grow: 0;
-    background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
@@ -15,13 +12,10 @@
     -unity-font-definition: url("project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&guid=6e2cf7f5846a18842a69b52f15b56fe5&type=3#Opsilon-Regular");
     -unity-text-outline-color: rgb(0, 0, 0);
     margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.title-btn:hover {
-    -unity-background-image-tint-color: rgba(255, 255, 255, 0.5);
-    color: rgb(255, 255, 255);
-    background-color: rgba(141, 141, 141, 0);
+    margin-bottom: 70px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 .slot-btn {
@@ -78,4 +72,35 @@
 .reset-btn:hover {
     scale: 1.1 1.1;
     -unity-background-image-tint-color: rgb(192, 5, 0);
+}
+
+.start-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Start_line.png?fileID=21300000&guid=26ba09e2f576dbe4b9fbefbcaf9aca93&type=3#Start_line");
+    margin-bottom: 90px;
+}
+
+.start-btn:hover {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Start_filled.png?fileID=21300000&guid=ec26519c88723994893b738d61878f98&type=3#Start_filled");
+    -unity-background-image-tint-color: rgb(155, 47, 195);
+    scale: 1.1 1.1;
+}
+
+.setting-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Setting_line.png?fileID=21300000&guid=87aa2b1274269524295c71665954ad45&type=3#Setting_line");
+}
+
+.setting-btn:hover {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Setting_filled.png?fileID=21300000&guid=3d09f899884f9754f8c13a9bb2e5c9b1&type=3#Setting_filled");
+    -unity-background-image-tint-color: rgb(192, 192, 192);
+    scale: 1.1 1.1;
+}
+
+.exit-btn {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Exit_line.png?fileID=21300000&guid=bbc4223adb4b5524daaf5910b1b23fe2&type=3#Exit_line");
+}
+
+.exit-btn:hover {
+    background-image: url("project://database/Assets/02.Sprite/UI/Title/Exit_filled.png?fileID=21300000&guid=b8da7e2a4a97d204384756f283328e5f&type=3#Exit_filled");
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(185, 35, 34);
 }
