@@ -2,25 +2,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace AH.SaveSystem {
+namespace AH.Save {
+    [System.Serializable]
+    public class SaveDataSerialized {
+        public string dataName;
+        public int ID;
+        public string dataType;
+        public string data;
+    }
+
+    [System.Serializable]
+    public class SaveDataWrapper {
+        public List<SaveDataSerialized> saveDataList = new List<SaveDataSerialized>();
+    }
     [CreateAssetMenu(fileName = "SaveDataListSO", menuName = "SO/Save/SaveDataListSO")]
     public class SaveDataListSO : ScriptableObject
     {
         public string saveFileName = "SaveFile";
         public List<SaveDataSO> saveDataSOList = new List<SaveDataSO>();
 
-        [System.Serializable]
-        private class SaveDataSerialized {
-            public string dataName;
-            public int ID;
-            public string dataType;
-            public string data;
-        }
-
-        [System.Serializable]
-        private class SaveDataWrapper {
-            public List<SaveDataSerialized> saveDataList = new List<SaveDataSerialized>();
-        }
 
         public string ToJson() {
             SaveDataWrapper wrapper = new SaveDataWrapper();

@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace AH.SaveSystem {
+namespace AH.Save {
     public enum DataType {
         Int,
         String,

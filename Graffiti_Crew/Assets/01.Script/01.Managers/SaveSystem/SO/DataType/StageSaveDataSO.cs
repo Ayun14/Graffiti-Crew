@@ -1,4 +1,4 @@
-using AH.SaveSystem;
+using AH.Save;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -16,7 +16,7 @@ public enum StageState {
     CanPlay,
     Lock
 }
-namespace AH.SaveSystem {
+namespace AH.Save {
     [CreateAssetMenu(fileName = "Chapter_Stage_", menuName = "SO/Save/Data/StageSaveDataSO")]
     public class StageSaveDataSO : SaveDataSO {
         [Space]
