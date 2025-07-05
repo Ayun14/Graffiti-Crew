@@ -38,9 +38,9 @@ public class StageSceneDataController : DataController
                 {
                     stageData.isPlayerWin = mySubject.IsPlayerWin;
                     stageData.stageSaveData.stageState = mySubject.IsPlayerWin ? StageState.Clear : StageState.CanPlay;
+                    SaveGameProgress();
                     
                     if (stageData.stageSaveData.stageState == StageState.Clear) { // 클리어시 게임 진행도 저장할 수 있도록
-                        SaveGameProgress();
                     }
                 }
             }

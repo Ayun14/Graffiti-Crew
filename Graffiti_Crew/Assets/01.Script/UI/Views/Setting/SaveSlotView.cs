@@ -50,7 +50,12 @@ namespace AH.UI.Views {
                 }
                 else {
                     lastPlayTimeLabel.text = timeDatas[i];
-                    lastChapterLabel.text = ProgressrDatas[i];
+                    if(ProgressrDatas[i] == "") { // 기존에 플레이는 한적 있는데 스테이지를 안들어간 경우
+                        lastChapterLabel.text = "챕터1 대결1";
+                    }
+                    else {
+                        lastChapterLabel.text = ProgressrDatas[i];
+                    }
                 }
             }
         }
