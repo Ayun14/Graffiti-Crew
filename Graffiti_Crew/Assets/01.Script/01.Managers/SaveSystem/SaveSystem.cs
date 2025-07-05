@@ -141,8 +141,7 @@ namespace AH.Save {
             int hour = now.Hour;
             int minute = now.Minute;
 
-            _lastPlayTimeSO.data = $"{year}/{month}/{day}  {hour}시/{minute}분";
-            Debug.Log("LAST PLAY TIME : " + _lastPlayTimeSO.data);
+            _lastPlayTimeSO.data = $"{year}/{month}/{day}  {hour}시 {minute}분";
         }
         private void DeleteSaveData(int index) {
             FileSystem.DeleteFolder(_slots[index].slotName);
