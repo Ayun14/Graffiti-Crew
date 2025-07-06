@@ -4,7 +4,7 @@
 
 ## 🎮 Paint the Block
 
-| **장르** | 시뮬레이션 |
+| **장르** | 시뮬레이션, 스토리 |
 | --- | --- |
 | **플랫폼** | Windows |
 | **개발 언어** | C# (Unity) |
@@ -16,7 +16,7 @@
 
 ## 🎞️ 소개 영상  
 
-[![유튜브 영상 보기](https://img.youtube.com/vi/wh642rDFcZI.jpg)](https://youtu.be/wh642rDFcZI)  
+[![유튜브 영상 보기](https://img.youtube.com/vi/wh642rDFcZI/0.jpg)](https://youtu.be/wh642rDFcZI)
 
 <br><br>
 
