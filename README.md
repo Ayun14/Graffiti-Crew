@@ -16,7 +16,7 @@
 
 ## 🎞️ 소개 영상  
 
-[![유튜브 영상 보기](https://img.youtube.com/vi/vnrpjrlaJN0/0.jpg)](https://youtu.be/vnrpjrlaJN0)  
+[![유튜브 영상 보기](https://img.youtube.com/vi/wh642rDFcZI.jpg)](https://youtu.be/wh642rDFcZI)  
 
 <br><br>
 
