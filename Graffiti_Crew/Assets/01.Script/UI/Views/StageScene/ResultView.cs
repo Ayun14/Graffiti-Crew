@@ -37,7 +37,6 @@ namespace AH.UI.Views {
             _lResultPanel = topElement.Q<VisualElement>("fail-result-container");
         }
         private void FullScreen(bool result) {
-            Debug.Log(result);
             if (result) {
                 ClearPanel();
                 _cResultPanel.AddToClassList("result-in");
@@ -71,7 +70,6 @@ namespace AH.UI.Views {
         private void FailPanel() {
             Button retryBtn = _lResultPanel.Q<Button>("retry-btn");
             Button homeBtn = _lResultPanel.Q<Button>("home-btn");
-            Debug.Log(retryBtn);
             retryBtn.RegisterCallback<ClickEvent>(ClickRetryBtn);
             homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
         }

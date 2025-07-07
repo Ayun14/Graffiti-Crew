@@ -44,13 +44,17 @@ namespace AH.UI.Views {
                 lastChapterLabel = _slotList[i].Q<Label>("game-progress-txt");
 
                 if(timeDatas[i] == "") {
-                    Debug.Log("fill is null");
                     lastPlayTimeLabel.text = "새 파일";
                     lastChapterLabel.text = "";
                 }
                 else {
                     lastPlayTimeLabel.text = timeDatas[i];
-                    lastChapterLabel.text = ProgressrDatas[i];
+                    if(ProgressrDatas[i] == "") { // 기존에 플레이는 한적 있는데 스테이지를 안들어간 경우
+                        lastChapterLabel.text = "플레이 정보 없음";
+                    }
+                    else {
+                        lastChapterLabel.text = ProgressrDatas[i];
+                    }
                 }
             }
         }
@@ -60,7 +64,7 @@ namespace AH.UI.Views {
 
             for(int i = 0; i < _slotList.Count; i++) {
                 _slotList[i].RegisterCallback<ClickEvent, int>(ChangeSlot, i);
-                _resetBtns[i].RegisterCallback<ClickEvent, int>(ResetSlot, i);
+                _resetBtns[i].RegisterCallback<ClickEvent, (VisualElement, int)>(ResetSlot, (_slotList[i], i));
             }
         }
         protected override void UnRegisterButtonCallbacks() {
@@ -69,7 +73,7 @@ namespace AH.UI.Views {
 
             for (int i = 0; i < _slotList.Count; i++) {
                 _slotList[i].UnregisterCallback<ClickEvent, int>(ChangeSlot);
-                _resetBtns[i].UnregisterCallback<ClickEvent, int>(ResetSlot);
+                _resetBtns[i].UnregisterCallback<ClickEvent, (VisualElement, int)>(ResetSlot);
             }
         }
 
@@ -83,8 +87,13 @@ namespace AH.UI.Views {
 
             TitleEvent.StartGameEvent?.Invoke();
         }
-        private void ResetSlot(ClickEvent evt, int index) {
-            SaveDataEvents.DeleteSaveDataEvent?.Invoke(index);
+        private void ResetSlot(ClickEvent evt, (VisualElement button, int index) data) {
+            Label lastPlayTimeLabel = data.button.Q<Label>("play-time-txt");
+            Label lastChapterLabel = data.button.Q<Label>("game-progress-txt");
+            lastPlayTimeLabel.text = "새 파일";
+            lastChapterLabel.text = "";
+
+            SaveDataEvents.DeleteSaveDataEvent?.Invoke(data.index);
             evt.StopPropagation();
         }
         private void ClickCloseView(ClickEvent evt) {
