@@ -552,63 +552,6 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!1001 &135321512
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1840598705085141912, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_Name
-      value: Normal_Battle_Concrete_Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215499663305699369, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 002fec45ea1518f49a7a17fb87234f79, type: 3}
 --- !u!1 &210247146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1196,7 @@ Transform:
   m_GameObject: {fileID: 538208139}
   serializedVersion: 2
   m_LocalRotation: {x: 0.055665176, y: 0.41384467, z: -0.025362754, w: 0.90829}
-  m_LocalPosition: {x: -5.42, y: 1.5, z: -3.1499999}
+  m_LocalPosition: {x: -5.42, y: 1.5, z: -2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2292,6 +2235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentSceneLoadDataList:
   - {fileID: 11400000, guid: 8de463dd07fd85240ac004727e83709e, type: 2}
+  _lastPlayTimeSO: {fileID: 0}
 --- !u!4 &898585272
 Transform:
   m_ObjectHideFlags: 0
@@ -3090,6 +3034,7 @@ MonoBehaviour:
   stageData: {fileID: 0}
   _tmiDataReader: {fileID: 11400000, guid: 1815a609024bf8340976a4ac96ebae15, type: 2}
   _lodingPanel: {fileID: 1440707471}
+  _gameProgressSO: {fileID: 11400000, guid: e19893f489ad099488ebe783fabfab44, type: 2}
 --- !u!4 &1130642412
 Transform:
   m_ObjectHideFlags: 0
@@ -5155,12 +5100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4316423207304782492, guid: 335b00c425d37674ebfacba5a018cfc4, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'rig:RightFoot'\n\tTransform 'rig:RightHandPinky2'\n\tTransform
-        'rig:LeftHandThumb3'\n\tTransform 'rig:LeftArm'\n\tTransform 'rig:RightArm'\n\tTransform
-        'rig:RightHandRing1'\n\tTransform 'rig:LeftLeg'\n\tTransform 'rig:LeftHandPinky2'\n\tTransform
-        'rig:RightHandPinky3'\n\tTransform 'rig:Spine2'\n\tand more ..."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4418364573528226361, guid: 335b00c425d37674ebfacba5a018cfc4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6710,7 +6650,7 @@ Transform:
   m_GameObject: {fileID: 1916257432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.98994976, z: 0, w: 0.14141959}
-  m_LocalPosition: {x: -4.103758, y: 0.8662783, z: -1.5063258}
+  m_LocalPosition: {x: -4.1035547, y: 0.8727284, z: -0.45576432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7625,7 +7565,6 @@ SceneRoots:
   - {fileID: 625271258}
   - {fileID: 994498778}
   - {fileID: 719683365}
-  - {fileID: 135321512}
   - {fileID: 1726993004}
   - {fileID: 1514866980}
   - {fileID: 1130642412}
