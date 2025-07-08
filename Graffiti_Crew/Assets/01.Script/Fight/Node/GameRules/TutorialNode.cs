@@ -25,6 +25,7 @@ public class TutorialNode : Observer<GameStateController>
             if (mySubject.GameState == GameState.Tutorial)
             {
                 _stageGameRule = GetComponent<StageGameRule>();
+                _dialogueUIController.OnEndTyping(false);
                 _stageGameRule.OnNodeClear += HandleOnNodeClear;
             }
             if (mySubject.GameState == GameState.Dialogue)

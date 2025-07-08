@@ -63,7 +63,6 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
                 _explainImg.SetActive(true);
 
-                _dialogueUIController.OnEndTyping(false);
                 _dialogueController.StartDialogue(_tutorialStartIndex + 9, _tutorialStartIndex + 12, ExplainEnd);
             }
 
