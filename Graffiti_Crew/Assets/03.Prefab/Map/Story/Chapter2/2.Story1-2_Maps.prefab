@@ -884,7 +884,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1283262273521121419}
   - component: {fileID: 2943225121291151280}
-  - component: {fileID: 87569948747532906}
   m_Layer: 0
   m_Name: BeforeGraffitiRenderer
   m_TagString: Untagged
@@ -962,22 +961,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &87569948747532906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5246650034050993609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb847a22af8ce74ba7357a6779a6555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
-  _graffitiSuccessEffect: {fileID: 11400000, guid: 9c8220c926678bc4097db3f9e6c4f2ac, type: 2}
-  _graffitiRender: {fileID: 5464881457255795382, guid: 9a5d23c06bb11004ba67a52a14d053ef, type: 3}
-  _memberGraffitiTimeDuration: 4
 --- !u!1 &5465089151364935631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4033834272178342314}
   - component: {fileID: 3113726688612223520}
-  - component: {fileID: 9043547663398552940}
   m_Layer: 0
   m_Name: BeforeGraffitiRenderer (1)
   m_TagString: Untagged
@@ -1341,22 +1323,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9043547663398552940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158024765986762596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb847a22af8ce74ba7357a6779a6555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
-  _graffitiSuccessEffect: {fileID: 11400000, guid: 9c8220c926678bc4097db3f9e6c4f2ac, type: 2}
-  _graffitiRender: {fileID: 5464881457255795382, guid: 9a5d23c06bb11004ba67a52a14d053ef, type: 3}
-  _memberGraffitiTimeDuration: 4
 --- !u!1 &7349096744433724872
 GameObject:
   m_ObjectHideFlags: 0
