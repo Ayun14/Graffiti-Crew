@@ -48,6 +48,9 @@ public class DialogueAnimController : MonoBehaviour
             case "루디":
                 _animValue = 4;
                 break;
+            case "지나가는 행인":
+                _animValue = 10;
+                break;
             case "":
                 _animValue = 0;
                 break;
@@ -65,7 +68,10 @@ public class DialogueAnimController : MonoBehaviour
         if (_curAnim == AnimationEnum.Call)
             return;
 
-        AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
+        if(_animValue == 10)
+            AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.People_Idle);
+        else
+            AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
     }
 
     private void HideBubble()
