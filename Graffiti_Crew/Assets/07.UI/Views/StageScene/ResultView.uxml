@@ -10,8 +10,7 @@
             <engine:VisualElement name="star2" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/sliver.png?fileID=21300000&amp;guid=8936fa7afa53c8147a580063130c65d1&amp;type=3#sliver&quot;);" />
             <engine:VisualElement name="star3" class="star" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/Coin/bronze.png?fileID=21300000&amp;guid=040654e6d16b3e94688eeba8d644ea3e&amp;type=3#bronze&quot;);" />
         </engine:VisualElement>
-        <engine:VisualElement style="flex-basis: 16%; justify-content: space-between; width: 100%;">
-            <engine:Button name="home-btn" class="small-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-home-btn.png?fileID=21300000&amp;guid=a733308da1972484cbd54d07fb312959&amp;type=3#result-home-btn&quot;);" />
+        <engine:VisualElement style="flex-basis: 16%; justify-content: flex-end; width: 100%; padding-right: 40px; padding-bottom: 5px;">
             <engine:Button name="next-btn" class="big-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-next-btn.png?fileID=2800000&amp;guid=3141fdde34770ef459d65d9c624a889b&amp;type=3#result-next-btn&quot;);" />
         </engine:VisualElement>
     </engine:VisualElement>
@@ -20,7 +19,7 @@
             <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-fail.png?fileID=21300000&amp;guid=b430ac1cf9317354a96a76f651ab9ce4&amp;type=3#result-fail&quot;); top: 4%; right: 22%; width: 527px;" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; left: 6%; rotate: 6deg; width: 100%; top: -2%;" />
-        <engine:VisualElement style="flex-basis: 16%; justify-content: space-between; width: 100%;">
+        <engine:VisualElement style="flex-basis: 16%; justify-content: space-between; width: 100%; padding-bottom: 5px; padding-right: 40px;">
             <engine:Button name="retry-btn" class="small-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-retry-btn.png?fileID=21300000&amp;guid=e97d4aebbbd33964584d8f9c7a8db0d1&amp;type=3#result-retry-btn&quot;);" />
             <engine:Button name="home-btn" class="big-btn" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Fight/ResultView/result-home-btn.png?fileID=21300000&amp;guid=a733308da1972484cbd54d07fb312959&amp;type=3#result-home-btn&quot;);" />
         </engine:VisualElement>

@@ -61,10 +61,8 @@ namespace AH.UI.Views {
 
         private void ClearPanel() {
             SetStar(_currentStageStarCount);
-            Button homeBtn = _cResultPanel.Q<Button>("home-btn");
             Button nextBtn = _cResultPanel.Q<Button>("next-btn");
 
-            homeBtn.RegisterCallback<ClickEvent>(ClickHomeBtn);
             nextBtn.RegisterCallback<ClickEvent>(ClickNextBtn);
         }
         private void FailPanel() {
