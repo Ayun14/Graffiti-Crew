@@ -10,6 +10,7 @@ namespace AH.UI {
         private TutorialView _sprayView;
         private DialogueView _dialougeView;
         private MiniDialogueView _miniDialougeView;
+        private SettingView _settingView;
 
         private StoryViewModel _viewModel;
 
@@ -17,14 +18,15 @@ namespace AH.UI {
             base.OnEnable();
             DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
             DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
-                ;
             StageEvent.SetActiveFightViewEvent += SetActiveFightView;
+            StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
             DialogueEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             StageEvent.SetActiveFightViewEvent -= SetActiveFightView;
+            StageEvent.HideViewEvent -= HideView;
         }
 
         protected override void Init() {
@@ -35,11 +37,21 @@ namespace AH.UI {
             base.SetupViews();
             VisualElement root = _uiDocument.rootVisualElement;
 
-            _sprayView = new TutorialView(root.Q<VisualElement>("SprayView"), _viewModel);
+            _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
+            _sprayView = new TutorialView(root.Q<VisualElement>("SprayView"), _viewModel);
 
             _sprayView.Show();
+        }
+        protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
+            evtFunction += EventFunction;
+            base.ShowPreviewEvent(evtFunction);
+        }
+        private void EventFunction() {
+            if (_settingView != null) {
+                ShowView(_settingView);
+            }
         }
         private void ShowDialougeView(bool active) {
             if (active) {
