@@ -71,7 +71,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
 
                 _dialogueController.CanSkip = false;
-                _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 9, null);
+                _dialogueController.StartDialogue(_tutorialStartIndex, _tutorialStartIndex + 8, null);
 
                 // Cursor
                 GameManager.Instance.SetCursor(CursorType.Spray);
