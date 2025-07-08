@@ -48,21 +48,6 @@ public class GameManager : MonoSingleton<GameManager>
         LanguageSystemCompo = GetComponent<LanguageSystem>();
     }
 
-    // Test Code
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _minValue);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            foreach (Material mat in _characterMatList)
-                mat.SetFloat("_MinFadDistance", _maxValue);
-        }
-    }
-
     private void OnEnable()
     {
         UIEvents.ChangeSlotEvent += ChangeSlot;
@@ -79,6 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(width, height, true);
         SetCursor(CursorType.Normal);
+        GameManager.Instance.CharacterFade(1, 0);
     }
 
     public static void SetPause(bool pause)

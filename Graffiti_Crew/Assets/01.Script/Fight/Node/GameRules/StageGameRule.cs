@@ -113,7 +113,7 @@ public abstract class StageGameRule : Observer<GameStateController>
 
         // Spray
         if (mySubject.GameState != GameState.Tutorial)
-            _sprayController.AddSprayAmount(-30f);
+            _sprayController.AddSprayAmount(-20f);
 
         // Combo
         _comboController.FailCombo();
