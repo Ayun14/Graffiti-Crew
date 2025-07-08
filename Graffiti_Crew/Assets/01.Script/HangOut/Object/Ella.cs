@@ -14,6 +14,8 @@ public class Ella : NPC
     {
         if (tutorialCheck != null && _tutorialPanel != null)
         {
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+
             _col.enabled = true;
 
             if (tutorialCheck.data) // Æ©Åä ÈÄ
