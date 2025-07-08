@@ -3923,16 +3923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb841b4919af284c86c949dabbe6dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMatList:
-  - {fileID: 2100000, guid: 90f2fe5557fb61242abb4d343c617f8b, type: 2}
-  - {fileID: 2100000, guid: b3cf194711150a54a82576b6bfe98662, type: 2}
-  - {fileID: 2100000, guid: 38238561427107a4cb377bc4ab6f0685, type: 2}
-  - {fileID: 2100000, guid: 92d23f78f34be0b43b65ea6720b630b1, type: 2}
-  - {fileID: 2100000, guid: 82e6307a4120cd24eacdbf43c755f691, type: 2}
-  - {fileID: 2100000, guid: 17b59c7b50d4f1a4c90b2e0d71d05f16, type: 2}
-  _minValue: -5
-  _maxValue: 5
-  _sprayCan: {fileID: 0}
+  _sprayCan: {fileID: 1807485936}
 --- !u!1 &1581520604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,6 +4010,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: cf8592ffb27f4cd44ab52a6b97ad6410, type: 2}
     - {fileID: 11400000, guid: a1e6252883e36b9478b0f432e1e6b429, type: 2}
+    - {fileID: 11400000, guid: 77b07bd555d05da47b5c6b04b74380ff, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -4051,6 +4043,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1556277158}
           m_TargetAssemblyTypeName: ActivitySceneCharacterController, Assembly-CSharp
           m_MethodName: RivalStartGraffiti
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1556277158}
+          m_TargetAssemblyTypeName: ActivitySceneCharacterController, Assembly-CSharp
+          m_MethodName: CharacterWalkAnimation
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6650,7 +6656,7 @@ Transform:
   m_GameObject: {fileID: 1916257432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.98994976, z: 0, w: 0.14141959}
-  m_LocalPosition: {x: -4.1032796, y: 1.2500539, z: -0.15112081}
+  m_LocalPosition: {x: -4.1035547, y: 0.8727284, z: -0.45576432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
