@@ -167,7 +167,6 @@ namespace AH.UI.Views {
         #endregion
 
         private void ClickGoToTitleBtn(ClickEvent evt) {
-            GameManager.Instance.CharacterFade(1, 0);
             SaveDataEvents.SaveGameEvent?.Invoke("TitleScene");
         }
     }
