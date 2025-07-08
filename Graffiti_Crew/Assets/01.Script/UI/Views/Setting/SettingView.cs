@@ -120,8 +120,8 @@ namespace AH.UI.Views {
 
         #region Audio
         private void SetSoundValue() {
-            Debug.Log(_settingViewModel.GetBGMValue());
-            Debug.Log(_settingViewModel.GetVFXValue());
+            //Debug.Log(_settingViewModel.GetBGMValue());
+            //Debug.Log(_settingViewModel.GetVFXValue());
             _bgmSlider.value = _settingViewModel.GetBGMValue();
             _sfxSlider.value = _settingViewModel.GetVFXValue();
         }

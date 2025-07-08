@@ -64,7 +64,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(width, height, true);
         SetCursor(CursorType.Normal);
-        GameManager.Instance.CharacterFade(1, 0);
+        Debug.Log("캐릭터 보인다~");
+        CharacterFade(1, 0);
     }
 
     public static void SetPause(bool pause)
@@ -117,8 +118,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         float elapsed = 0;
         float startValue = _characterMatList[0].GetFloat("_MinFadDistance");
-        float targetValue = isFadeIn ? _maxValue : _minValue;
-
+        float targetValue = isFadeIn ? _minValue : _maxValue;
+        Debug.Log(targetValue);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
