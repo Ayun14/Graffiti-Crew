@@ -33,13 +33,11 @@ namespace AH.UI.Views {
         private string[] _lauguageTypes;
 
         private Button _goToTitleBtn;
-
         private Button _closeBtn;
 
 
         public SettingView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
         }
-
         public override void Initialize() {
             _settingViewModel = viewModel as SettingViewModel;
 
@@ -68,6 +66,7 @@ namespace AH.UI.Views {
 
             //SetLanguageItems(false);
             ShowCategory(0);
+            SetSoundValue();
         }
         protected override void RegisterButtonCallbacks() {
             base.RegisterButtonCallbacks();
@@ -94,13 +93,12 @@ namespace AH.UI.Views {
         }
 
         public override void Show() {
-            //HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
             GameManager.SetPause(true);
-            SetSound();
             base.Show();
         }
         public override void Hide() {
-            //HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
             base.Hide();
             GameManager.SetPause(false);
         }
@@ -110,7 +108,6 @@ namespace AH.UI.Views {
 
             StageEvent.HideViewEvent?.Invoke();
         }
-
         private void ClickCategory(ClickEvent evt, int index) {
             ShowCategory(index);
         }
@@ -122,7 +119,9 @@ namespace AH.UI.Views {
         }
 
         #region Audio
-        private void SetSound() {
+        private void SetSoundValue() {
+            Debug.Log(_settingViewModel.GetBGMValue());
+            Debug.Log(_settingViewModel.GetVFXValue());
             _bgmSlider.value = _settingViewModel.GetBGMValue();
             _sfxSlider.value = _settingViewModel.GetVFXValue();
         }
