@@ -1398,9 +1398,17 @@ PrefabInstance:
       value: 0.10830726
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8ed7f9efbfdb9614e84bcb1ebf2ac289, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5873440789558136595, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0013022051
@@ -1623,9 +1631,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 666977780888097483}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1340028687245651530}
   m_SourcePrefab: {fileID: 100100000, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
 --- !u!4 &4061907847131513467 stripped
 Transform:
@@ -1651,24 +1656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultAnimation: 0
   ObjectID: 1
---- !u!114 &1340028687245651530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7371539857474773596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors: []
 --- !u!4 &7856293005275871462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5b2d8f39c3f47f442a961fe2524d264f, type: 3}
