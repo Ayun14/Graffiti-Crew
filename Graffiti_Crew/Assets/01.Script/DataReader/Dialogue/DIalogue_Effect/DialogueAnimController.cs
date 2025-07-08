@@ -48,8 +48,17 @@ public class DialogueAnimController : MonoBehaviour
             case "루디":
                 _animValue = 4;
                 break;
-            case "지나가는 행인":
+            case "행인1":
                 _animValue = 10;
+                break;
+            case "행인2":
+                _animValue = 11;
+                break;
+            case "행인3":
+                _animValue = 12;
+                break;
+            case "행인4":
+                _animValue = 13;
                 break;
             case "":
                 _animValue = 0;
@@ -68,7 +77,7 @@ public class DialogueAnimController : MonoBehaviour
         if (_curAnim == AnimationEnum.Call)
             return;
 
-        if(_animValue == 10)
+        if(_animValue >= 10)
             AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.People_Idle);
         else
             AnimationEvent.SetAnimation?.Invoke(_animValue, AnimationEnum.Idle);
