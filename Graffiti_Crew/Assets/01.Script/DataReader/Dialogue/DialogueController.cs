@@ -33,6 +33,13 @@ public class DialogueController : MonoBehaviour
     {
         _uiController = GetComponent<DialogueUIController>();
         _effectController = GetComponent<DialogueEffectController>();
+
+        DialogueEvent.SetDialogueInput += SetDialogueInput;
+    }
+
+    private void OnDisable()
+    {
+        DialogueEvent.SetDialogueInput -= SetDialogueInput;
     }
 
     private void Update()
@@ -60,6 +67,11 @@ public class DialogueController : MonoBehaviour
                 ShowNextDialogue();
             }
         }
+    }
+
+    private void SetDialogueInput(bool input)
+    {
+        IsDialogue = input;
     }
 
     public void DialogueSkip()

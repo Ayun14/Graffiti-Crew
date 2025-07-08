@@ -30,6 +30,11 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         Attach();
     }
 
+    private void Start()
+    {
+        StageEvent.SetActiveFightViewEvent?.Invoke(false);
+    }
+
     private void OnDestroy()
     {
         Detach();
