@@ -104,3 +104,21 @@
     scale: 1.1 1.1;
     -unity-background-image-tint-color: rgb(185, 35, 34);
 }
+
+.slot-warning-btn {
+    width: 124px;
+    height: 60px;
+    transition-duration: 0.2s;
+    background-image: url("project://database/Assets/02.Sprite/UI/Computer/Shop/shop-product-content.png?fileID=21300000&guid=e235e718a471c224582eb07304fbe842&type=3#shop-product-content");
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    flex-grow: 0;
+    color: rgb(226, 226, 226);
+}
+
+.slot-warning-btn:hover {
+    color: rgb(255, 0, 0);
+}

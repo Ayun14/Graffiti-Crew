@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/TitleView_USS.uss?fileID=7433441132597879392&amp;guid=b550c22250dae5749acd66418dd49568&amp;type=3#TitleView_USS" />
     <engine:VisualElement name="slot-content" style="position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; display: flex;">
         <engine:VisualElement style="width: 50%; height: 60%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Setting/setting-background.png?fileID=21300000&amp;guid=5102b17b4f7f7d5478f587cfa4e7a217&amp;type=3#setting-background&quot;); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-items: center; justify-content: center;">
@@ -49,5 +50,16 @@
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:Button name="slot-close-btn" class="grow-size-40 close-slotview-btn" />
+        <engine:VisualElement name="warning-view" style="position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center; display: none;">
+            <engine:VisualElement style="width: 25%; height: 30%; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dropdown/dropdown.png?fileID=1957536806&amp;guid=3511ea8880556434293e3b1898a40791&amp;type=3#dropdown_0&quot;);">
+                <engine:VisualElement style="flex-grow: 1; width: 100%;">
+                    <engine:Label text="정말 삭제하시겠습니까?" class="grow-size-40" style="-unity-text-align: middle-center; color: rgb(255, 0, 0); -unity-font-style: bold;" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-direction: row; height: 40%; width: 100%; justify-content: space-around; align-items: center;">
+                    <engine:Button text="예" name="yes-btn" class="grow-size-25 slot-warning-btn" />
+                    <engine:Button text="아니오" name="no-btn" class="grow-size-25 slot-warning-btn" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

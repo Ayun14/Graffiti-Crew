@@ -11,6 +11,10 @@ namespace AH.UI.Views {
     public class SaveSlotView : UIView {
         private TitleViewModel _titleViewModel;
 
+        private VisualElement _warningView;
+        private Button _yDeleteBtn;
+        private Button _nDeleteBtn;
+
         private List<VisualElement> _slotList;
         private List<Button> _resetBtns;
         private Button _closeBtn;
@@ -27,6 +31,9 @@ namespace AH.UI.Views {
         }
         protected override void SetVisualElements() {
             base.SetVisualElements();
+            _warningView = topElement.Q<VisualElement>("warning-view");
+            _yDeleteBtn = topElement.Q<Button>("yes-btn");
+            _nDeleteBtn = topElement.Q<Button>("no-btn");
 
             _closeBtn = topElement.Q<Button>("slot-close-btn");
             _slotList = topElement.Query<VisualElement>(className: "slot-btn").ToList();
@@ -88,6 +95,15 @@ namespace AH.UI.Views {
             TitleEvent.StartGameEvent?.Invoke();
         }
         private void ResetSlot(ClickEvent evt, (VisualElement button, int index) data) {
+            evt.StopPropagation();
+            _warningView.style.display = DisplayStyle.Flex;
+
+            _yDeleteBtn.RegisterCallback<ClickEvent, (VisualElement, int)>(DeleteData, data);
+            _nDeleteBtn.RegisterCallback<ClickEvent>(CloseWarningView);
+        }
+        private void DeleteData(ClickEvent evt, (VisualElement button, int index) data) {
+            _warningView.style.display = DisplayStyle.None;
+
             Label lastPlayTimeLabel = data.button.Q<Label>("play-time-txt");
             Label lastChapterLabel = data.button.Q<Label>("game-progress-txt");
             lastPlayTimeLabel.text = "»õ ÆÄÀÏ";
@@ -95,6 +111,9 @@ namespace AH.UI.Views {
 
             SaveDataEvents.DeleteSaveDataEvent?.Invoke(data.index);
             evt.StopPropagation();
+        }
+        private void CloseWarningView(ClickEvent evt) {
+            _warningView.style.display = DisplayStyle.None;
         }
         private void ClickCloseView(ClickEvent evt) {
             StageEvent.HideViewEvent?.Invoke();
