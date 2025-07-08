@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class ActivitySceneCharacterController : Observer<GameStateController>, INeedLoding
 {
-    [Header("Fade")]
-    [SerializeField] private List<Material> _characterMatList = new();
-    [Range(-5f, 5f)]
-    [SerializeField] private float _minValue = -2f, _maxValue = 2f;
-
     [Header("Player")]
     [SerializeField] private GameObject _sprayCan;
 
@@ -100,19 +95,22 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
 
     public void CharacterFadeIn()
     {
-        GameManager.Instance.CharacterFade(1f, 1f);
+        GameManager.Instance.CharacterFade(0f, 1f);
     }
 
     public void CharacterFadeOut()
     {
-        GameManager.Instance.CharacterFade(0f, 1f);
+        GameManager.Instance.CharacterFade(1f, 1f);
+    }
+
+    public void CharacterWalkAnimation()
+    {
+        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
+        AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Walk);
     }
 
     public void RivalStartGraffiti()
     {
-        AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
-        AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Walk);
-
         // Others
         for (int i = 1; i < _rivalTrmList.Count; ++i)
         {
@@ -168,6 +166,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     public void RivalsTalk()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
+        AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Talk);
     }
 
     public void PlayerSprayNone()
