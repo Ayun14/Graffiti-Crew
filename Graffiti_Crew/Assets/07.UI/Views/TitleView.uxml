@@ -5,11 +5,17 @@
     <Style src="project://database/Assets/07.UI/USS/TitleView_USS.uss?fileID=7433441132597879392&amp;guid=b550c22250dae5749acd66418dd49568&amp;type=3#TitleView_USS" />
     <Style src="project://database/Assets/07.UI/USS/SettingView_USS.uss?fileID=7433441132597879392&amp;guid=30ddbd43ef509f64fb111766fe63b09c&amp;type=3#SettingView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3#Presentation_USS" />
-    <engine:VisualElement name="start-btn-clicker" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&amp;guid=295732e0041d5b64286b75f6f6c7a295&amp;type=3#title-background&quot;); justify-content: flex-end;">
+    <engine:VisualElement style="flex-grow: 1; justify-content: flex-end; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Title/title-background.png?fileID=21300000&amp;guid=295732e0041d5b64286b75f6f6c7a295&amp;type=3#title-background&quot;);">
         <engine:VisualElement name="bottom-container" style="align-items: center; justify-content: center; flex-direction: row; flex-basis: 40%; padding-bottom: 1%;">
-            <engine:Button name="open-slot-btn" class="title-btn grow-size-50 grow-size-60 start-btn" />
-            <engine:Button name="setting-save-btn" class="title-btn grow-size-50 grow-size-60 setting-btn" />
-            <engine:Button name="exit-btn" class="title-btn grow-size-50 grow-size-60 exit-btn" />
+            <engine:Button name="open-slot-btn" class="title-btn grow-size-50 grow-size-60 start-btn">
+                <engine:Label text="Start" class="grow-size-35" style="flex-grow: 0; top: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;);" />
+            </engine:Button>
+            <engine:Button name="setting-save-btn" class="title-btn grow-size-50 grow-size-60 setting-btn">
+                <engine:Label text="Setting" class="grow-size-35" style="flex-grow: 0; top: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;);" />
+            </engine:Button>
+            <engine:Button name="exit-btn" class="title-btn grow-size-50 grow-size-60 exit-btn">
+                <engine:Label text="Exit" enable-rich-text="false" class="grow-size-35" style="flex-grow: 0; top: 100%; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;); right: 10%;" />
+            </engine:Button>
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:Instance template="SettingView" name="SettingView" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: none;" />
