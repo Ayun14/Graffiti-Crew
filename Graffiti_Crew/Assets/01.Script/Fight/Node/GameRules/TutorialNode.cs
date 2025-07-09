@@ -25,8 +25,10 @@ public class TutorialNode : Observer<GameStateController>
             if (mySubject.GameState == GameState.Tutorial)
             {
                 _stageGameRule = GetComponent<StageGameRule>();
+                if (_stageGameRule != null)
+                    _stageGameRule.OnNodeClear += HandleOnNodeClear;
+
                 _dialogueUIController.OnEndTyping(false);
-                _stageGameRule.OnNodeClear += HandleOnNodeClear;
             }
             if (mySubject.GameState == GameState.Dialogue)
             {
@@ -37,7 +39,8 @@ public class TutorialNode : Observer<GameStateController>
 
     private void OnDisable()
     {
-        _stageGameRule.OnNodeClear -= HandleOnNodeClear;
+        if (_stageGameRule != null)
+            _stageGameRule.OnNodeClear -= HandleOnNodeClear;
         _dialogueUIController.OnEndTyping -= SetInput;
     }
 

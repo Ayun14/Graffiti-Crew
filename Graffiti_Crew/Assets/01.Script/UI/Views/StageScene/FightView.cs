@@ -34,7 +34,7 @@ namespace AH.UI.Views {
             _viewModel = viewModel as FightViewModel;
             base.Initialize();
         }
-        protected override void SetVisualElements() {
+        protected override void SetVisualElements() { 
             base.SetVisualElements();
 
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
@@ -53,7 +53,6 @@ namespace AH.UI.Views {
         }
         public override void Show() {
             base.Show();
-            Debug.Log("show fight view");
             SetGameProgress();
             _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(Color.white);
         }
