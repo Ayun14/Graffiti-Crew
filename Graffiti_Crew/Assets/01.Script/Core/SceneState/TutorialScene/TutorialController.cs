@@ -32,7 +32,6 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
     private void Start()
     {
-        StageEvent.SetActiveFightViewEvent?.Invoke(false);
     }
 
     private void OnDestroy()
@@ -46,7 +45,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         {
             if (mySubject.GameState == GameState.Dialogue)
             {
-                if(_dialogueNum == 0)
+                if (_dialogueNum == 0)
                     GameManager.Instance.SoundSystemCompo.PlayBGM(SoundType.Rain);
 
                 _dialogueUIController.ChangeDialogueUI?.Invoke(true);
@@ -59,7 +58,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 GameManager.Instance.SetCursor(CursorType.Normal);
             }
 
-            if(mySubject.GameState == GameState.Countdown)
+            if (mySubject.GameState == GameState.Countdown)
             {
                 _dialogueUIController.ChangeDialogueUI?.Invoke(false);
                 DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
@@ -109,7 +108,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     private IEnumerator HandleDialogueTransition()
     {
 
-        if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
+        if (_dialogueNum == _tutorialDialogueSO.storyList.Count)
             _hangout.SetActive(false);
 
         yield return StartCoroutine(Fade(false));
@@ -149,7 +148,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
 
             _dialogueController.StartDialogue(dialogue.startIndex, dialogue.endIndex, DialogueEnd);
         }
-        else if(_dialogueNum == _tutorialDialogueSO.storyList.Count)
+        else if (_dialogueNum == _tutorialDialogueSO.storyList.Count)
         {
             _splashController.SetFade();
             GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Tutorial);
@@ -172,7 +171,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     {
         _clearNode++;
 
-        if(_clearNode == 9)
+        if (_clearNode == 9)
         {
             await Task.Delay(1100);
             PresentationEvents.FadeInOutEvent?.Invoke(true);

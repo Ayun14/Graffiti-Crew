@@ -41,8 +41,6 @@ namespace AH.UI {
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialougeView"), _viewModel);
             _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _viewModel);
             _sprayView = new TutorialView(root.Q<VisualElement>("SprayView"), _viewModel);
-
-            _sprayView.Show();
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
             evtFunction += EventFunction;
