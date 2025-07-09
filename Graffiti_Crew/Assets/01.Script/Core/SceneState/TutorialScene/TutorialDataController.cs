@@ -15,8 +15,6 @@ public class TutorialDataController : DataController
 
     protected async override void FinishGiveData()
     {
-        StageEvent.SetActiveFightViewEvent?.Invoke(false);
-
         PresentationEvents.SetFadeEvent?.Invoke(true);
         await Task.Delay(1100);
         PresentationEvents.FadeInOutEvent?.Invoke(true);

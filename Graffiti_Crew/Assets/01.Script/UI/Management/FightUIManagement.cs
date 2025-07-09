@@ -74,6 +74,7 @@ namespace AH.UI {
         }
         private void SetActiveFightView(bool active) {
             if (active) {
+
                 _fightView.Show();
             }
             else {
