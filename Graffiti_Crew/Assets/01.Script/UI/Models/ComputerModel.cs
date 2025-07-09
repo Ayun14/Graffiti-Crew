@@ -51,10 +51,10 @@ namespace AH.UI.Models
             _descriptionSO.price = 0;
             _descriptionSO.image = null;
         }
-        public void SetStage(string chapter, string stage, StageType stageType) {
+        public void SetStage(string chapter, string stage, StageType stageType, string stageNumber = "") {
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
-            _loadStageSO.SetCurrentStage(chapter + stage, stageType);
+            _loadStageSO.SetCurrentStage(chapter + stage, stageType, stageNumber);
         }
     }
 }

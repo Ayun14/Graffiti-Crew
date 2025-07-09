@@ -10,7 +10,9 @@ namespace AH.Save {
         public string chapter;
         public string stage;
 
-        [SerializeField]private string _currentStageName;
+        [SerializeField] private string _stageNumber;
+        [Space]
+        [SerializeField] private string _currentStageName;
         [SerializeField] private StageType _currentStageType;
         [Space]
         [SerializeField] private string _defaultChapter;
@@ -20,15 +22,19 @@ namespace AH.Save {
             dataType = DataType.Ect;
         }
 
+        public string GetStageNumber() {
+            return _stageNumber;
+        }
         public string GetLoadStageName() {
             return $"{chapter}/{stage}";
         }
         public override string GetData() {
             return $"{chapter} {stage}";
         }
-        public void SetCurrentStage(string stage, StageType type) {
+        public void SetCurrentStage(string stage, StageType type, string number = "") {
             _currentStageName = $"{stage}";
             _currentStageType = type;
+            _stageNumber = number;
         }
         public string GetCurrentStageName() {
             return _currentStageName;

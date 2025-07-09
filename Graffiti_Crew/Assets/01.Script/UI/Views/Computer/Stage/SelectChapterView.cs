@@ -95,13 +95,13 @@ namespace AH.UI.Views
                     switch (button.StageType)
                     {
                         case StageType.Battle:
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn, (button.chapter, button.stage));
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickBattleBtn, (button.chapter, button.stage, button.imageNumber));
                             break;
                         case StageType.Activity:
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn, (button.chapter, button.stage));
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickActivityBtn, (button.chapter, button.stage, button.imageNumber));
                             break;
                         case StageType.Story:
-                            button.RegisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn, (button.chapter, button.stage));
+                            button.RegisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickStoryBtn, (button.chapter, button.stage, button.imageNumber));
                             break;
                     }
                 }
@@ -124,22 +124,22 @@ namespace AH.UI.Views
                     });
                     if (button.StageType == StageType.Battle)
                     {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickBattleBtn);
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickBattleBtn);
                     }
                     else if (button.StageType == StageType.Story)
                     {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickStoryBtn);
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickStoryBtn);
                     }
                     else
                     {
-                        button.UnregisterCallback<ClickEvent, (string chapter, string stage)>(ClickActivityBtn);
+                        button.UnregisterCallback<ClickEvent, (string chapter, string stage, string stagenumber)>(ClickActivityBtn);
                     }
                 }
             }
         }
 
         #region ClickStages
-        private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage) data)
+        private void ClickBattleBtn(ClickEvent evt, (string chapter, string stage, string stagenumber) data)
         {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
@@ -151,10 +151,10 @@ namespace AH.UI.Views
             StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetStageData(chapter, stage, StageType.Battle);
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Battle, data.stagenumber);
             SetDescription(stageData, data);
         }
-        private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage) data)
+        private void ClickStoryBtn(ClickEvent evt, (string chapter, string stage, string stageNumber) data)
         {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
@@ -164,10 +164,10 @@ namespace AH.UI.Views
             string path = $"StageData/{chapter}/{stage}";
 
             StageDataSO stageData = Resources.Load<StageDataSO>(path);
-            ComputerViewModel.SetStageData(chapter, stage, StageType.Story);
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Story, data.stageNumber);
             SetDescription(stageData, data);
         }
-        private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage) data)
+        private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage, string stagenumber) data)
         {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
@@ -179,17 +179,17 @@ namespace AH.UI.Views
             StageDataSO stageData = Resources.Load<StageDataSO>(path);
 
             ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
-            ComputerViewModel.SetStageData(chapter, stage, StageType.Activity);
+            ComputerViewModel.SetStageData(chapter, stage, StageType.Activity, data.stagenumber);
             SetDescription(stageData, data);
         }
-        private void SetDescription(StageDataSO stageData, (string chapter, string stage) data)
+        private void SetDescription(StageDataSO stageData, (string chapter, string stage, string stagenumber) data)
         {
             ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             ForceSelectStage(stageData, data);
         }
         #endregion
-        private void ForceSelectStage(StageDataSO stageData, (string chapter, string stage) data)
+        private void ForceSelectStage(StageDataSO stageData, (string chapter, string stage, string stageNumber) data)
         {
             if(stageData.stageType == StageType.Story) {
                 _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";

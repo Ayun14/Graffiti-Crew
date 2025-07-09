@@ -108,7 +108,7 @@ public abstract class DataController : Observer<GameStateController>
         {
             stageSO.chapter = stageData.nextChapter;
             stageSO.stage = stageData.nextStage;
-            stageSO.SetCurrentStage(stageData.nextChapter + stageData.nextStage, stageData.nextStagetype);
+            stageSO.SetCurrentStage(stageData.nextChapter + stageData.nextStage, stageData.nextStagetype, stageSO.GetStageNumber());
         }
 
         string nextScene = "ComputerScene";

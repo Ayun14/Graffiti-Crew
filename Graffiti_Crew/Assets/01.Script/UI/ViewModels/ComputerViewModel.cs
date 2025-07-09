@@ -38,8 +38,8 @@ namespace AH.UI.ViewModels {
         public void ClearSelectProductData() {
             _model.ClearSelectProductData();
         }
-        public void SetStageData(string chapter, string stage, StageType stageType) {
-            _model.SetStage(chapter, stage, stageType);
+        public void SetStageData(string chapter, string stage, StageType stageType, string stageNumer) {
+            _model.SetStage(chapter, stage, stageType, stageNumer);
         }
         public string GetCurrentStageName() {
             return _model.GetLoadStage().GetCurrentStageName();
