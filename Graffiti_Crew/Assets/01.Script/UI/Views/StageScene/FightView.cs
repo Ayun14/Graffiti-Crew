@@ -14,7 +14,6 @@ namespace AH.UI.Views {
         private GameProgressElement _fGameProgress;
         private GameProgressElement _aGameProgress;
 
-        private VisualElement _sprayCountContent;
         private VisualElement _sprayOutLine;
         private bool _notEnoughSpray = false;
 
@@ -39,7 +38,6 @@ namespace AH.UI.Views {
             base.SetVisualElements();
 
             _sprayOutLine = topElement.Q<VisualElement>("spray-outline");
-            _sprayCountContent = topElement.Q<VisualElement>("sprayCount-content");
 
             _fightBorder = topElement.Q<VisualElement>("fight-progress-border");
             _activitBorder = topElement.Q<VisualElement>("activity-progress-border");
@@ -55,6 +53,7 @@ namespace AH.UI.Views {
         }
         public override void Show() {
             base.Show();
+            Debug.Log("show fight view");
             SetGameProgress();
             _sprayOutLine.style.unityBackgroundImageTintColor = new StyleColor(Color.white);
         }

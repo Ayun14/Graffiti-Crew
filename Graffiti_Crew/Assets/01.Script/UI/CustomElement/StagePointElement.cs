@@ -39,7 +39,14 @@ namespace AH.UI.CustomElement {
                 SetName();
             }
         }
-        private string _imageNumber { get; set; }
+
+        private string _imageNumber;
+        public string imageNumber {
+            get => _imageNumber;
+            set {
+                _imageNumber = value;
+            }
+        }
 
         [System.Obsolete]
         public new class UxmlFactory : UxmlFactory<StagePointElement, UxmlTraits> { }

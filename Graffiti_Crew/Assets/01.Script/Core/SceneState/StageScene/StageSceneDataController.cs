@@ -48,26 +48,14 @@ public class StageSceneDataController : DataController
     }
 
     private void SaveGameProgress() {
-        string stageName = stageSO.GetCurrentStageName(); // 예: "Chapter1Battle1"
-        string progress = "";
+        string chapter = stageSO.chapter; 
+        string chapterNumberStr = chapter.Replace("Chapter", "");
+        int chapterNumber = int.Parse(chapterNumberStr);
 
-        Match match = Regex.Match(stageName, @"Chapter(\d+)(Battle|Activity)(\d+)");
-        if (match.Success) {
-            string chapterNumber = match.Groups[1].Value;
-            string stageType = match.Groups[2].Value;
-            string stageNumber = match.Groups[3].Value;
+        string stageNumber = stageSO.GetStageNumber(); // 예: "Chapter1Battle1"
 
-            string typeKorean = stageType == "Battle" ? "대결" : "활동";
-
-            progress = $"챕터{chapterNumber} {typeKorean}{stageNumber}";
-            _gameProgressSO.data = progress;
-        }
-        else {
-            Debug.LogWarning($"Stage 이름 파싱 실패: {stageName}");
-            _gameProgressSO.data = "알 수 없음";
-        }
-
-        Debug.Log(_gameProgressSO.data);
+        string progress = $"{chapterNumber}-{stageNumber}";
+        _gameProgressSO.data = progress;
     }
 
     protected override void FindDatas()
