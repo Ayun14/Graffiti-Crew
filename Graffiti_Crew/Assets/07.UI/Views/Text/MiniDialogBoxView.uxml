@@ -1,10 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:VisualElement style="flex-grow: 1;">
         <engine:VisualElement style="flex-direction: row; align-items: center; top: 3%;">
             <engine:VisualElement name="background" class="mini-background" style="background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/mini-textbox.png?fileID=21300000&amp;guid=fbd723ad2d0f7cd468d68248b6434a7c&amp;type=3#mini-textbox&quot;);">
-                <engine:Label text="하이" name="dialog-txt" class="grow-size-40" style="flex-grow: 1; white-space: pre-wrap;">
+                <engine:Label text="하이" name="dialog-txt" class="grow-size-35" style="flex-grow: 1; white-space: pre-wrap;">
                     <Bindings>
                         <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/MiniDialogueSO.asset?fileID=11400000&amp;guid=1f40270623ad97e488a6d7c93280afeb&amp;type=2#MiniDialogueSO" binding-mode="ToTarget" data-source-path="dialogue" />
                     </Bindings>
