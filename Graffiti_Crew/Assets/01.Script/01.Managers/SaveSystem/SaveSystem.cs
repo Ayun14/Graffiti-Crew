@@ -13,6 +13,8 @@ namespace AH.Save {
 
         [SerializeField] private StringSaveDataSO _lastPlayTimeSO;
 
+        [SerializeField] private bool _isTitle = false;
+
         private SlotSO[] _slots;
         private string _slotPath = "UI/Setting/Slots/";
 
@@ -48,22 +50,13 @@ namespace AH.Save {
             SaveGameData();
         }
 
-        public void Init() {
-            GameObject root = GameObject.Find("SaveManager");
-            if (root == null) {
-                root = new GameObject { name = "SaveManager" };
-                root.AddComponent<SaveSystem>();
-                DontDestroyOnLoad(root);
-            }
-            else {
-                DontDestroyOnLoad(root);
-            }
-        }
         private void CreateAndLoadData() {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
             GameManager.SetSlot(); // ΩΩ∑‘ ºº∆√
-            CreateSlotData();
+            if (!_isTitle) {
+                CreateSlotData();
+            }
         }
         private void CreateSlotData() {
             // ΩΩ∑‘ ∫∞ ¿¸√º µ•¿Ã≈Õ ª—∏Æ∞Ì

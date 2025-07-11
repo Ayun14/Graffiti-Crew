@@ -48,6 +48,14 @@ namespace AH.UI.Views
             SetSaveDataToStagePoint();
         }
 
+        private void LoadSaveData()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                //_pointList[i].StageType = _saveStageData[i].stageType;
+                _pointList[i].StageState = _saveStageData[i].stageState;
+            }
+        }
         private void SetSaveDataToStagePoint()
         {
             int index = 0;
@@ -66,14 +74,6 @@ namespace AH.UI.Views
                 _pointList[index].StageState = StageState.Clear;
                 _pointList[index].StageState = _saveStageData[index].stageState;
                 index++;
-            }
-        }
-        private void LoadSaveData()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                //_pointList[i].StageType = _saveStageData[i].stageType;
-                _pointList[i].StageState = _saveStageData[i].stageState;
             }
         }
 

@@ -66,9 +66,13 @@ namespace AH.UI.Views {
                 string newPath = $"SaveData/{dataPath}";
                 saveData = Resources.Load<StageSaveDataSO>(newPath); ;
             }
-                for (int i = 0; i < 3 - saveData.star; i++) {
-                    _coinList[i].RemoveFromClassList("coin");
-                }
+
+            for (int i = 0; i < _coinList.Count; i++) { // ÃÊ±âÈ­
+                _coinList[i].AddToClassList("coin");
+            }
+            for (int i = 0; i < 3 - saveData.star; i++) {
+                _coinList[i].RemoveFromClassList("coin");
+            }
         }
         private void ClickCloseBtn(ClickEvent evt) {
             //Sound
