@@ -122,9 +122,12 @@ public class PressNode : Node, INodeAction
 
         if (isClearNode == true) return;
         isClearNode = true;
-        NodeReset();
 
-        SetAlpha(0f, fadeTime, () => pool.Push(this));
+        SetAlpha(0f, fadeTime, () =>
+        {
+            NodeReset();
+            pool.Push(this);
+        });
     }
 
     public override void NodeFalse()
