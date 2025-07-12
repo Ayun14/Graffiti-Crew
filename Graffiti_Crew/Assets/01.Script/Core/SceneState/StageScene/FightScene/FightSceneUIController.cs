@@ -21,23 +21,10 @@ public class FightSceneUIController : Observer<GameStateController>
     private float _currentBlindTime;
     private Image _blindPanel;
     private FoodImage _foodImage;
-    private Material _blindMat;
     public bool isBlind => mySubject.IsBlind;
 
     [Header("Interaction")]
     [SerializeField] private Image _interactionImage;
-
-    // StepValue Sin Graph
-    private float _frequency = 0.1f; // 주기
-    private float _amplitude = 0.005f; // 변화 폭
-    private float _baseStepValue;
-    private float _elapsedTime = 0f;
-
-    // Blind Shader
-    private int _blindColor = Shader.PropertyToID("_BlindColor"); // 색상
-    private int _stepValue = Shader.PropertyToID("_StepValue"); // noise에서 보이는 양 조절 0.44
-    private int _lengthPower = Shader.PropertyToID("_LengthPower"); // 보이는 알파 0.77
-    private int _offsetVec = Shader.PropertyToID("_OffsetVec"); // 보이는 uv 위치
 
     // Fail Shader
     private Image _failFeedbackPanel;
@@ -55,6 +42,9 @@ public class FightSceneUIController : Observer<GameStateController>
     private Image _transitionPanel;
     private Material _transitionMat;
 
+    // Timeline
+    private Image _timelinePanel;
+
     private void Awake()
     {
         Attach();
@@ -63,33 +53,32 @@ public class FightSceneUIController : Observer<GameStateController>
         mySubject.OnRivalCheckEvent += RivalCheckEventHandle;
         mySubject.OnNodeFailEvent += NodeFailEventHandle;
 
-        Transform canvas = transform.Find("Canvas");
+        Transform stageCanvas = transform.Find("Canvas_Stage");
 
         // Blind Shader
-        _blindPanel = canvas.Find("Panel_Blind").GetComponent<Image>();
+        _blindPanel = stageCanvas.Find("Panel_Blind").GetComponent<Image>();
         _inkImage1 = _blindPanel.transform.Find("Image_Ink1").GetComponent<Image>();
         _inkImage1.sprite = null;
         _inkImage2 = _blindPanel.transform.Find("Image_Ink2").GetComponent<Image>();
         _inkImage2.sprite = null;
 
-        //_foodImage = _blindPanel.transform.Find("Button_Food").GetComponent<FoodImage>();
-        //_blindMat = _blindPanel.transform.Find("Image_BlindShader").GetComponent<Image>().material;
-        //_blindMat.SetFloat(_stepValue, 0f);
-
         // Fail Shader
-        _failFeedbackPanel = canvas.Find("Panel_FailFeedback").GetComponent<Image>();
+        _failFeedbackPanel = stageCanvas.Find("Panel_FailFeedback").GetComponent<Image>();
         _failMat = _failFeedbackPanel.transform.Find("Image_FailShader").GetComponent<Image>().material;
 
         // Loding
-        _loadingPanel = canvas.Find("Panel_Loading").GetComponent<Image>();
+        _loadingPanel = stageCanvas.Find("Panel_Loading").GetComponent<Image>();
 
         // Finish
-        _finishPanel = canvas.Find("Panel_Finish").GetComponent<Image>();
+        _finishPanel = stageCanvas.Find("Panel_Finish").GetComponent<Image>();
         _finishImage = _finishPanel.transform.Find("Image_Finish").GetComponent<Image>();
 
         // Transition
-        _transitionPanel = canvas.Find("Panel_Transition").GetComponent<Image>();
+        _transitionPanel = stageCanvas.Find("Panel_Transition").GetComponent<Image>();
         _transitionMat = _transitionPanel.transform.Find("Image_TransitionShader").GetComponent<Image>().material;
+
+        // Timeline
+        _timelinePanel = transform.Find("Canvas_Timeline").Find("Panel_Timeline").GetComponent<Image>();
     }
 
     private void OnDestroy()
@@ -101,24 +90,6 @@ public class FightSceneUIController : Observer<GameStateController>
         Detach();
     }
 
-    private void Update()
-    {
-        //ChangeBlindStepValue();
-    }
-
-    private void ChangeBlindStepValue()
-    {
-        if (isBlind)
-        {
-            _elapsedTime += Time.deltaTime;
-
-            float newValue = _baseStepValue + Mathf.Sin(_elapsedTime * _frequency * Mathf.PI * 2) * _amplitude;
-            _blindMat.SetFloat(_stepValue, newValue);
-        }
-        else
-            _elapsedTime = 0f;
-    }
-
     public override void NotifyHandle()
     {
         if (mySubject != null)
@@ -126,6 +97,9 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isFight = mySubject.GameState == GameState.Fight
                 || mySubject.GameState == GameState.Tutorial;
             bool isFinish = mySubject.GameState == GameState.Finish;
+
+            // Timeline
+            _timelinePanel.gameObject.SetActive(mySubject.GameState == GameState.Timeline);
 
             // Loding
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
@@ -239,101 +213,6 @@ public class FightSceneUIController : Observer<GameStateController>
             image.DOFade(alpha, time).OnComplete(() => callback?.Invoke());
     }
 
-    /*
-    private IEnumerator OnBlindRoutine()
-    {
-        mySubject.SetIsBlind(true);
-
-        bool isEgg = Random.Range(0, 2) == 0 ? true : false;
-        // Sprite
-        Sprite sprite = isEgg ? _eggSprite : _tomatoSprite;
-        _foodImage.OnFoodSprite(sprite);
-
-        // Length Power
-        _blindMat.SetFloat(_lengthPower, Random.Range(3.5f, 5f));
-
-        // Color
-        string blindColorString = isEgg ? "#FFEAAD" : "#E14722";
-        if (ColorUtility.TryParseHtmlString(blindColorString, out Color blindColor))
-            _blindMat.SetColor(_blindColor, blindColor);
-
-        // Offset
-        Vector2 randomOffset = new Vector2(Random.Range(0f, 20f), Random.Range(0f, 20f));
-        _blindMat.SetVector(_offsetVec, randomOffset);
-
-        // Step Value
-        float time = 0.5f;
-        float currentTime = 0f;
-        float targetStepValue = Random.Range(0.45f, 0.51f);
-        _baseStepValue = targetStepValue;
-        _blindMat.SetFloat(_stepValue, 0);
-
-        while (currentTime < time)
-        {
-            currentTime += Time.deltaTime;
-
-            float stepValue = Mathf.Lerp(0f, targetStepValue, currentTime / time);
-            _blindMat.SetFloat(_stepValue, stepValue);
-
-            yield return null;
-        }
-
-        StartCoroutine(BlindRoutine());
-    }
-
-    private IEnumerator BlindRoutine()
-    {
-        // Sprite
-        _foodImage.SetDoFade(_blindTime);
-
-        // Length Power
-        _currentBlindTime = 0f;
-        float currentLengthPower = _blindMat.GetFloat(_lengthPower);
-
-        while (_currentBlindTime < _blindTime)
-        {
-            _currentBlindTime += Time.deltaTime;
-
-            float lengthPower = Mathf.Lerp(currentLengthPower, 0f, _currentBlindTime / _blindTime);
-            _blindMat.SetFloat(_lengthPower, lengthPower);
-
-            if (lengthPower <= 0f) break;
-
-            yield return null;
-        }
-
-        StartCoroutine(OffBlindRoutine());
-    }
-
-    private IEnumerator OffBlindRoutine()
-    {
-        if (mySubject.GameState == GameState.Finish)
-        {
-            // Sprite
-            float time = 0.5f;
-            _foodImage.StopAllCoroutine();
-            _foodImage.SetDoFade(0, time);
-
-            // Length Power
-            float currentTime = 0f;
-            float currentLengthPower = _blindMat.GetFloat(_lengthPower);
-
-            while (currentTime < time)
-            {
-                currentTime += Time.deltaTime;
-
-                float lengthPower = Mathf.Lerp(currentLengthPower, 0f, currentTime / time);
-                _blindMat.SetFloat(_lengthPower, lengthPower);
-
-                yield return null;
-            }
-
-            _blindPanel.gameObject.SetActive(false);
-        }
-
-        mySubject.SetIsBlind(false);
-    }
-    */
     #endregion
 
     #region Fail Shader

@@ -26,6 +26,22 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         _sprayEmptyTimeline = transform.Find("SprayEmptyTimeline").GetComponent<PlayableDirector>();
     }
 
+    private void Update()
+    {
+        if (mySubject.GameState == GameState.Timeline && Input.GetKeyDown(KeyCode.K))
+        {
+            if (_startTimeline != null && _startTimeline.state == PlayState.Playing)
+            {
+                _startTimeline.time = _startTimeline.duration;
+                _startTimeline.Evaluate();
+                _startTimeline.Stop();
+
+                GameManager.Instance.CharacterFade(0f, 0f);
+                ActivityStartTimelineEnd();
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         Detach();

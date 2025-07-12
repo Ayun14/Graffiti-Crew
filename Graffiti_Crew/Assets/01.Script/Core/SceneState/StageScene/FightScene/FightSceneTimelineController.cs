@@ -18,6 +18,21 @@ public class FightSceneTimelineController : Observer<GameStateController>
         _resultTimeline = transform.Find("ResultTimeline").GetComponent<PlayableDirector>();
     }
 
+    private void Update()
+    {
+        if (mySubject.GameState == GameState.Timeline && Input.GetKeyDown(KeyCode.K))
+        {
+            if (_beforeFightTimeline != null && _beforeFightTimeline.state == PlayState.Playing)
+            {
+                _beforeFightTimeline.time = _beforeFightTimeline.duration;
+                _beforeFightTimeline.Evaluate();
+                _beforeFightTimeline.Stop();
+
+                BeforeFightTimelineEnd();
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         Detach();
