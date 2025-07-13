@@ -93,13 +93,11 @@ namespace AH.UI.Views {
         }
 
         public override void Show() {
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
             DialogueEvent.SetDialogueInput?.Invoke(false);
             GameManager.SetPause(true);
             base.Show();
         }
         public override void Hide() {
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(true);
             DialogueEvent.SetDialogueInput?.Invoke(true);
             base.Hide();
             GameManager.SetPause(false);

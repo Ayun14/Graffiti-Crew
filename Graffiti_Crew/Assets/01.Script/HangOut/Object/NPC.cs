@@ -18,8 +18,8 @@ public class NPC : InteractionObject
     {
         base.Awake();
 
-        SaveDataEvents.LoadEndEvent += CheckStageData;
         _visual = transform.Find("Visual").gameObject;
+        SaveDataEvents.LoadEndEvent += CheckStageData;
     }
 
     protected override void Start()

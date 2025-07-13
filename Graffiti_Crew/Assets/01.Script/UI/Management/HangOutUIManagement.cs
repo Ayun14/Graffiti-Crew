@@ -29,6 +29,8 @@ namespace AH.UI {
 
         protected override void Init() {
             base.Init();
+            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+
             _hangoutViewModel = new HangOutViewModel(_model as HangOutModel);
             _dialogueViewModel = new DialogViewModel(_model as DialogModel);
         }
