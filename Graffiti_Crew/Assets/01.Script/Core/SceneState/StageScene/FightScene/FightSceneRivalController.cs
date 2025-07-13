@@ -84,6 +84,7 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
             }
             else if (mySubject.GameState == GameState.Finish)
             {
+                AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Idle);
                 _rival.position = _resultTrm.position;
                 _rival.localRotation = _resultTrm.localRotation;
             }

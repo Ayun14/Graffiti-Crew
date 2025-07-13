@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour, INeedLoding
+public class CoinSpawner : Observer<GameStateController>, INeedLoding
 {
     [Header("Pool")]
     [SerializeField] private PoolManagerSO _poolManager;
@@ -32,18 +32,26 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
 
     private void Awake()
     {
+        Attach();
+
         _playerCoinSpawnPos = transform.Find("PlayerCoinSpawnPos").GetComponent<Transform>().position;
         _rivalCoinSpawnPos = transform.Find("RivalCoinSpawnPos").GetComponent<Transform>().position;
     }
 
+    private void OnDestroy()
+    {
+        Detach();
+    }
+
     public void SpawnCoinToPlayer()
     {
-        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, _stageDataSO.stageResult.coin));
+        int coins = mySubject.IsPlayerWin ? _stageDataSO.stageResult.coin : 0;
+        StartCoroutine(SpawnCoin(_playerCoinSpawnPos, coins));
     }
 
     public void SpawnCoinToRival()
     {
-        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, Random.Range(5, 15)));
+        StartCoroutine(SpawnCoin(_rivalCoinSpawnPos, Random.Range(10, 20)));
     }
 
     private IEnumerator SpawnCoin(Vector3 spawnTrm, int spawnNum)
@@ -68,4 +76,6 @@ public class CoinSpawner : MonoBehaviour, INeedLoding
             yield return new WaitForSeconds(Random.Range(baseWaitTime - 0.2f, baseWaitTime + 0.1f));
         }
     }
+
+    public override void NotifyHandle() { }
 }
