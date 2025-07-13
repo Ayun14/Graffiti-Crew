@@ -99,7 +99,9 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isFinish = mySubject.GameState == GameState.Finish;
 
             // Timeline
-            _timelinePanel.gameObject.SetActive(mySubject.GameState == GameState.Timeline);
+            //bool isTimelineText = mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Result;
+            bool isTimelineText = mySubject.GameState == GameState.Timeline;
+            _timelinePanel.gameObject.SetActive(isTimelineText);
 
             // Loding
             _loadingPanel.gameObject.SetActive(mySubject.GameState == GameState.Loding);
@@ -137,6 +139,16 @@ public class FightSceneUIController : Observer<GameStateController>
                 GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);
             }
             _finishPanel.gameObject.SetActive(isFinish);
+
+            if (mySubject.GameState == GameState.Result)
+            {
+                UIAnimationEvent.SetFilmDirectingEvent(true);
+            }
+
+            if (mySubject.GameState == GameState.NextStage)
+            {
+                StageEvent.ShowResultViewEvent?.Invoke(true, mySubject.IsPlayerWin);
+            }
         }
     }
 

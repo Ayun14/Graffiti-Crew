@@ -4140,11 +4140,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b7bed372095ddc744bc09c38fe86c73f, type: 2}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
@@ -4158,7 +4166,11 @@ PrefabInstance:
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 78990495}
+      objectReference: {fileID: 1858405860}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1858405860}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4176,12 +4188,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1858405860}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndFightTimelineEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: EndFightTimelineEnd
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -4192,12 +4216,24 @@ PrefabInstance:
       value: LoopResultTimeLine
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FightSceneTimelineController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FightSceneTimelineController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: BGMController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: FightSceneTimelineController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6632023659986263391, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName

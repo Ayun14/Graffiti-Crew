@@ -20,17 +20,53 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
     private void Update()
     {
-        if (mySubject.GameState == GameState.Timeline && Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            if (_beforeFightTimeline != null && _beforeFightTimeline.state == PlayState.Playing)
+            if (mySubject.GameState == GameState.Timeline)
             {
-                _beforeFightTimeline.time = _beforeFightTimeline.duration;
-                _beforeFightTimeline.Evaluate();
-                _beforeFightTimeline.Stop();
-
-                BeforeFightTimelineEnd();
+                StartTimelineSkip();
             }
+            //else if (mySubject.GameState == GameState.Result)
+            //{
+            //    ResultTimelineSkip();
+            //}
         }
+    }
+
+    private void StartTimelineSkip()
+    {
+        if (_beforeFightTimeline != null && _beforeFightTimeline.state == PlayState.Playing)
+        {
+            _beforeFightTimeline.time = _beforeFightTimeline.duration;
+            _beforeFightTimeline.Evaluate();
+            _beforeFightTimeline.Stop();
+
+            BeforeFightTimelineEnd();
+        }
+    }
+
+    private void ResultTimelineSkip()
+    {
+        if (_resultTimeline == null || _endFightTimeline == null) return;
+
+        if (_resultTimeline.state == PlayState.Playing)
+        {
+            _resultTimeline.Stop();
+            _resultTimeline.time = _resultTimeline.duration;
+            _resultTimeline.Evaluate();
+
+            UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
+            _endFightTimeline.Play();
+        }
+
+        if (_endFightTimeline.state == PlayState.Playing)
+        {
+            //_endFightTimeline.Stop();
+            _endFightTimeline.time = _endFightTimeline.duration;
+            _endFightTimeline.Evaluate();
+        }
+
+        EndFightTimelineEnd();
     }
 
     private void OnDestroy()
@@ -95,6 +131,11 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
         UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
         _endFightTimeline?.Play();
+    }
+
+    public void EndFightTimelineEnd()
+    {
+        mySubject.ChangeGameState(GameState.NextStage);
     }
 
     public void LoopResultTimeLine() {

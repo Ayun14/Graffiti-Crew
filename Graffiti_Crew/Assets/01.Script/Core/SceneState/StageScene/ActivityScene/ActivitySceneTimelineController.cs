@@ -1,6 +1,7 @@
 using AH.UI.Events;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 
 public class ActivitySceneTimelineController : Observer<GameStateController>, INeedLoding
 {
@@ -28,18 +29,45 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
 
     private void Update()
     {
-        if (mySubject.GameState == GameState.Timeline && Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            if (_startTimeline != null && _startTimeline.state == PlayState.Playing)
+            if (mySubject.GameState == GameState.Timeline)
             {
-                _startTimeline.time = _startTimeline.duration;
-                _startTimeline.Evaluate();
-                _startTimeline.Stop();
-
-                GameManager.Instance.CharacterFade(0f, 0f);
-                ActivityStartTimelineEnd();
+                StartTimelineSkip();
             }
+            //else if (mySubject.GameState == GameState.Result)
+            //{
+            //    ResultTimelineSkip();
+            //}
         }
+    }
+
+    private void StartTimelineSkip()
+    {
+        if (_startTimeline != null && _startTimeline.state == PlayState.Playing)
+        {
+            _startTimeline.Stop();
+            _startTimeline.time = _startTimeline.duration;
+            _startTimeline.Evaluate();
+
+            GameManager.Instance.CharacterFade(0f, 0f);
+            ActivityStartTimelineEnd();
+        }
+    }
+
+    private void ResultTimelineSkip()
+    {
+        if (_activityEndTimelinePolice == null || _activityEndTimelineNormal == null || _sprayEmptyTimeline == null) return;
+
+        PlayableDirector temp = _activityEndTimelineNormal.state == PlayState.Playing ? _activityEndTimelineNormal : _sprayEmptyTimeline;
+        PlayableDirector playable = _activityEndTimelinePolice.state == PlayState.Playing ? _activityEndTimelinePolice : temp;
+
+        playable.Stop();
+        playable.time = playable.duration;
+        playable.Evaluate();
+
+        GameManager.Instance.CharacterFade(0f, 0f);
+        ResultTimelineEnd();
     }
 
     private void OnDestroy()
@@ -84,8 +112,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             }
             else if (mySubject.GameState == GameState.Result)
             {
-                UIAnimationEvent.SetFilmDirectingEvent(true);
-
                 PlayableDirector playable = _isOnPolice ? _activityEndTimelinePolice : _activityEndTimelineNormal;
                 playable = mySubject.IsPlayerWin ? playable : _sprayEmptyTimeline;
                 playable.Play();
@@ -113,5 +139,6 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     public void ResultTimelineEnd()
     {
         UIAnimationEvent.SetFilmDirectingEvent(false);
+        mySubject.ChangeGameState(GameState.NextStage);
     }
 }

@@ -38,7 +38,7 @@ public class CameraController : Observer<GameStateController>
         if (mySubject != null)
         {
             // Fight
-            bool isGraffitiCameraOff = mySubject.GameState == GameState.Result;
+            bool isGraffitiCameraOff = mySubject.GameState == GameState.Result || mySubject.GameState == GameState.NextStage;
             _graffitiCamera.Priority.Value = isGraffitiCameraOff ? 0 : 2;
 
             if (isGraffitiCameraOff && mySubject.IsPlayerWin == false)
