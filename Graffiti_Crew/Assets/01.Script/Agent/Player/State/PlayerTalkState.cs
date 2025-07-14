@@ -37,6 +37,7 @@ public class PlayerTalkState : PlayerState
     private void OnDialogueComplete()
     {
         CheckCam();
+
         _player.GetNPC().tutorialCheck.data = true;
         
     }
