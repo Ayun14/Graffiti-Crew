@@ -670,8 +670,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 30
-  field of view: 12
+  far clip plane: 1000
+  field of view: 28.48
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -697,8 +697,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.107375, y: 0.87373567, z: -0.22448163, w: -0.41792896}
-  m_LocalPosition: {x: 6.43078, y: 8.03, z: 5.797288}
+  m_LocalRotation: {x: 0.090707265, y: 0.33313927, z: -0.032217186, w: 0.93795127}
+  m_LocalPosition: {x: -4.79922, y: 1.86, z: -3.6127124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1243,33 +1243,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 285846117600112540, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: _splashImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: _defaultCam
-      value: 
-      objectReference: {fileID: 917054981}
-    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: _dialogueBG
-      value: 
-      objectReference: {fileID: 1465270306}
-    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: _computerLight
-      value: 
-      objectReference: {fileID: 335519923}
-    - target: {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: _computerCollider
-      value: 
-      objectReference: {fileID: 9101089168978235141}
     - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_Name
       value: DialogueUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892174263343948809, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9205216462639050471, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1311,10 +1287,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5621829251696150413, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 2535202857015444518, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5480bacf67f104cbd2b626acb2356d, type: 3}
@@ -4475,11 +4449,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1 &1465270306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2174392330828015994, guid: d85b50288a97e0e4eb586b9b3f1ee8e6, type: 3}
-  m_PrefabInstance: {fileID: 3865256886572050214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1493947009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1018168735227970919, guid: 7b7f5116b089ab948b653687225cb636, type: 3}

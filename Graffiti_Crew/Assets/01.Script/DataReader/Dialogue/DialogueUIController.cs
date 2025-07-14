@@ -63,13 +63,11 @@ public class DialogueUIController : MonoBehaviour
     {
         if (IsBigUIdata)
         {
-            DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             DialogueEvent.ShowDialougeViewEvent?.Invoke(true);
         }
         else
         {
             DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
-            DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
         }
     }
 
