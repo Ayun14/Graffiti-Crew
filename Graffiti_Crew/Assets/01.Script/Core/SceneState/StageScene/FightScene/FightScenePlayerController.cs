@@ -31,6 +31,10 @@ public class FightScenePlayerController : Observer<GameStateController>
                 _player.position = _resultTrm.position;
                 _player.localRotation = _resultTrm.localRotation;
             }
+            else if (mySubject.GameState == GameState.Finish)
+            {
+                AnimationEvent.SetAnimation?.Invoke(1, AnimationEnum.Idle);
+            }
         }
     }
 

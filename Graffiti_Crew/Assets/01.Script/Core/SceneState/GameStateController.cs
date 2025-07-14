@@ -30,7 +30,7 @@ public class GameStateController : Subject
     private bool _isSprayEmpty = false;
     public bool IsSprayEmpty => _isSprayEmpty;
 
-    private bool _isPlayerWin = false;
+    private bool _isPlayerWin = true;
     public bool IsPlayerWin => _isPlayerWin;
 
     private void Start()
@@ -50,7 +50,12 @@ public class GameStateController : Subject
     #region Set Bool
 
     public void SetIsBlind(bool isBlind) => _isBlind = isBlind;
-    public void SetWhoIsWin(bool isPlayerWind) => _isPlayerWin = isPlayerWind;
+    //public void SetWhoIsWin(bool isPlayerWind) => _isPlayerWin = isPlayerWind;
+    public void SetWhoIsWin(bool isPlayerWin) 
+    { 
+        _isPlayerWin = isPlayerWin;
+        Debug.Log("SetWhoIsWin : " + isPlayerWin);
+    }
     public void SetIsSprayEmpty(bool isSprayEmpty) => _isSprayEmpty = isSprayEmpty;
 
     #endregion

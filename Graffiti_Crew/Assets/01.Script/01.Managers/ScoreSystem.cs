@@ -1,16 +1,19 @@
-using System;
 using UnityEngine;
 
-public class ScoreSystem : MonoBehaviour {
-    private void OnEnable() {
+public class ScoreSystem : MonoBehaviour
+{
+    private void OnEnable()
+    {
         GameEvents.SendFightGameResultEvent += FightGameResult;
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         GameEvents.SendFightGameResultEvent -= FightGameResult;
     }
 
     // TODO : 기획에 따라 바뀌여서 계산 함수 교체해야함
-    private void FightGameResult(StageDataSO stageData) {
+    private void FightGameResult(StageDataSO stageData)
+    {
         CalStar(stageData);
 
         int score = 0;
@@ -19,7 +22,8 @@ public class ScoreSystem : MonoBehaviour {
         int increase = 1; // 기본값
         int decrease = 1; // 기본값
 
-        switch (stageData.stageType) {
+        switch (stageData.stageType)
+        {
             case StageType.Battle:
                 increase = 1;
                 decrease = 2;
@@ -29,24 +33,29 @@ public class ScoreSystem : MonoBehaviour {
                 decrease = 1;
                 break;
         }
-        if (failCount !=0 ) {
+        if (failCount != 0)
+        {
             score = increase * ((combo / decrease) / failCount);
         }
-        else {
+        else
+        {
             score = increase * (combo / decrease);
         }
-            CoinSystem.AddCoin(score);
+        CoinSystem.AddCoin(score);
     }
 
-    private void CalStar(StageDataSO stageData) {
-        int star = 0; 
+    private void CalStar(StageDataSO stageData)
+    {
+        int star = 0;
         stageData.stageResult.CalculationCoin
             (stageData.minStandard, stageData.middleStandard, stageData.maxStandard, stageData.stageRuleType);
         star = stageData.stageResult.CalculationStar();
 
         Debug.Log("star : " + star);
         GameEvents.SendCurrentStarCountEvent?.Invoke(star);
-        if (star > stageData.stageSaveData.star)
+        if (stageData.isPlayerWin && star > stageData.stageSaveData.star)
+        {
             stageData.stageSaveData.star = star;
+        }
     }
 }
