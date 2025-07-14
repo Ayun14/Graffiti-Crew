@@ -63,6 +63,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
                 _dialogueUIController.ChangeDialogueUI?.Invoke(false);
                 DialogueEvent.ShowDialougeViewEvent?.Invoke(false);
 
+                DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(true);
                 StageEvent.SetActiveFightViewEvent?.Invoke(true);
 
                 _explainImg.SetActive(true);
