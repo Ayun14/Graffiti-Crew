@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using System.Linq;
 
 public class AudienceNPCController : Observer<GameStateController>
 {
@@ -33,12 +33,10 @@ public class AudienceNPCController : Observer<GameStateController>
     {
         if (mySubject != null)
         {
-            if (mySubject.GameState == GameState.Fight)
+            if (mySubject.GameState == GameState.Finish)
             {
                 AudienceNPCSpawn();
-            }
-            else if (mySubject.GameState == GameState.Finish)
-            {
+
                 AnimationEvent.SetAnimation?.Invoke(10, AnimationEnum.People_Idle);
                 AnimationEvent.SetAnimation?.Invoke(11, AnimationEnum.People_Clap);
                 AnimationEvent.SetAnimation?.Invoke(12, AnimationEnum.People_Pointing);
@@ -50,6 +48,8 @@ public class AudienceNPCController : Observer<GameStateController>
 
     private void AudienceNPCSpawn()
     {
+        if (_coinSpawner.StageDataSO.stageType == StageType.Activity && mySubject.IsPlayerWin == false) return;
+
         int spawnNum = Random.Range(_minSpawnNum, _maxSpawnNum + 1);
         List<Transform> spawnPosList = new();
         for (int i = 0; i < spawnNum; ++i)

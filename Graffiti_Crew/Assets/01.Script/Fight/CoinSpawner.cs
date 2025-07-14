@@ -17,6 +17,7 @@ public class CoinSpawner : Observer<GameStateController>, INeedLoding
     private Vector3 _rivalCoinSpawnPos;
 
     private StageDataSO _stageDataSO;
+    public StageDataSO StageDataSO => _stageDataSO;
 
     public void LodingHandle(DataController dataController)
     {

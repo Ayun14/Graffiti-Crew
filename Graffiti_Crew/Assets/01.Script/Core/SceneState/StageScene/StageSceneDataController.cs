@@ -1,5 +1,4 @@
 using AH.Save;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -31,13 +30,12 @@ public class StageSceneDataController : DataController
                     if (stageData.stageRuleType == StageRuleType.SpeedRule)
                         stageData.stageResult.value = (int)_currentDrawingTime;
 
+                    stageData.isPlayerWin = mySubject.IsPlayerWin;
                     GameEvents.SendFightGameResultEvent?.Invoke(stageData);
                 }
 
                 if (mySubject.GameState == GameState.Result)
                 {
-                    stageData.isPlayerWin = mySubject.IsPlayerWin;
-
                     if(stageData.stageSaveData.stageState != StageState.Clear) {
                         stageData.stageSaveData.stageState = mySubject.IsPlayerWin ? StageState.Clear : StageState.CanPlay;
                         if (stageData.stageSaveData.stageState == StageState.Clear) { // 클리어시 게임 진행도 저장할 수 있도록
