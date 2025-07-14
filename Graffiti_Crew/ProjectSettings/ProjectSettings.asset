@@ -16,9 +16,9 @@ PlayerSettings:
   productName: PaintTheBlock
   defaultCursor: {fileID: 2800000, guid: f86604877b41c0646b1ee2e85233a4d3, type: 3}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.122641504, g: 0.104708076, b: 0.1060598, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.374663, g: 0.33393145, b: 0.30245703, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 1
+  m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
@@ -39,8 +39,12 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 16545510a2878d3459624b3417247878, type: 3}
+    duration: 2
+  - logo: {fileID: 21300000, guid: c3e0aa349a7f12f4299c4fa3ef287e5c, type: 3}
+    duration: 2
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: c3e0aa349a7f12f4299c4fa3ef287e5c, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -795,7 +799,7 @@ PlayerSettings:
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
-  blurSplashScreenBackground: 1
+  blurSplashScreenBackground: 0
   spritePackerPolicy: 
   webGLMemorySize: 32
   webGLExceptionSupport: 1
