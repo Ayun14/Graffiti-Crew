@@ -175,6 +175,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
         if (_clearNode == 9)
         {
             await Task.Delay(1100);
+            DialogueEvent.ShowMiniDialougeViewEvent?.Invoke(false);
             PresentationEvents.FadeInOutEvent?.Invoke(true);
         }
 
