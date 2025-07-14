@@ -11,28 +11,27 @@ namespace AH.UI {
         private DialogViewModel _dialogueViewModel;
 
         private DialogueView _dialougeView;
-        private MiniDialogueView _miniDialougeView;
         private SettingView _settingView;
 
         protected override void OnEnable() {
             base.OnEnable();
             DialogueEvent.ShowDialougeViewEvent += ShowDialougeView;
-            DialogueEvent.ShowMiniDialougeViewEvent += ShowMiniDialougeView;
             StageEvent.HideViewEvent += HideView;
         }
         protected override void OnDisable() {
             base.OnDisable();
             DialogueEvent.ShowDialougeViewEvent -= ShowDialougeView;
-            DialogueEvent.ShowMiniDialougeViewEvent -= ShowMiniDialougeView;
             StageEvent.HideViewEvent -= HideView;
         }
 
         protected override void Init() {
             base.Init();
-            HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
-
             _hangoutViewModel = new HangOutViewModel(_model as HangOutModel);
             _dialogueViewModel = new DialogViewModel(_model as DialogModel);
+            if (!_hangoutViewModel.IsPlayTutorial()) {
+                Debug.Log("move stop");
+                HangOutEvent.SetPlayerMovementEvent?.Invoke(false);
+            }
         }
 
         protected override void SetupViews() {
@@ -40,7 +39,7 @@ namespace AH.UI {
             VisualElement root = _uiDocument.rootVisualElement;
 
             _dialougeView = new DialogueView(root.Q<VisualElement>("DialogBoxView"), _dialogueViewModel);
-            _miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
+            //_miniDialougeView = new MiniDialogueView(root.Q<VisualElement>("MiniDialogBoxView"), _dialogueViewModel);
             _settingView = new SettingView(root.Q<VisualElement>("SettingView"), _settingViewModel);
         }
         protected override void ShowPreviewEvent(AfterExecution evtFunction = null) {
@@ -59,14 +58,6 @@ namespace AH.UI {
             }
             else {
                 _dialougeView.Hide();
-            }
-        }
-        private void ShowMiniDialougeView(bool active) {
-            if (active) {
-                _miniDialougeView.Show();
-            }
-            else {
-                _miniDialougeView.Hide();
             }
         }
     }
