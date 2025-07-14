@@ -1,12 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="DialogBoxView" src="project://database/Assets/07.UI/Views/Text/DialogBoxView.uxml?fileID=9197481963319205126&amp;guid=5f40de9b6050fbe438a6ed725b81467f&amp;type=3#DialogBoxView" />
-    <engine:Template name="MiniDialogBoxView" src="project://database/Assets/07.UI/Views/Text/MiniDialogBoxView.uxml?fileID=9197481963319205126&amp;guid=fb6ffb63e381bdf4bb0846f0268b2116&amp;type=3#MiniDialogBoxView" />
     <engine:Template name="SettingView" src="project://database/Assets/07.UI/Views/SettingView.uxml?fileID=9197481963319205126&amp;guid=8cbadba254f05f943b11f50b2aeaf6ff&amp;type=3#SettingView" />
     <Style src="project://database/Assets/07.UI/USS/MainView_USS.uss?fileID=7433441132597879392&amp;guid=a14d806bf43a9f5499bcbef93b38c1df&amp;type=3#MainView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Presentation_USS.uss?fileID=7433441132597879392&amp;guid=dd914034f11322c4b8c69e8e0cb7e124&amp;type=3#Presentation_USS" />
     <engine:Instance template="DialogBoxView" name="DialogBoxView" picking-mode="Ignore" style="flex-grow: 1; display: none;" />
-    <engine:Instance template="MiniDialogBoxView" name="MiniDialogBoxView" picking-mode="Ignore" style="flex-grow: 1;" />
     <engine:Instance template="SettingView" name="SettingView" picking-mode="Ignore" style="flex-grow: 1; display: none;" />
     <engine:VisualElement name="fade-view" picking-mode="Ignore" class="fade-view" style="flex-grow: 1;" />
 </engine:UXML>
