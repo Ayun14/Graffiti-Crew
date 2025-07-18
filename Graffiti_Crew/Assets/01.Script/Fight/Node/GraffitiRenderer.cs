@@ -104,10 +104,8 @@ public class GraffitiRenderer : MonoBehaviour
         return sum / positionList.Count;
     }
 
-    public void ShowMemberGraffti()
-    {
-        SetMemberGraffitiMat(1, _memberGraffitiTimeDuration);
-    }
+    public void ShowMemberGraffti() => SetMemberGraffitiMat(1, _memberGraffitiTimeDuration);
+    public void ShowMemberGraffitiQuick() => SetMemberGraffitiMat(1, 0f);
 
     private void SetMemberGraffitiMat(float target, float time = 0)
     {

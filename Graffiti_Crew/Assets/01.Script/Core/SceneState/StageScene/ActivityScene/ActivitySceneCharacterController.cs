@@ -176,4 +176,19 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     }
 
     #endregion
+
+    public void ResultTimelineSkip()
+    {
+        if (mySubject.IsPlayerWin)
+        {
+            _playerTrm.DOKill();
+            _playerTrm.position = new Vector2(_escapeTrm.position.x -10f, _playerTrm.position.y);
+            foreach (Transform rivalTrm in _rivalTrmList)
+            {
+                rivalTrm.DOKill();
+                rivalTrm.transform.position = _escapeTrm.position;
+            }
+        }
+        else PlayerSprayNone();
+    }
 }

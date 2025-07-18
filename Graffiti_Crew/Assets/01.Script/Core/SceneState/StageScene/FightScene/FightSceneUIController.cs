@@ -99,8 +99,8 @@ public class FightSceneUIController : Observer<GameStateController>
             bool isFinish = mySubject.GameState == GameState.Finish;
 
             // Timeline
-            //bool isTimelineText = mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Result;
-            bool isTimelineText = mySubject.GameState == GameState.Timeline;
+            bool isTimelineText = mySubject.GameState == GameState.Timeline || mySubject.GameState == GameState.Result;
+            //bool isTimelineText = mySubject.GameState == GameState.Timeline;
             _timelinePanel.gameObject.SetActive(isTimelineText);
 
             // Loding

@@ -1,7 +1,8 @@
 using AH.UI.Events;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Rendering;
 
 public class ActivitySceneTimelineController : Observer<GameStateController>, INeedLoding
 {
@@ -12,6 +13,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
     private PlayableDirector _activityEndTimelinePolice;
     private PlayableDirector _activityEndTimelineNormal;
     private PlayableDirector _sprayEmptyTimeline;
+    private PlayableDirector _timelineSkipTimeline;
 
     private StageType _stageType;
     private bool _isOnPolice;
@@ -25,6 +27,7 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         _activityEndTimelineNormal = transform.Find("ActivityEndTimeline_Normal").GetComponent<PlayableDirector>();
         _activityEndTimelinePolice = transform.Find("ActivityEndTimeline_Police").GetComponent<PlayableDirector>();
         _sprayEmptyTimeline = transform.Find("SprayEmptyTimeline").GetComponent<PlayableDirector>();
+        _timelineSkipTimeline = transform.Find("TimelineSkipTimeline").GetComponent<PlayableDirector>();
     }
 
     private void Update()
@@ -35,39 +38,11 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
             {
                 StartTimelineSkip();
             }
-            //else if (mySubject.GameState == GameState.Result)
-            //{
-            //    ResultTimelineSkip();
-            //}
+            else if (mySubject.GameState == GameState.Result)
+            {
+                ResultTimelineSkip();
+            }
         }
-    }
-
-    private void StartTimelineSkip()
-    {
-        if (_startTimeline != null && _startTimeline.state == PlayState.Playing)
-        {
-            _startTimeline.Stop();
-            _startTimeline.time = _startTimeline.duration;
-            _startTimeline.Evaluate();
-
-            GameManager.Instance.CharacterFade(0f, 0f);
-            ActivityStartTimelineEnd();
-        }
-    }
-
-    private void ResultTimelineSkip()
-    {
-        if (_activityEndTimelinePolice == null || _activityEndTimelineNormal == null || _sprayEmptyTimeline == null) return;
-
-        PlayableDirector temp = _activityEndTimelineNormal.state == PlayState.Playing ? _activityEndTimelineNormal : _sprayEmptyTimeline;
-        PlayableDirector playable = _activityEndTimelinePolice.state == PlayState.Playing ? _activityEndTimelinePolice : temp;
-
-        playable.Stop();
-        playable.time = playable.duration;
-        playable.Evaluate();
-
-        GameManager.Instance.CharacterFade(0f, 0f);
-        ResultTimelineEnd();
     }
 
     private void OnDestroy()
@@ -141,4 +116,50 @@ public class ActivitySceneTimelineController : Observer<GameStateController>, IN
         UIAnimationEvent.SetFilmDirectingEvent(false);
         mySubject.ChangeGameState(GameState.NextStage);
     }
+
+    #region Timeline Skip
+
+    private void StartTimelineSkip()
+    {
+        if (_startTimeline != null && _startTimeline.state == PlayState.Playing)
+        {
+            _startTimeline.Stop();
+            _startTimeline.time = _startTimeline.duration;
+            _startTimeline.Evaluate();
+
+            GameManager.Instance.CharacterFade(0f, 0f);
+            ActivityStartTimelineEnd();
+        }
+    }
+
+    private void ResultTimelineSkip()
+    {
+        if (_activityEndTimelinePolice == null || _activityEndTimelineNormal == null || _sprayEmptyTimeline == null) return;
+        if (_timelineSkipTimeline == null) return;
+
+        PlayableDirector temp = _activityEndTimelineNormal.state == PlayState.Playing ? _activityEndTimelineNormal : _sprayEmptyTimeline;
+        PlayableDirector playable = _activityEndTimelinePolice.state == PlayState.Playing ? _activityEndTimelinePolice : temp;
+
+        playable.Stop();
+        playable.time = playable.duration;
+        playable.Evaluate();
+
+        // 새 타임라인 실행
+        _timelineSkipTimeline.Play();
+
+        //StartCoroutine(ResultTimelineSkipRoutine(playable, () => _timelineSkipTimeline.Play()));
+    }
+
+    private IEnumerator ResultTimelineSkipRoutine(PlayableDirector director, Action callback = null)
+    {
+        director.time = director.duration;
+        director.Evaluate();
+        director.Play();
+        yield return null;
+        director.Stop();
+
+        callback?.Invoke();
+    }
+
+    #endregion
 }

@@ -1,6 +1,9 @@
 using AH.UI.Events;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.Playables;
+using System;
 
 public class FightSceneTimelineController : Observer<GameStateController>
 {
@@ -26,47 +29,11 @@ public class FightSceneTimelineController : Observer<GameStateController>
             {
                 StartTimelineSkip();
             }
-            //else if (mySubject.GameState == GameState.Result)
-            //{
-            //    ResultTimelineSkip();
-            //}
+            else if (mySubject.GameState == GameState.Result)
+            {
+                ResultTimelineSkip();
+            }
         }
-    }
-
-    private void StartTimelineSkip()
-    {
-        if (_beforeFightTimeline != null && _beforeFightTimeline.state == PlayState.Playing)
-        {
-            _beforeFightTimeline.time = _beforeFightTimeline.duration;
-            _beforeFightTimeline.Evaluate();
-            _beforeFightTimeline.Stop();
-
-            BeforeFightTimelineEnd();
-        }
-    }
-
-    private void ResultTimelineSkip()
-    {
-        if (_resultTimeline == null || _endFightTimeline == null) return;
-
-        if (_resultTimeline.state == PlayState.Playing)
-        {
-            _resultTimeline.Stop();
-            _resultTimeline.time = _resultTimeline.duration;
-            _resultTimeline.Evaluate();
-
-            UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
-            _endFightTimeline.Play();
-        }
-
-        if (_endFightTimeline.state == PlayState.Playing)
-        {
-            //_endFightTimeline.Stop();
-            _endFightTimeline.time = _endFightTimeline.duration;
-            _endFightTimeline.Evaluate();
-        }
-
-        EndFightTimelineEnd();
     }
 
     private void OnDestroy()
@@ -143,4 +110,60 @@ public class FightSceneTimelineController : Observer<GameStateController>
         _endFightTimeline.Evaluate(); // 바로 상태 반영
         _endFightTimeline.Play();     // 다시 재생
     }
+
+    #region Timeline Skip
+
+    private void StartTimelineSkip()
+    {
+        if (_beforeFightTimeline != null && _beforeFightTimeline.state == PlayState.Playing)
+        {
+            _beforeFightTimeline.time = _beforeFightTimeline.duration;
+            _beforeFightTimeline.Evaluate();
+            _beforeFightTimeline.Stop();
+
+            BeforeFightTimelineEnd();
+        }
+    }
+
+    private void ResultTimelineSkip()
+    {
+        if (_resultTimeline == null || _endFightTimeline == null) return;
+
+        if (_resultTimeline.state == PlayState.Playing)
+        {
+            _resultTimeline.Stop();
+            _resultTimeline.time = _resultTimeline.duration;
+            _resultTimeline.Evaluate();
+
+            UIAnimationEvent.SetActiveEndAnimationEvnet?.Invoke(true);
+            _endFightTimeline.Play();
+        }
+
+        if (_endFightTimeline.state == PlayState.Playing)
+        {
+            StartCoroutine(ResultTimelineSkipRoutine(_endFightTimeline, EndFightTimelineEnd));
+        }
+    }
+
+    private IEnumerator ResultTimelineSkipRoutine(PlayableDirector director, Action callback = null)
+    {
+        float duration = 0.1f;
+        float currentTime = 0;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            float t = currentTime / duration;
+            director.time = director.duration * t;
+            yield return null;
+        }
+
+        director.Stop();
+        director.time = director.duration;
+        director.Evaluate();
+
+        callback?.Invoke();
+    }
+
+    #endregion
 }
