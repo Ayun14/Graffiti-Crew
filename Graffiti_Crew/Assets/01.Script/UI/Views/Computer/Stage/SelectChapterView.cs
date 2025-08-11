@@ -194,6 +194,9 @@ namespace AH.UI.Views
             if(stageData.stageType == StageType.Story) {
                 _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
             }
+            else if(stageData.stageType == StageType.Battle) {
+                _selectStageName = $"Chapter{data.chapter}Battle{data.stage}";
+            }
             else {
                 _selectStageName = $"Chapter{data.chapter}Activity{data.stage}";
             }
