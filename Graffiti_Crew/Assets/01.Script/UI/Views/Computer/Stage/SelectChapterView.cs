@@ -200,7 +200,6 @@ namespace AH.UI.Views
             else {
                 _selectStageName = $"Chapter{data.chapter}Activity{data.stage}";
             }
-            Debug.Log(_selectStageName);
             _map.AddToClassList(_selectStageName);
         }
         private void UnforceSelectStage()
