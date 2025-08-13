@@ -51,6 +51,9 @@ public class DialogueAnimController : MonoBehaviour
             case "뱀프":
                 _animValue = 5;
                 break;
+            case "안나":
+                _animValue = 6;
+                break;
             case "행인1":
                 _animValue = 10;
                 break;
