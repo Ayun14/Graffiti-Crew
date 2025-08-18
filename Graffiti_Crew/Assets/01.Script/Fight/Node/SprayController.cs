@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SprayController : MonoBehaviour
+public class SprayController : MonoBehaviour, INeedLoding
 {
     public UnityEvent OnSprayNone;
     public UnityEvent OnAirNone;
@@ -32,13 +32,21 @@ public class SprayController : MonoBehaviour
 
     protected StageGameRule _stageGameRule;
 
+
+    public void LodingHandle(DataController dataController)
+    {
+        _sprayCanValueSO.max = dataController.stageData.sprayValue;
+        _sprayCanValueSO.Value = _sprayCanValueSO.max;
+
+        dataController.SuccessGiveData();
+    }
+
     public void Init(StageGameRule stageGameRule)
     {
         _stageGameRule = stageGameRule;
 
         // Spray
         _spraySliderValueSO.Value = _spraySliderValueSO.max;
-        _sprayCanValueSO.Value = _sprayCanValueSO.max;
 
         // Shake
         _shakeSliderValueSO.Value = _shakeSliderValueSO.max;
