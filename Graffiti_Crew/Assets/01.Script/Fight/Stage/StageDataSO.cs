@@ -35,6 +35,7 @@ public class StageDataSO : ScriptableObject
 
     [Header("-------Play Stage-------")]
     [Header("Player Graffiti")]
+    public int sprayValue;
     public Sprite memberGraffiti;
     public List<NodeDataSO> nodeDatas;
 
