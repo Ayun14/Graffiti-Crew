@@ -22,7 +22,7 @@ public class TutorialController : Observer<GameStateController>, INeedLoding
     private int _dialogueNum = 0;
     private int _clearNode = 0;
 
-    private int _tutorialStartIndex = 81;
+    private int _tutorialStartIndex = 85;
 
 
     private void Awake()
