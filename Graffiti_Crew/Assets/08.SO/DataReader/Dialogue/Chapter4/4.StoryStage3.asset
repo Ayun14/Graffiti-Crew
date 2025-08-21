@@ -15,14 +15,14 @@ MonoBehaviour:
   associatedSheet: 1BJCOIqXXkmaIJhi9qZNKzuaabsNOT4vsKzzXgZb0qAQ
   associatedWorksheet: Stage3
   START_ROW_LENGTH: 2
-  END_ROW_LENGTH: 46
+  END_ROW_LENGTH: 49
   readMode: 0
   DialogueList:
   - id: 1
     characterName: 
     context: "<\uBA70\uCE60 \uD6C4 \uC544\uC9C0\uD2B8>"
     spriteName: 
-    soundName: 
+    soundName: HangOut
     animName: 
     bgType: 0
     actionType: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     context: "...! \uB8E8\uB514!"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Surprised
     bgType: 8
     actionType: 0
   - id: 3
@@ -39,7 +39,7 @@ MonoBehaviour:
     context: "\uB2E4\uB4E4 \uC624\uB79C\uB9CC\uC774\uB124."
     spriteName: Rudy
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 4
@@ -47,7 +47,7 @@ MonoBehaviour:
     context: "\uC798 \uB3CC\uC544\uC654\uC5B4. \uAD1C\uCC2E\uC544?"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 5
@@ -55,7 +55,7 @@ MonoBehaviour:
     context: "\uC751. \uC870\uC0AC \uC880 \uBC1B\uB2E4\uAC00 \uB2A6\uC5C8\uC5B4."
     spriteName: Rudy
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 6
@@ -64,7 +64,7 @@ MonoBehaviour:
       \uB2E4\uD589\uC774\uC57C."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Sad
     bgType: 8
     actionType: 0
   - id: 7
@@ -72,14 +72,14 @@ MonoBehaviour:
     context: "... \uB3CC\uC544\uC624\uAE30\uB85C \uD588\uC73C\uB2C8\uAE4C."
     spriteName: Rudy
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 8
     characterName: 
     context: "-\uBC40\uD504\uC640 \uC548\uB098\uAC00 \uB4E4\uC5B4\uC628\uB2E4.-"
     spriteName: 
-    soundName: 
+    soundName: Request
     animName: 
     bgType: 0
     actionType: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
     context: "\uB8E8\uB514?!?!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Surprised
     bgType: 8
     actionType: 0
   - id: 10
@@ -97,7 +97,7 @@ MonoBehaviour:
       \uC904 \uC54C\uC558\uB2E4\uACE0!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 11
@@ -106,7 +106,7 @@ MonoBehaviour:
       \uAC54\uC57C?"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 12
@@ -114,7 +114,7 @@ MonoBehaviour:
     context: "\uB9DE\uC544. \uB458\uC774 \uCC98\uC74C \uBCF4\uC9C0?"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 13
@@ -123,7 +123,7 @@ MonoBehaviour:
       \uC6B0\uB9AC \uD06C\uB8E8\uC5D0 \uB4E4\uC5B4\uC624\uAC8C \uB410\uC5B4."
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 14
@@ -132,7 +132,7 @@ MonoBehaviour:
       \uD558\uB2C8 \uC601\uAD11\uC2A4\uB7EC\uC6B8 \uAC70\uC57C."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 15
@@ -140,7 +140,7 @@ MonoBehaviour:
     context: "...? \uB124\uAC00 \uB204\uAD70"
     spriteName: Rudy
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 16
@@ -148,7 +148,7 @@ MonoBehaviour:
     context: "\uD558\uD558! \uB8E8\uB514\uB3C4 \uC548\uB098\uAC00 \uB9CE\uC774 \uBC18\uAC11\uB2E4\uB124!"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 17
@@ -156,7 +156,7 @@ MonoBehaviour:
     context: "\uD765, \uB2F9\uC5F0\uD788 \uADF8\uB807\uACA0\uC9C0."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 18
@@ -165,7 +165,7 @@ MonoBehaviour:
       \uD65C\uB3D9\uC744 \uD558\uB7EC \uAC00\uBCFC\uAE4C?"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 19
@@ -173,7 +173,7 @@ MonoBehaviour:
     context: "\uC88B\uC544! SMT\uC758 \uC9C4\uC9DC \uD798\uC744 \uBCF4\uC5EC\uC918\uC57C\uC9C0!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 20
@@ -181,7 +181,7 @@ MonoBehaviour:
     context: "\uADF8\uB798. \uBC14\uB85C \uAC00\uBCF4\uC790."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 21
@@ -189,8 +189,8 @@ MonoBehaviour:
     context: "(\uC0DD\uAC01\uD574\uBCF4\uB2C8 \uBE44\uBE44\uC548\uC528\uAC00 \uB8E8\uB514\uB97C
       \uB3C4\uC640\uC8FC\uC2E0\uB2E4\uACE0 \uD588\uC9C0.)"
     spriteName: Jia
-    soundName: 
-    animName: Idle
+    soundName: Serious1
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 22
@@ -198,7 +198,7 @@ MonoBehaviour:
     context: "(\uC9C0\uAE08\uC774\uB77C\uB3C4 \uAC10\uC0AC \uC778\uC0AC\uB97C \uB4DC\uB824\uC57C\uACA0\uC5B4.)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 23
@@ -214,7 +214,7 @@ MonoBehaviour:
     context: "\uC5EC\uBCF4\uC138\uC694?"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 25
@@ -231,7 +231,7 @@ MonoBehaviour:
       \uD588\uC796\uC544\uC694."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 27
@@ -240,7 +240,7 @@ MonoBehaviour:
       \uC218 \uC788\uC5C8\uC5B4\uC694."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 28
@@ -249,7 +249,7 @@ MonoBehaviour:
       \uB4DC\uB9AC\uB824\uACE0..."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 29
@@ -274,7 +274,7 @@ MonoBehaviour:
     context: "\uB124...?"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 32
@@ -308,7 +308,7 @@ MonoBehaviour:
     context: "\uC774\uAC8C \uBB34\uC2A8..."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 36
@@ -334,7 +334,7 @@ MonoBehaviour:
     context: "\uB124... \uAC10\uC0AC\uD569\uB2C8\uB2E4."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Call
     bgType: 8
     actionType: 0
   - id: 39
@@ -349,8 +349,8 @@ MonoBehaviour:
     characterName: "\uC9C0\uC544"
     context: "(\uBE44\uBE44\uC548\uC528\uAC00 \uB3C4\uC640\uC8FC\uC2E0 \uAC8C \uC544\uB2C8\uB77C\uACE0?)"
     spriteName: Jia
-    soundName: 
-    animName: Idle
+    soundName: Serious2
+    animName: Surprised
     bgType: 8
     actionType: 0
   - id: 41
@@ -358,7 +358,7 @@ MonoBehaviour:
     context: "(\uADF8\uB7FC \uB8E8\uB514\uB294 \uB300\uCCB4 \uC5B4\uB5BB\uAC8C...)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 42
@@ -367,7 +367,7 @@ MonoBehaviour:
       \uC218\uC0C1\uD574)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 43
@@ -376,7 +376,7 @@ MonoBehaviour:
       \uC77C...)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 44
@@ -386,7 +386,7 @@ MonoBehaviour:
       \uC788\uB294 \uC77C\uC778\uAC74\uAC00?)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Surprised
     bgType: 8
     actionType: 0
   - id: 45
@@ -394,6 +394,30 @@ MonoBehaviour:
     context: "(\uB3C4\uB300\uCCB4 \uC815\uBD80\uB294 \uBB58 \uAFB8\uBBF8\uACE0 \uC788\uB294\uAC70\uC9C0?)"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
+    actionType: 0
+  - id: 46
+    characterName: "\uC548\uB098"
+    context: "\uD760...? \uADF8\uB807\uB2E8 \uB9D0\uC774\uC9C0."
+    spriteName: Anna
+    soundName: 
+    animName: Idle
+    bgType: 2
+    actionType: 0
+  - id: 47
+    characterName: 
+    context: "-\uC804\uD654\uBCA8 \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4.-"
+    spriteName: 
+    soundName: 
+    animName: 
+    bgType: 0
+    actionType: 0
+  - id: 48
+    characterName: "\uC548\uB098"
+    context: "\uB09C\uB370. \uC880 \uC870\uC0AC\uD574\uC904\uAC8C \uC0DD\uACBC\uC5B4."
+    spriteName: Anna
+    soundName: 
+    animName: 
+    bgType: 0
     actionType: 0
