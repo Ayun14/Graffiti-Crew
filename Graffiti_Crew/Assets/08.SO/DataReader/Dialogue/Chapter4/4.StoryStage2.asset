@@ -22,7 +22,7 @@ MonoBehaviour:
     characterName: 
     context: "<\uB2E4\uC74C \uB0A0 \uD06C\uB8E8 \uC544\uC9C0\uD2B8>"
     spriteName: 
-    soundName: 
+    soundName: HangOut
     animName: 
     bgType: 0
     actionType: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     context: "\uC694! \uC548\uB098~!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 3
@@ -39,7 +39,7 @@ MonoBehaviour:
     context: "\uC544, \uC548\uB098 \uC654\uAD6C\uB098."
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 4
@@ -47,7 +47,7 @@ MonoBehaviour:
     context: "\uD765, \uB108\uD76C\uAC00 \uBD88\uB800\uC73C\uB2C8\uAE4C \uC654\uC9C0."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 5
@@ -56,7 +56,7 @@ MonoBehaviour:
       \uAC70\uC57C?"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 6
@@ -64,15 +64,15 @@ MonoBehaviour:
     context: "\uB354\uB7FD\uACE0... \uBBF8\uAC10\uB3C4 \uC601 \uAF5D\uC774\uC796\uC544!"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 7
     characterName: "\uC9C0\uC544"
     context: "\uC57C, \uADF8\uAC8C \uBD88\uB9CC\uC774\uBA74 \uB098\uAC00."
     spriteName: Jia
-    soundName: 
-    animName: Idle
+    soundName: Sigh
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 8
@@ -81,7 +81,7 @@ MonoBehaviour:
       \uB418\uACE0?"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 9
@@ -89,7 +89,7 @@ MonoBehaviour:
     context: "\uC774\uB7F0"
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 10
@@ -97,7 +97,7 @@ MonoBehaviour:
     context: "\uC7A0\uC2DC\uB9CC~! \uB458 \uB2E4 \uC9C4\uC815\uD560\uAE4C?"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 11
@@ -106,7 +106,7 @@ MonoBehaviour:
       \uAC8C \uC544\uB2C8\uB77C \uD654\uD569\uC744 \uC704\uD574 \uBAA8\uC778 \uAC70\uC796\uC544~"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 12
@@ -115,7 +115,7 @@ MonoBehaviour:
       \uB9D0\uB77C\uACE0~"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 13
@@ -123,7 +123,7 @@ MonoBehaviour:
     context: "\uD765."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 14
@@ -131,8 +131,8 @@ MonoBehaviour:
     context: "...\uBBF8\uC548. \uB0B4\uAC00 \uC801\uB2F9\uD788 \uBB34\uC2DC\uD588\uC5B4\uC57C
       \uD588\uB294\uB370."
     spriteName: Anna
-    soundName: 
-    animName: Idle
+    soundName: ' '
+    animName: Sad
     bgType: 8
     actionType: 0
   - id: 15
@@ -140,7 +140,7 @@ MonoBehaviour:
     context: "\uD5C8\uC5B4?"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 16
@@ -150,7 +150,7 @@ MonoBehaviour:
       \uD560 \uAC70 \uAC19\uC544\uC11C."
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 17
@@ -159,7 +159,7 @@ MonoBehaviour:
       \uBC14\uB85C \uD65C\uB3D9 \uC7A5\uC18C\uB85C \uAC00\uC790!"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 18
@@ -168,15 +168,15 @@ MonoBehaviour:
       \uBE68\uB9AC \uB098\uAC00\uACE0 \uC2F6\uC5C8\uC5B4."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 19
     characterName: "\uC9C0\uC544"
     context: "\uD558... \uC800"
     spriteName: Jia
-    soundName: 
-    animName: Idle
+    soundName: Sigh
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 20
@@ -184,15 +184,15 @@ MonoBehaviour:
     context: "\uD558\uD558~! \uBC14\uB85C \uCD9C\uBC1C\uD574\uBCF4\uC790!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 21
     characterName: "\uC9C0\uC544"
     context: "\uB2E4\uB4E4 \uC218\uACE0\uD588\uC5B4."
     spriteName: Anna
-    soundName: 
-    animName: Idle
+    soundName: Request
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 22
@@ -200,7 +200,7 @@ MonoBehaviour:
     context: "\uB9DE\uC544. \uB2E4\uB4E4 \uB108\uBB34 \uC798 \uB9DE\uB294\uB370?"
     spriteName: Ella
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 23
@@ -208,7 +208,7 @@ MonoBehaviour:
     context: "...\uC548\uB098 \uB108\uB3C4 \uC798\uD588\uC5B4."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 24
@@ -217,7 +217,7 @@ MonoBehaviour:
       \uD55C\uB2E4\uACE0 \uD588\uC796\uC544."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 25
@@ -226,7 +226,7 @@ MonoBehaviour:
       \uD560 \uC0DD\uAC01 \uC5C6\uC5B4."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 26
@@ -235,7 +235,7 @@ MonoBehaviour:
       \uC800\uBC88\uC5D0 \uB290\uAF08\uB2E4\uACE0."
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 27
@@ -243,15 +243,15 @@ MonoBehaviour:
     context: "\uADF8\uB798... \uACE0\uB9C8\uC6CC."
     spriteName: Jia
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 28
     characterName: "\uC548\uB098"
     context: "\uB098, \uB0A8\uC0AC\uC2A4\uB7FD\uAC8C! "
     spriteName: Anna
-    soundName: 
-    animName: Idle
+    soundName: Shock
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 29
@@ -259,7 +259,7 @@ MonoBehaviour:
     context: "\uB410\uC5B4! \uB098 \uBA3C\uC800 \uAC08 \uAC70\uC57C!"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Thinking
     bgType: 8
     actionType: 0
   - id: 30
@@ -267,7 +267,7 @@ MonoBehaviour:
     context: "\uC5D0\uC774~ \uC548\uB098 \uBD80\uB044\uB7EC\uC6CC\uD558\uC9C0\uB9C8~!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
   - id: 31
@@ -275,7 +275,7 @@ MonoBehaviour:
     context: "\uBB50\uB798! \uB10C \uC870\uC6A9\uD788 \uD574!"
     spriteName: Anna
     soundName: 
-    animName: Idle
+    animName: Talk
     bgType: 8
     actionType: 0
   - id: 32
@@ -283,6 +283,6 @@ MonoBehaviour:
     context: "\uD06D\uD06D, \uAC19\uC774 \uAC00!"
     spriteName: Vamp
     soundName: 
-    animName: Idle
+    animName: Happy
     bgType: 8
     actionType: 0
