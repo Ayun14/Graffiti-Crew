@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +14,8 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     private Transform _escapeTrm;
     private Transform _ellaGraffitiTrm;
     private List<Transform> _characterSpawnTrmList;
+
+    private int _ellaSpawnIdx;
 
     private void Awake()
     {
@@ -66,16 +67,22 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
             _playerTrm.rotation = _characterSpawnTrmList[0].localRotation;
         }
 
-        // Ella
-        _rivalTrmList[0].position = _ellaGraffitiTrm.localPosition;
-        _rivalTrmList[0].rotation = _ellaGraffitiTrm.localRotation;
 
-        // Others
-        for (int i = 1; i < _rivalTrmList.Count; i++)
+        for (int i = 0; i < _rivalTrmList.Count; i++)
         {
-            Transform trm = _characterSpawnTrmList[i + 1];
-            _rivalTrmList[i].position = trm.localPosition;
-            _rivalTrmList[i].rotation = trm.localRotation;
+            // Ella
+            if (_rivalTrmList[i].name == "EllaAnim_SprayCan(Clone)")
+            {
+                _rivalTrmList[i].position = _ellaGraffitiTrm.localPosition;
+                _rivalTrmList[i].rotation = _ellaGraffitiTrm.localRotation;
+            }
+            // Others
+            else
+            {
+                Transform trm = _characterSpawnTrmList[i + 1];
+                _rivalTrmList[i].position = trm.localPosition;
+                _rivalTrmList[i].rotation = trm.localRotation;
+            }
         }
     }
 
@@ -87,6 +94,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
             Transform rivalSpawnTrm = _characterSpawnTrmList[i + 1];
             Transform rivalPrefab = rivalPrefabList[i];
             Transform trm = Instantiate(rivalPrefab.gameObject, rivalSpawnTrm.localPosition, rivalSpawnTrm.localRotation, transform).transform;
+            if (trm.name == "EllaAnim_SprayCan(Clone)") _ellaSpawnIdx = i + 1;
             _rivalTrmList.Add(trm);
         }
     }
@@ -107,40 +115,48 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Walk);
+        AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Walk);
     }
 
     public void RivalStartGraffiti()
     {
-        // Others
-        for (int i = 1; i < _rivalTrmList.Count; ++i)
+        for (int i = 0; i < _rivalTrmList.Count; ++i)
         {
-            _rivalTrmList[i].DORotate(Vector3.zero, 0.3f);
-            _rivalTrmList[i].DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
+            // Ella
+            Debug.Log(_rivalTrmList[i].name);
+            if (_rivalTrmList[i].name == "EllaAnim_SprayCan(Clone)")
             {
-                AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Idle);
-            });
+                _rivalTrmList[i].DORotate(new Vector3(0, 30f, 0), 0.3f);
+                _rivalTrmList[i].DOMove(_ellaGraffitiTrm.localPosition, Random.Range(2f, 2.5f)).OnComplete(() =>
+                {
+                    AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
+                });
+            }
+            // Others
+            else
+            {
+                _rivalTrmList[i].DORotate(Vector3.zero, 0.3f);
+                _rivalTrmList[i].DOMoveZ(-1f, Random.Range(1.5f, 2f)).OnComplete(() =>
+                {
+                    AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Idle);
+                    AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Idle);
+                });
+            }
         }
-
-        // Ella
-        _rivalTrmList[0].DORotate(new Vector3(0, 30f, 0), 0.3f);
-        _rivalTrmList[0].DOMove(_ellaGraffitiTrm.localPosition, Random.Range(2f, 2.5f)).OnComplete(() =>
-        {
-            AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
-        });
     }
 
     public void EllaGoBack()
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
 
-        Transform ella = _rivalTrmList[0];
+        Transform ella = _rivalTrmList.Find(value => value.name == "EllaAnim_SprayCan(Clone)");
         ella.DORotate(new Vector3(0, -136, 0), 0.6f)
             .OnComplete(() =>
             {
-                ella.DOMove(_characterSpawnTrmList[1].localPosition, 2f)
+                ella.DOMove(_characterSpawnTrmList[_ellaSpawnIdx].localPosition, 1.5f)
                 .OnComplete(() =>
                 {
-                    ella.DORotateQuaternion(_characterSpawnTrmList[1].localRotation, 0.7f);
+                    ella.DORotateQuaternion(_characterSpawnTrmList[_ellaSpawnIdx].localRotation, 0.7f);
                     AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Idle);
                 });
             });
@@ -150,6 +166,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Run);
+        AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Run);
         foreach (Transform rivalTrm in _rivalTrmList)
         {
             rivalTrm.DORotateQuaternion(_escapeTrm.localRotation, 0.5f);
@@ -167,6 +184,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
     {
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Talk);
+        AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Talk);
     }
 
     public void PlayerSprayNone()
@@ -182,7 +200,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         if (mySubject.IsPlayerWin)
         {
             _playerTrm.DOKill();
-            _playerTrm.position = new Vector2(_escapeTrm.position.x -10f, _playerTrm.position.y);
+            _playerTrm.position = new Vector2(_escapeTrm.position.x - 10f, _playerTrm.position.y);
             foreach (Transform rivalTrm in _rivalTrmList)
             {
                 rivalTrm.DOKill();
