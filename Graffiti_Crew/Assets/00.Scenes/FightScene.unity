@@ -466,6 +466,91 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &259165031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259165032}
+  - component: {fileID: 259165033}
+  - component: {fileID: 259165034}
+  m_Layer: 0
+  m_Name: BeforeFightTimeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259165032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259165031}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002932598}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &259165033
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259165031}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 1428fe9b367710b49b387db6d6e507ba, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8418614498852575293, guid: 65ac465d11bfd4245adf86198f2d16ba, type: 2}
+    value: {fileID: 330585548}
+  m_ExposedReferences:
+    m_References:
+    - bb931940a9364354e9707eee362b8dbb: {fileID: 811644761}
+    - 3a393e48cee5dac44adfae88e2aa0bd9: {fileID: 1132627325}
+    - 21b9a7c3ca867f148b85b0f4aae30eef: {fileID: 1132627325}
+--- !u!114 &259165034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259165031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: cf8592ffb27f4cd44ab52a6b97ad6410, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1858405860}
+          m_TargetAssemblyTypeName: FightSceneTimelineController, Assembly-CSharp
+          m_MethodName: BeforeFightTimelineEnd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &294387345
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,11 +2234,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!320 &830377625 stripped
-PlayableDirector:
-  m_CorrespondingSourceObject: {fileID: 688990508200879657, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-  m_PrefabInstance: {fileID: 2002932593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &831726904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2597,7 +2677,7 @@ MonoBehaviour:
   _maxSprayValue: 100
   _sprayCanPrefab: {fileID: 9010543665947581265, guid: 620fad78e4e443a47935e624e8d64723, type: 3}
   _forcePower: 7
-  _sprayChangeTime: 1.5
+  _sprayChangeTime: 0.7
 --- !u!1 &1132627323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,6 +3981,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1826269346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826269347}
+  - component: {fileID: 1826269349}
+  - component: {fileID: 1826269348}
+  m_Layer: 0
+  m_Name: EndFightTimeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826269347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826269346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002932598}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826269348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826269346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 88506dd224d6c5f4cbc4bd15a2a52612, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 78990495}
+          m_TargetAssemblyTypeName: FightSceneUIController, Assembly-CSharp
+          m_MethodName: SetResultUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!320 &1826269349
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826269346}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 22f3f7dd59bbebc4486b6bfc7f632b0e, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1858405857
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,9 +4108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8162d4483aa9524f815d7a00d088861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beforeFightTimeline: {fileID: 2002932599}
+  _beforeFightTimeline: {fileID: 259165033}
   _countdownTimeline: {fileID: 2002932594}
-  _endFightTimeline: {fileID: 830377625}
+  _endFightTimeline: {fileID: 1826269349}
 --- !u!1 &1866479525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4236,11 +4396,11 @@ PrefabInstance:
     - target: {fileID: 867232236196213010, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: '_progressSprites.Array.data[3]'
       value: 
-      objectReference: {fileID: 21300000, guid: 3c6e0622de204f348a4639d13eeec94d, type: 3}
+      objectReference: {fileID: 21300000, guid: 385a6998688240a489b0f22424a8aa88, type: 3}
     - target: {fileID: 867232236196213010, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: '_rivalCheckSprites.Array.data[2]'
       value: 
-      objectReference: {fileID: 21300000, guid: 7cc42c34d142f484c989fb999a12972e, type: 3}
+      objectReference: {fileID: 21300000, guid: 6db6991167c27654a91725cf9b6816fd, type: 3}
     - target: {fileID: 1642721581727394451, guid: 693f4718e51417144a2039294c26c33c, type: 3}
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4387,7 +4547,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 197060448857626340, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 259165032}
+    - targetCorrespondingSourceObject: {fileID: 197060448857626340, guid: 693f4718e51417144a2039294c26c33c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1826269347}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 693f4718e51417144a2039294c26c33c, type: 3}
 --- !u!320 &2002932594 stripped
@@ -4398,11 +4564,6 @@ PlayableDirector:
 --- !u!4 &2002932598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 197060448857626340, guid: 693f4718e51417144a2039294c26c33c, type: 3}
-  m_PrefabInstance: {fileID: 2002932593}
-  m_PrefabAsset: {fileID: 0}
---- !u!320 &2002932599 stripped
-PlayableDirector:
-  m_CorrespondingSourceObject: {fileID: 328733331070922797, guid: 693f4718e51417144a2039294c26c33c, type: 3}
   m_PrefabInstance: {fileID: 2002932593}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048164234
