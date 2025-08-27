@@ -118,6 +118,16 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
         _rival.localRotation = _graffitiTrm.localRotation;
     }
 
+    public void RivalPositionToResult()
+    {
+        if (_rival.name == "VampAnim(Clone)")
+        {
+            Vector3 spawnPos = _resultTrm.position;
+            spawnPos.y -= 0.2f;
+            _rival.position = spawnPos;
+        }
+    }
+
     public void WaitAnimation()
     {
         AnimationEvent.SetAnimation?.Invoke(_animationID, AnimationEnum.Idle);

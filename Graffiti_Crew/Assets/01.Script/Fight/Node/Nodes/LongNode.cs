@@ -17,6 +17,10 @@ public class LongNode : Node, INodeAction
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
+    private float _followThreshold = 0.12f; // 경로 근접 허용 오차
+    private float _failThreshold = 0.37f;   // 경로 이탈 허용 오차
+    private float _startThreshold = 0.5f; // 시작점 근접 허용 오차
+
     private Sequence _fadeSequence;
 
     private void Awake()
@@ -204,7 +208,7 @@ public class LongNode : Node, INodeAction
             ConnectFollowLine(_pathPoints.GetRange(0, _currentTargetIndex + 1));
 
             // 현재 목표 포인트와의 거리 확인
-            if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _longNodeData.followThreshold)
+            if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) < _followThreshold)
             {
                 // Particle
                 PopGraffitiParticle(mouseWorldPosition + new Vector3(0f, 0f, -0.1f));
@@ -220,7 +224,7 @@ public class LongNode : Node, INodeAction
                     return;
                 }
             }
-            else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _longNodeData.failThreshold)
+            else if (Vector3.Distance(mouseWorldPosition, _pathPoints[_currentTargetIndex]) > _failThreshold)
             {
                 // 노드 실패 (경로 이탈 실패)
                 NodeFalse();
