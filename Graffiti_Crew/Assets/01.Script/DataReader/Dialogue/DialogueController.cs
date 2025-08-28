@@ -35,11 +35,13 @@ public class DialogueController : MonoBehaviour
         _effectController = GetComponent<DialogueEffectController>();
 
         DialogueEvent.SetDialogueInput += SetDialogueInput;
+        DialogueEvent.SkipToStory += StorySkip;
     }
 
     private void OnDisable()
     {
         DialogueEvent.SetDialogueInput -= SetDialogueInput;
+        DialogueEvent.SkipToStory -= StorySkip;
     }
 
     private void Update()
@@ -58,20 +60,20 @@ public class DialogueController : MonoBehaviour
             {
                 DialogueSkip();
             }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
-
-                currentDialogueIndex = filteredDialogueList.Count;
-                ShowNextDialogue();
-            }
         }
     }
 
     private void SetDialogueInput(bool input)
     {
         IsDialogue = input;
+    }
+
+    private void StorySkip()
+    {
+        GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
+
+        currentDialogueIndex = filteredDialogueList.Count;
+        ShowNextDialogue();
     }
 
     public void DialogueSkip()

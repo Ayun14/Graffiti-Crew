@@ -188,6 +188,8 @@ public class DialogueUIController : MonoBehaviour
         IsTyping = false;
         if(!IsBigUIdata)
             OnEndTyping?.Invoke(true);
+
+        DialogueEvent.EndWritingText?.Invoke();
         GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Text_Typing);
     }
 
