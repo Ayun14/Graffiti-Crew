@@ -9,5 +9,8 @@ namespace AH.UI.Events {
 
         public static Action<DialougeCharacter> SetDialogueEvent;
         public static Action ShowFeelingDialogueEvent;
+
+        public static Action EndWritingText;
+        public static Action SkipToStory;
     }
 }
