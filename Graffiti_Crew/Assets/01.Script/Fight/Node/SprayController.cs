@@ -32,7 +32,6 @@ public class SprayController : MonoBehaviour, INeedLoding
 
     protected StageGameRule _stageGameRule;
 
-
     public void LodingHandle(DataController dataController)
     {
         _sprayCanValueSO.max = dataController.stageData.sprayValue;

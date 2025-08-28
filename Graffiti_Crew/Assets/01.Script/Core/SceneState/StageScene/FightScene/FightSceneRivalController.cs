@@ -32,10 +32,19 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         _graffitis = dataController.stageData.rivalGraffiti;
         _rivalDrawingTime = dataController.stageData.rivalClearTime;
-        _rival = Instantiate(dataController.stageData.rivalPrefabList.First().gameObject, _resultTrm.position, _resultTrm.localRotation, transform).transform;
-        _animationID = _rival.GetComponentInChildren<AnimationController>().ObjectID;
+        SpawnRival(dataController);
 
         dataController.SuccessGiveData();
+    }
+
+    private void SpawnRival(DataController dataController)
+    {
+        Vector3 spawnPos = _resultTrm.position;
+        if (dataController.stageData.rivalPrefabList.First().gameObject.name == "VampAnim")
+            spawnPos.y -= 0.2f;
+
+        _rival = Instantiate(dataController.stageData.rivalPrefabList.First().gameObject, spawnPos, _resultTrm.localRotation, transform).transform;
+        _animationID = _rival.GetComponentInChildren<AnimationController>().ObjectID;
     }
 
     private void Awake()
@@ -107,6 +116,16 @@ public class FightSceneRivalController : Observer<GameStateController>, INeedLod
     {
         _rival.position = _graffitiTrm.position;
         _rival.localRotation = _graffitiTrm.localRotation;
+    }
+
+    public void RivalPositionToResult()
+    {
+        if (_rival.name == "VampAnim(Clone)")
+        {
+            Vector3 spawnPos = _resultTrm.position;
+            spawnPos.y -= 0.2f;
+            _rival.position = spawnPos;
+        }
     }
 
     public void WaitAnimation()

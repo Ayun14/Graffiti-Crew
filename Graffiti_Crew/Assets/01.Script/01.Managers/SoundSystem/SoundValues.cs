@@ -23,6 +23,7 @@ public enum SoundType
     DJ_Yeah,
     Coin,
     Drum_Roll,
+    Clap,
 
     // HangOut
     Sofa,
