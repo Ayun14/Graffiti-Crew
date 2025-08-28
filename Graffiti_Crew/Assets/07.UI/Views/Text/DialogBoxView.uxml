@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
     <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
     <engine:Instance template="Animation" name="Animation" style="position: absolute; width: 100%; height: 100%;" />
-    <engine:VisualElement name="text-dialog" class="dialog-box-m-container" style="display: none;">
+    <engine:VisualElement name="text-dialog" class="dialog-box-m-container" style="display: flex;">
         <engine:VisualElement style="height: 32%; width: 75%; flex-direction: row; translate: -11px 20px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/textbox-line.png?fileID=21300000&amp;guid=7492df78b02fb9c4fbfc0520ea35f629&amp;type=3#textbox-line&quot;); align-items: flex-end; overflow: hidden; display: flex;">
             <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px; bottom: -24px; visibility: hidden;">
                 <Bindings>
@@ -22,10 +22,10 @@
                     </Bindings>
                 </engine:Label>
             </engine:VisualElement>
-            <engine:Label text="k키를 눌러 스킵" enable-rich-text="true" name="Label" class="grow-size-30" style="white-space: normal; flex-grow: 1; margin-top: 28px; color: rgb(255, 255, 255); background-position-x: right 0; background-position-y: bottom 0; align-self: flex-end; position: absolute; left: 88%; top: 71%; font-size: 20px;" />
+            <engine:VisualElement name="arrow-img" class="arrow" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-direction: row; translate: -11px 20px; align-items: flex-end; overflow: hidden; position: absolute; bottom: 6.5%; width: 1401px; left: 258px; height: 372px;">
-            <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px; left: 7px; bottom: -29px;">
+            <engine:VisualElement name="profile" style="height: 400px; width: 320px; translate: 0 13px; left: -1px; bottom: -29px;">
                 <Bindings>
                     <engine:DataBinding property="style.backgroundImage" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="profile" />
                 </Bindings>
@@ -39,7 +39,8 @@
                     <engine:DataBinding property="text" data-source="project://database/Assets/08.SO/UI/Dialogue/DialogueSO.asset?fileID=11400000&amp;guid=8d1a7c42de975d34a9579144e98eb7ed&amp;type=2#DialogueSO" binding-mode="ToTarget" data-source-path="dialogue" />
                 </Bindings>
             </engine:Label>
-            <engine:Label text="k키를 눌러 스킵" enable-rich-text="true" name="Label" class="grow-size-30" style="white-space: normal; flex-grow: 1; margin-top: 28px; color: rgb(255, 255, 255); background-position-x: right 0; background-position-y: bottom 0; align-self: flex-end; position: absolute; left: 88%; top: 71%; font-size: 20px;" />
+            <engine:VisualElement name="arrow-img" class="arrow" />
         </engine:VisualElement>
     </engine:VisualElement>
+    <engine:Button text="건너뛰기" name="skip-btn" class="grow-size-25" style="position: absolute; height: 69px; width: 116px; top: 23px; left: 1783px; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; color: rgb(188, 188, 188); background-color: rgb(0, 0, 0); -unity-font-style: bold;" />
 </engine:UXML>
