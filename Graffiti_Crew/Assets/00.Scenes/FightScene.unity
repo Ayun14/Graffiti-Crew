@@ -1593,7 +1593,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: a9c8ac56ed9f06644ad7befba9605011, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1601,7 +1601,7 @@ SpriteRenderer:
   m_Size: {x: 4.8076925, y: 4.8076925}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &630152380
@@ -4033,6 +4033,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1714822143}
           m_TargetAssemblyTypeName: FightSceneRivalController, Assembly-CSharp
           m_MethodName: WinLoseAnimation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 440318552}
+          m_TargetAssemblyTypeName: BGMController, Assembly-CSharp
+          m_MethodName: PlayResultSound
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
