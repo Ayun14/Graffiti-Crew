@@ -33,6 +33,7 @@ public enum SoundType
     // UI
     Text_Typing,
     Laughing,
+    ManLaughing,
     Paper,
     Sigh,
     Surprised,
