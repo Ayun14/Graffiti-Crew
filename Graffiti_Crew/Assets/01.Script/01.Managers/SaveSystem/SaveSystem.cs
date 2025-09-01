@@ -13,8 +13,6 @@ namespace AH.Save {
 
         [SerializeField] private StringSaveDataSO _lastPlayTimeSO;
 
-        [SerializeField] private bool _isTitle = false;
-
         private SlotSO[] _slots;
         private string _slotPath = "UI/Setting/Slots/";
 
@@ -54,9 +52,7 @@ namespace AH.Save {
             SetData(_shareSlot, _shareDataList);
             LoadData(_shareSlot, _shareDataList);
             GameManager.SetSlot(); // 슬롯 세팅
-            if (!_isTitle) {
-                CreateSlotData();
-            }
+            CreateSlotData();
         }
         private void CreateSlotData() {
             // 슬롯 별 전체 데이터 뿌리고
@@ -84,6 +80,7 @@ namespace AH.Save {
         // file값을 바탕으로 so에 넣기
         private void LoadData(SlotSO slot, List<SaveDataListSO> saveList) {
             foreach (var saveData in saveList) { // 데이터 load하기
+                Debug.Log(saveData.saveFileName);
                 if (FileSystem.LoadFromFile(slot.slotName, saveData.saveFileName, out var jsonString)) {
                     saveData.LoadJson(jsonString);
                 }

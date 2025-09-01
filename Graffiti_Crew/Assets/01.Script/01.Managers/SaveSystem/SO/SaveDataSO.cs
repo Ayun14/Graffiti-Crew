@@ -28,6 +28,7 @@ namespace AH.Save {
 #if UNITY_EDITOR
         protected virtual void OnValidate() {
             ID = this.GetInstanceID();
+            EditorUtility.SetDirty(this);
         }
 #endif
     }
