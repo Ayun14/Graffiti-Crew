@@ -20,6 +20,7 @@ public enum AnimationEnum
 
     // Dialogue
     Talk,
+    Talk2,
     Sit,
     Happy,
     Sad,
