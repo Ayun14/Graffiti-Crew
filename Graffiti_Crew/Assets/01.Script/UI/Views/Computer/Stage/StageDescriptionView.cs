@@ -36,8 +36,12 @@ namespace AH.UI.Views {
         public override void Show() {
             SetCoin();
             _stageDescription.AddToClassList("stage-description-in");
+       
+            topElement.pickingMode = PickingMode.Position;
         }
         public async override void Hide() {
+            topElement.pickingMode = PickingMode.Ignore;
+
             _stageDescription.RemoveFromClassList("stage-description-in");
             await Task.Delay(350);
         }
