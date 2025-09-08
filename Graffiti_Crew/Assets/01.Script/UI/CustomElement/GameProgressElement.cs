@@ -25,6 +25,7 @@ namespace AH.UI.CustomElement {
         private VisualElement _handle;
         private VisualElement _jiaImg;
         private VisualElement _rivalImg;
+        private VisualElement _middleLine;
 
         private bool _layoutReady = false;
 
@@ -71,6 +72,11 @@ namespace AH.UI.CustomElement {
             _progressFill.AddToClassList("progress-fill");
             hierarchy.Add(_progressFill);
 
+            _middleLine = new VisualElement();
+            _middleLine.name = "middle-line";
+            _middleLine.AddToClassList("middle-line");
+            hierarchy.Add(_middleLine);
+
             _handle = new VisualElement();
             _handle.name = "handle";
             _handle.AddToClassList("progress-handle");
@@ -85,6 +91,7 @@ namespace AH.UI.CustomElement {
             _rivalImg.name = "rival";
             _rivalImg.AddToClassList("progress-img");
             _handle.Add(_rivalImg);
+
 
             RegisterCallback<GeometryChangedEvent>(evt => {
                 if (!_layoutReady) {
