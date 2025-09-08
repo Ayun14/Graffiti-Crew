@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="Animation" src="project://database/Assets/07.UI/Views/Animation/Animation.uxml?fileID=9197481963319205126&amp;guid=e666f9c0a8d1b174a9ce9411f61d4258&amp;type=3#Animation" />
-    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3#DialogBoxView_USS" />
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/DialogBoxView_USS.uss?fileID=7433441132597879392&amp;guid=7c46e11a7ca615943aba0029210355c5&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
     <engine:Instance template="Animation" name="Animation" style="position: absolute; width: 100%; height: 100%;" />
     <engine:VisualElement name="text-dialog" class="dialog-box-m-container" style="display: none;">
         <engine:VisualElement style="height: 32%; width: 75%; flex-direction: row; translate: -11px 20px; background-image: url(&quot;project://database/Assets/02.Sprite/UI/Dialouge/textbox-line.png?fileID=21300000&amp;guid=7492df78b02fb9c4fbfc0520ea35f629&amp;type=3#textbox-line&quot;); align-items: flex-end; overflow: hidden; display: flex;">
@@ -42,5 +42,5 @@
             <engine:VisualElement name="arrow-img" class="arrow" />
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:Button text="건너뛰기" name="skip-btn" class="grow-size-25" style="position: absolute; height: 69px; width: 116px; top: 23px; left: 1783px; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; color: rgb(188, 188, 188); background-color: rgb(0, 0, 0); -unity-font-style: bold;" />
+    <engine:Button text="건너뛰기" name="skip-btn" class="grow-size-25 skip-btn" />
 </engine:UXML>
