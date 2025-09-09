@@ -1,5 +1,4 @@
 using AH.UI.Events;
-using DG.Tweening;
 using UnityEngine;
 
 public class ClickJudgement : NodeJudgement
