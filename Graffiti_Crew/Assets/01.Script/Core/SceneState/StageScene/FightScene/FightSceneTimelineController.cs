@@ -1,9 +1,8 @@
 using AH.UI.Events;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.Playables;
 using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Playables;
 
 public class FightSceneTimelineController : Observer<GameStateController>
 {
@@ -45,16 +44,19 @@ public class FightSceneTimelineController : Observer<GameStateController>
     {
         if (mySubject != null)
         {
-            if (mySubject.GameState == GameState.Timeline) {
+            if (mySubject.GameState == GameState.Timeline)
+            {
                 UIAnimationEvent.SetActiveStartAnimationEvnet?.Invoke(true);
                 _beforeFightTimeline.Play();
             }
 
-            if (mySubject.GameState == GameState.Countdown) {
+            if (mySubject.GameState == GameState.Countdown)
+            {
                 StageEvent.SetProgressEvnet?.Invoke(true);
             }
 
-            if (mySubject.GameState == GameState.Finish) {
+            if (mySubject.GameState == GameState.Finish)
+            {
                 _finishTimeline.Play();
             }
 
@@ -105,7 +107,8 @@ public class FightSceneTimelineController : Observer<GameStateController>
         mySubject.ChangeGameState(GameState.NextStage);
     }
 
-    public void LoopResultTimeLine() {
+    public void LoopResultTimeLine()
+    {
         _endFightTimeline.time = 6.8f;
         _endFightTimeline.Evaluate(); // 바로 상태 반영
         _endFightTimeline.Play();     // 다시 재생
@@ -141,7 +144,11 @@ public class FightSceneTimelineController : Observer<GameStateController>
 
         if (_endFightTimeline.state == PlayState.Playing)
         {
-            StartCoroutine(ResultTimelineSkipRoutine(_endFightTimeline, EndFightTimelineEnd));
+            StartCoroutine(ResultTimelineSkipRoutine(_endFightTimeline, () =>
+            {
+                EndFightTimelineEnd();
+                GameManager.Instance.SoundSystemCompo.StopBGM(SoundType.Fight_Result);
+            }));
         }
     }
 
