@@ -107,8 +107,10 @@ namespace AH.UI.CustomElement {
             }
             if (rival) {
                 _rivalImg.style.backgroundImage = new StyleBackground(rival);
+                _middleLine.style.display = DisplayStyle.Flex;
             }
             else {
+                _middleLine.style.display = DisplayStyle.None;
                 _rivalImg.style.display = DisplayStyle.None;
             }
         }
