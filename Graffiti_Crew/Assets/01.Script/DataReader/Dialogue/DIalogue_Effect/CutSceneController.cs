@@ -17,19 +17,14 @@ public class CutSceneController : MonoBehaviour
 
     public IEnumerator CutSceneRoutine(string cutSceneName, bool isShow)
     {
-        
-
         if (isShow)
         {
             Sprite sprite = Resources.Load<Sprite>("Sprite/CutScene/" + cutSceneName);
-            if (sprite != null)
-            {
-                Debug.Log("CutScene Fade Start");
-                yield return StartCoroutine(Fade(false));
-            }
 
             if (sprite != null)
             {
+                yield return StartCoroutine(Fade(false));
+
                 _cutSceneImg.gameObject.SetActive(true);
                 _cutSceneImg.sprite = sprite;
             }

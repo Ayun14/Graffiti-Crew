@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class AudienceNPCController : Observer<GameStateController>
+public class AudienceNPCController : Observer<GameStateController>, INeedLoding
 {
     [SerializeField] private GameObject _maleNCPPrefab;
     [SerializeField] private GameObject _femaleNCPPrefab;
@@ -12,7 +12,15 @@ public class AudienceNPCController : Observer<GameStateController>
     [Range(0, 15)][SerializeField] private int _maxSpawnNum;
 
     private List<Transform> _spawnPosList = new();
-    private CoinSpawner _coinSpawner;
+
+    private StageDataSO _stageDataSO;
+
+    public void LodingHandle(DataController dataController)
+    {
+        _stageDataSO = dataController.stageData;
+
+        dataController.SuccessGiveData();
+    }
 
     private void Awake()
     {
@@ -20,8 +28,6 @@ public class AudienceNPCController : Observer<GameStateController>
 
         _spawnPosList = transform.Find("SpawnPos").GetComponentsInChildren<Transform>().ToList();
         _spawnPosList.RemoveAt(0);
-
-        _coinSpawner = GetComponent<CoinSpawner>();
     }
 
     private void OnDestroy()
@@ -48,7 +54,7 @@ public class AudienceNPCController : Observer<GameStateController>
 
     private void AudienceNPCSpawn()
     {
-        if (_coinSpawner.StageDataSO.stageType == StageType.Activity && mySubject.IsPlayerWin == false) return;
+        if (_stageDataSO.stageType == StageType.Activity && mySubject.IsPlayerWin == false) return;
 
         int spawnNum = Random.Range(_minSpawnNum, _maxSpawnNum + 1);
         List<Transform> spawnPosList = new();
@@ -58,7 +64,6 @@ public class AudienceNPCController : Observer<GameStateController>
             Spawn(spawnGO, _spawnPosList[i]);
             spawnPosList.Add(_spawnPosList[i]);
         }
-        _coinSpawner.Init(spawnPosList);
     }
 
     private void Spawn(GameObject prefab, Transform spawnTrm)

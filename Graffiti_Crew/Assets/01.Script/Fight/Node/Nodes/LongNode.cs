@@ -17,8 +17,8 @@ public class LongNode : Node, INodeAction
     private int _currentTargetIndex = 0; // 현재 목표로 하는 포인트의 인덱스
     private List<Vector3> _pathPoints = new List<Vector3>(); // 경로 포인트 리스트
 
-    private const float _followThreshold = 0.2f; // 경로 근접 허용 오차
-    private const float _failThreshold = 0.4f;   // 경로 이탈 허용 오차
+    private const float _followThreshold = 0.12f; // 경로 근접 허용 오차
+    private const float _failThreshold = 0.38f;   // 경로 이탈 허용 오차
     private const float _startThreshold = 0.5f; // 시작점 근접 허용 오차
 
     private Sequence _fadeSequence;
