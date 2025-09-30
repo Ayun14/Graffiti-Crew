@@ -16,28 +16,77 @@ MonoBehaviour:
   stageRuleType: 0
   judgementPrefab: {fileID: 3252528206632989019, guid: 65478b6cd5eed9a47b6a02bf6adb53c5, type: 3}
   spawnerPrefab: {fileID: 6228036361481256436, guid: 67393eec3581da34587c9e0d810fa86b, type: 3}
-  mapPrefab: {fileID: 0}
-  skyBoxMat: {fileID: 0}
+  mapPrefab: {fileID: 2259137263126210815, guid: 28ea26be54015da4f90901a56633c637, type: 3}
+  skyBoxMat: {fileID: 2100000, guid: eac2ef371405749e0bd050b4c3272f16, type: 2}
   weatherParticle: {fileID: 0}
-  nextStagetype: 2
+  nextStagetype: 0
   nextChapter: Chapter4
-  nextStage: Story1-2
+  nextStage: Battle1
   dialogueData_KR: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
   dialogueData_EN: {fileID: 11400000, guid: 3073d9a0e9a8b44419803eafcf1c62ba, type: 2}
   storyDialogue: {fileID: 0}
-  sprayValue: 0
+  sprayValue: 7
   memberGraffiti: {fileID: 0}
-  nodeDatas: []
-  rivalPrefabList: []
+  nodeDatas:
+  - {fileID: 11400000, guid: d4b510dd1abc75645b29e33fb50e4414, type: 2}
+  - {fileID: 11400000, guid: a726aec7550b5f24b826d2d0536b294b, type: 2}
+  - {fileID: 11400000, guid: 0f7bed9a9e82495449354343a06f7507, type: 2}
+  - {fileID: 11400000, guid: 707436a93012ad141a36a49c45c3c854, type: 2}
+  - {fileID: 11400000, guid: d4f65e42335048f40adbb7300e9bb60e, type: 2}
+  - {fileID: 11400000, guid: 99473fbec31d3814492bdfb42443f743, type: 2}
+  - {fileID: 11400000, guid: e8b437fd217dde14d93f10677b72f49f, type: 2}
+  - {fileID: 11400000, guid: 7cdb0782cd6480f4c9045f9160e20d83, type: 2}
+  - {fileID: 11400000, guid: 503e5d3dcfee6754996bf957fdcffb1b, type: 2}
+  - {fileID: 11400000, guid: 61c159ac04db1bd4e97273eabc2db6fb, type: 2}
+  - {fileID: 11400000, guid: c83af1e2bc69a1f4a86e504c990c7692, type: 2}
+  - {fileID: 11400000, guid: 39791d661ddba924d92721b7ab07127d, type: 2}
+  - {fileID: 11400000, guid: d0032c3d010d98145817f11ba8a3dee3, type: 2}
+  - {fileID: 11400000, guid: b18fc17f93bfb0f42af66221ce22a9ff, type: 2}
+  - {fileID: 11400000, guid: 7fa185869e56f62469da4733f8c19daf, type: 2}
+  - {fileID: 11400000, guid: 95b64adb1552a614baab58f870dba555, type: 2}
+  - {fileID: 11400000, guid: 8343963f588029a48bbda1ad746def3e, type: 2}
+  - {fileID: 11400000, guid: f8a1c861d0f21cf47a4fd14c15b5db06, type: 2}
+  - {fileID: 11400000, guid: 4188cbccece95204fa8d2d6f8d8c99ca, type: 2}
+  - {fileID: 11400000, guid: 0a42fb723a368e745a551ea91303eb1a, type: 2}
+  - {fileID: 11400000, guid: 8d408e09b55586344a18594b35895a78, type: 2}
+  - {fileID: 11400000, guid: d147e0cd2e52df349822f8aec916dddd, type: 2}
+  - {fileID: 11400000, guid: 2d5f629a595b9414887d89de5acce801, type: 2}
+  - {fileID: 11400000, guid: a33021a9d7d10b84ea9822ff9f71259c, type: 2}
+  - {fileID: 11400000, guid: d87ae6c054778e24398430b0890074ff, type: 2}
+  - {fileID: 11400000, guid: 54957447919f9d945beebbadfbde934f, type: 2}
+  - {fileID: 11400000, guid: 77cc8afc8aa67734f94bd1acd40e8450, type: 2}
+  - {fileID: 11400000, guid: 60cb21d9787fd384ea77e7c086c71d23, type: 2}
+  - {fileID: 11400000, guid: e0d15b1891eb3af4492fb439e6fbb574, type: 2}
+  - {fileID: 11400000, guid: 5c212103d9c8db543887e1d9aac2d8ef, type: 2}
+  - {fileID: 11400000, guid: f4b59644660669c448cdf2bda12642d4, type: 2}
+  - {fileID: 11400000, guid: ef9b78bfb9e760b40859f0acfdc9bc8e, type: 2}
+  - {fileID: 11400000, guid: 3df2940f3401d5b4fac9d1800abe1e39, type: 2}
+  - {fileID: 11400000, guid: 65e48c6d0e750aa46975477ed7b0c57d, type: 2}
+  - {fileID: 11400000, guid: c75c7d50af163cf4b8592048b80e7652, type: 2}
+  - {fileID: 11400000, guid: addd87eaef6f9304099c4904a4274a4d, type: 2}
+  - {fileID: 11400000, guid: ebc41e4ed5f1c954bb1e3488d60b0dcd, type: 2}
+  - {fileID: 11400000, guid: 5375d1ac131ebef409da668ddd2e311b, type: 2}
+  - {fileID: 11400000, guid: 3ffa4e1fef5c5ad48b8c2b3c3fdb4ba2, type: 2}
+  - {fileID: 11400000, guid: 7ab706770749e014c933dbba7a51ba60, type: 2}
+  - {fileID: 11400000, guid: a13f33fcfc756c846be904da028b58a4, type: 2}
+  - {fileID: 11400000, guid: 883dad9c0d1b6664e884f3d53e82d17f, type: 2}
+  - {fileID: 11400000, guid: 00cbe7456b4ba0747af153bd2fb73480, type: 2}
+  - {fileID: 11400000, guid: 27461bc2b39e0f34a8dd1880196a0695, type: 2}
+  - {fileID: 11400000, guid: 6bc4af803c0b44e44b6874f2e115c7e5, type: 2}
+  - {fileID: 11400000, guid: a2b5f1a90bd2bba4b9d7594f128bae60, type: 2}
+  - {fileID: 11400000, guid: 9775f6fa73645a04db0bb955e9abb9df, type: 2}
+  - {fileID: 11400000, guid: 3213918a3616a3842a22c453975a0264, type: 2}
+  rivalPrefabList:
+  - {fileID: 7848735822138616074, guid: e3e2d96b833acda4e8d0f55e65dc8bfd, type: 3}
   isOnPolice: 0
   rivalGraffiti:
   - {fileID: 21300000, guid: 1ffedf5039173e7459c5ff7e70806248, type: 3}
   - {fileID: 21300000, guid: bacf95b93630f2c44a03d556f006b4a6, type: 3}
   - {fileID: 21300000, guid: b4643311f322e074ea4cf184fda06228, type: 3}
-  rivalClearTime: 5
+  rivalClearTime: 80
   stageResult: {fileID: 11400000, guid: 17fc71218c146e84d9f8e34516be697f, type: 2}
   stageSaveData: {fileID: 11400000, guid: 6ae449183f14cc24c9058aef11e1eeb6, type: 2}
-  minStandard: 0
-  middleStandard: 0
-  maxStandard: 0
-  isPlayerWin: 0
+  minStandard: 55
+  middleStandard: 65
+  maxStandard: 80
+  isPlayerWin: 1

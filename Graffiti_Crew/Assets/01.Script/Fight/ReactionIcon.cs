@@ -29,6 +29,8 @@ public class ReactionIcon : MonoBehaviour, IPoolable
 
     public void PopIcon(float time)
     {
+        GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.BubblePop);
+
         transform.localScale = Vector3.zero;
         transform.DOScale(Vector3.one, time).SetEase(Ease.OutBack)
             .OnComplete(() => Invoke("PushObject", 1f));
