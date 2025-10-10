@@ -24,6 +24,7 @@ public enum SoundType
     Coin,
     Drum_Roll,
     Clap,
+    BubblePop,
 
     // HangOut
     Sofa,

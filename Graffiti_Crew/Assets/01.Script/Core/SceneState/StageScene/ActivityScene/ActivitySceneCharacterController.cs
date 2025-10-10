@@ -123,7 +123,6 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         for (int i = 0; i < _rivalTrmList.Count; ++i)
         {
             // Ella
-            Debug.Log(_rivalTrmList[i].name);
             if (_rivalTrmList[i].name == "EllaAnim_SprayCan(Clone)")
             {
                 _rivalTrmList[i].DORotate(new Vector3(0, 30f, 0), 0.3f);
