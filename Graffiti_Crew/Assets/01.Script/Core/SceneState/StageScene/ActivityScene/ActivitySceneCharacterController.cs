@@ -116,6 +116,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Walk);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Walk);
         AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Walk);
+        AnimationEvent.SetAnimation?.Invoke(6, AnimationEnum.Walk);
     }
 
     public void RivalStartGraffiti()
@@ -139,6 +140,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
                 {
                     AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Idle);
                     AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Idle);
+                    AnimationEvent.SetAnimation?.Invoke(6, AnimationEnum.Idle);
                 });
             }
         }
@@ -166,6 +168,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Run);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Run);
         AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Run);
+        AnimationEvent.SetAnimation?.Invoke(6, AnimationEnum.Run);
         foreach (Transform rivalTrm in _rivalTrmList)
         {
             rivalTrm.DORotateQuaternion(_escapeTrm.localRotation, 0.5f);
@@ -184,6 +187,7 @@ public class ActivitySceneCharacterController : Observer<GameStateController>, I
         AnimationEvent.SetAnimation?.Invoke(2, AnimationEnum.Talk);
         AnimationEvent.SetAnimation?.Invoke(4, AnimationEnum.Talk);
         AnimationEvent.SetAnimation?.Invoke(5, AnimationEnum.Talk);
+        AnimationEvent.SetAnimation?.Invoke(6, AnimationEnum.Talk);
     }
 
     public void PlayerSprayNone()
