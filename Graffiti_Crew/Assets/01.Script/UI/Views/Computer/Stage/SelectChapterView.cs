@@ -164,8 +164,13 @@ namespace AH.UI.Views
             string path = $"StageData/{chapter}/{stage}";
 
             StageDataSO stageData = Resources.Load<StageDataSO>(path);
-            ComputerViewModel.SetStageData(chapter, stage, StageType.Story, data.stageNumber);
-            SetDescription(stageData, data);
+            if (stageData != null) {
+                ComputerViewModel.SetStageData(chapter, stage, StageType.Story, data.stageNumber);
+                SetDescription(stageData, data);
+            }
+            else {
+                Debug.LogError("스테이지 데이터를 찾을 수 없음");
+            }
         }
         private void ClickActivityBtn(ClickEvent evt, (string chapter, string stage, string stagenumber) data)
         {
@@ -184,7 +189,14 @@ namespace AH.UI.Views
         }
         private void SetDescription(StageDataSO stageData, (string chapter, string stage, string stagenumber) data)
         {
-            ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
+            if (stageData.nextChapter == "" || stageData.nextStage == "") {
+                string chapter = $"Chapter{data.chapter}";
+                string stage = $"{stageData.stageType}{data.stage}";
+                ComputerEvent.SelectStageEvent?.Invoke(chapter, stage);
+            }
+            else {
+                ComputerEvent.SelectStageEvent?.Invoke(stageData.nextChapter, stageData.nextStage);
+            }
             ComputerEvent.ShowStageDescriptionViewEvent?.Invoke();
             ForceSelectStage(stageData, data);
         }
@@ -192,7 +204,12 @@ namespace AH.UI.Views
         private void ForceSelectStage(StageDataSO stageData, (string chapter, string stage, string stageNumber) data)
         {
             if(stageData.stageType == StageType.Story) {
-                _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
+                if (stageData.nextChapter == "" || stageData.nextStage == "") {
+                    _selectStageName = $"Chapter{data.chapter}Story{data.stage}";
+                }
+                else {
+                    _selectStageName = $"{stageData.nextChapter}{stageData.nextStage}";
+                }
             }
             else if(stageData.stageType == StageType.Battle) {
                 _selectStageName = $"Chapter{data.chapter}Battle{data.stage}";
@@ -200,6 +217,7 @@ namespace AH.UI.Views
             else {
                 _selectStageName = $"Chapter{data.chapter}Activity{data.stage}";
             }
+            Debug.Log(_selectStageName);
             _map.AddToClassList(_selectStageName);
         }
         private void UnforceSelectStage()

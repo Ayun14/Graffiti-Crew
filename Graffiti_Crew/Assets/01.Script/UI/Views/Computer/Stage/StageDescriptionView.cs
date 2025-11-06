@@ -59,11 +59,17 @@ namespace AH.UI.Views {
         private void SetCoin() {
             string dataPath = ComputerViewModel.GetLoadStageSO().GetLoadStageName();
             StageSaveDataSO saveData = null;
-
             if (dataPath.Contains("Story")) {
                 string path = $"StageData/{dataPath}";
+                string newPath = "";
+
                 StageDataSO stageData = Resources.Load<StageDataSO>(path);
-                string newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
+                if(stageData.nextChapter == "" || stageData.nextStage == "") {
+                    newPath = $"SaveData/{dataPath}";
+                }
+                else {
+                    newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
+                }
                 saveData = Resources.Load<StageSaveDataSO>(newPath);
             }
             else {
