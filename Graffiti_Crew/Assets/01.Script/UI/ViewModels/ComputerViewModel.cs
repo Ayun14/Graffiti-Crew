@@ -4,6 +4,7 @@ using AH.UI.Models;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AH.UI.ViewModels {
     public class ComputerViewModel : ViewModel {
@@ -47,6 +48,10 @@ namespace AH.UI.ViewModels {
 
         public bool HaveItem(ProductSO item) {
             return ItemSystem.CheckHaveItem(item);
+        }
+
+        public Sprite GetDescriptionBackgroundImg() {
+            return _model.GetDescriptionBackgroundImg();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace AH.UI.Views {
         private VisualElement _startBtn;
         private Button _closeBtn;
 
+        private StyleBackground baseBackgroundImg;
+
         public StageDescriptionView(VisualElement topContainer, ViewModel viewModel) : base(topContainer, viewModel) {
             hideOnAwake = false;
         }
@@ -31,6 +33,7 @@ namespace AH.UI.Views {
             _stageDescription = topElement.Q<VisualElement>("stage-description");
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _closeBtn = topElement.Q<Button>("exit-btn");
+            baseBackgroundImg = _stageDescription.style.backgroundImage;
             Hide();
         }
         public override void Show() {
@@ -57,6 +60,8 @@ namespace AH.UI.Views {
         }
 
         private void SetCoin() {
+           _stageDescription.style.backgroundImage = baseBackgroundImg; // 배경이미지 초기화
+
             string dataPath = ComputerViewModel.GetLoadStageSO().GetLoadStageName();
             StageSaveDataSO saveData = null;
             if (dataPath.Contains("Story")) {
@@ -66,6 +71,8 @@ namespace AH.UI.Views {
                 StageDataSO stageData = Resources.Load<StageDataSO>(path);
                 if(stageData.nextChapter == "" || stageData.nextStage == "") {
                     newPath = $"SaveData/{dataPath}";
+
+                    _stageDescription.style.backgroundImage = new StyleBackground(ComputerViewModel.GetDescriptionBackgroundImg());
                 }
                 else {
                     newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";

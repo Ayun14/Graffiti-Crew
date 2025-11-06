@@ -1,5 +1,6 @@
 using AH.Save;
 using AH.UI.Data;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace AH.UI.Models
 
         [Header("Map")]
         [SerializeField] private LoadStageSO _loadStageSO;
+        [SerializeField] private Sprite _stageDesctiptionBackgroundImg;
 
         public List<StageSaveDataSO> GetSaveStageDatas() {
             return _saveStageDatas;
@@ -55,6 +57,10 @@ namespace AH.UI.Models
             _loadStageSO.chapter = chapter;
             _loadStageSO.stage = stage;
             _loadStageSO.SetCurrentStage(chapter + stage, stageType, stageNumber);
+        }
+
+        public Sprite GetDescriptionBackgroundImg() {
+            return _stageDesctiptionBackgroundImg;
         }
     }
 }
