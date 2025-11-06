@@ -15,7 +15,7 @@ MonoBehaviour:
   associatedSheet: 1BJCOIqXXkmaIJhi9qZNKzuaabsNOT4vsKzzXgZb0qAQ
   associatedWorksheet: Stage3
   START_ROW_LENGTH: 2
-  END_ROW_LENGTH: 49
+  END_ROW_LENGTH: 51
   readMode: 0
   DialogueList:
   - id: 1
@@ -215,7 +215,7 @@ MonoBehaviour:
     spriteName: Jia
     soundName: 
     animName: Call
-    bgType: 8
+    bgType: 5
     actionType: 0
   - id: 25
     characterName: "\uBE44\uBE44\uC548"
@@ -254,7 +254,7 @@ MonoBehaviour:
     actionType: 0
   - id: 29
     characterName: "\uBE44\uBE44\uC548"
-    context: "... \uADF8\uB7EC\uB2C8?"
+    context: "... \uC774\uC0C1\uD558\uB124."
     spriteName: Vivian
     soundName: 
     animName: 
@@ -262,8 +262,7 @@ MonoBehaviour:
     actionType: 0
   - id: 30
     characterName: "\uBE44\uBE44\uC548"
-    context: "\uADFC\uB370 \uC544\uC9C1 \uB09C \uC870\uCE58\uB97C \uCDE8\uD55C \uAC8C
-      \uC5C6\uB294\uB370."
+    context: "\uB09C \uC544\uC9C1 \uC870\uCE58\uB97C \uCDE8\uD55C \uAC8C \uC5C6\uB294\uB370."
     spriteName: Vivian
     soundName: 
     animName: 
@@ -342,8 +341,8 @@ MonoBehaviour:
     context: "-\uBE44\uBE44\uC548\uACFC\uC758 \uC804\uD654\uAC00 \uB04A\uAE34\uB2E4.-"
     spriteName: 
     soundName: EndCall
-    animName: 
-    bgType: 0
+    animName: Idle
+    bgType: 6
     actionType: 0
   - id: 40
     characterName: "\uC9C0\uC544"
@@ -398,6 +397,23 @@ MonoBehaviour:
     bgType: 8
     actionType: 0
   - id: 46
+    characterName: 
+    context: "\uC5B4\uB514\uC120\uAC00 \uBD80\uC2A4\uB7ED \uAC70\uB9AC\uB294 \uC18C\uB9AC\uAC00
+      \uB4E4\uB9B0\uB2E4."
+    spriteName: 
+    soundName: Find
+    animName: 
+    bgType: 0
+    actionType: 0
+  - id: 47
+    characterName: "\uC9C0\uC544"
+    context: "...! \uBB50\uC9C0... \uBC14\uB78C\uC778\uAC00."
+    spriteName: Jia
+    soundName: Shock
+    animName: Surprised
+    bgType: 8
+    actionType: 0
+  - id: 48
     characterName: "\uC548\uB098"
     context: "\uD760...? \uADF8\uB807\uB2E8 \uB9D0\uC774\uC9C0."
     spriteName: Anna
@@ -405,7 +421,7 @@ MonoBehaviour:
     animName: Idle
     bgType: 2
     actionType: 0
-  - id: 47
+  - id: 49
     characterName: 
     context: "-\uC804\uD654\uBCA8 \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4.-"
     spriteName: 
@@ -413,7 +429,7 @@ MonoBehaviour:
     animName: 
     bgType: 0
     actionType: 0
-  - id: 48
+  - id: 50
     characterName: "\uC548\uB098"
     context: "\uB09C\uB370. \uC880 \uC870\uC0AC\uD574\uC904\uAC8C \uC0DD\uACBC\uC5B4."
     spriteName: Anna
