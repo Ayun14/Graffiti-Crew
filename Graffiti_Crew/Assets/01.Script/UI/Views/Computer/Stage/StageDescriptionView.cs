@@ -12,6 +12,7 @@ namespace AH.UI.Views {
 
         private VisualElement _stageDescription;
 
+        private List<VisualElement> _coinShadowList;
         private List<VisualElement> _coinList;
         private VisualElement _startBtn;
         private Button _closeBtn;
@@ -30,6 +31,7 @@ namespace AH.UI.Views {
         protected override void SetVisualElements() {
             base.SetVisualElements();
             _coinList = topElement.Query<VisualElement>(className: "coin").ToList();
+            _coinShadowList = topElement.Query<VisualElement>("shadow-coin-box").ToList();
             _stageDescription = topElement.Q<VisualElement>("stage-description");
             _startBtn = topElement.Q<VisualElement>("start-btn");
             _closeBtn = topElement.Q<Button>("exit-btn");
@@ -60,7 +62,7 @@ namespace AH.UI.Views {
         }
 
         private void SetCoin() {
-           _stageDescription.style.backgroundImage = baseBackgroundImg; // 배경이미지 초기화
+            ResetView();
 
             string dataPath = ComputerViewModel.GetLoadStageSO().GetLoadStageName();
             StageSaveDataSO saveData = null;
@@ -69,10 +71,12 @@ namespace AH.UI.Views {
                 string newPath = "";
 
                 StageDataSO stageData = Resources.Load<StageDataSO>(path);
-                if(stageData.nextChapter == "" || stageData.nextStage == "") {
+                if (stageData.nextChapter == "" || stageData.nextStage == "") {
                     newPath = $"SaveData/{dataPath}";
 
-                    _stageDescription.style.backgroundImage = new StyleBackground(ComputerViewModel.GetDescriptionBackgroundImg());
+                    foreach (VisualElement element in _coinShadowList) {
+                        element.style.display = DisplayStyle.None;
+                    }
                 }
                 else {
                     newPath = $"SaveData/{stageData.nextChapter}/{stageData.nextStage}";
@@ -91,6 +95,13 @@ namespace AH.UI.Views {
                 _coinList[i].RemoveFromClassList("coin");
             }
         }
+
+        private void ResetView() {
+            foreach (VisualElement element in _coinShadowList) {
+                element.style.display = DisplayStyle.Flex;
+            }
+        }
+
         private void ClickCloseBtn(ClickEvent evt) {
             //Sound
             GameManager.Instance.SoundSystemCompo.PlaySFX(SoundType.Click_UI);

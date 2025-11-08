@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3" />
-    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3" />
+    <Style src="project://database/Assets/07.UI/USS/Public/Text_USS.uss?fileID=7433441132597879392&amp;guid=7b94bfa3fe568d14f9ea6023cd28208f&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/07.UI/USS/Computer/SelectStageView_USS.uss?fileID=7433441132597879392&amp;guid=7a58247e53e67554d8bb789c39aef30e&amp;type=3#SelectStageView_USS" />
     <engine:VisualElement name="stage-description" class="stage-description stage-description-in">
         <engine:VisualElement style="flex-basis: 24%;">
             <engine:Label text="1-1 스테이지(제목)" name="stage-name-txt" class="grow-size-110" style="flex-grow: 0; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/99.Asset/00.Fonts/Opsilon-Regular.ttf?fileID=12800000&amp;guid=6e2cf7f5846a18842a69b52f15b56fe5&amp;type=3#Opsilon-Regular&quot;); margin-top: 10px; bottom: 12%;">
@@ -19,7 +19,7 @@
                     </engine:Label>
                 </engine:VisualElement>
                 <engine:VisualElement style="flex-basis: 24%; flex-direction: row; align-items: center;">
-                    <engine:VisualElement style="height: 100%; align-items: center; justify-content: space-between; flex-direction: row; position: absolute; width: 61%; flex-basis: 61%;">
+                    <engine:VisualElement name="shadow-coin-box" style="height: 100%; align-items: center; justify-content: space-between; flex-direction: row; position: absolute; width: 61%; flex-basis: 61%;">
                         <engine:VisualElement name="shadow" class="shadow" />
                         <engine:VisualElement name="shadow" class="shadow" />
                         <engine:VisualElement name="shadow" class="shadow" />
