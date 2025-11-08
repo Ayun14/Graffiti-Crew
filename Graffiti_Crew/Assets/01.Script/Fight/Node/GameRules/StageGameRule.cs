@@ -39,15 +39,6 @@ public abstract class StageGameRule : Observer<GameStateController>
         _comboController = GetComponentInChildren<ComboController>();
     }
 
-    private void Update()
-    {
-        // Skip
-        if (Input.GetKeyDown(KeyCode.K) && GameManager.IsPause() == false)
-        {
-            AllNodeClear();
-        }
-    }
-
     private void OnDestroy()
     {
         Detach();
