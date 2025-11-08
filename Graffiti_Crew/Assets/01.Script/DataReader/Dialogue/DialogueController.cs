@@ -1,3 +1,4 @@
+using AH.Save;
 using AH.UI.Events;
 using System;
 using System.Collections;
@@ -10,7 +11,6 @@ public class DialogueController : MonoBehaviour
     [Header("Dialogue Data")]
     [SerializeField] private LanguageSO _languageSO;
     public DialogueDataReader dialogueDataReader;
-
 
     [Header("Dialogue Camera")]
     [SerializeField] private GameObject _defaultCam;
@@ -36,6 +36,12 @@ public class DialogueController : MonoBehaviour
 
         DialogueEvent.SetDialogueInput += SetDialogueInput;
         DialogueEvent.SkipToStory += StorySkip;
+    }
+
+    private void Start()
+    {
+        
+
     }
 
     private void OnDisable()

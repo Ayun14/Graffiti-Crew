@@ -12626,7 +12626,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8389301237078372267}
   - component: {fileID: 4452394904671134869}
-  - component: {fileID: 7356761929921375456}
   m_Layer: 0
   m_Name: BeforeGraffitiRenderer (1)
   m_TagString: Untagged
@@ -12704,22 +12703,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7356761929921375456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7030470648588708788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb847a22af8ce74ba7357a6779a6555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolManager: {fileID: 11400000, guid: 8dd2d19dbbfb80b40853a904fb6096fa, type: 2}
-  _graffitiSuccessEffect: {fileID: 11400000, guid: 9c8220c926678bc4097db3f9e6c4f2ac, type: 2}
-  _graffitiRender: {fileID: 5464881457255795382, guid: 9a5d23c06bb11004ba67a52a14d053ef, type: 3}
-  _memberGraffitiTimeDuration: 4
 --- !u!1 &7133628300793698495
 GameObject:
   m_ObjectHideFlags: 0
@@ -15967,7 +15950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6511778605371180655
 Transform:
   m_ObjectHideFlags: 0

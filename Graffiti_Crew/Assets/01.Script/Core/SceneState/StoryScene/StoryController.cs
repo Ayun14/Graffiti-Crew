@@ -1,3 +1,4 @@
+using AH.Save;
 using AH.UI.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,9 @@ public class StoryController : Observer<GameStateController>, INeedLoding
     [SerializeField] private DialogueUIController _dialogueUIController;
 
     [SerializeField] private SplashController _splashController;
+
+    [SerializeField] StoryDialogueSO _chapter5Daialogue;
+    [SerializeField] StageSaveDataSO _chapter5Data;
 
     private List<GameObject> _levelPrefabs = new List<GameObject>();
 
@@ -98,6 +102,9 @@ public class StoryController : Observer<GameStateController>, INeedLoding
 
     public void LodingHandle(DataController dataController)
     {
+        if (dataController.stageData.storyDialogue == _chapter5Daialogue)
+            dataController.stageData.stageSaveData.stageState = StageState.Clear;
+
         //dataController.stageData.stageSaveData.stageState = StageState.Clear;
 
         GameObject map = Instantiate(dataController.stageData.mapPrefab, Vector3.zero, Quaternion.identity);

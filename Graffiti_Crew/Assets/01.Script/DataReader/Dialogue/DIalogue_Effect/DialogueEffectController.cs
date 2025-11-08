@@ -1,3 +1,4 @@
+using AH.Save;
 using System.Collections;
 using UnityEngine;
 
@@ -60,6 +61,7 @@ public class DialogueEffectController : MonoBehaviour
             case BGType.ShakeCam:
                 _camController.PlayCamEffect();
                 break;
+
         }
     }
 
